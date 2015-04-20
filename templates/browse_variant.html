@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Variant {{ variant }}</h1>
+    </div>
+    <div class="col-xs-12">
+      {{ variant_description }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">{{ variant }} Sequences</a></li>
+          <li role="presentation"><a href="#seed" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="sequences">
+            <br /><br />
+            <p>{% include "sequences.html" %}</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="seed">
+            TEST<!-- {% include "seed.html" %} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

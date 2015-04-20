@@ -1,0 +1,26 @@
+from django.conf.urls import patterns, include, url
+from django.contrib import admin
+
+urlpatterns = patterns('server.views',
+    # Examples:
+    # url(r'^$', 'HistoneDB.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+
+    #url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'browse_types'),
+    url(r'^browse/$', 'browse_types'),
+
+    url(r'^type/([a-zA-Z0-9]+)/', 'browse_variants'),
+    url(r'^variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
+
+    url(r'^data/type/phyloxml/([a-zA-Z0-9]+)/', 'get_phyloxml_of_type'),
+    url(r'^data/type/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json_of_type'),
+    url(r'^data/type/json/([a-zA-Z0-9]+)/(all|seed)/$', 'get_sequence_table_data'),
+
+    url(r'^data/variant/json/([a-zA-Z0-9\.]+)/all$', 'get_all_json_of_variant'),
+    url(r'^data/variant/json/([a-zA-Z0-9\.]+)/seed$', 'get_seed_json_of_variant'),
+
+    url(r'search/([a-zA-Z0-9\.]+)/', 'search'),
+
+
+)

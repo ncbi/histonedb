@@ -1,0 +1,67 @@
+<div id="toolbar">
+	<div class="btn-group" role="group" aria-label="...">
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+					For selected
+		  			<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+				  <li><a href="#">View alignment/secondary structure</a></li>
+				  <li><a href="#">View against all profiles</a></li>
+				  <li><a href="#">Download FASTA (Aligned)</a></li>
+				  <li><a href="#">Download FASTA (Unaligned)</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="input-group">
+	    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		<input type="text" class="form-control" aria-label="...">
+		<div class="input-group-btn">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All <span class="caret"></span></button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+		    <li><a href="#">Nomenclature</a></li>
+		    <li><a href="#">Organism</a></li>
+		    <li><a href="#">GI</a></li>
+		    <li class="divider"></li>
+		    <li><a href="#">Advanced Search</a></li>
+		  </ul>
+		</div>
+	</div>
+	<div class="btn-group" role="group" aria-label="...">
+		<button type="button" class="btn btn-default">
+  			<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Filter
+		</button>
+	</div>
+</div>
+<div class="container">
+	<table id="sequence_table"
+	       data-toggle="table"
+	       data-url="/data/{{ browse_section }}/json/{{ name }}/all/"  
+	       data-click-to-select="true" 
+	       data-sort-name="score" 
+	       data-sort-order="desc" 
+	       data-show-refresh="true" 
+	       data-show-columns="true" 
+	       data-side-pagination="server" 
+	       data-pagination="true" 
+	       data-page-list="[5, 10, 20, 50, 100, 200]"
+	       data-show-toggle="true"
+	       data-show-export="true"
+	       data-toolbar="#toolbar">
+	    <thead>
+	        <tr>
+	            <th data-field="state" data-checkbox="true"></th>
+	            <th data-field="gi" data-align="">GI</th>
+	            <th data-field="variant" data-align="">Variant</th>
+	            <th data-field="gene" data-align="">Gene</th>
+	            <th data-field="splice" data-align="">Splice</th>
+	            <th data-field="species" data-align="">Species</th>
+	            <th data-field="header" data-align="">Header</th>
+	            <th data-field="score" data-align="">Score</th>
+	            <th data-field="evalue" data-align="">E-value</th>
+	            <th data-field="program" data-align="">Program</th>
+	        </tr>
+	    </thead>
+	</table>
+</div>

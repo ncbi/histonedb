@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <h1>HistoneDB 2.0</h1>
+    <p>A complete collection of all histone core proteins, now organized by histone variants. This database can be used to understand how changes in histone sequence affect structure, complex formation, and nucleosome function. To get started, please select a histone type below to explore its variants:</p>
+  </div>
+</div>
+
+<div class="container-fluid img-responsive">
+  <div class="row">
+    <div class="col-xs-4">
+      <a href="/type/H2A">
+        <div class="row">
+          <div class="col-xs-1 col-md-offset-9"><h2>H2A</h2></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <img class="img-responsive pull-right" src="{% static 'server/img/H2A.png' %}" width="35%" />
+          </div>
+        </div>
+      </a>
+      <a href="/type/H3">
+        <div class="row">
+          <div class="col-xs-1 col-md-offset-9"><h2>H3</h2></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12"><img class="img-responsive pull-right" src="{% static 'server/img/H3.png' %}" width="35%" /></div>
+        </div>
+      </a>
+    </div>
+    <div class="col-xs-4">
+      <div class="vcenter center-block">
+        <img class="img-responsive center-block" src="{% static 'server/img/nucleosome.png' %}" />
+        The Nucleosome Core Particle (PDB: <a href="http://www.rcsb.org/pdb/explore.do?structureId=1AOI">1AOI</a>) is comprised of H2A, H2B, H3, and H4 core histones types, wrapping ~147 bp of DNA. H2A-H2B form a dimer and H3-H4 form a tetramer. 
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="row">
+        <a href="/type/H2B">
+          <div class="row">
+            <div class="col-xs-1 col-md-offset-2"><h2>H2B</h2></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <img class="img-responsive pull-left" src="{% static 'server/img/H2B.png' %}" width="35%" />
+            </div>
+          </div>
+        </a>
+        <a href="/type/H4">
+          <div class="row">
+            <div class="col-xs-1 col-md-offset-2"><h2>H4</h2></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <img class="img-responsive pull-left" src="{% static 'server/img/H4.png' %}" width="35%" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

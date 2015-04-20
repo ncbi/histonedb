@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <img src="{% with 'server/img/'|add:histone_type|add:'.png' as image_static %}
+  {% static image_static %}
+{% endwith %}" width="75%" />
+    </div>
+    <div class="col-xs-9">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>{{ histone_type }}</h1>
+        </div>
+        <div class="col-xs-12">
+          {{ histone_description }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">By Variant</a></li>
+          <li role="presentation"><a href="#organism" aria-controls="organism" role="tab" data-toggle="tab">By Organism</a></li>
+          <li role="presentation"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
+          <li role="presentation"><a href="#seed" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="variant">
+            <div id="tree"></div>
+            <script type="text/javascript">
+              window.onload = function(){
+                var dataObject = {
+                  phyloxml: {{ phylo_xml }},     // If using phyloXML, need to tell us - or else we assume it is Newick
+                  fileSource: true    // Need to indicate that it is from a file for us to process it correctly
+                };  
+                phylocanvas = new Smits.PhyloCanvas(
+                  dataObject,
+                  'svgCanvas',
+                  500, 500
+                );
+              };
+            </script>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="organism">
+            <div id="sunburst"></div>
+            <script type="text/javascript">
+              var data = {{ starburst_json }}
+              //d3 starburst
+            </script>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="sequences">
+            {% include "sequences.html" %}
+          </div>
+          <div role="tabpanel" class="tab-pane" id="seed">
+            TEST
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
