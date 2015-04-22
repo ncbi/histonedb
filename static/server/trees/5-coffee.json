@@ -1,0 +1,317 @@
+{
+    "phyloxml": {
+        "phylogeny": {
+            "render": {
+                "parameters": {
+                    "circular": {
+                        "bufferRadius": "0.4"
+                    }
+                },
+                "charts": {
+                    "component": {
+                        "_type": "binary",
+                        "_thickness": "10"
+                    }
+                },
+                "styles": {
+                    "caffeine": {
+                        "_fill": "#A93",
+                        "_stroke": "#DDD"
+                    },
+                    "base": {
+                        "_fill": "#8b7100",
+                        "_stroke": "#DDD"
+                    },
+                    "other": {
+                        "_fill": "#333",
+                        "_stroke": "#DDD"
+                    }
+                }
+            },
+            "clade": {
+                "clade": [
+                    {
+                        "branch_length": "1.0",
+                        "clade": [
+                            {
+                                "branch_length": "1.0",
+                                "clade": [
+                                    {
+                                        "name": "Espresso",
+                                        "branch_length": "2.0",
+                                        "annotation": {
+                                            "desc": "Base of many coffees",
+                                            "uri": "http://en.wikipedia.org/wiki/Espresso"
+                                        },
+                                        "chart": {
+                                            "component": "base"
+                                        }
+                                    },
+                                    {
+                                        "branch_length": "5.0",
+                                        "clade": [
+                                            {
+                                                "name": "Milk Foam",
+                                                "branch_length": "2.0",
+                                                "annotation": {
+                                                    "desc": "Nice froth",
+                                                    "uri": "http://en.wikipedia.org/wiki/Milk_Foam"
+                                                },
+                                                "chart": {
+                                                    "component": "other"
+                                                }
+                                            },
+                                            {
+                                                "name": "Espresso Macchiato",
+                                                "branch_length": "5.0",
+                                                "annotation": {
+                                                    "desc": "Tight Espresso",
+                                                    "uri": "http://en.wikipedia.org/wiki/Espresso_Macchiato"
+                                                },
+                                                "chart": {
+                                                    "component": "caffeine"
+                                                }
+                                            },
+                                            {
+                                                "branch_length": "5.0",
+                                                "clade": [
+                                                    {
+                                                        "name": "Flat White",
+                                                        "branch_length": "2.0",
+                                                        "annotation": {
+                                                            "desc": "No Heartburn please",
+                                                            "uri": "http://en.wikipedia.org/wiki/Flat_White"
+                                                        },
+                                                        "chart": {
+                                                            "component": "caffeine"
+                                                        }
+                                                    },
+                                                    {
+                                                        "branch_length": "5.0",
+                                                        "clade": [
+                                                            {
+                                                                "name": "Steamed Milk",
+                                                                "branch_length": "2.0",
+                                                                "annotation": {
+                                                                    "desc": "Don't burn it now",
+                                                                    "uri": "http://en.wikipedia.org/wiki/Steamed_Milk"
+                                                                },
+                                                                "chart": {
+                                                                    "component": "other"
+                                                                }
+                                                            },
+                                                            {
+                                                                "name": "Cappuccino",
+                                                                "branch_length": "2.0",
+                                                                "annotation": {
+                                                                    "desc": "Ah, a classic",
+                                                                    "uri": "http://en.wikipedia.org/wiki/Cappuccino"
+                                                                },
+                                                                "chart": {
+                                                                    "component": "caffeine"
+                                                                }
+                                                            },
+                                                            {
+                                                                "branch_length": "5.0",
+                                                                "clade": [
+                                                                    {
+                                                                        "name": "Whipped Cream",
+                                                                        "branch_length": "1.0",
+                                                                        "annotation": {
+                                                                            "desc": "Sweet tooth?",
+                                                                            "uri": "http://en.wikipedia.org/wiki/Whipped_Cream"
+                                                                        },
+                                                                        "chart": {
+                                                                            "component": "other"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "Chocolate Syrup",
+                                                                        "branch_length": "1.0",
+                                                                        "annotation": {
+                                                                            "desc": "What's next?",
+                                                                            "uri": "http://en.wikipedia.org/wiki/Chocolate_Syrup"
+                                                                        },
+                                                                        "chart": {
+                                                                            "component": "other"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "Cafe Mocha",
+                                                                        "branch_length": "3.0",
+                                                                        "annotation": {
+                                                                            "desc": "Where's my coffee?",
+                                                                            "uri": "http://en.wikipedia.org/wiki/Cafe_Mocha"
+                                                                        },
+                                                                        "chart": {
+                                                                            "component": "caffeine"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Coffee arabica",
+                                "branch_length": "0.1",
+                                "annotation": {
+                                    "desc": "Old-timer",
+                                    "uri": "http://en.wikipedia.org/wiki/Coffee_arabica"
+                                },
+                                "chart": {
+                                    "component": "base"
+                                }
+                            },
+                            {
+                                "branch_length": "1.0",
+                                "clade": [
+                                    {
+                                        "name": "Columbian",
+                                        "branch_length": "1.5",
+                                        "annotation": {
+                                            "desc": "Traditional",
+                                            "uri": "http://en.wikipedia.org/wiki/Columbian_Coffee"
+                                        },
+                                        "chart": {
+                                            "component": "base"
+                                        }
+                                    },
+                                    {
+                                        "branch_length": "5.0",
+                                        "clade": [
+                                            {
+                                                "name": "Heavy Roast",
+                                                "branch_length": "0.1",
+                                                "annotation": {
+                                                    "desc": "I taste like the bean",
+                                                    "uri": "http://en.wikipedia.org/wiki/Heavy_Roast"
+                                                },
+                                                "chart": {
+                                                    "component": "base"
+                                                }
+                                            },
+                                            {
+                                                "name": "French Roast",
+                                                "branch_length": "0.2",
+                                                "annotation": {
+                                                    "desc": "Cigarette, anyone?",
+                                                    "uri": "http://en.wikipedia.org/wiki/French_Roast"
+                                                },
+                                                "chart": {
+                                                    "component": "caffeine"
+                                                }
+                                            },
+                                            {
+                                                "name": "European Roast",
+                                                "branch_length": "1.0",
+                                                "annotation": {
+                                                    "desc": "Smooth",
+                                                    "uri": "http://en.wikipedia.org/wiki/European_Roast"
+                                                },
+                                                "chart": {
+                                                    "component": "caffeine"
+                                                }
+                                            },
+                                            {
+                                                "branch_length": "2.0",
+                                                "clade": [
+                                                    {
+                                                        "name": "Medium Roast",
+                                                        "branch_length": "1.0",
+                                                        "annotation": {
+                                                            "desc": "A little bit of both",
+                                                            "uri": "http://en.wikipedia.org/wiki/Medium_Roast"
+                                                        },
+                                                        "chart": {
+                                                            "component": "base"
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "Viennese Roast",
+                                                        "branch_length": "3.0",
+                                                        "annotation": {
+                                                            "desc": "Nice blend",
+                                                            "uri": "http://en.wikipedia.org/wiki/Viennese_Roast"
+                                                        },
+                                                        "chart": {
+                                                            "component": "caffeine"
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "American Roast",
+                                                        "branch_length": "5.0",
+                                                        "annotation": {
+                                                            "desc": "Yanks need no caffeine",
+                                                            "uri": "http://en.wikipedia.org/wiki/American_Roast"
+                                                        },
+                                                        "chart": {
+                                                            "component": "caffeine"
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "Instant Coffee",
+                                                        "branch_length": "9.0",
+                                                        "annotation": {
+                                                            "desc": "Hold your nose",
+                                                            "uri": "http://en.wikipedia.org/wiki/Instant_Coffee"
+                                                        },
+                                                        "chart": {
+                                                            "component": "caffeine"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "Brazilian",
+                                        "branch_length": "0.1",
+                                        "annotation": {
+                                            "desc": "Filter filter filter",
+                                            "uri": "http://en.wikipedia.org/wiki/Brazilian_Coffee"
+                                        },
+                                        "chart": {
+                                            "component": "base"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Americano",
+                        "branch_length": "10.0",
+                        "annotation": {
+                            "desc": "Espresso and water",
+                            "uri": "http://en.wikipedia.org/wiki/Americano"
+                        },
+                        "chart": {
+                            "component": "caffeine"
+                        }
+                    },
+                    {
+                        "name": "Water",
+                        "branch_length": "20.0",
+                        "annotation": {
+                            "desc": "Solvent of Life",
+                            "uri": "http://en.wikipedia.org/wiki/Water"
+                        },
+                        "chart": {
+                            "component": "other"
+                        }
+                    }
+                ]
+            },
+            "_rooted": "false"
+        },
+        "_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "_xmlns": "http://www.phyloxml.org",
+        "_xsi:schemaLocation": "http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd"
+    }
+}

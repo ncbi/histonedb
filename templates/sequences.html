@@ -1,40 +1,24 @@
 <div id="toolbar">
 	<div class="btn-group" role="group" aria-label="...">
-			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
-					For selected
-		  			<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-				  <li><a href="#">View alignment/secondary structure</a></li>
-				  <li><a href="#">View against all profiles</a></li>
-				  <li><a href="#">Download FASTA (Aligned)</a></li>
-				  <li><a href="#">Download FASTA (Unaligned)</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="input-group">
-	    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-		<input type="text" class="form-control" aria-label="...">
-		<div class="input-group-btn">
-		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All <span class="caret"></span></button>
-		  <ul class="dropdown-menu dropdown-menu-right" role="menu">
-		    <li><a href="#">Nomenclature</a></li>
-		    <li><a href="#">Organism</a></li>
-		    <li><a href="#">GI</a></li>
-		    <li class="divider"></li>
-		    <li><a href="#">Advanced Search</a></li>
-		  </ul>
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+				For selected
+	  			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+			  <li><a href="#" data-toggle="modal" data-target="#msa">View alignment/secondary structure</a></li>
+			  <li><a href="#" data-toggle="modal" data-target="#scores">View against all profiles</a></li>
+			  <li><a href="#">Download FASTA</a></li>
+			</ul>
 		</div>
 	</div>
 	<div class="btn-group" role="group" aria-label="...">
-		<button type="button" class="btn btn-default">
-  			<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Filter
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#filter">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Filter
 		</button>
 	</div>
 </div>
-<div class="container">
+<div class="container" style="margin-top:5px;">
 	<table id="sequence_table"
 	       data-toggle="table"
 	       data-url="/data/{{ browse_section }}/json/{{ name }}/all/"  
@@ -48,6 +32,7 @@
 	       data-page-list="[5, 10, 20, 50, 100, 200]"
 	       data-show-toggle="true"
 	       data-show-export="true"
+	       data-search="true"
 	       data-toolbar="#toolbar">
 	    <thead>
 	        <tr>
@@ -64,4 +49,56 @@
 	        </tr>
 	    </thead>
 	</table>
+</div>
+
+<div class="modal fade" id="msa" tabindex="-1" role="dialog" aria-labelledby="seqs" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="seqs">Sequence(s)</h4>
+      </div>
+      <div class="modal-body">
+        <!--BioJS msa with features for secondary structures -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="scores" tabindex="-1" role="dialog" aria-labelledby="all_profiles" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="all_profiles">All Profile Scores</h4>
+      </div>
+      <div class="modal-body">
+        <!--BioJS msa with features for secondary structures -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="advanced_filter" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="advanced_filter">Advanced Filter</h4>
+      </div>
+      <div class="modal-body">
+        <!--BioJS msa with features for secondary structures -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Filter</button>
+      </div>
+    </div>
+  </div>
 </div>
