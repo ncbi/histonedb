@@ -8,8 +8,6 @@ from Bio import SeqIO
 from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
 
-from taxonomy_from_gis import taxonomy_from_gis
-
 def assign(seqs, outfile, title):
     """
     """
@@ -40,8 +38,9 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
     title : str
         Overall title for multiple sequences. Optional.
     """
+    ids = []
     sequences = SeqIO.parse(seqs, "fasta")
-    blast_records = NCBIXML.parse(blast_csv)
+    blast_records = NCBIXML.parse(blast_results)
     for n, (sequence, blast_record) in enumerate(zip(sequences, blast_records)):
         print "Sequence", n
         print sequence.format("fasta")
@@ -134,8 +133,10 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
         sequence.description = sequence.description.replace(" ", "_")
 
         SeqIO.write(sequence, outfile, "fasta")
+	ids.append(best_gi)
 
-
+    with open("{}.ids.txt".format(outfile.name), "w") as id_file:
+        print >> id_file, "\n".join(ids)
 
 
 def parse_args():
