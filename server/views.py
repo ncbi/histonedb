@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import json
 
+from server.forms import SearchForm, FilterForm
 # Create your views here.
 
 def browse_types(request):
@@ -13,7 +14,8 @@ def browse_variants(request, histone_type):
 		"histone_type": histone_type,
 		"histone_description": "NOPE", #histone_description,
 		"browse_section": "type",
-		"name": histone_type
+		"name": histone_type,
+		"filter_form": FilterForm(),
 	}
 	return render(request, 'browse_variants.html', data)
 
@@ -23,6 +25,23 @@ def browse_variant(request, histone_type):
 		"histone_description": "NOPE", #histone_description,
 	}
 	return render(request, 'browse_varaint.html', {})
+
+def search(request):
+	if request.method == "POST":
+		data = {'result':None}
+	else:
+		data = {'search_form':SearchForm()}
+
+	return render(request, 'search.html', data)
+
+def upload(request):
+	if request.method == "POST":
+		data = {'result':None}
+	else:
+		data = {}
+
+	return render(request, 'upload.html', data)
+
 
 def get_sequence_table_data(request, browse_type, seq_type):
 	if seq_type == "all":

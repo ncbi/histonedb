@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+  <div class="alert alert-danger" role="alert">Error: Upload feature not implemented yet</div>
+  <div class="page-header">
+	  {% if not result %}
+	    <h1>Upload histone sequence to classify their variants</h1>
+	  {% else %}
+	  	<h1>Upload results</small>
+	  {% endif %}
+  </div>
+  {% if not result %}
+	<form action="#" method="post">{% csrf_token %}
+      	<div class="container">
+          <div class="row">
+            <div class="col-xs-6">Sequences:</div>
+            <div class="col-xs-6"><textarea id="seq" class="reset" rows="5" cols="80" name="QUERY" ></textarea>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">Or, upload file:</div>
+            <div class="col-xs-6"><input type="file" id="upl" name="QUERYFILE" /></div>
+          </div>
+      	</div>
+      	<div class="modal-footer">
+        	<button type="button" class="btn btn-primary disabled">Upload</button>
+      	</div>
+    </form>
+  {% else %}
+  	{% include "sequences.html" %}
+  {% endif %}
+</div>
+{% endblock %}

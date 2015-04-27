@@ -1,16 +1,35 @@
 from django.db import models
+from server.phylocore_models import * #includes Taxonomy
+
+class Histone(models.Model):
+	core_type     = models.CharField(max_length=25)
+	taxonomic_span = models.CharField(max_length=25)
+	description   = models.CharField(max_length=255)
+
+class Variant(models.Model):
+	"""Most variants map to 
+	H2A.X -> multiple species, same varaint
+	H2A.10 -> one species, different varaint that are species speficific
+	"""
+	core_type     = models.ForeignKey(Histone)
+	taxonmic_span = models.CharField(max_length=25)
+	description   = models.CharField(max_length=255)
 
 class Sequence(models.Model):
-	variant              = models.ForeignKey("Variant")
+	variant              = models.ForeignKey(Variant)
 	gene                 = models.IntegerField()
 	splice               = models.IntegerField() 
 	GI                   = models.CharField(max_length=25)
-	species              = models.ForeignKey("Taxon")
+	taxonomy             = models.ForeignKey(Taxonomy)
 	score                = models.FloatField() 
 	evalue               = models.FloatField()
 	header               = models.CharField(max_length=255)
 	program              = models.CharField(max_length=25)
-	sequence             = models.TextField() 
+	sequence             = models.TextField()
+	reviewed             = models.BooleanField()
+
+class Features(models.Model):
+	sequence             = models.ForeignKey(Sequence) 
 	alphaN_start         = models.IntegerField()
 	alphaN_end           = models.IntegerField()
 	alpha1_start         = models.IntegerField()
@@ -42,27 +61,3 @@ class Sequence(models.Model):
 	docking_domain_start = models.IntegerField()
 	docking_domain_end   = models.IntegerField()
 	core                 = models.FloatField()
-	reviewed             = models.BooleanField()
- 
-class Taxon(models.Model):
-	id       = models.IntegerField(primary_key=True)
-	species  = models.CharField(max_length=255)
-	genus    = models.CharField(max_length=255)
-	family   = models.CharField(max_length=255)
-	phylum   = models.CharField(max_length=255)
-	domain   = models.CharField(max_length=255)
-	distance = models.FloatField()
-
-class Histone(models.Model):
-	core_type     = models.CharField(max_length=25)
-	taxonomic_span = models.CharField(max_length=25)
-	description   = models.CharField(max_length=255)
-
-class Variant(models.Model):
-	"""Most variants map to 
-	H2A.X -> multiple species, same varaint
-	H2A.10 -> one species, different varaint that are species speficific
-	"""
-	core_type     = models.ForeignKey("Histone")
-	taxonmic_span = models.CharField(max_length=25)
-	description   = models.CharField(max_length=255)  
