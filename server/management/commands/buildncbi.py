@@ -10,12 +10,8 @@ absDir = os.path.join(os.getcwd(), localDir)
 DUMP_PATH = os.path.join( absDir,'..','..', 'dumps' ) 
 
 class Command(NoArgsCommand):
-    option_list = NoArgsCommand.option_list + (
-        make_option('--verbose', '-v', action='store_true', dest='verbose', 
-            help='Verbose operation'),
-    )
     help = "Download and build the ncbi database"
-    requires_model_validation = False
+    requires_system_checks = False
 
     TEST = False
     TBI = {}
@@ -40,7 +36,7 @@ class Command(NoArgsCommand):
  
     def handle_noargs(self, **options):
         global DUMP_PATH
-        verbose = options.get("verbose", False)
+        verbose = options.get("verbose", True)
         if verbose:
             print "loading taxonomy, please wait, it can take a while..."
         if not os.path.exists( DUMP_PATH ):

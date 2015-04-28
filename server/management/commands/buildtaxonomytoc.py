@@ -3,7 +3,7 @@ from optparse import make_option
 
 import os
 from django.conf import settings
-from djangophylocore.models import *
+from server.phylocore_models import *
 try:
     import cPickle as pickle
 except:
@@ -16,7 +16,7 @@ class Command(NoArgsCommand):
     )
     help = "Build taxonomy toc"
     
-    requires_model_validation = True
+    requires_system_checks = True
     
     def handle_noargs(self, **options):
         d = {}
@@ -27,8 +27,8 @@ class Command(NoArgsCommand):
         absDir = os.path.join(os.getcwd(), localDir)
         path = os.path.join( absDir,'..','..' ) 
         try:
-            os.remove( os.path.join( path, 'taxonomy_toc_%s' % settings.TAXONOMY_ENGINE ) )
+            os.remove( os.path.join( path, 'taxonomy_toc_ncbi') )
         except:
             pass
-        pickle.dump( d, open( os.path.join( path, 'taxonomy_toc_%s' % settings.TAXONOMY_ENGINE ), 'w' ) )
+        pickle.dump( d, open( os.path.join( path, 'taxonomy_toc_ncbi' ), 'w' ) )
 

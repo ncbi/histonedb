@@ -346,16 +346,16 @@ class Taxonomy( models.Model ):
             self.regenerate_parents()    
         if settings.DATABASE_ENGINE == "sqlite3":
             parents_list =  Taxonomy.objects.extra( 
-              tables = ['djangophylocore_parentsrelation'],
-              where = ["djangophylocore_taxonomy.id = djangophylocore_parentsrelation.parent_id and djangophylocore_parentsrelation.taxon_id = %s"],
+              tables = ['server_parentsrelation'],
+              where = ["server_taxonomy.id = server_parentsrelation.parent_id and server_parentsrelation.taxon_id = %s"],
               params = [self.id],
-              order_by = ['djangophylocore_parentsrelation."index"'] )
+              order_by = ['server_parentsrelation."index"'] )
         else:
             parents_list =  Taxonomy.objects.extra( 
-              tables = ['djangophylocore_parentsrelation'],
-              where = ["djangophylocore_taxonomy.id = djangophylocore_parentsrelation.parent_id and djangophylocore_parentsrelation.taxon_id = %s"],
+              tables = ['server_parentsrelation'],
+              where = ["server_taxonomy.id = server_parentsrelation.parent_id and server_parentsrelation.taxon_id = %s"],
               params = [self.id],
-              order_by = ['djangophylocore_parentsrelation.index'] )
+              order_by = ['server_parentsrelation.index'] )
         return parents_list
         #return [i.parent for i in self.parents_relation_taxas.all()]
     parents = property( get_parents, None, None,

@@ -3,7 +3,7 @@ from optparse import make_option
 
 import os
 from django.conf import settings
-from djangophylocore.models import *
+from server.phylocore_models import *
 
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
@@ -12,7 +12,7 @@ class Command(NoArgsCommand):
     )
     help = "Build spell file for suggestions"
     
-    requires_model_validation = True
+    requires_system_checks = True
     
     def handle_noargs(self, **options):
         d = {}
@@ -23,5 +23,5 @@ class Command(NoArgsCommand):
         localDir = os.path.dirname(__file__)
         absDir = os.path.join(os.getcwd(), localDir)
         path = os.path.join( absDir, "..", "..", "lib" )
-        open( os.path.join( path, "spell_file_%s.txt" % settings.TAXONOMY_ENGINE ), "w").write( "\n".join( result ) )
+        open( os.path.join( path, "spell_file_ncbi.txt"), "w").write( "\n".join( result ) )
 

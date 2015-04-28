@@ -2,34 +2,43 @@ from django.db import models
 from server.phylocore_models import * #includes Taxonomy
 
 class Histone(models.Model):
-	core_type     = models.CharField(max_length=25)
+	id             = models.CharField(max_length=25, primary_key=True)
 	taxonomic_span = models.CharField(max_length=25)
-	description   = models.CharField(max_length=255)
+	description    = models.CharField(max_length=255)
 
 class Variant(models.Model):
 	"""Most variants map to 
 	H2A.X -> multiple species, same varaint
 	H2A.10 -> one species, different varaint that are species speficific
 	"""
-	core_type     = models.ForeignKey(Histone)
+	id            = models.CharField(max_length=25, primary_key=True)
+	core_type     = models.ForeignKey(Histone, "variants")
 	taxonmic_span = models.CharField(max_length=25)
 	description   = models.CharField(max_length=255)
 
 class Sequence(models.Model):
-	variant              = models.ForeignKey(Variant)
-	gene                 = models.IntegerField()
-	splice               = models.IntegerField() 
-	GI                   = models.CharField(max_length=25)
+	id                   = models.CharField(max_length=25, primary_key=True) #GI
+	variant              = models.ForeignKey(Variant, related_key="sequences")
+	gene                 = models.IntegerField(null=True)
+	splice               = models.IntegerField(null=True) 
 	taxonomy             = models.ForeignKey(Taxonomy)
-	score                = models.FloatField() 
-	evalue               = models.FloatField()
 	header               = models.CharField(max_length=255)
-	program              = models.CharField(max_length=25)
 	sequence             = models.TextField()
 	reviewed             = models.BooleanField()
 
+class Score(models.Model):
+	sequence = models.ForeignKey(Sequence, related_key="scores")
+	score    = models.FloatField() #Multiple scores for different models? Have the variant defined by the top scoring?
+	evalue   = models.FloatField()
+	program  = models.CharField(max_length=25)
+	best     = models.BooleanField()
+	hmmStart = models.IntegerField()
+	hmmEnd   = models.IntegerField()
+	seqStart = models.IntegerField()
+	seqEnd   = models.IntegerField()
+
 class Features(models.Model):
-	sequence             = models.ForeignKey(Sequence) 
+	sequence             = models.OneToOneField(Sequence, primary_key=True, related_key="features") 
 	alphaN_start         = models.IntegerField()
 	alphaN_end           = models.IntegerField()
 	alpha1_start         = models.IntegerField()
