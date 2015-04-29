@@ -17,8 +17,7 @@ def assign(seqs, outfile, title):
     result_handle = NCBIWWW.qblast(
         "blastp", 
         "nr",
-        "\n".join([">{}\n{}".format(sequence.id, str(sequence.seq.ungap("-"))) for sequence in sequences]), 
-        entrez_query="NOT partial")
+        "\n".join([">{}\n{}".format(sequence.id, str(sequence.seq.ungap("-"))) for sequence in sequences]))
     with open("{}_result.txt".format(title), 'w') as results:
         print >> results, result_handle.getvalue()
         
@@ -89,13 +88,17 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
                 if best_gi is None:
                     continue
 
+                if hsp.sbjct_start > 2 or hsp.sbjct_end < len(sequence)-2:
+                    continue
+
                 if hsp.query == hsp.sbjct or (orig_id and hsp.query.count("-") == 1 and hsp.query[:hsp.query.index("-")]+hsp.sbjct[hsp.query.index("-")]+hsp.query[hsp.query.index("-")+1:] == hsp.sbjct):
                     #Passed our tests
                     best_hsp = hsp
                     break
 
             if best_hsp is not None:
-                break 
+                break
+
         if best_hsp:
             print "****Best Alignment****"
             print "sequence:", alignment.title
@@ -117,17 +120,15 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
                     print hsp.match
                     print hsp.sbjct
                     print
-            indices = raw_input("Best HSP: ")
-            if indices == "None":
+            best_gi = raw_input("Best GI: ")
+            for i, alignment in enumerate(blast_record.alignments):
+                for j, hsp in enumerate(alignment.hsps):
+                    headers = alignment.title.split(">")
+                    for header in headers:
+                        if best_gi in header:
+                            break
+            else:
                 continue
-
-            try: 
-                i,j=map(int, indices.split(" "))
-            except:
-                continue
-                
-            best_hsp = blast_record.alignments[i].hsps[j]
-            best_gi = alignment.title.split("|")[1]
 
         sequence.id = "|".join((organism, best_gi, title))
         sequence.description = sequence.description.replace(" ", "_")

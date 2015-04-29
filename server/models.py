@@ -12,22 +12,23 @@ class Variant(models.Model):
 	H2A.10 -> one species, different varaint that are species speficific
 	"""
 	id            = models.CharField(max_length=25, primary_key=True)
-	core_type     = models.ForeignKey(Histone, "variants")
+	core_type     = models.ForeignKey(Histone, related_name="variants")
 	taxonmic_span = models.CharField(max_length=25)
 	description   = models.CharField(max_length=255)
 
 class Sequence(models.Model):
-	id                   = models.CharField(max_length=25, primary_key=True) #GI
-	variant              = models.ForeignKey(Variant, related_key="sequences")
-	gene                 = models.IntegerField(null=True)
-	splice               = models.IntegerField(null=True) 
-	taxonomy             = models.ForeignKey(Taxonomy)
-	header               = models.CharField(max_length=255)
-	sequence             = models.TextField()
-	reviewed             = models.BooleanField()
+	id       = models.CharField(max_length=25, primary_key=True) #GI
+	variant  = models.ForeignKey(Variant, related_name="sequences")
+	gene     = models.IntegerField(null=True)
+	splice   = models.IntegerField(null=True) 
+	taxonomy = models.ForeignKey(Taxonomy)
+	header   = models.CharField(max_length=255)
+	sequence = models.TextField()
+	reviewed = models.BooleanField()
 
 class Score(models.Model):
-	sequence = models.ForeignKey(Sequence, related_key="scores")
+	sequence = models.ForeignKey(Sequence, related_name="scores")
+	variant  = models.ForeignKey(Variant, related_name="+")
 	score    = models.FloatField() #Multiple scores for different models? Have the variant defined by the top scoring?
 	evalue   = models.FloatField()
 	program  = models.CharField(max_length=25)
@@ -38,7 +39,7 @@ class Score(models.Model):
 	seqEnd   = models.IntegerField()
 
 class Features(models.Model):
-	sequence             = models.OneToOneField(Sequence, primary_key=True, related_key="features") 
+	sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 
 	alphaN_start         = models.IntegerField()
 	alphaN_end           = models.IntegerField()
 	alpha1_start         = models.IntegerField()
