@@ -13,16 +13,17 @@ urlpatterns = patterns('server.views',
     url(r'^$', 'browse_types'),
     url(r'^browse/$', 'browse_types'),
 
-    url(r'^type/([a-zA-Z0-9]+)/', 'browse_variants'),
+    url(r'^type/([a-zA-Z0-9]+)/$', 'browse_variants'),
     url(r'^variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
 
     url(r'^search/$', 'search'),
     url(r'^upload/$', 'upload'),
 
     url(r'^data/type/phyloxml/([a-zA-Z0-9]+)/', 'get_phyloxml_of_type'),
-    url(r'^data/type/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json_of_type'),
+    url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
     url(r'^data/type/json/([a-zA-Z0-9]+)/(all|seed)/$', 'get_sequence_table_data'),
 
+    url(r'^data/(variant)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
     url(r'^data/variant/json/([a-zA-Z0-9\.]+)/all$', 'get_all_json_of_variant'),
     url(r'^data/variant/json/([a-zA-Z0-9\.]+)/seed$', 'get_seed_json_of_variant'),
 

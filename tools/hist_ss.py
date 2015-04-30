@@ -44,7 +44,7 @@ from Bio.PDB.Polypeptide import PPBuilder
 
 Entrez.email = "eli.draizen@nih.gov" 
 
-def get_hist_ss(test_seq,hist_type='Unknown',debug=0):
+def get_hist_ss(test_seq,hist_type='Unknown',debug=0,save_alignment=False):
     """Returns sequence elements in histone sequence, all numbers assume first element in seq has number 0!!! Not like in PDB"""
 
     #Let's define 1kx5 sequences
@@ -196,13 +196,10 @@ def get_hist_ss(test_seq,hist_type='Unknown',debug=0):
     else:
         os.system("rm   %s.fasta  %s.txt %s.fasta"%(n2,n1,n1))
         
-
+    if save_alignment:
+        return hist_identified,ss_test,align[1]
 
     return hist_identified,ss_test
-
-    # print(hsp.query) print(hsp.match)  print(hsp.sbjct)
-    #prof=cons_prof(alignment)
-    #pylab.plot(prof)
 
 def get_hist_ss_in_aln(alignment,hist_type='Unknown',debug=0):
     """Returns sequence elements in histone alignment, all numbers assume first element in seq has number 0!!! Not like in PDB"""
