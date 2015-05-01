@@ -19,24 +19,24 @@ class Variant(models.Model):
 class Sequence(models.Model):
 	id       = models.CharField(max_length=25, primary_key=True) #GI
 	variant  = models.ForeignKey(Variant, related_name="sequences")
-	gene     = models.IntegerField(null=True)
-	splice   = models.IntegerField(null=True) 
+	gene     = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
+	splice   = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)]) 
 	taxonomy = models.ForeignKey(Taxonomy)
 	header   = models.CharField(max_length=255)
 	sequence = models.TextField()
 	reviewed = models.BooleanField()
 
 class Score(models.Model):
-	sequence = models.ForeignKey(Sequence, related_name="scores")
-	variant  = models.ForeignKey(Variant, related_name="+")
-	score    = models.FloatField() #Multiple scores for different models? Have the variant defined by the top scoring?
-	evalue   = models.FloatField()
-	program  = models.CharField(max_length=25)
-	best     = models.BooleanField()
-	hmmStart = models.IntegerField()
-	hmmEnd   = models.IntegerField()
-	seqStart = models.IntegerField()
-	seqEnd   = models.IntegerField()
+	sequence    = models.ForeignKey(Sequence, related_name="scores")
+	variant     = models.ForeignKey(Variant, related_name="+")
+	score       = models.FloatField() #Multiple scores for different models? Have the variant defined by the top scoring?
+	evalue      = models.FloatField()
+	program     = models.CharField(max_length=25)
+	specificity = models.IntegerField(null=True, validators=[MaxValueValidator(100),MinValueValidator(1)])
+	hmmStart    = models.IntegerField()
+	hmmEnd      = models.IntegerField()
+	seqStart    = models.IntegerField()
+	seqEnd      = models.IntegerField()
 
 class Features(models.Model):
 	sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 

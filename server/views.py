@@ -57,18 +57,25 @@ def upload(request):
 	return render(request, 'upload.html', data)
 
 
-def get_sequence_table_data(request, browse_type, seq_type):
+def get_sequence_table_data(request, browse_type, search):
 	json = [{"GI": 1, "Variant":"H2A.Z", "Gene":1, "Splice":1, "Species":"Homo sapien", "header":"H2A.Z.1.s1 [Homo sapien]", "Score":600.2, "E-value":1e-100, "Program":"hmmer3.1b2"}]
 	#json = [[1, "H2A.Z", 1, 1, "Homo sapien", "H2A.Z.1.s1 [Homo sapien]", 600.2, 1e-100, "hmmer3.1b2"]]
 	return JsonResponse(json, safe=False)
 
+	if request.method == "GET":
+		parameters = request.GET
+	elif request.method == "POST":
+		parameters = request.POST
+
 	if browse_type == "type":
-		sequences = Sequence.objects.filter(core_type=search)
+		query = {"core_type": search}
 	elif browse_type == "variant":
-		sequences = Sequence.objects.filter(varaint=search)
+		query = {"variant": search}
 	else:
 		#404?
 		return
+
+	result, sequences = search(parameters, query)
 
 	if seq_type == "all":
 		#Downalod
