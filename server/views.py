@@ -4,10 +4,14 @@ from django.http import JsonResponse
 from django.shortcuts import get_list_or_404
 
 from server.forms import SearchForm, FilterForm
+from server.search import search
 
 #Django libraires
 from server.models import *
 from phylocore_models import *
+
+#BioPython
+from Bio import SeqIO
 
 def browse_types(request):
 	"""Home"""
@@ -32,51 +36,13 @@ def browse_variant(request, histone_type):
 	}
 	return render(request, 'browse_varaint.html', {})
 
-def search(request):
-	print "search"
+def search_view(request):
 	if request.method == "POST":
-		errors = Counter()
-		if request.POST["id_id"]:
-			try:
-				result = Sequence.objects.get(id=request.POST["id_id"])
-			except Sequence.DoesNotExist:
-				errors["No sequence with GI: {}".format(request.POST["id_id"])] += 1
+		status, result = search(request.POST)
+		if status:
+			data = {'result':result}
 		else:
-			result = Sequence.objects
-
-			if request.POST["id_variant"]:
-				result.filter(variant__search=request.POST["id_variant"])
-
-			if request.POST["id_taxonomy"]:
-				try:
-					#Better way to search?
-					taxonomy = Taxonomy.objects.get(name=request.POST["id_taxonomy"])
-					result.filter(taxonomy=taxonomy)
-				except Sequence.DoesNotExist:
-					errors["No taxa with name: {}".format(request.POST["id_taxonomy"])] + 1
-
-			if request.POST["id_gene"]:
-				#Change to >, >=, <, <=, ==, range
-				try:
-					result.get(id=request.POST["id_gene"])
-				except Sequence.DoesNotExist:
-					errors["No gene with index: {}".format(request.POST["id_gene"])] += 1
-
-			if request.POST["id_splice"]:
-				#Change to >, >=, <, <=, ==, range
-				try:
-					result.get(id=request.POST["id_splice"])
-				except Sequence.DoesNotExist:
-					errors["No splice isoform with index: {}".format(request.POST["id_splice"])] += 1
-
-			if request.POST["header"]:
-				result.filter(header__search=request.POST["id_header"])
-
-
-		if len(errors) == 0:
-			data = {'result':None}
-		else:
-			data = {'errors':errors}
+			data = {'errors':result}
 	else:
 		data = {'search_form':SearchForm()}
 	print render(request, 'search.html', data)
@@ -92,6 +58,10 @@ def upload(request):
 
 
 def get_sequence_table_data(request, browse_type, seq_type):
+	json = [{"GI": 1, "Variant":"H2A.Z", "Gene":1, "Splice":1, "Species":"Homo sapien", "header":"H2A.Z.1.s1 [Homo sapien]", "Score":600.2, "E-value":1e-100, "Program":"hmmer3.1b2"}]
+	#json = [[1, "H2A.Z", 1, 1, "Homo sapien", "H2A.Z.1.s1 [Homo sapien]", 600.2, 1e-100, "hmmer3.1b2"]]
+	return JsonResponse(json, safe=False)
+
 	if browse_type == "type":
 		sequences = Sequence.objects.filter(core_type=search)
 	elif browse_type == "variant":
@@ -103,11 +73,9 @@ def get_sequence_table_data(request, browse_type, seq_type):
 	if seq_type == "all":
 		#Downalod
 		pass
-	#json = '[{"GI": 1, "Variant":"H2A.Z", "Gene":1, "Splice":1, "Species":"Homo sapien", "header":"H2A.Z.1.s1 [Homo sapien]", "Score":600.2, "E-value":1e-100, "Program":"hmmer3.1b2"}'
-	json = '[[1, "H2A.Z", 1, 1, "Homo sapien", "H2A.Z.1.s1 [Homo sapien]", 600.2, 1e-100, "hmmer3.1b2"]]'
-	return HttpResponse(json, content_type="application/json")
+	
 
-def get_starburst_json(requst, browse_type, search):
+def get_starburst_json(request, browse_type, search):
 	"""
 	"""
 	if browse_type == "type":
@@ -144,6 +112,7 @@ def get_starburst_json(requst, browse_type, search):
 		raise Http404("No species {} for {}".format(search, browse_type))
 
 	return JsonResponse(sunburst)
+
 
 
 

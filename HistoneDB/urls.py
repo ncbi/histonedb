@@ -21,11 +21,11 @@ urlpatterns = patterns('server.views',
 
     url(r'^data/type/phyloxml/([a-zA-Z0-9]+)/', 'get_phyloxml_of_type'),
     url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
-    url(r'^data/type/json/([a-zA-Z0-9]+)/(all|seed)/$', 'get_sequence_table_data'),
+    url(r'^data/(type)/json/([a-zA-Z0-9]+)/all/', 'get_sequence_table_data'),
 
     url(r'^data/(variant)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
     url(r'^data/variant/json/([a-zA-Z0-9\.]+)/all$', 'get_all_json_of_variant'),
-    url(r'^data/variant/json/([a-zA-Z0-9\.]+)/seed$', 'get_seed_json_of_variant'),
+    url(r'^data/variant/json/([a-zA-Z0-9\.]+)/seed$', 'get_seed_data'),
 
     url(r'search/([a-zA-Z0-9\.]+)/', 'search'),
 

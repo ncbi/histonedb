@@ -46,7 +46,7 @@
             {% include "sequences.html" %}
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
-            TEST
+            {% include "seed.html" %}
           </div>
         </div>
       </div>
@@ -54,13 +54,13 @@
   </div>
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="{% static 'server/sunburst.js' %}"></script>
+<script src="{% static 'server/dist/js/sunburst.js' %}"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     //Load tree
     $.ajax({
       url : "{% static 'server/trees/5-coffee.json' %}",
-      dataType: "text",
+      dataType: "json",
       success : function (data) {
       	var dataObject = {
           json: data
@@ -79,7 +79,7 @@
     });
 
     //Load sunburst
-    draw_sunburst("/data/type/json/{{ histone_type }})/species", "#sunburst");
+    //draw_sunburst("/data/type/json/{{ histone_type }}/species", "#sunburst");
   });
 </script>
 
