@@ -1,3 +1,5 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 from django.db import models
 from server.phylocore_models import * #includes Taxonomy
 
@@ -13,7 +15,7 @@ class Variant(models.Model):
 	"""
 	id            = models.CharField(max_length=25, primary_key=True)
 	core_type     = models.ForeignKey(Histone, related_name="variants")
-	taxonmic_span = models.CharField(max_length=25)
+	taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
 	description   = models.CharField(max_length=255)
 
 class Sequence(models.Model):
@@ -27,16 +29,17 @@ class Sequence(models.Model):
 	reviewed = models.BooleanField()
 
 class Score(models.Model):
-	sequence    = models.ForeignKey(Sequence, related_name="scores")
-	variant     = models.ForeignKey(Variant, related_name="+")
-	score       = models.FloatField() #Multiple scores for different models? Have the variant defined by the top scoring?
-	evalue      = models.FloatField()
-	program     = models.CharField(max_length=25)
-	specificity = models.IntegerField(null=True, validators=[MaxValueValidator(100),MinValueValidator(1)])
-	hmmStart    = models.IntegerField()
-	hmmEnd      = models.IntegerField()
-	seqStart    = models.IntegerField()
-	seqEnd      = models.IntegerField()
+	sequence       = models.ForeignKey(Sequence, related_name="scores")
+	variant        = models.ForeignKey(Variant, related_name="+")
+	score          = models.FloatField() #Multiple scores for different models? Have the variant defined by the top scoring?
+	evalue         = models.FloatField()
+	train_program  = models.CharField(max_length=25)
+	search_program = models.CharField(max_length=25)
+	specificity    = models.IntegerField(null=True, validators=[MaxValueValidator(100),MinValueValidator(1)])
+	hmmStart       = models.IntegerField()
+	hmmEnd         = models.IntegerField()
+	seqStart       = models.IntegerField()
+	seqEnd         = models.IntegerField()
 
 class Features(models.Model):
 	sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 

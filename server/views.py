@@ -18,7 +18,6 @@ def browse_types(request):
 	return render(request, 'browse_types.html', {})
 
 def browse_variants(request, histone_type):
-	print "HI"
 	data = {
 		"histone_type": histone_type,
 		"histone_description": "NOPE", #histone_description,
@@ -58,9 +57,9 @@ def upload(request):
 
 
 def get_sequence_table_data(request, browse_type, search):
-	json = [{"GI": 1, "Variant":"H2A.Z", "Gene":1, "Splice":1, "Species":"Homo sapien", "header":"H2A.Z.1.s1 [Homo sapien]", "Score":600.2, "E-value":1e-100, "Program":"hmmer3.1b2"}]
+	json = {"count":1, "rows":{"gi": 1, "variant":"H2A.Z", "gene":1, "splice":1, "species":"Homo sapien", "header":"H2A.Z.1.s1 [Homo sapien]", "evalue":1e-100, "program_train":"hmmer3.1b2", "program_test":"hmmer3.1b2"}}
 	#json = [[1, "H2A.Z", 1, 1, "Homo sapien", "H2A.Z.1.s1 [Homo sapien]", 600.2, 1e-100, "hmmer3.1b2"]]
-	return JsonResponse(json, safe=False)
+	return JsonResponse(json)
 
 	if request.method == "GET":
 		parameters = request.GET
@@ -82,22 +81,33 @@ def get_sequence_table_data(request, browse_type, search):
 		pass
 	
 
-def get_starburst_json(request, browse_type, search):
+def get_starburst_json(request, browse_type, search, debug=True):
 	"""
 	"""
-	if browse_type == "type":
-		sequences = Sequence.objects.filter(core_type=search)
+	if debug:
+		print list(Rank.objects.sort_by("id"))
+		taxas = Taxonomy.objects.filter(rank__name="root")
+	elif browse_type == "type":
+		taxas = Sequence.objects.filter(variant__core_type=search).values_list("taxonomy", flat=True)
 	elif browse_type == "variant":
-		sequences = Sequence.objects.filter(variant=search)
+		taxas = Sequence.objects.filter(variant=search).values_list("taxonomy", flat=True)
 	else:
-		raise Http404("Must only search for core histone types ('type') or 'variants')")
+		raise Http404("Must only search for core histone types 'type' or 'variants')")
 
 	sunburst = []
 	colors = {"eukaryota":"#6600CC", "prokaryota":"#00FF00", "archea":"#FF6600"}
-	for sequence in sequences:
-		taxa = sequence.taxonomy
+	print taxas
+	for taxa in taxas:
+		print
+		if debug:
+			path = [taxa] + taxa.children
+		else:
+			path = reversed(taxa.parents.all())+[taxa]
 		root = sunburst
-		for i, curr_taxa in enumerate(reversed(taxa.parents.all())+taxa):
+		print path
+		return
+		for i, curr_taxa in enumerate(path):
+			print curr_taxa
 			for node in root:
 				if node["name"] == curr_taxa.name:
 					break

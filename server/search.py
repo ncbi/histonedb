@@ -2,8 +2,10 @@ from django.db.models import Max
 from server.models import *
 from server.phylocore_models import *
 
+from collections import Counter
+
 search_types = {}
-search_type[str] = {
+search_types[str] = {
 	"is": "",
 	"is (case-insesitive)": "__iexact",
 	"contains": "__contains",
@@ -14,7 +16,7 @@ search_type[str] = {
 	"ends with (case-insesitive)": "__startswith",
 	"in (comma separated, case-sensitive)": "__in"
 }
-search_type[int] = {
+search_types[int] = {
 	">": "__gt",
 	">=": "__gte",
 	"is": "",
@@ -23,13 +25,13 @@ search_type[int] = {
 	"range (dash separator)": "__range",
 	"in (comma separated)": "__in",
 }
-search_type[float] = search_type[int]
+search_types[float] = search_types[int]
 
 class format_query(dict):
 	current_query = None
 	errors = Counter()
 	def format(field, search_type, value, conv_type, allow=None):
-		if allow and search_type not in in allow:
+		if allow and search_type not in allow:
 			errors["Invalid search type ({}) for field {}".format(search_type, field)] += 1
 			return False, errors
 
@@ -126,6 +128,6 @@ def search(parameters, query=None):
 		result = Sequences.objects.all()
 
 	#Sort by best score. Using e-value so we can compare HMMER and SAM
-	result = result.aggregate(evalue=Min("scores__evalue"))).sort_by("-evalue")
+	result = result.aggregate(evalue=Min("scores__evalue")).sort_by("-evalue")
 
 	return True, result

@@ -45,12 +45,8 @@ $(document).ready(function() {
 	yourDiv.appendChild(msaDiv);
 
 	var opts = {
-	  el: msaDiv
-	};
-
-	opts.conf = {
-	  url: "{% with 'server/seeds/'|add:histone_type|add:'/H2A.Z.json' as seed_static %}{% static seed_static %}{% endwith %}",
-	  dropImport: true
+	  el: msaDiv,
+	  importURL: "{% with 'server/seeds/'|add:histone_type|add:'.fasta' as seed_static %}{% static seed_static %}{% endwith %}", 
 	};
 	opts.vis = {
 	  conserv: false,
@@ -58,28 +54,15 @@ $(document).ready(function() {
 	  seqlogo: true,
 	  markers: false,
 	  leftHeader: false,
+	  labelName: false,
 	};
 	opts.zoomer = {
-	  labelIdLength: 100,
-	  labelNameLength: 135,
+	  labelIdLength: 160,
 	  alignmentHeight: 500,
 	};
 
 	// init msa
 	var m = msa(opts);
-
-	$.ajax({
-	  url : "{% with 'server/seeds/'|add:histone_type|add:'/H2A.Z.json' as seed_static %}{% static seed_static %}{% endwith %}",
-	  dataType: "json",
-	  success : function (data) {
-
-	  	m.seqs.reset(data)
-	  	m.render();
-	  },
-	  error : function(jqXHR, textStatus, errorThrown) {
-	  	alert("Error: No seed sequences found for variant {{ variant }}");
-	  }
-	});
 
 	var colorConservation = {}
 
