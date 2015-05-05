@@ -85,22 +85,23 @@ def get_starburst_json(request, browse_type, search, debug=True):
 	"""
 	"""
 	if debug:
-		print list(Rank.objects.sort_by("id"))
-		taxas = Taxonomy.objects.filter(rank__name="root")
+		taxas = Taxonomy.objects.filter(name="root", type_name="scientific name")
+		print len(taxas)
 	elif browse_type == "type":
-		taxas = Sequence.objects.filter(variant__core_type=search).values_list("taxonomy", flat=True)
+		taxas = Sequence.objects.filter(variant__core_type=search).values_list("taxonomy", flat=True).distinct()
 	elif browse_type == "variant":
-		taxas = Sequence.objects.filter(variant=search).values_list("taxonomy", flat=True)
+		taxas = Sequence.objects.filter(variant=search).values_list("taxonomy", flat=True).distinct()
 	else:
 		raise Http404("Must only search for core histone types 'type' or 'variants')")
 
 	sunburst = []
 	colors = {"eukaryota":"#6600CC", "prokaryota":"#00FF00", "archea":"#FF6600"}
-	print taxas
 	for taxa in taxas:
-		print
+		print type(taxa)
+		print taxa.children
 		if debug:
-			path = [taxa] + taxa.children
+			path = [taxa] + taxa.children.all()
+			print path
 		else:
 			path = reversed(taxa.parents.all())+[taxa]
 		root = sunburst
@@ -108,6 +109,7 @@ def get_starburst_json(request, browse_type, search, debug=True):
 		return
 		for i, curr_taxa in enumerate(path):
 			print curr_taxa
+			continue
 			for node in root:
 				if node["name"] == curr_taxa.name:
 					break
@@ -129,6 +131,21 @@ def get_starburst_json(request, browse_type, search, debug=True):
 		raise Http404("No species {} for {}".format(search, browse_type))
 
 	return JsonResponse(sunburst)
+
+	root = Taxonomy.objects.get(name="root", type_name="scientific name")
+	sunburst = create_sunburst(root)
+	
+
+def create_sunburst(root, sunburst=None, level=0):
+	if sunburst is None:
+		sunburst = {"name":root.name, "children":[]}
+
+	for curr_taxa in root.direct_children.filter(type_name="scientific name").all():
+		#print "{}{}".format(" "*level, curr_taxa.name),
+		child = {"name":curr_taxa.name, "children":[]}
+		#print child
+		sunburst["children"].append(create_sunburst(curr_taxa, child, level=level+1))
+	return sunburst
 
 
 

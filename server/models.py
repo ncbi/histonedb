@@ -74,3 +74,10 @@ class Features(models.Model):
 	docking_domain_start = models.IntegerField()
 	docking_domain_end   = models.IntegerField()
 	core                 = models.FloatField()
+
+class Structure(models.Model):
+	sequence = models.ForeignKey(Sequence, primary_key=True, related_name="structures")
+	pdb      = models.CharField(max_length=25)
+	mmdb     = models.CharField(max_length=25)
+	chain    = models.CharField(max_length=25)
+	
