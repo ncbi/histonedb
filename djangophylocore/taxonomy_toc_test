@@ -1,0 +1,497 @@
+(dp1
+Vall
+p2
+I574364
+sVsmall madagascar hedgehog
+p3
+I584615
+sVmuroidea
+p4
+I337687
+sVbirds
+p5
+I584184
+sVeuteleostomi
+p6
+I117571
+sVteleostomi
+p7
+I117570
+sVeukaryota
+p8
+I2759
+sVseed plants
+p9
+I604963
+sVcoelurosauria
+p10
+I436492
+sVhouse mouse
+p11
+I585347
+sVavenella flexuosa (l.) drejer
+p12
+I590313
+sVgnathostomata
+p13
+I583256
+sVrattus rattus
+p14
+I10117
+sVopisthokonta
+p15
+I591912
+sVarchosauria
+p16
+I8492
+sVeuphyllophyta
+p17
+I78536
+sVopisthokonts
+p18
+I591913
+sVcrinkled hair grass
+p19
+I590317
+sVdiapsids
+p20
+I591659
+sVaveneae
+p21
+I191503
+sVcommelinidae
+p22
+I581922
+sVantilocapra
+p23
+I9890
+sVchordata
+p24
+I7711
+sVbiota
+p25
+I628850
+sVdiapsida
+p26
+I591658
+sVangiosperms
+p27
+I580162
+sVglires
+p28
+I314147
+sVplacentals
+p29
+I584586
+sVsauropsida
+p30
+I8457
+sVeuasterids ii
+p31
+I617793
+sVtheropoda
+p32
+I436491
+sVliliopsida
+p33
+I4447
+sVmammalia
+p34
+I40674
+sVcellular organisms
+p35
+I131567
+sVpronghorn
+p36
+I585171
+sVmus
+p37
+I10088
+sVeudicotyledons
+p38
+I71240
+sVechinops telfairi
+p39
+I9371
+sVvascular plants
+p40
+I604962
+sVplacental mammals
+p41
+I584585
+sVeumetazoa
+p42
+I6072
+sVwhales, hippos, ruminants, pigs, camels etc.
+p43
+I617714
+sVspermatophyta
+p44
+I58024
+sVechinops
+p45
+I584612
+sVsauropsids
+p46
+I583953
+sVanimalia
+p47
+I591927
+sVeucaryotes
+p48
+I579837
+sVechinops ritro
+p49
+I41571
+sVviridiplantae cavalier-smith 1981
+p50
+I591869
+sVtenrecs
+p51
+I584611
+sVeukaryotae
+p52
+I579836
+sVdaisy family
+p53
+I581353
+sVcommelinids
+p54
+I4734
+sVamniotes
+p55
+I591630
+sVmonarcha
+p56
+I639886
+sVpecora
+p57
+I35500
+sVsaurischia
+p58
+I436489
+sVsciurognathi
+p59
+I33553
+sVblack rat
+p60
+I585383
+sVavenella (bluff & fingerh.) drejer
+p61
+I695726
+sVroot
+p62
+I1
+sVantilocapridae
+p63
+I9889
+sVruminantia
+p64
+I9845
+sVstreptophytina
+p65
+I131221
+sVeucaryotae
+p66
+I579834
+sVafrotheria
+p67
+I311790
+sVnannomys
+p68
+I585344
+sVamniota
+p69
+I32524
+sVpoaceae
+p70
+I4479
+sVmonocotyledons
+p71
+I581544
+sVavenella flexuosa (l.) parl.
+p72
+I590314
+sVbep clade
+p73
+I359160
+sVmonarcha vigors & horsfield 1827
+p74
+I639887
+sVrodents and rabbits
+p75
+I672547
+sVneognathae
+p76
+I8825
+sVcampanulids
+p77
+I91882
+sVasterales
+p78
+I4209
+sVrattus
+p79
+I10114
+sVchlorophyta/embryophyta group
+p80
+I591868
+sVcharophyta/embryophyta group
+p81
+I628802
+sVdeuterostomia
+p82
+I33511
+sVasteraceae
+p83
+I4210
+sVfungi/metazoa group
+p84
+I33154
+sVmurinae
+p85
+I39107
+sVmonocotyledoneae
+p86
+I581542
+sVvertebrata
+p87
+I7742
+sVgreen plants
+p88
+I591871
+sVeutheria
+p89
+I9347
+sVtracheophyta
+p90
+I58023
+sVeukarya
+p91
+I579835
+sVaves
+p92
+I8782
+sVtetrapoda
+p93
+I32523
+sVvertebrates
+p94
+I583235
+sVdeschampsia flexuosa (l.) trin.
+p95
+I590316
+sVdeschampsia flexuosa
+p96
+I590315
+sVlesser hedgehog tenrec
+p97
+I584614
+sVgrass family
+p98
+I581585
+sVechinops martin, 1838
+p99
+I584613
+sVmammals
+p100
+I596524
+sVmulticellular animals
+p101
+I591929
+sVmonarchidae
+p102
+I461250
+sVchlorobionta
+p103
+I591866
+sVjawed vertebrates
+p104
+I583257
+sVchlorobionta bremer 1985
+p105
+I591867
+sVflowering plants
+p106
+I580163
+sVtenrecidae
+p107
+I9369
+sVantilocapra americana
+p108
+I9891
+sVcetartiodactyla
+p109
+I91561
+sVcore eudicotyledons
+p110
+I91827
+sVcompositae
+p111
+I581352
+sVmetazoa
+p112
+I33208
+sVsarcopterygii
+p113
+I8287
+sVcorvoidea
+p114
+I192204
+sVavenella
+p115
+I391960
+sVcraniata <chordata>
+p116
+I89593
+sVcarduoideae
+p117
+I219103
+sVhouse rat
+p118
+I585384
+sVasterids
+p119
+I71274
+sVavenella flexuosa
+p120
+I29672
+sVcardueae
+p121
+I102818
+sVland plants
+p122
+I580003
+sVplacentalia
+p123
+I584583
+sVtheria
+p124
+I32525
+sVmuridae
+p125
+I10066
+sVstreptophyta bremer 1985
+p126
+I593232
+sVmus musculus
+p127
+I10090
+sVembryophyta
+p128
+I3193
+sVeutherian mammals
+p129
+I584584
+sVhigher plants
+p130
+I580002
+sVmouse
+p131
+I585348
+sVcraniata
+p132
+I617038
+sVbony vertebrates
+p133
+I624962
+sVpasseriformes
+p134
+I9126
+sVrodentia
+p135
+I9989
+sVdinosauria
+p136
+I436486
+sVrodents
+p137
+I585255
+sVstreptophyta
+p138
+I35493
+sVtenrecinae
+p139
+I176113
+sVgnathostomata <vertebrate>
+p140
+I7776
+sVgramineae
+p141
+I581584
+sVviridiplantae
+p142
+I33090
+sVmonocots
+p143
+I581543
+sVpooideae
+p144
+I147368
+sVeucarya
+p145
+I579833
+sVcoelomata
+p146
+I33316
+sVangiospermae
+p147
+I580161
+sVpoales
+p148
+I38820
+sVeukaryotes
+p149
+I579838
+sVmonarcha <aves>
+p150
+I175125
+sVchordates
+p151
+I583222
+sVchlorophyte/embryophyte group
+p152
+I591870
+sVcharophyte/embryophyte group
+p153
+I628803
+sVeuarchontoglires
+p154
+I314146
+sVmonarcha axillaris
+p155
+I175126
+sVcommeliniflorae
+p156
+I581923
+sVcore eudicots
+p157
+I617783
+sVbilateria
+p158
+I33213
+sVechinops <mammal>
+p159
+I9370
+sVsauria
+p160
+I32561
+sVroof rat
+p161
+I585385
+sVechinops <plant>
+p162
+I32194
+sVtetrapods
+p163
+I591629
+sVmetazoans
+p164
+I591928
+sVmagnoliophyta
+p165
+I3398
+sVlaurasiatheria
+p166
+I314145
+s.

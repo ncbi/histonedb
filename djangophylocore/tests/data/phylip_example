@@ -1,0 +1,6 @@
+
+(echinops <plantae>,(rattus,( mus,(mus musculus)));
+(rattus,(azerty,rat));
+(echinops, (rattus, ( mus, azerty, rat noir ), antilocapra anteflexa ));
+(rattus, echinops, mus);
+

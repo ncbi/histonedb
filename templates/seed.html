@@ -1,0 +1,93 @@
+{% load staticfiles %}
+
+<script src="{% static 'browse/js/msa@0.4.0.js' %}"></script>
+<script src="https://wzrd.in/bundle/biojs-io-clustal@latest"></script>
+<script src="{% static 'browse/js/xhr@latest.js' %}"></script>
+
+<div id="container" style="margin-top:5px;">
+	<div id="row">
+		<div id="col-xs-12">
+			<div class="btn-toolbar" role="toolbar" aria-label="...">
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				    Action <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu">
+				    <li><a href="#">Action</a></li>
+				    <li><a href="#">Another action</a></li>
+				    <li><a href="#">Something else here</a></li>
+				    <li class="divider"></li>
+				    <li><a href="#">Separated link</a></li>
+				  </ul>
+				</div>
+  				<div class="btn-group" role="group" aria-label="...">
+  					<button type="button" class="btn btn-default">80% Conservation</button>
+  					<button type="button" class="btn btn-default">50% Conservation</button>
+  				</div>
+			</div>
+		</div>
+	</div>
+	<div id="row" style="margin-top:5px;">
+		<div id="col-xs-12">
+			<div id="container"><div id='snippetDiv'></div></div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	var yourDiv = document.getElementById('snippetDiv');
+
+	/* global yourDiv */
+	var msa = require("msa");
+
+	var msaDiv = document.createElement('div');
+	yourDiv.appendChild(msaDiv);
+
+	var opts = {
+	  el: msaDiv,
+	  importURL: "{% with 'browse/seeds/'|add:histone_type|add:'.fasta' as seed_static %}{% static seed_static %}{% endwith %}", 
+	};
+	opts.vis = {
+	  conserv: false,
+	  overviewbox: false,
+	  seqlogo: true,
+	  markers: false,
+	  leftHeader: false,
+	  labelName: false,
+	};
+	opts.zoomer = {
+	  labelIdLength: 160,
+	  alignmentHeight: 500,
+	};
+
+	// init msa
+	var m = msa(opts);
+
+	var colorConservation = {}
+
+	// the init function is only called once
+	colorConservation.init = function(){
+	  // you have here access to the conservation or the sequence object
+	  this.cons = this.opt.conservation();
+	  this.cons80 = true;
+	  this.cons50 = true;
+	}
+
+	colorConservation.run = function(letter,opts){
+	  if(this.cons80 && this.cons[opts.pos] > 0.8){
+	  	return "red";
+	  }
+	  else if(this.cons50 && this.cons[opts.pos] > 0.5){
+	  	return "blue";
+	  }
+	  else{
+	  	return "#000" 
+	  }
+	};
+
+	m.g.colorscheme.addDynScheme("colorConservation", colorConservation);
+	m.g.colorscheme.set("scheme", "colorConservation");
+});
+
+</script>

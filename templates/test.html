@@ -1,0 +1,83 @@
+<div id="sequence_toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="fasle">View/Download Selected <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#" data-toggle="modal" data-target="#msa_modal">View alignment/secondary structure</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#scores_modal">View against all profiles</a></li>
+                <li><a href="#">Download FASTA</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#filter_modal"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Filter</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top:5px;">
+    <table id="sequence_table"
+           data-toggle="table"
+           data-url="/data/{{ browse_section }}/json/{{ name }}/all/"
+           data-click-to-select="true"
+           data-sort-name="score"
+           data-sort-order="desc"
+           data-show-refresh="true"
+           data-show-columns="true"
+           data-side-pagination="server"
+           data-pagination="true"
+           data-page-list="[5, 10, 20, 50, 100, 200]"
+           data-show-toggle="true"
+           data-show-export="true"
+           data-search="true"
+           data-toolbar="#sequence_toolbar">
+        <thead>
+            <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="gi" data-align="">GI</th>
+                <th data-field="variant" data-align="">Variant</th>
+                <th data-field="gene" data-align="">Gene</th>
+                <th data-field="splice" data-align="">Splice</th>
+                <th data-field="species" data-align="">Species</th>
+                <th data-field="header" data-align="">Header</th>
+                <th data-field="evalue" data-align="">E-value</th>
+                <th data-field="program_train" data-align="">Program (Train)</th>
+                <th data-field="program_test" data-align="">Program (Test)</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="modal fade" id="msa_modal" tabindex="-1" role="dialog" aria-labelledby="seqs" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="seqs">Sequence(s)</h4>
+      </div>
+      <div class="modal-body">
+        <!--BioJS msa with features for secondary structures -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="scores_modal" tabindex="-1" role="dialog" aria-labelledby="all_profiles" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="all_profiles">All Profile Scores</h4>
+      </div>
+      <div class="modal-body">
+        <!--BioJS msa with features for secondary structures -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
