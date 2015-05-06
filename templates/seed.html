@@ -46,8 +46,8 @@ $(document).ready(function() {
 
 	var opts = {
 	  el: msaDiv,
-	  importURL: "{% with 'browse/seeds/'|add:histone_type|add:'.fasta' as seed_static %}{% static seed_static %}{% endwith %}", 
-	};
+          importURL: "{% with 'browse/seeds/'|add:histone_type|add:'.fasta' as seed_static %}{% static seed_static %}{% endwith %}", 
+        }
 	opts.vis = {
 	  conserv: false,
 	  overviewbox: false,
