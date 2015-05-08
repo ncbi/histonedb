@@ -67,6 +67,8 @@ def get_sequence_table_data(request, browse_type, search):
 	elif request.method == "POST":
 		parameters = request.POST
 
+	
+
 	if browse_type == "type":
 		query = {"core_type": search}
 	elif browse_type == "variant":

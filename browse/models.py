@@ -18,6 +18,10 @@ class Variant(models.Model):
 	taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
 	description   = models.CharField(max_length=255)
 
+class OldStyleVariant(models.Model):
+	updated_variant = models.ForeignKey(Variant, related_name="old_names")
+	name            = models.CharField(max_length=255, primary_key=True)
+
 class Sequence(models.Model):
 	id       = models.CharField(max_length=25, primary_key=True) #GI
 	variant  = models.ForeignKey(Variant, related_name="sequences")
@@ -80,4 +84,9 @@ class Structure(models.Model):
 	pdb      = models.CharField(max_length=25)
 	mmdb     = models.CharField(max_length=25)
 	chain    = models.CharField(max_length=25)
+
+class Publication(models.Model):
+	id       = models.IntegerField(primary_key=True)
+	variants = models.ManyToManyField(Variant)
+	used     = models.BooleanField() 
 	

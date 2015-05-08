@@ -26,7 +26,7 @@ urlpatterns = patterns('browse.views',
     url(r'^type/([a-zA-Z0-9]+)/$', 'browse_variants'),
     url(r'^variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
 
-    url(r'^search/$', 'search'),
+    url(r'^search/$', 'search_view'),
     url(r'^upload/$', 'upload'),
 
     url(r'^data/type/phyloxml/([a-zA-Z0-9]+)/', 'get_phyloxml_of_type'),

@@ -34,23 +34,11 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Browse</a></li>
-            <li><a href="/search/">Search</a></li>
+            <li><a href="/search/">Advanced Search</a></li>
             <li><a href="/upload/">Upload</a></li>
             <li><a href="/help/">Help</a></li>
-            <form role="search" class="navbar-form navbar-right">
-              <div class="input-group">
-                <input type="text" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                    <li><a href="#">Nomenclature</a></li>
-                    <li><a href="#">Organism</a></li>
-                    <li><a href="#">GI</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Advanced Search</a></li>
-                  </ul>
-                </div>
-              </div>
+            <form role="search" class="navbar-form navbar-right" method="POST">
+              <input type="text" class="form-control" aria-label="..." placeholder="Search (H2A.Z.2.s1)">
             </form>
           </ul>
         </div><!--/.nav-collapse -->
