@@ -37,8 +37,8 @@
             <li><a href="/search/">Advanced Search</a></li>
             <li><a href="/upload/">Upload</a></li>
             <li><a href="/help/">Help</a></li>
-            <form role="search" class="navbar-form navbar-right" method="POST">
-              <input type="text" class="form-control" aria-label="..." placeholder="Search (H2A.Z.2.s1)">
+            <form role="search" class="navbar-form navbar-right" action="/search/" method="POST">{% csrf_token %}
+              <input type="text" name="search" class="form-control" aria-label="..." placeholder="Search (H2A.Z.2.s1)">
             </form>
           </ul>
         </div><!--/.nav-collapse -->

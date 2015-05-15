@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_list_or_404
 
 from browse.forms import SearchForm, FilterForm
-from browse.search import search
+from browse.search import HistoneSearch
 
 #Django libraires
 from browse.models import *
@@ -12,6 +12,8 @@ from djangophylocore.models import *
 
 #BioPython
 from Bio import SeqIO
+
+from django.db.models import Min
 
 def browse_types(request):
 	"""Home"""
@@ -36,16 +38,21 @@ def browse_variant(request, histone_type):
 	}
 	return render(request, 'browse_varaint.html', {})
 
-def search_view(request):
+def search(request):
+	data = {}
 	if request.method == "POST":
-		status, result = search(request.POST)
-		if status:
-			data = {'result':result}
-		else:
-			data = {'errors':result}
+		HistoneSearch.current_search = None
+		result = HistoneSearch.search(request.POST)
+
+		if result.redirect:
+			return result.redirect
+
+		if len(result.errors) > 0:
+			HistoneSearch.current_search = None
+			data['errors'] = result.errors
 	else:
-		data = {'search_form':SearchForm()}
-	print render(request, 'search.html', data)
+		#All sequences
+		HistoneSearch.current_search = None
 	return render(request, 'search.html', data)
 
 def upload(request):
@@ -56,33 +63,32 @@ def upload(request):
 
 	return render(request, 'upload.html', data)
 
-
 def get_sequence_table_data(request, browse_type, search):
+	"""result = Sequence.objects.filter(variant__core_type="H2A", taxonomy__name="homo sapiens").annotate(evalue=Min("scores__evalue")).order_by("evalue")[:10]
+	result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "species":r.taxonomy.name, "evalue":r.evalue, "header":r.header} for r in result]
+	return JsonResponse({"count": len(result), "rows":result})
+
 	json = {"count":1, "rows":[{"gi": 1, "variant":"H2A.Z", "gene":1, "splice":1, "species":"Homo sapien", "header":"H2A.Z.1.s1 [Homo sapien]", "evalue":1e-100, "program_train":"hmmer3.1b2", "program_test":"hmmer3.1b2"}]}
 	#json = [[1, "H2A.Z", 1, 1, "Homo sapien", "H2A.Z.1.s1 [Homo sapien]", 600.2, 1e-100, "hmmer3.1b2"]]
-	return JsonResponse(json)
+	return JsonResponse(json)"""
 
 	if request.method == "GET":
 		parameters = request.GET
-	elif request.method == "POST":
-		parameters = request.POST
-
-	
+	else:
+		return "false"
 
 	if browse_type == "type":
-		query = {"core_type": search}
+		parameters["core_type"]=search
 	elif browse_type == "variant":
-		query = {"variant": search}
-	else:
-		#404?
-		return
+		parameters["variant"]=search
 
-	result, sequences = search(parameters, query)
+	#Continues to filter previous search, unless paramters contains key 'reset'
+	results = HistoneSearch.search(parameters)
 
-	if seq_type == "all":
-		#Downalod
-		pass
+	if len(results.errors) > 0:
+		return "false"
 	
+	return JsonResponse(results.get_dict())
 
 def get_starburst_json(request, browse_type, search, debug=True):
 	"""
