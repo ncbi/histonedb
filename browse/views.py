@@ -45,9 +45,9 @@ def search(request):
 		print "POST", request.POST
 		HistoneSearch.current_search = None
 		result = HistoneSearch.search(request.POST, navbar=True)
-		print type(result), type(HttpResponseRedirect), HttpResponseRedirect
-		if type(result) == HttpResponseRedirect: 
-			return result
+		
+		if result.redirect: 
+			return result.redirect
 
 		if len(result.errors) > 0:
 			HistoneSearch.current_search = None

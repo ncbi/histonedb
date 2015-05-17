@@ -167,44 +167,48 @@ class HistoneSearch(object):
             sequence = self.query_set.filter(id=value)
             if len(sequence):
                 self.query_set = sequence
-                return True
+                self.redirect = None
+                return
         except ValueError:
             pass
 
         #search core_type, variant, old variant names, header if doens't match variant or core_type, taxonomy
         try:                
             core_type = Histone.objects.get(id=search_text)
+            sequences = self.query_set.filter(variant__core_type_id=core_type.id)
+            self.query_set = sequence
             if self.navbar:
                 # Go to histone browse page
-                return HttpResponseRedirect("/type/{}/".format(core_type.id))
+                self.redirect = HttpResponseRedirect("/type/{}/".format(core_type.id))
             else:
-                sequences = self.query_set.filter(variant__core_type_id=core_type.id)
-                self.query_set = sequence
-                return True
+                self.redirect = None
+            return
         except:
             pass
         
         try:
             variant = Variants.objects.get(id=search_text)
+            sequences = self.query_set.filter(variant_id=variant.id)
+            self.query_set = sequence
             if self.navbar:
                 # Go to variant browse page
-                return HttpResponseRedirect("/variant/{}/".format(variant.id))
+                self.redirect = HttpResponseRedirect("/variant/{}/".format(variant.id))
             else:
-                sequences = self.query_set.filter(variant_id=variant.id)
-                self.query_set = sequence
-                return True
+                self.redirect = None
+            return
         except:
             pass
         
         try:
             variant = OldStyleVariants.objects.get(id=search_text).updated_variant
+            sequences = self.query_set.filter(variant_id=variant.id)
+            self.query_set = sequences
             if self.navbar:
                 # Go to vaiant browse page
-                return HttpResponseRedirect("/variant/{}/".format(variant.id))
+                self.redirect = HttpResponseRedirect("/variant/{}/".format(variant.id))
             else:
-                sequences = self.query_set.filter(variant_id=variant.id)
-                self.query_set = sequences
-                return True
+                self.redirect = None
+            return
         except:
             pass
 
@@ -222,7 +226,8 @@ class HistoneSearch(object):
             sequences = self.query_set.filter(taxonomy__name__contains=search_text)
             if sequences.count() > 0:
                 self.query_set = sequence
-                return True
+                self.redirect = None
+                return
         except:
             pass
             
@@ -230,12 +235,12 @@ class HistoneSearch(object):
 
         if headers.count() > 0:
             self.query_set = headers
-            return True
+            self.redirect = None
         else:
             #Search seuence moetifs
             sequences = self.query_set.filter(sequence__contains=search_text)
             self.query_set = headers
-            return True
+            self.redirect = None
 
     def get_dict(self):
         sequences = self.sorted()
