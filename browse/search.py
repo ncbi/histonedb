@@ -167,7 +167,7 @@ class HistoneSearch(object):
             sequence = self.query_set.filter(id=value)
             if len(sequence):
                 self.query_set = sequence
-                return
+                return True
         except ValueError:
             pass
 
@@ -180,7 +180,7 @@ class HistoneSearch(object):
             else:
                 sequences = self.query_set.filter(variant__core_type_id=core_type.id)
                 self.query_set = sequence
-                return
+                return True
         except:
             pass
         
@@ -192,7 +192,7 @@ class HistoneSearch(object):
             else:
                 sequences = self.query_set.filter(variant_id=variant.id)
                 self.query_set = sequence
-                return
+                return True
         except:
             pass
         
@@ -204,7 +204,7 @@ class HistoneSearch(object):
             else:
                 sequences = self.query_set.filter(variant_id=variant.id)
                 self.query_set = sequences
-                return
+                return True
         except:
             pass
 
@@ -222,7 +222,7 @@ class HistoneSearch(object):
             sequences = self.query_set.filter(taxonomy__name__contains=search_text)
             if sequences.count() > 0:
                 self.query_set = sequence
-                return
+                return True
         except:
             pass
             
@@ -230,12 +230,12 @@ class HistoneSearch(object):
 
         if headers.count() > 0:
             self.query_set = headers
-            return
+            return True
         else:
             #Search seuence moetifs
             sequences = self.query_set.filter(sequence__contains=search_text)
             self.query_set = headers
-            return
+            return True
 
     def get_dict(self):
         sequences = self.sorted()
