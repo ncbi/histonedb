@@ -78,10 +78,7 @@ class HistoneSearch(object):
 
     def update_queryset(self, parameters):
         if "search" in parameters:
-            result = self.simple_search()
-            if self.navbar and type(result) == HttpResponseRedirect:
-                self.redirect = result
-                return
+            self.simple_search()
         else:
             query = format_query()  
               
