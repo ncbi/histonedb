@@ -56,7 +56,7 @@ class HistoneSearch(object):
 
         if not HistoneSearch.current_search:
             print "new search"
-            return cls(search_query, sort_query)
+            return cls(search_query, sort_query, navbar=navbar)
         elif parameters.get("reset", False):
             return cls(*HistoneSearch.initial_query)
         else:
@@ -71,6 +71,8 @@ class HistoneSearch(object):
                 HistoneSearch.current_search.sort_query["sort"] = sort_query["order"]
             if not HistoneSearch.current_search.sort_query.get("order", "asc") == sort_query["order"]:
                 HistoneSearch.current_search.sort_query["order"] = sort_query["order"]
+
+            HistoneSearch.current_search.navbar = navbar
             
             return HistoneSearch.current_search
 
