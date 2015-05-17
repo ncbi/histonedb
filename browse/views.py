@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import get_list_or_404
 
@@ -44,7 +45,7 @@ def search(request):
 		print "POST", request.POST
 		HistoneSearch.current_search = None
 		result = HistoneSearch.search(request.POST, navbar=True)
-		
+
 		if type(result) == HttpResponseRedirect: 
 			return result
 
