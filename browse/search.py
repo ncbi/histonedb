@@ -185,8 +185,8 @@ class HistoneSearch(object):
             else:
                 self.redirect = None
             return
-        except:
-            print "no core"
+        except Exception as e:
+            print "no core", e
             pass
         
         try:
