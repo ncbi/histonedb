@@ -41,6 +41,7 @@ def browse_variant(request, histone_type):
 def search(request):
 	data = {}
 	if request.method == "POST":
+		print "POST", request.POST
 		HistoneSearch.current_search = None
 		result = HistoneSearch.search(request.POST)
 
