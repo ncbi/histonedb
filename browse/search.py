@@ -55,6 +55,7 @@ class HistoneSearch(object):
         sort_query = {p:parameters.get(p, v) for p, v in sort_parameters.iteritems()}
 
         if not HistoneSearch.current_search:
+            print "new search"
             return cls(search_query, sort_query)
         elif parameters.get("reset", False):
             return cls(*HistoneSearch.initial_query)
