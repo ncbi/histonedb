@@ -177,7 +177,7 @@ class HistoneSearch(object):
             print "seach core", search_text
             core_type = Histone.objects.get(id=search_text)
             sequences = self.query_set.filter(variant__core_type_id=core_type.id)
-            self.query_set = sequence
+            self.query_set = sequences
             if self.navbar:
                 # Go to histone browse page
                 print "redirect"
