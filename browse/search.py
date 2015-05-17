@@ -173,7 +173,8 @@ class HistoneSearch(object):
             pass
 
         #search core_type, variant, old variant names, header if doens't match variant or core_type, taxonomy
-        try:                
+        try:
+            print "seach core", search_text
             core_type = Histone.objects.get(id=search_text)
             sequences = self.query_set.filter(variant__core_type_id=core_type.id)
             self.query_set = sequence
@@ -185,6 +186,7 @@ class HistoneSearch(object):
                 self.redirect = None
             return
         except:
+            print "no core"
             pass
         
         try:
