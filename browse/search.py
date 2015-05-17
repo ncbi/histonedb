@@ -179,6 +179,7 @@ class HistoneSearch(object):
             self.query_set = sequence
             if self.navbar:
                 # Go to histone browse page
+                print "redirect"
                 self.redirect = HttpResponseRedirect("/type/{}/".format(core_type.id))
             else:
                 self.redirect = None
