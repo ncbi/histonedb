@@ -21,6 +21,9 @@ class Variant(models.Model):
 class OldStyleVariant(models.Model):
 	updated_variant = models.ForeignKey(Variant, related_name="old_names")
 	name            = models.CharField(max_length=255, primary_key=True)
+	gene            = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
+	splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
+	taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
 
 class Sequence(models.Model):
 	id       = models.CharField(max_length=25, primary_key=True) #GI
@@ -86,7 +89,7 @@ class Structure(models.Model):
 	chain    = models.CharField(max_length=25)
 
 class Publication(models.Model):
-	id       = models.IntegerField(primary_key=True)
+	id       = models.IntegerField(primary_key=True) #PubmedID
 	variants = models.ManyToManyField(Variant)
-	used     = models.BooleanField() 
+	cited    = models.BooleanField() 
 	
