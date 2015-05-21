@@ -73,7 +73,7 @@ def write_texshade(file_handle,aln_fname,res_per_line,features=None,shading_mode
 
         print >> file_handle, "    \end{texshade}"
 
-def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20):
+def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True):
     """
     """
     ns='consensus'
@@ -97,7 +97,10 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
     res_per_line=len(align[0])
 
     #Let's make some drawing
-    hv,ss=get_hist_ss_in_aln(align,debug=1)
+    if secondary_structure:
+        hv,ss=get_hist_ss_in_aln(align,debug=1)
+    else:
+        hv,ss="None",{}
     
     #prepare feature section
     features = ""
@@ -118,7 +121,7 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
 
     print >> tex, "    \\Huge{{{}}}".format(title.replace("_", "\_"))
 
-    for i in range(num):
+    for i in xrange(num):
         write_texshade(
             tex, 
             "data/alignment_{}_{}.fasta".format(name, i),
@@ -131,7 +134,7 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
         print >> tex, "    \\newpage"
 
 
-def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20):
+def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True):
     """
     """
     with open("data/{}.tex".format(outfile), "w") as tex:
@@ -150,12 +153,13 @@ def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False,
                 shading_modes=shading_modes, 
                 logo=logo, 
                 hideseqs=hideseqs, 
-                splitN=splitN
+                splitN=splitN,
+                secondary_structure=secondary_structure
                 )
         print >> tex, "\\end{document}"
 
     #Turn latex into pdf
-    process = Popen(["pdflatex", "--file-line-error", "--synctex=1", "-output-directory=data", "--save-size=10000", "data/{}.tex".format(outfile)], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+    process = Popen(["pdflatex", "--file-line-error", "--synctex=1", "-output-directory=data", "--save-size=10000", "data/{}.tex".format(outfile)])
     process.communicate()
 
 def parse_args():
@@ -173,6 +177,11 @@ def parse_args():
                         nargs="*",
                         default=["similar"],
                         help="Mode to shade alignments")
+    parser.add_argument("--no_secondary_structure",
+                        required=False,
+                        action="store_true",
+                        default=False,
+                        help="Do not caluclate or display secondary strucutre")
     parser.add_argument("-l", "--logo",
                         required=False,
                         action="store_true",
@@ -199,7 +208,8 @@ if __name__ == '__main__':
         shading_modes=args.shading_modes, 
         logo=args.logo, 
         hideseqs=args.hideseqs, 
-        splitN=args.splitN
+        splitN=args.splitN,
+        secondary_structure=not args.no_secondary_structure
         )
 
 

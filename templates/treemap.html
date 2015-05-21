@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Treemap Partition</title>
+<link rel="stylesheet" type="text/css" href="{% static 'browse/css/treemap.css' %}" media="screen">
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="{% static 'browse/js/xhr@latest.js' %}"></script>
+</head>
+<body>
+<script type="text/javascript" src="{% static 'browse/js/TreeMap.js' %}"></script> 
+<div id="yourDiv"></div> 
+<script>
+var yourDiv = document.getElementById("yourDiv");
+var result = new TreeMap({el: yourDiv, flareJSON: "{% static 'browse/trees/flare.json' %}", circular:false});
+alert(yourDiv.innerHTML)
+</script>
+</body>
+</html>

@@ -16,28 +16,47 @@ from Bio import SeqIO
 
 from django.db.models import Min
 
+def treemap(request):
+	return render(request, 'circle.html', {"starburst_url": "data/type/json/{}/species/".format("H2A")})
+
 def browse_types(request):
 	"""Home"""
 	return render(request, 'browse_types.html', {})
 
 def browse_variants(request, histone_type):
+	try:
+		core_histone = Histone.objects.get(id=histone_type)
+	except:
+		return "404"
+
 	data = {
 		"histone_type": histone_type,
-		"histone_description": "NOPE", #histone_description,
+		"histone_description": core_histone.description,
 		"browse_section": "type",
 		"name": histone_type,
+		"starburst_url": "data/type/json/{}/species/".format(core_histone.id),
+		"seed_file":"browse/seeds/{}.fasta".format(core_histone.id),
 		"filter_form": FilterForm(),
 	}
 	print data
         print "WHY ISN't it loading?"
 	return render(request, 'browse_variants.html', data)
 
-def browse_variant(request, histone_type):
+def browse_variant(request, variant):
+	try:
+		variant = Variant.objects.get(id=variant)
+	except:
+		return "404"
+
 	data = {
-		"histone_type": histone_type,
-		"histone_description": "NOPE", #histone_description,
+		"core_type": variant.core_type.id,
+		"variant": variant.id,
+		"name": variant.id,
+		"seed_file":"browse/seeds/{}/{}.fasta".format(variant.core_type.id, variant.id),
+		"browse_section": "variant",
+		"description": "NOPE", #histone_description,
 	}
-	return render(request, 'browse_varaint.html', {})
+	return render(request, 'browse_variant.html', data)
 
 def search(request):
 	data = {}
@@ -75,14 +94,14 @@ def get_sequence_table_data(request, browse_type, search):
 	return JsonResponse(json)"""
 
 	if request.method == "GET":
-		parameters = request.GET
+		parameters =  request.GET.dict()
 	else:
 		return "false"
 
 	if browse_type == "type":
-		parameters["core_type"]=search
+		parameters["variant__core_type__id"]=search
 	elif browse_type == "variant":
-		parameters["variant"]=search
+		parameters["variant__id"]=search
 
 	#Continues to filter previous search, unless paramters contains key 'reset'
 	results = HistoneSearch.search(parameters)

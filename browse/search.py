@@ -23,15 +23,16 @@ class HistoneSearch(object):
         self.search_query = search_query
         self.initial_query = (search_query, sort_query)
         self.sort_query = sort_query
+        self.redirect = None
         self.errors = Counter()
         self.navbar = navbar
         self.query_set = Sequence.objects.annotate(evalue=Min("scores__evalue")).filter()
         self.update_queryset(search_query)
-        self.redirect = None
         HistoneSearch.current_search = self
 
     @classmethod
     def search(cls, parameters, navbar=False):
+        print "parameters", parameters
         search_parameters = [
             "id", "id_search_type", 
             "core_type", "core_type_search_type", 
@@ -47,7 +48,7 @@ class HistoneSearch(object):
             #"show_lower_scoring_models"
             ]
         if "search" not in parameters:
-            search_query = {p:v for p, v in parameters.iter_items() if p in search_parameters}
+            search_query = {p:v for p, v in parameters.iteritems() if p in search_parameters}
         else:
             search_query = {"search":parameters["search"]}
 
@@ -67,8 +68,8 @@ class HistoneSearch(object):
                 HistoneSearch.current_search.sort_query["limit"] = sort_query["limit"]
             if not HistoneSearch.current_search.sort_query.get("offset", 0) == sort_query["offset"]:
                 HistoneSearch.current_search.sort_query["offset"] = sort_query["offset"]
-            if not HistoneSearch.current_search.sort_query.get("sort", "evalue") == sort_query["evalue"]:
-                HistoneSearch.current_search.sort_query["sort"] = sort_query["order"]
+            if not HistoneSearch.current_search.sort_query.get("sort", "evalue") == sort_query["sort"]:
+                HistoneSearch.current_search.sort_query["sort"] = sort_query["sort"]
             if not HistoneSearch.current_search.sort_query.get("order", "asc") == sort_query["order"]:
                 HistoneSearch.current_search.sort_query["order"] = sort_query["order"]
 
@@ -78,14 +79,14 @@ class HistoneSearch(object):
 
     def update_queryset(self, parameters):
         if "search" in parameters:
-            self.simple_search()
+            self.simple_search(search_text=parameters["search"])
         else:
             query = format_query()  
               
             fields = [
                 ("id", "id_search_type", int, ("is", "in")),
-                ("core_type", "core_type_search_type", str, None),
-                ("variant", "variant_search_type", str, None),
+                ("variant__core_type__id", "core_type_search_type", str, None),
+                ("variant__id", "variant_search_type", str, None),
                 ("gene", "gene_search_type", int, None),
                 ("splice", "splice_search_type", int, None),
                 ("header", "header_search_type", str, None),
@@ -117,24 +118,25 @@ class HistoneSearch(object):
 
     def sorted(self):
         #Sort by best score. Using e-value so we can compare HMMER and SAM
-        result = self.query_set.clone()
+        result = self.query_set
         sort_by = self.sort_query["sort"]
         sort_order = "-" if self.sort_query["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
-        result = result.sort_by(sort_key)
+        print sort_key, self.sort_query["sort"], self.sort_query["order"], self.sort_query
+        result = result.order_by(sort_key)
 
         try:
-            page_size = int(parameters.get("limit", 10))
+            page_size = int(self.sort_query["limit"])
         except ValueError:
             page_size = 10
 
         try:
-            page_number = int(parameters.get("offset", 0))
+            page_number = int(self.sort_query["offset"])
         except ValueError:
             page_number = 10
 
         start = page_size*(page_number+1)
-        end = start+page_size+2
+        end = start+page_size
 
         result = result[start:end]
 
@@ -187,20 +189,21 @@ class HistoneSearch(object):
             pass
         
         try:
-            variant = Variants.objects.get(id=search_text)
+            variant = Variant.objects.get(id=search_text)
             sequences = self.query_set.filter(variant_id=variant.id)
-            self.query_set = sequence
+            self.query_set = sequences
             if self.navbar:
                 # Go to variant browse page
                 self.redirect = HttpResponseRedirect("/variant/{}/".format(variant.id))
             else:
                 self.redirect = None
             return
-        except:
+        except Exception as e:
+            print "error", e
             pass
         
         try:
-            variant = OldStyleVariants.objects.get(id=search_text).updated_variant
+            variant = OldStyleVariant.objects.get(id=search_text).updated_variant
             sequences = self.query_set.filter(variant_id=variant.id)
             self.query_set = sequences
             if self.navbar:
@@ -304,14 +307,14 @@ class format_query(dict):
         except:
             self.errors["Must include correct character to seach {}".format(field)] += 1
         
-        if len(errors) > 0:
+        if len(format_query.errors) > 0:
             return
 
         self[self.current_query] = value
         self.current_query = None
 
     def has_errors(self):
-        return len(errors) > 0
+        return len(format_query.errors) > 0
 
 def tax_sub_search(value):
     """

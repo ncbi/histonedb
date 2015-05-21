@@ -42,7 +42,9 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
     blast_records = NCBIXML.parse(blast_results)
     for n, (sequence, blast_record) in enumerate(zip(sequences, blast_records)):
         print "Sequence", n
+        sequence.seq = sequence.seq.ungap("-")
         print sequence.format("fasta")
+
 
         organism = sequence.id.split("_")[0]
         print organism
@@ -55,8 +57,8 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
         for alignment in blast_record.alignments:
             for hsp in alignment.hsps:
                 print alignment.title
-                print organism in alignment.title
-                print hsp.query == hsp.sbjct
+                print " ", organism in alignment.title
+                print " ", hsp.query == hsp.sbjct
 
                 if organism not in alignment.title:
                     #Must be from the same organism
@@ -64,25 +66,31 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
 
                 best_gi = None
                 headers = alignment.title.split(">")
-                for header in headers:
-                    print header
+                for i, header in enumerate(headers):
+                    print " ", i, header
                     if "{} ".format(organism) in header:
+                        print "  IN HEADER"
                         best_ids = header.split("|")[1:4:2]
                         if not orig_id:
+                            print "  BEST GI"
                             best_gi = best_ids[0]
+                            break
                         else:
                             #Sanity check if Talber did have the GI
                             if orig_id == best_ids[0]:
-                                print "GIIII, yesss"
+                                print "  GIIII, yesss"
                                 #GIs match
                                 best_gi = best_ids[0]
+                                break
                             elif orig_id in best_ids[1]:
-                                print "ID, yes"
+                                print "  ID, yes"
                                 #Identifier (doesn't includ eperiod adn after)
                                 best_gi = best_ids[0]
+                                break
                             else:
                                 #NO match
                                 continue
+                        print "  should break", best_gi
                         break
 
                 if best_gi is None:
@@ -95,20 +103,15 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
                     #Passed our tests
                     best_hsp = hsp
                     break
+                else:
+                    print "NO MATCH",
+                    print hsp.query
+                    print hsp.sbjct
 
             if best_hsp is not None:
                 break
 
-        if best_hsp:
-            print "****Best Alignment****"
-            print "sequence:", alignment.title
-            print "length:", alignment.length
-            print "e value:", hsp.expect
-            print hsp.query
-            print hsp.match
-            print hsp.sbjct
-        
-        else:
+        if not best_hsp:
             print "NO BEST MATCH, pick the best:"
             for i, alignment in enumerate(blast_record.alignments):
                 for j, hsp in enumerate(alignment.hsps):
@@ -121,14 +124,26 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
                     print hsp.sbjct
                     print
             best_gi = raw_input("Best GI: ")
-            for i, alignment in enumerate(blast_record.alignments):
-                for j, hsp in enumerate(alignment.hsps):
-                    headers = alignment.title.split(">")
-                    for header in headers:
-                        if best_gi in header:
-                            break
-            else:
+            if best_gi == "skip":
                 continue
+            try:
+                for i, alignment in enumerate(blast_record.alignments):
+                    for j, hsp in enumerate(alignment.hsps):
+                        headers = alignment.title.split(">")
+                        for header in headers:
+                            if best_gi in header:
+                                best_hsp = hsp
+                                raise StopIteration
+            except StopIteration:
+                pass
+
+        print "****Best Alignment****"
+        print "sequence:", alignment.title
+        print "length:", alignment.length
+        print "e value:", hsp.expect
+        print hsp.query
+        print hsp.match
+        print hsp.sbjct
 
         sequence.id = "|".join((organism, best_gi, title))
         sequence.description = sequence.description.replace(" ", "_")
