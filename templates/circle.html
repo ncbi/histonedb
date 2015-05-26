@@ -43,7 +43,7 @@ div.append("p")
 
 var partition = d3.layout.partition()
     .sort(null)
-    .value(function(d) { return 5.8 - d.depth; });
+    .value(function(d) { return d.size; });
 
 var arc = d3.svg.arc()
     .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
@@ -51,15 +51,16 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return Math.max(0, d.y ? y(d.y) : d.y); })
     .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
-d3.json("{{ starburst_url }}", function(error, json) {
+d3.json("{% static starburst_url %}", function(error, json) {
   if(json.length>1){
     var nodes = partition.nodes({children: json});
   }
   else{
-    var nodes = partition.nodes(json);
+    var nodes = partition.nodes(json)[0][0];
   }
-
+  console.log(nodes);
   var path = vis.selectAll("path").data(nodes);
+  alert("path is: "+path);
   path.enter().append("path")
       .attr("id", function(d, i) { return "path-" + i; })
       .attr("d", arc)
@@ -91,7 +92,7 @@ d3.json("{{ starburst_url }}", function(error, json) {
       .attr("x", 0)
       .attr("dy", "1em")
       .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
-
+  alert(textEnter);
   function click(d) {
     path.transition()
       .duration(duration)

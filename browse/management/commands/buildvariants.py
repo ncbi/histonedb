@@ -27,7 +27,7 @@ class Command(BaseCommand):
             action="store_true",
             help="Redownload NR database. If force is also True, this option is redundant")
     def handle(self, *args, **options):
-        self.get_nr(force=options["force"] or options["nr"])
+        self.get_nr(force=options["nr"])
 
         if not options["force"] and os.path.isfile(self.results_file):
             self.load()
@@ -39,6 +39,7 @@ class Command(BaseCommand):
             #Force to rebuild everything
             self.build()
             self.press()
+            self.search()
             self.load()
 
 

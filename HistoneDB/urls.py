@@ -19,10 +19,10 @@ urlpatterns = patterns('browse.views',
     url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
     url(r'^data/(type)/json/([a-zA-Z0-9]+)/all/$', 'get_sequence_table_data'),
 
-    url(r'^data/(variant)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
+    url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', 'get_starburst_json'),
     url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/all/$', 'get_sequence_table_data'),
 
-    url(r'^search/', 'search'),
+    url(r'^treemap/$', 'treemap')
 
 
 )

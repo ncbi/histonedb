@@ -34,7 +34,7 @@ def browse_variants(request, histone_type):
 		"histone_description": core_histone.description,
 		"browse_section": "type",
 		"name": histone_type,
-		"starburst_url": "data/type/json/{}/species/".format(core_histone.id),
+		"starburst_url": "browse/sunbursts/{}.json".format(core_histone.id),
 		"seed_file":"browse/seeds/{}.fasta".format(core_histone.id),
 		"filter_form": FilterForm(),
 	}
@@ -52,6 +52,7 @@ def browse_variant(request, variant):
 		"core_type": variant.core_type.id,
 		"variant": variant.id,
 		"name": variant.id,
+		"starburst_url": "browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id),
 		"seed_file":"browse/seeds/{}/{}.fasta".format(variant.core_type.id, variant.id),
 		"browse_section": "variant",
 		"description": "NOPE", #histone_description,
@@ -111,59 +112,10 @@ def get_sequence_table_data(request, browse_type, search):
 	
 	return JsonResponse(results.get_dict())
 
-def get_starburst_json(request, browse_type, search, debug=True):
+def get_starburst_json(request, browse_type, search, debug=False):
 	"""
 	"""
-	if debug:
-		taxas = Taxonomy.objects.filter(name="root", type_name="scientific name")
-		print len(taxas)
-	elif browse_type == "type":
-		taxas = Sequence.objects.filter(variant__core_type=search).values_list("taxonomy", flat=True).distinct()
-	elif browse_type == "variant":
-		taxas = Sequence.objects.filter(variant=search).values_list("taxonomy", flat=True).distinct()
-	else:
-		raise Http404("Must only search for core histone types 'type' or 'variants')")
 
-	sunburst = []
-	colors = {"eukaryota":"#6600CC", "prokaryota":"#00FF00", "archea":"#FF6600"}
-	for taxa in taxas:
-		print type(taxa)
-		print taxa.children
-		if debug:
-			path = [taxa] + taxa.children.all()
-			print path
-		else:
-			path = reversed(taxa.parents.all())+[taxa]
-		root = sunburst
-		print path
-		return
-		for i, curr_taxa in enumerate(path):
-			print curr_taxa
-			continue
-			for node in root:
-				if node["name"] == curr_taxa.name:
-					break
-			else:
-				node = {"name":curr_taxa, "children":[]}
-				root.append()
-			root = node["children"]
-		try:
-			root["size"] += 1
-		except KeyError:
-			root["size"] = 1
-	for node in sunburst[0]["children"]:
-		try:
-			node["color"] = colors[node["name"]]
-		except KeyError:
-			node["color"] = "#000000"
-
-	if len(sunburst) == 0:
-		raise Http404("No species {} for {}".format(search, browse_type))
-
-	return JsonResponse(sunburst)
-
-	root = Taxonomy.objects.get(name="root", type_name="scientific name")
-	sunburst = create_sunburst(root)
 	
 
 def create_sunburst(root, sunburst=None, level=0):
