@@ -129,7 +129,5 @@ def create_sunburst(root, sunburst=None, level=0):
 		sunburst["children"].append(create_sunburst(curr_taxa, child, level=level+1))
 	return sunburst
 
-
-
-
-
+def get_phyloxml_of_type(request):
+	return None
