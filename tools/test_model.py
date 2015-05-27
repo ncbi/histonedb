@@ -9,7 +9,6 @@ import json
 import os
 
 #Required Libraries
-import scipy
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -148,9 +147,6 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
             abs(measure_threshold-values[measure][-1])<abs(measure_threshold-saveValue):
             saveTheshold = threshold
             saveValue = values[measure][-1]
-
-    if axes is not None:
-        
 
     return saveTheshold, values
 
