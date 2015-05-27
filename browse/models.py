@@ -8,6 +8,9 @@ class Histone(models.Model):
 	taxonomic_span = models.CharField(max_length=25)
 	description    = models.CharField(max_length=255)
 
+	def __unicode__(self):
+		return self.id
+
 class Variant(models.Model):
 	"""Most variants map to 
 	H2A.X -> multiple species, same varaint
@@ -18,12 +21,18 @@ class Variant(models.Model):
 	taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
 	description   = models.CharField(max_length=255)
 
+	def __unicode__(self):
+		return self.id
+
 class OldStyleVariant(models.Model):
 	updated_variant = models.ForeignKey(Variant, related_name="old_names")
 	name            = models.CharField(max_length=255, primary_key=True)
 	gene            = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
 	splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
 	taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
+
+	def __unicode__(self):
+		return "{} (now called {})".format(self.name, self.updated_variant.id)
 
 class Sequence(models.Model):
 	id       = models.CharField(max_length=25, primary_key=True) #GI
@@ -34,6 +43,18 @@ class Sequence(models.Model):
 	header   = models.CharField(max_length=255)
 	sequence = models.TextField()
 	reviewed = models.BooleanField()
+
+	def __unicode__(self):
+		return "{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name)
+
+	def full_variant_name(self):
+		name = self.id
+		if self.gene:
+			name += ".{}".format(self.gene)
+		if self.splice:
+			name += ".s{}".format(self.splice)
+		return name
+	varaint_name = property(full_variant_name)
 
 class Score(models.Model):
 	sequence       = models.ForeignKey(Sequence, related_name="scores")
@@ -50,36 +71,36 @@ class Score(models.Model):
 
 class Features(models.Model):
 	sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 
-	alphaN_start         = models.IntegerField()
-	alphaN_end           = models.IntegerField()
-	alpha1_start         = models.IntegerField()
-	alpha1_end           = models.IntegerField()
-	alpha1ext_start      = models.IntegerField()
-	alpha1ext_end        = models.IntegerField()
-	alpha2_start         = models.IntegerField()
-	alpha2_end           = models.IntegerField()
-	alpha3_start         = models.IntegerField()
-	alpha3_end           = models.IntegerField()
-	alpha3ext_start      = models.IntegerField()
-	alpha3ext_end        = models.IntegerField()
-	alphaC_start         = models.IntegerField()
-	alphaC_end           = models.IntegerField()
-	beta1_start          = models.IntegerField()
-	beta1_end            = models.IntegerField()
-	beta2_start          = models.IntegerField()
-	beta2_end            = models.IntegerField()
-	loopL1_start         = models.IntegerField()
-	loopL1_end           = models.IntegerField()
-	loopL2_start         = models.IntegerField()
-	loopL2_end           = models.IntegerField()
-	mgarg1_start         = models.IntegerField()
-	mgarg1_end           = models.IntegerField()
-	mgarg2_start         = models.IntegerField()
-	mgarg2_end           = models.IntegerField()
-	mgarg3_start         = models.IntegerField()
-	mgarg3_end           = models.IntegerField()
-	docking_domain_start = models.IntegerField()
-	docking_domain_end   = models.IntegerField()
+	alphaN_start         = models.IntegerField(null=True)
+	alphaN_end           = models.IntegerField(null=True)
+	alpha1_start         = models.IntegerField(null=True)
+	alpha1_end           = models.IntegerField(null=True)
+	alpha1ext_start      = models.IntegerField(null=True)
+	alpha1ext_end        = models.IntegerField(null=True)
+	alpha2_start         = models.IntegerField(null=True)
+	alpha2_end           = models.IntegerField(null=True)
+	alpha3_start         = models.IntegerField(null=True)
+	alpha3_end           = models.IntegerField(null=True)
+	alpha3ext_start      = models.IntegerField(null=True)
+	alpha3ext_end        = models.IntegerField(null=True)
+	alphaC_start         = models.IntegerField(null=True)
+	alphaC_end           = models.IntegerField(null=True)
+	beta1_start          = models.IntegerField(null=True)
+	beta1_end            = models.IntegerField(null=True)
+	beta2_start          = models.IntegerField(null=True)
+	beta2_end            = models.IntegerField(null=True)
+	loopL1_start         = models.IntegerField(null=True)
+	loopL1_end           = models.IntegerField(null=True)
+	loopL2_start         = models.IntegerField(null=True)
+	loopL2_end           = models.IntegerField(null=True)
+	mgarg1_start         = models.IntegerField(null=True)
+	mgarg1_end           = models.IntegerField(null=True)
+	mgarg2_start         = models.IntegerField(null=True)
+	mgarg2_end           = models.IntegerField(null=True)
+	mgarg3_start         = models.IntegerField(null=True)
+	mgarg3_end           = models.IntegerField(null=True)
+	docking_domain_start = models.IntegerField(null=True)
+	docking_domain_end   = models.IntegerField(null=True)
 	core                 = models.FloatField()
 
 class Structure(models.Model):
