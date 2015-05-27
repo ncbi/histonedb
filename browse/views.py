@@ -19,6 +19,9 @@ from django.db.models import Min
 def treemap(request):
 	return render(request, 'circle.html', {"starburst_url": "data/type/json/{}/species/".format("H2A")})
 
+def help(request):
+	return render(request, 'help.html', {})
+
 def browse_types(request):
 	"""Home"""
 	return render(request, 'browse_types.html', {})
