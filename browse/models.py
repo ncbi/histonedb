@@ -17,6 +17,8 @@ class Variant(models.Model):
 	core_type     = models.ForeignKey(Histone, related_name="variants")
 	taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
 	description   = models.CharField(max_length=255)
+	hmmthreshold  = models.IntegerField(null=True)
+	aucroc        = models.IntegerField(null=True)
 
 class OldStyleVariant(models.Model):
 	updated_variant = models.ForeignKey(Variant, related_name="old_names")
@@ -36,17 +38,15 @@ class Sequence(models.Model):
 	reviewed = models.BooleanField()
 
 class Score(models.Model):
-	sequence       = models.ForeignKey(Sequence, related_name="scores")
-	variant        = models.ForeignKey(Variant, related_name="+")
-	score          = models.FloatField() #Multiple scores for different models? Have the variant defined by the top scoring?
-	evalue         = models.FloatField()
-	train_program  = models.CharField(max_length=25)
-	search_program = models.CharField(max_length=25)
-	specificity    = models.IntegerField(null=True, validators=[MaxValueValidator(100),MinValueValidator(1)])
-	hmmStart       = models.IntegerField()
-	hmmEnd         = models.IntegerField()
-	seqStart       = models.IntegerField()
-	seqEnd         = models.IntegerField()
+	sequence        = models.ForeignKey(Sequence, related_name="scores")
+	variant         = models.ForeignKey(Variant, related_name="+")
+	above_threshold = models.BooleanField()
+	score           = models.FloatField()
+	evalue          = models.FloatField()
+	hmmStart        = models.IntegerField()
+	hmmEnd          = models.IntegerField()
+	seqStart        = models.IntegerField()
+	seqEnd          = models.IntegerField()
 
 class Features(models.Model):
 	sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 

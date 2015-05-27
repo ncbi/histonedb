@@ -36,8 +36,8 @@
             <li class="active"><a href="{% url 'browse.views.browse_types' %}">Browse</a></li>
             <li><a href="/search/">Advanced Search</a></li>
             <li><a href="{% url 'browse.views.upload' %}">Upload</a></li>
-            <li><a href="{% url 'browse.views.help' 'H2A' %}">Help</a></li>
-            <form role="search" class="navbar-form navbar-right" action="/search/" method="POST">{% csrf_token %}
+            <li><a href="{% url 'browse.views.help' %}">Help</a></li>
+            <form role="search" class="navbar-form navbar-right" action="{% url 'browse.views.search' %}" method="POST">{% csrf_token %}
               <input type="text" name="search" class="form-control" aria-label="..." placeholder="Search (H2A.Z.2.s1)">
             </form>
           </ul>

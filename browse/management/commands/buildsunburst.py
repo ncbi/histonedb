@@ -52,7 +52,7 @@ class Command(BaseCommand):
         else:
             taxas = Sequence.objects.filter(**filter).values_list("taxonomy", flat=True).distinct()
 
-        sunburst = [{"name":"root", "children":[]}]
+        sunburst = {"name":"root", "children":[]}
         colors = {"eukaryota":"#6600CC", "prokaryota":"#00FF00", "archea":"#FF6600"}
         for taxa in taxas:
             if filter.get("all_taxonomy"):
@@ -64,15 +64,17 @@ class Command(BaseCommand):
                 except IndexError:
                     pass
                 path = chain(taxa.parents.reverse().all()[1:], [taxa])
-            root = sunburst[0]
+            root = sunburst
+            stopForSpecies = False
             for i, curr_taxa in enumerate(path):
-                #print "-"*i, curr_taxa.name, 
+                if stopForSpecies:
+                    break
+                if curr_taxa.rank == "species":
+                    stopForSpecies = True
                 for node in root["children"]:
                     if node["name"] == curr_taxa.name:
-                        #print "(Exists)"
                         break
                     else:
-                        #print "(DNE)"
                         pass
                 else:
                     #print "(Adding)"
