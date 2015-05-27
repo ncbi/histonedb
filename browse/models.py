@@ -17,8 +17,8 @@ class Variant(models.Model):
 	core_type     = models.ForeignKey(Histone, related_name="variants")
 	taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
 	description   = models.CharField(max_length=255)
-	hmmthreshold  = models.IntegerField(null=True)
-	aucroc        = models.IntegerField(null=True)
+	#hmmthreshold  = models.FloatField(null=True)
+	#aucroc        = models.IntegerField(null=True)
 
 class OldStyleVariant(models.Model):
 	updated_variant = models.ForeignKey(Variant, related_name="old_names")
@@ -38,6 +38,7 @@ class Sequence(models.Model):
 	reviewed = models.BooleanField()
 
 class Score(models.Model):
+	id              = models.IntegerField(primary_key=True)
 	sequence        = models.ForeignKey(Sequence, related_name="scores")
 	variant         = models.ForeignKey(Variant, related_name="+")
 	above_threshold = models.BooleanField()
