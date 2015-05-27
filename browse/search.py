@@ -3,7 +3,7 @@ from browse.models import *
 import browse
 from djangophylocore.models import *
 
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.http import JsonResponse
 
 from collections import Counter
@@ -173,19 +173,17 @@ class HistoneSearch(object):
 
         #search core_type, variant, old variant names, header if doens't match variant or core_type, taxonomy
         try:
-            print "seach core", search_text
             core_type = Histone.objects.get(id=search_text)
             sequences = self.query_set.filter(variant__core_type_id=core_type.id)
             self.query_set = sequences
             if self.navbar:
                 # Go to histone browse page
                 print "redirect"
-                self.redirect = HttpResponseRedirect("/type/{}/".format(core_type.id))
+                self.redirect = redirect("browse.views.browse_variants", core_type.id)
             else:
                 self.redirect = None
             return
         except Exception as e:
-            print "no core", e
             pass
         
         try:
@@ -194,12 +192,11 @@ class HistoneSearch(object):
             self.query_set = sequences
             if self.navbar:
                 # Go to variant browse page
-                self.redirect = HttpResponseRedirect("/variant/{}/".format(variant.id))
+                self.redirect = redirect("browse.views.browse_variant", variant.id)
             else:
                 self.redirect = None
             return
         except Exception as e:
-            print "error", e
             pass
         
         try:
@@ -208,7 +205,7 @@ class HistoneSearch(object):
             self.query_set = sequences
             if self.navbar:
                 # Go to vaiant browse page
-                self.redirect = HttpResponseRedirect("/variant/{}/".format(variant.id))
+                self.redirect = redirect("browse.views.browse_variant", variant.id)
             else:
                 self.redirect = None
             return

@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from browse.models import *
 from tools.load_hmmsearch import parseHmmer
+from tools.test_model import test_model
 import subprocess
 import os, sys
 
@@ -38,6 +39,7 @@ class Command(BaseCommand):
         else:
             #Force to rebuild everything
             self.build()
+            self.test()
             self.press()
             self.search()
             self.load()
@@ -56,21 +58,14 @@ class Command(BaseCommand):
         print >> self.stdout, "Building HMMs..."
         
         with open(self.combined_varaints_file, "w") as combined_variants:
-            for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
-                core_type = os.path.basename(root)
-                print core_type
-                if i==0:
-                    #Skip parent directory, only allow variant hmms to be built/searched
-                    continue
-                for seed in files:
-                    if not seed.endswith(".fasta"): continue
-                    hmm_dir = os.path.join(self.hmm_directory, core_type)
-                    if not os.path.exists(hmm_dir):
-                        os.makedirs(hmm_dir)
-                    hmm_file = os.path.join(hmm_dir, "{}.hmm".format(seed[:-6]))
-                    subprocess.call(["hmmbuild", "-n", seed[:-6], hmm_file, os.path.join(self.seed_directory, core_type, seed)])
-                    with open(hmm_file) as hmm:
-                        print >> combined_variants, hmm.read().rstrip()
+            for core_type, seed in self.get_seeds():
+                hmm_dir = os.path.join(self.hmm_directory, core_type)
+                if not os.path.exists(hmm_dir):
+                    os.makedirs(hmm_dir)
+                hmm_file = os.path.join(hmm_dir, "{}.hmm".format(seed[:-6]))
+                subprocess.call(["hmmbuild", "-n", seed[:-6], hmm_file, os.path.join(self.seed_directory, core_type, seed)])
+                with open(hmm_file) as hmm:
+                    print >> combined_variants, hmm.read().rstrip()
 
     def press(self):
         """Press the HMMs into a simgle HMM file"""
@@ -86,3 +81,38 @@ class Command(BaseCommand):
         """Load data into the histone database"""
         print >> self.stdout, "Loading data into HistoneDB..."
         parseHmmer(self.results_file, self.nr_file)
+
+    def get_seeds(self):
+        for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
+            core_type = os.path.basename(root)
+            if i==0:
+                #Skip parent directory, only allow variant hmms to be built/searched
+                continue
+            for seed in files: 
+                if not seed.endswith(".fasta"): continue
+                yield core_type, seed
+
+    def test(self, specificity=0.95):
+        for core_type, seed1 in self.get_seeds():
+            #Seed1 is positive examples
+            positive_examples = os.path.join(hmm_directory, "cutoff_search", "{}_postive_examples.out")
+            self.search(db=seed1, out=positive_examples)
+
+            #Build negative examples from all other varaints
+            negative_examples_db = os.path.join(hmm_directory, "cutoff_search", "{}_negative_examples.fasta")
+            negative_examples = os.path.join(hmm_directory, "cutoff_search", "{}_negative_examples.out")
+            with open(negative_examples, "w") as negative_file:
+                for seed2 in self.get_seeds():
+                    if seed1 == seed2: continue
+                    with open(seed2) as seed_file:
+                        negative_file.write(seed_file.read())
+            self.search(db=negative_examples_db, out=negative_examples)
+
+            parameters = test_model(seed1[:-6], positive_examples, negative_examples)
+
+            variant = Variant.objects.get(name=seed1[:-6])
+            variant.hmmthreshold = parameters["threshold"]
+            variant.aucroc = parameters["aucroc"]
+            variant.save()
+
+
