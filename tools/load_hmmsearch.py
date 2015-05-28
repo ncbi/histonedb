@@ -100,6 +100,7 @@ def parseHmmer(hmmerFile, sequences):
   Features.objects.all().delete()
   Score.objects.all().delete()
   unknown_model = Variant.objects.get(id="Unknown")
+  score_num = 0
   for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
     print "Loading variant:", variant_query.id
     try:
@@ -132,7 +133,7 @@ def parseHmmer(hmmerFile, sequences):
             #Sequence already exists. Compare bit scores, if current bit score is 
             #greater than current, reassign variant and update scores. Else, append score
             best_score = seqs.aggregate(score=Max("scores"))["score"]
-            if hsp.bitscore > best_score and hsp.bitscore>=variant_model.threshold:
+            if hsp.bitscore > best_score and hsp.bitscore>=variant_model.hmmthreshold:
               #best scoring
               seq.variant = variant_model
             """
@@ -152,7 +153,7 @@ def parseHmmer(hmmerFile, sequences):
               sequence = str(sequence)
             seq = Sequence(
               id       = gi,
-              variant  = variant_model if hsp.bitscore >= variant_model.threshold else unknown_model,
+              variant  = variant_model if hsp.bitscore >= variant_model.hmmthreshold else unknown_model,
               gene     = None,
               splice   = None,
               taxonomy = taxonomy,
@@ -200,14 +201,16 @@ def parseHmmer(hmmerFile, sequences):
               features.save()
           
           score = Score(
+            id              = score_num,
             sequence        = seq,
             variant         = variant_model,
             score           = hsp.bitscore,
             evalue          = hsp.evalue,
-            above_threshold = hsp.bitscore >= variant_model.threshold,
+            above_threshold = hsp.bitscore >= variant_model.hmmthreshold,
             hmmStart        = hsp.query_start,
             hmmEnd          = hsp.query_end,
             seqStart        = hsp.hit_start,
             seqEnd          = hsp.hit_end
             )
           score.save()
+          score_num += 1
