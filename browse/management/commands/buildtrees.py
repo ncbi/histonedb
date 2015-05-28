@@ -12,11 +12,15 @@ from Bio import Phylo
 from Bio.Phylo import PhyloXML
 from Bio.Phylo import PhyloXMLIO
 
-import seaborn as sns
-colors = cycle(sns.color_palette("Set2", 7))
+colors = cycle([
+    "#66c2a5",
+    "#fc8d62",
+    "#8da0cb",
+    "#e78ac3",
+    "#a6d854",
+    "#ffd92f",
+    "#e5c494"])
 
-def rgb_to_hex(rgb):
-    return '#%02x%02x%02x' % rgb
 
 def all_parents(tree):
     parents = {}
@@ -44,7 +48,7 @@ class Command(BaseCommand):
             help="Redownload NR database. If force is also True, this option is redundant")
 
     def handle(self, *args, **options):
-        self.make_trees()
+        #self.make_trees()
         self.add_features()
 
     def get_variants(self, core_type=None):
@@ -85,7 +89,7 @@ class Command(BaseCommand):
                           os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone)), 'phyloxml')
     
     def add_features(self):
-        for core_histone in ["H2A", "H2B", "H3", "H4", "H1"]:
+        for core_histone in ["H2A", "H2B", "H3", "H1", "H4"]:
             tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
             phx = PhyloXMLIO.read(tree_path)
             
@@ -100,9 +104,10 @@ class Command(BaseCommand):
             phx.other.append(charts)
 
             style = PhyloXML.Other("style", namespace="")
+            varaint_colors = {}
             for variant in self.get_variants(core_histone):
-                color = rgb_to_hex(colors.next())
-                style.children.append(PhyloXML.Other(variant, attributes={"fill":color, "stroke":color, "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"}, namespace=""))
+                varaint_colors[variant] = colors.next()
+                style.children.append(PhyloXML.Other("markgroup{}".format(variant.replace(".", "")), attributes={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"}, namespace=""))
             style.children.append(PhyloXML.Other("sectorHighlightText", attributes={"font-family":"Verdana", "font-size":"9", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"}, namespace=""))
             phx.other.append(style)
 
@@ -117,9 +122,19 @@ class Command(BaseCommand):
                             child = parent.clades.index(clade)
                             del parent.clades[child]
                             continue
-                        clade.name = "{}_{}".format(genus, gi)
+                        clade.name = genus
                         chart = PhyloXML.Other("chart", namespace="")
-                        chart.children.append(PhyloXML.Other("group", value=variant, namespace=""))
+                        #clade.attributes = {"bgStyle": "highlight_{}".format(variant.replace(".", ""))}
+                        try:
+                            color = varaint_colors[variant]
+                        except KeyError:
+                            for v, color in varaint_colors.iteritems():
+                                if v in variant:
+                                    break
+                            else:
+                                color = "#FFFFFF"
+                        clade.color = PhyloXML.BranchColor.from_hex(color)
+                        chart.children.append(PhyloXML.Other("group", value="markgroup{}".format(variant.replace(".", "")), namespace=""))
                         clade.other.append(chart)
 
                         annotation = PhyloXML.Other("annotation", namespace="")
@@ -131,6 +146,8 @@ class Command(BaseCommand):
                 tree = StringIO.StringIO()
                 PhyloXMLIO.write(phx, tree)
                 tree = tree.getvalue().replace("ns0:", "")
+                header, tree = tree.split("\n", 1)
+                tree = '<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">\n'+tree
                 outfile.write(tree)
 
             
