@@ -1,5 +1,28 @@
 <phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
   <phylogeny rooted="false">
+    <parameters>
+      <circular>
+        <bufferRadius>0.5</bufferRadius>
+      </circular>
+    </parameters>
+    <charts>
+      <group thickness="10" type="integratedBinary" />
+    </charts>
+    <style>
+      <highlight_H2AZ fill="#66c2a5" stroke="#66c2a5" />
+      <highlight_H2AX fill="#66c2a5" stroke="#66c2a5" />
+      <highlight_macroH2A fill="#66c2a5" stroke="#66c2a5" />
+      <highlight_H2AB fill="#ffd92f" stroke="#ffd92f" />
+      <highlight_H2AL fill="#ffd92f" stroke="#ffd92f" />
+      <highlight_H2AM fill="#e5c494" stroke="#e5c494" />
+      <markgroupH2AB fill="#000" label="H2A.B" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+      <markgroupH2AL fill="#000" label="H2A.L" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+      <markgroupH2AM fill="#000" label="H2A.M" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+      <markgroupH2AX fill="#000" label="H2A.X" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+      <markgroupH2AZ fill="#000" label="H2A.Z" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+      <markgroupmacroH2A fill="#000" label="macroH2A" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+      <sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="9" font-weight="bold" rotate="90" />
+    </style>
     <clade>
       <clade>
         <branch_length>0.01063</branch_length>
@@ -24,13 +47,8 @@
                           <clade>
                             <branch_length>0.20974</branch_length>
                             <clade>
-                              <name>Macaca_355704714</name>
+                              <name bgStyle="highlight_H2AM">Macaca_355704714</name>
                               <branch_length>0.09818</branch_length>
-                              <color>
-                                <red>141</red>
-                                <green>160</green>
-                                <blue>203</blue>
-                              </color>
                               <chart>
                                 <group>markgroupH2AM</group>
                               </chart>
@@ -44,18 +62,13 @@
                               <clade>
                                 <branch_length>0.0043</branch_length>
                                 <clade>
-                                  <name>Homo|150456434|H2A.M</name>
+                                  <name bgStyle="highlight_H2AM">Homo|150456434|H2A.M</name>
                                   <branch_length>0.00012</branch_length>
                                 </clade>
                               </clade>
                               <clade>
-                                <name>Pan_332860554</name>
+                                <name bgStyle="highlight_H2AM">Pan_332860554</name>
                                 <branch_length>0.00424</branch_length>
-                                <color>
-                                  <red>141</red>
-                                  <green>160</green>
-                                  <blue>203</blue>
-                                </color>
                                 <chart>
                                   <group>markgroupH2AM</group>
                                 </chart>
@@ -69,13 +82,8 @@
                           <clade>
                             <branch_length>0.08535</branch_length>
                             <clade>
-                              <name>Sus_311276123</name>
+                              <name bgStyle="highlight_H2AM">Sus_311276123</name>
                               <branch_length>0.17429</branch_length>
-                              <color>
-                                <red>141</red>
-                                <green>160</green>
-                                <blue>203</blue>
-                              </color>
                               <chart>
                                 <group>markgroupH2AM</group>
                               </chart>
@@ -87,13 +95,8 @@
                             <clade>
                               <branch_length>0.04754</branch_length>
                               <clade>
-                                <name>Canis_545557820</name>
+                                <name bgStyle="highlight_H2AM">Canis_545557820</name>
                                 <branch_length>0.12473</branch_length>
-                                <color>
-                                  <red>141</red>
-                                  <green>160</green>
-                                  <blue>203</blue>
-                                </color>
                                 <chart>
                                   <group>markgroupH2AM</group>
                                 </chart>
@@ -103,7 +106,7 @@
                                 </annotation>
                               </clade>
                               <clade>
-                                <name>Ailuropoda_301755368</name>
+                                <name bgStyle="highlight_H2AM">Ailuropoda_301755368</name>
                                 <branch_length>0.1342</branch_length>
                                 <color>
                                   <red>141</red>
@@ -123,7 +126,7 @@
                         </clade>
                         <clade>
                           <branch_length>0.02832</branch_length>
-                          <clade>
+                          <clade bgStyle="highlight_H2AM">
                             <name>Heterocephalus_351707643</name>
                             <branch_length>0.27472</branch_length>
                             <color>
@@ -142,7 +145,7 @@
                           <clade>
                             <branch_length>0.15068</branch_length>
                             <clade>
-                              <name>Cricetulus_354492127</name>
+                              <name bgStyle="highlight_H2AM">Cricetulus_354492127</name>
                               <branch_length>0.08976</branch_length>
                               <color>
                                 <red>141</red>
@@ -160,7 +163,7 @@
                             <clade>
                               <branch_length>0.03417</branch_length>
                               <clade>
-                                <name>Rattus_197386154</name>
+                                <name bgStyle="highlight_H2AM">Rattus_197386154</name>
                                 <branch_length>0.04099</branch_length>
                                 <color>
                                   <red>141</red>
@@ -176,7 +179,7 @@
                                 </annotation>
                               </clade>
                               <clade>
-                                <name>Mus_13385600</name>
+                                <name bgStyle="highlight_H2AM">Mus_13385600</name>
                                 <branch_length>0.05303</branch_length>
                                 <color>
                                   <red>141</red>
@@ -204,7 +207,7 @@
                             <clade>
                               <branch_length>0.03455</branch_length>
                               <clade>
-                                <name>Cricetulus_354492135</name>
+                                <name bgStyle="highlight_H2AL">Cricetulus_354492135</name>
                                 <branch_length>0.27036</branch_length>
                                 <color>
                                   <red>252</red>
@@ -222,7 +225,7 @@
                               <clade>
                                 <branch_length>0.08843</branch_length>
                                 <clade>
-                                  <name>Mus_13386420</name>
+                                  <name bgStyle="highlight_H2AL">Mus_13386420</name>
                                   <branch_length>0.17243</branch_length>
                                   <color>
                                     <red>252</red>
@@ -238,7 +241,7 @@
                                   </annotation>
                                 </clade>
                                 <clade>
-                                  <name>Mus_13386112</name>
+                                  <name bgStyle="highlight_H2AL">Mus_13386112</name>
                                   <branch_length>0.11604</branch_length>
                                   <color>
                                     <red>252</red>
@@ -258,7 +261,7 @@
                             <clade>
                               <branch_length>0.2347</branch_length>
                               <clade>
-                                <name>Oryctolagus_291407314</name>
+                                <name bgStyle="highlight_H2AL">Oryctolagus_291407314</name>
                                 <branch_length>0.00439</branch_length>
                                 <color>
                                   <red>252</red>
@@ -274,7 +277,7 @@
                                 </annotation>
                               </clade>
                               <clade>
-                                <name>Oryctolagus_291407300</name>
+                                <name bgStyle="highlight_H2AL">Oryctolagus_291407300</name>
                                 <branch_length>0.00409</branch_length>
                                 <color>
                                   <red>252</red>
@@ -298,7 +301,7 @@
                               <clade>
                                 <branch_length>0.1435</branch_length>
                                 <clade>
-                                  <name>Bos_118151026</name>
+                                  <name bgStyle="highlight_H2AL">Bos_118151026</name>
                                   <branch_length>0.06697</branch_length>
                                   <color>
                                     <red>252</red>
@@ -314,7 +317,7 @@
                                   </annotation>
                                 </clade>
                                 <clade>
-                                  <name>Bos_119923405</name>
+                                  <name bgStyle="highlight_H2AL">Bos_119923405</name>
                                   <branch_length>0.04707</branch_length>
                                   <color>
                                     <red>252</red>
@@ -333,7 +336,7 @@
                               <clade>
                                 <branch_length>0.0595</branch_length>
                                 <clade>
-                                  <name>Ailuropoda_301783589</name>
+                                  <name bgStyle="highlight_H2AL">Ailuropoda_301783589</name>
                                   <branch_length>0.1039</branch_length>
                                   <color>
                                     <red>252</red>
@@ -351,7 +354,7 @@
                                 <clade>
                                   <branch_length>0.12005</branch_length>
                                   <clade>
-                                    <name>Canis_57112025</name>
+                                    <name bgStyle="highlight_H2AL">Canis_57112025</name>
                                     <branch_length>0.00878</branch_length>
                                     <color>
                                       <red>252</red>
@@ -367,7 +370,7 @@
                                     </annotation>
                                   </clade>
                                   <clade>
-                                    <name>Canis_57112039</name>
+                                    <name bgStyle="highlight_H2AL">Canis_57112039</name>
                                     <branch_length>0.03028</branch_length>
                                     <color>
                                       <red>252</red>
@@ -388,7 +391,7 @@
                             <clade>
                               <branch_length>0.10164</branch_length>
                               <clade>
-                                <name>Sus_350595614</name>
+                                <name bgStyle="highlight_H2AL">Sus_350595614</name>
                                 <branch_length>0.09533</branch_length>
                                 <color>
                                   <red>252</red>
@@ -404,7 +407,7 @@
                                 </annotation>
                               </clade>
                               <clade>
-                                <name>Sus_350595620</name>
+                                <name bgStyle="highlight_H2AL">Sus_350595620</name>
                                 <branch_length>0.15467</branch_length>
                                 <color>
                                   <red>252</red>
@@ -425,7 +428,7 @@
                         <clade>
                           <branch_length>0.05177</branch_length>
                           <clade>
-                            <name>Cavia_348567212</name>
+                            <name bgStyle="highlight_H2AL">Cavia_348567212</name>
                             <branch_length>0.20033</branch_length>
                             <color>
                               <red>252</red>
@@ -443,7 +446,7 @@
                           <clade>
                             <branch_length>0.03461</branch_length>
                             <clade>
-                              <name>Cavia_348567220</name>
+                              <name bgStyle="highlight_H2AL">Cavia_348567220</name>
                               <branch_length>0.21978</branch_length>
                               <color>
                                 <red>252</red>
@@ -461,7 +464,7 @@
                             <clade>
                               <branch_length>0.05867</branch_length>
                               <clade>
-                                <name>Heterocephalus_351714308</name>
+                                <name bgStyle="highlight_H2AL">Heterocephalus_351714308</name>
                                 <branch_length>0.07341</branch_length>
                                 <color>
                                   <red>252</red>
@@ -479,7 +482,7 @@
                               <clade>
                                 <branch_length>0.08357</branch_length>
                                 <clade>
-                                  <name>Heterocephalus_351707644</name>
+                                  <name bgStyle="highlight_H2AL">Heterocephalus_351707644</name>
                                   <branch_length>0.02587</branch_length>
                                   <color>
                                     <red>252</red>
@@ -495,7 +498,7 @@
                                   </annotation>
                                 </clade>
                                 <clade>
-                                  <name>Heterocephalus_351701334</name>
+                                  <name bgStyle="highlight_H2AL">Heterocephalus_351701334</name>
                                   <branch_length>0.05105</branch_length>
                                   <color>
                                     <red>252</red>
@@ -521,7 +524,7 @@
                       <clade>
                         <branch_length>0.00694</branch_length>
                         <clade>
-                          <name>Heterocephalus_351702986</name>
+                          <name bgStyle="highlight_H2AB">Heterocephalus_351702986</name>
                           <branch_length>0.28029</branch_length>
                           <color>
                             <red>102</red>
@@ -543,7 +546,7 @@
                             <clade>
                               <branch_length>0.01912</branch_length>
                               <clade>
-                                <name>Sus_311277259</name>
+                                <name bgStyle="highlight_H2AB">Sus_311277259</name>
                                 <branch_length>0.17724</branch_length>
                                 <color>
                                   <red>102</red>
@@ -561,7 +564,7 @@
                               <clade>
                                 <branch_length>0.01789</branch_length>
                                 <clade>
-                                  <name>Loxodonta_344306151</name>
+                                  <name bgStyle="highlight_H2AB">Loxodonta_344306151</name>
                                   <branch_length>0.16131</branch_length>
                                   <color>
                                     <red>102</red>
@@ -577,7 +580,7 @@
                                   </annotation>
                                 </clade>
                                 <clade>
-                                  <name>Ailuropoda_752439251</name>
+                                  <name bgStyle="highlight_H2AB">Ailuropoda_752439251</name>
                                   <branch_length>0.10655</branch_length>
                                   <color>
                                     <red>102</red>
@@ -595,7 +598,7 @@
                               </clade>
                             </clade>
                             <clade>
-                              <name>Bos_115495331</name>
+                              <name bgStyle="highlight_H2AB">Bos_115495331</name>
                               <branch_length>0.17273</branch_length>
                               <color>
                                 <red>102</red>
@@ -614,7 +617,7 @@
                           <clade>
                             <branch_length>0.03905</branch_length>
                             <clade>
-                              <name>Callithrix_296237715</name>
+                              <name bgStyle="highlight_H2AB">Callithrix_296237715</name>
                               <branch_length>0.13659</branch_length>
                               <color>
                                 <red>102</red>
@@ -632,7 +635,7 @@
                             <clade>
                               <branch_length>0.0721</branch_length>
                               <clade>
-                                <name>Macaca_302564935</name>
+                                <name bgStyle="highlight_H2AB">Macaca_302564935</name>
                                 <branch_length>0.04529</branch_length>
                                 <color>
                                   <red>102</red>
@@ -650,7 +653,7 @@
                               <clade>
                                 <branch_length>0.01992</branch_length>
                                 <clade>
-                                  <name>Nomascus_332266419</name>
+                                  <name bgStyle="highlight_H2AB">Nomascus_332266419</name>
                                   <branch_length>0.03721</branch_length>
                                   <color>
                                     <red>102</red>
@@ -668,7 +671,7 @@
                                 <clade>
                                   <branch_length>0.02366</branch_length>
                                   <clade>
-                                    <name>Pan_114690754</name>
+                                    <name bgStyle="highlight_H2AB">Pan_114690754</name>
                                     <branch_length>0.01396</branch_length>
                                     <color>
                                       <red>102</red>
@@ -686,7 +689,7 @@
                                   <clade>
                                     <branch_length>0.01212</branch_length>
                                     <clade>
-                                      <name>Homo_63029941</name>
+                                      <name bgStyle="highlight_H2AB">Homo_63029941</name>
                                       <branch_length>0.00862</branch_length>
                                       <color>
                                         <red>102</red>
@@ -702,7 +705,7 @@
                                       </annotation>
                                     </clade>
                                     <clade>
-                                      <name>Homo_63029935</name>
+                                      <name bgStyle="highlight_H2AB">Homo_63029935</name>
                                       <branch_length>0.0</branch_length>
                                       <color>
                                         <red>102</red>
@@ -729,7 +732,7 @@
                         <clade>
                           <branch_length>0.14474</branch_length>
                           <clade>
-                            <name>Cricetulus_354506888</name>
+                            <name bgStyle="highlight_H2AB">Cricetulus_354506888</name>
                             <branch_length>0.03529</branch_length>
                             <color>
                               <red>102</red>
@@ -745,7 +748,7 @@
                             </annotation>
                           </clade>
                           <clade>
-                            <name>Cricetulus_354504491</name>
+                            <name bgStyle="highlight_H2AB">Cricetulus_354504491</name>
                             <branch_length>0.04874</branch_length>
                             <color>
                               <red>102</red>
@@ -764,7 +767,7 @@
                         <clade>
                           <branch_length>0.0708</branch_length>
                           <clade>
-                            <name>Mus_528078357</name>
+                            <name bgStyle="highlight_H2AB">Mus_528078357</name>
                             <branch_length>0.11107</branch_length>
                             <color>
                               <red>102</red>
@@ -780,7 +783,7 @@
                             </annotation>
                           </clade>
                           <clade>
-                            <name>Mus_528078359</name>
+                            <name bgStyle="highlight_H2AB">Mus_528078359</name>
                             <branch_length>0.07314</branch_length>
                             <color>
                               <red>102</red>
@@ -800,7 +803,7 @@
                     </clade>
                   </clade>
                   <clade>
-                    <name>Monodelphis_334338556</name>
+                    <name bgStyle="highlight_H2AM">Monodelphis_334338556</name>
                     <branch_length>0.20764</branch_length>
                     <color>
                       <red>141</red>
@@ -819,7 +822,7 @@
                 <clade>
                   <branch_length>0.01341</branch_length>
                   <clade>
-                    <name>Giardia_159108895</name>
+                    <name bgStyle="highlight_H2AX">Giardia_159108895</name>
                     <branch_length>0.30794</branch_length>
                     <color>
                       <red>231</red>
@@ -835,7 +838,7 @@
                     </annotation>
                   </clade>
                   <clade>
-                    <name>Dictyostelium_66814816</name>
+                    <name bgStyle="highlight_H2AX">Dictyostelium_66814816</name>
                     <branch_length>0.26117</branch_length>
                     <color>
                       <red>231</red>
@@ -853,7 +856,7 @@
                 </clade>
               </clade>
               <clade>
-                <name>Tetrahymena_118385100</name>
+                <name bgStyle="highlight_macroH2A">Tetrahymena_118385100</name>
                 <branch_length>0.35102</branch_length>
                 <color>
                   <red>255</red>
@@ -874,7 +877,7 @@
               <clade>
                 <branch_length>0.01073</branch_length>
                 <clade>
-                  <name>Trypanosoma_72391930</name>
+                  <name bgStyle="highligh_H2AZ">Trypanosoma_72391930</name>
                   <branch_length>0.29261</branch_length>
                   <color>
                     <red>166</red>
@@ -894,7 +897,7 @@
                   <clade>
                     <branch_length>0.00451</branch_length>
                     <clade>
-                      <name>Saccharomyces_6324562</name>
+                      <name bgStyle="highligh_H2AZ">Saccharomyces_6324562</name>
                       <branch_length>0.15897</branch_length>
                       <color>
                         <red>166</red>
@@ -910,7 +913,7 @@
                       </annotation>
                     </clade>
                     <clade>
-                      <name>Schizosaccharomyces_429240082</name>
+                      <name bgStyle="highligh_H2AZ">Schizosaccharomyces_429240082</name>
                       <branch_length>0.17937</branch_length>
                       <color>
                         <red>166</red>
@@ -933,7 +936,7 @@
                       <clade>
                         <branch_length>0.02178</branch_length>
                         <clade>
-                          <name>Perkinsus_294899805</name>
+                          <name bgStyle="highligh_H2AZ">Perkinsus_294899805</name>
                           <branch_length>0.03533</branch_length>
                           <color>
                             <red>166</red>
@@ -949,7 +952,7 @@
                           </annotation>
                         </clade>
                         <clade>
-                          <name>Perkinsus_294944035</name>
+                          <name bgStyle="highligh_H2AZ">Perkinsus_294944035</name>
                           <branch_length>0.03485</branch_length>
                           <color>
                             <red>166</red>
@@ -966,7 +969,7 @@
                         </clade>
                       </clade>
                       <clade>
-                        <name>Perkinsus_294944037</name>
+                        <name bgStyle="highligh_H2AZ">Perkinsus_294944037</name>
                         <branch_length>0.05717</branch_length>
                         <color>
                           <red>166</red>
@@ -987,7 +990,7 @@
                       <clade>
                         <branch_length>0.00564</branch_length>
                         <clade>
-                          <name>Tetrahymena_229596389</name>
+                          <name bgStyle="highligh_H2AZ">Tetrahymena_229596389</name>
                           <branch_length>0.14357</branch_length>
                           <color>
                             <red>166</red>
@@ -1005,7 +1008,7 @@
                         <clade>
                           <branch_length>0.03082</branch_length>
                           <clade>
-                            <name>Toxoplasma_237844891</name>
+                            <name bgStyle="highligh_H2AZ">Toxoplasma_237844891</name>
                             <branch_length>0.13589</branch_length>
                             <color>
                               <red>166</red>
@@ -1021,7 +1024,7 @@
                             </annotation>
                           </clade>
                           <clade>
-                            <name>Cryptosporidium_66357734</name>
+                            <name bgStyle="highligh_H2AZ">Cryptosporidium_66357734</name>
                             <branch_length>0.11581</branch_length>
                             <color>
                               <red>166</red>
@@ -1045,7 +1048,7 @@
                           <clade>
                             <branch_length>0.01313</branch_length>
                             <clade>
-                              <name>Drosophila_17738227</name>
+                              <name bgStyle="highligh_H2AZ">Drosophila_17738227</name>
                               <branch_length>0.04172</branch_length>
                               <color>
                                 <red>166</red>
@@ -1067,7 +1070,7 @@
                                 <clade>
                                   <branch_length>0.0</branch_length>
                                   <clade>
-                                    <name>Homo_6912616</name>
+                                    <name bgStyle="highligh_H2AZ">Homo_6912616</name>
                                     <branch_length>0.0</branch_length>
                                     <color>
                                       <red>166</red>
@@ -1083,7 +1086,7 @@
                                     </annotation>
                                   </clade>
                                   <clade>
-                                    <name>Gallus_121988</name>
+                                    <name bgStyle="highligh_H2AZ">Gallus_121988</name>
                                     <branch_length>0.0</branch_length>
                                     <color>
                                       <red>166</red>
@@ -1100,7 +1103,7 @@
                                   </clade>
                                 </clade>
                                 <clade>
-                                  <name>Danio_24111226</name>
+                                  <name bgStyle="highligh_H2AZ">Danio_24111226</name>
                                   <branch_length>0.0</branch_length>
                                   <color>
                                     <red>166</red>
@@ -1121,7 +1124,7 @@
                                 <clade>
                                   <branch_length>0.00238</branch_length>
                                   <clade>
-                                    <name>Gallus_71897327</name>
+                                    <name bgStyle="highligh_H2AZ">Gallus_71897327</name>
                                     <branch_length>0.00495</branch_length>
                                     <color>
                                       <red>166</red>
@@ -1137,7 +1140,7 @@
                                     </annotation>
                                   </clade>
                                   <clade>
-                                    <name>Homo_4504255</name>
+                                    <name bgStyle="highligh_H2AZ">Homo_4504255</name>
                                     <branch_length>0.00286</branch_length>
                                     <color>
                                       <red>166</red>
@@ -1154,7 +1157,7 @@
                                   </clade>
                                 </clade>
                                 <clade>
-                                  <name>Danio_112807244</name>
+                                  <name bgStyle="highligh_H2AZ">Danio_112807244</name>
                                   <branch_length>0.00543</branch_length>
                                   <color>
                                     <red>166</red>
@@ -1173,7 +1176,7 @@
                             </clade>
                           </clade>
                           <clade>
-                            <name>Trichoplax_196003262</name>
+                            <name bgStyle="highligh_H2AZ">Trichoplax_196003262</name>
                             <branch_length>0.03683</branch_length>
                             <color>
                               <red>166</red>
@@ -1192,7 +1195,7 @@
                         <clade>
                           <branch_length>0.03831</branch_length>
                           <clade>
-                            <name>Arabidopsis_15224957</name>
+                            <name bgStyle="highligh_H2AZ">Arabidopsis_15224957</name>
                             <branch_length>0.08453</branch_length>
                             <color>
                               <red>166</red>
@@ -1208,7 +1211,7 @@
                             </annotation>
                           </clade>
                           <clade>
-                            <name>Oryza_115455263</name>
+                            <name bgStyle="highligh_H2AZ">Oryza_115455263</name>
                             <branch_length>0.06989</branch_length>
                             <color>
                               <red>166</red>
@@ -1230,7 +1233,7 @@
                 </clade>
               </clade>
               <clade>
-                <name>Dictyostelium_66807867</name>
+                <name bgStyle="highligh_H2AZ">Dictyostelium_66807867</name>
                 <branch_length>0.31122</branch_length>
                 <color>
                   <red>166</red>
@@ -1252,7 +1255,7 @@
             <clade>
               <branch_length>0.02487</branch_length>
               <clade>
-                <name>Ixodes_241122402</name>
+                <name bgStyle="highlight_macroH2A">Ixodes_241122402</name>
                 <branch_length>0.34924</branch_length>
                 <color>
                   <red>255</red>
@@ -1268,7 +1271,7 @@
                 </annotation>
               </clade>
               <clade>
-                <name>Nematostella_156396795</name>
+                <name bgStyle="highlight_macroH2A">Nematostella_156396795</name>
                 <branch_length>0.18448</branch_length>
                 <color>
                   <red>255</red>
@@ -1289,7 +1292,7 @@
               <clade>
                 <branch_length>0.05197</branch_length>
                 <clade>
-                  <name>Danio_94536607</name>
+                  <name bgStyle="highlight_macroH2A">Danio_94536607</name>
                   <branch_length>0.13853</branch_length>
                   <color>
                     <red>255</red>
@@ -1309,7 +1312,7 @@
                   <clade>
                     <branch_length>0.02436</branch_length>
                     <clade>
-                      <name>Homo_93141018</name>
+                      <name bgStyle="highlight_macroH2A">Homo_93141018</name>
                       <branch_length>0.01463</branch_length>
                       <color>
                         <red>255</red>
@@ -1325,7 +1328,7 @@
                       </annotation>
                     </clade>
                     <clade>
-                      <name>Gallus_45384360</name>
+                      <name bgStyle="highlight_macroH2A">Gallus_45384360</name>
                       <branch_length>0.01494</branch_length>
                       <color>
                         <red>255</red>
@@ -1344,7 +1347,7 @@
                   <clade>
                     <branch_length>0.01918</branch_length>
                     <clade>
-                      <name>Homo_530380257</name>
+                      <name bgStyle="highlight_macroH2A">Homo_530380257</name>
                       <branch_length>0.01888</branch_length>
                       <color>
                         <red>255</red>
@@ -1360,7 +1363,7 @@
                       </annotation>
                     </clade>
                     <clade>
-                      <name>Gallus_3395780</name>
+                      <name bgStyle="highlight_macroH2A">Gallus_3395780</name>
                       <branch_length>0.01917</branch_length>
                       <color>
                         <red>255</red>
@@ -1381,7 +1384,7 @@
               <clade>
                 <branch_length>0.0373</branch_length>
                 <clade>
-                  <name>Danio_70887615</name>
+                  <name bgStyle="highlight_macroH2A">Danio_70887615</name>
                   <branch_length>0.14611</branch_length>
                   <color>
                     <red>255</red>
@@ -1399,7 +1402,7 @@
                 <clade>
                   <branch_length>0.08752</branch_length>
                   <clade>
-                    <name>Homo_8923920</name>
+                    <name bgStyle="highlight_macroH2A">Homo_8923920</name>
                     <branch_length>0.05018</branch_length>
                     <color>
                       <red>255</red>
@@ -1415,7 +1418,7 @@
                     </annotation>
                   </clade>
                   <clade>
-                    <name>Gallus_472824980</name>
+                    <name bgStyle="highlight_macroH2A">Gallus_472824980</name>
                     <branch_length>0.04659</branch_length>
                     <color>
                       <red>255</red>
@@ -1436,7 +1439,7 @@
           </clade>
         </clade>
         <clade>
-          <name>Alexandrium_61658009</name>
+          <name bgStyle="highlight_H2AX">Alexandrium_61658009</name>
           <branch_length>0.27986</branch_length>
           <color>
             <red>231</red>
@@ -1457,7 +1460,7 @@
         <clade>
           <branch_length>0.00626</branch_length>
           <clade>
-            <name>Trichoplax_196003430</name>
+            <name bgStyle="highlight_macroH2A">Trichoplax_196003430</name>
             <branch_length>0.2045</branch_length>
             <color>
               <red>255</red>
@@ -1473,7 +1476,7 @@
             </annotation>
           </clade>
           <clade>
-            <name>Tetrahymena_118386111</name>
+            <name bgStyle="highlight_H2AX">Tetrahymena_118386111</name>
             <branch_length>0.19245</branch_length>
             <color>
               <red>231</red>
@@ -1492,7 +1495,7 @@
         <clade>
           <branch_length>0.02653</branch_length>
           <clade>
-            <name>Cryptosporidium_66359884</name>
+            <name bgStyle="highlight_H2AX">Cryptosporidium_66359884</name>
             <branch_length>0.15461</branch_length>
             <color>
               <red>231</red>
@@ -1510,7 +1513,7 @@
           <clade>
             <branch_length>0.01234</branch_length>
             <clade>
-              <name>Toxoplasma_237831985</name>
+              <name bgStyle="highlight_H2AX">Toxoplasma_237831985</name>
               <branch_length>0.13151</branch_length>
               <color>
                 <red>231</red>
@@ -1526,7 +1529,7 @@
               </annotation>
             </clade>
             <clade>
-              <name>Perkinsus_294943912</name>
+              <name bgStyle="highlight_H2AX">Perkinsus_294943912</name>
               <branch_length>0.11476</branch_length>
               <color>
                 <red>231</red>
@@ -1549,7 +1552,7 @@
         <clade>
           <branch_length>0.09549</branch_length>
           <clade>
-            <name>Arabidopsis_15221875</name>
+            <name bgStyle="highlight_H2AX">Arabidopsis_15221875</name>
             <branch_length>0.07772</branch_length>
             <color>
               <red>231</red>
@@ -1565,7 +1568,7 @@
             </annotation>
           </clade>
           <clade>
-            <name>Oryza_115488866</name>
+            <name bgStyle="highlight_H2AX">Oryza_115488866</name>
             <branch_length>0.06721</branch_length>
             <color>
               <red>231</red>
@@ -1586,7 +1589,7 @@
           <clade>
             <branch_length>0.01723</branch_length>
             <clade>
-              <name>Saccharomyces_398366187</name>
+              <name bgStyle="highlight_H2AX">Saccharomyces_398366187</name>
               <branch_length>0.1145</branch_length>
               <color>
                 <red>231</red>
@@ -1604,7 +1607,7 @@
             <clade>
               <branch_length>0.02579</branch_length>
               <clade>
-                <name>Schizosaccharomyces_19115333</name>
+                <name bgStyle="highlight_H2AX">Schizosaccharomyces_19115333</name>
                 <branch_length>0.08315</branch_length>
                 <color>
                   <red>231</red>
@@ -1620,7 +1623,7 @@
                 </annotation>
               </clade>
               <clade>
-                <name>Ustilago_758974979</name>
+                <name bgStyle="highlight_H2AX">Ustilago_758974979</name>
                 <branch_length>0.09242</branch_length>
                 <color>
                   <red>231</red>
@@ -1642,7 +1645,7 @@
             <clade>
               <branch_length>0.01238</branch_length>
               <clade>
-                <name>Trichoplax_196012824</name>
+                <name bgStyle="highlight_H2AX">Trichoplax_196012824</name>
                 <branch_length>0.08355</branch_length>
                 <color>
                   <red>231</red>
@@ -1658,7 +1661,7 @@
                 </annotation>
               </clade>
               <clade>
-                <name>Apis_66506394</name>
+                <name bgStyle="highlight_H2AX">Apis_66506394</name>
                 <branch_length>0.07941</branch_length>
                 <color>
                   <red>231</red>
@@ -1679,7 +1682,7 @@
               <clade>
                 <branch_length>0.03711</branch_length>
                 <clade>
-                  <name>Monodelphis_126326560</name>
+                  <name bgStyle="highlight_H2AX">Monodelphis_126326560</name>
                   <branch_length>0.02562</branch_length>
                   <color>
                     <red>231</red>
@@ -1697,7 +1700,7 @@
                 <clade>
                   <branch_length>0.01546</branch_length>
                   <clade>
-                    <name>Mus_7106331</name>
+                    <name bgStyle="highlight_H2AX">Mus_7106331</name>
                     <branch_length>0.00888</branch_length>
                     <color>
                       <red>231</red>
@@ -1717,7 +1720,7 @@
                     <clade>
                       <branch_length>0.00201</branch_length>
                       <clade>
-                        <name>Homo_4504253</name>
+                        <name bgStyle="highlight_H2AX">Homo_4504253</name>
                         <branch_length>0.00392</branch_length>
                         <color>
                           <red>231</red>
@@ -1733,7 +1736,7 @@
                         </annotation>
                       </clade>
                       <clade>
-                        <name>Bos_119331192</name>
+                        <name bgStyle="highlight_H2AX">Bos_119331192</name>
                         <branch_length>0.00307</branch_length>
                         <color>
                           <red>231</red>
@@ -1750,7 +1753,7 @@
                       </clade>
                     </clade>
                     <clade>
-                      <name>Rattus_157817664</name>
+                      <name bgStyle="highlight_H2AX">Rattus_157817664</name>
                       <branch_length>0.00499</branch_length>
                       <color>
                         <red>231</red>
@@ -1769,7 +1772,7 @@
                 </clade>
               </clade>
               <clade>
-                <name>Danio_41055102</name>
+                <name bgStyle="highlight_H2AX">Danio_41055102</name>
                 <branch_length>0.06122</branch_length>
                 <color>
                   <red>231</red>
@@ -1790,21 +1793,4 @@
       </clade>
     </clade>
   </phylogeny>
-  <parameters>
-    <circular>
-      <bufferRadius>0.5</bufferRadius>
-    </circular>
-  </parameters>
-  <charts>
-    <group thickness="10" type="integratedBinary" />
-  </charts>
-  <style>
-    <markgroupH2AB fill="#000" label="H2A.B" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
-    <markgroupH2AL fill="#000" label="H2A.L" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
-    <markgroupH2AM fill="#000" label="H2A.M" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
-    <markgroupH2AX fill="#000" label="H2A.X" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
-    <markgroupH2AZ fill="#000" label="H2A.Z" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
-    <markgroupmacroH2A fill="#000" label="macroH2A" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
-    <sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="9" font-weight="bold" rotate="90" />
-  </style>
 </phyloxml>

@@ -11,6 +11,7 @@ urlpatterns = patterns('browse.views',
 
     url(r'^type/([a-zA-Z0-9]+)/$', 'browse_variants'),
     url(r'^variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
+    url(r'^type/[a-zA-Z0-9]+/variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
 
     url(r'^search/$', 'search'),
     url(r'^upload/$', 'upload'),
