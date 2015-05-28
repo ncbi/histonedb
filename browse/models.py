@@ -20,8 +20,8 @@ class Variant(models.Model):
 	core_type     = models.ForeignKey(Histone, related_name="variants")
 	taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
 	description   = models.CharField(max_length=255)
-	#hmmthreshold  = models.FloatField(null=True)
-	#aucroc        = models.IntegerField(null=True)
+	hmmthreshold  = models.FloatField(null=True)
+	aucroc        = models.IntegerField(null=True)
 
 	def __unicode__(self):
 		return self.id

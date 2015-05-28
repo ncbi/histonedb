@@ -14,7 +14,6 @@ def seq_from_gi(gis):
 def taxonomy_from_gis(gis):
     """
     """
-    print "search", gis
     for s in seq_from_gi(gis):
         print s.annotations["organism"]
         yield s.annotations["organism"]
