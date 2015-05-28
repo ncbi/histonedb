@@ -8,6 +8,11 @@ import argparse
 import json
 import os
 
+#BioPython
+from Bio import SearchIO
+from Bio import SeqIO
+from Bio.Seq import Seq
+
 #Required Libraries
 import numpy as np
 import seaborn as sns
@@ -45,16 +50,21 @@ def get_model_scores(model_output):
     return [hsp.bitscore for query in SearchIO.parse(model_output, "hmmer3-text") \
         for hit in query for hsp in hit] 
 
-def test_model(model_name, postive_file, negative_file, measure="SPC"):
+def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC"):
     """Test the model by calcuating
 
     Returns:
     A dictionary with containg the AUCROC and Threshold. An image is also saved
     with the ROC and score histograms. 
     """
+    print model_name
     postive_scores = get_model_scores(postive_file)
     negative_scores = get_model_scores(negative_file)
     all_scores = postive_scores+negative_scores
+    print all_scores
+
+    if len(negative_scores) == 0:
+        return {"roc_auc":0, "threshold":min(postive_scores)}
 
     y_true = [1]*len(postive_scores) + [0]*len(negative_scores)
     y_score = np.array(all_scores)
@@ -64,47 +74,45 @@ def test_model(model_name, postive_file, negative_file, measure="SPC"):
 
     threshold, values = calcualte_threshold(postive_scores, negative_scores, measure=measure, thresholds=reversed(thresholds))
 
-    pp = PdfPages("{}_model_evaluation.pdf".format(model_name))
+    pp = PdfPages(os.path.join(save_dir, "{}_model_evaluation.pdf".format(model_name)))
 
     sns.set(style="darkgrid")
-    f, axes = plt.subplots(1, 3)
+    f, axes = plt.subplots(3)
     trans = f.transFigure.inverted()
     colors = sns.color_palette("Set2", 7)
 
-    sns.kdeplot(postive_scores, shade=True, color=sns.xkcd_rgb["denim blue"], label="Scores for postive examples", ax=axes[i, 0])
-    sns.kdeplot(negative_scores, shade=True, color=sns.xkcd_rgb["pale red"], label="Scores for negative examples",  ax=axes[i, 0])
-    if i==len(scores)-1: axes[1,0].set_xlabel("Bit score")
-    if i==2: axes[i,0].set_ylabel("Density")
-    if i==0: 
-        axes[i,0].legend(loc="upper left")
-        axes[i,0].set_title("Kernel Density of Scores")
-    else:
-        axes[i,0].legend_.remove()
-    axes[i,1].set_xlim([0, 1.0])
-    axes[i,1].set_ylim([0.0, 1.05])
+    sns.kdeplot(np.array(postive_scores), shade=True, color=sns.xkcd_rgb["denim blue"], label="Scores for postive examples", ax=axes[0])
+    sns.kdeplot(np.array(negative_scores), shade=True, color=sns.xkcd_rgb["pale red"], label="Scores for negative examples",  ax=axes[0])
+    axes[0].set_xlabel("Bit score")
+    axes[0].set_ylabel("Density")
+    axes[0].legend(loc="upper left")
+    #axes[0].set_title("Kernel Density of Scores")
+    axes[1].set_xlim([0, 1.0])
+    axes[1].set_ylim([0.0, 1.05])
 
     
-    axes[1,1].plot(fpr,tpr, color=colors[0], lw=3., label="ROC (AUC: {})".format(roc_auc))
-    if i==len(scores)-1: axes[1,1].set_xlabel("False Positive Rate")
-    if i==2: axes[1,1].set_ylabel("True Positive Rate")
-    axes[1,1].legend(loc="lower right")
-    axes[1,1].set_xlim([-0.05, 1.0])
-    axes[1,1].set_ylim([0.0, 1.05])
-    if i==0: 
-        axes[1,1].set_title("ROC")
+    axes[1].plot(fpr,tpr, color=colors[0], lw=3., label="ROC (AUC: {})".format(roc_auc))
+    axes[1].set_xlabel("False Positive Rate")
+    axes[1].set_ylabel("True Positive Rate")
+    axes[1].legend(loc="lower right")
+    axes[1].set_xlim([-0.05, 1.0])
+    axes[1].set_ylim([0.0, 1.05])
+    #axes[1].set_title("ROC")
 
-    ax.axvline(theshold)
+    axes[2].axvline(threshold)
  
     for i, (measure, values) in enumerate(values.iteritems()):
-        axes[i,2].plot(thresholds, values, label=measure, linewidth=2, color=colors[i])
+        print measure, values
+        print len(thresholds), len(values)
+        print reversed(thresholds)
+        axes[2].plot(list(reversed(thresholds)), values, label=measure, linewidth=2, color=colors[i])
 
-    if i==0: 
-        axes[i,2].legend()
-        axes[i,2].set_title("Coosing Cutoff")
-    if i==2: axes[i,2].set_ylabel("Rate")
-    if i==len(scores)-1:axes[i,2].set_xlabel("Threshold")
+    axes[2].legend()
+    #axes[2].set_title("Coosing Cutoff")
+    axes[2].set_ylabel("Rate")
+    axes[2].set_xlabel("Threshold")
 
-    fig.suptitle("{} Model Evaluation".format(model_name), fontsize=20)
+    f.suptitle("{} Model Evaluation".format(model_name), fontsize=20)
 
     pp.savefig()
     pp.close()
@@ -119,9 +127,9 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
     negatives - list of scores of negative runs
     measure - choose coffectiong by 95% Specificity ("SPC"), or matthews_corrcoef ("MCC")
     """
-    assert measure in ["TPR", "FPR", "SPC", "MCC", "PPV", "NPV", "FDR", "ACC"]
+    assert measure in ["TPR", "FPR", "SPC", "MCC", "PPV", "FDR", "ACC"]
     y_true = [1]*len(positives)+[0]*len(negatives)
-    values = {name:[] for name in ["TPR", "FPR", "SPC", "MCC", "PPV", "NPV", "FDR", "ACC"]}
+    values = {name:[] for name in ["TPR", "FPR", "SPC", "MCC", "PPV", "FDR", "ACC"]}
     saveTheshold = None
     saveValue = 1.0
     thresholds = list(thresholds or map(lambda i: i/10., xrange(1,10000)))
@@ -139,7 +147,6 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
         y_pred = [int(score >= threshold) for scores in (positives, negatives) for score in scores]
         values["MCC"].append(matthews_corrcoef(y_true, y_pred))
         values["PPV"].append(float(TP)/(TP+FP) if TP+FP>0 else 0.0)
-        values["MCC"].append(float(TN)/(TN+FN) if TN+FN>0 else 0.0)
         values["FDR"].append(float(FP)/(TP+FP) if TP+FP>0 else 0.0)
         values["ACC"].append(float(TP+TN)/(len(positives)+len(negatives)))
         

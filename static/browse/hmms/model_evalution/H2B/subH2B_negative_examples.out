@@ -1,0 +1,258 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b1 (May 2013); http://hmmer.org/
+# Copyright (C) 2013 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  static/browse/hmms/H2B/subH2B.hmm
+# target sequence database:        static/browse/hmms/model_evalution/H2B/subH2B_negative_examples.fasta
+# output directed to file:         static/browse/hmms/model_evalution/H2B/subH2B_negative_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       subH2B  [M=122]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                    Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                    -----------
+      1e-36  119.3   0.9    1.1e-36  119.2   0.9    1.0  1  Canis|545554624|TS_H2B.1     gi|545554624|ref|XP_005640164.1| PREDICTED: histone H2B type 1-A-like [Canis lupus familiaris]
+    3.5e-36  117.6   2.0      4e-36  117.4   2.0    1.0  1  Mus|28316750|TS_H2B.1        gi|28316750|ref|NP_783594.1| histone H2B type 1-A [Mus musculus]
+      4e-36  117.4   1.2    4.5e-36  117.3   1.2    1.0  1  Rattus|12025524|TS_H2B.1     gi|12025524|ref|NP_072169.1| histone H2B type 1-A [Rattus norvegicus]
+    6.1e-35  113.6   2.0    6.9e-35  113.4   2.0    1.0  1  Homo|24586679|TS_H2B.1       gi|24586679|ref|NP_733759.1| histone H2B type 1-A [Homo sapiens]
+    1.1e-31  103.1   0.2    1.3e-31  102.9   0.2    1.1  1  Plasmodium|124511826|H2B.Z   Plasmodium_Falciparum
+    1.1e-31  103.0   0.2    1.3e-31  102.9   0.2    1.1  1  Plasmodium|68073549|H2B.Z    Plasmodium_Knowlessi
+    6.2e-31  100.7   0.1    7.2e-31  100.5   0.1    1.1  1  Toxoplasma|237840885|H2B.Z   Toxoplasma_Gondii
+    9.9e-24   77.4   0.0    1.2e-23   77.2   0.0    1.1  1  Dog|545560116|H2B.W          Dog_H2BFWT_57113095_gi|57113095|ref|XP_548517.1|_PREDICTED:_histone_H2B_type_W-T_[Canis_lupus_familiaris]
+    6.5e-23   74.8   0.0    7.7e-23   74.5   0.0    1.1  1  Oryctolagus|291407712|H2B.W  Oryctolagus_FWT_XM_002720165_rabbitFWT_XM_002720165
+    2.1e-20   66.7   0.0    2.8e-20   66.3   0.0    1.2  1  Bos|296470943|H2B.W          Bos_FWT_XM_610149
+    9.1e-20   64.6   0.0    1.3e-19   64.1   0.0    1.1  1  Homo|223590216|H2B.W         Homo_H2BFWT_NP_001002916
+    3.8e-19   62.6   0.1    4.6e-19   62.3   0.1    1.1  1  Ailuropodia|301781100|H2B.W  Ailuropodia_H2BFWT
+    1.3e-18   60.8   0.0    1.8e-18   60.4   0.0    1.1  1  Macaca|302564969|H2B.W       Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
+    6.2e-05   16.7   0.0    7.7e-05   16.4   0.0    1.2  1  Canis|545557820|H2A.M        Canis_M3
+     0.0002   15.1   0.1    0.00025   14.8   0.1    1.1  1  Mus|13386420|H2A.L           Mus_H2A.L.1
+    0.00024   14.9   0.0    0.00035   14.3   0.0    1.2  1  Ailuropoda|301755368|H2A.M   Ailuropoda_M3
+     0.0012   12.5   0.3     0.0015   12.3   0.3    1.1  1  Macaca|355704714|H2A.M       Macaca_M3
+
+
+Domain annotation for each sequence (and alignments):
+>> Canis|545554624|TS_H2B.1  gi|545554624|ref|XP_005640164.1| PREDICTED: histone H2B type 1-A-like [Canis lupus familiaris]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  119.2   0.9     1e-37   1.1e-36       7     122 .]      11     126 ..       5     126 .. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 119.2 bits;  conditional E-value: 1e-37
+                    subH2B   7 kkskyskrhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvhs 122
+                                 +k +kr   ++++k  k++ ++ k  ys+yi +vLk+v p+ giss+++ imn+++ndiferia ea++l  + kr t+t ++iq av lllP++lak+av+ G++av++y  s
+  Canis|545554624|TS_H2B.1  11 ISKKGFKRAVAKTQKKEGKKRRRCRKESYSIYIYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSS 126
+                               4567788889999999999**********************************************************************************************976 PP
+
+>> Mus|28316750|TS_H2B.1  gi|28316750|ref|NP_783594.1| histone H2B type 1-A [Mus musculus]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  117.4   2.0   3.5e-37     4e-36       7     122 .]      11     126 ..       5     126 .. 0.95
+
+  Alignments for each domain:
+  == domain 1  score: 117.4 bits;  conditional E-value: 3.5e-37
+                 subH2B   7 kkskyskrhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvhs 122
+                              +k +k+  +++++k   +++++ k  ys+yi +vLk+v p+ giss+++ imn+++ diferia ea++l  + kr t+t ++iq av lllP++lak+av+ G++av++y  s
+  Mus|28316750|TS_H2B.1  11 ISKKGFKKAVTKTQKKEGRKRKRCRKESYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIASEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSS 126
+                            456778899999999999***********************************************************************************************976 PP
+
+>> Rattus|12025524|TS_H2B.1  gi|12025524|ref|NP_072169.1| histone H2B type 1-A [Rattus norvegicus]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  117.3   1.2     4e-37   4.5e-36       3     122 .]       7     126 ..       5     126 .. 0.95
+
+  Alignments for each domain:
+  == domain 1  score: 117.3 bits;  conditional E-value: 4e-37
+                    subH2B   3 ksvikkskyskrhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvhs 122
+                               k ++  +k +k+  +++++k   +++++ +  ys+yi +vLk+v p+ giss+++ imn+++ diferia ea++l  + kr t+t ++iq av lllP++lak+av+ G++av++y  s
+  Rattus|12025524|TS_H2B.1   7 KGTTISKKGFKKAVTKTQKKEGRKRKRCREESYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSS 126
+                               5556677888999999999*99***********************************************************************************************976 PP
+
+>> Homo|24586679|TS_H2B.1  gi|24586679|ref|NP_733759.1| histone H2B type 1-A [Homo sapiens]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  113.4   2.0   6.1e-36   6.9e-35       8     122 .]      12     126 ..       5     126 .. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 113.4 bits;  conditional E-value: 6.1e-36
+                  subH2B   8 kskyskrhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvhs 122
+                              +k +k+   ++++k  k+++++ k  ys+yi +vLk+v p+ giss+++ imn+++ diferia ea++l  + kr t++ ++iq av lllP++lak+av+ G++av++y  s
+  Homo|24586679|TS_H2B.1  12 SKKGFKKAVVKTQKKEGKKRKRTRKESYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIASEASRLAHYSKRSTISSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSS 126
+                             456677888888999999999999****************************************************************************************976 PP
+
+>> Plasmodium|124511826|H2B.Z  Plasmodium_Falciparum
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  102.9   0.2   1.1e-32   1.3e-31      26     122 .]      25     121 ..       4     121 .. 0.87
+
+  Alignments for each domain:
+  == domain 1  score: 102.9 bits;  conditional E-value: 1.1e-32
+                      subH2B  26 sstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvhs 122
+                                 ++ +  +  +slyi +vLk+v p+ g+++++++imn++indif+r+ tea++l+ + k+ tL+ ++iq av lllP++l+k+av+ G++av++y  s
+  Plasmodium|124511826|H2B.Z  25 HKRKRRTESFSLYIFKVLKQVHPETGVTKKSMNIMNSFINDIFDRLVTEATRLIRYNKKRTLSSREIQTAVRLLLPGELSKHAVSEGTKAVTKYTTS 121
+                                 344556678*************************************************************************************976 PP
+
+>> Plasmodium|68073549|H2B.Z  Plasmodium_Knowlessi
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  102.9   0.2   1.1e-32   1.3e-31      26     122 .]      25     121 ..       4     121 .. 0.87
+
+  Alignments for each domain:
+  == domain 1  score: 102.9 bits;  conditional E-value: 1.1e-32
+                     subH2B  26 sstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvhs 122
+                                ++ +  +  +slyi +vLk+v p+ g+++++++imn++indif+r+ tea++l+ + k+ tL+ ++iq av lllP++l+k+av+ G++av++y  s
+  Plasmodium|68073549|H2B.Z  25 HKRKRRTESFSLYIFKVLKQVHPETGVTKKSMNIMNSFINDIFDRLVTEATRLIRYNKKRTLSSREIQTAVRLLLPGELSKHAVSEGTKAVTKYTTS 121
+                                344556678*************************************************************************************976 PP
+
+>> Toxoplasma|237840885|H2B.Z  Toxoplasma_Gondii
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  100.5   0.1   6.3e-32   7.2e-31      31     122 .]      30     121 ..       5     121 .. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 100.5 bits;  conditional E-value: 6.3e-32
+                      subH2B  31 gkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvhs 122
+                                  +  ++lyi +vLk+v p+ g+s++++ imn++indif+r+a ea++l+ + k+ tL+ ++iq av lllP++l+k+av+ G++av++y  s
+  Toxoplasma|237840885|H2B.Z  30 RTESFALYIYKVLKQVHPETGVSKKSMSIMNSFINDIFDRLADEAVRLIRYNKKRTLSSREIQTAVRLLLPGELSKHAVSEGTKAVTKYTTS 121
+                                 445799***********************************************************************************976 PP
+
+>> Dog|545560116|H2B.W  Dog_H2BFWT_57113095_gi|57113095|ref|XP_548517.1|_PREDICTED:_histone_H2B_type_W-T_[Canis_lupus_familiaris]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   77.2   0.0     1e-24   1.2e-23      25     121 ..      93     189 ..      71     190 .. 0.85
+
+  Alignments for each domain:
+  == domain 1  score: 77.2 bits;  conditional E-value: 1e-24
+               subH2B  25 ksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryvh 121
+                           +  ++ +  +++y  rvLk+v    ++s++++ im+++++diferia ea++l  + kr t+t ++iq av lllP+++ kyav+  ++a+ ry  
+  Dog|545560116|H2B.W  93 RRCRRSRSDSFAIYFPRVLKQVDEGLSLSQKAVSIMDSFVKDIFERIADEASRLARSTKRSTITSREIQTAVRLLLPGEIGKYAVSEATKALMRYTF 189
+                          223344556799***********************************************************************************75 PP
+
+>> Oryctolagus|291407712|H2B.W  Oryctolagus_FWT_XM_002720165_rabbitFWT_XM_002720165
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   74.5   0.0   6.7e-24   7.7e-23      18     120 ..      26     130 ..      13     132 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 74.5 bits;  conditional E-value: 6.7e-24
+                       subH2B  18 pasrkksksstelgkrnysl..yinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkryv 120
+                                  p++++ + ++ +    nys+  y  +vLk v    ++s+++  +m++++ d+feria+eaa+l+ + k+ tLt +D+q av lllP++l k+a   G++a+ +++
+  Oryctolagus|291407712|H2B.W  26 PKEKQPRRRRRRRQGHNYSFasYFPKVLKHVHKGLSLSKEAKGVMDSIVRDVFERIAHEAASLVRYSKHSTLTSRDVQSAVRLLLPGQLHKHADVEGTKALLKFI 130
+                                  34444445555666679998779*****************************************************************************99997 PP
+
+>> Bos|296470943|H2B.W  Bos_FWT_XM_610149
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   66.3   0.0   2.5e-21   2.8e-20      13     119 ..      86     191 ..      78     194 .. 0.82
+
+  Alignments for each domain:
+  == domain 1  score: 66.3 bits;  conditional E-value: 2.5e-21
+               subH2B  13 krhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkry 119
+                          k+++ +  r++++   +     ++ y  rvL+++    ++s  +++i++++++d feria+ea +l    kr t+t eDi+ av lllP+kl kyav   ++++ +y
+  Bos|296470943|H2B.W  86 KQKTAKGRRRRRH-CHHDSFSSFATYFPRVLRQIHKGMSLSHDSVNILDSFVKDTFERIAEEAGRLAGDNKRRTITTEDIEAAVRLLLPGKLGKYAVLKATKSLITY 191
+                          2333333333333.33334457899************************************************************************8888877776 PP
+
+>> Homo|223590216|H2B.W  Homo_H2BFWT_NP_001002916
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   64.1   0.0   1.1e-20   1.3e-19       7     118 ..      54     164 ..      47     167 .. 0.85
+
+  Alignments for each domain:
+  == domain 1  score: 64.1 bits;  conditional E-value: 1.1e-20
+                subH2B   7 kkskyskrhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkr 118
+                             +k+sk++++  +  ++++s ++    ++ y  rvLk+v    ++s +++ +m++l++di++riatea +l  + kr t+t  + ++av lllP+++ k a + G++av r
+  Homo|223590216|H2B.W  54 TSQKQSKQRKRGRHGPRRCHS-NCRGDSFATYFRRVLKQVHQGLSLSREAVSVMDSLVHDILDRIATEAGRLARSTKRQTITAWETRMAVRLLLPGQMGKLAESEGTKAVLR 164
+                           334445555554444454544.455567999******************************************************************************976 PP
+
+>> Ailuropodia|301781100|H2B.W  Ailuropodia_H2BFWT
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   62.3   0.1   4.1e-20   4.6e-19      14     120 ..      28     138 ..      20     140 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 62.3 bits;  conditional E-value: 4.1e-20
+                       subH2B  14 rhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyf....rkrctLtpeDiqkavylllPkklakyavafGseavkryv 120
+                                  ++++++ r++  ++ +     ++ y  rvLk+v    ++s++++ +m+++++dife+ia eaa+l  +     k+ t+  ++iq av lllP+++ k+ v+  ++av r+ 
+  Ailuropodia|301781100|H2B.W  28 KQKQKQPRRQCRRRCRRCPNSFATYFPRVLKQVHEGLSLSKKAVSVMDSFLKDIFEHIADEAAHLARStkgsNKHSTINSREIQTAVRLLLPGEIGKHTVSKATKAVIRFQ 138
+                                  4555556666666777778889*****************************************998652222689*********************************996 PP
+
+>> Macaca|302564969|H2B.W  Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   60.4   0.0   1.6e-19   1.8e-18      20     118 ..      66     164 ..      44     167 .. 0.82
+
+  Alignments for each domain:
+  == domain 1  score: 60.4 bits;  conditional E-value: 1.6e-19
+                  subH2B  20 srkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkavylllPkklakyavafGseavkr 118
+                              r       ++    ++ y  rvLk+v    ++s +++ +m++l++di++riatea +l  + kr t+t  + + av lllP+++ k a + G++av r
+  Macaca|302564969|H2B.W  66 RRGPCRCHANCRGDSFATYFRRVLKQVHQGLSLSREAVSVMDSLVHDILDRIATEAGRLARSTKRQTITAWETRIAVRLLLPGEMGKLAESEGTKAVLR 164
+                             122223445666677999******************************************************************************976 PP
+
+>> Canis|545557820|H2A.M  Canis_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   16.4   0.0   6.8e-06   7.7e-05      37      96 ..      35      93 ..       6     110 .. 0.71
+
+  Alignments for each domain:
+  == domain 1  score: 16.4 bits;  conditional E-value: 6.8e-06
+                 subH2B 37 lyinrvLkevvpqrgissrtld....imntlindiferiateaanllyfrkrctLtpeDiqkav 96
+                            y++r L+e   ++ +ss++++    ++++l + i+er+ tea n     + +  +p+D+++av
+  Canis|545557820|H2A.M 35 SYVDRLLQEDQRTHCLSSTSTEfllaMLDSLTDYILERVGTEANN-----NNMQTAPQDVERAV 93
+                           49****************998822224566667789999999976.....56677899999998 PP
+
+>> Mus|13386420|H2A.L  Mus_H2A.L.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   14.8   0.1   2.2e-05   0.00025      19      96 ..       5      83 ..       1      88 [. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 14.8 bits;  conditional E-value: 2.2e-05
+              subH2B 19 asrkksksst..elgkrnyslyinrvLkevvpqrgissrtldimntlindiferiateaanllyfrkrctLtpeDiqkav 96
+                        ++r++++++t  + g+   sl ++r L+e   +  +ss +l  + ++++ +  +i + a ++     r  +tpeD++  v
+  Mus|13386420|H2A.L  5 MQRRRRQKRTrsQRGELPLSL-VDRFLREEFHSSRLSSSALSFLTSVLEYLTSNILELAGEVAHTTGRKRVTPEDVRLVV 83
+                        334444444400445555555.9****************************************************98766 PP
+
+>> Ailuropoda|301755368|H2A.M  Ailuropoda_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   14.3   0.0   3.1e-05   0.00035      37      96 ..      27      85 ..       2      89 .. 0.66
+
+  Alignments for each domain:
+  == domain 1  score: 14.3 bits;  conditional E-value: 3.1e-05
+                      subH2B 37 lyinrvLkevvpqrgissrtldimntlind....iferiateaanllyfrkrctLtpeDiqkav 96
+                                 y++r L+e   ++ +ss t+d + t+++     i++ + tea n       +  +p+D+++av
+  Ailuropoda|301755368|H2A.M 27 SYVDRLLQENQYNHPLSSSTTDFLLTMLDYltdyILDVVGTEANN-----SNMPTAPQDVERAV 85
+                                39********************99888776111155555666655.....34455788888877 PP
+
+>> Macaca|355704714|H2A.M  Macaca_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   12.3   0.3   0.00013    0.0015      14      78 ..       7      75 ..       1      87 [. 0.63
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00013
+                  subH2B 14 rhqspasrkksksstelgkrnyslyinrvLkevvpqrgissrtldimntlin....diferiateaanl 78
+                            r++s+a++ + + +++   r    +++rv+++    ++ ss t++i+ tl++     i+e++  ea n 
+  Macaca|355704714|H2A.M  7 RKNSSANNNQIQDRSRNELRVPMSFVDRVVQDEQDAQSQSSSTINILLTLLDcladYIMEQVGLEAINN 75
+                            3333333333333333444444558*********************98887611114666666666654 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (122 nodes)
+Target sequences:                          193  (31748 residues searched)
+Passed MSV filter:                        80  (0.414508); expected 3.9 (0.02)
+Passed bias filter:                       74  (0.38342); expected 3.9 (0.02)
+Passed Vit filter:                        26  (0.134715); expected 0.2 (0.001)
+Passed Fwd filter:                        17  (0.0880829); expected 0.0 (1e-05)
+Initial search space (Z):                193  [actual number of targets]
+Domain search space  (domZ):              17  [number of targets reported over threshold]
+# CPU time: 0.01u 0.00s 00:00:00.01 Elapsed: 00:00:00.01
+# Mc/sec: 387.33
+//
+[ok]

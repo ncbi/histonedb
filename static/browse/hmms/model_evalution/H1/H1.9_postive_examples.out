@@ -1,0 +1,89 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b1 (May 2013); http://hmmer.org/
+# Copyright (C) 2013 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  static/browse/hmms/H1/H1.9.hmm
+# target sequence database:        static/browse/hmms/model_evalution/H1/H1.9_postive_examples.fasta
+# output directed to file:         static/browse/hmms/model_evalution/H1/H1.9_postive_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       H1.9  [M=174]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                  Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                  -----------
+    4.7e-97  310.8  14.0    5.2e-97  310.7  14.0    1.0  1  Rattus|157818369|H1.9      Rattus_Hils1
+    2.7e-93  298.6   5.7    3.2e-93  298.4   5.7    1.1  1  Homo|38372285|H1.9         Homo_Hils1
+    4.5e-91  291.4   6.6    5.2e-91  291.2   6.6    1.0  1  Mus|9055232|H1.9           Mus_Hils1
+    4.4e-87  278.4   9.3    4.8e-87  278.3   9.3    1.0  1  Peromyscus|207081162|H1.9  Peromyscus_Hils1
+
+
+Domain annotation for each sequence (and alignments):
+>> Rattus|157818369|H1.9  Rattus_Hils1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  310.7  14.0   5.2e-97   5.2e-97       5     174 .]       1     169 []       1     169 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 310.7 bits;  conditional E-value: 5.2e-97
+                   H1.9   5 telvspspapraavagdqdastvldPsqsksktgqrvcaktlrkPsmskvilravadkgvhkrvslatlkkavsitGynmarnayrfkrvlknlvdkGmlkqvtgkgasGsftlgkkqalksklkakrkrqkrqkpgqrrsgqrrsllgskksnkrlikGvrrvakgkrn 174
+                            ++lvspsp+++a++agdqdast+++Psqs+sk+g++v+++tlrkP+mskvilr+vadkgvh+rvsla+lkkavsitGynma+n++rfkrvl+nlv+kGmlkqvtgkgasGsf+lgkkqa+ksk+kakr rq+rqkpgqrr+g+rrsllgskksn+rl+kGvrrvakg+r+
+  Rattus|157818369|H1.9   1 MSLVSPSPDSNAVMAGDQDASTSQVPSQSESKIGPNVATQTLRKPTMSKVILRTVADKGVHSRVSLAALKKAVSITGYNMAQNTWRFKRVLQNLVKKGMLKQVTGKGASGSFRLGKKQAFKSKCKAKR-RQRRQKPGQRRTGSRRSLLGSKKSNNRLFKGVRRVAKGRRH 169
+                            689*****************************************************************************************************************************.9**************************************97 PP
+
+>> Homo|38372285|H1.9  Homo_Hils1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  298.4   5.7   3.2e-93   3.2e-93       1     174 []      32     231 .]      32     231 .] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 298.4 bits;  conditional E-value: 3.2e-93
+                H1.9   1 sevttelvspspapraavagdqdastvldP...................................sqsksktgqrvcaktlrkPsmskvilravadkgvhkrvslatlkkavsitGynmarnayrfkrvlknlvdkGmlkqvtgkgasGsftlgkkqalksklkakrkrqkrqkpgqrrsgqrrsllgskksnkrlikGvrrvakgkrn 174
+                         sevtte++sp+papra+v+g+q+++tvldP                                   ++sk++tgqr+cak+++kPs+skvilravadkg++k+vslatlkkavs+tGy+marnay+fkrvlk+lvdkG++         Gsftlgkkqa+ksklk+kr+rq+r+++gqr++gq+rsllgsk+++krlikGvrrvak+++n
+  Homo|38372285|H1.9  32 SEVTTEITSPTPAPRAQVCGGQPWVTVLDPlsghtgreaerhfatvsisavelkychgwrpagqrVPSKTATGQRTCAKPCQKPSTSKVILRAVADKGTCKYVSLATLKKAVSTTGYDMARNAYHFKRVLKGLVDKGSA---------GSFTLGKKQASKSKLKVKRQRQQRWRSGQRPFGQHRSLLGSKQGHKRLIKGVRRVAKCHCN 231
+                         589***************************************************************************************************************************************9.........************************************************************7 PP
+
+>> Mus|9055232|H1.9  Mus_Hils1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  291.2   6.6   5.2e-91   5.2e-91      14     174 .]       1     167 [.       1     167 [. 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 291.2 bits;  conditional E-value: 5.2e-91
+              H1.9  14 praavagdqdastvldPsqsksktgqrvcaktlrkPsmskvilravadkgvhkrvslatlkkavsitGynmarnayrfkrvlknlvdkGmlkqvt.gkgasGsftlgkkqalksklkakr.....krqkrqkpgqrrsgqrrsllgskksnkrlikGvrrvakgkrn 174
+                       ++++vagdqda+t+++Psqs+s+t++++++++lrkP+ms+vil+++adk+vh++vslatlkkavsitGynm++n++rfkrvl+nl+dkGm+++vt +kgasGs++l+k++alks+++akr     k+qk+qkpgqr+s+++++ll+skk+n++l+kGvrrvakg+r+
+  Mus|9055232|H1.9   1 MAQMVAGDQDAGTLWVPSQSESQTESDISTQSLRKPTMSYVILKTLADKRVHNCVSLATLKKAVSITGYNMTHNTWRFKRVLQNLLDKGMIMHVTcCKGASGSLCLCKERALKSNHRAKRcqdrqKSQKPQKPGQRESEPCQLLLSSKKKNDQLFKGVRRVAKGNRH 167
+                       579********************************************************************************************99*************************99999**************************************98 PP
+
+>> Peromyscus|207081162|H1.9  Peromyscus_Hils1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  278.3   9.3   4.8e-87   4.8e-87       1     162 [.       1     162 []       1     162 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 278.3 bits;  conditional E-value: 4.8e-87
+                       H1.9   1 sevttelvspspapraavagdqdastvldPsqsksktgqrvcaktlrkPsmskvilravadkgvhkrvslatlkkavsitGynmarnayrfkrvlknlvdkGmlkqvtgkgasGsftlgkkqalksklkakr..krqkrqkpgqrrsgqrrsllgskksnkrli 162
+                                ++++t lvsps+ap++ava+dqdast++dP  sks+tg+++c++t+rkPsmskvilrav+dkg+h+rvsla+lkkavs+tGynma+n++rfkrv+knlv+kGmlkqvtgkgasGsf+lgkkqa+ksk+ka+r  +rq+rqkp+qrrsg+r+sllgs++s k l+
+  Peromyscus|207081162|H1.9   1 MQRDTLLVSPSAAPNSAVAVDQDASTSDDP--SKSETGPYTCPQTMRKPSMSKVILRAVTDKGLHRRVSLAALKKAVSTTGYNMAHNSWRFKRVVKNLVKKGMLKQVTGKGASGSFRLGKKQAFKSKRKARRrqRRQQRQKPRQRRSGPRQSLLGSGRSLKGLF 162
+                                6899**************************..999************************************************************************************************99899*************************998 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (174 nodes)
+Target sequences:                            4  (732 residues searched)
+Passed MSV filter:                         4  (1); expected 0.1 (0.02)
+Passed bias filter:                        4  (1); expected 0.1 (0.02)
+Passed Vit filter:                         4  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         4  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  4  [actual number of targets]
+Domain search space  (domZ):               4  [number of targets reported over threshold]
+# CPU time: 0.00u 0.00s 00:00:00.00 Elapsed: 00:00:00.00
+# Mc/sec: inf
+//
+[ok]

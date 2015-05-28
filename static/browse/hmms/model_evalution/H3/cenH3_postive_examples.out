@@ -1,0 +1,154 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b1 (May 2013); http://hmmer.org/
+# Copyright (C) 2013 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  static/browse/hmms/H3/cenH3.hmm
+# target sequence database:        static/browse/hmms/model_evalution/H3/cenH3_postive_examples.fasta
+# output directed to file:         static/browse/hmms/model_evalution/H3/cenH3_postive_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       cenH3  [M=216]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                        Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                        -----------
+   1.5e-100  324.9   4.1   1.7e-100  324.7   4.1    1.0  1  Cyanidioschyzon|544210412|cenH3  Cyanidioschyzon_CenH3
+      2e-83  268.9   3.8    2.2e-83  268.8   3.8    1.0  1  Phytophthora|695416328|cenH3     Phytophthora_CenH3
+    3.2e-83  268.2  12.9    3.6e-83  268.1  12.9    1.0  1  Drosophila|22024004|cenH3        Drosophila_CenH3
+    1.3e-67  217.2  10.0    1.9e-67  216.7  10.0    1.2  1  Tetrahymena|118356028|cenH3      Tetrahymena_CenH3
+    6.4e-65  208.4   2.1    7.4e-65  208.2   2.1    1.1  1  Arabidopsis|18378832|cenH3       Arabidopsis_CenH3
+    3.6e-63  202.7   3.1    5.8e-63  202.0   3.1    1.3  1  Thallassiosira|223995905|cenH3   Thallassiosira_CenH3_short
+    5.2e-63  202.2   0.4    9.5e-63  201.3   0.4    1.4  1  Plasmodium|124513424|cenH3       Plasmodium_CenH3
+    1.1e-53  171.7   0.6    1.2e-53  171.6   0.6    1.0  1  Guillardia|13794280|cenH3        Guillardia_CenH3_AAK39657.1
+    1.4e-51  164.8   0.2    1.8e-51  164.5   0.2    1.1  1  Perkinsus|294874934|cenH3        Perkinsus_CenH3?
+
+
+Domain annotation for each sequence (and alignments):
+>> Cyanidioschyzon|544210412|cenH3  Cyanidioschyzon_CenH3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  324.7   4.1  1.7e-100  1.7e-100       1     216 []      24     272 ..      24     272 .. 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 324.7 bits;  conditional E-value: 1.7e-100
+                            cenH3   1 marakkalqrstvaeksen.....ddstpdesqepekstdaavarsssllgrraanerssslsnlaetrllteeaanr..........sggrqeklknkpttartkakastvkkresvaaaapkaa..................qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrkrets 216
+                                      +++++++lqr+tvae++en     ++s+pde+q++ ks++++varsssllgrr+a++++sslsnlaetrllteeaanr          s+gr+e+l+++ptta+t+a+a+tv+++ sva+a+p++a                  qrk+Rfrpgs+a++eIRkfqrstelL+r+lpFarlvrei+e+l++s+a+rwqa+AL+aLQ+aaEdYl++lfedsnlcaiHa+RVT+mp+DiaLarrirg++++++
+  Cyanidioschyzon|544210412|cenH3  24 DESLREQLQRTTVAEQDENiepepERSSPDEAQSRLKSLLGSVARSSSLLGRRVAGPPGSSLSNLAETRLLTEEAANRptgagrservSAGRAEPLPPGPTTATTNADANTVQRGLSVASAFPPRAplqaagftvarrttrsgvQRKHRFRPGSRAIMEIRKFQRSTELLLRRLPFARLVREICERLFGSSAFRWQASALEALQTAAEDYLIHLFEDSNLCAIHARRVTIMPRDIALARRIRGYHSDPH 272
+                                      5899*************************************************************************************************************************************************************************************************************************************************9976 PP
+
+>> Phytophthora|695416328|cenH3  Phytophthora_CenH3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  268.8   3.8   2.2e-83   2.2e-83       1     214 [.       1     220 [.       1     222 [] 0.98
+
+  Alignments for each domain:
+  == domain 1  score: 268.8 bits;  conditional E-value: 2.2e-83
+                         cenH3   1 marakkalqrstvaeksen.....ddstpdesqepekstdaavarsssllgrraanerssslsnlaetrllteeaanr....sggrqeklknkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrkre 214
+                                   ma++++++ ++++a++s++     ddstp++s++p++s++ ++a++++ +++ra ++++ss+s++++++++++ +a+r     +grq++++++pt++r+k+ka++ ++r+s++a+a++++  kkR++pg++alreIR +qrst+lL+rklpFar+vrei++++++   +rwqaeALlaLQeaaE+Ylv++fed+nlcaiH+kRVTl++kDi+L+ rirg++++
+  Phytophthora|695416328|cenH3   1 MASPRPPALPASDASSSSVtdsgtDDSTPPNSPQPQRSPSPPFAATRGPAAARAPPAAPSSVSSASTPSPPPNLPARRpsvaPVGRQAAIHATPTAPRRKRKATPPRRRPSSPASATQTV--KKRRKPGEAALREIRLLQRSTKLLLRKLPFARVVREIQTEFTGV-GYRWQAEALLALQEAAETYLVRTFEDANLCAIHGKRVTLQVKDIQLSLRIRGIRPT 220
+                                   7899**************99*************************************************************9************************************99..********************************************.****************************************************9876 PP
+
+>> Drosophila|22024004|cenH3  Drosophila_CenH3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  268.1  12.9   3.6e-83   3.6e-83       1     214 [.       4     224 ..       4     225 .] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 268.1 bits;  conditional E-value: 3.6e-83
+                      cenH3   1 marakkalqrstvaeksenddstpdesqepekstdaavarsssllgrraanerssslsnlaetrllteeaanrsggrqeklknkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnal.......reIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrkre 214
+                                ++rak+a+++s++++ks+ndd+t+++s+epe++td+++++++s+l+ +++n+rss+l+++a++r+++++++++sg+++++++++ptt++++++++tv+++++++aa p+aaq+++R+r+++n++       reIR++q+++ +Li+klpF+rlvre+++k++++e+lr+++ ALla+Qe++E+Yl+++++ds+++++H++RVTl+++D+aL+++i++r+r+
+  Drosophila|22024004|cenH3   4 HSRAKRAPRPSANNSKSPNDDDTAFRSPEPEDGTDYGLEFTTSQLTLQDNNRRSSTLRRDAGRRQPAARDSSTSGEEEDQENRYPTTRSPQTRRMTVQQESKTRAAGPVAAQNQTRRRKAANPMsrakrmdREIRRLQHHPGTLIPKLPFSRLVREFIVKYSDDEPLRVTEGALLAMQESCEMYLTQRLADSYMLTKHRNRVTLEVRDMALMAYICDRGRQ 224
+                                689***********************************************************************************************************************************************************************************************************************998 PP
+
+>> Tetrahymena|118356028|cenH3  Tetrahymena_CenH3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  216.7  10.0   1.9e-67   1.9e-67      27     214 ..       7     178 ..       2     180 .. 0.97
+
+  Alignments for each domain:
+  == domain 1  score: 216.7 bits;  conditional E-value: 1.9e-67
+                        cenH3  27 sqepekstdaavarsssllgrraanerssslsnlaetrllteeaanrsggrqeklknkpttartkakastvkkresvaaaapkaa.qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrkre 214
+                                   ++++++++++++rs+sl++++++n rs+s                 +g++q+++knk++++++++kast+kkres+ +++++a+ ++++Rfrpg+nal+++R+++++++lLirklpF+rl+reis++++e+++lrw++ AL++LQ+++EdY+v++fed+n ca+HakRVTlm+kD+aLa+rirg+k+ 
+  Tetrahymena|118356028|cenH3   7 QPKRRSNSNQNQQRSDSLKKNKQDNLRSKS-----------------AGNQQGNEKNKKDIQDQRNKASTKKKRESSGEKYESARdKVIRRFRPGDNALKQLRQYNQTPSLLIRKLPFQRLIREISTRMTEEDSLRWTSFALVLLQTVVEDYMVSFFEDANACALHAKRVTLMSKDLALAARIRGQKNV 178
+                                  578999***********************9.................89********************************9988799**************************************************************************************************986 PP
+
+>> Arabidopsis|18378832|cenH3  Arabidopsis_CenH3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  208.2   2.1   7.4e-65   7.4e-65      41     214 ..       9     177 ..       1     178 [] 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 208.2 bits;  conditional E-value: 7.4e-65
+                       cenH3  41 sssllgrraanerssslsnlaetrllteeaanr..sggrqeklknkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrkre 214
+                                 ++s+  ++++ +  ss    ++   +t  +++r  +gg++++++n +t+++t++++ ++++r+++++ ++k++   +R+rpg++al+eIR+fq++t+lLi+ ++F+r vr+i+++l++ + +rw+aeAL+aLQeaaEdYlvglf+ds+lcaiHa+RVTlm+kD++Larr+ g++r 
+  Arabidopsis|18378832|cenH3   9 TRSQPRNQTDAAGASS----SQAAGPTTTPTRRggEGGDNTQQTNPTTSPATGTRRGAKRSRQAMPRGSQKKS---YRYRPGTVALKEIRHFQKQTNLLIPAASFIREVRSITHMLAPPQINRWTAEALVALQEAAEDYLVGLFSDSMLCAIHARRVTLMRKDFELARRLGGKGRP 177
+                                 3444444444443333....334445666666666999********************************777...************************************************************************************************9986 PP
+
+>> Thallassiosira|223995905|cenH3  Thallassiosira_CenH3_short
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  202.0   3.1   5.8e-63   5.8e-63      53     213 ..       7     165 ..       1     166 [] 0.84
+
+  Alignments for each domain:
+  == domain 1  score: 202.0 bits;  conditional E-value: 5.8e-63
+                           cenH3  53 rssslsnlaetrl......lteeaanrsggrqeklknkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrkr 213
+                                     ++ss s+ a +r+        e++++ +gg +++l++++++a+ +      ++r++ +++a+++++rk+R+rp ++alreIR++q+st+lL+r+lpFarlvrei++ ++++ ++rwq +A+laLQeaaE++lvglfedsnlcaiH+kRVT+mpkD++Larrirg+ r
+  Thallassiosira|223995905|cenH3   7 PGSS-SSSARRRNdpllgrARERESSSAGGGGGRLSAGSSAAAGGG-----RERPRGPTSAQPTVRRKRRMRP-EKALREIRQYQSSTSLLLRRLPFARLVREIQYGMTRQ-PYRWQGSAILALQEAAEAHLVGLFEDSNLCAIHGKRVTIMPKDMQLARRIRGWVR 165
+                                     2232.23333332110011335555568999999999999998888.....8999******************.************************************9.****************************************************986 PP
+
+>> Plasmodium|124513424|cenH3  Plasmodium_CenH3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  201.3   0.4   9.5e-63   9.5e-63      29     211 ..       8     169 ..       3     170 .] 0.97
+
+  Alignments for each domain:
+  == domain 1  score: 201.3 bits;  conditional E-value: 9.5e-63
+                       cenH3  29 epekstdaavarsssllgrraanerssslsnlaetrllteeaanrsggrqeklknkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekle.esealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgr 211
+                                  p++++++a++r++s++++++ ++r+ ++                 +++++++ n+p+++r +++++++k+ ++++ ++p      +R+rpg  al+eIR +q+st+lLi+k+pF+r+v+ei++ +e ++e++r+++eALlaLQ+a+E+Ylv+lfed++lc++Ha+RVTlmpkDi+Larrirgr
+  Plasmodium|124513424|cenH3   8 IPNHNPLNAFNRDKSFKTNKTLPNRTVHH----------------GISSKTTNINRPSVNRGGINEVAQKNLHRTNIRKP------HRYRPGVLALKEIRAYQASTQLLIPKIPFVRVVKEITRLFElPDEQFRYTPEALLALQTASEAYLVSLFEDAYLCSLHANRVTLMPKDIHLARRIRGR 169
+                                 58999*********************996................99******************************999......*****************************************9999****************************************************8 PP
+
+>> Guillardia|13794280|cenH3  Guillardia_CenH3_AAK39657.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  171.6   0.6   1.2e-53   1.2e-53     110     212 ..       3     103 .]       1     103 [] 0.98
+
+  Alignments for each domain:
+  == domain 1  score: 171.6 bits;  conditional E-value: 1.2e-53
+                      cenH3 110 aaqrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
+                                + q+ kRf+++sn+l +IRkfq+st+lLi++lpFarlv+eis k+++s  l+wq+ A++aLQ a+EdY++gl++d+nl+aiHakRVT+mpkD++La++irg++
+  Guillardia|13794280|cenH3   3 KKQNLKRFKKSSNSLVDIRKFQKSTDLLIHRLPFARLVKEISLKYHHS--LNWQQVAVEALQFASEDYIIGLLQDANLAAIHAKRVTVMPKDLKLAKIIRGEH 103
+                                56899*******************************************..***************************************************87 PP
+
+>> Perkinsus|294874934|cenH3  Perkinsus_CenH3?
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  164.5   0.2   1.8e-51   1.8e-51      83     215 ..      10     125 ..       1     126 [. 0.87
+
+  Alignments for each domain:
+  == domain 1  score: 164.5 bits;  conditional E-value: 1.8e-51
+                      cenH3  83 nkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrkret 215
+                                ++++++r+++k+s++k               k R+rpg++alreIR++q++t++Li+k++F++l+r++s+++e+s  +rwq+++L+aLQea+E+++vg++e+s+l+a+H++R+Tlm+kD+++++r+++++ +t
+  Perkinsus|294874934|cenH3  10 TAGKRPRQFVKKSSAK---------------KGRYRPGTVALREIRRHQEITDPLIEKRCFQALARSLSREVEAS--MRWQPQSLVALQEASESFIVGMLEASQLLAVHGRRITLMEKDVKMWTRLAAMFGST 125
+                                4444444444444444...............55******************************************..**************************************************998775 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (216 nodes)
+Target sequences:                            9  (1663 residues searched)
+Passed MSV filter:                         9  (1); expected 0.2 (0.02)
+Passed bias filter:                        9  (1); expected 0.2 (0.02)
+Passed Vit filter:                         9  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         9  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  9  [actual number of targets]
+Domain search space  (domZ):               9  [number of targets reported over threshold]
+# CPU time: 0.02u 0.00s 00:00:00.02 Elapsed: 00:00:00.01
+# Mc/sec: 35.92
+//
+[ok]

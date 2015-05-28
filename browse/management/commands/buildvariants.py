@@ -5,6 +5,8 @@ from tools.test_model import test_model
 import subprocess
 import os, sys
 
+from Bio import SeqIO
+
 class Command(BaseCommand):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of thi project and using those HMMs to search the NR database.'
     seed_directory = os.path.join("static", "browse", "seeds")
@@ -13,6 +15,7 @@ class Command(BaseCommand):
     pressed_combined_varaints_file = os.path.join(hmm_directory, "combined_variants.h3f")
     results_file = "{}.out".format(combined_varaints_file)
     nr_file = "nr"
+    model_evalution = os.path.join(hmm_directory, "model_evalution")
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -34,8 +37,10 @@ class Command(BaseCommand):
             self.load()
 
         elif not options["force"] and os.path.isfile(self.pressed_combined_varaints_file):
+            self.test()
             self.search()
             self.load()
+
         else:
             #Force to rebuild everything
             self.build()
@@ -72,10 +77,20 @@ class Command(BaseCommand):
         print >> self.stdout, "Pressing HMMs..."
         subprocess.call(["hmmpress", self.combined_varaints_file])
 
-    def search(self):
+    def search(self, db=None, sequences=None, out=None, E=10):
         """Use HMMs to search the nr database"""
         print >> self.stdout, "Searching HMMs..."
-        subprocess.call(["hmmsearch", "-o", self.results_file, "--cpu", "4", "--notextw", "--incdomE", "0.1", self.combined_varaints_file, self.nr_file])
+
+        if db is None:
+            db = self.combined_varaints_file
+
+        if sequences is None:
+            sequences = self.nr_file
+
+        if out is None:
+            out = self.results_file
+
+        subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", db, sequences])
 
     def load(self):
         """Load data into the histone database"""
@@ -95,24 +110,55 @@ class Command(BaseCommand):
     def test(self, specificity=0.95):
         for core_type, seed1 in self.get_seeds():
             #Seed1 is positive examples
-            positive_examples = os.path.join(hmm_directory, "cutoff_search", "{}_postive_examples.out")
-            self.search(db=seed1, out=positive_examples)
+            variant = seed1[:-6]
+            hmm_file = os.path.join(self.hmm_directory, core_type, "{}.hmm".format(variant))
 
+            output_dir = os.path.join(self.model_evalution, core_type)
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+
+            positive_examples_file = os.path.join(output_dir, "{}_postive_examples.fasta".format(variant))
+            positive_examples = os.path.join(output_dir, "{}_postive_examples.out".format(variant))
+            with open(positive_examples_file, "w") as positive_file:
+                for s in SeqIO.parse(os.path.join(self.seed_directory, core_type, seed1), "fasta"):
+                    s.seq = s.seq.ungap("-")
+                    SeqIO.write(s, positive_file, "fasta")
+            
+            self.search(db=hmm_file, sequences=positive_examples_file, out=positive_examples, E=500)
+            
             #Build negative examples from all other varaints
-            negative_examples_db = os.path.join(hmm_directory, "cutoff_search", "{}_negative_examples.fasta")
-            negative_examples = os.path.join(hmm_directory, "cutoff_search", "{}_negative_examples.out")
-            with open(negative_examples, "w") as negative_file:
-                for seed2 in self.get_seeds():
+            negative_examples_file = os.path.join(output_dir, "{}_negative_examples.fasta".format(variant))
+            negative_examples = os.path.join(output_dir, "{}_negative_examples.out".format(variant))
+            with open(negative_examples_file, "w") as negative_file:
+                for core_type2, seed2 in self.get_seeds():
                     if seed1 == seed2: continue
-                    with open(seed2) as seed_file:
-                        negative_file.write(seed_file.read())
-            self.search(db=negative_examples_db, out=negative_examples)
+                    for s in SeqIO.parse(os.path.join(self.seed_directory, core_type2, seed2), "fasta"):
+                        s.seq = s.seq.ungap("-")
+                        SeqIO.write(s, negative_file, "fasta")
 
-            parameters = test_model(seed1[:-6], positive_examples, negative_examples)
+            self.search(db=hmm_file, sequences=negative_examples_file, out=negative_examples, E=500)
 
-            variant = Variant.objects.get(name=seed1[:-6])
-            variant.hmmthreshold = parameters["threshold"]
-            variant.aucroc = parameters["aucroc"]
-            variant.save()
+            parameters = test_model(variant, output_dir, positive_examples, negative_examples)
+
+            try:
+                variant_model = Variant.objects.get(id=variant)
+            except:
+                if "H2A" in variant:
+                    core_histone = Histone.objects.get(id="H2A")
+                elif "H2B" in variant:
+                    core_histone = Histone.objects.get(id="H2B")
+                elif "H3" in variant:
+                    core_histone = Histone.objects.get(id="H3")
+                elif "H4" in variant:
+                    core_histone = Histone.objects.get(id="H4")
+                elif "H1" in variant:
+                    core_histone = Histone.objects.get(id="H1")
+                else:
+                    continue
+                variant_model = Variant(id=variant, core_type=core_histone)
+                variant_model.save()
+            variant_model.hmmthreshold = parameters["threshold"]
+            variant_model.aucroc = parameters["roc_auc"]
+            variant_model.save()
 
 
