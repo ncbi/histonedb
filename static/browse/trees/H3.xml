@@ -1,4 +1,4 @@
-<phyloxml xmlns:ns0="" schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd">
+<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
   <phylogeny rooted="false">
     <clade>
       <clade>
@@ -32,8 +32,13 @@
                                   <clade>
                                     <name>Drosophila_22024004</name>
                                     <branch_length>0.4136</branch_length>
+                                    <color>
+                                      <red>231</red>
+                                      <green>138</green>
+                                      <blue>195</blue>
+                                    </color>
                                     <chart>
-                                      <group>cenH3</group>
+                                      <group>markgroupcenH3</group>
                                     </chart>
                                     <annotation>
                                       <desc>Variant cenH3 from Drosophila (22024004)</desc>
@@ -43,8 +48,13 @@
                                   <clade>
                                     <name>Perkinsus_294874934</name>
                                     <branch_length>0.3304</branch_length>
+                                    <color>
+                                      <red>231</red>
+                                      <green>138</green>
+                                      <blue>195</blue>
+                                    </color>
                                     <chart>
-                                      <group>cenH3</group>
+                                      <group>markgroupcenH3</group>
                                     </chart>
                                     <annotation>
                                       <desc>Variant cenH3 from Perkinsus (294874934)</desc>
@@ -55,8 +65,13 @@
                                 <clade>
                                   <name>Arabidopsis_18378832</name>
                                   <branch_length>0.29922</branch_length>
+                                  <color>
+                                    <red>231</red>
+                                    <green>138</green>
+                                    <blue>195</blue>
+                                  </color>
                                   <chart>
-                                    <group>cenH3</group>
+                                    <group>markgroupcenH3</group>
                                   </chart>
                                   <annotation>
                                     <desc>Variant cenH3 from Arabidopsis (18378832)</desc>
@@ -67,8 +82,13 @@
                               <clade>
                                 <name>Plasmodium_124513424</name>
                                 <branch_length>0.28841</branch_length>
+                                <color>
+                                  <red>231</red>
+                                  <green>138</green>
+                                  <blue>195</blue>
+                                </color>
                                 <chart>
-                                  <group>cenH3</group>
+                                  <group>markgroupcenH3</group>
                                 </chart>
                                 <annotation>
                                   <desc>Variant cenH3 from Plasmodium (124513424)</desc>
@@ -83,8 +103,13 @@
                                 <clade>
                                   <name>Tetrahymena_118356028</name>
                                   <branch_length>0.338</branch_length>
+                                  <color>
+                                    <red>231</red>
+                                    <green>138</green>
+                                    <blue>195</blue>
+                                  </color>
                                   <chart>
-                                    <group>cenH3</group>
+                                    <group>markgroupcenH3</group>
                                   </chart>
                                   <annotation>
                                     <desc>Variant cenH3 from Tetrahymena (118356028)</desc>
@@ -94,8 +119,13 @@
                                 <clade>
                                   <name>Guillardia_13794280</name>
                                   <branch_length>0.22511</branch_length>
+                                  <color>
+                                    <red>231</red>
+                                    <green>138</green>
+                                    <blue>195</blue>
+                                  </color>
                                   <chart>
-                                    <group>cenH3</group>
+                                    <group>markgroupcenH3</group>
                                   </chart>
                                   <annotation>
                                     <desc>Variant cenH3 from Guillardia (13794280)</desc>
@@ -106,8 +136,13 @@
                               <clade>
                                 <name>Cyanidioschyzon_544210412</name>
                                 <branch_length>0.27328</branch_length>
+                                <color>
+                                  <red>231</red>
+                                  <green>138</green>
+                                  <blue>195</blue>
+                                </color>
                                 <chart>
-                                  <group>cenH3</group>
+                                  <group>markgroupcenH3</group>
                                 </chart>
                                 <annotation>
                                   <desc>Variant cenH3 from Cyanidioschyzon (544210412)</desc>
@@ -121,8 +156,13 @@
                             <clade>
                               <name>Phytophthora_695416328</name>
                               <branch_length>0.29106</branch_length>
+                              <color>
+                                <red>231</red>
+                                <green>138</green>
+                                <blue>195</blue>
+                              </color>
                               <chart>
-                                <group>cenH3</group>
+                                <group>markgroupcenH3</group>
                               </chart>
                               <annotation>
                                 <desc>Variant cenH3 from Phytophthora (695416328)</desc>
@@ -132,8 +172,13 @@
                             <clade>
                               <name>Thallassiosira_223995905</name>
                               <branch_length>0.23621</branch_length>
+                              <color>
+                                <red>231</red>
+                                <green>138</green>
+                                <blue>195</blue>
+                              </color>
                               <chart>
-                                <group>cenH3</group>
+                                <group>markgroupcenH3</group>
                               </chart>
                               <annotation>
                                 <desc>Variant cenH3 from Thallassiosira (223995905)</desc>
@@ -147,8 +192,13 @@
                           <clade>
                             <name>Homo_119628413</name>
                             <branch_length>0.22512</branch_length>
+                            <color>
+                              <red>102</red>
+                              <green>194</green>
+                              <blue>165</blue>
+                            </color>
                             <chart>
-                              <group>H3.Y.2.s2</group>
+                              <group>markgroupH3Y2s2</group>
                             </chart>
                             <annotation>
                               <desc>Variant H3.Y.2.s2 from Homo (119628413)</desc>
@@ -164,8 +214,13 @@
                                 <clade>
                                   <name>Homo_NO_GI</name>
                                   <branch_length>0.0</branch_length>
+                                  <color>
+                                    <red>102</red>
+                                    <green>194</green>
+                                    <blue>165</blue>
+                                  </color>
                                   <chart>
-                                    <group>H3.Y.1</group>
+                                    <group>markgroupH3Y1</group>
                                   </chart>
                                   <annotation>
                                     <desc>Variant H3.Y.1 from Homo (NO_GI)</desc>
@@ -175,8 +230,13 @@
                                 <clade>
                                   <name>Pan_NO_GI</name>
                                   <branch_length>0.0</branch_length>
+                                  <color>
+                                    <red>102</red>
+                                    <green>194</green>
+                                    <blue>165</blue>
+                                  </color>
                                   <chart>
-                                    <group>H3.Y.1</group>
+                                    <group>markgroupH3Y1</group>
                                   </chart>
                                   <annotation>
                                     <desc>Variant H3.Y.1 from Pan (NO_GI)</desc>
@@ -189,8 +249,13 @@
                                 <clade>
                                   <name>Pan_NO_GI</name>
                                   <branch_length>0.01136</branch_length>
+                                  <color>
+                                    <red>102</red>
+                                    <green>194</green>
+                                    <blue>165</blue>
+                                  </color>
                                   <chart>
-                                    <group>H3.Y.2</group>
+                                    <group>markgroupH3Y2</group>
                                   </chart>
                                   <annotation>
                                     <desc>Variant H3.Y.2 from Pan (NO_GI)</desc>
@@ -202,8 +267,13 @@
                                   <clade>
                                     <name>Homo_NO_GI</name>
                                     <branch_length>0.00078</branch_length>
+                                    <color>
+                                      <red>102</red>
+                                      <green>194</green>
+                                      <blue>165</blue>
+                                    </color>
                                     <chart>
-                                      <group>H3.Y.2</group>
+                                      <group>markgroupH3Y2</group>
                                     </chart>
                                     <annotation>
                                       <desc>Variant H3.Y.2 from Homo (NO_GI)</desc>
@@ -218,8 +288,13 @@
                               <clade>
                                 <name>Macaca_NO_GI</name>
                                 <branch_length>0.02542</branch_length>
+                                <color>
+                                  <red>102</red>
+                                  <green>194</green>
+                                  <blue>165</blue>
+                                </color>
                                 <chart>
-                                  <group>H3.Y.2</group>
+                                  <group>markgroupH3Y2</group>
                                 </chart>
                                 <annotation>
                                   <desc>Variant H3.Y.2 from Macaca (NO_GI)</desc>
@@ -229,8 +304,13 @@
                               <clade>
                                 <name>Macaca_NO_GI</name>
                                 <branch_length>0.02643</branch_length>
+                                <color>
+                                  <red>102</red>
+                                  <green>194</green>
+                                  <blue>165</blue>
+                                </color>
                                 <chart>
-                                  <group>H3.Y.1</group>
+                                  <group>markgroupH3Y1</group>
                                 </chart>
                                 <annotation>
                                   <desc>Variant H3.Y.1 from Macaca (NO_GI)</desc>
@@ -244,8 +324,13 @@
                       <clade>
                         <name>Tetrahymena_118350232</name>
                         <branch_length>0.09625</branch_length>
+                        <color>
+                          <red>229</red>
+                          <green>196</green>
+                          <blue>148</blue>
+                        </color>
                         <chart>
-                          <group>H3.3</group>
+                          <group>markgroupH33</group>
                         </chart>
                         <annotation>
                           <desc>Variant H3.3 from Tetrahymena (118350232)</desc>
@@ -260,8 +345,13 @@
                         <clade>
                           <name>Plasmodium_82541094</name>
                           <branch_length>0.0</branch_length>
+                          <color>
+                            <red>166</red>
+                            <green>216</green>
+                            <blue>84</blue>
+                          </color>
                           <chart>
-                            <group>H3.1</group>
+                            <group>markgroupH31</group>
                           </chart>
                           <annotation>
                             <desc>Variant H3.1 from Plasmodium (82541094)</desc>
@@ -271,8 +361,13 @@
                         <clade>
                           <name>Plamodium_82541094</name>
                           <branch_length>0.0</branch_length>
+                          <color>
+                            <red>166</red>
+                            <green>216</green>
+                            <blue>84</blue>
+                          </color>
                           <chart>
-                            <group>H3.1</group>
+                            <group>markgroupH31</group>
                           </chart>
                           <annotation>
                             <desc>Variant H3.1 from Plamodium (82541094)</desc>
@@ -285,8 +380,13 @@
                         <clade>
                           <name>Plasmodium_82594554</name>
                           <branch_length>0.02573</branch_length>
+                          <color>
+                            <red>229</red>
+                            <green>196</green>
+                            <blue>148</blue>
+                          </color>
                           <chart>
-                            <group>H3.3</group>
+                            <group>markgroupH33</group>
                           </chart>
                           <annotation>
                             <desc>Variant H3.3 from Plasmodium (82594554)</desc>
@@ -296,8 +396,13 @@
                         <clade>
                           <name>Toxoplasma_22476750</name>
                           <branch_length>0.01104</branch_length>
+                          <color>
+                            <red>229</red>
+                            <green>196</green>
+                            <blue>148</blue>
+                          </color>
                           <chart>
-                            <group>H3.3</group>
+                            <group>markgroupH33</group>
                           </chart>
                           <annotation>
                             <desc>Variant H3.3 from Toxoplasma (22476750)</desc>
@@ -312,8 +417,13 @@
                     <clade>
                       <name>Thallasiosira_224009486</name>
                       <branch_length>0.01093</branch_length>
+                      <color>
+                        <red>229</red>
+                        <green>196</green>
+                        <blue>148</blue>
+                      </color>
                       <chart>
-                        <group>H3.3</group>
+                        <group>markgroupH33</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.3 from Thallasiosira (224009486)</desc>
@@ -323,8 +433,13 @@
                     <clade>
                       <name>Phytophthora_301090188</name>
                       <branch_length>0.01848</branch_length>
+                      <color>
+                        <red>229</red>
+                        <green>196</green>
+                        <blue>148</blue>
+                      </color>
                       <chart>
-                        <group>H3.3</group>
+                        <group>markgroupH33</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.3 from Phytophthora (301090188)</desc>
@@ -340,8 +455,13 @@
                     <clade>
                       <name>Griffithsia_73919915</name>
                       <branch_length>0.04142</branch_length>
+                      <color>
+                        <red>166</red>
+                        <green>216</green>
+                        <blue>84</blue>
+                      </color>
                       <chart>
-                        <group>H3.1</group>
+                        <group>markgroupH31</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.1 from Griffithsia (73919915)</desc>
@@ -353,8 +473,13 @@
                       <clade>
                         <name>Thallassiosira_223998042</name>
                         <branch_length>0.01122</branch_length>
+                        <color>
+                          <red>166</red>
+                          <green>216</green>
+                          <blue>84</blue>
+                        </color>
                         <chart>
-                          <group>H3.1</group>
+                          <group>markgroupH31</group>
                         </chart>
                         <annotation>
                           <desc>Variant H3.1 from Thallassiosira (223998042)</desc>
@@ -364,8 +489,13 @@
                       <clade>
                         <name>Phytophthora_301115049</name>
                         <branch_length>0.00349</branch_length>
+                        <color>
+                          <red>166</red>
+                          <green>216</green>
+                          <blue>84</blue>
+                        </color>
                         <chart>
-                          <group>H3.1</group>
+                          <group>markgroupH31</group>
                         </chart>
                         <annotation>
                           <desc>Variant H3.1 from Phytophthora (301115049)</desc>
@@ -377,8 +507,13 @@
                   <clade>
                     <name>Griffithsia_32401039</name>
                     <branch_length>0.02488</branch_length>
+                    <color>
+                      <red>229</red>
+                      <green>196</green>
+                      <blue>148</blue>
+                    </color>
                     <chart>
-                      <group>H3.3</group>
+                      <group>markgroupH33</group>
                     </chart>
                     <annotation>
                       <desc>Variant H3.3 from Griffithsia (32401039)</desc>
@@ -396,8 +531,13 @@
                     <clade>
                       <name>Crypto_58260270</name>
                       <branch_length>0.03093</branch_length>
+                      <color>
+                        <red>229</red>
+                        <green>196</green>
+                        <blue>148</blue>
+                      </color>
                       <chart>
-                        <group>H3.3</group>
+                        <group>markgroupH33</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.3 from Crypto (58260270)</desc>
@@ -409,8 +549,13 @@
                       <clade>
                         <name>Schizosaccharomyces_122076</name>
                         <branch_length>0.03481</branch_length>
+                        <color>
+                          <red>229</red>
+                          <green>196</green>
+                          <blue>148</blue>
+                        </color>
                         <chart>
-                          <group>H3.3</group>
+                          <group>markgroupH33</group>
                         </chart>
                         <annotation>
                           <desc>Variant H3.3 from Schizosaccharomyces (122076)</desc>
@@ -426,8 +571,13 @@
                             <clade>
                               <name>Neurospora_85077297</name>
                               <branch_length>0.0</branch_length>
+                              <color>
+                                <red>166</red>
+                                <green>216</green>
+                                <blue>84</blue>
+                              </color>
                               <chart>
-                                <group>H3.1</group>
+                                <group>markgroupH31</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H3.1 from Neurospora (85077297)</desc>
@@ -437,8 +587,13 @@
                             <clade>
                               <name>Trichoderma_589115521</name>
                               <branch_length>0.0</branch_length>
+                              <color>
+                                <red>229</red>
+                                <green>196</green>
+                                <blue>148</blue>
+                              </color>
                               <chart>
-                                <group>H3.3</group>
+                                <group>markgroupH33</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H3.3 from Trichoderma (589115521)</desc>
@@ -451,8 +606,13 @@
                             <clade>
                               <name>Saccharomyces_6319482</name>
                               <branch_length>0.01412</branch_length>
+                              <color>
+                                <red>229</red>
+                                <green>196</green>
+                                <blue>148</blue>
+                              </color>
                               <chart>
-                                <group>H3.3</group>
+                                <group>markgroupH33</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H3.3 from Saccharomyces (6319482)</desc>
@@ -462,8 +622,13 @@
                             <clade>
                               <name>Debaryomyces_50408553</name>
                               <branch_length>0.00059</branch_length>
+                              <color>
+                                <red>229</red>
+                                <green>196</green>
+                                <blue>148</blue>
+                              </color>
                               <chart>
-                                <group>H3.3</group>
+                                <group>markgroupH33</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H3.3 from Debaryomyces (50408553)</desc>
@@ -477,8 +642,13 @@
                           <clade>
                             <name>Candida_68484797</name>
                             <branch_length>0.01078</branch_length>
+                            <color>
+                              <red>229</red>
+                              <green>196</green>
+                              <blue>148</blue>
+                            </color>
                             <chart>
-                              <group>H3.3</group>
+                              <group>markgroupH33</group>
                             </chart>
                             <annotation>
                               <desc>Variant H3.3 from Candida (68484797)</desc>
@@ -490,8 +660,13 @@
                             <clade>
                               <name>Debaryomyces_50423783</name>
                               <branch_length>0.00715</branch_length>
+                              <color>
+                                <red>166</red>
+                                <green>216</green>
+                                <blue>84</blue>
+                              </color>
                               <chart>
-                                <group>H3.1</group>
+                                <group>markgroupH31</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H3.1 from Debaryomyces (50423783)</desc>
@@ -501,8 +676,13 @@
                             <clade>
                               <name>Candida_68472183</name>
                               <branch_length>0.00755</branch_length>
+                              <color>
+                                <red>166</red>
+                                <green>216</green>
+                                <blue>84</blue>
+                              </color>
                               <chart>
-                                <group>H3.1</group>
+                                <group>markgroupH31</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H3.1 from Candida (68472183)</desc>
@@ -519,8 +699,13 @@
                     <clade>
                       <name>Homo_51859376</name>
                       <branch_length>0.00731</branch_length>
+                      <color>
+                        <red>229</red>
+                        <green>196</green>
+                        <blue>148</blue>
+                      </color>
                       <chart>
-                        <group>H3.3</group>
+                        <group>markgroupH33</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.3 from Homo (51859376)</desc>
@@ -530,8 +715,13 @@
                     <clade>
                       <name>Drosophila_17530867</name>
                       <branch_length>0.0</branch_length>
+                      <color>
+                        <red>229</red>
+                        <green>196</green>
+                        <blue>148</blue>
+                      </color>
                       <chart>
-                        <group>H3.3</group>
+                        <group>markgroupH33</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.3 from Drosophila (17530867)</desc>
@@ -547,8 +737,13 @@
                     <clade>
                       <name>Drosphila_8070</name>
                       <branch_length>0.0</branch_length>
+                      <color>
+                        <red>166</red>
+                        <green>216</green>
+                        <blue>84</blue>
+                      </color>
                       <chart>
-                        <group>H3.1</group>
+                        <group>markgroupH31</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.1 from Drosphila (8070)</desc>
@@ -558,8 +753,13 @@
                     <clade>
                       <name>Drosophila_8070</name>
                       <branch_length>0.0</branch_length>
+                      <color>
+                        <red>255</red>
+                        <green>217</green>
+                        <blue>47</blue>
+                      </color>
                       <chart>
-                        <group>H3.2</group>
+                        <group>markgroupH32</group>
                       </chart>
                       <annotation>
                         <desc>Variant H3.2 from Drosophila (8070)</desc>
@@ -570,8 +770,13 @@
                   <clade>
                     <name>Homo_4504281</name>
                     <branch_length>0.00443</branch_length>
+                    <color>
+                      <red>166</red>
+                      <green>216</green>
+                      <blue>84</blue>
+                    </color>
                     <chart>
-                      <group>H3.1</group>
+                      <group>markgroupH31</group>
                     </chart>
                     <annotation>
                       <desc>Variant H3.1 from Homo (4504281)</desc>
@@ -586,8 +791,13 @@
               <clade>
                 <name>Arabidopsis_15232146</name>
                 <branch_length>0.0</branch_length>
+                <color>
+                  <red>166</red>
+                  <green>216</green>
+                  <blue>84</blue>
+                </color>
                 <chart>
-                  <group>H3.1</group>
+                  <group>markgroupH31</group>
                 </chart>
                 <annotation>
                   <desc>Variant H3.1 from Arabidopsis (15232146)</desc>
@@ -597,8 +807,13 @@
               <clade>
                 <name>Oryza_115441249</name>
                 <branch_length>0.0</branch_length>
+                <color>
+                  <red>166</red>
+                  <green>216</green>
+                  <blue>84</blue>
+                </color>
                 <chart>
-                  <group>H3.1</group>
+                  <group>markgroupH31</group>
                 </chart>
                 <annotation>
                   <desc>Variant H3.1 from Oryza (115441249)</desc>
@@ -610,8 +825,13 @@
           <clade>
             <name>Arabidopsis_15236103</name>
             <branch_length>0.0</branch_length>
+            <color>
+              <red>255</red>
+              <green>217</green>
+              <blue>47</blue>
+            </color>
             <chart>
-              <group>H3.2</group>
+              <group>markgroupH32</group>
             </chart>
             <annotation>
               <desc>Variant H3.2 from Arabidopsis (15236103)</desc>
@@ -622,8 +842,13 @@
         <clade>
           <name>Oryza_115453351</name>
           <branch_length>0.0</branch_length>
+          <color>
+            <red>255</red>
+            <green>217</green>
+            <blue>47</blue>
+          </color>
           <chart>
-            <group>H3.2</group>
+            <group>markgroupH32</group>
           </chart>
           <annotation>
             <desc>Variant H3.2 from Oryza (115453351)</desc>
@@ -634,8 +859,13 @@
       <clade>
         <name>Selaginella_302792052</name>
         <branch_length>0.0</branch_length>
+        <color>
+          <red>255</red>
+          <green>217</green>
+          <blue>47</blue>
+        </color>
         <chart>
-          <group>H3.2</group>
+          <group>markgroupH32</group>
         </chart>
         <annotation>
           <desc>Variant H3.2 from Selaginella (302792052)</desc>
@@ -645,8 +875,13 @@
       <clade>
         <name>Arabidopsis_15236103</name>
         <branch_length>0.0</branch_length>
+        <color>
+          <red>229</red>
+          <green>196</green>
+          <blue>148</blue>
+        </color>
         <chart>
-          <group>H3.3</group>
+          <group>markgroupH33</group>
         </chart>
         <annotation>
           <desc>Variant H3.3 from Arabidopsis (15236103)</desc>
@@ -664,11 +899,11 @@
     <group thickness="10" type="integratedBinary" />
   </charts>
   <style>
-    <cenH3 fill="#000000" label="cenH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
-    <H3.1 fill="#000000" label="H3.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
-    <H3.2 fill="#000000" label="H3.2" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
-    <H3.3 fill="#000000" label="H3.3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
-    <H3.Y fill="#000000" label="H3.Y" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
+    <markgroupcenH3 fill="#000" label="cenH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+    <markgroupH31 fill="#000" label="H3.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+    <markgroupH32 fill="#000" label="H3.2" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+    <markgroupH33 fill="#000" label="H3.3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+    <markgroupH3Y fill="#000" label="H3.Y" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
     <sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="9" font-weight="bold" rotate="90" />
   </style>
 </phyloxml>

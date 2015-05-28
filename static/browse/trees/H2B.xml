@@ -1,4 +1,4 @@
-<phyloxml xmlns:ns0="" schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd">
+<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
   <phylogeny rooted="false">
     <clade>
       <clade>
@@ -20,8 +20,13 @@
                       <clade>
                         <name>Bos_296470943</name>
                         <branch_length>0.324</branch_length>
+                        <color>
+                          <red>102</red>
+                          <green>194</green>
+                          <blue>165</blue>
+                        </color>
                         <chart>
-                          <group>H2B.W</group>
+                          <group>markgroupH2BW</group>
                         </chart>
                         <annotation>
                           <desc>Variant H2B.W from Bos (296470943)</desc>
@@ -33,8 +38,13 @@
                         <clade>
                           <name>Oryctolagus_291407712</name>
                           <branch_length>0.23789</branch_length>
+                          <color>
+                            <red>102</red>
+                            <green>194</green>
+                            <blue>165</blue>
+                          </color>
                           <chart>
-                            <group>H2B.W</group>
+                            <group>markgroupH2BW</group>
                           </chart>
                           <annotation>
                             <desc>Variant H2B.W from Oryctolagus (291407712)</desc>
@@ -48,8 +58,13 @@
                             <clade>
                               <name>Macaca_302564969</name>
                               <branch_length>0.04287</branch_length>
+                              <color>
+                                <red>102</red>
+                                <green>194</green>
+                                <blue>165</blue>
+                              </color>
                               <chart>
-                                <group>H2B.W</group>
+                                <group>markgroupH2BW</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H2B.W from Macaca (302564969)</desc>
@@ -59,8 +74,13 @@
                             <clade>
                               <name>Homo_223590216</name>
                               <branch_length>0.04285</branch_length>
+                              <color>
+                                <red>102</red>
+                                <green>194</green>
+                                <blue>165</blue>
+                              </color>
                               <chart>
-                                <group>H2B.W</group>
+                                <group>markgroupH2BW</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H2B.W from Homo (223590216)</desc>
@@ -73,8 +93,13 @@
                             <clade>
                               <name>Dog_545560116</name>
                               <branch_length>0.11491</branch_length>
+                              <color>
+                                <red>102</red>
+                                <green>194</green>
+                                <blue>165</blue>
+                              </color>
                               <chart>
-                                <group>H2B.W</group>
+                                <group>markgroupH2BW</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H2B.W from Dog (545560116)</desc>
@@ -84,8 +109,13 @@
                             <clade>
                               <name>Ailuropodia_301781100</name>
                               <branch_length>0.14434</branch_length>
+                              <color>
+                                <red>102</red>
+                                <green>194</green>
+                                <blue>165</blue>
+                              </color>
                               <chart>
-                                <group>H2B.W</group>
+                                <group>markgroupH2BW</group>
                               </chart>
                               <annotation>
                                 <desc>Variant H2B.W from Ailuropodia (301781100)</desc>
@@ -103,8 +133,13 @@
                         <clade>
                           <name>Canis_545554624</name>
                           <branch_length>0.04128</branch_length>
+                          <color>
+                            <red>229</red>
+                            <green>196</green>
+                            <blue>148</blue>
+                          </color>
                           <chart>
-                            <group>TS_H2B.1</group>
+                            <group>markgroupTS_H2B1</group>
                           </chart>
                           <annotation>
                             <desc>Variant TS_H2B.1 from Canis (545554624)</desc>
@@ -116,8 +151,13 @@
                           <clade>
                             <name>Homo_24586679</name>
                             <branch_length>0.03754</branch_length>
+                            <color>
+                              <red>229</red>
+                              <green>196</green>
+                              <blue>148</blue>
+                            </color>
                             <chart>
-                              <group>TS_H2B.1</group>
+                              <group>markgroupTS_H2B1</group>
                             </chart>
                             <annotation>
                               <desc>Variant TS_H2B.1 from Homo (24586679)</desc>
@@ -129,8 +169,13 @@
                             <clade>
                               <name>Mus_28316750</name>
                               <branch_length>0.01924</branch_length>
+                              <color>
+                                <red>229</red>
+                                <green>196</green>
+                                <blue>148</blue>
+                              </color>
                               <chart>
-                                <group>TS_H2B.1</group>
+                                <group>markgroupTS_H2B1</group>
                               </chart>
                               <annotation>
                                 <desc>Variant TS_H2B.1 from Mus (28316750)</desc>
@@ -140,8 +185,13 @@
                             <clade>
                               <name>Rattus_12025524</name>
                               <branch_length>0.02013</branch_length>
+                              <color>
+                                <red>229</red>
+                                <green>196</green>
+                                <blue>148</blue>
+                              </color>
                               <chart>
-                                <group>TS_H2B.1</group>
+                                <group>markgroupTS_H2B1</group>
                               </chart>
                               <annotation>
                                 <desc>Variant TS_H2B.1 from Rattus (12025524)</desc>
@@ -156,8 +206,13 @@
                         <clade>
                           <name>Toxoplasma_237840885</name>
                           <branch_length>0.04551</branch_length>
+                          <color>
+                            <red>252</red>
+                            <green>141</green>
+                            <blue>98</blue>
+                          </color>
                           <chart>
-                            <group>H2B.Z</group>
+                            <group>markgroupH2BZ</group>
                           </chart>
                           <annotation>
                             <desc>Variant H2B.Z from Toxoplasma (237840885)</desc>
@@ -169,8 +224,13 @@
                           <clade>
                             <name>Plasmodium_124511826</name>
                             <branch_length>0.00426</branch_length>
+                            <color>
+                              <red>252</red>
+                              <green>141</green>
+                              <blue>98</blue>
+                            </color>
                             <chart>
-                              <group>H2B.Z</group>
+                              <group>markgroupH2BZ</group>
                             </chart>
                             <annotation>
                               <desc>Variant H2B.Z from Plasmodium (124511826)</desc>
@@ -180,8 +240,13 @@
                           <clade>
                             <name>Plasmodium_68073549</name>
                             <branch_length>0.00387</branch_length>
+                            <color>
+                              <red>252</red>
+                              <green>141</green>
+                              <blue>98</blue>
+                            </color>
                             <chart>
-                              <group>H2B.Z</group>
+                              <group>markgroupH2BZ</group>
                             </chart>
                             <annotation>
                               <desc>Variant H2B.Z from Plasmodium (68073549)</desc>
@@ -195,8 +260,13 @@
                   <clade>
                     <name>Monodelphis_126320607</name>
                     <branch_length>0.27074</branch_length>
+                    <color>
+                      <red>141</red>
+                      <green>160</green>
+                      <blue>203</blue>
+                    </color>
                     <chart>
-                      <group>subH2B</group>
+                      <group>markgroupsubH2B</group>
                     </chart>
                     <annotation>
                       <desc>Variant subH2B from Monodelphis (126320607)</desc>
@@ -209,8 +279,13 @@
                   <clade>
                     <name>Mus_254588081</name>
                     <branch_length>0.16548</branch_length>
+                    <color>
+                      <red>141</red>
+                      <green>160</green>
+                      <blue>203</blue>
+                    </color>
                     <chart>
-                      <group>subH2B</group>
+                      <group>markgroupsubH2B</group>
                     </chart>
                     <annotation>
                       <desc>Variant subH2B from Mus (254588081)</desc>
@@ -220,8 +295,13 @@
                   <clade>
                     <name>Cricetulus_354507874</name>
                     <branch_length>0.1403</branch_length>
+                    <color>
+                      <red>141</red>
+                      <green>160</green>
+                      <blue>203</blue>
+                    </color>
                     <chart>
-                      <group>subH2B</group>
+                      <group>markgroupsubH2B</group>
                     </chart>
                     <annotation>
                       <desc>Variant subH2B from Cricetulus (354507874)</desc>
@@ -233,8 +313,13 @@
               <clade>
                 <name>Cavia_348552306</name>
                 <branch_length>0.18347</branch_length>
+                <color>
+                  <red>141</red>
+                  <green>160</green>
+                  <blue>203</blue>
+                </color>
                 <chart>
-                  <group>subH2B</group>
+                  <group>markgroupsubH2B</group>
                 </chart>
                 <annotation>
                   <desc>Variant subH2B from Cavia (348552306)</desc>
@@ -245,8 +330,13 @@
             <clade>
               <name>Heterocephalus_512843645</name>
               <branch_length>0.14565</branch_length>
+              <color>
+                <red>141</red>
+                <green>160</green>
+                <blue>203</blue>
+              </color>
               <chart>
-                <group>subH2B</group>
+                <group>markgroupsubH2B</group>
               </chart>
               <annotation>
                 <desc>Variant subH2B from Heterocephalus (512843645)</desc>
@@ -257,8 +347,13 @@
           <clade>
             <name>Loxodonta_344272356</name>
             <branch_length>0.11679</branch_length>
+            <color>
+              <red>141</red>
+              <green>160</green>
+              <blue>203</blue>
+            </color>
             <chart>
-              <group>subH2B</group>
+              <group>markgroupsubH2B</group>
             </chart>
             <annotation>
               <desc>Variant subH2B from Loxodonta (344272356)</desc>
@@ -273,8 +368,13 @@
             <clade>
               <name>Bos_45429973</name>
               <branch_length>0.16532</branch_length>
+              <color>
+                <red>141</red>
+                <green>160</green>
+                <blue>203</blue>
+              </color>
               <chart>
-                <group>subH2B</group>
+                <group>markgroupsubH2B</group>
               </chart>
               <annotation>
                 <desc>Variant subH2B from Bos (45429973)</desc>
@@ -284,8 +384,13 @@
             <clade>
               <name>Ailuropoda_301771932</name>
               <branch_length>0.08058</branch_length>
+              <color>
+                <red>141</red>
+                <green>160</green>
+                <blue>203</blue>
+              </color>
               <chart>
-                <group>subH2B</group>
+                <group>markgroupsubH2B</group>
               </chart>
               <annotation>
                 <desc>Variant subH2B from Ailuropoda (301771932)</desc>
@@ -296,8 +401,13 @@
           <clade>
             <name>Sus_311273883</name>
             <branch_length>0.11981</branch_length>
+            <color>
+              <red>141</red>
+              <green>160</green>
+              <blue>203</blue>
+            </color>
             <chart>
-              <group>subH2B</group>
+              <group>markgroupsubH2B</group>
             </chart>
             <annotation>
               <desc>Variant subH2B from Sus (311273883)</desc>
@@ -309,8 +419,13 @@
       <clade>
         <name>Macaca_109077646</name>
         <branch_length>0.22778</branch_length>
+        <color>
+          <red>141</red>
+          <green>160</green>
+          <blue>203</blue>
+        </color>
         <chart>
-          <group>subH2B</group>
+          <group>markgroupsubH2B</group>
         </chart>
         <annotation>
           <desc>Variant subH2B from Macaca (109077646)</desc>
@@ -320,8 +435,13 @@
       <clade>
         <name>Equus_149727070</name>
         <branch_length>0.14107</branch_length>
+        <color>
+          <red>141</red>
+          <green>160</green>
+          <blue>203</blue>
+        </color>
         <chart>
-          <group>subH2B</group>
+          <group>markgroupsubH2B</group>
         </chart>
         <annotation>
           <desc>Variant subH2B from Equus (149727070)</desc>
@@ -339,10 +459,10 @@
     <group thickness="10" type="integratedBinary" />
   </charts>
   <style>
-    <H2B.1 fill="#000000" label="H2B.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
-    <H2B.W fill="#000000" label="H2B.W" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
-    <H2B.Z fill="#000000" label="H2B.Z" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
-    <subH2B fill="#000000" label="subH2B" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000000" />
+    <markgroupH2B1 fill="#000" label="H2B.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+    <markgroupH2BW fill="#000" label="H2B.W" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+    <markgroupH2BZ fill="#000" label="H2B.Z" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
+    <markgroupsubH2B fill="#000" label="subH2B" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" />
     <sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="9" font-weight="bold" rotate="90" />
   </style>
 </phyloxml>
