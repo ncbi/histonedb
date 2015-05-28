@@ -10,12 +10,7 @@ from Bio.Phylo import PhyloXMLIO
 class Command(BaseCommand):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of thi project and using those HMMs to search the NR database.'
     seed_directory = os.path.join("static", "browse", "seeds")
-    hmm_directory = os.path.join("static", "browse", "hmms")
-    combined_varaints_file = os.path.join(hmm_directory, "combined_variants.hmm")
-    pressed_combined_varaints_file = os.path.join(hmm_directory, "combined_variants.h3f")
-    results_file = "{}.out".format(combined_varaints_file)
-    nr_file = "nr"
-
+    trees_path = os.path.join("static", "browse", "trees")
     def add_arguments(self, parser):
         parser.add_argument(
             "-f", 
@@ -32,18 +27,20 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.make_trees()
-        self.convert_to_phyloxml()
         self.add_features()
 
-    def get_seeds(self):
+    def get_variants(self, core_type=None):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
-            core_type = os.path.basename(root)
+            if core_type and not os.path.basename(root) == core_type: continue
             if i==0:
                 #Skip parent directory, only allow variant hmms to be built/searched
                 continue
             for seed in files: 
                 if not seed.endswith(".fasta"): continue
-                yield core_type, seed
+                if core_type is None:
+                    yield core_type, seed
+                else:
+                    yield seed[:-6]
 
     def make_trees(self):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
@@ -56,7 +53,7 @@ class Command(BaseCommand):
             with open(combined_seed_file, "w") as combined_seed:
                 for seed in files: 
                     if not seed.endswith(".fasta"): continue
-                    for s in SeqIO.parse(os.path.join(self.seed_directory, core_type, seed), "fasta")
+                    for s in SeqIO.parse(os.path.join(self.seed_directory, core_type, seed), "fasta"):
                         s.seq = s.seq.ungap("-")
                         SeqIO.write(s, combined_seed, "fasta")
 
@@ -69,14 +66,16 @@ class Command(BaseCommand):
     def add_features(self):
         for core_histone in ["H2A", "H2B", "H3", "H4", "H1"]:
             phx = PhyloXMLIO.read(os.path.join(self.trees_path, "{}.xml".format(core_histone)), 'phyloxml')
-            for phylogeny in tree.phylogenies:
-                for variant in Variant.objects.filter(core_type__id=core_histone):
+            print phx
+            print dir(phx)
+            """for phylogeny in tree.phylogenies:
+                for variant in get_variants(core_histone):
                     '<{0} fill="#000" stroke="#000" opacity="0.7" label="{0}" labelStyle="sectorHighlightText" />'.format(variant.id)
                 for clade in phylogeny:
                     genus, gi, variant = clade.name.split("|")
                     clade.name = "{}_{}".format(genus, gi)
                     "<chart><group>{}</group></chart>".format(variant)
-            PhyloXMLIO.write(phx, 'ex_no_other.xml')
+            PhyloXMLIO.write(phx, 'ex_no_other.xml')"""
 
 
 
