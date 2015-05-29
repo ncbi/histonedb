@@ -37,6 +37,7 @@ def browse_variants(request, histone_type):
 		"histone_description": core_histone.description,
 		"browse_section": "type",
 		"name": histone_type,
+		"tree_url": "browse/trees/{}.xml".format(core_histone.id),
 		"starburst_url": "browse/sunbursts/{}.json".format(core_histone.id),
 		"seed_file":"browse/seeds/{}.fasta".format(core_histone.id),
 		"filter_form": FilterForm(),

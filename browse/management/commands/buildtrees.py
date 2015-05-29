@@ -12,6 +12,8 @@ from Bio import Phylo
 from Bio.Phylo import PhyloXML
 from Bio.Phylo import PhyloXMLIO
 
+import xml.etree.ElementTree as ET
+
 import seaborn as sns
 colors = cycle(sns.color_palette("Set2", 7))
 
@@ -88,23 +90,30 @@ class Command(BaseCommand):
         for core_histone in ["H2A", "H2B", "H3", "H4", "H1"]:
             tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
             phx = PhyloXMLIO.read(tree_path)
+
+            tree = ET.parse(tree_path)
+
+            render = PhyloXML.Other("render")
             
             parameters = PhyloXML.Other("parameters", namespace="")
             circular = PhyloXML.Other("circular", namespace="")
             circular.children.append(PhyloXML.Other("bufferRadius", value="0.5", namespace=""))
             parameters.children.append(circular)
-            phx.other.append(parameters)
+            render.children.append(parameters)
             
             charts = PhyloXML.Other("charts", namespace="")
-            charts.children.append(PhyloXML.Other("group", attributes={"type":"integratedBinary", "thickness":"10"}, namespace=""))
-            phx.other.append(charts)
+            charts.children.append(PhyloXML.Other("group", attributes={"type":"integratedBinary", "thickness":"20"}, namespace=""))
+            render.children.append(parameters).append(charts)
 
-            style = PhyloXML.Other("style", namespace="")
+            styles = PhyloXML.Other("styles", namespace="")
             for variant in self.get_variants(core_histone):
-                color = rgb_to_hex(colors.next())
-                style.children.append(PhyloXML.Other(variant, attributes={"fill":color, "stroke":color, "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"}, namespace=""))
-            style.children.append(PhyloXML.Other("sectorHighlightText", attributes={"font-family":"Verdana", "font-size":"9", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"}, namespace=""))
-            phx.other.append(style)
+                color = colors.next()
+                styles.children.append(PhyloXML.Other("{}".format(variant.replace("_","")), attributes={"fill":color, "stroke":color})
+                styles.children.append(PhyloXML.Other("markdown{}".format(variant.replace("_","")), attributes={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"}, namespace=""))
+            styles.children.append(PhyloXML.Other("sectorHighlightText", attributes={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"}, namespace=""))
+            render.children.append(styles)
+
+            phx.other.append(render)
 
             for phylogeny in phx.phylogenies:
                 parents = all_parents(phylogeny)
@@ -117,7 +126,7 @@ class Command(BaseCommand):
                             child = parent.clades.index(clade)
                             del parent.clades[child]
                             continue
-                        clade.name = "{}_{}".format(genus, gi)
+                        clade.name = genus
                         chart = PhyloXML.Other("chart", namespace="")
                         chart.children.append(PhyloXML.Other("group", value=variant, namespace=""))
                         clade.other.append(chart)
