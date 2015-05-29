@@ -4,8 +4,30 @@ from tools.load_hmmsearch import parseHmmer
 from tools.test_model import test_model
 import subprocess
 import os, sys
+from itertools import cycle
+import StringIO
+
+from Bio import SeqIO
 from Bio import Phylo
+from Bio.Phylo import PhyloXML
 from Bio.Phylo import PhyloXMLIO
+
+colors = cycle([
+    "#66c2a5",
+    "#fc8d62",
+    "#8da0cb",
+    "#e78ac3",
+    "#a6d854",
+    "#ffd92f",
+    "#e5c494"])
+
+
+def all_parents(tree):
+    parents = {}
+    for clade in tree.find_clades(order='level'):
+        for child in clade:
+            parents[child] = clade
+    return parents
 
 class Command(BaseCommand):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of thi project and using those HMMs to search the NR database.'
@@ -26,7 +48,7 @@ class Command(BaseCommand):
             help="Redownload NR database. If force is also True, this option is redundant")
 
     def handle(self, *args, **options):
-        self.make_trees()
+        #self.make_trees()
         self.add_features()
 
     def get_variants(self, core_type=None):
@@ -44,38 +66,91 @@ class Command(BaseCommand):
 
     def make_trees(self):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
-            core_type = os.path.basename(root)
+            core_histone = os.path.basename(root)
+            print "Creating tree for", core_histone
             if i==0:
                 #Skip parent directory, only allow variant hmms to be built/searched
                 continue
+
+            #Combine all varaints for a core histone type into one unaligned fasta file
             combined_seed_file = os.path.join(self.trees_path, "{}.fasta".format(core_histone))
             combined_seed_aligned = os.path.join(self.trees_path, "{}_aligned.fasta".format(core_histone))
             with open(combined_seed_file, "w") as combined_seed:
                 for seed in files: 
                     if not seed.endswith(".fasta"): continue
-                    for s in SeqIO.parse(os.path.join(self.seed_directory, core_type, seed), "fasta"):
+                    for s in SeqIO.parse(os.path.join(self.seed_directory, core_histone, seed), "fasta"):
                         s.seq = s.seq.ungap("-")
                         SeqIO.write(s, combined_seed, "fasta")
 
-            tree = os.path.join(self.trees_path, "{}.nwk".format(core_histone))
-            subprocess.call(["muscle", "-in", combined_seed, '-out', combined_seed_aligned])
-            subprocess.call(["clustalw2", "-infile", combined_seed_aligned, '-tree', '-out', tree])
+            tree = os.path.join(self.trees_path, "{}_aligned.ph".format(core_histone))
+            subprocess.call(["muscle", "-in", combined_seed_file, '-out', combined_seed_aligned])
+            subprocess.call(["clustalw2", "-infile={}".format(combined_seed_aligned), '-tree'])
             Phylo.convert(tree, 'newick',
-                          os.path.join(self.trees_path, "{}.xml".format(core_histone)), 'phyloxml')
+                          os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone)), 'phyloxml')
     
     def add_features(self):
-        for core_histone in ["H2A", "H2B", "H3", "H4", "H1"]:
-            phx = PhyloXMLIO.read(os.path.join(self.trees_path, "{}.xml".format(core_histone)), 'phyloxml')
-            print phx
-            print dir(phx)
-            """for phylogeny in tree.phylogenies:
-                for variant in get_variants(core_histone):
-                    '<{0} fill="#000" stroke="#000" opacity="0.7" label="{0}" labelStyle="sectorHighlightText" />'.format(variant.id)
-                for clade in phylogeny:
-                    genus, gi, variant = clade.name.split("|")
-                    clade.name = "{}_{}".format(genus, gi)
-                    "<chart><group>{}</group></chart>".format(variant)
-            PhyloXMLIO.write(phx, 'ex_no_other.xml')"""
+        for core_histone in ["H2A", "H2B", "H3", "H1", "H4"]:
+            tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
+            phx = PhyloXMLIO.read(tree_path)
+            
+            parameters = PhyloXML.Other("parameters", namespace="")
+            circular = PhyloXML.Other("circular", namespace="")
+            circular.children.append(PhyloXML.Other("bufferRadius", value="0.5", namespace=""))
+            parameters.children.append(circular)
+            phx.other.append(parameters)
+            
+            charts = PhyloXML.Other("charts", namespace="")
+            charts.children.append(PhyloXML.Other("group", attributes={"type":"integratedBinary", "thickness":"10"}, namespace=""))
+            phx.other.append(charts)
+
+            style = PhyloXML.Other("style", namespace="")
+            varaint_colors = {}
+            for variant in self.get_variants(core_histone):
+                varaint_colors[variant] = colors.next()
+                style.children.append(PhyloXML.Other("markgroup{}".format(variant.replace(".", "")), attributes={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"}, namespace=""))
+            style.children.append(PhyloXML.Other("sectorHighlightText", attributes={"font-family":"Verdana", "font-size":"9", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"}, namespace=""))
+            phx.other.append(style)
+
+            for phylogeny in phx.phylogenies:
+                parents = all_parents(phylogeny)
+                for clade in phylogeny.find_clades():
+                    if clade.name:
+                        try:
+                            genus, gi, variant = clade.name.split("|")
+                        except ValueError:
+                            parent = parents[clade]
+                            child = parent.clades.index(clade)
+                            del parent.clades[child]
+                            continue
+                        clade.name = genus
+                        chart = PhyloXML.Other("chart", namespace="")
+                        #clade.attributes = {"bgStyle": "highlight_{}".format(variant.replace(".", ""))}
+                        try:
+                            color = varaint_colors[variant]
+                        except KeyError:
+                            for v, color in varaint_colors.iteritems():
+                                if v in variant:
+                                    break
+                            else:
+                                color = "#FFFFFF"
+                        clade.color = PhyloXML.BranchColor.from_hex(color)
+                        chart.children.append(PhyloXML.Other("group", value="markgroup{}".format(variant.replace(".", "")), namespace=""))
+                        clade.other.append(chart)
+
+                        annotation = PhyloXML.Other("annotation", namespace="")
+                        annotation.children.append(PhyloXML.Other("desc", value="Variant {} from {} ({})".format(variant, genus, gi), namespace=""))
+                        annotation.children.append(PhyloXML.Other("uri", value="variant/{}/".format(variant), namespace=""))
+                        clade.other.append(annotation)
+
+            with open(os.path.join(self.trees_path, "{}.xml".format(core_histone)), "w") as outfile:
+                tree = StringIO.StringIO()
+                PhyloXMLIO.write(phx, tree)
+                tree = tree.getvalue().replace("ns0:", "")
+                header, tree = tree.split("\n", 1)
+                tree = '<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">\n'+tree
+                outfile.write(tree)
+
+            
 
 
 
