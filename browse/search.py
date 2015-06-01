@@ -18,21 +18,37 @@ def search(parameters, initial_query=None):
         current_search = HistoneSearch(parameters, initial_query)
 
 class HistoneSearch(object):
-    current_search = None
-    def __init__(self, search_query, sort_query, navbar=False):
-        self.search_query = search_query
-        self.initial_query = (search_query, sort_query)
-        self.sort_query = sort_query
-        self.redirect = None
+    """
+    """
+
+    def __init__(self, request, parameters, reset=False, navbar=False):
+        """
+        """
+        assert hasattr("__get__", parameters)
+
+        if reset:
+            HistoneSearch.reset():
+        else:
+            parameters.extend(request.session.get("query", {}))
+
         self.errors = Counter()
         self.navbar = navbar
-        self.query_set = Sequence.objects.annotate(evalue=Min("scores__evalue")).filter()
-        self.update_queryset(search_query)
-        HistoneSearch.current_search = self
+        self.request = request
+        self.sanitized = False
+        self.query_set = None
+
+        self.sanitize_parameters(parameters)
+        self.create_queryset()
 
     @classmethod
-    def search(cls, parameters, navbar=False):
-        print "parameters", parameters
+    def reset(cls):
+        """Clears search from session"""
+        del request.session["query"]
+        del request.session["sort"]
+
+    def sanitize_parameters(self, parameters):
+        """
+        """
         search_parameters = [
             "id", "id_search_type", 
             "core_type", "core_type_search_type", 
@@ -47,74 +63,64 @@ class HistoneSearch(object):
             #"scoring_program"
             #"show_lower_scoring_models"
             ]
-        if "search" not in parameters:
-            search_query = {p:v for p, v in parameters.iteritems() if p in search_parameters}
-        else:
-            search_query = {"search":parameters["search"]}
-
+        
+        request.session["query"] = {p:v for p, v in parameters.iteritems() if p in search_parameters}
+        if "search" in parameters:
+            request.session["search"] = parameters["search"]
+        
         sort_parameters = {"limit": 10, "offset":0, "sort":"evalue", "order":"asc"}
         sort_query = {p:parameters.get(p, v) for p, v in sort_parameters.iteritems()}
 
-        if not HistoneSearch.current_search:
-            print "new search"
-            return cls(search_query, sort_query, navbar=navbar)
-        elif parameters.get("reset", False):
-            return cls(*HistoneSearch.initial_query)
+        if reset or not "sort" in request.session:
+            request.session["sort"] = sort_query
         else:
-            if search_query != HistoneSearch.current_search.search_query:
-                #Add filters to current
-                HistoneSearch.current_search.update_queryset(search_query)
-            if not HistoneSearch.current_search.sort_query.get("limit", 10) == sort_query["limit"]:
-                HistoneSearch.current_search.sort_query["limit"] = sort_query["limit"]
-            if not HistoneSearch.current_search.sort_query.get("offset", 0) == sort_query["offset"]:
-                HistoneSearch.current_search.sort_query["offset"] = sort_query["offset"]
-            if not HistoneSearch.current_search.sort_query.get("sort", "evalue") == sort_query["sort"]:
-                HistoneSearch.current_search.sort_query["sort"] = sort_query["sort"]
-            if not HistoneSearch.current_search.sort_query.get("order", "asc") == sort_query["order"]:
-                HistoneSearch.current_search.sort_query["order"] = sort_query["order"]
+            request.session["sort"].update(sort_query)
 
-            HistoneSearch.current_search.navbar = navbar
-            
-            return HistoneSearch.current_search
+        self.sanitized = True
 
-    def update_queryset(self, parameters):
+    def create_queryset(self):
+        if not self.sanitized:
+            raise RuntimeError("Parameters must be sanitized")
+
+        parameters = self.request.session["query"]
+
         if "search" in parameters:
             self.simple_search(search_text=parameters["search"])
-        else:
-            query = format_query()  
-              
-            fields = [
-                ("id", "id_search_type", int, ("is", "in")),
-                ("variant__core_type__id", "core_type_search_type", str, None),
-                ("variant__id", "variant_search_type", str, None),
-                ("gene", "gene_search_type", int, None),
-                ("splice", "splice_search_type", int, None),
-                ("header", "header_search_type", str, None),
-                ("taxonomy", "taxonomy_search_type", tax_sub_search, None)
-                #("specificity", "specificity_search_type", int, None),
-                #("evalue", "evalue_search_type", float, None),
-                #("score", "specificity_search_type", float, None),
-                #("scoring_program", None, str, ("is")),
-                #("show_lower_scoring_models", None, None, (""))
-            ]
+        
+        query = format_query()
+          
+        fields = [
+            ("id", "id_search_type", int, ("is", "in")),
+            ("variant__core_type__id", "core_type_search_type", str, None),
+            ("variant__id", "variant_search_type", str, None),
+            ("gene", "gene_search_type", int, None),
+            ("splice", "splice_search_type", int, None),
+            ("header", "header_search_type", str, None),
+            ("taxonomy", "taxonomy_search_type", tax_sub_search, None)
+            #("specificity", "specificity_search_type", int, None),
+            #("evalue", "evalue_search_type", float, None),
+            #("score", "specificity_search_type", float, None),
+            #("scoring_program", None, str, ("is")),
+            #("show_lower_scoring_models", None, None, (""))
+        ]
 
-            for field, search_type, convert, allow in fields:
-                if not parameters.get(field): continue
-                search_type = parameters.get(search_type, "is")
-                query.format(field, search_type, parameters[field], convert, allow)
-                    
+        for field, search_type, convert, allow in fields:
+            if not parameters.get(field): continue
+            search_type = parameters.get(search_type, "is")
+            query.format(field, search_type, parameters[field], convert, allow)
+                
 
-            """specificity = parameters.get("specificity", 95):
-            specificity_search_type = parameters.get("specificity_search_type", ">=")
-            q, value = int_search_query("scores__specificty", specificity_search_type, specificity)
-            query["scores__best"] = True
-            query[q] = value
-            """
+        """specificity = parameters.get("specificity", 95):
+        specificity_search_type = parameters.get("specificity_search_type", ">=")
+        q, value = int_search_query("scores__specificty", specificity_search_type, specificity)
+        query["scores__best"] = True
+        query[q] = value
+        """
 
-            if query.has_errors():
-                return False
+        if query.has_errors():
+            return False
 
-            self.query_set.filter(**query)
+        self.query_set = Sequence.objects.annotate(evalue=Min("scores__evalue"), score=Max("scores__score")).filter(**query)
 
     def sorted(self):
         #Sort by best score. Using e-value so we can compare HMMER and SAM
@@ -166,7 +172,8 @@ class HistoneSearch(object):
             sequence = self.query_set.filter(id=value)
             if len(sequence):
                 self.query_set = sequence
-                self.redirect = None
+                request.session["query"]["id"] = value
+                request.session["query"]["id_search_type"] = "is"
                 return
         except ValueError:
             pass
@@ -175,40 +182,36 @@ class HistoneSearch(object):
         try:
             core_type = Histone.objects.get(id=search_text)
             sequences = self.query_set.filter(variant__core_type_id=core_type.id)
-            self.query_set = sequences
+            request.session["query"]["core_type"] = core_type.id
+            request.session["query"]["core_type_search_type"] = "is"
             if self.navbar:
-                # Go to histone browse page
-                print "redirect"
-                self.redirect = redirect("browse.views.browse_variants", core_type.id)
+                return redirect("browse.views.browse_variants", core_type.id)
             else:
-                self.redirect = None
-            return
+                return
         except Exception as e:
             pass
         
         try:
             variant = Variant.objects.get(id=search_text)
             sequences = self.query_set.filter(variant_id=variant.id)
-            self.query_set = sequences
+            request.session["query"]["variant"] = variant.id
+            request.session["query"]["variant_search_type"] = "is"
             if self.navbar:
-                # Go to variant browse page
-                self.redirect = redirect("browse.views.browse_variant", variant.id)
+                return redirect("browse.views.browse_variant", variant.id)
             else:
-                self.redirect = None
-            return
+                return
         except Exception as e:
             pass
         
         try:
             variant = OldStyleVariant.objects.get(id=search_text).updated_variant
             sequences = self.query_set.filter(variant_id=variant.id)
-            self.query_set = sequences
+            request.session["query"]["variant"] = variant.id
+            request.session["query"]["variant_search_type"] = "is"
             if self.navbar:
-                # Go to vaiant browse page
-                self.redirect = redirect("browse.views.browse_variant", variant.id)
+                return redirect("browse.views.browse_variant", variant.id)
             else:
-                self.redirect = None
-            return
+                return
         except:
             pass
 
@@ -223,21 +226,21 @@ class HistoneSearch(object):
             except IndexError:
                 #Already correct taxon
                 pass"""
-            sequences = self.query_set.filter(taxonomy__name__contains=search_text)
+            sequences = self.query_set.filter(taxonomy__name__icontains=search_text)
             if sequences.count() > 0:
-                self.query_set = sequence
-                self.redirect = None
+                request.session["query"]["taxonomy"] = search_text
+                request.session["query"]["taxonomy_search_type"] = "contains (case-insesitive)"
                 return
         except:
             pass
             
-        headers = self.query_set.filter(header__contains=search_text)
+        headers = self.query_set.filter(header__icontains=search_text)
 
         if headers.count() > 0:
-            self.query_set = headers
-            self.redirect = None
+            request.session["query"]["header"] = search_text
+            request.session["query"]["header_search_type"] = "contains (case-insesitive)"
         else:
-            #Search seuence moetifs
+            #Search sequence moetifs
             sequences = self.query_set.filter(sequence__contains=search_text)
             self.query_set = headers
             self.redirect = None

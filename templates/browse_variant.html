@@ -23,13 +23,17 @@
       <div role="tabpanel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
+          <li role="presentation" class="active"><a href="#species" aria-controls="species" role="tab" data-toggle="tab">By Species</a></li>
+          <li role="presentation"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
           <li role="presentation"><a href="#seed" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="sequences">
+          <div role="tabpanel" class="tab-pane active" id="species">
+            {% include "circle.html" %}
+          </div>
+          <div role="tabpanel" class="tab-pane" id="sequences">
             {% include "test.html" %}
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">

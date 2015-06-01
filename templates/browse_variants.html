@@ -19,7 +19,7 @@
         phylocanvas = new Smits.PhyloCanvas(
           dataObject,
           'tree',
-          1500, 1500,
+          1000, 1000,
           'circular'
         );
 
@@ -57,7 +57,6 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">By Variant</a></li>
-          <li role="presentation"><a href="#organism" aria-controls="organism" role="tab" data-toggle="tab">By Organism</a></li>
           <li role="presentation"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
           <li role="presentation"><a href="#seed" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
         </ul>
@@ -65,10 +64,15 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="variant">
-            <div id="tree"></div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="organism">
-            {% include "circle.html" %}
+            <div class="row">
+              <div id="col-xs-8">
+                <div id="tree"></div>
+              </div>
+              <div id="col-xs-4">
+                Known Variants:
+                {% for variant in variants %}
+                  <div style=""><a href="{% url 'browse.views.browse_variant' variant %}">{{ variant }}</a></div>
+                {% endfor %}
           </div>
           <div role="tabpanel" class="tab-pane" id="sequences">
             {% include "test.html" %} 

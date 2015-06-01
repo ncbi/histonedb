@@ -65,12 +65,14 @@ class Command(BaseCommand):
                     pass
                 path = chain(taxa.parents.reverse().all()[1:], [taxa])
             root = sunburst
-            stopForSpecies = False
+            stopForOrder = False
             for i, curr_taxa in enumerate(path):
-                if stopForSpecies:
+                if stopForOrder:
                     break
-                if curr_taxa.rank == "species":
-                    stopForSpecies = True
+                if curr_taxa.rank == None:
+                    continue
+                if curr_taxa.rank == "order":
+                    stopForOrder = True
                 for node in root["children"]:
                     if node["name"] == curr_taxa.name:
                         break

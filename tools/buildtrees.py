@@ -1,4 +1,3 @@
-from django.core.management.base import BaseCommand, CommandError
 import os
 from itertools import cycle
 import StringIO
@@ -9,6 +8,7 @@ from Bio.Phylo import PhyloXML
 from Bio.Phylo import PhyloXMLIO
 
 import xml.etree.ElementTree as ET
+ET.register_namespace("", "http://www.phyloxml.org/1.10/phyloxml.xsd")
 
 colors = cycle([
     "#66c2a5",
@@ -19,14 +19,12 @@ colors = cycle([
     "#ffd92f",
     "#e5c494"])
 
-class Command(BaseCommand):
+class BuildTrees(object):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of thi project and using those HMMs to search the NR database.'
     seed_directory = os.path.join("static", "browse", "seeds")
     trees_path = os.path.join("static", "browse", "trees")
-    def add_arguments(self, parser):
-        pass
 
-    def handle(self, *args, **options):
+    def __init__(self, *args, **options):
         #self.make_trees()
         self.add_features()
 
@@ -71,10 +69,13 @@ class Command(BaseCommand):
         for core_histone in ["H2A", "H2B", "H3", "H1", "H4"]:
             print core_histone
             tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
+            print tree_path
             tree = ET.parse(tree_path)
+            print tree
             parent_map = {c: p for p in tree.getiterator() for c in p}
 
-            for phylogeny in tree.iter("http://www.phyloxml.org}phylogeny"):
+            for phylogeny in tree.iter("{http://www.phyloxml.org}phylogeny"):
+                print phylogeny
                 render = ET.Element("render")
                 
                 parameters = ET.Element("parameters")
@@ -94,18 +95,23 @@ class Command(BaseCommand):
                 for variant in self.get_variants(core_histone):
                     color = colors.next()
                     background = ET.Element("{}".format(variant.replace(".","")), attrib={"fill":color, "stroke":color})
-                    label = ET.Element("markdown{}".format(variant.replace(".","")), attributes={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"})
+                    label = ET.Element("markdown{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"})
                     styles.append(background)
                     styles.append(label)
-                label_sector = ET.Element("sectorHighlightText", attributes={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"})
+                label_sector = ET.Element("sectorHighlightText", attrib={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"})
                 styles.append(label_sector)
                 render.append(styles)
-
                 phylogeny.insert(0, render)
 
-                for clade in phylogeny.iter("http://www.phyloxml.org}clade"):
-                    name = c.find("{http://www.phyloxml.org}name")
-                    if name:
+                for clade in phylogeny.iter("{http://www.phyloxml.org}clade"):
+                    name = clade.find("{http://www.phyloxml.org}name")
+                    try:
+                        print name.text
+                    except:
+                        pass
+                    if name is not None:
+                        print name.text
+                    
                         try:
                             genus, gi, variant = name.text.split("|")
                         except ValueError:
@@ -130,5 +136,13 @@ class Command(BaseCommand):
                         annotation.append(uri)
                         clade.append(annotation)
 
-            tree.write(os.path.join(self.trees_path, "{}.xml".format(core_histone)))
+            with open(os.path.join(self.trees_path, "{}.xml".format(core_histone)), "w") as outfile:
+                treestr = StringIO.StringIO()
+                tree.write(treestr)
+                treestr = treestr.getvalue().replace("phy:", "")
+                header, treestr = treestr.split("\n", 1)
+                treestr = '<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">\n'+treestr
+                outfile.write(treestr)
+
+BuildTrees()
             

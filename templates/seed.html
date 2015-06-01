@@ -120,7 +120,6 @@ $(document).ready(function() {
 	var m = msa(opts);
 
 	//load sequences
-	alert("{{ seed_file }}");
 	fasta.read("{% static seed_file %}", function(err, seqs){
     	m.seqs.reset(seqs);
     	m.render();
@@ -144,7 +143,7 @@ $(document).ready(function() {
 	  	return "blue";
 	  }
 	  else{
-	  	return "#000" 
+	  	return "#000";
 	  }
 	};
 

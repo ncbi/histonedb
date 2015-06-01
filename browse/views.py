@@ -32,17 +32,18 @@ def browse_variants(request, histone_type):
 	except:
 		return "404"
 
+	HistoneSearch.reset()
+
 	data = {
 		"histone_type": histone_type,
 		"histone_description": core_histone.description,
 		"browse_section": "type",
 		"name": histone_type,
-		"starburst_url": "browse/sunbursts/{}.json".format(core_histone.id),
+		"tree_url": "browse/trees/{}.xml".format(core_histone.id),
 		"seed_file":"browse/seeds/{}.fasta".format(core_histone.id),
 		"filter_form": FilterForm(),
 	}
-	print data
-        print "WHY ISN't it loading?"
+
 	return render(request, 'browse_variants.html', data)
 
 def browse_variant(request, variant):
@@ -51,33 +52,30 @@ def browse_variant(request, variant):
 	except:
 		return "404"
 
+	HistoneSearch.reset()
+
 	data = {
 		"core_type": variant.core_type.id,
 		"variant": variant.id,
-		"name": variant.id,
-		"starburst_url": "browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id),
+		"name": variant.id
 		"seed_file":"browse/seeds/{}/{}.fasta".format(variant.core_type.id, variant.id),
 		"browse_section": "variant",
-		"description": "NOPE", #histone_description,
+		"description": variant.description,
 	}
 	return render(request, 'browse_variant.html', data)
 
 def search(request):
 	data = {}
 	if request.method == "POST":
-		print "POST", request.POST
-		HistoneSearch.current_search = None
-		result = HistoneSearch.search(request.POST, navbar=True)
-		print result.redirect
-		if result.redirect: 
+		result = HistoneSearch(request, request.POST, reset=True, navbar=True)
+		
+		if type(result) == type(redirect): 
 			return result.redirect
 
 		if len(result.errors) > 0:
-			HistoneSearch.current_search = None
 			data['errors'] = result.errors
 	else:
-		#All sequences
-		HistoneSearch.current_search = None
+		
 	return render(request, 'search.html', data)
 
 def upload(request):
@@ -100,17 +98,21 @@ def get_sequence_table_data(request, browse_type, search):
 	if request.method == "GET":
 		parameters =  request.GET.dict()
 	else:
+		#Returning 'false' stops Bootstrap table
 		return "false"
 
 	if browse_type == "type":
-		parameters["variant__core_type__id"]=search
+		parameters["core_type"] = search
+		parameters["core_type_search_type"] = "is"
 	elif browse_type == "variant":
-		parameters["variant__id"]=search
+		parameters["variant"] = search
+		parameters["variant_search_type"] = "is"
 
 	#Continues to filter previous search, unless paramters contains key 'reset'
-	results = HistoneSearch.search(parameters)
+	results = HistoneSearch(request, parameters)
 
 	if len(results.errors) > 0:
+		#Returning 'false' stops Bootstrap table
 		return "false"
 	
 	return JsonResponse(results.get_dict())
