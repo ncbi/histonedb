@@ -1,4 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
+from browse.models import *
+
 import os
 from itertools import cycle
 import StringIO
@@ -9,6 +11,7 @@ from Bio.Phylo import PhyloXML
 from Bio.Phylo import PhyloXMLIO
 
 import xml.etree.ElementTree as ET
+ET.register_namespace("", "http://www.phyloxml.org/1.10/phyloxml.xsd")
 
 colors = cycle([
     "#66c2a5",
@@ -74,7 +77,7 @@ class Command(BaseCommand):
             tree = ET.parse(tree_path)
             parent_map = {c: p for p in tree.getiterator() for c in p}
 
-            for phylogeny in tree.iter("http://www.phyloxml.org}phylogeny"):
+            for phylogeny in tree.iter("{http://www.phyloxml.org}phylogeny"):
                 render = ET.Element("render")
                 
                 parameters = ET.Element("parameters")
@@ -91,26 +94,42 @@ class Command(BaseCommand):
                 render.append(charts)
 
                 styles = ET.Element("styles")
-                for variant in self.get_variants(core_histone):
+                for variant in Variant.objects.filter(core_type__id=core_histone):
                     color = colors.next()
-                    background = ET.Element("{}".format(variant.replace(".","")), attrib={"fill":color, "stroke":color})
-                    label = ET.Element("markdown{}".format(variant.replace(".","")), attributes={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"})
+                    background = ET.Element("{}".format(variant.id.replace(".","")), attrib={"fill":color, "stroke":color})
+                    if not variant.id.startswith(core_histone):
+                        #Remove descriptor
+                        start, name = variant.id[:variant.id.find(core_histone)], variant.id[variant.id.find(core_histone):]
+                        if len(start) > 3:
+                            start = start[0]
+                        name = start+name
+                    else:
+                        name = variant.id
+                    label = ET.Element("markgroup{}".format(variant.id.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name, "labelStyle":"sectorHighlightText"})
                     styles.append(background)
                     styles.append(label)
-                label_sector = ET.Element("sectorHighlightText", attributes={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"})
+                label_sector = ET.Element("sectorHighlightText", attrib={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"})
                 styles.append(label_sector)
                 render.append(styles)
 
                 phylogeny.insert(0, render)
 
-                for clade in phylogeny.iter("http://www.phyloxml.org}clade"):
-                    name = c.find("{http://www.phyloxml.org}name")
-                    if name:
+                remove = []
+                for clade in phylogeny.iter("{http://www.phyloxml.org}clade"):
+                    name = clade.find("{http://www.phyloxml.org}name")
+                    print "CLADE", clade
+                    try:
+                        print name.text
+                    except:
+                        pass
+                    if name is not None:
+                        print name.text
+                    
                         try:
                             genus, gi, variant = name.text.split("|")
                         except ValueError:
-                            parent = parent_map[clade]
-                            child = parent.remove(clade)
+                            remove.append(clade)
+                            continue
 
                         name.attrib = {"bgStyle": variant.replace(".", "")}
                         name.text = genus
@@ -129,6 +148,15 @@ class Command(BaseCommand):
                         annotation.append(desc)
                         annotation.append(uri)
                         clade.append(annotation)
+                if remove:
+                    for clade in remove:
+                        parent = parent_map[clade]
+                        child = parent.remove(clade)
 
-            tree.write(os.path.join(self.trees_path, "{}.xml".format(core_histone)))
-            
+            with open(os.path.join(self.trees_path, "{}.xml".format(core_histone)), "w") as outfile:
+                treestr = StringIO.StringIO()
+                tree.write(treestr)
+                treestr = treestr.getvalue().replace("phy:", "")
+                header, treestr = treestr.split("\n", 1)
+                treestr = '<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">\n'+treestr
+                outfile.write(treestr)

@@ -73,6 +73,8 @@
                 {% for variant in variants %}
                   <div style=""><a href="{% url 'browse.views.browse_variant' variant %}">{{ variant }}</a></div>
                 {% endfor %}
+              </div>
+            </div>
           </div>
           <div role="tabpanel" class="tab-pane" id="sequences">
             {% include "test.html" %} 

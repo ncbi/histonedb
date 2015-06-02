@@ -133,7 +133,7 @@ def parseHmmer(hmmerFile, sequences):
             #Sequence already exists. Compare bit scores, if current bit score is 
             #greater than current, reassign variant and update scores. Else, append score
             best_score = seqs.aggregate(score=Max("scores"))["score"]
-            if hsp.bitscore > best_score and hsp.bitscore>=variant_model.hmmthreshold:
+            if (seq.varaint.id == "Unknown" or hsp.bitscore > best_score) and hsp.bitscore>=variant_model.hmmthreshold:
               #best scoring
               seq.variant = variant_model
             """

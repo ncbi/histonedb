@@ -51,7 +51,7 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return Math.max(0, d.y ? y(d.y) : d.y); })
     .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
-d3.json("{% static starburst_url %}", function(error, json) {
+d3.json("{% static sunburst_url %}", function(error, json) {
   if(json.length>1){
     var nodes = partition.nodes({children: json});
   }
@@ -60,7 +60,7 @@ d3.json("{% static starburst_url %}", function(error, json) {
   }
   console.log(nodes);
   var path = vis.selectAll("path").data(nodes);
-  alert("path is: "+path);
+ 
   path.enter().append("path")
       .attr("id", function(d, i) { return "path-" + i; })
       .attr("d", arc)
@@ -74,25 +74,25 @@ d3.json("{% static starburst_url %}", function(error, json) {
       .style("fill", function(d) {
         return brightness(d3.rgb(colour(d))) < 125 ? "#eee" : "#000";
       })
-      .attr("text-anchor", function(d) {
-        return x(d.x + d.dx / 2) > Math.PI ? "end" : "start";
-      })
-      .attr("dy", ".2em")
-      .attr("transform", function(d) {
-        var multiline = (d.name || "").split(" ").length > 1,
-            angle = x(d.x + d.dx / 2) * 180 / Math.PI - 90,
-            rotate = angle + (multiline ? -.5 : 0);
-        return "rotate(" + rotate + ")translate(" + (y(d.y) + padding) + ")rotate(" + (angle > 90 ? -180 : 0) + ")";
-      })
+      .attr("dy", "0em")
+      .attr("startOffset",function(d,i){ return d.x; })
+      .attr("xlink:href",function(d,i){return "#s"+i;})
+      .text(function(d){return d.name;})
+      //.attr("transform", function(d) {
+      //  var multiline = (d.name || "").split(" ").length > 1,
+      //      angle = x(d.x + d.dx / 2) * 180 / Math.PI - 90,
+      //      rotate = angle + (multiline ? -.5 : 0);
+      //  return "rotate(" + rotate + ")translate(" + (y(d.y) + padding) + ")rotate(" + (angle > 90 ? -180 : 0) + ")";
+      //})
       .on("click", click);
-  textEnter.append("tspan")
+  /*textEnter.append("tspan")
       .attr("x", 0)
       .text(function(d) { return d.depth ? d.name.split(" ")[0] : ""; });
   textEnter.append("tspan")
       .attr("x", 0)
       .attr("dy", "1em")
-      .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
-  alert(textEnter);
+      .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });*/
+ 
   function click(d) {
     path.transition()
       .duration(duration)

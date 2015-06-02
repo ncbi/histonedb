@@ -18,28 +18,28 @@
     <table id="sequence_table"
            data-toggle="table"
            data-url="{% url 'browse.views.get_sequence_table_data' browse_section name %}"
-           data-click-to-select="true"
-           data-sort-name="evalue"
-           data-sort-order="asc"
-           data-show-refresh="true"
            data-show-columns="true"
-           data-side-pagination="server"
-           data-pagination="true"
-           data-page-list="[5, 10, 20, 50, 100, 200]"
-           data-show-toggle="true"
-           data-show-export="true"
            data-search="true"
+           data-show-toggle="true"
+           data-pagination="true"
+           data-side-pagination="server"
+           data-page-list="[5, 10, 20, 50, 100, 200]"
+           data-click-to-select="true"
+           data-sort-name="score"
+           data-sort-order="desc"
+           data-show-refresh="true"
            data-toolbar="#sequence_toolbar">
         <thead>
             <tr>
                 <th data-field="state" data-checkbox="true"></th>
-                <th data-field="gi" data-align="">GI</th>
-                <th data-field="variant" data-align="">Variant</th>
-                <th data-field="gene" data-align="">Gene</th>
-                <th data-field="splice" data-align="">Splice</th>
-                <th data-field="species" data-align="">Species</th>
-                <th data-field="header" data-align="">Header</th>
-                <th data-field="evalue" data-align="">E-value</th>
+                <th data-field="gi" data-align="" data-sortable="true">GI</th>
+                <th data-field="variant" data-align="" data-sortable="true">Variant</th>
+                <th data-field="gene" data-align="" data-sortable="true">Gene</th>
+                <th data-field="splice" data-align="" data-sortable="true">Splice</th>
+                <th data-field="species" data-align="" data-sortable="true">Species</th>
+                <th data-field="header" data-align="" data-sortable="true">Header</th>
+                <th data-field="score" data-align="" data-sortable="true">Score</th>
+                <th data-field="evalue" data-align="" data-sortable="true">E-value</th>
             </tr>
         </thead>
     </table>

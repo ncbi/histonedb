@@ -24,29 +24,37 @@ class HistoneSearch(object):
     def __init__(self, request, parameters, reset=False, navbar=False):
         """
         """
-        assert hasattr("__get__", parameters)
+        assert isinstance(parameters, dict)
 
         if reset:
-            HistoneSearch.reset():
+            HistoneSearch.reset(request)
         else:
-            parameters.extend(request.session.get("query", {}))
+            parameters.update(request.session.get("query", {}))
 
         self.errors = Counter()
         self.navbar = navbar
         self.request = request
         self.sanitized = False
         self.query_set = None
+        self.count = 0
 
-        self.sanitize_parameters(parameters)
-        self.create_queryset()
+        self.sanitize_parameters(parameters, reset)
+        self.create_queryset(reset)
 
     @classmethod
-    def reset(cls):
+    def reset(cls, request):
         """Clears search from session"""
-        del request.session["query"]
-        del request.session["sort"]
+        try:
+            del request.session["query"]
+            del request.session["sort"]
+        except KeyError:
+            pass
 
-    def sanitize_parameters(self, parameters):
+    @classmethod
+    def all(cls, request):
+        return cls(request, {}, reset=True)
+
+    def sanitize_parameters(self, parameters, reset=False):
         """
         """
         search_parameters = [
@@ -64,21 +72,24 @@ class HistoneSearch(object):
             #"show_lower_scoring_models"
             ]
         
-        request.session["query"] = {p:v for p, v in parameters.iteritems() if p in search_parameters}
+        self.request.session["query"] = {p:v for p, v in parameters.iteritems() if p in search_parameters}
         if "search" in parameters:
-            request.session["search"] = parameters["search"]
+            self.request.session["search"] = parameters["search"]
         
         sort_parameters = {"limit": 10, "offset":0, "sort":"evalue", "order":"asc"}
         sort_query = {p:parameters.get(p, v) for p, v in sort_parameters.iteritems()}
 
-        if reset or not "sort" in request.session:
-            request.session["sort"] = sort_query
+        if reset or not "sort" in self.request.session:
+            self.request.session["sort"] = sort_query
         else:
-            request.session["sort"].update(sort_query)
+            self.request.session["sort"].update(sort_query)
+
+        #if not reset:
+            #raise RuntimeError(str(self.request.session["query"]))
 
         self.sanitized = True
 
-    def create_queryset(self):
+    def create_queryset(self, reset=False):
         if not self.sanitized:
             raise RuntimeError("Parameters must be sanitized")
 
@@ -91,8 +102,8 @@ class HistoneSearch(object):
           
         fields = [
             ("id", "id_search_type", int, ("is", "in")),
-            ("variant__core_type__id", "core_type_search_type", str, None),
-            ("variant__id", "variant_search_type", str, None),
+            ("core_type:variant__core_type_id", "core_type_search_type", str, None),
+            ("variant:variant_id", "variant_search_type", str, None),
             ("gene", "gene_search_type", int, None),
             ("splice", "splice_search_type", int, None),
             ("header", "header_search_type", str, None),
@@ -104,11 +115,20 @@ class HistoneSearch(object):
             #("show_lower_scoring_models", None, None, (""))
         ]
 
+        added = []
         for field, search_type, convert, allow in fields:
-            if not parameters.get(field): continue
+            if ":" in field:
+                synonym, field = field.split(":")
+                value = parameters.get(synonym) or parameters.get(field)
+            else:
+                value = parameters.get(field)
+
+            if not value: 
+                continue
+
             search_type = parameters.get(search_type, "is")
-            query.format(field, search_type, parameters[field], convert, allow)
-                
+            added.append((field, search_type))
+            query.format(field, search_type, value, convert, allow)                
 
         """specificity = parameters.get("specificity", 95):
         specificity_search_type = parameters.get("specificity_search_type", ">=")
@@ -118,26 +138,29 @@ class HistoneSearch(object):
         """
 
         if query.has_errors():
+            raise RuntimeError(str(self.errors))
             return False
-
+        
         self.query_set = Sequence.objects.annotate(evalue=Min("scores__evalue"), score=Max("scores__score")).filter(**query)
-
+        self.count = self.query_set.count()
+        #if not reset:
+        #    raise RuntimeError(str(query))
+        
     def sorted(self):
         #Sort by best score. Using e-value so we can compare HMMER and SAM
         result = self.query_set
-        sort_by = self.sort_query["sort"]
-        sort_order = "-" if self.sort_query["order"] == "desc" else ""
+        sort_by = self.request.session["sort"]["sort"]
+        sort_order = "-" if self.request.session["sort"]["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
-        print sort_key, self.sort_query["sort"], self.sort_query["order"], self.sort_query
         result = result.order_by(sort_key)
 
         try:
-            page_size = int(self.sort_query["limit"])
+            page_size = int(self.request.session["sort"]["limit"])
         except ValueError:
             page_size = 10
 
         try:
-            page_number = int(self.sort_query["offset"])
+            page_number = int(self.request.session["sort"]["offset"])
         except ValueError:
             page_number = 10
 
@@ -216,17 +239,25 @@ class HistoneSearch(object):
             pass
 
         try:
-            """try:
-                taxon = Taxonomy.objects.filter(name=parameters["search"])
-            except:
+            #Search species
+            sequences = self.query_set.filter(taxonomy__name__icontains=search_text)
+            if sequences.count() > 0:
+                request.session["query"]["taxonomy"] = search_text
+                request.session["query"]["taxonomy_search_type"] = "contains (case-insesitive)"
+                return
+        except:
+            pass
 
+        try:
+            taxon = Taxonomy.objects.filter(name=parameters["search"])
             try:
                 #Convert homonym into real taxon
                 taxon = taxon.get_scientific_names()[0]
             except IndexError:
                 #Already correct taxon
-                pass"""
-            sequences = self.query_set.filter(taxonomy__name__icontains=search_text)
+                pass
+            taxa = taxon.children.filter(rank__name="species").values_list("pk")
+            sequences = self.query_set.filter(taxonomy__in=taxa)
             if sequences.count() > 0:
                 request.session["query"]["taxonomy"] = search_text
                 request.session["query"]["taxonomy_search_type"] = "contains (case-insesitive)"
@@ -247,8 +278,8 @@ class HistoneSearch(object):
 
     def get_dict(self):
         sequences = self.sorted()
-        result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "species":r.taxonomy.name, "evalue":r.evalue, "header":r.header} for r in sequences]
-        return {"count":len(result), "rows":result}
+        result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "species":r.taxonomy.name, "score":r.score, "evalue":r.evalue, "header":r.header} for r in sequences]
+        return {"total":self.count, "rows":result}
         
 _digits = re.compile('\d')
 

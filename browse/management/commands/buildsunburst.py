@@ -69,10 +69,11 @@ class Command(BaseCommand):
             for i, curr_taxa in enumerate(path):
                 if stopForOrder:
                     break
-                if curr_taxa.rank == None:
+                if curr_taxa.rank.name in ["no rank", "class"] or "sub" in curr_taxa.rank.name or  "super" in curr_taxa.rank.name:
                     continue
-                if curr_taxa.rank == "order":
+                if "order" in curr_taxa.rank.name or "family" in curr_taxa.rank.name:
                     stopForOrder = True
+                print "-"*(i+1), curr_taxa.name, curr_taxa.rank.name
                 for node in root["children"]:
                     if node["name"] == curr_taxa.name:
                         break

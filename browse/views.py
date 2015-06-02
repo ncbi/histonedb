@@ -32,7 +32,7 @@ def browse_variants(request, histone_type):
 	except:
 		return "404"
 
-	HistoneSearch.reset()
+	HistoneSearch(request, {"core_type":histone_type}, reset=True)
 
 	data = {
 		"histone_type": histone_type,
@@ -52,12 +52,13 @@ def browse_variant(request, variant):
 	except:
 		return "404"
 
-	HistoneSearch.reset()
+	HistoneSearch(request, {"variant":variant.id}, reset=True)
 
 	data = {
 		"core_type": variant.core_type.id,
 		"variant": variant.id,
-		"name": variant.id
+		"name": variant.id,
+		"sunburst_url": "browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id),
 		"seed_file":"browse/seeds/{}/{}.fasta".format(variant.core_type.id, variant.id),
 		"browse_section": "variant",
 		"description": variant.description,
@@ -68,13 +69,15 @@ def search(request):
 	data = {}
 	if request.method == "POST":
 		result = HistoneSearch(request, request.POST, reset=True, navbar=True)
-		
-		if type(result) == type(redirect): 
-			return result.redirect
-
-		if len(result.errors) > 0:
-			data['errors'] = result.errors
 	else:
+		#Show all sequence
+		result = HistoneSearch.all(request)
+		
+	if type(result) == type(redirect): 
+		return result.redirect
+
+	if len(result.errors) > 0:
+		data['errors'] = result.errors
 		
 	return render(request, 'search.html', data)
 

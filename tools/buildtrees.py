@@ -2,6 +2,8 @@ import os
 from itertools import cycle
 import StringIO
 
+from browse.models import *
+
 from Bio import SeqIO
 from Bio import Phylo
 from Bio.Phylo import PhyloXML
@@ -92,10 +94,18 @@ class BuildTrees(object):
                 render.append(charts)
 
                 styles = ET.Element("styles")
-                for variant in self.get_variants(core_histone):
+                for variant in Variant.objects.filter(core_type=core_histone):
                     color = colors.next()
                     background = ET.Element("{}".format(variant.replace(".","")), attrib={"fill":color, "stroke":color})
-                    label = ET.Element("markdown{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":variant, "labelStyle":"sectorHighlightText"})
+                    
+                    if not variant.id.startswith(core_type.id):
+                        #Remove descriptor
+                        start, name = variant.id[:variant.id.find(core_type.id)], variant.id[variant.id.find(core_type.id):]
+                        if len(start) > 3:
+                            start = start[0]
+                        name = start+name
+
+                    label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name, "labelStyle":"sectorHighlightText"})
                     styles.append(background)
                     styles.append(label)
                 label_sector = ET.Element("sectorHighlightText", attrib={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"})
