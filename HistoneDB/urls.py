@@ -10,21 +10,17 @@ urlpatterns = patterns('browse.views',
     url(r'^browse/$', 'browse_types'),
 
     url(r'^type/([a-zA-Z0-9]+)/$', 'browse_variants'),
-    url(r'^variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
-    url(r'^type/[a-zA-Z0-9]+/variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
+    url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\.]+)/$', 'browse_variant'),
 
     url(r'^search/$', 'search'),
     url(r'^upload/$', 'upload'),
     url(r'^help/$', 'help'),
 
-    #url(r'^data/type/phyloxml/([a-zA-Z0-9]+)/', 'get_phyloxml_of_type'),
+    #Parameters are stored as session variables a GET response
+    url(r'^data/sequences/json$', 'get_sequence_table_data'),
+
     url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
-    url(r'^data/(type)/json/([a-zA-Z0-9]+)/all/$', 'get_sequence_table_data'),
-
     url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', 'get_starburst_json'),
-    url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/all/$', 'get_sequence_table_data'),
-
-    url(r'^treemap/$', 'treemap')
 
 
 )

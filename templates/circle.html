@@ -16,8 +16,18 @@ p#intro {
   margin: 1em 0;
 }
 </style>
-<div id="vis"></div>
+<div class="row">
+  <div class="col-xs-8">
+    <div id="vis"></div>
+  </div>
+  <div class="col-xs-4">
+    <div class="row center-block">
+      <ul class="breadcrumb" id="breadcrumb"></ul>
+    </div>
+  </div>
+</div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="{% static 'browse/js/bootstrap-breadcrumbs.js' %}"></script>
 <script>
 var width = 840,
     height = width,
@@ -51,6 +61,11 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return Math.max(0, d.y ? y(d.y) : d.y); })
     .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
+breadcrumb = $('#breadcrumb').breadcrumb({
+  divider: '/'
+});
+breadcrumb.push("root");
+
 d3.json("{% static sunburst_url %}", function(error, json) {
   if(json.length>1){
     var nodes = partition.nodes({children: json});
@@ -74,24 +89,20 @@ d3.json("{% static sunburst_url %}", function(error, json) {
       .style("fill", function(d) {
         return brightness(d3.rgb(colour(d))) < 125 ? "#eee" : "#000";
       })
-      .attr("dy", "0em")
-      .attr("startOffset",function(d,i){ return d.x; })
-      .attr("xlink:href",function(d,i){return "#s"+i;})
-      .text(function(d){return d.name;})
-      //.attr("transform", function(d) {
-      //  var multiline = (d.name || "").split(" ").length > 1,
-      //      angle = x(d.x + d.dx / 2) * 180 / Math.PI - 90,
-      //      rotate = angle + (multiline ? -.5 : 0);
-      //  return "rotate(" + rotate + ")translate(" + (y(d.y) + padding) + ")rotate(" + (angle > 90 ? -180 : 0) + ")";
-      //})
+      .attr("transform", function(d) {
+        var multiline = (d.name || "").split(" ").length > 1,
+            angle = x(d.x + d.dx / 2) * 180 / Math.PI - 90,
+            rotate = angle + (multiline ? -.5 : 0);
+        return "rotate(" + rotate + ")translate(" + (y(d.y) + padding) + ")rotate(" + (angle > 90 ? -180 : 0) + ")";
+      })
       .on("click", click);
-  /*textEnter.append("tspan")
+  textEnter.append("tspan")
       .attr("x", 0)
       .text(function(d) { return d.depth ? d.name.split(" ")[0] : ""; });
   textEnter.append("tspan")
       .attr("x", 0)
       .attr("dy", "1em")
-      .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });*/
+      .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
  
   function click(d) {
     path.transition()
@@ -121,8 +132,36 @@ d3.json("{% static sunburst_url %}", function(error, json) {
         .each("end", function(e) {
           d3.select(this).style("visibility", isParentOf(d, e) ? null : "hidden");
         });
+    update_breadcrumbs(d);
+  }
+
+  function click_name(d_name){
+    d = $(d_name);
+    click(d);
+  }
+
+  function update_breadcrumbs(d){
+    breadcrumb.reset();
+    for(node in getAncestors(d)){
+      breadcrumb.push(node);
+    }
   }
 });
+
+
+
+// Given a node in a partition layout, return an array of all of its ancestor
+// nodes, highest first, but excluding the root.
+// https://gist.github.com/kerryrodden/7090426
+function getAncestors(node) {
+  var path = [];
+  var current = node;
+  while (current.parent) {
+    path.unshift(current);
+    current = current.parent;
+  }
+  return path;
+}
 
 function isParentOf(p, c) {
   if (p === c) return true;

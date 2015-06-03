@@ -47,7 +47,7 @@ class Sequence(models.Model):
 	reviewed = models.BooleanField()
 
 	def __unicode__(self):
-		return "{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name)
+		return "{} [Varaint={}; Organism={}]".format(self.id, self.variant_name)
 
 	def full_variant_name(self):
 		name = self.id

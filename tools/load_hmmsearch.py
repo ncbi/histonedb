@@ -28,6 +28,7 @@ def taxonomy_from_header(header, gi):
   if match:
     organism = match[-1]
   else:
+    print "No match for {}: {}, searh NCBI".format(gi, header)
     while True:
       try:
         organism = taxonomy_from_gis([gi]).next()
@@ -125,23 +126,17 @@ def parseHmmer(hmmerFile, sequences):
       for header in headers:
         gi = header.split("|")[0]
         taxonomy = taxonomy_from_header(header, gi)
+        print taxonomy.name
         splice_varaint = None
         for i, hsp in enumerate(hit):
-          #if hsp.bitscore < threshold: continue
-          seqs = Sequence.objects.filter(id=gi)
-          if len(seqs) == 1:
+          seqs = Sequence.objects.filter(id=gi).annotate(score=Max("scores__score"))
+          if len(seqs) > 0:
             #Sequence already exists. Compare bit scores, if current bit score is 
             #greater than current, reassign variant and update scores. Else, append score
-            best_score = seqs.aggregate(score=Max("scores"))["score"]
-            if (seq.varaint.id == "Unknown" or hsp.bitscore > best_score) and hsp.bitscore>=variant_model.hmmthreshold:
+            if (hsp.bitscore > best_score.first().score) and hsp.bitscore>=variant_model.hmmthreshold:
               #best scoring
               seq.variant = variant_model
-            """
-            is_best_score = False
-            elif hsp.bitscore == best_score.score and (hsp.hit_start-hsp.hitEnd+1)<(best_score.seqTo-best_score.seqFrom+1):
-              #Edge case: if the scores are equal, choose the sequence that had the longest match in HMM
-              is_best_score = False
-            else:"""
+            
           else:
             sequence = Seq(str(hsp.hit.seq))
             if not variant_model.core_type.id == "H1":

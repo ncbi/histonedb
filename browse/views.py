@@ -14,7 +14,18 @@ from djangophylocore.models import *
 #BioPython
 from Bio import SeqIO
 
-from django.db.models import Min
+from django.db.models import Min, Count
+
+#Set2 Brewer, used in variant colors
+colors = [
+	"#66c2a5",
+    "#fc8d62",
+    "#8da0cb",
+    "#e78ac3",
+    "#a6d854",
+    "#ffd92f",
+    "#e5c494"
+    ]
 
 def treemap(request):
 	return render(request, 'circle.html', {"starburst_url": "data/type/json/{}/species/".format("H2A")})
@@ -32,13 +43,19 @@ def browse_variants(request, histone_type):
 	except:
 		return "404"
 
+	#Store sequences in session, accesed in get_sequence_table_data
 	HistoneSearch(request, {"core_type":histone_type}, reset=True)
+
+	variants = core_histone.variants.annotate(num_sequences=Count('sequences')).all().values_list("id", "num_sequences")
+	variants = [(id, num, color) for (id, num), color in zip(variants, colors)]
+
 
 	data = {
 		"histone_type": histone_type,
 		"histone_description": core_histone.description,
 		"browse_section": "type",
 		"name": histone_type,
+		"variants": variants,
 		"tree_url": "browse/trees/{}.xml".format(core_histone.id),
 		"seed_file":"browse/seeds/{}.fasta".format(core_histone.id),
 		"filter_form": FilterForm(),
@@ -46,7 +63,7 @@ def browse_variants(request, histone_type):
 
 	return render(request, 'browse_variants.html', data)
 
-def browse_variant(request, variant):
+def browse_variant(request, histone_type, variant):
 	try:
 		variant = Variant.objects.get(id=variant)
 	except:
@@ -89,27 +106,15 @@ def upload(request):
 
 	return render(request, 'upload.html', data)
 
-def get_sequence_table_data(request, browse_type, search):
-	"""result = Sequence.objects.filter(variant__core_type="H2A", taxonomy__name="homo sapiens").annotate(evalue=Min("scores__evalue")).order_by("evalue")[:10]
-	result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "species":r.taxonomy.name, "evalue":r.evalue, "header":r.header} for r in result]
-	return JsonResponse({"count": len(result), "rows":result})
-
-	json = {"count":1, "rows":[{"gi": 1, "variant":"H2A.Z", "gene":1, "splice":1, "species":"Homo sapien", "header":"H2A.Z.1.s1 [Homo sapien]", "evalue":1e-100, "program_train":"hmmer3.1b2", "program_test":"hmmer3.1b2"}]}
-	#json = [[1, "H2A.Z", 1, 1, "Homo sapien", "H2A.Z.1.s1 [Homo sapien]", 600.2, 1e-100, "hmmer3.1b2"]]
-	return JsonResponse(json)"""
+def get_sequence_table_data(request):
+	"""Downloads the previos search and converts into json required by Bootstrap table
+	"""
 
 	if request.method == "GET":
 		parameters =  request.GET.dict()
 	else:
 		#Returning 'false' stops Bootstrap table
 		return "false"
-
-	if browse_type == "type":
-		parameters["core_type"] = search
-		parameters["core_type_search_type"] = "is"
-	elif browse_type == "variant":
-		parameters["variant"] = search
-		parameters["variant_search_type"] = "is"
 
 	#Continues to filter previous search, unless paramters contains key 'reset'
 	results = HistoneSearch(request, parameters)
@@ -119,6 +124,22 @@ def get_sequence_table_data(request, browse_type, search):
 		return "false"
 	
 	return JsonResponse(results.get_dict())
+
+def get_all_scores(request, ids=None):
+	if ids is None and request.method == "GET" and "id" in request.GET:
+		ids = request.GET["id"]
+	else:
+		#Returning 'false' stops Bootstrap table
+		return "false"
+	variants = Variant.objects.all().values_list("id", flat=True)
+	rows = [["none"]*len(ids) for _ in xrange(len(variants))]
+	for i, id in enuemrate(ids):
+		sequence = Sequence.objects.get(id=id)
+		for j, score in enumerate(sequence.scores.all()):
+			rows[i][variants.index(score.variant.id)] = score.score
+
+	return JsonResponse({"total":len(rows), "rows":rows})
+
 
 def get_starburst_json(request, browse_type, search, debug=False):
 	"""

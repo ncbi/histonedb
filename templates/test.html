@@ -3,9 +3,10 @@
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="fasle">View/Download Selected <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#" data-toggle="modal" data-target="#msa_modal">View alignment/secondary structure</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#scores_modal">View against all profiles</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#msa_modal" id="msa_modal">View alignment/secondary structure</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#scores_modal" id="scores_modal">View against all profiles</a></li>
                 <li><a href="#">Download FASTA</a></li>
+                <li><a href="#" id="entrez">View in Entrez</a></li>
             </ul>
         </div>
         <div class="btn-group" role="group" aria-label="...">
@@ -17,7 +18,7 @@
 <div class="container" style="margin-top:5px;">
     <table id="sequence_table"
            data-toggle="table"
-           data-url="{% url 'browse.views.get_sequence_table_data' browse_section name %}"
+           data-url="{% url 'browse.views.get_sequence_table_data' %}"
            data-show-columns="true"
            data-search="true"
            data-show-toggle="true"
@@ -79,3 +80,28 @@
   </div>
 </div>
 
+<script>
+var $table = $('#sequence_table')
+    $entrez = $('#entrez');
+
+    $(function () {
+        function getSelectedIDs(){
+          selections = $table.bootstrapTable('getSelections');
+          var ids = [];
+          for (var i = 0; i < selections.length; i++) {
+            ids.push(selections[i].gi);
+          }
+          return ids;
+        };
+        $
+        $entrez.click(function () {
+            ids = getSelectedIDs();
+            alert('getSelections: ' + ids);
+            url = "http://www.ncbi.nlm.nih.gov/protein/?term=";
+            for (var i = 0; i < ids.length; i++) {
+              url += ids[i]+"[uid]+OR+"
+            }
+            document.location.href = url.substring(0, url.length-4);
+        });
+    });
+</script>
