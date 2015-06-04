@@ -22,12 +22,14 @@ The nucleosome core particle is formed from an octamer of four core histone type
 
 Fig 1. The Nucleosome core particle. H2A is yellow, H2B is red, H3 is blue, and H4 is green. H1 is not shown. Figure created by \ref{Shaytan2015} 
 
-A histone variant is defined as a non-allelic protein isoforms that forms monophyletic clade. Each varaint  has a specific structure and function that is different than the canonical. It is important to note that histone variants can become post translationally modifications (PTMs), but this database does not include PTMs at this time.
+A histone variant is defined as a non-allelic protein isoforms that forms monophyletic clade. Each varaint  has a specific structure and function that is different than the canonical. It is important to note that histone variants can become post translationally modifications (PTMs), but this database does not include PTMs at this time. 
+
+Another important aspect of this database is to promote the new nomenclature for histone variants defined by Talbert et al based on phylogeny. If a clade is further separated into smaller clades, those are defined as genes and splice isoforms. Each branch point becomes a period in the new notation.
 
 #### H2A ####
-There are six structurally  variants for H2A. H2A.X is the most common, with notable sequence motif ‘SQ(E/I)Y’. H2A.X is known to be involved with DNA damage response, chromatin remodelling, and X chromosome inactivation in somatic cells. H2A.X, however, is the only variant that is not monophyletic; its has evolved several times, but each version has similar functions. Currently only the final motif SQEY has a PDB.
+There are six structurally distinct variants for H2A. H2A.X is the most common, with notable sequence motif ‘SQ(E/I)Y’. H2A.X is known to be involved with DNA damage response, chromatin remodelling, and X chromosome inactivation in somatic cells. H2A.X, however, is the only variant that is not monophyletic; its has evolved several times, but each version has a similar structure and function. Currently only the final motif SQEY has a PDB.
 
-H2A.Z is known for transcription regulation, DNA repair, suppression of antisense RNA, and Polymerase II recruitment. It has a large hydrophobic patch and a sequence motif of ‘DEELD.’ Two H2A.Z structures have been solved: H2A.Z.1 and H2A.Z.2.
+H2A.Z is known for transcription regulation, DNA repair, suppression of antisense RNA, and Polymerase II recruitment. Notabel features for H2A.Z include a large hydrophobic patch, a sequence motif of ‘DEELD,’ a one amino acid insertion in loop1,and a one amino acid deletion in the docking.
 
 macroH2A contains a histone histone fold, c-term macro domain, can bind ADP, lost in several lineages including Caenorhabditis and Drosophila \ref{Talbert2012}, X-inactivation, Positive or negative transcriptional regulation. PDBs of each domain, but linker is too flexible to be crystalized
 
@@ -66,49 +68,33 @@ H4.V: found in Kinetoplastids
 #### H1 ####
 H1
 
-Each variant has distinguishable feature that can be captured by a Hideen Markov Models. All of the sequences from the non-redundant (nr) database have been classified by our variant models and added in the HistoneDB so it can be easily searchable by variants.
+Each variant has distinguishable features that can be captured by a Hidden Markov Models. All of the sequences from the non-redundant (nr) database have been classified by our variant models and added into the HistoneDB so it can be easily searchable by variants.
 
-An important aspect of this database is to promote the new nomenclature for histone variants defined by Talbert et al based on phylogeny. If a clade is it monophyletic, it is defined as a histone variant. If a clade is further separated into smaller clades, those are defined as genes and splice isoforms. Each branch point becomes a period in the new notation. 
+ 
 
 However, if you are still uncomfortable with new naming scheme, you can search the database using the old naming schemes. We will tell you the new correct name, so you learn to adopt the new standard.
 
 While this update does not deal with histone-like proteins in archaea and bacteria, you can still access the sequences collected for these types developed for the previous version of the database.
 
 ## Database and Software ##
-### Data sources and histone variant identification ###
-The sequences from H2A, H2B, H3, H4, and H1 used to create the phylogenetic trees in Talbert et. al, were separated into files containing each variant as defined in Talbert et. al. These sequences were identified using tblastn or blastp (usually psi-blast) starting with known variants (often the human ones,
-or Arabidopsis) and selected proteins based on the goal of getting broad
-phylogenetic representation. I often used the taxonomic limiting box in
-Blast to target certain groups or exclude the abundance of identical
-vertebrate proteins. For more divergent eukaryotic groups like Alveolates
-and Excavates, I often used an identified histone within the group to
-search for others. This strategy works sometimes, particularly with
+### Data sources ###
+Sequences with a broad phylogenetic representation of each variant of H2A, H2B, H3, H4, and H1 were manually curated using blast \ref{Talbert2012}. Starting with known variants, e.g. from Human or Arabidopsis, we used tblastn and blastp with psi-blast to search nr for similar variants. Model organisms were favored as well as non-partial sequences, sequences with correct splicing.In most cases, the taxonomic limiting box was used to target certain groups or exclude the abundance of identical vertebrate proteins. For more divergent eukaryotic groups like Alveolates and Excavates, an identified histone within the group was used to search for others. This strategy works well with
 closely related organisms, but in other cases, it simply increases the
 divergence between proteins that have diverged from a "consensus"
-sequence in different amino acids. For example when looking for cenH3s,
-it is almost always better to use a canonical H3 (rather than a cenH3) to
-search against a targeted taxonomic group and look for hits that only
-have about 50% identity, and check the alignments for a longer loop1 and
-other signatures of cenH3s. Similarly, H2A.Zs are distinguished from other H2As by both certain amino acid signatures and a one amino acid
-insertion in loop1 and a one amino acid deletion in the docking domain,
-which can be quickly seen in blast alignments. Beyond a desire to get
-broad phylogenetic representation, the choice of variants was fairly
-arbitrary, though I usually tried to include favorite model organisms. I
-generally avoided anything that looked like it might be a partial
-sequence, mis-splicing event or was otherwise suspicious, though that is
-obviously a judgement call.” - Talbert personal communication, will summarize
+sequence in different amino acids. For example, when looking for cenH3s,
+we used a canonical H3, rather than a cenH3, to search against a targeted taxonomic group and indentified hits that had about 50% identity. We also made sure that the hits conatined notable sequence features that are known for each variant. Thes sequences were also used to make phylogentic trees in \ref{Talbert2012}. 
 
+Previous variant names were manually extracted from \ref{Talbert2012}.
+
+### Histone variant identification ###
 Once each variant was in its respective FASTA file, I aligned each separately to create seed alignments for each variant. These were checked manually to make sure they had a wide taxonomic distribution and no large insertions in the core histone fold regions. These seed sequences were then used to train profile Hidden Markov Models, using HMMER 3.1b2 hmmbuild. Next, all of the variant models were combined into one file and pressed using HMMER 3.1b2 hmmpress. Finally, we used the combined HMM file to search all of the NCBI non-redundant (nr) database. 
 
 Further we defined cutoffs scores for each variant based on 95% specificity. Positive training sets were defined as the seed for the given varaint and negative examples we defined as a combination of all seeds except the given varaint \fig{H2AZ_cutoff). Please see supplematary information for details about evaluting each varaint model.
 
-To find cananical histones and unknown varaints we built core histone type profile HMMs using the alignments from the original Histone Database and searched nr again. Sequences that were not already matched to a varaint, and above an E-Value of 0.1, were saved into the HistoneDB with varaint 'Unknown.' 
-
-Previous varaint names were manually extracted from \ref{Talbert2012}
+To find canonical histones and unknown varaints we built core histone type profile HMMs using the alignments from the original Histone Database and searched nr again. Sequences that were not already matched to a varaint, and above an E-Value of 0.1, were saved into the HistoneDB with variant 'Unknown.'
 
 ### Software ###
 The HistoneDB 2.0 is now written in Django, a high-level Python Web Framework, with a MySQL backend. The project has two applications, ‘browse,’ and ‘djangophylcore.’ Browse contains the HistoneDB models (equivalent to database tables), views (python functions to display each page), and templates (HTML files). Djangophylocore is a previously developed django application developed at University Montpellier to store the NCBI taxonomy database in a Django relational database using an algorithm similar to Modified Preorder Tree Traversal. The scheme for the HistoneDB Django database can be seen in \ref{django_schema}.
-
 
 Figure x. The HistoneDB database schema. 
 
@@ -141,22 +127,27 @@ You are presented with the GI, Variant, Gene, Splice, Species, Header, and Score
 There are two types of search, ‘filter’ and ‘simple search’. Filter is the standard search, where you presented by database column names and filter based on that. This is used in Advanced Search and the All Sequences Advanced Filter. Simple search is when you have a single textbox that filters the entire database, which can be seen on the navigation bar and the All Sequences search textbox. The simple search searches in order GI number, core histone type, variant, old name schemes for variant, taxonomy, sequence headers, and finally sequence motifs, stopping if a match is made. If the search was from the navigation bar and the result was a core histone type or variant, the page is redirected to its respective browse page. 
 
 ## Results and Discussion ##
-We were able to classify most histone sequences by variant in the nr database. Our models however, are unable to distinguish between paralogous genes and splice isoforms, which we would like to study further. For the varaints we were able to classify, we were able to show
+We were able to classify most histone sequences by variant in the nr database. Our models however, are unable to distinguish between paralogous genes and splice isoforms, which we would like to study further. For the varaints we were able to classify, we were able to show.
+
+
  
 We were able to distinguish between three different H2A variants: H2A.B, H2A.L, H2A.M. Most of the sequences are classified as H2A.B in nr, but this is missing the two other variants they might be. H2A.M is known to bind to Huntingtin Protein M, but not much is known about its specific function. One problem
 
 ## Conclusion ##
-This update of the HIstoneDB will enable chromatin research to …
+The HistoneDB has been redesigned to organize the histones in nr by variant; provide reference alignments for each variant; understand how the variants evolved; find orthologs of variants in other species; and finally, promote the new histone varaint nomenclature \ref{Talbert2012}. These additions will enable chromatin researches to understand how histone varaints have evolved, . 
 
-This will ecourage people to use the new phylogeny-based nomencalture deinfed by Talbert et. al.
+It is still unknown which histone variants perfer to form complexes. 
 
-It is still unknown which histone variants prefer forming complex together. This database will allow histone researchers to 
+
+This database will allow histone researchers to
 
 ## Funding ##
 This work was supported by the Intramural Research Program of the National Library of Medicine, NIH. ED is supported by the Oak Ridge Institute for Science and Education. AS is supported by the US-Russia Collaboration in the Biomedical Sciences NIH visiting fellows program.
 
 ## Acknowledgements ##
-We would like to thank Franco Simonetti for discussions about Django and the Fellows at NCBI for useful discussions and beta testing.
+We would like to thank Franco Simonetti for discussions about Django and the Fellows at NCBI for useful discussions and beta testing. 
+
+ED wrote the manuspript. PT collected the sequences and wrote the 'data sources' section via email communication, which was summrized. AS, LM, DL, and AP supervised the project. 
 
 Conflict of interest. None declared.
 
