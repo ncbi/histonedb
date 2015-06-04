@@ -16,7 +16,7 @@ from djangophylocore.models import *
 #BioPython
 from Bio import SeqIO
 
-from django.db.models import Min, Count
+from django.db.models import Min, Max, Count
 
 #Set2 Brewer, used in variant colors
 colors = [
@@ -133,20 +133,26 @@ def get_sequence_table_data(request):
 
 def get_all_scores(request, ids=None):
 	if ids is None and request.method == "GET" and "id" in request.GET:
-		ids = request.GET["id"]
+		ids = request.GET.getlist("id")
 	else:
 		#Returning 'false' stops Bootstrap table
 		return "false"
-	variants = Variant.objects.all().values_list("id", flat=True)
+	
+	variants = list(Variant.objects.all().values_list("id", flat=True))
 	rows = [["none"]*len(ids) for _ in xrange(len(variants))]
-	for i, id in enuemrate(ids):
+	for i, id in enumerate(ids):
 		try:
 			sequence = Sequence.objects.get(id=id)
 		except:
 			return "404"
-		scores = sequence.scores.values("variant").annotate(highest=Max("scores__score"))
-		for variant in enumerate(scores):
-			rows[i][variants.index(score.variant.id)] = score.score
+		scores = sequence.scores.values("variant").annotate(score=Max("score"))
+
+		for j, score in enumerate(scores):
+			try:
+				rows[i][variants.index(u'{}'.format(score["variant"]))] = score["score"]
+			except Exception as e:
+				raise RuntimeError("{}, {}, {}".format(e,score["variant"],str(variants)))
+			
 
 	return JsonResponse({"total":len(rows), "rows":rows})
 

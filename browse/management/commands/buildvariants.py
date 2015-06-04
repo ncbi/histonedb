@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings
 from browse.models import *
-from tools.load_hmmsearch import parseHmmer
+from tools.load_hmmsearch import load_variants, load_cores
 from tools.test_model import test_model
 import subprocess
 import os, sys
@@ -9,8 +10,8 @@ from Bio import SeqIO
 
 class Command(BaseCommand):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of this project and using those HMMs to search the NR database. To add or update a single variant, you must rebuild everything using the --force option'
-    seed_directory = os.path.join("static", "browse", "seeds")
-    hmm_directory = os.path.join("static", "browse", "hmms")
+    seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    hmm_directory = os.path.join(settings.STATIC_ROOT, "browse", "hmms")
     combined_varaints_file = os.path.join(hmm_directory, "combined_variants.hmm")
     combined_core_file = os.path.join(hmm_directory, "combined_cores.hmm")
     pressed_combined_varaints_file = os.path.join(hmm_directory, "combined_variants.h3f")
@@ -46,17 +47,34 @@ class Command(BaseCommand):
             action="store_true",
             help="Build and evaluate only core HMMs. Default False, evalute both core and variant HMMs")
 
+        parser.add_argument(
+            "--variant",
+            default=None,
+            nargs="+",
+            help="Only process this varaint. Can enter multiple")
+
+        parser.add_argument(
+            "--test_models",
+            default=False,
+            action="store_true",
+            help="Only test the models. This will updates the variant threshold and aucroc in model.")
+
 
 
     def handle(self, *args, **options):
         self.get_nr(force=options["nr"])
 
-        if not options["force"] and os.path.isfile(self.results_file):
+        if options["test_models"]:
+            self.build(only_cores=options["only_cores"], only_variants=options["only_variants"], varaints=options["variants"])
+
+        if not options["force"] and \
+          ((not options["only_cores"] and os.path.isfile(self.results_file)) or \
+            (not options["only_variants"] and os.path.isfile(self.core_results_file))):
             self.load()
 
-        elif not options["force"] and 
-          ((not options["only_cores"] and os.path.isfile(self.pressed_combined_varaints_file)) or
-            (not options["only_varaints"] and os.path.isfile(self.pressed_combined_combined_file)):
+        elif not options["force"] and \
+          ((not options["only_cores"] and os.path.isfile(self.pressed_combined_varaints_file)) or \
+            (not options["only_variants"] and os.path.isfile(self.pressed_combined_cores_file))):
             self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
             if not options["only_cores"]: 
                 self.search_varaint()
@@ -83,22 +101,24 @@ class Command(BaseCommand):
         """Download nr if not present"""
         if not os.path.isfile(self.nr_file) or force:
             print >> self.stdout, "Downloading nr..."
-            subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz", ">", "nr.gz"])
-            subprocess.call(["tar", "-xf", "nr.gz"])
-            os.remove("nr.gz")
+            with open("nr.gz", "w") as nrgz:
+                subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
+            subprocess.call(["gunzip", "nr.gz"])
 
     def build(self, only_cores=False, only_variants=False):
         """Build HMMs"""
         print >> self.stdout, "Building HMMs..."
         
-        with open(self.combined_varaints_file, "w"), open(self.combined_core_file, "w") as combined_variants, combine_core:
+        with open(self.combined_varaints_file, "w") as combined_variants, open(self.combined_core_file, "w") as combined_core:
             for core_type, seed in self.get_seeds(core=True):
                 if seed is None and not only_variants:
                     #Build Core HMM
                     core_hmm_file = os.path.join(self.hmm_directory, "{}.hmm".format(core_type))
-                    self.build_hmm(core_type, core_hmm_file, "{}.fasta".format(core_hmm_file[:-6]))
+                    seed = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
+                    self.build_hmm(core_type, core_hmm_file, seed)
+
                     with open(core_hmm_file) as core_hmm:
-                        print >> combine_core, core_hmm.read().rstrip()
+                        print >> combined_core, core_hmm.read().rstrip()
                     continue
 
                 if only_cores:
@@ -114,6 +134,7 @@ class Command(BaseCommand):
                     print >> combined_variants, hmm.read().rstrip()
 
     def build_hmm(self, name, db, seqs):
+        print ["hmmbuild", "-n", name, db, seqs]
         subprocess.call(["hmmbuild", "-n", name, db, seqs])
 
     def press_variants(self):
@@ -152,10 +173,10 @@ class Command(BaseCommand):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             core_type = os.path.basename(root)
             if i==0:
-                if core:
-                    yield core_type, None
                 #Skip parent directory, only allow variant hmms to be built/searched
                 continue
+            if core:
+                yield core_type, None
             for seed in files: 
                 if not seed.endswith(".fasta"): continue
                 yield core_type, seed
@@ -166,10 +187,12 @@ class Command(BaseCommand):
             if seed1 == None:
                 #Test Core HMM
                 variant = "canonical{}".format(core_type)
+                positive_path = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
                 if only_variants: continue
             else:
                 #Test Varaint HMM
                 variant = seed1[:-6]
+                positive_path = os.path.join(self.seed_directory, core_type, seed1)
                 if only_cores: continue
             
             hmm_file = os.path.join(self.hmm_directory, core_type, "{}.hmm".format(variant))
@@ -184,7 +207,7 @@ class Command(BaseCommand):
             negative_examples = os.path.join(output_dir, "{}_negative_examples.out".format(variant))
 
             with open(positive_examples_file, "w") as positive_file:
-                for s in SeqIO.parse(os.path.join(self.seed_directory, core_type, seed1), "fasta"):
+                for s in SeqIO.parse(positive_path, "fasta"):
                     s.seq = s.seq.ungap("-")
                     SeqIO.write(s, positive_file, "fasta")
             

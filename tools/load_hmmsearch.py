@@ -128,25 +128,32 @@ def load_variants(hmmerFile, sequences, reset=True):
       for header in headers:
         gi = header.split("|")[0]
         taxonomy = taxonomy_from_header(header, gi)
-        print taxonomy.name
         for i, hsp in enumerate(hit):
           seqs = Sequence.objects.filter(id=gi).annotate(score=Max("scores__score"))
-          if len(seqs) > 0:
+          if len(seqs) > 0: 
             #Sequence already exists. Compare bit scores, if current bit score is 
             #greater than current, reassign variant and update scores. Else, append score
             seq = seqs.first()
             if (hsp.bitscore > seq.score) and hsp.bitscore>=variant_model.hmmthreshold:
               #best scoring
               seq.variant = variant_model
-            
+              seq.sequence = str(hsp.hit.seq)
+              seq.save()
+              update_features(seq)
+              print "UPDATED VARIANT"
           else:
             sequence = Seq(str(hsp.hit.seq))
-            seq = add_sequence(variant_model, taxonomy, header, sequence)
-          
+            seq = add_sequence(
+              gi,  
+              variant_model if hsp.bitscore >= variant_model.hmmthreshold else unknown_model, 
+              taxonomy, 
+              header, 
+              sequence)
+          print seq
           #Add a score even if it is a below threshold
           add_score(seq, variant_model, hsp)
 
-def parseCores(hmmerFile):
+def load_cores(hmmerFile):
   unknown_model = Variant.objects.get(id="Unknown")
   score_num = 0
   for core_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
@@ -170,32 +177,37 @@ def parseCores(hmmerFile):
         for i, hsp in enumerate(hit):
           try:
             seq = Sequence.objects.get(gi=gi).annotate(score=Max("scores__score"))
-            if hsp.bitscore >= canonical_model.hmmthreshold and 
-                (seq.variant.id == "Unknown" or  
-                  ("canonical" in seq.variant.id and hsp.bitscore > seq.score) :
+            if hsp.bitscore >= canonical_model.hmmthreshold and \
+                (seq.variant.id == "Unknown" or  \
+                  ("canonical" in seq.variant.id and hsp.bitscore > seq.score)) :
               seq.variant = canonical_model
-              add_score(seq, canonical_model, hsp)
+              seq.sequence = str(hsp.hit.seq)
+              update_features(seq)
               continue
           except KeyboardInterrupt:
             raise
           except:
             #only add sequence if it was not found by the variant models
             sequence = Seq(str(hsp.hit.seq))
-            seq = add_sequence(canonical_model, taxonomy, header, sequence)
-            add_score(seq, canonical_model, hsp)
+            seq = add_sequence(
+              gi,  
+              canonical_model if hsp.bitscore >= canonical_model.hmmthreshold else unknown_model, 
+              taxonomy, 
+              header, 
+              sequence)
+          add_score(seq, canonical_model, hsp)
 
 
-def add_sequence(variant_model, taxonomy, header, sequence):
-  if not variant_model.core_type.id == "H1":
+def add_sequence(gi, variant_model, taxonomy, header, sequence):
+  if not variant_model.core_type.id == "H1" and not variant_model.core_type.id == "Unknown":
     hist_identified, ss_position, sequence = get_hist_ss(sequence, variant_model.core_type.id, save_alignment=True)
     sequence = str(sequence.seq)
   else:
-    hist_identified = "H1",
     ss_position = defaultdict(lambda: (None, None))
     sequence = str(sequence)
   seq = Sequence(
     id       = gi,
-    variant  = variant_model if hsp.bitscore >= variant_model.hmmthreshold else unknown_model,
+    variant  = variant_model,
     gene     = None,
     splice   = None,
     taxonomy = taxonomy,
@@ -204,6 +216,16 @@ def add_sequence(variant_model, taxonomy, header, sequence):
     reviewed = False,
     )
   seq.save()
+  return seq
+
+def update_features(seq,ss_position=None, variant_model=None):
+  if ss_position is None and variant_model is not None:
+    hist_identified, ss_position, sequence = get_hist_ss(sequence, variant_model.core_type.id, save_alignment=True)
+    sequence = str(sequence.seq)
+  if ss_position is None: return
+
+  if seq.features:
+    seq.features.delete()
 
   if not variant_model.core_type.id == "H1":
     features = Features(
@@ -242,7 +264,6 @@ def add_sequence(variant_model, taxonomy, header, sequence):
       )
     features.save()
 
-    return seq
 
 def add_score(seq, variant_model, hsp):
   score_num = Score.objects.count()+1

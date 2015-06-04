@@ -47,16 +47,16 @@ class Sequence(models.Model):
 	reviewed = models.BooleanField()
 
 	def __unicode__(self):
-		return "{} [Varaint={}; Organism={}]".format(self.id, self.variant_name)
+		return "{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name, self.taxonomy.name)
 
+	@property
 	def full_variant_name(self):
-		name = self.id
+		name = self.variant.id
 		if self.gene:
 			name += ".{}".format(self.gene)
 		if self.splice:
 			name += ".s{}".format(self.splice)
 		return name
-	varaint_name = property(full_variant_name)
 
 class Score(models.Model):
 	id              = models.IntegerField(primary_key=True)

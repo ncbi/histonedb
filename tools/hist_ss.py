@@ -119,7 +119,7 @@ core_histones = [
     SeqRecord(templ_H2B,id='H2B',name='H2B')
 ]
 
-def get_hist_ss(test_seq, hist_type='Unknown', debug=True, save_alignment=False):
+def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False):
     """Returns sequence elements in histone sequence, all numbers assume first element in seq has number 0!!! Not like in PDB"""
     n2=str(uuid.uuid4())
     test_record = SeqRecord(test_seq, id='Query')
@@ -130,7 +130,7 @@ def get_hist_ss(test_seq, hist_type='Unknown', debug=True, save_alignment=False)
             SeqIO.write(core_histones, "core_histones_1kx5.faa", "fasta")
             print "makeblastdb"
             subprocess.call(["makeblastdb", "-dbtype", "prot", "-in", "core_histones_1kx5.faa", "-out", "core_histones_1kx5.db"])
-        blastp_cline = NcbiblastpCommandline(query="query_{}.fasta".format(n2), db="core_histones_1kx5.db", evalue=100,outfmt=5, out="query_{}.xml".format(n2))
+        blastp_cline = NcbiblastpCommandline(query="query_{}.fasta".format(n2), db="core_histones_1kx5.db", evalue=10000000,outfmt=5, out="query_{}.xml".format(n2))
         stdout, stderr = blastp_cline()
         with open("query_{}.xml".format(n2)) as results_file:
             blast_results = [(alignment.title, hsp.expect, hsp) for blast_record in NCBIXML.parse(results_file) for alignment in blast_record.alignments for hsp in alignment.hsps]

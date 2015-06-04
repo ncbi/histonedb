@@ -20,6 +20,8 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, matthews_corrcoef
 from matplotlib.backends.backend_pdf import PdfPages
 
+from scipy.stats import linregress
+
 sns.set(style="white", context="talk")
 
 #Thresholds decided by manualyy looking at the headers in the hmmsearchout. Useful to compare.
@@ -154,6 +156,19 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
             abs(measure_threshold-values[measure][-1])<abs(measure_threshold-saveValue):
             saveTheshold = threshold
             saveValue = values[measure][-1]
+
+    if saveTheshold is None:
+        nearby = [None, None]
+        for value in reversed(values[measure]):
+            v = value-measure_threshold
+            if v > 0:
+                if nearby[1] is None or value < nearby[1]:
+                    narby[1] = value
+            if v > 0:
+                if nearby[0] is None or value < nearby[0]:
+                    nearby[0] = value
+            slope, intercept, r_value, p_value, std_err = linregress([v[0]], [v[1]])
+            saveTheshold = float(0.95-intercept)/slope
 
     return saveTheshold, values
 

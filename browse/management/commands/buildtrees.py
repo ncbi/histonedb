@@ -13,14 +13,14 @@ from Bio.Phylo import PhyloXMLIO
 import xml.etree.ElementTree as ET
 ET.register_namespace("", "http://www.phyloxml.org/1.10/phyloxml.xsd")
 
-colors = cycle([
+colors = [
     "#66c2a5",
     "#fc8d62",
     "#8da0cb",
     "#e78ac3",
     "#a6d854",
     "#ffd92f",
-    "#e5c494"])
+    "#e5c494"]
 
 class Command(BaseCommand):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of thi project and using those HMMs to search the NR database.'
@@ -94,8 +94,8 @@ class Command(BaseCommand):
                 render.append(charts)
 
                 styles = ET.Element("styles")
-                for variant in Variant.objects.filter(core_type__id=core_histone):
-                    color = colors.next()
+                for i, variant in enumerate(Variant.objects.filter(core_type__id=core_histone)):
+                    color = colors[i]
                     background = ET.Element("{}".format(variant.id.replace(".","")), attrib={"fill":color, "stroke":color})
                     if not variant.id.startswith(core_histone):
                         #Remove descriptor

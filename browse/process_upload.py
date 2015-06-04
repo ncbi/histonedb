@@ -6,6 +6,7 @@ from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIXML
 
 from browse.models import *
+from django.conf import settings
 
 class TooManySequences(RuntimeError):
     pass
@@ -37,12 +38,12 @@ def process_upload(type, sequences, format):
     os.remove(seq_file)
 
     return {format: result}
-"""
+
 def upload_blastp(seq_file):
-    output="media/{}.xml".format(seq_file[:-6])
+    output= os.path.join(settings.MEDIA_ROOT, "{}.xml".format(seq_file[:-6]))
     blastx_cline = NcbiblastxCommandline(
-        query=seq_file, db="static/browse/blast/HistoneDB.db", evalue=0.01,
-        outfmt=5, out=output)
+        query=seq_file, db=os.path.join(settings.STATIC_ROOT, "static", "browse", "blast", "HistoneDB.db"), 
+        evalue=0.01, outfmt=5, out=output)
     stdout, stderr = blastx_cline()
     result = {"total":0, "rows":[]}
     with open(output) as result_handle:
@@ -71,10 +72,10 @@ def upload_blastp(seq_file):
     return result
 
 def upload_hmmer(seq_file, evalue=10):
-    variant_output= os.path.join("media", "{}_variant.out".format(seq_file[:-6]))
-    core_output= os.path.join("media", "{}_core.out".format(seq_file[:-6]))
-    variantdb = os.path("static", "browse", "hmms", "combined_variants.hmm")
-    coredb = os.path("static", "browse", "hmms", "combined_cores.hmm")
+    variant_output= os.path.join(settings.MEDIA_ROOT, "{}_variant.out".format(seq_file[:-6]))
+    core_output= os.path.join(settings.MEDIA_ROOT, "{}_core.out".format(seq_file[:-6]))
+    variantdb = os.path(settings.STATIC_ROOT, "browse", "hmms", "combined_variants.hmm")
+    coredb = os.path(settings.STATIC_ROOT, "browse", "hmms", "combined_cores.hmm")
 
     subprocess.call(["hmmsearch", "-o", variant_output, "-E", str(evalue), "--cpu", "4", "--notextw", variantdb, seq_file])
     subprocess.call(["hmmsearch", "-o", core_output, "-E", str(evalue), "--cpu", "4", "--notextw", variantdb, seq_file])
@@ -107,5 +108,5 @@ def upload_hmmer(seq_file, evalue=10):
     os.remove(core_output)
 
     return results
-"""
+
 
