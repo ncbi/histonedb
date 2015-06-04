@@ -4,7 +4,7 @@
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="fasle">View/Download Selected <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#" data-toggle="modal" data-target="#msa_modal" id="msa_modal">View alignment/secondary structure</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#scores_modal" id="scores_modal">View against all profiles</a></li>
+                <li><a href="#" id="scores_modal_button">View against all profiles</a></li>
                 <li><a href="#">Download FASTA</a></li>
                 <li><a href="#" id="entrez">View in Entrez</a></li>
             </ul>
@@ -71,7 +71,7 @@
         <h4 class="modal-title" id="all_profiles">All Profile Scores</h4>
       </div>
       <div class="modal-body">
-        {# BioJS msa with features for secondary structures #}
+        <table id="scores_table" style="overflow: auto;"></table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -81,7 +81,8 @@
 </div>
 
 <script>
-var $table = $('#sequence_table')
+var $table = $('#sequence_table'),
+    $scores_modal_button = $('#scores_modal_button')
     $entrez = $('#entrez');
 
     $(function () {
@@ -93,10 +94,24 @@ var $table = $('#sequence_table')
           }
           return ids;
         };
-        $
+        $scores_modal_button.click(function() {
+          ids = getSelectedIDs();
+          columns = [];
+          for (var i = 0; i < ids.length; i++) {
+            columns.push({field:ids[i], title:ids[i]});
+          }
+          $('#scores_table').bootstrapTable({
+              url: "{% url 'browse.views.get_all_scores' %}"+"?"+$.param({id: ids}),
+              columns: columns,
+          });
+          $('#scores_modal').modal('show');
+        })
         $entrez.click(function () {
             ids = getSelectedIDs();
-            alert('getSelections: ' + ids);
+            if(ids.length == 0){
+              alert("You must select at least one sequence!");
+              return;
+            }
             url = "http://www.ncbi.nlm.nih.gov/protein/?term=";
             for (var i = 0; i < ids.length; i++) {
               url += ids[i]+"[uid]+OR+"

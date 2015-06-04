@@ -11,7 +11,7 @@
 	  {% endif %}
   </div>
   {% if not result %}
-	<form action="#" method="post">{% csrf_token %}
+	<form action="{% url 'browse.views.search' %}" method="post">{% csrf_token %}
       	<div class="modal-body">
         {{ search_form.as_p }}
       	</div>
@@ -20,7 +20,7 @@
       	</div>
     </form>
   {% else %}
-  	{% include "sequences.html" %}
+  	{% include "test.html" %}
   {% endif %}
 </div>
 {% endblock %}

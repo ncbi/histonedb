@@ -12,19 +12,21 @@
 	  {% endif %}
   </div>
   {% if not result %}
-	<form action="#" method="post">{% csrf_token %}
+	  <form action="{% url 'browse.views.upload' %}" method="post">{% csrf_token %}
       	<div class="container">
-          <div class="row">
-            <div class="col-xs-6">Sequences:</div>
-            <div class="col-xs-6"><textarea id="seq" class="reset" rows="5" cols="80" name="QUERY" ></textarea>
-          </div>
-          <div class="row">
-            <div class="col-xs-6">Or, upload file:</div>
-            <div class="col-xs-6"><input type="file" id="upl" name="QUERYFILE" /></div>
-          </div>
+          {% for field in form %}
+            <div class="row">
+              <div class="col-xs-6">
+                {{ field.label_tag }}
+              </div>
+              <div class="col-xs-6">
+                {{ field }}
+              </div>
+            </div>
+          {% endfor %}
       	</div>
       	<div class="modal-footer">
-        	<button type="button" class="btn btn-primary disabled">Upload</button>
+        	<button type="submit" class="btn btn-primary">Upload</button>
       	</div>
     </form>
   {% else %}

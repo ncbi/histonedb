@@ -2,10 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.shortcuts import get_list_or_404
 
-from browse.forms import SearchForm, FilterForm
+from browse.forms import SearchForm, FilterForm, UploadFileForm
 from browse.search import HistoneSearch
+from browse.process_upload import process_upload
 
 #Django libraires
 from browse.models import *
@@ -90,19 +92,23 @@ def search(request):
 		#Show all sequence
 		result = HistoneSearch.all(request)
 		
-	if type(result) == type(redirect): 
+	if result.redirect: 
 		return result.redirect
-
-	if len(result.errors) > 0:
-		data['errors'] = result.errors
 		
-	return render(request, 'search.html', data)
+	return render(request, 'search.html', {"result":result})
 
 def upload(request):
 	if request.method == "POST":
-		data = {'result':None}
+		type = request.POST.get("type")
+		if request.POST.get("sequences"):
+			format = "text"
+			sequences = request.POST["sequences"]
+		elif request.POST.get("file"):
+			format="file"
+			sequences = request.POST["file"]
+		data = process_upload(type, sequences, format)
 	else:
-		data = {}
+		data = {'form':UploadFileForm()}
 
 	return render(request, 'upload.html', data)
 
@@ -134,8 +140,12 @@ def get_all_scores(request, ids=None):
 	variants = Variant.objects.all().values_list("id", flat=True)
 	rows = [["none"]*len(ids) for _ in xrange(len(variants))]
 	for i, id in enuemrate(ids):
-		sequence = Sequence.objects.get(id=id)
-		for j, score in enumerate(sequence.scores.all()):
+		try:
+			sequence = Sequence.objects.get(id=id)
+		except:
+			return "404"
+		scores = sequence.scores.values("variant").annotate(highest=Max("scores__score"))
+		for variant in enumerate(scores):
 			rows[i][variants.index(score.variant.id)] = score.score
 
 	return JsonResponse({"total":len(rows), "rows":rows})

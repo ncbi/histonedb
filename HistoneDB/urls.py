@@ -18,6 +18,7 @@ urlpatterns = patterns('browse.views',
 
     #Parameters are stored as session variables a GET response
     url(r'^data/sequences/json$', 'get_sequence_table_data'),
+    url(r'^data/scores/json$', 'get_all_scores'),
 
     url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
     url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', 'get_starburst_json'),

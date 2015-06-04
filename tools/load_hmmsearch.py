@@ -84,7 +84,7 @@ def taxonomy_from_header(header, gi):
         return Taxonomy.objects.get(name="unidentified")
 
 
-def parseHmmer(hmmerFile, sequences):
+def load_variants(hmmerFile, sequences, reset=True):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
 
@@ -97,11 +97,13 @@ def parseHmmer(hmmerFile, sequences):
   threshold : float
     Keep HSPS with scores >= threshold. Optional.
   """
-  Sequence.objects.all().delete()
-  Features.objects.all().delete()
-  Score.objects.all().delete()
+  if reset:
+    Sequence.objects.all().delete()
+    Features.objects.all().delete()
+    Score.objects.all().delete()
+
   unknown_model = Variant.objects.get(id="Unknown")
-  score_num = 0
+  
   for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
     print "Loading variant:", variant_query.id
     try:
@@ -127,85 +129,134 @@ def parseHmmer(hmmerFile, sequences):
         gi = header.split("|")[0]
         taxonomy = taxonomy_from_header(header, gi)
         print taxonomy.name
-        splice_varaint = None
         for i, hsp in enumerate(hit):
           seqs = Sequence.objects.filter(id=gi).annotate(score=Max("scores__score"))
           if len(seqs) > 0:
             #Sequence already exists. Compare bit scores, if current bit score is 
             #greater than current, reassign variant and update scores. Else, append score
-            if (hsp.bitscore > best_score.first().score) and hsp.bitscore>=variant_model.hmmthreshold:
+            seq = seqs.first()
+            if (hsp.bitscore > seq.score) and hsp.bitscore>=variant_model.hmmthreshold:
               #best scoring
               seq.variant = variant_model
             
           else:
             sequence = Seq(str(hsp.hit.seq))
-            if not variant_model.core_type.id == "H1":
-              hist_identified, ss_position, sequence = get_hist_ss(sequence, variant_model.core_type.id, save_alignment=True)
-              sequence = str(sequence.seq)
-            else:
-              hist_identified = "H1",
-              ss_position = defaultdict(lambda: (None, None))
-              sequence = str(sequence)
-            seq = Sequence(
-              id       = gi,
-              variant  = variant_model if hsp.bitscore >= variant_model.hmmthreshold else unknown_model,
-              gene     = None,
-              splice   = None,
-              taxonomy = taxonomy,
-              header   = header,
-              sequence = sequence,
-              reviewed = False,
-              )
-            seq.save()
-
-            if not variant_model.core_type.id == "H1":
-              features = Features(
-                sequence             = seq,
-                alphaN_start         = ss_position["alphaN"][0],
-                alphaN_end           = ss_position["alphaN"][1],
-                alpha1_start         = ss_position["alpha1"][0],
-                alpha1_end           = ss_position["alpha1"][1],
-                alpha1ext_start      = ss_position["alpha1ext"][0],
-                alpha1ext_end        = ss_position["alpha1ext"][1],
-                alpha2_start         = ss_position["alpha2"][0],
-                alpha2_end           = ss_position["alpha2"][1],
-                alpha3_start         = ss_position["alpha3"][0],
-                alpha3_end           = ss_position["alpha3"][1],
-                alpha3ext_start      = ss_position["alpha3ext"][0],
-                alpha3ext_end        = ss_position["alpha3ext"][1],
-                alphaC_start         = ss_position["alphaC"][0],
-                alphaC_end           = ss_position["alphaC"][1],
-                beta1_start          = ss_position["beta1"][0],
-                beta1_end            = ss_position["beta1"][1],
-                beta2_start          = ss_position["beta2"][0],
-                beta2_end            = ss_position["beta2"][1],
-                loopL1_start         = ss_position["loopL1"][0],
-                loopL1_end           = ss_position["loopL1"][1],
-                loopL2_start         = ss_position["loopL2"][0],
-                loopL2_end           = ss_position["loopL2"][1],
-                mgarg1_start         = ss_position["mgarg1"][0],
-                mgarg1_end           = ss_position["mgarg1"][1],
-                mgarg2_start         = ss_position["mgarg2"][0],
-                mgarg2_end           = ss_position["mgarg2"][1],
-                mgarg3_start         = ss_position["mgarg3"][0],
-                mgarg3_end           = ss_position["mgarg3"][1],
-                docking_domain_start = ss_position["docking domain"][0],
-                docking_domain_end   = ss_position["docking domain"][1],
-                core                 = ss_position["core"],
-                )
-              features.save()
+            seq = add_sequence(variant_model, taxonomy, header, sequence)
           
-          score = Score(
-            id              = score_num,
-            sequence        = seq,
-            variant         = variant_model,
-            score           = hsp.bitscore,
-            evalue          = hsp.evalue,
-            above_threshold = hsp.bitscore >= variant_model.hmmthreshold,
-            hmmStart        = hsp.query_start,
-            hmmEnd          = hsp.query_end,
-            seqStart        = hsp.hit_start,
-            seqEnd          = hsp.hit_end
-            )
-          score.save()
-          score_num += 1
+          #Add a score even if it is a below threshold
+          add_score(seq, variant_model, hsp)
+
+def parseCores(hmmerFile):
+  unknown_model = Variant.objects.get(id="Unknown")
+  score_num = 0
+  for core_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
+    print "Loading core:", core_query.id
+    try:
+      core_histone = Histone.objects.get(id=core_query.id)
+    except:
+      continue
+
+    try:
+      cononical_model = Variant.objects.get(id="canonical{}".format(core_query.id))
+    except:
+      cononical_model = Variant(id="canonical{}".format(core_query.id), core_type=core_histone)
+      canonical_model.save()
+
+    for hit in core_query:
+      headers = "{}{}".format(hit.id, hit.description).split("gi|")[1:]
+      for header in headers:
+        gi = header.split("|")[0]
+        taxonomy = taxonomy_from_header(header, gi)
+        for i, hsp in enumerate(hit):
+          try:
+            seq = Sequence.objects.get(gi=gi).annotate(score=Max("scores__score"))
+            if hsp.bitscore >= canonical_model.hmmthreshold and 
+                (seq.variant.id == "Unknown" or  
+                  ("canonical" in seq.variant.id and hsp.bitscore > seq.score) :
+              seq.variant = canonical_model
+              add_score(seq, canonical_model, hsp)
+              continue
+          except KeyboardInterrupt:
+            raise
+          except:
+            #only add sequence if it was not found by the variant models
+            sequence = Seq(str(hsp.hit.seq))
+            seq = add_sequence(canonical_model, taxonomy, header, sequence)
+            add_score(seq, canonical_model, hsp)
+
+
+def add_sequence(variant_model, taxonomy, header, sequence):
+  if not variant_model.core_type.id == "H1":
+    hist_identified, ss_position, sequence = get_hist_ss(sequence, variant_model.core_type.id, save_alignment=True)
+    sequence = str(sequence.seq)
+  else:
+    hist_identified = "H1",
+    ss_position = defaultdict(lambda: (None, None))
+    sequence = str(sequence)
+  seq = Sequence(
+    id       = gi,
+    variant  = variant_model if hsp.bitscore >= variant_model.hmmthreshold else unknown_model,
+    gene     = None,
+    splice   = None,
+    taxonomy = taxonomy,
+    header   = header,
+    sequence = sequence,
+    reviewed = False,
+    )
+  seq.save()
+
+  if not variant_model.core_type.id == "H1":
+    features = Features(
+      sequence             = seq,
+      alphaN_start         = ss_position["alphaN"][0],
+      alphaN_end           = ss_position["alphaN"][1],
+      alpha1_start         = ss_position["alpha1"][0],
+      alpha1_end           = ss_position["alpha1"][1],
+      alpha1ext_start      = ss_position["alpha1ext"][0],
+      alpha1ext_end        = ss_position["alpha1ext"][1],
+      alpha2_start         = ss_position["alpha2"][0],
+      alpha2_end           = ss_position["alpha2"][1],
+      alpha3_start         = ss_position["alpha3"][0],
+      alpha3_end           = ss_position["alpha3"][1],
+      alpha3ext_start      = ss_position["alpha3ext"][0],
+      alpha3ext_end        = ss_position["alpha3ext"][1],
+      alphaC_start         = ss_position["alphaC"][0],
+      alphaC_end           = ss_position["alphaC"][1],
+      beta1_start          = ss_position["beta1"][0],
+      beta1_end            = ss_position["beta1"][1],
+      beta2_start          = ss_position["beta2"][0],
+      beta2_end            = ss_position["beta2"][1],
+      loopL1_start         = ss_position["loopL1"][0],
+      loopL1_end           = ss_position["loopL1"][1],
+      loopL2_start         = ss_position["loopL2"][0],
+      loopL2_end           = ss_position["loopL2"][1],
+      mgarg1_start         = ss_position["mgarg1"][0],
+      mgarg1_end           = ss_position["mgarg1"][1],
+      mgarg2_start         = ss_position["mgarg2"][0],
+      mgarg2_end           = ss_position["mgarg2"][1],
+      mgarg3_start         = ss_position["mgarg3"][0],
+      mgarg3_end           = ss_position["mgarg3"][1],
+      docking_domain_start = ss_position["docking domain"][0],
+      docking_domain_end   = ss_position["docking domain"][1],
+      core                 = ss_position["core"],
+      )
+    features.save()
+
+    return seq
+
+def add_score(seq, variant_model, hsp):
+  score_num = Score.objects.count()+1
+  score = Score(
+    id              = score_num,
+    sequence        = seq,
+    variant         = variant_model,
+    score           = hsp.bitscore,
+    evalue          = hsp.evalue,
+    above_threshold = hsp.bitscore >= variant_model.hmmthreshold,
+    hmmStart        = hsp.query_start,
+    hmmEnd          = hsp.query_end,
+    seqStart        = hsp.hit_start,
+    seqEnd          = hsp.hit_end
+    )
+  score.save()
+  

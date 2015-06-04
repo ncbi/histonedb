@@ -36,6 +36,7 @@ class HistoneSearch(object):
         self.request = request
         self.sanitized = False
         self.query_set = None
+        self.redirect = None
         self.count = 0
 
         self.sanitize_parameters(parameters, reset)
@@ -208,9 +209,8 @@ class HistoneSearch(object):
             request.session["query"]["core_type"] = core_type.id
             request.session["query"]["core_type_search_type"] = "is"
             if self.navbar:
-                return redirect("browse.views.browse_variants", core_type.id)
-            else:
-                return
+                self.redirect = redirect("browse.views.browse_variants", core_type.id)
+            return
         except Exception as e:
             pass
         
@@ -220,9 +220,8 @@ class HistoneSearch(object):
             request.session["query"]["variant"] = variant.id
             request.session["query"]["variant_search_type"] = "is"
             if self.navbar:
-                return redirect("browse.views.browse_variant", variant.id)
-            else:
-                return
+                self.redirct = redirect("browse.views.browse_variant", variant.id)
+            return
         except Exception as e:
             pass
         
@@ -232,9 +231,8 @@ class HistoneSearch(object):
             request.session["query"]["variant"] = variant.id
             request.session["query"]["variant_search_type"] = "is"
             if self.navbar:
-                return redirect("browse.views.browse_variant", variant.id)
-            else:
-                return
+                self.redirct = redirect("browse.views.browse_variant", variant.id)
+            return
         except:
             pass
 

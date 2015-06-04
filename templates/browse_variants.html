@@ -78,8 +78,7 @@
                     <h4>Known Variants:</h4>
                     <div class="list-group">
                       {% for variant, num_sequences, color in variants %}
-                        <a class="list-group-item" 
-                           title="Variant {{ variant }} with {{ num_sequences }} sequences"
+                        <a class="list-group-item"
                            href="{% url 'browse.views.browse_variant' histone_type variant %}">
                           <span class="badge" style="background-color:{{ color }};">{{ num_sequences }}</span>
                           {{ variant }}  
