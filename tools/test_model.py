@@ -74,7 +74,7 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     fpr, tpr, thresholds = roc_curve(y_true, y_score)
     roc_auc = auc(fpr, tpr)
 
-    threshold, values = calcualte_threshold(postive_scores, negative_scores, measure=measure, thresholds=reversed(thresholds))
+    best_threshold, thresholds, values = calcualte_threshold(postive_scores, negative_scores, measure=measure, thresholds=reversed(thresholds))
 
     pp = PdfPages(os.path.join(save_dir, "{}_model_evaluation.pdf".format(model_name)))
 
@@ -100,14 +100,12 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     axes[1].set_xlim([-0.05, 1.0])
     axes[1].set_ylim([0.0, 1.05])
     #axes[1].set_title("ROC")
-
-    axes[2].axvline(threshold)
  
     for i, (measure, values) in enumerate(values.iteritems()):
         print measure, values
         print len(thresholds), len(values)
-        print reversed(thresholds)
         axes[2].plot(list(reversed(thresholds)), values, label=measure, linewidth=2, color=colors[i])
+    axes[2].axvline(best_threshold)
 
     axes[2].legend()
     #axes[2].set_title("Coosing Cutoff")
@@ -119,9 +117,9 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     pp.savefig()
     pp.close()
 
-    return {"roc_auc":roc_auc, "threshold":threshold}
+    return {"roc_auc":roc_auc, "threshold":best_threshold}
 
-def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0.95, thresholds=None):
+def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0.95, thresholds=None, attempt=0):
     """Plot the TPR the FPR vs threshold values
  
     Input:
@@ -158,18 +156,28 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
             saveValue = values[measure][-1]
 
     if saveTheshold is None:
-        nearby = [None, None]
-        for value in reversed(values[measure]):
-            v = value-measure_threshold
-            if v > 0:
-                if nearby[1] is None or value < nearby[1]:
-                    narby[1] = value
-            if v > 0:
-                if nearby[0] is None or value < nearby[0]:
-                    nearby[0] = value
-            slope, intercept, r_value, p_value, std_err = linregress([v[0]], [v[1]])
-            saveTheshold = float(0.95-intercept)/slope
+        print "Try again"
+        if attempt == 0:
+            #Try again without given threshold levels
+            return calcualte_threshold(positives, negatives, measure, measure_threshold, attempt=1)
+        else:
+            nearby = [None, None]
+            for threshold, value in zip(thresholds, values[measure]):
+                v = value-measure_threshold
+                print threshold, v, nearby
+                if v > 0:
+                    if nearby[1] is None or value < nearby[1][1]:
+                        nearby[1] = (threshold, value)
+                elif v < 0:
+                    if nearby[0] is None or value > nearby[0][1]:
+                        nearby[0] = (threshold, value)
+                print zip(nearby)
+                continue
+                slope, intercept, r_value, p_value, std_err = linregress(zip(nearby))
+                print slope, intercept, r_value, p_value, std_err
+                saveTheshold = float(0.95-intercept)/slope
+                
 
-    return saveTheshold, values
+    return saveTheshold, thresholds, values
 
 

@@ -127,7 +127,6 @@ def load_variants(hmmerFile, sequences, reset=True):
       headers = "{}{}".format(hit.id, hit.description).split("gi|")[1:]
       for header in headers:
         gi = header.split("|")[0]
-        taxonomy = taxonomy_from_header(header, gi)
         for i, hsp in enumerate(hit):
           seqs = Sequence.objects.filter(id=gi).annotate(score=Max("scores__score"))
           if len(seqs) > 0: 
@@ -142,6 +141,7 @@ def load_variants(hmmerFile, sequences, reset=True):
               update_features(seq)
               print "UPDATED VARIANT"
           else:
+            taxonomy = taxonomy_from_header(header, gi)
             sequence = Seq(str(hsp.hit.seq))
             seq = add_sequence(
               gi,  
@@ -153,9 +153,19 @@ def load_variants(hmmerFile, sequences, reset=True):
           #Add a score even if it is a below threshold
           add_score(seq, variant_model, hsp)
 
-def load_cores(hmmerFile):
+def load_cores(hmmerFile, reset=True):
   unknown_model = Variant.objects.get(id="Unknown")
   score_num = 0
+
+  if reset:
+    variants = Variant.objects.filter(id__contains="cononical")
+    for variant in variants:
+      for sequence in variant.sequences:
+        sequence.features.delete()
+        sequence.scores.delete()
+      variant.sequences.delete()
+    variants.delete()
+
   for core_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
     print "Loading core:", core_query.id
     try:
@@ -164,30 +174,32 @@ def load_cores(hmmerFile):
       continue
 
     try:
-      cononical_model = Variant.objects.get(id="canonical{}".format(core_query.id))
+      canonical_model = Variant.objects.get(id="canonical{}".format(core_query.id))
     except:
-      cononical_model = Variant(id="canonical{}".format(core_query.id), core_type=core_histone)
+      canonical_model = Variant(id="canonical{}".format(core_query.id), core_type=core_histone)
       canonical_model.save()
 
     for hit in core_query:
       headers = "{}{}".format(hit.id, hit.description).split("gi|")[1:]
       for header in headers:
         gi = header.split("|")[0]
-        taxonomy = taxonomy_from_header(header, gi)
         for i, hsp in enumerate(hit):
-          try:
-            seq = Sequence.objects.get(gi=gi).annotate(score=Max("scores__score"))
+          seqs = Sequence.objects.filter(id=gi).annotate(score=Max("scores__score"))
+          if len(seqs) > 0: 
+            #Sequence already exists. Compare bit scores, if current bit score is 
+            #greater than current, reassign variant and update scores. Else, append score
+            seq = seqs.first()
             if hsp.bitscore >= canonical_model.hmmthreshold and \
                 (seq.variant.id == "Unknown" or  \
                   ("canonical" in seq.variant.id and hsp.bitscore > seq.score)) :
               seq.variant = canonical_model
               seq.sequence = str(hsp.hit.seq)
+              seq.save()
               update_features(seq)
-              continue
-          except KeyboardInterrupt:
-            raise
-          except:
+              print "UPDATED VARIANT"
+          else:
             #only add sequence if it was not found by the variant models
+            taxonomy = taxonomy_from_header(header, gi)
             sequence = Seq(str(hsp.hit.seq))
             seq = add_sequence(
               gi,  
@@ -195,8 +207,8 @@ def load_cores(hmmerFile):
               taxonomy, 
               header, 
               sequence)
+          print seq
           add_score(seq, canonical_model, hsp)
-
 
 def add_sequence(gi, variant_model, taxonomy, header, sequence):
   if not variant_model.core_type.id == "H1" and not variant_model.core_type.id == "Unknown":

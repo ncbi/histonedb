@@ -70,7 +70,10 @@ class Command(BaseCommand):
         if not options["force"] and \
           ((not options["only_cores"] and os.path.isfile(self.results_file)) or \
             (not options["only_variants"] and os.path.isfile(self.core_results_file))):
-            self.load()
+            if not options["only_cores"]: 
+                self.load_variants()
+            if not options["only_variants"]: 
+                self.load_cores()
 
         elif not options["force"] and \
           ((not options["only_cores"] and os.path.isfile(self.pressed_combined_varaints_file)) or \
@@ -80,7 +83,7 @@ class Command(BaseCommand):
                 self.search_varaint()
                 self.load_variants()
             if not options["only_variants"]: 
-                self.search_core()
+                self.search_cores()
                 self.load_cores()
 
         else:
@@ -113,7 +116,7 @@ class Command(BaseCommand):
             for core_type, seed in self.get_seeds(core=True):
                 if seed is None and not only_variants:
                     #Build Core HMM
-                    core_hmm_file = os.path.join(self.hmm_directory, "{}.hmm".format(core_type))
+                    core_hmm_file = os.path.join(self.hmm_directory, core_type, "canonical{}.hmm".format(core_type))
                     seed = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
                     self.build_hmm(core_type, core_hmm_file, seed)
 
@@ -151,7 +154,7 @@ class Command(BaseCommand):
     def search_variants(self):
         return self.search(db=self.combined_varaints_file, out=self.results_file)
 
-    def search_core(self):
+    def search_cores(self):
         return self.search(db=self.combined_core_file, out=self.core_results_file)
 
     def search(self, db, out, sequences=None, E=10):
@@ -163,10 +166,14 @@ class Command(BaseCommand):
 
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", db, sequences])
 
-    def load(self):
+    def load_variants(self):
         """Load data into the histone database"""
         print >> self.stdout, "Loading data into HistoneDB..."
         load_variants(self.results_file, self.nr_file)
+
+    def load_cores(self):
+        """Load data into the histone database"""
+        print >> self.stdout, "Loading data into HistoneDB..."
         load_cores(self.core_results_file)
 
     def get_seeds(self, core=False):
@@ -206,6 +213,7 @@ class Command(BaseCommand):
             negative_examples_file = os.path.join(output_dir, "{}_negative_examples.fasta".format(variant))
             negative_examples = os.path.join(output_dir, "{}_negative_examples.out".format(variant))
 
+            print "Saving", positive_path, "into", positive_examples_file
             with open(positive_examples_file, "w") as positive_file:
                 for s in SeqIO.parse(positive_path, "fasta"):
                     s.seq = s.seq.ungap("-")
@@ -222,16 +230,17 @@ class Command(BaseCommand):
                         if core_type == core_type2:
                             #Don't compare cores if they are the same
                             continue
-                        os.path.join(self.seed_directory, "{}.fasta".format(core_type2))
+                        
+                        sequences = os.path.join(self.seed_directory, "{}.fasta".format(core_type2))
                     elif (seed1 is not None and seed2 is None) or (seed1 is None and seed2 is not None):
                         #Do not compare core to varaints
                         continue
-                    if not seed1 == seed2:
+                    elif not seed1 == seed2:
                         sequences = os.path.join(self.seed_directory, core_type2, seed2)
                     else:
                         #Do not compare files if they are the same
                         continue
-
+                    print "Saving negatives from", sequences, "into", negative_examples_file 
                     for s in SeqIO.parse(sequences, "fasta"):
                         s.seq = s.seq.ungap("-")
                         SeqIO.write(s, negative_file, "fasta")

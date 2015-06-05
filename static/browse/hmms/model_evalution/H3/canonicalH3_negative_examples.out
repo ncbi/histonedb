@@ -1,0 +1,78 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H3/canonicalH3.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/canonicalH3_negative_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/canonicalH3_negative_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       H3  [M=133]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                              Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                              -----------
+  ------ inclusion threshold ------
+      0.013   13.0   0.5      0.026   12.0   0.0    1.6  2  294879367|Perkinsus_marinus/1-103      
+      0.038   11.4   5.5      0.068   10.6   2.6    2.1  2  307199379|Harpegnathos_saltator/1-129  
+
+
+Domain annotation for each sequence (and alignments):
+>> 294879367|Perkinsus_marinus/1-103  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   -1.3   0.1      0.19   3.4e+02      19      35 ..      30      46 ..      13      49 .. 0.60
+   2 ?   12.0   0.0   1.5e-05     0.026      96     127 ..      61      92 ..      53      97 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: -1.3 bits;  conditional E-value: 0.19
+                                 H3 19 atkaarksapatggvkk 35
+                                        tk a +  +  ggvk+
+  294879367|Perkinsus_marinus/1-103 30 ITKPAIRRLARRGGVKR 46
+                                       45666666666777775 PP
+
+  == domain 2  score: 12.0 bits;  conditional E-value: 1.5e-05
+                                 H3  96 aylvglfedtnlcaihakrvtimpkdiqlarr 127
+                                         +l +++edt  c+ ha+r t+++ d+  a +
+  294879367|Perkinsus_marinus/1-103  61 VFLESVIEDTVTCTEHARRRTVTALDVVYALK 92 
+                                        68999******************999977654 PP
+
+>> 307199379|Harpegnathos_saltator/1-129  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    2.4   0.8     0.014        24       7      35 ..       7      35 ..       3      37 .. 0.77
+   2 ?   10.6   2.6   3.9e-05     0.068      61     128 ..      34     101 ..      23     106 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 2.4 bits;  conditional E-value: 0.014
+                                     H3  7 kstggkaprkqlatkaarksapatggvkk 35
+                                             t+gk+prk l +   +k+  +++  kk
+  307199379|Harpegnathos_saltator/1-129  7 TMTSGKSPRKALIKMNLKKTKGQKTKRKK 35
+                                           57999******999988888776665555 PP
+
+  == domain 2  score: 10.6 bits;  conditional E-value: 3.9e-05
+                                     H3  61 rklpfqrlvreiaqdfktdlrfqssavmalqeaseaylvglfedtnlcaihakrvtimpkdiqlarri 128
+                                            +k  f+r v+++ ++++ dl+  +++++ +++ +   + ++  ++ l + + k+ t+++++iq a ri
+  307199379|Harpegnathos_saltator/1-129  34 KKESFNRYVHKVLKQIHPDLKISTKSMVIMENFMMDMFEQICCEASLLTQRVKKSTLTSREIQTAVRI 101
+                                            7889******************9999988877777777777778899999**************9997 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (133 nodes)
+Target sequences:                         3489  (508837 residues searched)
+Passed MSV filter:                      3008  (0.862138); expected 69.8 (0.02)
+Passed bias filter:                     2147  (0.615363); expected 69.8 (0.02)
+Passed Vit filter:                       412  (0.118085); expected 3.5 (0.001)
+Passed Fwd filter:                         2  (0.00057323); expected 0.0 (1e-05)
+Initial search space (Z):               3489  [actual number of targets]
+Domain search space  (domZ):               2  [number of targets reported over threshold]
+# CPU time: 0.08u 0.00s 00:00:00.08 Elapsed: 00:00:00.03
+# Mc/sec: 2255.84
+//
+[ok]

@@ -3,9 +3,9 @@
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="fasle">View/Download Selected <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#" data-toggle="modal" data-target="#msa_modal" id="msa_modal">View alignment/secondary structure</a></li>
+                <li><a href="#" id="msa_modal_button">View alignment/secondary structure</a></li>
                 <li><a href="#" id="scores_modal_button">View against all profiles</a></li>
-                <li><a href="#">Download FASTA</a></li>
+                <li><a href="#" id="download_fasta">Download FASTA</a></li>
                 <li><a href="#" id="entrez">View in Entrez</a></li>
             </ul>
         </div>
@@ -54,7 +54,7 @@
         <h4 class="modal-title" id="seqs">Sequence(s)</h4>
       </div>
       <div class="modal-body">
-        {# BioJS msa with features for secondary structures #}
+        <div id="msa_modal_sniper"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -82,7 +82,9 @@
 
 <script>
 var $table = $('#sequence_table'),
-    $scores_modal_button = $('#scores_modal_button')
+    $msa_modal_button = $('#msa_modal_button'),
+    $scores_modal_button = $('#scores_modal_button'),
+    $download_fasta = $('#download_fasta')
     $entrez = $('#entrez');
 
     $(function () {
@@ -92,26 +94,115 @@ var $table = $('#sequence_table'),
           for (var i = 0; i < selections.length; i++) {
             ids.push(selections[i].gi);
           }
+          if(ids.length==0){
+            alert("You must select one ore more sequences.");
+            return;
+          }
           return ids;
         };
-        $scores_modal_button.click(function() {
+
+        $msa_modal_button.click(function() {
           ids = getSelectedIDs();
-          columns = [];
+          params = "?";
+          for (var i = 0; i < ids.length; i++) {
+            params += "id="+ids[i]+"&"
+          }
+
+          var yourDiv = document.getElementById('msa_modal_sniper');
+          yourDiv.innerHTML = "";
+
+          /* global yourDiv */
+          var msa = require("msa");
+
+          var msaDiv = document.createElement('div');
+          yourDiv.appendChild(msaDiv);
+
+          var opts = {
+            el: msaDiv
+          }
+          opts.vis = {
+            conserv: false,
+            overviewbox: false,
+            seqlogo: true,
+            markers: false,
+            leftHeader: false,
+            labelName: true,
+          };
+          opts.zoomer = {
+            alignmentWidth: 418, //$('#msa_modal').width()
+          };
+
+          // init msa
+          var m = msa(opts);
+          $.ajax({
+            url:"{% url 'browse.views.get_all_sequences' %}"+params.substring(0, params.length-1),
+            dataType: "json",
+            success: function(seqs) {
+              console.log(seqs)
+              m.seqs.reset(seqs);
+              m.render();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus);
+              console.log(errorThrown)
+            }
+          });
+
+          var colorConservation = {}
+
+          // the init function is only called once
+          colorConservation.init = function(){
+            // you have here access to the conservation or the sequence object
+            this.cons = this.opt.conservation();
+            this.cons80 = true;
+            this.cons50 = true;
+          }
+
+          colorConservation.run = function(letter,opts){
+            if(this.cons80 && this.cons[opts.pos] > 0.8){
+              return "red";
+            }
+            else if(this.cons50 && this.cons[opts.pos] > 0.5){
+              return "blue";
+            }
+            else{
+              return "#000";
+            }
+          };
+
+          m.g.colorscheme.addDynScheme("colorConservation", colorConservation);
+          m.g.colorscheme.set("scheme", "colorConservation");
+          $('#msa_modal').modal('show');
+        });
+
+        $scores_modal_button.click(function() {
+          $('#scores_table').innerHTML = "";
+          ids = getSelectedIDs();
+          columns = [{field:'variant', title:''}];
+          params = "?";
           for (var i = 0; i < ids.length; i++) {
             columns.push({field:ids[i], title:ids[i]});
+            params += "id="+ids[i]+"&"
           }
           $('#scores_table').bootstrapTable({
-              url: "{% url 'browse.views.get_all_scores' %}"+"?"+$.param({id: ids}),
+              url: "{% url 'browse.views.get_all_scores' %}"+params.substring(0, params.length-1),
               columns: columns,
           });
           $('#scores_modal').modal('show');
-        })
+        });
+
+        $download_fasta.click(function() {
+          ids = getSelectedIDs();
+          params = "?";
+          for (var i = 0; i < ids.length; i++) {
+            params += "id="+ids[i]+"&"
+          }
+          params += "format=fasta&download=true";
+          document.location.href = "{% url 'browse.views.get_all_sequences' %}"+params;
+        });
+
         $entrez.click(function () {
             ids = getSelectedIDs();
-            if(ids.length == 0){
-              alert("You must select at least one sequence!");
-              return;
-            }
             url = "http://www.ncbi.nlm.nih.gov/protein/?term=";
             for (var i = 0; i < ids.length; i++) {
               url += ids[i]+"[uid]+OR+"

@@ -1,0 +1,1598 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2B/canonicalH2B.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/canonicalH2B_negative_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/canonicalH2B_negative_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       H2B  [M=125]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                               Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                               -----------
+    1.6e-60  201.8  26.2    1.6e-60  201.8  26.2    3.2  1  156553474|Nasonia_vitripennis/1-300     
+    3.6e-57  191.0  34.4      3e-54  181.6  34.4    3.1  1  260800618|Branchiostoma_floridae/1-283  
+     0.0024   17.1   0.0     0.0031   16.7   0.0    1.2  1  50730440|Gallus_gallus/1-137            
+     0.0025   17.1   0.0     0.0033   16.7   0.0    1.2  1  50730442|Gallus_gallus/1-139            
+     0.0074   15.5   1.4      0.012   14.8   1.4    1.5  1  60543050|Conocephalum_supradecom/1-136  
+     0.0085   15.3   1.2      0.014   14.6   1.2    1.5  1  60543036|Conocephalum_supradecom/1-136  
+  ------ inclusion threshold ------
+      0.011   15.0   0.7      0.017   14.4   0.7    1.5  1  60543024|Conocephalum_conicum/1-136     
+      0.017   14.4   0.8      0.029   13.6   0.8    1.5  1  3016|Neurospora_crassa/1-136            
+      0.022   14.0   0.0      0.036   13.3   0.0    1.3  1  307111834|Chlorella_variabilis/1-135    
+      0.023   14.0   0.0      0.032   13.5   0.0    1.2  1  221122623|Hydra_magnipapillata/1-129    
+      0.032   13.5   0.1      0.046   13.0   0.1    1.5  1  86171188|Plasmodium_falciparum/1-132    
+      0.035   13.3   0.1      0.045   13.0   0.1    1.4  1  148805065|Plasmodium_vivax/1-133        
+      0.035   13.3   0.1      0.045   13.0   0.1    1.4  1  156100995|Plasmodium_vivax/1-133        
+      0.035   13.3   0.1      0.045   13.0   0.1    1.4  1  221057980|Plasmodium_knowlesi/1-133     
+      0.035   13.3   0.1      0.045   13.0   0.1    1.4  1  23480497|Plasmodium_yoelii/1-133        
+      0.035   13.3   0.1      0.045   13.0   0.1    1.4  1  82594560|Plasmodium_yoelii/1-133        
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978643|Fusarium_sp./1-131            
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978645|Fusarium_armeniacum/1-131     
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978647|Fusarium_avenaceum/1-131      
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978649|Fusarium_boothii/1-131        
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978651|Fusarium_camptoceras/1-131    
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978653|Fusarium_cerealis/1-131       
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978655|Fusarium_culmorum/1-131       
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978657|Fusarium_equiseti/1-131       
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978659|Fusarium_kyushuense/1-131     
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978661|Fusarium_longipes/1-131       
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978663|Fusarium_incarnatum/1-131     
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978665|Fusarium_poae/1-131           
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978667|Gibberella_pulicaris/1-131    
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978669|Fusarium_sp./1-131            
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978671|Fusarium_sporotrichioi/1-131  
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978673|Fusarium_torulosum/1-131      
+      0.037   13.3   0.4      0.051   12.8   0.4    1.4  1  269978675|Fusarium_venenatum/1-131      
+      0.041   13.1   0.5      0.059   12.6   0.5    1.5  1  60543046|Conocephalum_supradecom/1-136  
+      0.041   13.1   0.4      0.057   12.7   0.4    1.4  1  60543086|Marchantia_polymorpha/1-136    
+      0.041   13.1   0.4       0.06   12.6   0.4    1.5  1  60543058|Conocephalum_conicum/1-136     
+      0.042   13.1   1.3      0.085   12.1   1.3    1.7  1  60543030|Conocephalum_conicum/1-136     
+      0.043   13.1   0.6      0.064   12.5   0.6    1.5  1  60543048|Conocephalum_supradecom/1-136  
+      0.044   13.1   0.9      0.073   12.3   0.9    1.6  1  60543104|Conocephalum_conicum/1-136     
+      0.045   13.0   0.7      0.066   12.5   0.7    1.5  1  60543042|Conocephalum_supradecom/1-136  
+      0.045   13.0   0.6       0.07   12.4   0.6    1.5  1  60543116|Conocephalum_conicum/1-136     
+      0.045   13.0   0.6      0.084   12.1   0.6    1.6  1  295634892|Tuber_melanosporum/1-136      
+      0.045   13.0   0.6      0.084   12.1   0.6    1.6  1  296418581|Tuber_melanosporum/1-136      
+      0.046   13.0   0.7      0.072   12.4   0.7    1.5  1  60543018|Conocephalum_conicum/1-136     
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  115492089|Aspergillus_terreus/1-136     
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  119495179|Neosartorya_fischeri/1-136    
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  121701225|Aspergillus_clavatus/1-136    
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  122080|Emericella_nidulans/1-136        
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  134077327|Aspergillus_niger/1-136       
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  145240329|Aspergillus_niger/1-136       
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  156630830|Aspergillus_clavatus/1-136    
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  159131503|Aspergillus_fumigatus/1-136   
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  169763208|Aspergillus_oryzae/1-136      
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  212531989|Penicillium_marneffei/1-136   
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  238489087|Aspergillus_flavus/1-136      
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  242774415|Talaromyces_stipitatus/1-136  
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  255941514|Penicillium_chrysogenu/1-136  
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  259488987|Aspergillus_nidulans/1-136    
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  48427850|Aspergillus_fumigatus/1-136    
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  48427851|Penicillium_funiculosum/1-136  
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  70995988|Aspergillus_fumigatus/1-136    
+      0.049   12.9   0.7      0.083   12.2   0.7    1.5  1  94717620|Aspergillus_oryzae/1-136       
+      0.049   12.9   0.5      0.074   12.3   0.5    1.5  1  154276502|Ajellomyces_capsulatus/1-136  
+      0.049   12.9   0.5      0.074   12.3   0.5    1.5  1  225560319|Ajellomyces_capsulatus/1-136  
+      0.049   12.9   0.5      0.074   12.3   0.5    1.5  1  295660614|Paracoccidioides_brasi/1-136  
+       0.05   12.9   0.5      0.076   12.3   0.5    1.5  1  239607232|Ajellomyces_dermatitid/1-137  
+       0.05   12.9   0.5      0.076   12.3   0.5    1.5  1  261200849|Ajellomyces_dermatitid/1-137  
+      0.052   12.8   0.2      0.064   12.5   0.2    1.3  1  157277140|Cladosporium_bruhnei/1-118    
+      0.052   12.8   0.2      0.064   12.5   0.2    1.3  1  157277182|Cladosporium_aff./1-118       
+      0.052   12.8   0.2      0.064   12.5   0.2    1.3  1  157277264|Cladosporium_cf./1-118        
+      0.052   12.8   0.2      0.064   12.5   0.2    1.3  1  157277266|Cladosporium_cf./1-118        
+      0.053   12.8   0.4      0.076   12.3   0.4    1.5  1  225681901|Paracoccidioides_brasi/1-136  
+      0.053   12.8   0.4      0.076   12.3   0.4    1.5  1  226289072|Paracoccidioides_brasi/1-136  
+      0.053   12.8   0.5      0.081   12.2   0.5    1.5  1  67516903|Aspergillus_nidulans/1-141     
+      0.053   12.8   0.2      0.066   12.5   0.2    1.3  1  157277142|Cladosporium_bruhnei/1-119    
+      0.054   12.8   0.9      0.091   12.0   0.9    1.5  1  119186681|Coccidioides_immitis/1-136    
+      0.054   12.8   0.9      0.091   12.0   0.9    1.5  1  121922114|Coccidioides_immitis/1-136    
+      0.054   12.8   0.9      0.091   12.0   0.9    1.5  1  258563392|Uncinocarpus_reesii/1-136     
+      0.054   12.8   0.9      0.091   12.0   0.9    1.5  1  303317588|Coccidioides_posadasii/1-136  
+      0.055   12.7   0.8      0.086   12.1   0.8    1.5  1  48427861|Ajellomyces_capsulatus/1-136   
+      0.055   12.7   0.4      0.083   12.1   0.4    1.5  1  60543070|Conocephalum_conicum/1-136     
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  116204825|Chaetomium_globosum/1-136     
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  122064231|Gibberella_zeae/1-136         
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  145610501|Magnaporthe_oryzae/1-136      
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  156630832|Magnaporthe_grisea/1-136      
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  171690212|Podospora_anserina/1-136      
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  209570450|Glomerella_graminicola/1-136  
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  20981693|Neurospora_crassa/1-136        
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  289620259|Sordaria_macrospora/1-136     
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  302900458|Nectria_haematococca/1-136    
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  310798570|Glomerella_graminicola/1-136  
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  48427852|Hypocrea_jecorina/1-136        
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  60543034|Conocephalum_supradecom/1-136  
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  60543072|Conocephalum_conicum/1-136     
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  73919917|Marchantia_polymorpha/1-136    
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  74607926|Chaetomium_globosum/1-136      
+      0.056   12.7   1.2      0.093   12.0   1.2    1.6  1  85077297|Neurospora_crassa/1-136        
+      0.056   12.7   0.3       0.07   12.4   0.3    1.3  1  157277176|Cladosporium_bruhnei/1-122    
+      0.056   12.7   0.3       0.07   12.4   0.3    1.3  1  157277186|Cladosporium_aff./1-122       
+      0.056   12.7   0.3       0.07   12.4   0.3    1.3  1  157277188|Cladosporium_aff./1-122       
+      0.056   12.7   0.3       0.07   12.4   0.3    1.3  1  157277232|Cladosporium_macrocarp/1-122  
+       0.06   12.6   1.0        0.1   11.9   1.0    1.5  1  163915147|Xenopus_(Silurana)/1-136      
+      0.061   12.6   0.0      0.073   12.3   0.0    1.3  1  167535127|Monosiga_brevicollis/1-129    
+      0.061   12.6   1.0        0.1   11.9   1.0    1.5  1  121920880|Phaeosphaeria_nodorum/1-136   
+      0.061   12.6   1.0        0.1   11.9   1.0    1.5  1  154296463|Botryotinia_fuckeliana/1-136  
+      0.061   12.6   1.0        0.1   11.9   1.0    1.5  1  156047837|Sclerotinia_sclerotior/1-136  
+      0.061   12.6   1.0        0.1   11.9   1.0    1.5  1  189211117|Pyrenophora_tritici-re/1-136  
+      0.061   12.6   1.0        0.1   11.9   1.0    1.5  1  311321506|Pyrenophora_teres/1-136       
+      0.065   12.5   0.0      0.085   12.1   0.0    1.4  1  167518163|Monosiga_brevicollis/1-137    
+      0.066   12.5   0.0      0.082   12.2   0.0    1.2  1  260815873|Branchiostoma_floridae/1-120  
+      0.068   12.4   0.6       0.11   11.7   0.6    1.6  1  60543012|Conocephalum_conicum/1-136     
+      0.069   12.4   1.0       0.12   11.6   1.0    1.6  1  60543084|Marchantia_polymorpha/1-136    
+      0.072   12.3   0.9       0.12   11.6   0.9    1.6  1  60543020|Conocephalum_conicum/1-136     
+      0.073   12.3   1.2       0.12   11.6   1.2    1.6  1  60543082|Marchantia_polymorpha/1-136    
+      0.074   12.3   1.2       0.12   11.6   1.2    1.6  1  60543040|Conocephalum_supradecom/1-136  
+      0.075   12.3   1.3       0.13   11.5   1.3    1.6  1  60543110|Conocephalum_conicum/1-136     
+        0.1   11.9   0.8       0.17   11.2   0.8    1.6  1  60543068|Conocephalum_conicum/1-136     
+       0.11   11.8   0.0       0.14   11.4   0.0    1.2  1  291241752|Saccoglossus_kowalevsk/1-136  
+       0.19   11.0   2.3       0.35   10.1   2.3    1.6  1  60543032|Conocephalum_conicum/1-136     
+       0.25   10.6   0.1       0.25   10.6   0.1    2.2  1  168067082|Physcomitrella_patens/1-151   
+
+
+Domain annotation for each sequence (and alignments):
+>> 156553474|Nasonia_vitripennis/1-300  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  201.8  26.2   1.7e-62   1.6e-60       5     125 .]     180     300 .]     109     300 .] 0.93
+
+  Alignments for each domain:
+  == domain 1  score: 201.8 bits;  conditional E-value: 1.7e-62
+                                  H2B   5 kkksaekkgskkakkkaqkkkkkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrlllpGelakhavsegtkavtkytssk 125
+                                          k+++++ k++ ka+k+ +k +kkk+kk+rkesy+iyiykvlkqvhpdtg+sskamsimnsfvndiferiaaeasrla+ynk+stitsreiqtavrlllpGelakhavsegtkavtkytssk
+  156553474|Nasonia_vitripennis/1-300 180 KTAKSPAKKAGKAVKNITKGDKKKHKKRRKESYAIYIYKVLKQVHPDTGVSSKAMSIMNSFVNDIFERIAAEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK 300
+                                          2222335556778888899****************************************************************************************************96 PP
+
+>> 260800618|Branchiostoma_floridae/1-283  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  181.6  34.4   3.3e-56     3e-54       6     125 .]     163     283 .]      91     283 .] 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 181.6 bits;  conditional E-value: 3.3e-56
+                                     H2B   6 kksae.kkgskkakkkaqkkkkkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrlllpGelakhavsegtkavtkytssk 125
+                                             k++a+ k++ kka+kk++ +kk  + kk++e++ +yiykvlkqvhpdtg+sskam+imnsfvndiferiaaeasrla+ynk+sti+sreiqtavrlllpGelakhavsegtkavtkytssk
+  260800618|Branchiostoma_floridae/1-283 163 KRAATkKTPVKKAAKKTAPAKKAAKPKKKRETFGVYIYKVLKQVHPDTGVSSKAMGIMNSFVNDIFERIAAEASRLAHYNKRSTISSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK 283
+                                             112221334555555555577778889999*****************************************************************************************96 PP
+
+>> 50730440|Gallus_gallus/1-137  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   16.7   0.0   3.4e-05    0.0031      40      99 ..      31      90 ..       2     101 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 16.7 bits;  conditional E-value: 3.4e-05
+                           H2B 40 yiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavr 99
+                                   +y+ lk+ h    is      m + ++ +   i + a + ar nkk  i  r iq avr
+  50730440|Gallus_gallus/1-137 31 RVYRLLKRGHYTERISPGCAVYMAAVLEYLTAEILELAGNAARENKKARILPRHIQLAVR 90
+                                  59*********************************************************9 PP
+
+>> 50730442|Gallus_gallus/1-139  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   16.7   0.0   3.6e-05    0.0033      40      99 ..      34      93 ..       3     104 .. 0.87
+
+  Alignments for each domain:
+  == domain 1  score: 16.7 bits;  conditional E-value: 3.6e-05
+                           H2B 40 yiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavr 99
+                                   +y+ lk+ h    is      m + ++ +   i + a + ar nkk  i  r iq avr
+  50730442|Gallus_gallus/1-139 34 RVYRLLKRGHYAERISPGCAVYMAAVLEYLTAEILELAGNAARENKKARILPRHIQLAVR 93
+                                  59*********************************************************9 PP
+
+>> 60543050|Conocephalum_supradecom/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   14.8   1.4   0.00014     0.012      29     100 ..      60     131 ..       2     133 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 14.8 bits;  conditional E-value: 0.00014
+                                     H2B  29 rkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             +   rk  ++  +  + +  + d    s a++ ++  v+  +  + +e+   a   k+ ti s+eiq a rl
+  60543050|Conocephalum_supradecom/1-136  60 ELLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEETNLCAIHAKRVTIQSKEIQLARRL 131
+                                             44456667777788888889999999******************************************9887 PP
+
+>> 60543036|Conocephalum_supradecom/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   14.6   1.2   0.00016     0.014      28     100 ..      59     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 14.6 bits;  conditional E-value: 0.00016
+                                     H2B  28 krkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              +   rk  ++  +  + ++ + d    s a++ ++  v+  +  + +e+   a   k+ ti s++iq a rl
+  60543036|Conocephalum_supradecom/1-136  59 TELLIRKLPFQRLVREIAQEFKSDLRFQSSAIGALQESVESYLASLFEETNLCAIHAKRVTIQSKDIQLARRL 131
+                                             44445666777888888889999**********************************************9987 PP
+
+>> 60543024|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   14.4   0.7   0.00019     0.017      24     100 ..      55     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 14.4 bits;  conditional E-value: 0.00019
+                                  H2B  24 kkkkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           +k  +   rk  ++ ++  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543024|Conocephalum_conicum/1-136  55 YQKSTELLIRKLPFQRFVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          44444555678889999999999****************************9**999****************9987 PP
+
+>> 3016|Neurospora_crassa/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.6   0.8   0.00031     0.029      29     100 ..      60     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 13.6 bits;  conditional E-value: 0.00031
+                           H2B  29 rkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                   +   rk  ++  +  + +  + d    s a+++++  v+  +  + +++   a   k+ ti s++iq a rl
+  3016|Neurospora_crassa/1-136  60 ELLIRKLPFQRLVREIAQDFKSDLRFQSSAIGLLQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                   4445666777778888888999999*********************9*9999****************9987 PP
+
+>> 307111834|Chlorella_variabilis/1-135  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.3   0.0   0.00039     0.036      67     100 ..      53      90 ..      48     108 .. 0.70
+
+  Alignments for each domain:
+  == domain 1  score: 13.3 bits;  conditional E-value: 0.00039
+                                   H2B  67 ndiferiaaeasrl....arynkkstitsreiqtavrl 100
+                                             ++e +aae  +l    ar nkk+ it r iq avr 
+  307111834|Chlorella_variabilis/1-135  53 AAVLEYLAAEVLELagnaARDNKKTRITPRHIQLAVRN 90 
+                                           567777887765552222689***************94 PP
+
+>> 221122623|Hydra_magnipapillata/1-129  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.5   0.0   0.00035     0.032      23      99 ..      10      87 ..       2      98 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 13.5 bits;  conditional E-value: 0.00035
+                                   H2B 23 kkkkkkrkkkrkesysi.yiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavr 99
+                                          k+k+k r+++    + +  i++ l++ h    i s a   + + ++ +   i + a + ar nkks i  r +q avr
+  221122623|Hydra_magnipapillata/1-129 10 KEKSKTRSSRAGLQFPVgRIHRFLRKGHYANRIGSGAPVYLAAVMEYLSAEILELAGNAARDNKKSRINPRHLQLAVR 87
+                                          33344444444444444369999**************9999999999999999999999******************9 PP
+
+>> 86171188|Plasmodium_falciparum/1-132  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.0   0.1   0.00051     0.046      73      99 ..      63      89 ..       2      96 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 13.0 bits;  conditional E-value: 0.00051
+                                   H2B 73 iaaeasrlarynkkstitsreiqtavr 99
+                                          i + a + ar nkks it r iq avr
+  86171188|Plasmodium_falciparum/1-132 63 ILELAGNAARDNKKSRITPRHIQLAVR 89
+                                          33446667899***************9 PP
+
+>> 148805065|Plasmodium_vivax/1-133  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.0   0.1   0.00049     0.045      73      99 ..      63      89 ..       3      97 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 13.0 bits;  conditional E-value: 0.00049
+                               H2B 73 iaaeasrlarynkkstitsreiqtavr 99
+                                      i + a + ar nkks it r iq avr
+  148805065|Plasmodium_vivax/1-133 63 ILELAGNAARDNKKSRITPRHIQLAVR 89
+                                      33446667899***************9 PP
+
+>> 156100995|Plasmodium_vivax/1-133  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.0   0.1   0.00049     0.045      73      99 ..      63      89 ..       3      97 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 13.0 bits;  conditional E-value: 0.00049
+                               H2B 73 iaaeasrlarynkkstitsreiqtavr 99
+                                      i + a + ar nkks it r iq avr
+  156100995|Plasmodium_vivax/1-133 63 ILELAGNAARDNKKSRITPRHIQLAVR 89
+                                      33446667899***************9 PP
+
+>> 221057980|Plasmodium_knowlesi/1-133  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.0   0.1   0.00049     0.045      73      99 ..      63      89 ..       3      97 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 13.0 bits;  conditional E-value: 0.00049
+                                  H2B 73 iaaeasrlarynkkstitsreiqtavr 99
+                                         i + a + ar nkks it r iq avr
+  221057980|Plasmodium_knowlesi/1-133 63 ILELAGNAARDNKKSRITPRHIQLAVR 89
+                                         33446667899***************9 PP
+
+>> 23480497|Plasmodium_yoelii/1-133  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.0   0.1   0.00049     0.045      73      99 ..      63      89 ..       3      97 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 13.0 bits;  conditional E-value: 0.00049
+                               H2B 73 iaaeasrlarynkkstitsreiqtavr 99
+                                      i + a + ar nkks it r iq avr
+  23480497|Plasmodium_yoelii/1-133 63 ILELAGNAARDNKKSRITPRHIQLAVR 89
+                                      33446667899***************9 PP
+
+>> 82594560|Plasmodium_yoelii/1-133  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   13.0   0.1   0.00049     0.045      73      99 ..      63      89 ..       3      97 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 13.0 bits;  conditional E-value: 0.00049
+                               H2B 73 iaaeasrlarynkkstitsreiqtavr 99
+                                      i + a + ar nkks it r iq avr
+  82594560|Plasmodium_yoelii/1-133 63 ILELAGNAARDNKKSRITPRHIQLAVR 89
+                                      33446667899***************9 PP
+
+>> 269978643|Fusarium_sp./1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                           H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                     rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978643|Fusarium_sp./1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                   456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978645|Fusarium_armeniacum/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                  H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978645|Fusarium_armeniacum/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                          456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978647|Fusarium_avenaceum/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                 H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978647|Fusarium_avenaceum/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                         456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978649|Fusarium_boothii/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                               H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                         rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978649|Fusarium_boothii/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                       456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978651|Fusarium_camptoceras/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                   H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978651|Fusarium_camptoceras/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                           456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978653|Fusarium_cerealis/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978653|Fusarium_cerealis/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                        456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978655|Fusarium_culmorum/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978655|Fusarium_culmorum/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                        456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978657|Fusarium_equiseti/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978657|Fusarium_equiseti/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                        456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978659|Fusarium_kyushuense/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                  H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978659|Fusarium_kyushuense/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                          456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978661|Fusarium_longipes/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978661|Fusarium_longipes/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                        456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978663|Fusarium_incarnatum/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                  H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978663|Fusarium_incarnatum/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                          456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978665|Fusarium_poae/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                            H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                      rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978665|Fusarium_poae/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                    456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978667|Gibberella_pulicaris/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                   H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978667|Gibberella_pulicaris/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                           456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978669|Fusarium_sp./1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                           H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                     rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978669|Fusarium_sp./1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                   456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978671|Fusarium_sporotrichioi/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978671|Fusarium_sporotrichioi/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                             456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978673|Fusarium_torulosum/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                 H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978673|Fusarium_torulosum/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                         456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 269978675|Fusarium_venenatum/1-131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.8   0.4   0.00056     0.051      31     100 ..      57     126 ..       4     129 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.8 bits;  conditional E-value: 0.00056
+                                 H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  269978675|Fusarium_venenatum/1-131  57 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 126
+                                         456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 60543046|Conocephalum_supradecom/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.6   0.5   0.00065     0.059      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.6 bits;  conditional E-value: 0.00065
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543046|Conocephalum_supradecom/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 60543086|Marchantia_polymorpha/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.7   0.4   0.00062     0.057      32     100 ..      63     131 ..       3     134 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 12.7 bits;  conditional E-value: 0.00062
+                                   H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543086|Marchantia_polymorpha/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           566667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 60543058|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.6   0.4   0.00065      0.06      32     100 ..      63     131 ..       3     134 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 12.6 bits;  conditional E-value: 0.00065
+                                  H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543058|Conocephalum_conicum/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          456667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 60543030|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.1   1.3   0.00093     0.085      26     100 ..      57     131 ..       2     134 .. 0.77
+
+  Alignments for each domain:
+  == domain 1  score: 12.1 bits;  conditional E-value: 0.00093
+                                  H2B  26 kkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          k  +   rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543030|Conocephalum_conicum/1-136  57 KSTELLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          334444566777788888888899999999*******99999999999999999999**************9987 PP
+
+>> 60543048|Conocephalum_supradecom/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.5   0.6    0.0007     0.064      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.5 bits;  conditional E-value: 0.0007
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543048|Conocephalum_supradecom/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4566667777778888889999999999*99999999999999999999999**************9987 PP
+
+>> 60543104|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.9    0.0008     0.073      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.0008
+                                  H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543104|Conocephalum_conicum/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 60543042|Conocephalum_supradecom/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.5   0.7   0.00072     0.066      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.5 bits;  conditional E-value: 0.00072
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543042|Conocephalum_supradecom/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             456666777777888888999999999**99999999999999999999999**************9987 PP
+
+>> 60543116|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.4   0.6   0.00077      0.07      32     100 ..      63     131 ..       2     134 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 12.4 bits;  conditional E-value: 0.00077
+                                  H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543116|Conocephalum_conicum/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          466667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 295634892|Tuber_melanosporum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.1   0.6   0.00091     0.084      32     100 ..      63     131 ..       3     134 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 12.1 bits;  conditional E-value: 0.00091
+                                 H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  295634892|Tuber_melanosporum/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         466667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 296418581|Tuber_melanosporum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.1   0.6   0.00091     0.084      32     100 ..      63     131 ..       3     134 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 12.1 bits;  conditional E-value: 0.00091
+                                 H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  296418581|Tuber_melanosporum/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         466667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 60543018|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.4   0.7   0.00078     0.072      32     100 ..      63     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.4 bits;  conditional E-value: 0.00078
+                                  H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543018|Conocephalum_conicum/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          456667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 115492089|Aspergillus_terreus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                  H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  115492089|Aspergillus_terreus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 119495179|Neosartorya_fischeri/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  119495179|Neosartorya_fischeri/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 121701225|Aspergillus_clavatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  121701225|Aspergillus_clavatus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 122080|Emericella_nidulans/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                               H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  122080|Emericella_nidulans/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                       4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 134077327|Aspergillus_niger/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  134077327|Aspergillus_niger/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                        4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 145240329|Aspergillus_niger/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  145240329|Aspergillus_niger/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                        4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 156630830|Aspergillus_clavatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  156630830|Aspergillus_clavatus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 159131503|Aspergillus_fumigatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                    H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  159131503|Aspergillus_fumigatus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                            4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 169763208|Aspergillus_oryzae/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                 H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  169763208|Aspergillus_oryzae/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 212531989|Penicillium_marneffei/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                    H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  212531989|Penicillium_marneffei/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                            4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 238489087|Aspergillus_flavus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                 H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  238489087|Aspergillus_flavus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 242774415|Talaromyces_stipitatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  242774415|Talaromyces_stipitatus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 255941514|Penicillium_chrysogenu/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  255941514|Penicillium_chrysogenu/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 259488987|Aspergillus_nidulans/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  259488987|Aspergillus_nidulans/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 48427850|Aspergillus_fumigatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  48427850|Aspergillus_fumigatus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 48427851|Penicillium_funiculosum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  48427851|Penicillium_funiculosum/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 70995988|Aspergillus_fumigatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  70995988|Aspergillus_fumigatus/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 94717620|Aspergillus_oryzae/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.7    0.0009     0.083      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  94717620|Aspergillus_oryzae/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                        4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 154276502|Ajellomyces_capsulatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.5   0.00081     0.074      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00081
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  154276502|Ajellomyces_capsulatus/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4566667777778888889999999999999999999999999999999999**************9987 PP
+
+>> 225560319|Ajellomyces_capsulatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.5   0.00081     0.074      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00081
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  225560319|Ajellomyces_capsulatus/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4566667777778888889999999999999999999999999999999999**************9987 PP
+
+>> 295660614|Paracoccidioides_brasi/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.5   0.00081     0.074      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00081
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  295660614|Paracoccidioides_brasi/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4566667777778888889999999999999999999999999999999999**************9987 PP
+
+>> 239607232|Ajellomyces_dermatitid/1-137  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.5   0.00083     0.076      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00083
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  239607232|Ajellomyces_dermatitid/1-137  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4566667777778888889999999999999999999999999999999999**************9987 PP
+
+>> 261200849|Ajellomyces_dermatitid/1-137  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.5   0.00083     0.076      31     100 ..      62     131 ..       2     134 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00083
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  261200849|Ajellomyces_dermatitid/1-137  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4566667777778888889999999999999999999999999999999999**************9987 PP
+
+>> 157277140|Cladosporium_bruhnei/1-118  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.5   0.2    0.0007     0.064      31     100 ..      49     118 .]       3     118 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.5 bits;  conditional E-value: 0.0007
+                                   H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277140|Cladosporium_bruhnei/1-118  49 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 118
+                                           456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 157277182|Cladosporium_aff./1-118  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.5   0.2    0.0007     0.064      31     100 ..      49     118 .]       3     118 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.5 bits;  conditional E-value: 0.0007
+                                H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277182|Cladosporium_aff./1-118  49 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 118
+                                        456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 157277264|Cladosporium_cf./1-118  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.5   0.2    0.0007     0.064      31     100 ..      49     118 .]       3     118 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.5 bits;  conditional E-value: 0.0007
+                               H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                         rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277264|Cladosporium_cf./1-118  49 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 118
+                                       456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 157277266|Cladosporium_cf./1-118  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.5   0.2    0.0007     0.064      31     100 ..      49     118 .]       3     118 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.5 bits;  conditional E-value: 0.0007
+                               H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                         rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277266|Cladosporium_cf./1-118  49 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 118
+                                       456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 225681901|Paracoccidioides_brasi/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.4   0.00083     0.076      32     100 ..      63     131 ..       3     134 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00083
+                                     H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  225681901|Paracoccidioides_brasi/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             456667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 226289072|Paracoccidioides_brasi/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.4   0.00083     0.076      32     100 ..      63     131 ..       3     134 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.00083
+                                     H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  226289072|Paracoccidioides_brasi/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             456667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 67516903|Aspergillus_nidulans/1-141  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.5   0.00088     0.081      31     100 ..      67     136 ..       5     139 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.00088
+                                  H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  67516903|Aspergillus_nidulans/1-141  67 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 136
+                                          4566667777777888889999999999999999999999999999999999**************9987 PP
+
+>> 157277142|Cladosporium_bruhnei/1-119  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.5   0.2   0.00072     0.066      31     100 ..      50     119 .]       4     119 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.5 bits;  conditional E-value: 0.00072
+                                   H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277142|Cladosporium_bruhnei/1-119  50 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 119
+                                           456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 119186681|Coccidioides_immitis/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   0.9   0.00099     0.091      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.00099
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  119186681|Coccidioides_immitis/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 121922114|Coccidioides_immitis/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   0.9   0.00099     0.091      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.00099
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  121922114|Coccidioides_immitis/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 258563392|Uncinocarpus_reesii/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   0.9   0.00099     0.091      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.00099
+                                  H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  258563392|Uncinocarpus_reesii/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 303317588|Coccidioides_posadasii/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   0.9   0.00099     0.091      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.00099
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  303317588|Coccidioides_posadasii/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 48427861|Ajellomyces_capsulatus/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.1   0.8   0.00094     0.086      31     100 ..      62     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.1 bits;  conditional E-value: 0.00094
+                                    H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  48427861|Ajellomyces_capsulatus/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                            4566667777778888889999999999*99999999999999999999999**************9987 PP
+
+>> 60543070|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.1   0.4   0.00091     0.083      31     100 ..      62     131 ..       4     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.1 bits;  conditional E-value: 0.00091
+                                  H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543070|Conocephalum_conicum/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTDLCAIHAKRVTIQSKDIQLARRL 131
+                                          4566667777778888889999999999999999999999999999999999**************9987 PP
+
+>> 116204825|Chaetomium_globosum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                  H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  116204825|Chaetomium_globosum/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 122064231|Gibberella_zeae/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                              H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                         rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  122064231|Gibberella_zeae/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                      4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 145610501|Magnaporthe_oryzae/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                 H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  145610501|Magnaporthe_oryzae/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 156630832|Magnaporthe_grisea/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                 H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  156630832|Magnaporthe_grisea/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 171690212|Podospora_anserina/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                 H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  171690212|Podospora_anserina/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 209570450|Glomerella_graminicola/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  209570450|Glomerella_graminicola/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 20981693|Neurospora_crassa/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                               H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  20981693|Neurospora_crassa/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                       4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 289620259|Sordaria_macrospora/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                  H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  289620259|Sordaria_macrospora/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 302900458|Nectria_haematococca/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  302900458|Nectria_haematococca/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 310798570|Glomerella_graminicola/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  310798570|Glomerella_graminicola/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 48427852|Hypocrea_jecorina/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                               H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  48427852|Hypocrea_jecorina/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                       4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 60543034|Conocephalum_supradecom/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543034|Conocephalum_supradecom/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 60543072|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                  H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543072|Conocephalum_conicum/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 73919917|Marchantia_polymorpha/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  73919917|Marchantia_polymorpha/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 74607926|Chaetomium_globosum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                                 H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  74607926|Chaetomium_globosum/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 85077297|Neurospora_crassa/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.0   1.2     0.001     0.093      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.0 bits;  conditional E-value: 0.001
+                               H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  85077297|Neurospora_crassa/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                       4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 157277176|Cladosporium_bruhnei/1-122  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.4   0.3   0.00077      0.07      31     100 ..      53     122 .]       6     122 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.4 bits;  conditional E-value: 0.00077
+                                   H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                             rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277176|Cladosporium_bruhnei/1-122  53 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 122
+                                           456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 157277186|Cladosporium_aff./1-122  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.4   0.3   0.00077      0.07      31     100 ..      53     122 .]       6     122 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.4 bits;  conditional E-value: 0.00077
+                                H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277186|Cladosporium_aff./1-122  53 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 122
+                                        456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 157277188|Cladosporium_aff./1-122  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.4   0.3   0.00077      0.07      31     100 ..      53     122 .]       6     122 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.4 bits;  conditional E-value: 0.00077
+                                H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277188|Cladosporium_aff./1-122  53 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 122
+                                        456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 157277232|Cladosporium_macrocarp/1-122  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.4   0.3   0.00077      0.07      31     100 ..      53     122 .]       6     122 .] 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 12.4 bits;  conditional E-value: 0.00077
+                                     H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  157277232|Cladosporium_macrocarp/1-122  53 LIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 122
+                                             456666777777888888999999999***9999999999999999999999*************99886 PP
+
+>> 163915147|Xenopus_(Silurana)/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.9   1.0    0.0011       0.1      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.9 bits;  conditional E-value: 0.0011
+                                 H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  163915147|Xenopus_(Silurana)/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                         4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 167535127|Monosiga_brevicollis/1-129  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.3   0.0    0.0008     0.073      68      99 ..      55      90 ..       2      98 .. 0.76
+
+  Alignments for each domain:
+  == domain 1  score: 12.3 bits;  conditional E-value: 0.0008
+                                   H2B 68 diferiaae....asrlarynkkstitsreiqtavr 99
+                                           ++e +aae    a + a+ nkk+ i+ r iq avr
+  167535127|Monosiga_brevicollis/1-129 55 AVMEYLAAEilelAGNAAKDNKKTRISPRHIQLAVR 90
+                                          44555555511125666799***************9 PP
+
+>> 121920880|Phaeosphaeria_nodorum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.9   1.0    0.0011       0.1      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.9 bits;  conditional E-value: 0.0011
+                                    H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                               rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  121920880|Phaeosphaeria_nodorum/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                            4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 154296463|Botryotinia_fuckeliana/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.9   1.0    0.0011       0.1      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.9 bits;  conditional E-value: 0.0011
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  154296463|Botryotinia_fuckeliana/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 156047837|Sclerotinia_sclerotior/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.9   1.0    0.0011       0.1      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.9 bits;  conditional E-value: 0.0011
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  156047837|Sclerotinia_sclerotior/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 189211117|Pyrenophora_tritici-re/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.9   1.0    0.0011       0.1      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.9 bits;  conditional E-value: 0.0011
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  189211117|Pyrenophora_tritici-re/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 311321506|Pyrenophora_teres/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.9   1.0    0.0011       0.1      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.9 bits;  conditional E-value: 0.0011
+                                H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  311321506|Pyrenophora_teres/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                        4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 167518163|Monosiga_brevicollis/1-137  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.1   0.0   0.00093     0.085      68      99 ..      55      90 ..       2      98 .. 0.76
+
+  Alignments for each domain:
+  == domain 1  score: 12.1 bits;  conditional E-value: 0.00093
+                                   H2B 68 diferiaae....asrlarynkkstitsreiqtavr 99
+                                           ++e +aae    a + a+ nkk+ i+ r iq avr
+  167518163|Monosiga_brevicollis/1-137 55 AVMEYLAAEilelAGNAAKDNKKTRISPRHIQLAVR 90
+                                          44555555511125666799***************9 PP
+
+>> 260815873|Branchiostoma_floridae/1-120  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   12.2   0.0    0.0009     0.082      41      99 ..      27      85 ..       7      96 .. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 12.2 bits;  conditional E-value: 0.0009
+                                     H2B 41 iykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavr 99
+                                            i++ l++ h    + s a   m + ++ +  +i + a + ar ++ + it+r iq avr
+  260815873|Branchiostoma_floridae/1-120 27 IHRLLRKGHYAQRVGSGAPVYMAAALECVTVKILELAVNAARDDNEKRITTRHIQLAVR 85
+                                            7899999999999*********************************************9 PP
+
+>> 60543012|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.7   0.6    0.0013      0.11      32     100 ..      63     131 ..       2     134 .. 0.77
+
+  Alignments for each domain:
+  == domain 1  score: 11.7 bits;  conditional E-value: 0.0013
+                                  H2B  32 krkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543012|Conocephalum_conicum/1-136  63 IRKLPFQRLVREIAQDFKSDLRFQSPAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          5666677777777888889999999999999999999999999999999999*************9987 PP
+
+>> 60543084|Marchantia_polymorpha/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.6   1.0    0.0013      0.12      34     100 ..      65     131 ..       2     134 .. 0.81
+
+  Alignments for each domain:
+  == domain 1  score: 11.6 bits;  conditional E-value: 0.0013
+                                   H2B  34 kesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                           k  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543084|Marchantia_polymorpha/1-136  65 KLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                           5556666667777788899999999999999999999999999999999**************9987 PP
+
+>> 60543020|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.6   0.9    0.0013      0.12      31     100 ..      62     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.6 bits;  conditional E-value: 0.0013
+                                  H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a + ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543020|Conocephalum_conicum/1-136  62 LIRKLPFQRLVREIAQDFKSDLRFQSSAFGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4566667777777888888999999999999999999999999999999999**************9987 PP
+
+>> 60543082|Marchantia_polymorpha/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.6   1.2    0.0013      0.12      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.6 bits;  conditional E-value: 0.0013
+                                   H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                              rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543082|Marchantia_polymorpha/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNFCAIHAKRVTIQSKDIQLARRL 131
+                                           4456667777777888888999999999***9999999999999999********************9987 PP
+
+>> 60543040|Conocephalum_supradecom/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.6   1.2    0.0014      0.12      30     100 ..      61     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.6 bits;  conditional E-value: 0.0014
+                                     H2B  30 kkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                                rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543040|Conocephalum_supradecom/1-136  61 LLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIRSKDIQLARRL 131
+                                             4456667777777888888999999999***9999999999999999999999**************9987 PP
+
+>> 60543110|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.5   1.3    0.0014      0.13      31     100 ..      62     131 ..       2     134 .. 0.78
+
+  Alignments for each domain:
+  == domain 1  score: 11.5 bits;  conditional E-value: 0.0014
+                                  H2B  31 kkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                            rk  ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543110|Conocephalum_conicum/1-136  62 LIRKLPFQRLVREIAQDFKSDFRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4566667777777888888999999999999999999999999999999999**************9987 PP
+
+>> 60543068|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.2   0.8    0.0018      0.17      37     100 ..      68     131 ..       2     134 .. 0.82
+
+  Alignments for each domain:
+  == domain 1  score: 11.2 bits;  conditional E-value: 0.0018
+                                  H2B  37 ysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          ++  +  + +  + d    s a++ ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543068|Conocephalum_conicum/1-136  68 FQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTDLCAIHAKRVTIQSKDIQLARRL 131
+                                          55566667777788999999999999999999999999999999999*************9987 PP
+
+>> 291241752|Saccoglossus_kowalevsk/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.4   0.0    0.0015      0.14      41      99 ..      30      88 ..       2      99 .. 0.77
+
+  Alignments for each domain:
+  == domain 1  score: 11.4 bits;  conditional E-value: 0.0015
+                                     H2B 41 iykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavr 99
+                                            +++ l++ h    i s a   + + ++ +   i + a + ar nkks i  r +q avr
+  291241752|Saccoglossus_kowalevsk/1-136 30 LHRFLRKGHYAARIGSGAPIYLAAVLEYLTAEILELAGNAARDNKKSRIVPRHVQLAVR 88
+                                            57788888888888888888888888888888888899999*****************9 PP
+
+>> 60543032|Conocephalum_conicum/1-136  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   10.1   2.3    0.0039      0.35      29     100 ..      60     131 ..       2     134 .. 0.76
+
+  Alignments for each domain:
+  == domain 1  score: 10.1 bits;  conditional E-value: 0.0039
+                                  H2B  29 rkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrl 100
+                                          +   rk  ++  +  + +  + d    s a+  ++  v+  +  + +++   a   k+ ti s++iq a rl
+  60543032|Conocephalum_conicum/1-136  60 ELLIRKLPFQRLVREIAQDFKSDLRFQSSAIVALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRL 131
+                                          4445666777777788888889999999999999999999999999999999999*************9987 PP
+
+>> 168067082|Physcomitrella_patens/1-151  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   10.6   0.1    0.0027      0.25      66      99 ..      48      85 ..      27      96 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 10.6 bits;  conditional E-value: 0.0027
+                                    H2B 66 vndiferiaaeasrla....rynkkstitsreiqtavr 99
+                                           +  ++e +aae  +la    r n+k+ it r iq avr
+  168067082|Physcomitrella_patens/1-151 48 LAAVLEYLAAEVLELAgnasRDNRKTRITPRHIQLAVR 85
+                                           456777777776666533327899999**********9 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (125 nodes)
+Target sequences:                        10969  (1334538 residues searched)
+Passed MSV filter:                      3296  (0.300483); expected 219.4 (0.02)
+Passed bias filter:                     2647  (0.241316); expected 219.4 (0.02)
+Passed Vit filter:                      1152  (0.105023); expected 11.0 (0.001)
+Passed Fwd filter:                       120  (0.0109399); expected 0.1 (1e-05)
+Initial search space (Z):              10969  [actual number of targets]
+Domain search space  (domZ):             120  [number of targets reported over threshold]
+# CPU time: 0.42u 0.00s 00:00:00.42 Elapsed: 00:00:00.28
+# Mc/sec: 575.23
+//
+[ok]

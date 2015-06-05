@@ -4,6 +4,7 @@ from browse.models import *
 import os
 from itertools import cycle
 import StringIO
+import subprocess
 
 from Bio import SeqIO
 from Bio import Phylo
@@ -27,10 +28,15 @@ class Command(BaseCommand):
     seed_directory = os.path.join("static", "browse", "seeds")
     trees_path = os.path.join("static", "browse", "trees")
     def add_arguments(self, parser):
-        pass
+        parser.add_argument(
+            "-f", 
+            "--force", 
+            default=False, 
+            action="store_true", 
+            help="Force the recreation of the varaint trees. If True and an phyloxml file is not present, the program will re-build each tree and add jsPhyloSVG features")
 
     def handle(self, *args, **options):
-        #self.make_trees()
+        self.make_trees()
         self.add_features()
 
     def get_variants(self, core_type=None):
@@ -46,7 +52,7 @@ class Command(BaseCommand):
                 else:
                     yield seed[:-6]
 
-    def make_trees(self):
+    def make_trees(self, force=False):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             core_histone = os.path.basename(root)
             print "Creating tree for", core_histone

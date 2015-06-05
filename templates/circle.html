@@ -27,7 +27,6 @@ p#intro {
   </div>
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="{% static 'browse/js/bootstrap-breadcrumbs.js' %}"></script>
 <script>
 var width = 840,
     height = width,
@@ -61,21 +60,10 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return Math.max(0, d.y ? y(d.y) : d.y); })
     .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
-breadcrumb = $('#breadcrumb').breadcrumb({
-  divider: '/'
-});
-breadcrumb.push("root");
-
 d3.json("{% static sunburst_url %}", function(error, json) {
-  if(json.length>1){
-    var nodes = partition.nodes({children: json});
-  }
-  else{
-    var nodes = partition.nodes(json);
-  }
-  console.log(nodes);
+  var nodes = partition.nodes(json);
+
   var path = vis.selectAll("path").data(nodes);
- 
   path.enter().append("path")
       .attr("id", function(d, i) { return "path-" + i; })
       .attr("d", arc)
@@ -89,6 +77,10 @@ d3.json("{% static sunburst_url %}", function(error, json) {
       .style("fill", function(d) {
         return brightness(d3.rgb(colour(d))) < 125 ? "#eee" : "#000";
       })
+      .attr("text-anchor", function(d) {
+        return x(d.x + d.dx / 2) > Math.PI ? "end" : "start";
+      })
+      .attr("dy", ".2em")
       .attr("transform", function(d) {
         var multiline = (d.name || "").split(" ").length > 1,
             angle = x(d.x + d.dx / 2) * 180 / Math.PI - 90,
@@ -103,7 +95,7 @@ d3.json("{% static sunburst_url %}", function(error, json) {
       .attr("x", 0)
       .attr("dy", "1em")
       .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
- 
+
   function click(d) {
     path.transition()
       .duration(duration)
@@ -132,36 +124,8 @@ d3.json("{% static sunburst_url %}", function(error, json) {
         .each("end", function(e) {
           d3.select(this).style("visibility", isParentOf(d, e) ? null : "hidden");
         });
-    update_breadcrumbs(d);
-  }
-
-  function click_name(d_name){
-    d = $(d_name);
-    click(d);
-  }
-
-  function update_breadcrumbs(d){
-    breadcrumb.reset();
-    for(node in getAncestors(d)){
-      breadcrumb.push(node);
-    }
   }
 });
-
-
-
-// Given a node in a partition layout, return an array of all of its ancestor
-// nodes, highest first, but excluding the root.
-// https://gist.github.com/kerryrodden/7090426
-function getAncestors(node) {
-  var path = [];
-  var current = node;
-  while (current.parent) {
-    path.unshift(current);
-    current = current.parent;
-  }
-  return path;
-}
 
 function isParentOf(p, c) {
   if (p === c) return true;
