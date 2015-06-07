@@ -36,7 +36,7 @@ class Command(BaseCommand):
             help="Force the recreation of the varaint trees. If True and an phyloxml file is not present, the program will re-build each tree and add jsPhyloSVG features")
 
     def handle(self, *args, **options):
-        self.make_trees()
+        self.make_trees(force=options["force"])
         self.add_features()
 
     def get_variants(self, core_type=None):
@@ -60,6 +60,10 @@ class Command(BaseCommand):
                 #Skip parent directory, only allow variant hmms to be built/searched
                 continue
 
+            final_tree_name = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
+            if not force and os.path.isfile(final_tree_name):
+                continue
+
             #Combine all varaints for a core histone type into one unaligned fasta file
             combined_seed_file = os.path.join(self.trees_path, "{}.fasta".format(core_histone))
             combined_seed_aligned = os.path.join(self.trees_path, "{}_aligned.fasta".format(core_histone))
@@ -70,11 +74,11 @@ class Command(BaseCommand):
                         s.seq = s.seq.ungap("-")
                         SeqIO.write(s, combined_seed, "fasta")
 
+            #Create trees and convert them to phyloxml
             tree = os.path.join(self.trees_path, "{}_aligned.ph".format(core_histone))
             subprocess.call(["muscle", "-in", combined_seed_file, '-out', combined_seed_aligned])
             subprocess.call(["clustalw2", "-infile={}".format(combined_seed_aligned), '-tree'])
-            Phylo.convert(tree, 'newick',
-                          os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone)), 'phyloxml')
+            Phylo.convert(tree, 'newick', final_tree_name, 'phyloxml')
     
     def add_features(self):
         for core_histone in ["H2A", "H2B", "H3", "H1", "H4"]:
@@ -100,18 +104,20 @@ class Command(BaseCommand):
                 render.append(charts)
 
                 styles = ET.Element("styles")
-                for i, variant in enumerate(Variant.objects.filter(core_type__id=core_histone)):
+                variants = list(Variant.objects.filter(core_type__id=core_histone).values_list("id", flat=True))
+                for i, variant in enumerate(variants):
                     color = colors[i]
-                    background = ET.Element("{}".format(variant.id.replace(".","")), attrib={"fill":color, "stroke":color})
-                    if not variant.id.startswith(core_histone):
+                    background = ET.Element("{}".format(variant.replace(".","")), attrib={"fill":color, "stroke":color})
+                    if not variant.startswith(core_histone):
                         #Remove descriptor
-                        start, name = variant.id[:variant.id.find(core_histone)], variant.id[variant.id.find(core_histone):]
-                        if len(start) > 3:
+                        start, name = variant[:variant.find(core_histone)], variant[variant.find(core_histone):]
+                        if len(start) > 3 and start != "canonical":
                             start = start[0]
                         name = start+name
                     else:
-                        name = variant.id
-                    label = ET.Element("markgroup{}".format(variant.id.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name, "labelStyle":"sectorHighlightText"})
+                        name = variant
+                    print "Adding", name
+                    label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name, "labelStyle":"sectorHighlightText"})
                     styles.append(background)
                     styles.append(label)
                 label_sector = ET.Element("sectorHighlightText", attrib={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"})
@@ -132,13 +138,23 @@ class Command(BaseCommand):
                         print name.text
                     
                         try:
-                            genus, gi, variant = name.text.split("|")
+                            genus, gi, partial_variant = name.text.split("|")
                         except ValueError:
                             remove.append(clade)
                             continue
 
+                        for variant in variants:
+                            if variant in partial_variant:
+                                break
+                        else:
+                            continue
+
                         name.attrib = {"bgStyle": variant.replace(".", "")}
-                        name.text = genus
+
+                        if "canonical" in variant:
+                            name.text = "."
+                        else:
+                            name.text = genus
                         
                         chart = ET.Element("chart")
                         group = ET.Element("group")

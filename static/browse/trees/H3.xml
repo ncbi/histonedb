@@ -1,6 +1,6 @@
 <phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
   <phylogeny rooted="false">
-    <render><parameters><circular><bufferRadius>0.5</bufferRadius></circular></parameters><charts><group thickness="20" type="integratedBinary" /></charts><styles><cenH3 fill="#66c2a5" stroke="#66c2a5" /><markgroupcenH3 fill="#000" label="cenH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H31 fill="#fc8d62" stroke="#fc8d62" /><markgroupH31 fill="#000" label="H3.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H32 fill="#8da0cb" stroke="#8da0cb" /><markgroupH32 fill="#000" label="H3.2" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H33 fill="#e78ac3" stroke="#e78ac3" /><markgroupH33 fill="#000" label="H3.3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H3Y fill="#a6d854" stroke="#a6d854" /><markgroupH3Y fill="#000" label="H3.Y" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><canonicalH3 fill="#ffd92f" stroke="#ffd92f" /><markgroupcanonicalH3 fill="#000" label="cH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="14" font-weight="bold" rotate="90" /></styles></render><clade>
+    <render><parameters><circular><bufferRadius>0.5</bufferRadius></circular></parameters><charts><group thickness="20" type="integratedBinary" /></charts><styles><cenH3 fill="#66c2a5" stroke="#66c2a5" /><markgroupcenH3 fill="#000" label="cenH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H31 fill="#fc8d62" stroke="#fc8d62" /><markgroupH31 fill="#000" label="H3.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H32 fill="#8da0cb" stroke="#8da0cb" /><markgroupH32 fill="#000" label="H3.2" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H33 fill="#e78ac3" stroke="#e78ac3" /><markgroupH33 fill="#000" label="H3.3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H3Y fill="#a6d854" stroke="#a6d854" /><markgroupH3Y fill="#000" label="H3.Y" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><canonicalH3 fill="#ffd92f" stroke="#ffd92f" /><markgroupcanonicalH3 fill="#000" label="canonicalH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="14" font-weight="bold" rotate="90" /></styles></render><clade>
       <clade>
         <branch_length>0.0</branch_length>
         <clade>
@@ -84,34 +84,34 @@
                           <clade>
                             <branch_length>0.01312</branch_length>
                             <clade>
-                              <name bgStyle="H3Y2s2">Homo</name>
+                              <name bgStyle="H3Y">Homo</name>
                               <branch_length>0.17694</branch_length>
-                            <chart><group>markgroupH3Y2s2</group></chart><annotation><desc>Variant H3.Y.2.s2 from Homo (119628413)</desc><uri>variant/H3.Y.2.s2/</uri></annotation></clade>
+                            <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (119628413)</desc><uri>variant/H3.Y/</uri></annotation></clade>
                             <clade>
                               <branch_length>0.01703</branch_length>
                               <clade>
                                 <branch_length>0.0222</branch_length>
                                 <clade>
-                                  <name bgStyle="H3Y1">Homo</name>
+                                  <name bgStyle="H3Y">Homo</name>
                                   <branch_length>0.0</branch_length>
-                                <chart><group>markgroupH3Y1</group></chart><annotation><desc>Variant H3.Y.1 from Homo (NO_GI)</desc><uri>variant/H3.Y.1/</uri></annotation></clade>
+                                <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
                                 <clade>
-                                  <name bgStyle="H3Y1">Pan</name>
+                                  <name bgStyle="H3Y">Pan</name>
                                   <branch_length>0.0</branch_length>
-                                <chart><group>markgroupH3Y1</group></chart><annotation><desc>Variant H3.Y.1 from Pan (NO_GI)</desc><uri>variant/H3.Y.1/</uri></annotation></clade>
+                                <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Pan (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
                               </clade>
                               <clade>
                                 <branch_length>0.00457</branch_length>
                                 <clade>
-                                  <name bgStyle="H3Y2">Pan</name>
+                                  <name bgStyle="H3Y">Pan</name>
                                   <branch_length>0.01104</branch_length>
-                                <chart><group>markgroupH3Y2</group></chart><annotation><desc>Variant H3.Y.2 from Pan (NO_GI)</desc><uri>variant/H3.Y.2/</uri></annotation></clade>
+                                <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Pan (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
                                 <clade>
                                   <branch_length>0.0095</branch_length>
                                   <clade>
-                                    <name bgStyle="H3Y2">Homo</name>
+                                    <name bgStyle="H3Y">Homo</name>
                                     <branch_length>0.00019</branch_length>
-                                  <chart><group>markgroupH3Y2</group></chart><annotation><desc>Variant H3.Y.2 from Homo (NO_GI)</desc><uri>variant/H3.Y.2/</uri></annotation></clade>
+                                  <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
                                   </clade>
                               </clade>
                             </clade>
@@ -119,13 +119,13 @@
                           <clade>
                             <branch_length>0.02918</branch_length>
                             <clade>
-                              <name bgStyle="H3Y2">Macaca</name>
+                              <name bgStyle="H3Y">Macaca</name>
                               <branch_length>0.02601</branch_length>
-                            <chart><group>markgroupH3Y2</group></chart><annotation><desc>Variant H3.Y.2 from Macaca (NO_GI)</desc><uri>variant/H3.Y.2/</uri></annotation></clade>
+                            <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Macaca (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
                             <clade>
-                              <name bgStyle="H3Y1">Macaca</name>
+                              <name bgStyle="H3Y">Macaca</name>
                               <branch_length>0.02584</branch_length>
-                            <chart><group>markgroupH3Y1</group></chart><annotation><desc>Variant H3.Y.1 from Macaca (NO_GI)</desc><uri>variant/H3.Y.1/</uri></annotation></clade>
+                            <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Macaca (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
                           </clade>
                         </clade>
                       </clade>

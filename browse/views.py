@@ -140,27 +140,33 @@ def get_all_scores(request, ids=None):
     
     variants = list(Variant.objects.all().values_list("id", flat=True))
     indices = {variant: i for i, variant in enumerate(variants)}
-    rows = [{id:"none" for id in ids} for _ in xrange(len(variants)+1)]
+    rows = [{} for _ in xrange(len(variants))]
     for i, variant in enumerate(variants):
         rows[i]["variant"] = variant
+        for id in ids:
+            rows[i][id] = "none"
+        rows[i]["data"] = {}
+        rows[i]["data"]["above_threshold"] = {id:False for id in ids}
+        rows[i]["data"]["this_classified"] = {id:False for id in ids}
     
     for i, id in enumerate(ids):
         try:
             sequence = Sequence.objects.get(id=id)
         except:
             return "404"
-        scores = sequence.scores.values("variant").annotate(score=Max("score"))
+        classified_variant = sequence.variant.id
+        
+        scores = sequence.scores.all().order_by("variant__id")
 
-        test = []
         for j, score in enumerate(scores):
-            if score["variant"] in variants:
-                test.append(score)
-                try:
-                    rows[indices[score["variant"]]][id] = str(score["score"])
-                except IndexError:
-                    continue
+            if score.variant.id in variants:
+                threshold = score.variant.hmmthreshold
+                if rows[indices[score.variant.id]][id] == "none" or score.score > rows[indices[score.variant.id]][id]:
+                    rows[indices[score.variant.id]][id] = score.score
+                    rows[indices[score.variant.id]]["data"]["above_threshold"][id] = score.score>=threshold
+                    rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.variant.id == classified_variant
             
-    return JsonResponse({"total":len(rows), "rows":rows})
+    return JsonResponse(rows, safe=False)
 
 def get_all_sequences(request, ids=None):
     if ids is None and request.method == "GET" and "id" in request.GET:

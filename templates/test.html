@@ -71,7 +71,16 @@
         <h4 class="modal-title" id="all_profiles">All Profile Scores</h4>
       </div>
       <div class="modal-body">
-        <table id="scores_table" style="overflow: auto;"></table>
+        <div class="btn-group">
+          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Classified Variant</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Above Variant Threshold</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Below Variant Threshold</button>
+        </div>
+        <div id="bootstrap_table_div"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -174,14 +183,42 @@ var $table = $('#sequence_table'),
           m.g.colorscheme.set("scheme", "colorConservation");
           $('#msa_modal').modal('show');
         });
+        
+        function cellStyle(value, row, index) {
+          //console.log(index);
+          console.log(row);
+          console.log(value);
+          //console.log(row.data.this_classified);
+          id = "";
+          for (var key in row){
+            if(row[key] == value){
+              id = key;
+              break;
+            }
+          }
+          if(value == "none" || id == ""){
+            return {classes:"active"};
+          }
+          else if(row.data.this_classified[id] == true){
+            return {classes: "success"};
+          }
+          else if(row.data.above_threshold[id] == true){
+            return {classes: "info"};
+          }
+          else{
+            return {classes:"danger"};
+          }
+        }
 
         $scores_modal_button.click(function() {
-          $('#scores_table').innerHTML = "";
+          $('#bootstrap_table_div').empty();
+          console.log($('#bootstrap_table_div').innerHTML)
+          $('#bootstrap_table_div').append("<table id='scores_table' style='overflow: auto;'></table>");
           ids = getSelectedIDs();
           columns = [{field:'variant', title:''}];
           params = "?";
           for (var i = 0; i < ids.length; i++) {
-            columns.push({field:ids[i], title:ids[i]});
+            columns.push({field:ids[i], title:ids[i], cellStyle:cellStyle});
             params += "id="+ids[i]+"&"
           }
           $('#scores_table').bootstrapTable({
