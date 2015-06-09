@@ -2,20 +2,79 @@ from django.db.models import Max, Min
 from browse.models import *
 import browse
 from djangophylocore.models import *
+from django.db.models import Q
 
 from django.shortcuts import redirect
 from django.http import JsonResponse
 
 from collections import Counter
 
-current_search = None
+import django_filters
 
-def search(parameters, initial_query=None):
-    global current_search
-    if current_search and current_search.parameters == parameters:
-        return current_search
-    else:
-        current_search = HistoneSearch(parameters, initial_query)
+def tax_sub_search(value):
+    """
+    """
+    ids = set()
+
+    if not format_query.current_query.startswith("taxonomy"):
+        return list(ids)
+    
+    search_type = format_query.current_query[len("taxonomy"):]
+    queryName = {"name{}".format(search_type):value.lower()}
+    try:
+        queryID = {"id{}".format(search_type):int(value)}
+    except ValueError:
+        queryID = {}
+    query = Q(**queryName)|Q(**queryID)
+    for taxon in Taxonomy.objects.filter(query):
+        if taxon.type_name != "scientific name":
+            #Convert homonym into real taxon
+            taxon = taxon.get_scientific_names()[0]
+        ids.add(taxon.id)
+        children = set(taxon.children.values_list("id", flat=True).filter(rank=2))
+        ids |= children
+    format_query.current_query = "taxonomy__in"
+    return list(ids)
+
+#Fields that are allowed: each row contains:
+#    POST name, django model paramter, POST name for search type, input type (must be in seach_types)
+allowable_fields = [
+    ("id_id", "id", "id_id_search_type", str),
+    ("id_core_histone", "variant__core_type__id", "id_core_type_search_type", str),
+    ("id_variant", "variant_id", "id_variant_search_type", str),
+    ("id_gene", "gene", "id_gene_search_type", int),
+    ("id_splice","splice", "id_splice_search_type", int),
+    ("id_header", "header", "id_header_search_type", str),
+    ("id_taxonomy", "taxonomy", "id_taxonomy_search_type", tax_sub_search),
+    ("id_evalue", "evalue", "id_evalue_search_type", float),
+    ("id_score", "score", "id_specificity_search_type", float),
+    #("show_lower_scoring_models", None, None, (""))
+]
+
+search_types = {}
+search_types[str] = {
+    "is": "",
+    "is (case-insesitive)": "__iexact",
+    "contains": "__contains",
+    "contains (case-insesitive)": "__icontains",
+    "starts with": "__startswith",
+    "starts with (case-insesitive)": "__istartswith",
+    "ends with": "__endswith",
+    "ends with (case-insesitive)": "__iendswith",
+    "in (comma separated, case-sensitive)": "__in"
+}
+search_types[int] = {
+    ">": "__gt",
+    ">=": "__gte",
+    "is": "",
+    "<": "__lt",
+    "<=": "__lte",
+    "range (dash separator)": "__range",
+    "in (comma separated)": "__in",
+}
+search_types[float] = search_types[int]
+search_types["text"] = search_types[str]
+search_types["int"] = search_types[int]
 
 class HistoneSearch(object):
     """
@@ -28,8 +87,9 @@ class HistoneSearch(object):
 
         if reset:
             HistoneSearch.reset(request)
-        else:
-            parameters.update(request.session.get("query", {}))
+        elif "query" in request.session and request.session["query"]:
+            parameters.update(request.session["query"])
+            self.ajax = True
 
         self.errors = Counter()
         self.navbar = navbar
@@ -58,22 +118,9 @@ class HistoneSearch(object):
     def sanitize_parameters(self, parameters, reset=False):
         """
         """
-        search_parameters = [
-            "id", "id_search_type", 
-            "core_type", "core_type_search_type", 
-            "variant", "variant_search_type", 
-            "gene", "gene_search_type", 
-            "splice", "splice_search_type", 
-            "header", "header_search_type", 
-            "taxonomy", "taxonomy_search_type",
-            #"specificity", "specificity_search_type"
-            #"evalue", "evalue_search_type"
-            #"score", "specificity_search_type"
-            #"scoring_program"
-            #"show_lower_scoring_models"
-            ]
-        
-        self.request.session["query"] = {p:v for p, v in parameters.iteritems() if p in search_parameters}
+        self.request.session["query"] = {field:parameters[field] for fields in allowable_fields \
+            for field in (fields[0], fields[2]) if field in parameters}
+
         if "search" in parameters:
             self.request.session["search"] = parameters["search"]
         
@@ -98,38 +145,23 @@ class HistoneSearch(object):
 
         if "search" in parameters:
             self.simple_search(search_text=parameters["search"])
+            return
         
         query = format_query()
-          
-        fields = [
-            ("id", "id_search_type", int, ("is", "in")),
-            ("core_type:variant__core_type_id", "core_type_search_type", str, None),
-            ("variant:variant_id", "variant_search_type", str, None),
-            ("gene", "gene_search_type", int, None),
-            ("splice", "splice_search_type", int, None),
-            ("header", "header_search_type", str, None),
-            ("taxonomy", "taxonomy_search_type", tax_sub_search, None)
-            #("specificity", "specificity_search_type", int, None),
-            #("evalue", "evalue_search_type", float, None),
-            #("score", "specificity_search_type", float, None),
-            #("scoring_program", None, str, ("is")),
-            #("show_lower_scoring_models", None, None, (""))
-        ]
 
         added = []
-        for field, search_type, convert, allow in fields:
-            if ":" in field:
-                synonym, field = field.split(":")
-                value = parameters.get(synonym) or parameters.get(field)
-            else:
-                value = parameters.get(field)
+        for form, field, search_type, convert in allowable_fields:
+            value = None
+            if form in parameters:
+                added.append((field, search_type, parameters.get(form)))
+                value = parameters.get(form)
 
             if not value: 
                 continue
 
             search_type = parameters.get(search_type, "is")
-            added.append((field, search_type))
-            query.format(field, search_type, value, convert, allow)                
+            
+            query.format(field, search_type, value, convert)                
 
         """specificity = parameters.get("specificity", 95):
         specificity_search_type = parameters.get("specificity_search_type", ">=")
@@ -139,10 +171,12 @@ class HistoneSearch(object):
         """
 
         if query.has_errors():
-            raise RuntimeError(str(self.errors))
+            raise RuntimeError(str(query.errors))
             return False
         
         self.query_set = Sequence.objects.annotate(evalue=Min("scores__evalue"), score=Max("scores__score")).filter(**query)
+        #if hasattr(self, 'ajax'):
+        #    assert 0, list(self.query_set)
         self.count = self.query_set.count()
         #if not reset:
         #    raise RuntimeError(str(query))
@@ -150,11 +184,13 @@ class HistoneSearch(object):
     def sorted(self):
         #Sort by best score. Using e-value so we can compare HMMER and SAM
         result = self.query_set
+        
         sort_by = self.request.session["sort"]["sort"]
         sort_order = "-" if self.request.session["sort"]["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
         result = result.order_by(sort_key)
-
+        assert 0, list(result)
+        
         try:
             page_size = int(self.request.session["sort"]["limit"])
         except ValueError:
@@ -163,12 +199,13 @@ class HistoneSearch(object):
         try:
             page_number = int(self.request.session["sort"]["offset"])
         except ValueError:
-            page_number = 10
+            page_number = 0
 
-        start = page_size*(page_number+1)
+        start = page_size*page_number
         end = start+page_size
 
         result = result[start:end]
+
 
         return result
 
@@ -180,6 +217,11 @@ class HistoneSearch(object):
 
     def count(self):
         return self.query_set.count()
+
+    def get_dict(self):
+        sequences = self.sorted()
+        result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "species":r.taxonomy.name, "score":r.score, "evalue":r.evalue, "header":r.header} for r in sequences]
+        return {"total":self.count, "rows":result}
 
     def simple_search(self, search_text=None):
         """Search from simple text box in brand or sequence filter.
@@ -274,91 +316,51 @@ class HistoneSearch(object):
             self.query_set = headers
             self.redirect = None
 
-    def get_dict(self):
-        sequences = self.sorted()
-        result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "species":r.taxonomy.name, "score":r.score, "evalue":r.evalue, "header":r.header} for r in sequences]
-        return {"total":self.count, "rows":result}
-        
-_digits = re.compile('\d')
-
-search_types = {}
-search_types[str] = {
-    "is": "",
-    "is (case-insesitive)": "__iexact",
-    "contains": "__contains",
-    "contains (case-insesitive)": "__icontains",
-    "starts with": "__startswith",
-    "starts with (case-insesitive)": "__istartswith",
-    "ends with": "__endswith",
-    "ends with (case-insesitive)": "__iendswith",
-    "in (comma separated, case-sensitive)": "__in"
-}
-search_types[int] = {
-    ">": "__gt",
-    ">=": "__gte",
-    "is": "",
-    "<": "__lt",
-    "<=": "__lte",
-    "range (dash separator)": "__range",
-    "in (comma separated)": "__in",
-}
-search_types[float] = search_types[int]
-
 class format_query(dict):
     current_query = None
     errors = Counter()
-    def format(self, field, search_type, value, conv_type, allow=None):
-        if allow and search_type not in allow:
-            errors["Invalid search type ({}) for field {}".format(search_type, field)] += 1
-            return False, errors
-
+    def format(self, field, search_type, value, conv_type):
+        #if allow and search_type not in allow:
+        #    format_query.errors["Invalid search type ({}) for field {}".format(search_type, field)] += 1
+         #   return False, errors
         try:
-            search_type = search_types[conv_type][search_type]
+            if conv_type.__class__.__name__ == "function":
+                search_type = search_types[str][search_type]
+            else:
+                search_type = search_types[conv_type][search_type]
         except KeyError:
-            self.errors["Invalid search type ({}) for field {}".format(search_type, field)] += 1
-            return False, errors
+            format_query.errors["Invalid search type ({}; {}) for field {}".format(search_type,conv_type,field)] += 1
+            return False, self.errors
 
-        self.current_query = "{}{}".format(field, search_type)
+
+        format_query.current_query = "{}{}".format(field, search_type)
 
         try:
-            if search_type == "range":
+            if search_type.endswith("range"):
                 if "-" in value:
                     value = map(conv_type, value.split("-"))
                 else:
                     self.errors["Must include a dash if searching range"] += 1
-            elif search_type == "in":
+            elif search_type.endswith("in"):
                 if "," in value:
                     value = map(conv_type, value.split(","))
                 else:
                     self.errors["Must include a dash if searching range"] += 1
             else:
                 value = conv_type(value)
-        except:
-            self.errors["Must include correct character to seach {}".format(field)] += 1
+
+        except ValueError:
+            format_query.errors["Must include correct character to seach {}".format(field)] += 1
         
         if len(format_query.errors) > 0:
             return
 
-        self[self.current_query] = value
+        self[format_query.current_query] = value
         self.current_query = None
 
     def has_errors(self):
         return len(format_query.errors) > 0
 
-def tax_sub_search(value):
-    """
-    """
-    ids = set()
-    for taxon in Taxonomy.objects.filter(**{format_query.current_query: value}):
-        try:
-            #Convert homonym into real taxon
-            taxon = taxon.get_scientific_names()[0]
-        except IndexError:
-            #Already correct taxon
-            pass
-        ids |= set(taxon.children.values_list("id", flat=True).filter(rank=2))
-    format_query.current_query = "taxonomy__in"
-    return ids
 
 
 
