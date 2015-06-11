@@ -120,15 +120,23 @@ The next tab contains all of the sequences for that variant, with the same funct
 The final tab consists of the multiple sequence alignment for the specific variant, which have been created using the sequences identified by Talbert. This is also made with the BioJS msa module.
 
 #### All Sequences ####
-You are presented with the GI, Variant, Gene, Splice, Species, Header, and Score for each sequence using wenzhixin’s bootstrap-table. You can then select one or more sequences to see its multiple sequence alignments with secondary structure annotations, scores for the sequence in other models, view in Entrez, and download all. The Multiple Sequence Alignment is made from the BioJS msa package. Viewing scores of the sequence from other models is important to see if there was a classification error, or there may be other significant variants but we don’t know for sure, e.g. the sequence with GI xxxx from Drosophila is classified at H2A.Z, but it contains the motif “SQEY,” which is common in H2A.X. 
-*** Soon, you will be able to search for high scoring sequences in other variants or auticaly show them if requested ***
+You are presented with the GI, Variant, Gene, Splice, Species, Header, and Score for each sequence using wenzhixin’s bootstrap-table. You can then select one or more sequences to see its multiple sequence alignments with secondary structure annotations, scores for the sequence in other models, view in Entrez, and download all. The Multiple Sequence Alignment is made from the BioJS msa package. Viewing scores of the sequence from other models is important to see if there was a classification error, or there may be other significant variants but we don’t know for sure, e.g. the sequence with GI xxxx from Drosophila is classified at H2A.Z, but it contains the motif “SQEY,” which is common in H2A.X.
 
 #### Search ####
-There are two types of search, ‘filter’ and ‘simple search’. Filter is the standard search, where you presented by database column names and filter based on that. This is used in Advanced Search and the All Sequences Advanced Filter. Simple search is when you have a single textbox that filters the entire database, which can be seen on the navigation bar and the All Sequences search textbox. The simple search searches in order GI number, core histone type, variant, old name schemes for variant, taxonomy, sequence headers, and finally sequence motifs, stopping if a match is made. If the search was from the navigation bar and the result was a core histone type or variant, the page is redirected to its respective browse page. 
+There are two types of search, ‘filter’ and ‘simple search’. Filter is the standard search, where you presented by database column names to filter by. You can also use the filter modal to search for high scoring sequences in other variants. This is used in Advanced Search and the All Sequences Advanced Filter, where the Adanced Search takes you to a new seach page with results and the Advanced Filter filters the current view, which is saved in a sission variable. Simple search is when you have a single textbox that filters the entire database, which can be seen on the navigation bar and the All Sequences search textbox. The simple search searches in order GI number, core histone type, variant, old name schemes for variant, taxonomy, sequence headers, and finally sequence motifs, stopping if a match is made. If the search was from the navigation bar and the result was a core histone type or variant, the page is redirected to its respective browse page. 
 
 ## Results and Discussion ##
 We were able to classify most histone sequences by variant in the nr database. Our models however, are unable to distinguish between paralogous genes and splice isoforms, which we would like to study further. For the varaints we were able to classify, we were able to show.
 
+H2A | | H2B | | H3 | | H4 | | H1
+----|-|-----|-|----|-|----|-|----
+H2A.B | 121 | H2B.1 | 7412 | cenH3 | 256 | canonicalH4 | 2990|  
+H2A.L | 165 | H2B.W | 216 | H3.1 | 2588 | | |
+H2A.M | 72 | H2B.Z | 123 | H3.2 | 1847 | | |
+H2A.X | 7690 | subH2B | 86 | H3.3 | 14 | | |
+H2A.Z | 2324 | canonicalH2B | 3301 | H3.Y | 21 |
+macroH2A | 1135 | | | canonicalH3 | 36717 | | | |
+canonicalH2A | 0 | | | | |      
 
  
 We were able to distinguish between three different H2A variants: H2A.B, H2A.L, H2A.M. Most of the sequences are classified as H2A.B in nr, but this is missing the two other variants they might be. H2A.M is known to bind to Huntingtin Protein M, but not much is known about its specific function. One problem
