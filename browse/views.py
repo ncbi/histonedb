@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import get_list_or_404
 
-from browse.forms import SearchForm, FilterForm, UploadFileForm
+from browse.forms import AdvancedFilterForm, UploadFileForm
 from browse.search import HistoneSearch
 from browse.process_upload import process_upload
 
@@ -37,7 +37,7 @@ def help(request):
 
 def browse_types(request):
     """Home"""
-    return render(request, 'browse_types.html', {})
+    return render(request, 'browse_types.html', {"filter_form":AdvancedFilterForm()})
 
 def browse_variants(request, histone_type):
     try:
@@ -60,7 +60,7 @@ def browse_variants(request, histone_type):
         "variants": variants,
         "tree_url": "browse/trees/{}.xml".format(core_histone.id),
         "seed_file":"browse/seeds/{}.fasta".format(core_histone.id),
-        "filter_form": FilterForm(),
+        "filter_form": AdvancedFilterForm(),
     }
 
     return render(request, 'browse_variants.html', data)
@@ -81,13 +81,14 @@ def browse_variant(request, histone_type, variant):
         "seed_file":"browse/seeds/{}/{}.fasta".format(variant.core_type.id, variant.id),
         "browse_section": "variant",
         "description": variant.description,
+        "filter_form": AdvancedFilterForm(),
     }
     return render(request, 'browse_variant.html', data)
 
 def search(request):
     data = {}
     if request.method == "POST":
-        result = HistoneSearch(request, request.POST, reset=True, navbar=True)
+        result = HistoneSearch(request, request.POST, reset=True, navbar="search" in request.POST)
     else:
         #Show all sequence
         result = HistoneSearch.all(request)
@@ -95,7 +96,7 @@ def search(request):
     if result.redirect: 
         return result.redirect
         
-    return render(request, 'search.html', {"result":result})
+    return render(request, 'search.html', {"result":result, "filter_form": AdvancedFilterForm(),})
 
 def upload(request):
     if request.method == "POST":
@@ -109,7 +110,7 @@ def upload(request):
         data = process_upload(type, sequences, format)
     else:
         data = {'form':UploadFileForm()}
-
+    data["filter_form"] = AdvancedFilterForm()
     return render(request, 'upload.html', data)
 
 def get_sequence_table_data(request):
@@ -120,7 +121,7 @@ def get_sequence_table_data(request):
         parameters =  request.GET.dict()
     else:
         #Returning 'false' stops Bootstrap table
-        return "false"
+        parameters = []
 
     #Continues to filter previous search, unless paramters contains key 'reset'
     results = HistoneSearch(request, parameters)

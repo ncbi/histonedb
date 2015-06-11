@@ -59,16 +59,17 @@ class Sequence(models.Model):
 		return name
 
 class Score(models.Model):
-	id              = models.IntegerField(primary_key=True)
-	sequence        = models.ForeignKey(Sequence, related_name="scores")
-	variant         = models.ForeignKey(Variant, related_name="+")
-	above_threshold = models.BooleanField()
-	score           = models.FloatField()
-	evalue          = models.FloatField()
-	hmmStart        = models.IntegerField()
-	hmmEnd          = models.IntegerField()
-	seqStart        = models.IntegerField()
-	seqEnd          = models.IntegerField()
+	id                     = models.IntegerField(primary_key=True)
+	sequence               = models.ForeignKey(Sequence, related_name="all_model_scores")
+	variant                = models.ForeignKey(Variant, related_name="+")
+	above_threshold        = models.BooleanField()
+	score                  = models.FloatField()
+	evalue                 = models.FloatField()
+	hmmStart               = models.IntegerField()
+	hmmEnd                 = models.IntegerField()
+	seqStart               = models.IntegerField()
+	seqEnd                 = models.IntegerField()
+	used_for_classifiation = models.BooleanField()
 
 class Features(models.Model):
 	sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 

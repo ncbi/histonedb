@@ -1,0 +1,67 @@
+{% load browse_filters %}
+
+{% block includes %}
+<script>
+  $(function () {
+    function open_advanced_filter(search_or_filter, table){
+      if(search_or_filter == "search"){
+        $("#advanced_filter_title").html("Advanced Search");
+        $("#advanced_search_button").html("Search");
+        $("#advanced_search_button").click(function(){
+          $("#advanced_search_form").submit();
+        });
+      }
+      else if(search_or_filter == "filter"){
+        $("#advanced_filter_title").html("Advanced Filter");
+        $("#advanced_search_button").html("Filter");
+        $("#advanced_search_button").click(function(){
+          $.post("{% url 'browse.views.search' %}", function( data ) {
+            table.bootstrapTable('refresh');
+          });
+        });
+      }
+      $("#advanced_filter").modal('show');
+    }
+  });
+</script>
+{% endblock %}
+
+<div class="modal fade" id="advanced_filter" tabindex="-1" role="dialog" aria-labelledby="all_profiles" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="advanced_filter_title">Advanced Search</h4>
+      </div>
+      <div class="modal-body">
+        <form role="search" action="{% url 'browse.views.search' %}" id="advanced_search_form" method="POST">
+          {% csrf_token %}
+          <script>console.log({{ form|length }});</script>
+          {% for field in form %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              <div class="input-group">
+                <div class="input-group-btn">
+                  <script>console.log({{ field }})</script>
+                  {% if field != "variant" %}
+                    <input type="text" class="form-control" id="{{ field.id_for_label }}" />
+                  {% endif %}
+                  {% if field == "variant" %}
+                    {{ field }}
+                  {% endif %}
+                </div>
+              {% if field.help_text %}
+                <span class="help-text">{{ field.help_text }}</span>
+              {% endif %}
+              </div>
+          </div>
+          {% endfor %}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="advanced_search_button">Search</button>
+      </div>
+    </div>
+  </div>
+</div>

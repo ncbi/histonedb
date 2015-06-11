@@ -89,7 +89,7 @@ Previous variant names were manually extracted from \ref{Talbert2012}.
 ### Histone variant identification ###
 Once each variant was in its respective FASTA file, I aligned each separately to create seed alignments for each variant. These were checked manually to make sure they had a wide taxonomic distribution and no large insertions in the core histone fold regions. These seed sequences were then used to train profile Hidden Markov Models, using HMMER 3.1b2 hmmbuild. Next, all of the variant models were combined into one file and pressed using HMMER 3.1b2 hmmpress. Finally, we used the combined HMM file to search all of the NCBI non-redundant (nr) database. 
 
-Further we defined cutoffs scores for each variant based on 95% specificity. Positive training sets were defined as the seed for the given varaint and negative examples we defined as a combination of all seeds except the given varaint \fig{H2AZ_cutoff). Please see supplematary information for details about evaluting each varaint model.
+Further we defined cutoffs scores for each variant based on 95% specificity. Positive training sets were defined as the seed for the given varaint and negative examples we defined as a combination of all seeds except the given varaint \fig{H2AZ_cutoff). Iterating over thresholds from 0 to 1000, we calculated the specificty at each threshold. Please see supplematary information for details about evaluting each varaint model.
 
 To find canonical histones and unknown varaints we built core histone type profile HMMs using the alignments from the original Histone Database and searched nr again. Sequences that were not already matched to a varaint, and above an E-Value of 0.1, were saved into the HistoneDB with variant 'Unknown.'
 

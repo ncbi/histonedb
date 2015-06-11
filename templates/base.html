@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load browse_filters %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,8 +16,35 @@
     <link href="{% static 'browse/css/starter-template.css' %}" rel="stylesheet">
 
     <script src="{% static 'browse/js/jquery-2.1.3.min.js' %}"></script>
-    
+
     {% block includes %} {% endblock %}
+
+    <script>
+      function open_advanced_filter(search_or_filter, table){
+        if(search_or_filter == "search"){
+          $("#advanced_filter_title").html("Advanced Search");
+          $("#advanced_search_button").html("Search");
+          $("#advanced_search_button").click(function(){
+            $("#advanced_search_form").submit();
+          });
+        }
+        else if(search_or_filter == "filter"){
+          $("#advanced_filter_title").html("Advanced Filter");
+          $("#advanced_search_button").html("Filter");
+          $("#advanced_search_button").click(function(){
+            $.post("{% url 'browse.views.search' %}", function( data ) {
+              table.bootstrapTable('refresh');
+            });
+          });
+        }
+        $("#advanced_filter").modal('show');
+      }
+      $(function () {
+        $("#show_advanced_search").click(function() {
+          open_advanced_filter("search", false);
+        });
+      });
+    </script>
   </head>
 
   <body>
@@ -35,7 +64,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="{% url 'browse.views.browse_types' %}">Browse</a></li>
-            <li><a href="/search/">Advanced Search</a></li>
+            <li><a href="#" id="show_advanced_search">Advanced Search</a></li>
             <li><a href="{% url 'browse.views.upload' %}">Upload</a></li>
             <li><a href="{% url 'browse.views.help' %}">Help</a></li>
             <form role="search" class="navbar-form navbar-right" action="{% url 'browse.views.search' %}" method="POST">{% csrf_token %}
@@ -62,14 +91,60 @@
           </div>
         </div>
       </footer>
-    </div> 
+    </div>
+
+    <div class="modal fade" id="advanced_filter" tabindex="-1" role="dialog" aria-labelledby="all_profiles" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="advanced_filter_title">Advanced Search</h4>
+          </div>
+          <div class="modal-body">
+            <form role="search" action="{% url 'browse.views.search' %}" id="advanced_search_form" method="POST">
+              {% csrf_token %}
+              {% for field in filter_form %}
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-2">
+                      <span class="pull-right">
+                        {{ field.label_tag }}
+                      </span>
+                    </div>
+                    <div class="col-lg-10">
+                      <div class="input-group">
+                        {% if field|fieldtype != "ModelChoiceField" %}
+                          {% autoescape off %}
+                            {{ field|get_search_type }}
+                          {% endautoescape %}
+                          <input type="text" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" />
+                        {% else %}
+                          {% autoescape off %}
+                            {{ field|bootchoice_choice }}
+                          {% endautoescape %}
+                        {% endif %}
+                      </div>
+                      {% if field.help_text %}
+                        <span class="help-text">{{ field.help_text }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+              </div>
+              {% endfor %}
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="advanced_search_button">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static 'browse/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'browse/js/bootstrap-table.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'browse/js/raphael-min.js' %}" ></script> 
-    <script type="text/javascript" src="{% static 'browse/js/jsphylosvg-min.js' %}"></script>
   </body>
 </html>
