@@ -1,5 +1,5 @@
 HMMER3/f [3.1b2 | February 2015]
-NAME  H4
+NAME  canonicalH4
 LENG  103
 ALPH  amino
 RF    no
@@ -7,7 +7,7 @@ MM    no
 CONS  yes
 CS    no
 MAP   yes
-DATE  Fri Jun  5 16:50:50 2015
+DATE  Thu Jun 11 01:44:01 2015
 NSEQ  593
 EFFN  0.827934
 CKSUM 4168738051

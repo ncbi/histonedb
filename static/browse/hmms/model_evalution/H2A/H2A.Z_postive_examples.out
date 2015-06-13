@@ -1,11 +1,11 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H2A/H2A.Z.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H2A/H2A.Z_postive_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H2A/H2A.Z_postive_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2A/H2A.Z.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/H2A.Z_postive_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/H2A.Z_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -33,7 +33,7 @@ Scores for complete sequences (score includes all domains):
     1.4e-72  232.7   2.1    1.5e-72  232.5   2.1    1.0  1  Tetrahymena|229596389|H2A.Z          Tetrahymena_H2A.Z
     2.6e-71  228.5   3.8    2.8e-71  228.4   3.8    1.0  1  Arabidopsis|15224957|H2A.Z           Arabidopsis_H2A.Z.8
     2.5e-68  218.9   0.6    2.7e-68  218.7   0.6    1.0  1  Schizosaccharomyces|429240082|H2A.Z  Schizosaccharomyces_H2A.Z
-    2.1e-66  212.6   1.9    2.3e-66  212.5   1.9    1.0  1  Saccharomyces|6324562|H2A.Z          Saccharomyces_H2A.Z
+    2.2e-66  212.6   1.9    2.3e-66  212.5   1.9    1.0  1  Saccharomyces|6324562|H2A.Z          Saccharomyces_H2A.Z
     3.4e-65  208.7   3.5    3.8e-65  208.5   3.5    1.1  1  Trypanosoma|72391930|H2A.Z           Trypanosoma_H2A.Z
     1.3e-54  174.4   0.4    1.6e-54  174.1   0.4    1.0  1  Dictyostelium|66807867|H2A.Z         Dictyostelium_H2A.Z
 

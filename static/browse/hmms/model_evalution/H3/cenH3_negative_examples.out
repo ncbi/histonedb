@@ -1,565 +1,544 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H3/cenH3.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H3/cenH3_negative_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H3/cenH3_negative_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H3/cenH3.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/cenH3_negative_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/cenH3_negative_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-Query:       cenH3  [M=216]
+Query:       cenH3  [M=183]
 Scores for complete sequences (score includes all domains):
    --- full sequence ---   --- best 1 domain ---    -#dom-
     E-value  score  bias    E-value  score  bias    exp  N  Sequence                        Description
     ------- ------ -----    ------- ------ -----   ---- --  --------                        -----------
-    2.6e-59  194.5   4.6    2.8e-59  194.3   4.6    1.0  1  Plasmodium|82594554|H3.3         Plasmodium_H3.3
-    4.1e-59  193.8   3.7    4.5e-59  193.7   3.7    1.0  1  Toxoplasma|22476750|H3.3         Toxoplasma_H3.3
-    4.4e-59  193.7   3.1    4.8e-59  193.6   3.1    1.0  1  Thallassiosira|223998042|H3.1    Thallassiosira_H3.1
-      6e-59  193.3   3.8    6.6e-59  193.1   3.8    1.0  1  Phytophthora|301090188|H3.3      Phytophthora_sojae_H3.3
-    6.6e-59  193.1   3.6    7.2e-59  193.0   3.6    1.0  1  Phytophthora|301115049|H3.1      Phytophthora_sojae_H3.1
-    7.9e-59  192.9   4.3    9.1e-59  192.7   4.3    1.0  1  Homo|4504281|H3.1                Homo_H3.1
-    1.3e-58  192.2   4.4    1.4e-58  192.1   4.4    1.0  1  Arabidopsis|15236103|H3.2        Arabidopsis_thaliana_H3.2
-    1.3e-58  192.2   4.4    1.4e-58  192.1   4.4    1.0  1  Arabidopsis|15236103|H3.3        Arabidopsis_H3.3
-    1.3e-58  192.2   4.4    1.4e-58  192.1   4.4    1.0  1  Oryza|115453351|H3.2             Oryza_sativa_H3.2
-    1.3e-58  192.2   4.4    1.4e-58  192.1   4.4    1.0  1  Selaginella|302792052|H3.2       Selaginella_H3.2
-    1.6e-58  191.8   5.5    1.8e-58  191.7   5.5    1.0  1  Plamodium|82541094|H3.1          Plamodium_yoelii_H3.1
-    1.6e-58  191.8   5.5    1.8e-58  191.7   5.5    1.0  1  Plasmodium|82541094|H3.1         Plasmodium_H3.1
-    2.3e-58  191.4   4.3    2.5e-58  191.2   4.3    1.0  1  Arabidopsis|15232146|H3.1        Arabidopsis_H3.1.1
-    2.3e-58  191.4   4.3    2.5e-58  191.2   4.3    1.0  1  Oryza|115441249|H3.1             Oryza_sativa_H3.1
-    3.3e-58  190.8   4.2    3.6e-58  190.7   4.2    1.0  1  Griffithsia|73919915|H3.1        Griffithsia_H3.1
-    3.4e-58  190.8   4.0    3.7e-58  190.7   4.0    1.0  1  Thallasiosira|224009486|H3.3     Thallasiosira_H3.3
-    4.5e-58  190.4   4.5      5e-58  190.3   4.5    1.0  1  Drosophila|8070|H3.2             Drosophila_H3.2
-    4.5e-58  190.4   4.5      5e-58  190.3   4.5    1.0  1  Drosphila|8070|H3.1              Drosphila_H3.1
-    9.4e-58  189.4   3.6      1e-57  189.2   3.6    1.0  1  Drosophila|17530867|H3.3         Drosophila_H3.3.1
-    1.8e-57  188.4   2.8    1.9e-57  188.3   2.8    1.0  1  Homo|51859376|H3.3               Homo_H3.3
-    9.7e-57  186.0   4.2    1.2e-56  185.7   4.2    1.0  1  Homo|NO_GI|H3.Y.2.s1             Homo_H3.Y.2.s1_H3.X.s1
-    3.2e-56  184.4   2.5    3.4e-56  184.2   2.5    1.0  1  Macaca|NO_GI|H3.Y.1              Macaca_H3.Y.1_H3.Y
-    5.1e-56  183.7   3.3    5.6e-56  183.6   3.3    1.0  1  Candida|68472183|H3.1            Candida_H3.1
-      6e-56  183.5   4.7    6.5e-56  183.3   4.7    1.0  1  Tetrahymena|118350232|H3.3       Tetrahymena_H3.3
-    6.3e-56  183.4   3.8    6.9e-56  183.3   3.8    1.0  1  Candida|68484797|H3.3            Candida_H3.3
-    9.5e-56  182.8   3.8      1e-55  182.7   3.8    1.0  1  Debaryomyces|50423783|H3.1       Debaryomyces_H3.1_XP_460476
-    1.1e-55  182.7   3.4    1.1e-55  182.5   3.4    1.0  1  Griffithsia|32401039|H3.3        Griffithsia_H3.3
-    1.2e-55  182.4   4.1    1.4e-55  182.2   4.1    1.0  1  Homo|NO_GI|H3.Y.2                Homo_H3.Y.2_H3.X
-    1.3e-55  182.3   3.1    1.5e-55  182.2   3.1    1.0  1  Neurospora|85077297|H3.1         Neurospora_H3.31
-    1.3e-55  182.3   3.1    1.5e-55  182.2   3.1    1.0  1  Trichoderma|589115521|H3.3       Trichoderma_H3.3
-    2.5e-55  181.4   5.3    2.7e-55  181.3   5.3    1.0  1  Crypto|58260270|H3.3             Crypto_H3.3_XP_567545
-    2.9e-55  181.2   4.0    3.2e-55  181.1   4.0    1.0  1  Debaryomyces|50408553|H3.3       Debaryomyces_H3.3_XP_456791
-    3.4e-55  181.0   3.8    3.7e-55  180.9   3.8    1.0  1  Schizosaccharomyces|122076|H3.3  Schizosaccharomyces_H3.3.1
-    1.5e-54  178.9   3.7    1.6e-54  178.8   3.7    1.0  1  Homo|NO_GI|H3.Y.1                Homo_H3.Y.1_H3.Y
-    1.5e-54  178.9   3.7    1.6e-54  178.8   3.7    1.0  1  Pan|NO_GI|H3.Y.1                 Pan_H3.Y.1_H3.Y
-    1.9e-54  178.5   3.3    2.2e-54  178.3   3.3    1.0  1  Macaca|NO_GI|H3.Y.2              Macaca_H3.Y.2_H3.X
-    5.5e-54  177.0   5.9    6.6e-54  176.8   5.9    1.0  1  Pan|NO_GI|H3.Y.2                 Pan_H3.Y.2_H3.X
-    6.6e-54  176.8   4.4    7.2e-54  176.7   4.4    1.0  1  Saccharomyces|6319482|H3.3       Saccharomyces_H3.3
-    1.1e-32  107.4   3.9    1.5e-32  107.0   3.9    1.1  1  Homo|119628413|H3.Y.2.s2         Homo_H3.Y.2.s2_H3.X.s2
-  ------ inclusion threshold ------
-        1.4    2.5  22.2      0.037    7.6   1.5    2.1  2  Xenopus|147898445|H1.10          Xenopus_H1X
+    1.4e-57  190.3   4.3    1.6e-57  190.1   4.3    1.0  1  Plasmodium|82594554|H3.3         Plasmodium_H3.3
+    2.2e-57  189.7   3.4    2.4e-57  189.5   3.4    1.0  1  Toxoplasma|22476750|H3.3         Toxoplasma_H3.3
+    2.4e-57  189.5   2.7    2.6e-57  189.4   2.7    1.0  1  Thallassiosira|223998042|H3.1    Thallassiosira_H3.1
+    3.1e-57  189.2   3.4    3.4e-57  189.0   3.4    1.0  1  Phytophthora|301090188|H3.3      Phytophthora_sojae_H3.3
+    3.5e-57  189.0   3.2    3.8e-57  188.9   3.2    1.0  1  Phytophthora|301115049|H3.1      Phytophthora_sojae_H3.1
+    3.9e-57  188.9   3.9    4.5e-57  188.6   3.9    1.0  1  Homo|4504281|H3.1                Homo_H3.1
+    6.2e-57  188.2   4.0    6.7e-57  188.1   4.0    1.0  1  Arabidopsis|15236103|H3.2        Arabidopsis_thaliana_H3.2
+    6.2e-57  188.2   4.0    6.7e-57  188.1   4.0    1.0  1  Arabidopsis|15236103|H3.3        Arabidopsis_H3.3
+    6.2e-57  188.2   4.0    6.7e-57  188.1   4.0    1.0  1  Oryza|115453351|H3.2             Oryza_sativa_H3.2
+    6.2e-57  188.2   4.0    6.7e-57  188.1   4.0    1.0  1  Selaginella|302792052|H3.2       Selaginella_H3.2
+    8.3e-57  187.8   5.1      9e-57  187.7   5.1    1.0  1  Plamodium|82541094|H3.1          Plamodium_yoelii_H3.1
+    8.3e-57  187.8   5.1      9e-57  187.7   5.1    1.0  1  Plasmodium|82541094|H3.1         Plasmodium_H3.1
+    1.1e-56  187.4   3.9    1.2e-56  187.3   3.9    1.0  1  Arabidopsis|15232146|H3.1        Arabidopsis_H3.1.1
+    1.1e-56  187.4   3.9    1.2e-56  187.3   3.9    1.0  1  Oryza|115441249|H3.1             Oryza_sativa_H3.1
+    1.6e-56  186.9   3.8    1.7e-56  186.7   3.8    1.0  1  Griffithsia|73919915|H3.1        Griffithsia_H3.1
+    1.7e-56  186.8   3.6    1.8e-56  186.7   3.6    1.0  1  Thallasiosira|224009486|H3.3     Thallasiosira_H3.3
+    2.1e-56  186.5   4.1    2.3e-56  186.3   4.1    1.0  1  Drosophila|8070|H3.2             Drosophila_H3.2
+    2.1e-56  186.5   4.1    2.3e-56  186.3   4.1    1.0  1  Drosphila|8070|H3.1              Drosphila_H3.1
+    4.2e-56  185.5   3.1    4.6e-56  185.3   3.1    1.0  1  Drosophila|17530867|H3.3         Drosophila_H3.3.1
+    8.1e-56  184.6   2.5    8.7e-56  184.5   2.5    1.0  1  Homo|51859376|H3.3               Homo_H3.3
+    5.1e-55  181.9   3.3    6.5e-55  181.6   3.3    1.0  1  Homo|NO_GI|H3.Y.2.s1             Homo_H3.Y.2.s1_H3.X.s1
+    1.2e-54  180.7   2.0    1.3e-54  180.6   2.0    1.0  1  Macaca|NO_GI|H3.Y.1              Macaca_H3.Y.1_H3.Y
+    2.2e-54  179.9   3.0    2.4e-54  179.7   3.0    1.0  1  Candida|68472183|H3.1            Candida_H3.1
+    2.2e-54  179.9   4.4    2.4e-54  179.7   4.4    1.0  1  Tetrahymena|118350232|H3.3       Tetrahymena_H3.3
+    2.7e-54  179.6   3.4    2.9e-54  179.5   3.4    1.0  1  Candida|68484797|H3.3            Candida_H3.3
+      4e-54  179.0   3.5    4.3e-54  178.9   3.5    1.0  1  Debaryomyces|50423783|H3.1       Debaryomyces_H3.1_XP_460476
+    4.6e-54  178.8   3.6    5.3e-54  178.6   3.6    1.0  1  Homo|NO_GI|H3.Y.2                Homo_H3.Y.2_H3.X
+    4.6e-54  178.8   3.0    5.1e-54  178.7   3.0    1.0  1  Griffithsia|32401039|H3.3        Griffithsia_H3.3
+    5.7e-54  178.5   2.9    6.2e-54  178.4   2.9    1.0  1  Neurospora|85077297|H3.1         Neurospora_H3.31
+    5.7e-54  178.5   2.9    6.2e-54  178.4   2.9    1.0  1  Trichoderma|589115521|H3.3       Trichoderma_H3.3
+    9.5e-54  177.8   4.9      1e-53  177.7   4.9    1.0  1  Crypto|58260270|H3.3             Crypto_H3.3_XP_567545
+    1.2e-53  177.5   3.7    1.3e-53  177.4   3.7    1.0  1  Debaryomyces|50408553|H3.3       Debaryomyces_H3.3_XP_456791
+    1.3e-53  177.4   3.4    1.4e-53  177.2   3.4    1.0  1  Schizosaccharomyces|122076|H3.3  Schizosaccharomyces_H3.3.1
+    4.9e-53  175.5   3.1    5.3e-53  175.4   3.1    1.0  1  Homo|NO_GI|H3.Y.1                Homo_H3.Y.1_H3.Y
+    4.9e-53  175.5   3.1    5.3e-53  175.4   3.1    1.0  1  Pan|NO_GI|H3.Y.1                 Pan_H3.Y.1_H3.Y
+    6.7e-53  175.0   2.8    7.8e-53  174.8   2.8    1.0  1  Macaca|NO_GI|H3.Y.2              Macaca_H3.Y.2_H3.X
+    1.8e-52  173.7   5.3    2.1e-52  173.4   5.3    1.0  1  Pan|NO_GI|H3.Y.2                 Pan_H3.Y.2_H3.X
+    2.5e-52  173.2   4.1    2.7e-52  173.1   4.1    1.0  1  Saccharomyces|6319482|H3.3       Saccharomyces_H3.3
+    2.3e-31  104.9   3.3    3.1e-31  104.4   3.3    1.1  1  Homo|119628413|H3.Y.2.s2         Homo_H3.Y.2.s2_H3.X.s2
 
 
 Domain annotation for each sequence (and alignments):
 >> Plasmodium|82594554|H3.3  Plasmodium_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  194.3   4.6   5.8e-60   2.8e-59      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  190.1   4.3   7.8e-59   1.6e-57      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 194.3 bits;  conditional E-value: 5.8e-60
-                     cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                               ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRkfq+st+lLirklpF+rlvrei ++++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 190.1 bits;  conditional E-value: 7.8e-59
+                     cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                               ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRkfqkst+lLirklpF+rlvrei ++++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Plasmodium|82594554|H3.3   5 KQTARKSTGGKAPRKQLASKAARKSAPvstgiKKPHRYRPGTVALREIRKFQKSTDLLIRKLPFQRLVREIAQEYKTD--LRFQSQAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                               44444444445555554444444433356788999*******************************************..***************************************************87 PP
+                               44444444444444444444444433356777999*******************************************..***************************************************87 PP
 
 >> Toxoplasma|22476750|H3.3  Toxoplasma_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  193.7   3.7   9.2e-60   4.5e-59      84     212 ..       4     135 ..       1     136 [] 0.86
+   1 !  189.5   3.4   1.2e-58   2.4e-57      52     179 ..       5     135 ..       1     136 [] 0.86
 
   Alignments for each domain:
-  == domain 1  score: 193.7 bits;  conditional E-value: 9.2e-60
-                     cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                               +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRkfq+st+lLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
-  Toxoplasma|22476750|H3.3   4 TKQTARKSTGGKAPRKQLASKAARKSAPmsggiKKPHRYRPGTVALREIRKFQKSTDLLIRKLPFQRLVREIAQDFKTD--LRFQSQAILALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                               44455555555555555555554444446688899********************************************..***************************************************87 PP
+  == domain 1  score: 189.5 bits;  conditional E-value: 1.2e-58
+                     cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                               ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRkfqkst+lLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  Toxoplasma|22476750|H3.3   5 KQTARKSTGGKAPRKQLASKAARKSAPmsggiKKPHRYRPGTVALREIRKFQKSTDLLIRKLPFQRLVREIAQDFKTD--LRFQSQAILALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
+                               4444555555555555554444444436688899********************************************..***************************************************87 PP
 
 >> Thallassiosira|223998042|H3.1  Thallassiosira_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  193.6   3.1   9.8e-60   4.8e-59      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  189.4   2.7   1.3e-58   2.6e-57      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 193.6 bits;  conditional E-value: 9.8e-60
-                          cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                    ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+st+lLirklpF+rlvrei + ++ +  lr+q +A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 189.4 bits;  conditional E-value: 1.3e-58
+                          cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                    ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkst+lLirklpF+rlvrei + ++ +  lr+q +A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Thallassiosira|223998042|H3.1   5 KQTARKSTGGKAPRKQLATKAARKSAPatggvKKPHRYRPGTVALREIRRYQKSTDLLIRKLPFQRLVREIAQDFKSD--LRFQGSAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                    4444444444555555555444443334567799*******************************************9..***************************************************87 PP
+                                    4444444444445555444444443334567699******************************************99..***************************************************87 PP
 
 >> Phytophthora|301090188|H3.3  Phytophthora_sojae_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  193.1   3.8   1.3e-59   6.6e-59      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  189.0   3.4   1.7e-58   3.4e-57      52     179 ..       5     135 ..       1     136 [] 0.83
 
   Alignments for each domain:
-  == domain 1  score: 193.1 bits;  conditional E-value: 1.3e-59
-                        cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                  ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRk+q+st+lLirklpF+rlvrei + ++ +  lr+q+ A+laLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 189.0 bits;  conditional E-value: 1.7e-58
+                        cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                  ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRk+qkst+lLirklpF+rlvrei + ++ +  lr+q+ A+laLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Phytophthora|301090188|H3.3   5 KQTARKSTGGKAPRKQLATKAARKSAPtaggvKKPHRYRPGTVALREIRKYQKSTDLLIRKLPFQRLVREIAQDYKTD--LRFQSTAILALQEASEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                  3444444444444444444443333324477789********************************************..***************************************************86 PP
+                                  33444444444444444444433333244777899*******************************************..***************************************************86 PP
 
 >> Phytophthora|301115049|H3.1  Phytophthora_sojae_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  193.0   3.6   1.5e-59   7.2e-59      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  188.9   3.2   1.9e-58   3.8e-57      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 193.0 bits;  conditional E-value: 1.5e-59
-                        cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                  ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q +A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 188.9 bits;  conditional E-value: 1.9e-58
+                        cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                  ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q +A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Phytophthora|301115049|H3.1   5 KQTARKSTGGKAPRKQLATKAARKSAPatggvKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQGSAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                  4444444444555555555444443334567799********************************************..***************************************************87 PP
+                                  4444444444445555444444443334567699********************************************..***************************************************87 PP
 
 >> Homo|4504281|H3.1  Homo_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  192.7   4.3   1.9e-59   9.1e-59      84     212 ..       6     137 ..       2     138 .] 0.85
+   1 !  188.6   3.9   2.2e-58   4.5e-57      51     179 ..       6     137 ..       2     138 .] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 192.7 bits;  conditional E-value: 1.9e-59
-              cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                        +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q++A++aLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 188.6 bits;  conditional E-value: 2.2e-58
+              cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                        +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q++A++aLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Homo|4504281|H3.1   6 TKQTARKSTGGKAPRKQLATKAARKSAPatggvKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAVMALQEACEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 137
-                        44445555555555555555444444334567799********************************************..***************************************************86 PP
+                        34444444444555555444444443334567799********************************************..***************************************************86 PP
 
 >> Arabidopsis|15236103|H3.2  Arabidopsis_thaliana_H3.2
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  192.1   4.4   2.8e-59   1.4e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  188.1   4.0   3.3e-58   6.7e-57      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 192.1 bits;  conditional E-value: 2.8e-59
-                      cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRk+q+stelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 188.1 bits;  conditional E-value: 3.3e-58
+                      cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRk+qkstelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Arabidopsis|15236103|H3.2   5 KQTARKSTGGKAPRKQLATKAARKSAPttggvKKPHRYRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSHAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                4445555555555555555544444335577799********************************************..***************************************************86 PP
+                                4444444444555555544444443335567799********************************************..***************************************************86 PP
 
 >> Arabidopsis|15236103|H3.3  Arabidopsis_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  192.1   4.4   2.8e-59   1.4e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  188.1   4.0   3.3e-58   6.7e-57      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 192.1 bits;  conditional E-value: 2.8e-59
-                      cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRk+q+stelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 188.1 bits;  conditional E-value: 3.3e-58
+                      cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRk+qkstelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Arabidopsis|15236103|H3.3   5 KQTARKSTGGKAPRKQLATKAARKSAPttggvKKPHRYRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSHAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                4445555555555555555544444335577799********************************************..***************************************************86 PP
+                                4444444444555555544444443335567799********************************************..***************************************************86 PP
 
 >> Oryza|115453351|H3.2  Oryza_sativa_H3.2
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  192.1   4.4   2.8e-59   1.4e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  188.1   4.0   3.3e-58   6.7e-57      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 192.1 bits;  conditional E-value: 2.8e-59
-                 cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                           ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRk+q+stelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 188.1 bits;  conditional E-value: 3.3e-58
+                 cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                           ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRk+qkstelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Oryza|115453351|H3.2   5 KQTARKSTGGKAPRKQLATKAARKSAPttggvKKPHRYRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSHAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                           4445555555555555555544444335577799********************************************..***************************************************86 PP
+                           4444444444555555544444443335567799********************************************..***************************************************86 PP
 
 >> Selaginella|302792052|H3.2  Selaginella_H3.2
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  192.1   4.4   2.8e-59   1.4e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  188.1   4.0   3.3e-58   6.7e-57      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 192.1 bits;  conditional E-value: 2.8e-59
-                       cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRk+q+stelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 188.1 bits;  conditional E-value: 3.3e-58
+                       cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRk+qkstelLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Selaginella|302792052|H3.2   5 KQTARKSTGGKAPRKQLATKAARKSAPttggvKKPHRYRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSHAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                 4445555555555555555544444335577799********************************************..***************************************************86 PP
+                                 4444444444555555544444443335567799********************************************..***************************************************86 PP
 
 >> Plamodium|82541094|H3.1  Plamodium_yoelii_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  191.7   5.5   3.7e-59   1.8e-58      84     212 ..       4     135 ..       1     136 [] 0.86
+   1 !  187.7   5.1   4.5e-58     9e-57      51     179 ..       4     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 191.7 bits;  conditional E-value: 3.7e-59
-                    cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                              +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+st+lLirklpF+rlvrei + ++ +  lr+q++A++aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 187.7 bits;  conditional E-value: 4.5e-58
+                    cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                              +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkst+lLirklpF+rlvrei + ++ +  lr+q++A++aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Plamodium|82541094|H3.1   4 TKQTARKSTAGKAPRKQLASKAARKSAPisagiKKPHRYRPGTVALREIRRYQKSTDLLIRKLPFQRLVREIAQDYKTD--LRFQSSAVMALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                              44455555555555555555554444446778899********************************************..***************************************************87 PP
+                              34444555555555555444444444336678899********************************************..***************************************************87 PP
 
 >> Plasmodium|82541094|H3.1  Plasmodium_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  191.7   5.5   3.7e-59   1.8e-58      84     212 ..       4     135 ..       1     136 [] 0.86
+   1 !  187.7   5.1   4.5e-58     9e-57      51     179 ..       4     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 191.7 bits;  conditional E-value: 3.7e-59
-                     cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                               +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+st+lLirklpF+rlvrei + ++ +  lr+q++A++aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 187.7 bits;  conditional E-value: 4.5e-58
+                     cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                               +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkst+lLirklpF+rlvrei + ++ +  lr+q++A++aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Plasmodium|82541094|H3.1   4 TKQTARKSTAGKAPRKQLASKAARKSAPisagiKKPHRYRPGTVALREIRRYQKSTDLLIRKLPFQRLVREIAQDYKTD--LRFQSSAVMALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                               44455555555555555555554444446778899********************************************..***************************************************87 PP
+                               34444555555555555444444444336678899********************************************..***************************************************87 PP
 
 >> Arabidopsis|15232146|H3.1  Arabidopsis_H3.1.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  191.2   4.3   5.1e-59   2.5e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  187.3   3.9   5.8e-58   1.2e-56      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 191.2 bits;  conditional E-value: 5.1e-59
-                      cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                ++tar+ +  ++ +k+ +++aa ++a      ++ +Rfrpg++alreIRk+q+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 187.3 bits;  conditional E-value: 5.8e-58
+                      cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                ++tar+ +  ++ +k+ +++aa ++a      ++ +Rfrpg++alreiRk+qkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Arabidopsis|15232146|H3.1   5 KQTARKSTGGKAPRKQLATKAARKSAPatggvKKPHRFRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAVAALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                4444444444555555555444443334567799********************************************..***************************************************86 PP
+                                4444444444445555444444443334567699********************************************..***************************************************86 PP
 
 >> Oryza|115441249|H3.1  Oryza_sativa_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  191.2   4.3   5.1e-59   2.5e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  187.3   3.9   5.8e-58   1.2e-56      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 191.2 bits;  conditional E-value: 5.1e-59
-                 cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                           ++tar+ +  ++ +k+ +++aa ++a      ++ +Rfrpg++alreIRk+q+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 187.3 bits;  conditional E-value: 5.8e-58
+                 cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                           ++tar+ +  ++ +k+ +++aa ++a      ++ +Rfrpg++alreiRk+qkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQeaaE+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Oryza|115441249|H3.1   5 KQTARKSTGGKAPRKQLATKAARKSAPatggvKKPHRFRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAVAALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                           4444444444555555555444443334567799********************************************..***************************************************86 PP
+                           4444444444445555444444443334567699********************************************..***************************************************86 PP
 
 >> Griffithsia|73919915|H3.1  Griffithsia_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  190.7   4.2   7.3e-59   3.6e-58      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  186.7   3.8   8.5e-58   1.7e-56      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 190.7 bits;  conditional E-value: 7.3e-59
-                      cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                ++tar+ +  ++ +k+ +++aa ++a      ++ +Rfrpg++alreIR+fq+stelL+rklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Y+vglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 186.7 bits;  conditional E-value: 8.5e-58
+                      cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                ++tar+ +  ++ +k+ +++aa ++a      ++ +Rfrpg++alreiR+fqkstelL+rklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Y+vglfed nlcaiHakRVT+mpkDi+Larrirg++
   Griffithsia|73919915|H3.1   5 KQTARKSTGGKAPRKQLATKAARKSAPasggvKKPHRFRPGTVALREIRRFQKSTELLVRKLPFQRLVREIAQDFKSD--LRFQSSAVLALQEAAEAYMVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                4444444444444444444444443334566689*******************************************9..***************************************************86 PP
+                                3444444444444444444444433334566689******************************************99..***************************************************86 PP
 
 >> Thallasiosira|224009486|H3.3  Thallasiosira_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  190.7   4.0   7.7e-59   3.7e-58      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  186.7   3.6   9.1e-58   1.8e-56      52     179 ..       5     135 ..       1     136 [] 0.83
 
   Alignments for each domain:
-  == domain 1  score: 190.7 bits;  conditional E-value: 7.7e-59
-                         cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                   ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRk+q+st+lLirk+pF+rlvrei + ++ +  lr+q+ A+laLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 186.7 bits;  conditional E-value: 9.1e-58
+                         cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                   ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRk+qkst+lLirk+pF+rlvrei + ++ +  lr+q+ A+laLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Thallasiosira|224009486|H3.3   5 KQTARKSTGGKAPRKQLATKAARKSAPtaggvKKPHRYRPGTVALREIRKYQKSTDLLIRKAPFQRLVREIAQDFKTD--LRFQSTAVLALQEASEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                                   3444444444444444444443333324477789********************************************..***************************************************86 PP
+                                   33444444444444444444433333244777899*******************************************..***************************************************86 PP
 
 >> Drosophila|8070|H3.2  Drosophila_H3.2
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  190.3   4.5     1e-58     5e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  186.3   4.1   1.1e-57   2.3e-56      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 190.3 bits;  conditional E-value: 1e-58
-                 cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                           ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q++A++aLQea+E+Ylvglfed nlcaiHakR+T+mpkDi+Larrirg++
+  == domain 1  score: 186.3 bits;  conditional E-value: 1.1e-57
+                 cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                           ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q++A++aLQea+E+Ylvglfed nlcaiHakR+T+mpkDi+Larrirg++
   Drosophila|8070|H3.2   5 KQTARKSTGGKAPRKQLATKAARKSAPatggvKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAVMALQEASEAYLVGLFEDTNLCAIHAKRITIMPKDIQLARRIRGER 135
-                           4444444444555555555444443334567799********************************************..***************************************************86 PP
+                           4444444444445555444444443334567699********************************************..***************************************************86 PP
 
 >> Drosphila|8070|H3.1  Drosphila_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  190.3   4.5     1e-58     5e-58      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  186.3   4.1   1.1e-57   2.3e-56      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 190.3 bits;  conditional E-value: 1e-58
-                cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                          ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q++A++aLQea+E+Ylvglfed nlcaiHakR+T+mpkDi+Larrirg++
+  == domain 1  score: 186.3 bits;  conditional E-value: 1.1e-57
+                cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                          ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q++A++aLQea+E+Ylvglfed nlcaiHakR+T+mpkDi+Larrirg++
   Drosphila|8070|H3.1   5 KQTARKSTGGKAPRKQLATKAARKSAPatggvKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAVMALQEASEAYLVGLFEDTNLCAIHAKRITIMPKDIQLARRIRGER 135
-                          4444444444555555555444443334567799********************************************..***************************************************86 PP
+                          4444444444445555444444443334567699********************************************..***************************************************86 PP
 
 >> Drosophila|17530867|H3.3  Drosophila_H3.3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  189.2   3.6   2.1e-58     1e-57      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  185.3   3.1   2.3e-57   4.6e-56      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 189.2 bits;  conditional E-value: 2.1e-58
-                     cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                               ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q+ A+ aLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  == domain 1  score: 185.3 bits;  conditional E-value: 2.3e-57
+                     cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                               ++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q+ A+ aLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
   Drosophila|17530867|H3.3   5 KQTARKSTGGKAPRKQLATKAARKSAPstggvKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSAAIGALQEASEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                               44445555555555555555444444355666999*******************************************..***************************************************86 PP
+                               44444444445555554444444433355666999*******************************************..***************************************************86 PP
 
 >> Homo|51859376|H3.3  Homo_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  188.3   2.8     4e-58   1.9e-57      91     212 ..      11     135 ..       1     136 [] 0.82
+   1 !  184.5   2.5   4.3e-57   8.7e-56      59     179 ..      12     135 ..       1     136 [] 0.81
 
   Alignments for each domain:
-  == domain 1  score: 188.3 bits;  conditional E-value: 4e-58
-               cenH3  91 kakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                          +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q+ A+ aLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
-  Homo|51859376|H3.3  11 STGGKAPRKQLATKAARKSAPstggvKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSAAIGALQEASEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
-                         22223333333333333322234555889*******************************************..***************************************************86 PP
+  == domain 1  score: 184.5 bits;  conditional E-value: 4.3e-57
+               cenH3  59 akastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                         +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q+ A+ aLQea+E+Ylvglfed nlcaiHakRVT+mpkDi+Larrirg++
+  Homo|51859376|H3.3  12 TGGKAPRKQLATKAARKSAPstggvKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSAAIGALQEASEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
+                         2223333333333332222234555889*******************************************..***************************************************86 PP
 
 >> Homo|NO_GI|H3.Y.2.s1  Homo_H3.Y.2.s1_H3.X.s1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  185.7   4.2   2.5e-57   1.2e-56      67     212 ..      28     179 ..      22     182 .. 0.80
+   1 !  181.6   3.3   3.2e-56   6.5e-55      37     179 ..      37     179 ..      23     182 .. 0.82
 
   Alignments for each domain:
-  == domain 1  score: 185.7 bits;  conditional E-value: 2.5e-57
-                 cenH3  67 teeaanrsggrqeklknkpttartkakast...vkkresvaaaapkaa......qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                           ++ +a+ + g+ ++ +n   t++t +ka++    +k  +++aa ++ a      ++ +R++pg+ alreIRk+q+st+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+rg++
-  Homo|NO_GI|H3.Y.2.s1  28 AAGQAQPQRGESTRPHNMARTKQTARKATAwqaPRKPLATKAARKR-AsptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRGEG 179
-                           5555555555555555555555554444440004444444444443.2599999**********************************************..***************************************************86 PP
+  == domain 1  score: 181.6 bits;  conditional E-value: 3.2e-56
+                 cenH3  37 ssslsggrqeklknkpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                           ++s    r +++ ++++tar+ +  ++ +k  +++aa ++a+     ++ +R++pg+ alreiRk+qkst+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+rg++
+  Homo|NO_GI|H3.Y.2.s1  37 GES---TRPHNMARTKQTARKATAWQAPRKPLATKAARKRASptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRGEG 179
+                           332...333444455555555555555666655555555555889999*********************************************..***************************************************86 PP
 
 >> Macaca|NO_GI|H3.Y.1  Macaca_H3.Y.1_H3.Y
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  184.2   2.5     7e-57   3.4e-56      85     212 ..       4     134 ..       1     135 [] 0.86
+   1 !  180.6   2.0   6.5e-56   1.3e-54      52     179 ..       4     134 ..       1     135 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 184.2 bits;  conditional E-value: 7e-57
-                cenH3  85 pttartkakastvkkresvaaaapkaa.......qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                          ++tar+ ++ ++ +k  +++  ap ++       ++ +R+rpg++alreIRk+q+st+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larrirg++
+  == domain 1  score: 180.6 bits;  conditional E-value: 6.5e-56
+                cenH3  52 pttartkakastvkkresvaaaapkaa.......qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                          ++tar+ ++ ++ +k  +++  ap ++       ++ +R+rpg++alreiRk+qkst+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larrirg++
   Macaca|NO_GI|H3.Y.1   4 KQTARKATNWQAPRKPLATK--APGKRlpprggiKKPHRYRPGTQALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYLVNLFEDTNLCAIHARRVTIMPRDMQLARRIRGEG 134
-                          44455555555555553333..33333668889999********************************************..***************************************************85 PP
+                          44444444445555543333..33333668889999********************************************..**************************************************985 PP
 
 >> Candida|68472183|H3.1  Candida_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  183.6   3.3   1.1e-56   5.6e-56      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  179.7   3.0   1.2e-55   2.4e-54      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 183.6 bits;  conditional E-value: 1.1e-56
-                  cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                            ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreIR+fq+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylvglfed nlcaiHakRVT+++kD++Larr+rg++
+  == domain 1  score: 179.7 bits;  conditional E-value: 1.2e-55
+                  cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                            ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreiR+fqkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylvglfed nlcaiHakRVT+++kD++Larr+rg++
   Candida|68472183|H3.1   5 KQTARKSTGGKAPRKQLASKAARKSAPvsggvKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKSD--LRFQSSAIGALQEAVEAYLVGLFEDTNLCAIHAKRVTIQKKDMQLARRLRGER 135
-                            4444555545555555554444444435678799*******************************************9..***************************************************87 PP
+                            4444444444455555444444443335677799******************************************99..***************************************************87 PP
 
 >> Tetrahymena|118350232|H3.3  Tetrahymena_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  183.3   4.7   1.3e-56   6.5e-56      84     211 ..       4     134 ..       1     136 [] 0.87
+   1 !  179.7   4.4   1.2e-55   2.4e-54      51     179 ..       4     135 ..       1     136 [] 0.86
 
   Alignments for each domain:
-  == domain 1  score: 183.3 bits;  conditional E-value: 1.3e-56
-                       cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgr 211
-                                 +++tar+ +  ++ +k+ +++aa ++a      ++ + frpg++alreIRk+q++t+lLirklpF+rlvr+i  +++ +  +r+q++A+laLQeaaE+Ylvglfed nlcaiHa+RVT+m kD++Larrirg+
-  Tetrahymena|118350232|H3.3   4 TKQTARKSTGVKAPRKQLATKAARKSAPvsggvKKPHKFRPGTVALREIRKYQKTTDLLIRKLPFQRLVRDIAMEMKSD--IRFQSQAILALQEAAEAYLVGLFEDTNLCAIHARRVTIMTKDLHLARRIRGE 134
-                                 44555555555556666555555554446678899******************************************99..**************************************************97 PP
+  == domain 1  score: 179.7 bits;  conditional E-value: 1.2e-55
+                       cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                 +++tar+ +  ++ +k+ +++aa ++a      ++ ++frpg++alreiRk+qk+t+lLirklpF+rlvr+i  +++ +  +r+q++A+laLQeaaE+Ylvglfed nlcaiHa+RVT+m kD++Larrirg++
+  Tetrahymena|118350232|H3.3   4 TKQTARKSTGVKAPRKQLATKAARKSAPvsggvKKPHKFRPGTVALREIRKYQKTTDLLIRKLPFQRLVRDIAMEMKSD--IRFQSQAILALQEAAEAYLVGLFEDTNLCAIHARRVTIMTKDLHLARRIRGER 135
+                                 44455555555555555555555554446677799******************************************99..**************************************************975 PP
 
 >> Candida|68484797|H3.3  Candida_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  183.3   3.8   1.4e-56   6.9e-56      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  179.5   3.4   1.4e-55   2.9e-54      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 183.3 bits;  conditional E-value: 1.4e-56
-                  cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                            ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreIR+fq+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylvglfed nlcaiHakRVT+++kD++Larr+rg++
+  == domain 1  score: 179.5 bits;  conditional E-value: 1.4e-55
+                  cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                            ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreiR+fqkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylvglfed nlcaiHakRVT+++kD++Larr+rg++
   Candida|68484797|H3.3   5 KQTARKSTGGKAPRKQLASKAARKSAPstggvKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAIGALQEAVEAYLVGLFEDTNLCAIHAKRVTIQKKDMQLARRLRGER 135
-                            34444444444444444444443333345677999*******************************************..***************************************************87 PP
+                            33444444444444444444333333345677999*******************************************..***************************************************87 PP
 
 >> Debaryomyces|50423783|H3.1  Debaryomyces_H3.1_XP_460476
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  182.7   3.8   2.1e-56     1e-55      85     212 ..       5     135 ..       1     136 [] 0.85
+   1 !  178.9   3.5   2.1e-55   4.3e-54      52     179 ..       5     135 ..       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 182.7 bits;  conditional E-value: 2.1e-56
-                       cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreIR+fq+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
+  == domain 1  score: 178.9 bits;  conditional E-value: 2.1e-55
+                       cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreiR+fqkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
   Debaryomyces|50423783|H3.1   5 KQTARKSTGGKAPRKQLASKAARKSAPvsggvKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKSD--LRFQSSAIGALQEAVEAYLVSLFEDTNLCAIHAKRVTIQKKDIQLARRLRGER 135
-                                 4444555545555555554444444435678799*******************************************9..***************************************************87 PP
-
->> Griffithsia|32401039|H3.3  Griffithsia_H3.3
-   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
- ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  182.5   3.4   2.4e-56   1.1e-55      84     212 ..       4     136 ..       1     137 [] 0.87
-
-  Alignments for each domain:
-  == domain 1  score: 182.5 bits;  conditional E-value: 2.4e-56
-                      cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlv.glfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreIRkfq+st+lLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Yl  glfed nlcaiHakRVT+mpkDi+Larrirg++
-  Griffithsia|32401039|H3.3   4 TKQTARKSTGGKAPRKQLATKAARKSAPitggvKKPHRYRPGTVALREIRKFQKSTDLLIRKLPFQRLVREIAQDFKSD--LRFQSSAVLALQEAAEAYLRgGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 136
-                                45555555556666666666665555546777799*******************************************9..*******************7369*****************************86 PP
+                                 4444444444455555444444443335677799******************************************99..***************************************************87 PP
 
 >> Homo|NO_GI|H3.Y.2  Homo_H3.Y.2_H3.X
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  182.2   4.1   2.9e-56   1.4e-55      84     212 ..       3     134 ..       1     137 [. 0.89
+   1 !  178.6   3.6   2.6e-55   5.3e-54      52     179 ..       4     134 ..       1     137 [. 0.88
 
   Alignments for each domain:
-  == domain 1  score: 182.2 bits;  conditional E-value: 2.9e-56
-              cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                        +++tar+ +  ++ +k  +++aa ++a+     ++ +R++pg+ alreIRk+q+st+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+rg++
-  Homo|NO_GI|H3.Y.2   3 TKQTARKATAWQAPRKPLATKAARKRASptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRGEG 134
-                        4555666666666666666666666555999999*********************************************..***************************************************86 PP
+  == domain 1  score: 178.6 bits;  conditional E-value: 2.6e-55
+              cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                        ++tar+ +  ++ +k  +++aa ++a+     ++ +R++pg+ alreiRk+qkst+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+rg++
+  Homo|NO_GI|H3.Y.2   4 KQTARKATAWQAPRKPLATKAARKRASptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRGEG 134
+                        455555555666666666666665555888999*********************************************..***************************************************86 PP
+
+>> Griffithsia|32401039|H3.3  Griffithsia_H3.3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  178.7   3.0   2.5e-55   5.1e-54      51     179 ..       4     136 ..       1     137 [] 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 178.7 bits;  conditional E-value: 2.5e-55
+                      cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlv.glfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                +++tar+ +  ++ +k+ +++aa ++a      ++ +R+rpg++alreiRkfqkst+lLirklpF+rlvrei + ++ +  lr+q++A+laLQeaaE+Yl  glfed nlcaiHakRVT+mpkDi+Larrirg++
+  Griffithsia|32401039|H3.3   4 TKQTARKSTGGKAPRKQLATKAARKSAPitggvKKPHRYRPGTVALREIRKFQKSTDLLIRKLPFQRLVREIAQDFKSD--LRFQSSAVLALQEAAEAYLRgGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 136
+                                44555555555566666555555554446677799******************************************99..*******************7369*****************************86 PP
 
 >> Neurospora|85077297|H3.1  Neurospora_H3.31
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  182.2   3.1     3e-56   1.5e-55      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  178.4   2.9   3.1e-55   6.2e-54      52     179 ..       5     135 ..       1     136 [] 0.83
 
   Alignments for each domain:
-  == domain 1  score: 182.2 bits;  conditional E-value: 3e-56
-                     cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                               ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
+  == domain 1  score: 178.4 bits;  conditional E-value: 3.1e-55
+                     cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                               ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
   Neurospora|85077297|H3.1   5 KQTARKSTGGKAPRKQLASKAARKSAPstggvKKPHRYKPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKSD--LRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRLRGER 135
-                               34444444444444444444443333345677999******************************************9..***************************************************87 PP
+                               33444444444444444444333333345677999*****************************************99..***************************************************87 PP
 
 >> Trichoderma|589115521|H3.3  Trichoderma_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  182.2   3.1     3e-56   1.5e-55      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  178.4   2.9   3.1e-55   6.2e-54      52     179 ..       5     135 ..       1     136 [] 0.83
 
   Alignments for each domain:
-  == domain 1  score: 182.2 bits;  conditional E-value: 3e-56
-                       cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
+  == domain 1  score: 178.4 bits;  conditional E-value: 3.1e-55
+                       cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
   Trichoderma|589115521|H3.3   5 KQTARKSTGGKAPRKQLASKAARKSAPstggvKKPHRYKPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKSD--LRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRLRGER 135
-                                 34444444444444444444443333345677999******************************************9..***************************************************87 PP
+                                 33444444444444444444333333345677999*****************************************99..***************************************************87 PP
 
 >> Crypto|58260270|H3.3  Crypto_H3.3_XP_567545
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  181.3   5.3   5.5e-56   2.7e-55      77     212 ..       6     137 ..       1     138 [] 0.84
+   1 !  177.7   4.9   5.1e-55     1e-53      44     179 ..       6     137 ..       1     138 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 181.3 bits;  conditional E-value: 5.5e-56
-                 cenH3  77 rqeklknkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                           + ++++++++++r++   ++++k+   +++    +++ +R+rpg++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylv+lfed nl+aiHakRVT++pkD++Larr+rg++
+  == domain 1  score: 177.7 bits;  conditional E-value: 5.1e-55
+                 cenH3  44 rqeklknkpttartkakastvkkresvaaaapkaaqrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                           + ++++++++++r++   ++++k+   +++    +++ +R+rpg++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylv+lfed nl+aiHakRVT++pkD++Larr+rg++
   Crypto|58260270|H3.3   6 QTARKSTGGKAPRKQLATKAARKQ--APSQVSGGVKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAIGALQEASEAYLVSLFEDTNLAAIHAKRVTIQPKDLQLARRLRGER 137
-                           334444555555555544444444..44444444599********************************************..***************************************************87 PP
+                           334444555555555544444444..44444445599********************************************..***************************************************87 PP
 
 >> Debaryomyces|50408553|H3.3  Debaryomyces_H3.3_XP_456791
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  181.1   4.0   6.5e-56   3.2e-55      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  177.4   3.7   6.3e-55   1.3e-53      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 181.1 bits;  conditional E-value: 6.5e-56
-                       cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreIR+fq+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
+  == domain 1  score: 177.4 bits;  conditional E-value: 6.3e-55
+                       cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreiR+fqkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nlcaiHakRVT+++kDi+Larr+rg++
   Debaryomyces|50408553|H3.3   5 KQTARKSTGGKAPRKQLASKAARKSAPstggvKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQKKDIQLARRLRGER 135
-                                 34444444444444444444443333345677999*******************************************..***************************************************87 PP
+                                 33444444444444444444333333345677999*******************************************..***************************************************87 PP
 
 >> Schizosaccharomyces|122076|H3.3  Schizosaccharomyces_H3.3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  180.9   3.8   7.5e-56   3.7e-55      85     212 ..       5     135 ..       1     136 [] 0.83
+   1 !  177.2   3.4     7e-55   1.4e-53      52     179 ..       5     135 ..       1     136 [] 0.82
 
   Alignments for each domain:
-  == domain 1  score: 180.9 bits;  conditional E-value: 7.5e-56
-                            cenH3  85 pttartkakastvkkresvaaaapkaa......qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                      ++tar+ +  ++ +k+ +++aa +  a      ++ +R+rp ++alreIR++q+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylv+lfed nlcaiH+kRVT++pkD++Larr+rg++
+  == domain 1  score: 177.2 bits;  conditional E-value: 7e-55
+                            cenH3  52 pttartkakastvkkresvaaaapkaa......qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                      ++tar+ +  ++ +k+ +++aa +  a      ++ +R+rp ++alreiR++qkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQea+E+Ylv+lfed nlcaiH+kRVT++pkD++Larr+rg++
   Schizosaccharomyces|122076|H3.3   5 KQTARKSTGGKAPRKQLASKAARKA-ApatggvKKPHRYRPPTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAIGALQEAVEAYLVSLFEDTNLCAIHGKRVTIQPKDMQLARRLRGER 135
-                                      3334444433444444333333222.124577799********************************************..***************************************************87 PP
+                                      3333333333334433333332222.124577799********************************************..***************************************************87 PP
 
 >> Homo|NO_GI|H3.Y.1  Homo_H3.Y.1_H3.Y
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  178.8   3.7   3.2e-55   1.6e-54      84     211 ..       3     133 ..       1     135 [] 0.89
+   1 !  175.4   3.1   2.6e-54   5.3e-53      51     178 ..       3     133 ..       1     135 [] 0.88
 
   Alignments for each domain:
-  == domain 1  score: 178.8 bits;  conditional E-value: 3.2e-55
-              cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgr 211
-                        +++tar+ +  ++ +k  +++aa ++a      ++ +R++pg+ alreIRk+q+st+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+r +
+  == domain 1  score: 175.4 bits;  conditional E-value: 2.6e-54
+              cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgr 178
+                        +++tar+ +  ++ +k  +++aa ++a      ++ +R++pg+ alreiRk+qkst+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+r +
   Homo|NO_GI|H3.Y.1   3 TKQTARKATAWQAPRKPLATKAAGKRAPptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRRE 133
-                        455666666666667766666666644489999**********************************************..*************************************************965 PP
+                        445555666666666666666665544488999**********************************************..*************************************************965 PP
 
 >> Pan|NO_GI|H3.Y.1  Pan_H3.Y.1_H3.Y
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  178.8   3.7   3.2e-55   1.6e-54      84     211 ..       3     133 ..       1     135 [] 0.89
+   1 !  175.4   3.1   2.6e-54   5.3e-53      51     178 ..       3     133 ..       1     135 [] 0.88
 
   Alignments for each domain:
-  == domain 1  score: 178.8 bits;  conditional E-value: 3.2e-55
-             cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgr 211
-                       +++tar+ +  ++ +k  +++aa ++a      ++ +R++pg+ alreIRk+q+st+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+r +
+  == domain 1  score: 175.4 bits;  conditional E-value: 2.6e-54
+             cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgr 178
+                       +++tar+ +  ++ +k  +++aa ++a      ++ +R++pg+ alreiRk+qkst+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+r +
   Pan|NO_GI|H3.Y.1   3 TKQTARKATAWQAPRKPLATKAAGKRAPptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRRE 133
-                       455666666666667766666666644489999**********************************************..*************************************************965 PP
+                       445555666666666666666665544488999**********************************************..*************************************************965 PP
 
 >> Macaca|NO_GI|H3.Y.2  Macaca_H3.Y.2_H3.X
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  178.3   3.3   4.5e-55   2.2e-54      84     212 ..       3     134 ..       1     137 [. 0.92
+   1 !  174.8   2.8   3.9e-54   7.8e-53      51     179 ..       3     134 ..       1     137 [. 0.91
 
   Alignments for each domain:
-  == domain 1  score: 178.3 bits;  conditional E-value: 4.5e-55
-                cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                          +++tar+ ++ ++ +k  +++aaa++a      ++ +R++pg++alreIRk+q+st+lL+rklpF+ lvrei + ++ +  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larrirg++
+  == domain 1  score: 174.8 bits;  conditional E-value: 3.9e-54
+                cenH3  51 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                          +++tar+ ++ ++ +k  +++aaa++a      ++ +R++pg++alreiRk+qkst+lL+rklpF+ lvrei + ++ +  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larrirg++
   Macaca|NO_GI|H3.Y.2   3 TKQTARKATNWQAPRKPLATKAAAKRAPprggiKKPHRYKPGTQALREIRKYQKSTQLLLRKLPFQCLVREIAQVISLD--LRFQSAAIGALQEASEAYLVNLFEDTNLCAIHARRVTIMPRDMQLARRIRGEG 134
-                          567777778888888887777777655589999**********************************************..***************************************************86 PP
+                          566777777777888877777776655588999*********************************************9..***************************************************86 PP
 
 >> Pan|NO_GI|H3.Y.2  Pan_H3.Y.2_H3.X
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  176.8   5.9   1.4e-54   6.6e-54      84     212 ..       3     134 ..       1     137 [. 0.89
+   1 !  173.4   5.3   1.1e-53   2.1e-52      52     179 ..       4     134 ..       1     137 [. 0.88
 
   Alignments for each domain:
-  == domain 1  score: 176.8 bits;  conditional E-value: 1.4e-54
-             cenH3  84 kpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                       +++tar+ +  ++ +k  +++aa ++a+     ++ +R++pg+ alreIRk+q+st+lL+rklpF+rlvrei + ++ +  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+rg++
-  Pan|NO_GI|H3.Y.2   3 TKQTARKATAWQAPRKPLATKAARKRASptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISLD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPQDMQLARRLRGEG 134
-                       4555666666666666666666666555999999*********************************************..***************************************************87 PP
+  == domain 1  score: 173.4 bits;  conditional E-value: 1.1e-53
+             cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                       ++tar+ +  ++ +k  +++aa ++a+     ++ +R++pg+ alreiRk+qkst+lL+rklpF+rlvrei + ++ +  lr+q+ A+ aLQea+E+Ylv+lfed nlcaiHa+RVT+mp+D++Larr+rg++
+  Pan|NO_GI|H3.Y.2   4 KQTARKATAWQAPRKPLATKAARKRASptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISLD--LRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPQDMQLARRLRGEG 134
+                       455555555666666666666665555888999*********************************************..***************************************************86 PP
 
 >> Saccharomyces|6319482|H3.3  Saccharomyces_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  176.7   4.4   1.5e-54   7.2e-54      85     212 ..       5     135 ..       1     136 [] 0.84
+   1 !  173.1   4.1   1.3e-53   2.7e-52      52     179 ..       5     135 ..       1     136 [] 0.84
 
   Alignments for each domain:
-  == domain 1  score: 176.7 bits;  conditional E-value: 1.5e-54
-                       cenH3  85 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 212
-                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreIR+fq+stelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nl+aiHakRVT+++kDi+Larr+rg++
+  == domain 1  score: 173.1 bits;  conditional E-value: 1.3e-53
+                       cenH3  52 pttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYlvglfedsnlcaiHakRVTlmpkDiaLarrirgrk 179
+                                 ++tar+ +  ++ +k+ +++aa ++a      ++ +R++pg++alreiR+fqkstelLirklpF+rlvrei + ++ +  lr+q++A+ aLQe++E+Ylv+lfed nl+aiHakRVT+++kDi+Larr+rg++
   Saccharomyces|6319482|H3.3   5 KQTARKSTGGKAPRKQLASKAARKSAPstggvKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKTD--LRFQSSAIGALQESVEAYLVSLFEDTNLAAIHAKRVTIQKKDIKLARRLRGER 135
-                                 34444444444444444444443333345677999*******************************************..***************************************************87 PP
+                                 33444444444444444444333333345677999*******************************************..***************************************************87 PP
 
 >> Homo|119628413|H3.Y.2.s2  Homo_H3.Y.2.s2_H3.X.s2
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  107.0   3.9     3e-33   1.5e-32      67     178 ..      28     145 ..      22     149 .. 0.76
+   1 !  104.4   3.3   1.5e-32   3.1e-31      37     145 ..      37     145 ..      23     150 .. 0.78
 
   Alignments for each domain:
-  == domain 1  score: 107.0 bits;  conditional E-value: 3e-33
-                     cenH3  67 teeaanrsggrqeklknkpttartkakast...vkkresvaaaapkaa......qrkkRfrpgsnalreIRkfqrstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYl 178
-                               ++ +a+ + g+ ++ +n   t++t +ka++    +k  +++aa ++ a      ++ +R++pg+ alreIRk+q+st+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Yl
-  Homo|119628413|H3.Y.2.s2  28 AAGQAQPQRGESTRPHNMARTKQTARKATAwqaPRKPLATKAARKR-AsptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYL 145
-                               5555555555555555555555554444440004444444444443.2599999**********************************************..******************9 PP
-
->> Xenopus|147898445|H1.10  Xenopus_H1X
-   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
- ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 ?    7.6   1.5    0.0075     0.037       7      71 ..       8      74 ..       3     103 .. 0.69
-   2 ?    0.5  13.4       1.2       5.8      40     101 ..     146     207 ..     127     218 .] 0.34
-
-  Alignments for each domain:
-  == domain 1  score: 7.6 bits;  conditional E-value: 0.0075
-                    cenH3  7 alqrstvaeksenddstpdesqepekstdaavarsssllgrraanerssslsnla..etrllteeaa 71
-                             +l+ +++ +++e +++  de +++    +++ a+ss+ ++++++++++   s+l   + r+l e++ 
-  Xenopus|147898445|H1.10  8 NLHSTEEEDEEEEEEEEGDEMRSRSTRNKGGAASSSGNKKKKKKKNQPGRYSQLVvdTIRKLGERNG 74
-                             5555555566666888889999999999999999888888888777777666653114455655555 PP
-
-  == domain 2  score: 0.5 bits;  conditional E-value: 1.2
-                    cenH3  40 rsssllgrraanerssslsnlaetrllteeaanrsggrqeklknkpttartkakastvkkre 101
-                              +sss  ++++++ +sss s+  ++ ++ ++a + + +   ++ + p+  + k k++ +  ++
-  Xenopus|147898445|H1.10 146 SSSSSNKKQQQQGPSSSPSKSHKKAKPKAKAEKEKPKTSSAKAKSPKKSAAKGKKMKKGAKP 207
-                              22222222222222222222222222222222222222222222222222222222222222 PP
+  == domain 1  score: 104.4 bits;  conditional E-value: 1.5e-32
+                     cenH3  37 ssslsggrqeklknkpttartkakastvkkresvaaaapkaa.....qrkkRfrpgsnalreiRkfqkstelLirklpFarlvreisekleesealrwqaeALlaLQeaaEdYl 145
+                               ++s    r +++ ++++tar+ +  ++ +k  +++aa ++a+     ++ +R++pg+ alreiRk+qkst+lL+rklpF+rlvrei + ++++  lr+q+ A+ aLQea+E+Yl
+  Homo|119628413|H3.Y.2.s2  37 GES---TRPHNMARTKQTARKATAWQAPRKPLATKAARKRASptggiKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPD--LRFQSAAIGALQEASEAYL 145
+                               332...333444455555555555555666655555555555889999*********************************************..******************9 PP
 
 
 
 Internal pipeline statistics summary:
 -------------------------------------
-Query model(s):                              1  (216 nodes)
-Target sequences:                          195  (31426 residues searched)
-Passed MSV filter:                       101  (0.517949); expected 3.9 (0.02)
-Passed bias filter:                       69  (0.353846); expected 3.9 (0.02)
-Passed Vit filter:                        47  (0.241026); expected 0.2 (0.001)
-Passed Fwd filter:                        40  (0.205128); expected 0.0 (1e-05)
-Initial search space (Z):                195  [actual number of targets]
-Domain search space  (domZ):              40  [number of targets reported over threshold]
-# CPU time: 0.03u 0.00s 00:00:00.03 Elapsed: 00:00:00.03
-# Mc/sec: 226.27
+Query model(s):                              1  (183 nodes)
+Target sequences:                          788  (92646 residues searched)
+Passed MSV filter:                       646  (0.819797); expected 15.8 (0.02)
+Passed bias filter:                      616  (0.781726); expected 15.8 (0.02)
+Passed Vit filter:                       500  (0.634518); expected 0.8 (0.001)
+Passed Fwd filter:                        40  (0.0507614); expected 0.0 (1e-05)
+Initial search space (Z):                788  [actual number of targets]
+Domain search space  (domZ):              39  [number of targets reported over threshold]
+# CPU time: 0.06u 0.00s 00:00:00.06 Elapsed: 00:00:00.06
+# Mc/sec: 282.57
 //
 [ok]

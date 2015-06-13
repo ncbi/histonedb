@@ -1,11 +1,11 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H3/H3.2.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H3/H3.2_negative_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H3/H3.2_negative_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H3/H3.2.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/H3.2_negative_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/H3.2_negative_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -14,62 +14,63 @@
 Query:       H3.2  [M=136]
 Scores for complete sequences (score includes all domains):
    --- full sequence ---   --- best 1 domain ---    -#dom-
-    E-value  score  bias    E-value  score  bias    exp  N  Sequence                        Description
-    ------- ------ -----    ------- ------ -----   ---- --  --------                        -----------
-    4.3e-95  308.6   5.5    4.7e-95  308.4   5.5    1.0  1  Arabidopsis|15236103|H3.3        Arabidopsis_H3.3
-    6.4e-94  304.7   5.2    7.1e-94  304.6   5.2    1.0  1  Drosphila|8070|H3.1              Drosphila_H3.1
-      1e-93  304.1   5.2    1.1e-93  304.0   5.2    1.0  1  Homo|4504281|H3.1                Homo_H3.1
-    4.1e-93  302.1   4.9    4.6e-93  302.0   4.9    1.0  1  Phytophthora|301115049|H3.1      Phytophthora_sojae_H3.1
-      1e-92  300.8   5.8    1.2e-92  300.7   5.8    1.0  1  Arabidopsis|15232146|H3.1        Arabidopsis_H3.1.1
-      1e-92  300.8   5.8    1.2e-92  300.7   5.8    1.0  1  Oryza|115441249|H3.1             Oryza_sativa_H3.1
-    4.5e-92  298.8   5.7      5e-92  298.6   5.7    1.0  1  Thallasiosira|224009486|H3.3     Thallasiosira_H3.3
-    4.5e-92  298.8   4.9      5e-92  298.6   4.9    1.0  1  Drosophila|17530867|H3.3         Drosophila_H3.3.1
-    4.7e-92  298.7   4.5    5.2e-92  298.6   4.5    1.0  1  Thallassiosira|223998042|H3.1    Thallassiosira_H3.1
-    7.6e-92  298.0   5.2    8.4e-92  297.9   5.2    1.0  1  Phytophthora|301090188|H3.3      Phytophthora_sojae_H3.3
-    4.5e-91  295.5   4.3    4.9e-91  295.4   4.3    1.0  1  Homo|51859376|H3.3               Homo_H3.3
-    1.4e-90  293.9   4.3    1.6e-90  293.8   4.3    1.0  1  Toxoplasma|22476750|H3.3         Toxoplasma_H3.3
-    1.5e-90  293.8   4.7    1.7e-90  293.7   4.7    1.0  1  Griffithsia|73919915|H3.1        Griffithsia_H3.1
-    1.1e-89  291.0   4.8    1.3e-89  290.8   4.8    1.0  1  Griffithsia|32401039|H3.3        Griffithsia_H3.3
-    5.2e-89  288.8   5.4    5.8e-89  288.7   5.4    1.0  1  Plamodium|82541094|H3.1          Plamodium_yoelii_H3.1
-    5.2e-89  288.8   5.4    5.8e-89  288.7   5.4    1.0  1  Plasmodium|82541094|H3.1         Plasmodium_H3.1
-    9.4e-89  288.0   5.0      1e-88  287.9   5.0    1.0  1  Plasmodium|82594554|H3.3         Plasmodium_H3.3
-    2.7e-86  280.0   4.7      3e-86  279.9   4.7    1.0  1  Candida|68484797|H3.3            Candida_H3.3
-    1.5e-85  277.7   4.3    1.6e-85  277.5   4.3    1.0  1  Schizosaccharomyces|122076|H3.3  Schizosaccharomyces_H3.3.1
-    1.8e-85  277.4   4.5    1.9e-85  277.3   4.5    1.0  1  Debaryomyces|50408553|H3.3       Debaryomyces_H3.3_XP_456791
-    2.8e-85  276.8   3.3    3.1e-85  276.6   3.3    1.0  1  Neurospora|85077297|H3.1         Neurospora_H3.31
-    2.8e-85  276.8   3.3    3.1e-85  276.6   3.3    1.0  1  Trichoderma|589115521|H3.3       Trichoderma_H3.3
-    5.7e-85  275.8   4.2    6.3e-85  275.6   4.2    1.0  1  Candida|68472183|H3.1            Candida_H3.1
-    1.3e-84  274.6   4.4    1.5e-84  274.4   4.4    1.0  1  Debaryomyces|50423783|H3.1       Debaryomyces_H3.1_XP_460476
-    4.2e-84  273.0   4.9    4.7e-84  272.8   4.9    1.0  1  Crypto|58260270|H3.3             Crypto_H3.3_XP_567545
-      3e-83  270.2   5.1    3.3e-83  270.1   5.1    1.0  1  Saccharomyces|6319482|H3.3       Saccharomyces_H3.3
-    5.2e-82  266.2   5.1    5.8e-82  266.0   5.1    1.0  1  Tetrahymena|118350232|H3.3       Tetrahymena_H3.3
-    1.4e-74  242.1   4.2    1.8e-74  241.8   4.2    1.1  1  Homo|NO_GI|H3.Y.2.s1             Homo_H3.Y.2.s1_H3.X.s1
-    5.7e-74  240.1   4.3    6.4e-74  240.0   4.3    1.0  1  Homo|NO_GI|H3.Y.2                Homo_H3.Y.2_H3.X
-    5.8e-74  240.1   4.3    6.6e-74  239.9   4.3    1.0  1  Pan|NO_GI|H3.Y.2                 Pan_H3.Y.2_H3.X
-    7.2e-73  236.6   3.7    8.8e-73  236.3   3.7    1.0  1  Homo|NO_GI|H3.Y.1                Homo_H3.Y.1_H3.Y
-    7.2e-73  236.6   3.7    8.8e-73  236.3   3.7    1.0  1  Pan|NO_GI|H3.Y.1                 Pan_H3.Y.1_H3.Y
-    1.7e-72  235.3   2.4    1.9e-72  235.2   2.4    1.0  1  Macaca|NO_GI|H3.Y.1              Macaca_H3.Y.1_H3.Y
-    2.3e-72  234.9   3.1    2.6e-72  234.8   3.1    1.0  1  Macaca|NO_GI|H3.Y.2              Macaca_H3.Y.2_H3.X
-    2.8e-52  169.9   2.8    3.8e-52  169.5   2.8    1.2  1  Homo|119628413|H3.Y.2.s2         Homo_H3.Y.2.s2_H3.X.s2
-    9.8e-44  142.2   0.4    1.5e-43  141.6   0.4    1.3  1  Cyanidioschyzon|544210412|cenH3  Cyanidioschyzon_CenH3
-      3e-43  140.6   0.5    3.9e-43  140.3   0.5    1.3  1  Thallassiosira|223995905|cenH3   Thallassiosira_CenH3_short
-    1.8e-42  138.1   0.1    2.2e-42  137.8   0.1    1.2  1  Plasmodium|124513424|cenH3       Plasmodium_CenH3
-    2.5e-40  131.2   2.7    3.4e-40  130.8   2.7    1.1  1  Phytophthora|695416328|cenH3     Phytophthora_CenH3
-    2.2e-36  118.4   0.2    2.2e-36  118.4   0.2    1.7  2  Arabidopsis|18378832|cenH3       Arabidopsis_CenH3
-    1.4e-35  115.8   0.2    1.6e-35  115.7   0.2    1.0  1  Guillardia|13794280|cenH3        Guillardia_CenH3_AAK39657.1
-    1.4e-34  112.6   0.5    1.8e-34  112.2   0.5    1.2  1  Tetrahymena|118356028|cenH3      Tetrahymena_CenH3
-    4.4e-30   98.0   0.0    6.1e-30   97.6   0.0    1.2  1  Perkinsus|294874934|cenH3        Perkinsus_CenH3?
-    6.4e-15   48.9   0.5    1.1e-14   48.1   0.5    1.5  1  Drosophila|22024004|cenH3        Drosophila_CenH3
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                          Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                          -----------
+    1.7e-94  308.6   5.5    1.9e-94  308.4   5.5    1.0  1  Arabidopsis|15236103|H3.3          Arabidopsis_H3.3
+    2.5e-93  304.7   5.2    2.8e-93  304.6   5.2    1.0  1  Drosphila|8070|H3.1                Drosphila_H3.1
+      4e-93  304.1   5.2    4.4e-93  304.0   5.2    1.0  1  Homo|4504281|H3.1                  Homo_H3.1
+    1.6e-92  302.1   4.9    1.8e-92  302.0   4.9    1.0  1  Phytophthora|301115049|H3.1        Phytophthora_sojae_H3.1
+    4.1e-92  300.8   5.8    4.6e-92  300.7   5.8    1.0  1  Arabidopsis|15232146|H3.1          Arabidopsis_H3.1.1
+    4.1e-92  300.8   5.8    4.6e-92  300.7   5.8    1.0  1  Oryza|115441249|H3.1               Oryza_sativa_H3.1
+    1.8e-91  298.8   5.7      2e-91  298.6   5.7    1.0  1  Thallasiosira|224009486|H3.3       Thallasiosira_H3.3
+    1.8e-91  298.8   4.9      2e-91  298.6   4.9    1.0  1  Drosophila|17530867|H3.3           Drosophila_H3.3.1
+    1.8e-91  298.7   4.5      2e-91  298.6   4.5    1.0  1  Thallassiosira|223998042|H3.1      Thallassiosira_H3.1
+      3e-91  298.0   5.2    3.3e-91  297.9   5.2    1.0  1  Phytophthora|301090188|H3.3        Phytophthora_sojae_H3.3
+    1.8e-90  295.5   4.3      2e-90  295.4   4.3    1.0  1  Homo|51859376|H3.3                 Homo_H3.3
+    5.6e-90  293.9   4.3    6.2e-90  293.8   4.3    1.0  1  Toxoplasma|22476750|H3.3           Toxoplasma_H3.3
+    6.1e-90  293.8   4.7    6.7e-90  293.7   4.7    1.0  1  Griffithsia|73919915|H3.1          Griffithsia_H3.1
+    4.5e-89  291.0   4.8      5e-89  290.8   4.8    1.0  1  Griffithsia|32401039|H3.3          Griffithsia_H3.3
+    2.1e-88  288.8   5.4    2.3e-88  288.7   5.4    1.0  1  Plamodium|82541094|H3.1            Plamodium_yoelii_H3.1
+    2.1e-88  288.8   5.4    2.3e-88  288.7   5.4    1.0  1  Plasmodium|82541094|H3.1           Plasmodium_H3.1
+    3.7e-88  288.0   5.0    4.1e-88  287.9   5.0    1.0  1  Plasmodium|82594554|H3.3           Plasmodium_H3.3
+    1.1e-85  280.0   4.7    1.2e-85  279.9   4.7    1.0  1  Candida|68484797|H3.3              Candida_H3.3
+    5.9e-85  277.7   4.3    6.5e-85  277.5   4.3    1.0  1  Schizosaccharomyces|122076|H3.3    Schizosaccharomyces_H3.3.1
+      7e-85  277.4   4.5    7.7e-85  277.3   4.5    1.0  1  Debaryomyces|50408553|H3.3         Debaryomyces_H3.3_XP_456791
+    1.1e-84  276.8   3.3    1.2e-84  276.6   3.3    1.0  1  Neurospora|85077297|H3.1           Neurospora_H3.31
+    1.1e-84  276.8   3.3    1.2e-84  276.6   3.3    1.0  1  Trichoderma|589115521|H3.3         Trichoderma_H3.3
+    2.2e-84  275.8   4.2    2.5e-84  275.6   4.2    1.0  1  Candida|68472183|H3.1              Candida_H3.1
+    5.2e-84  274.6   4.4    5.8e-84  274.4   4.4    1.0  1  Debaryomyces|50423783|H3.1         Debaryomyces_H3.1_XP_460476
+    1.7e-83  272.9   4.9    1.8e-83  272.8   4.9    1.0  1  Crypto|58260270|H3.3               Crypto_H3.3_XP_567545
+    1.2e-82  270.2   5.1    1.3e-82  270.1   5.1    1.0  1  Saccharomyces|6319482|H3.3         Saccharomyces_H3.3
+    2.1e-81  266.2   5.1    2.3e-81  266.0   5.1    1.0  1  Tetrahymena|118350232|H3.3         Tetrahymena_H3.3
+    5.6e-74  242.1   4.2    7.1e-74  241.8   4.2    1.1  1  Homo|NO_GI|H3.Y.2.s1               Homo_H3.Y.2.s1_H3.X.s1
+    2.3e-73  240.1   4.3    2.5e-73  240.0   4.3    1.0  1  Homo|NO_GI|H3.Y.2                  Homo_H3.Y.2_H3.X
+    2.3e-73  240.1   4.3    2.6e-73  239.9   4.3    1.0  1  Pan|NO_GI|H3.Y.2                   Pan_H3.Y.2_H3.X
+    2.9e-72  236.6   3.7    3.5e-72  236.3   3.7    1.0  1  Homo|NO_GI|H3.Y.1                  Homo_H3.Y.1_H3.Y
+    2.9e-72  236.6   3.7    3.5e-72  236.3   3.7    1.0  1  Pan|NO_GI|H3.Y.1                   Pan_H3.Y.1_H3.Y
+    6.8e-72  235.3   2.4    7.5e-72  235.2   2.4    1.0  1  Macaca|NO_GI|H3.Y.1                Macaca_H3.Y.1_H3.Y
+    9.1e-72  234.9   3.1      1e-71  234.8   3.1    1.0  1  Macaca|NO_GI|H3.Y.2                Macaca_H3.Y.2_H3.X
+    1.1e-51  169.9   2.8    1.5e-51  169.5   2.8    1.2  1  Homo|119628413|H3.Y.2.s2           Homo_H3.Y.2.s2_H3.X.s2
+    3.9e-43  142.2   0.4    5.9e-43  141.6   0.4    1.3  1  Cyanidioschyzon|544210412|cenH3    Cyanidioschyzon_CenH3
+    1.2e-42  140.6   0.5    1.5e-42  140.3   0.5    1.3  1  Thallassiosira|223995905|cenH3     Thallassiosira_CenH3_short
+    7.2e-42  138.1   0.1    8.9e-42  137.8   0.1    1.2  1  Plasmodium|124513424|cenH3         Plasmodium_CenH3
+    9.8e-40  131.2   2.7    1.3e-39  130.8   2.7    1.1  1  Phytophthora|695416328|cenH3       Phytophthora_CenH3
+    8.9e-36  118.4   0.2    8.9e-36  118.4   0.2    1.7  2  Arabidopsis|18378832|cenH3         Arabidopsis_CenH3
+    5.5e-35  115.8   0.2    6.2e-35  115.7   0.2    1.0  1  Guillardia|13794280|cenH3          Guillardia_CenH3_AAK39657.1
+    5.5e-34  112.6   0.5    7.3e-34  112.2   0.5    1.2  1  Tetrahymena|118356028|cenH3        Tetrahymena_CenH3
+    1.7e-29   98.0   0.0    2.4e-29   97.6   0.0    1.2  1  Perkinsus|294874934|cenH3          Perkinsus_CenH3?
+    2.5e-14   48.9   0.5    4.5e-14   48.1   0.5    1.5  1  Drosophila|22024004|cenH3          Drosophila_CenH3
+     0.0075   11.7   0.8      0.046    9.2   0.0    2.0  2  291385835|Oryctolagus|canonicalH4  291385835|Oryctolagus_cuniculus/1-113
 
 
 Domain annotation for each sequence (and alignments):
 >> Arabidopsis|15236103|H3.3  Arabidopsis_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  308.4   5.5     1e-95   4.7e-95       1     136 []       1     136 []       1     136 [] 1.00
+   1 !  308.4   5.5   1.1e-95   1.9e-94       1     136 []       1     136 []       1     136 [] 1.00
 
   Alignments for each domain:
-  == domain 1  score: 308.4 bits;  conditional E-value: 1e-95
+  == domain 1  score: 308.4 bits;  conditional E-value: 1.1e-95
                        H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera 136
                                 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera
   Arabidopsis|15236103|H3.3   1 MARTKQTARKSTGGKAPRKQLATKAARKSAPTTGGVKKPHRYRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSHAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGERA 136
@@ -78,7 +79,7 @@ Domain annotation for each sequence (and alignments):
 >> Drosphila|8070|H3.1  Drosphila_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  304.6   5.2   1.6e-94   7.1e-94       1     136 []       1     136 []       1     136 [] 1.00
+   1 !  304.6   5.2   1.6e-94   2.8e-93       1     136 []       1     136 []       1     136 [] 1.00
 
   Alignments for each domain:
   == domain 1  score: 304.6 bits;  conditional E-value: 1.6e-94
@@ -90,7 +91,7 @@ Domain annotation for each sequence (and alignments):
 >> Homo|4504281|H3.1  Homo_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  304.0   5.2   2.5e-94   1.1e-93       1     136 []       3     138 .]       3     138 .] 1.00
+   1 !  304.0   5.2   2.5e-94   4.4e-93       1     136 []       3     138 .]       3     138 .] 1.00
 
   Alignments for each domain:
   == domain 1  score: 304.0 bits;  conditional E-value: 2.5e-94
@@ -102,7 +103,7 @@ Domain annotation for each sequence (and alignments):
 >> Phytophthora|301115049|H3.1  Phytophthora_sojae_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  302.0   4.9     1e-93   4.6e-93       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  302.0   4.9     1e-93   1.8e-92       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
   == domain 1  score: 302.0 bits;  conditional E-value: 1e-93
@@ -114,10 +115,10 @@ Domain annotation for each sequence (and alignments):
 >> Arabidopsis|15232146|H3.1  Arabidopsis_H3.1.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  300.7   5.8   2.5e-93   1.2e-92       1     136 []       1     136 []       1     136 [] 1.00
+   1 !  300.7   5.8   2.6e-93   4.6e-92       1     136 []       1     136 []       1     136 [] 1.00
 
   Alignments for each domain:
-  == domain 1  score: 300.7 bits;  conditional E-value: 2.5e-93
+  == domain 1  score: 300.7 bits;  conditional E-value: 2.6e-93
                        H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera 136
                                 martkqtarkstggkaprkqlatkaarksap+tggvkkphr+rpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqs+av alqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera
   Arabidopsis|15232146|H3.1   1 MARTKQTARKSTGGKAPRKQLATKAARKSAPATGGVKKPHRFRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSSAVAALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGERA 136
@@ -126,10 +127,10 @@ Domain annotation for each sequence (and alignments):
 >> Oryza|115441249|H3.1  Oryza_sativa_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  300.7   5.8   2.5e-93   1.2e-92       1     136 []       1     136 []       1     136 [] 1.00
+   1 !  300.7   5.8   2.6e-93   4.6e-92       1     136 []       1     136 []       1     136 [] 1.00
 
   Alignments for each domain:
-  == domain 1  score: 300.7 bits;  conditional E-value: 2.5e-93
+  == domain 1  score: 300.7 bits;  conditional E-value: 2.6e-93
                   H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera 136
                            martkqtarkstggkaprkqlatkaarksap+tggvkkphr+rpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqs+av alqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera
   Oryza|115441249|H3.1   1 MARTKQTARKSTGGKAPRKQLATKAARKSAPATGGVKKPHRFRPGTVALREIRKYQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSSAVAALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGERA 136
@@ -138,7 +139,7 @@ Domain annotation for each sequence (and alignments):
 >> Thallasiosira|224009486|H3.3  Thallasiosira_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  298.6   5.7   1.1e-92     5e-92       1     136 []       1     136 []       1     136 [] 1.00
+   1 !  298.6   5.7   1.1e-92     2e-91       1     136 []       1     136 []       1     136 [] 1.00
 
   Alignments for each domain:
   == domain 1  score: 298.6 bits;  conditional E-value: 1.1e-92
@@ -150,7 +151,7 @@ Domain annotation for each sequence (and alignments):
 >> Drosophila|17530867|H3.3  Drosophila_H3.3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  298.6   4.9   1.1e-92     5e-92       1     136 []       1     136 []       1     136 [] 1.00
+   1 !  298.6   4.9   1.1e-92     2e-91       1     136 []       1     136 []       1     136 [] 1.00
 
   Alignments for each domain:
   == domain 1  score: 298.6 bits;  conditional E-value: 1.1e-92
@@ -162,10 +163,10 @@ Domain annotation for each sequence (and alignments):
 >> Thallassiosira|223998042|H3.1  Thallassiosira_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  298.6   4.5   1.1e-92   5.2e-92       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  298.6   4.5   1.2e-92     2e-91       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 298.6 bits;  conditional E-value: 1.1e-92
+  == domain 1  score: 298.6 bits;  conditional E-value: 1.2e-92
                            H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                     martkqtarkstggkaprkqlatkaarksap+tggvkkphryrpgtvalreir+yqkst+llirklpfqrlvreiaqdfk+dlrfq +avlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger
   Thallassiosira|223998042|H3.1   1 MARTKQTARKSTGGKAPRKQLATKAARKSAPATGGVKKPHRYRPGTVALREIRRYQKSTDLLIRKLPFQRLVREIAQDFKSDLRFQGSAVLALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
@@ -174,7 +175,7 @@ Domain annotation for each sequence (and alignments):
 >> Phytophthora|301090188|H3.3  Phytophthora_sojae_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  297.9   5.2   1.9e-92   8.4e-92       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  297.9   5.2   1.9e-92   3.3e-91       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
   == domain 1  score: 297.9 bits;  conditional E-value: 1.9e-92
@@ -186,7 +187,7 @@ Domain annotation for each sequence (and alignments):
 >> Homo|51859376|H3.3  Homo_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  295.4   4.3   1.1e-91   4.9e-91       1     136 []       1     136 []       1     136 [] 1.00
+   1 !  295.4   4.3   1.1e-91     2e-90       1     136 []       1     136 []       1     136 [] 1.00
 
   Alignments for each domain:
   == domain 1  score: 295.4 bits;  conditional E-value: 1.1e-91
@@ -198,10 +199,10 @@ Domain annotation for each sequence (and alignments):
 >> Toxoplasma|22476750|H3.3  Toxoplasma_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  293.8   4.3   3.4e-91   1.6e-90       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  293.8   4.3   3.5e-91   6.2e-90       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 293.8 bits;  conditional E-value: 3.4e-91
+  == domain 1  score: 293.8 bits;  conditional E-value: 3.5e-91
                       H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                martkqtarkstggkaprkqla+kaarksap +gg+kkphryrpgtvalreirk+qkst+llirklpfqrlvreiaqdfktdlrfqs+a+lalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger
   Toxoplasma|22476750|H3.3   1 MARTKQTARKSTGGKAPRKQLASKAARKSAPMSGGIKKPHRYRPGTVALREIRKFQKSTDLLIRKLPFQRLVREIAQDFKTDLRFQSQAILALQEAAEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
@@ -210,10 +211,10 @@ Domain annotation for each sequence (and alignments):
 >> Griffithsia|73919915|H3.1  Griffithsia_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  293.7   4.7   3.7e-91   1.7e-90       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  293.7   4.7   3.8e-91   6.7e-90       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 293.7 bits;  conditional E-value: 3.7e-91
+  == domain 1  score: 293.7 bits;  conditional E-value: 3.8e-91
                        H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                 martkqtarkstggkaprkqlatkaarksap++ggvkkphr+rpgtvalreir++qkstell+rklpfqrlvreiaqdfk+dlrfqs+avlalqeaaeay+vglfedtnlcaihakrvtimpkdiqlarrirger
   Griffithsia|73919915|H3.1   1 MARTKQTARKSTGGKAPRKQLATKAARKSAPASGGVKKPHRFRPGTVALREIRRFQKSTELLVRKLPFQRLVREIAQDFKSDLRFQSSAVLALQEAAEAYMVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGER 135
@@ -222,7 +223,7 @@ Domain annotation for each sequence (and alignments):
 >> Griffithsia|32401039|H3.3  Griffithsia_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  290.8   4.8   2.8e-90   1.3e-89       1     136 []       1     137 []       1     137 [] 0.99
+   1 !  290.8   4.8   2.8e-90     5e-89       1     136 []       1     137 []       1     137 [] 0.99
 
   Alignments for each domain:
   == domain 1  score: 290.8 bits;  conditional E-value: 2.8e-90
@@ -234,7 +235,7 @@ Domain annotation for each sequence (and alignments):
 >> Plamodium|82541094|H3.1  Plamodium_yoelii_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  288.7   5.4   1.3e-89   5.8e-89       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  288.7   5.4   1.3e-89   2.3e-88       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
   == domain 1  score: 288.7 bits;  conditional E-value: 1.3e-89
@@ -246,7 +247,7 @@ Domain annotation for each sequence (and alignments):
 >> Plasmodium|82541094|H3.1  Plasmodium_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  288.7   5.4   1.3e-89   5.8e-89       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  288.7   5.4   1.3e-89   2.3e-88       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
   == domain 1  score: 288.7 bits;  conditional E-value: 1.3e-89
@@ -258,7 +259,7 @@ Domain annotation for each sequence (and alignments):
 >> Plasmodium|82594554|H3.3  Plasmodium_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  287.9   5.0   2.3e-89     1e-88       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  287.9   5.0   2.3e-89   4.1e-88       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
   == domain 1  score: 287.9 bits;  conditional E-value: 2.3e-89
@@ -270,10 +271,10 @@ Domain annotation for each sequence (and alignments):
 >> Candida|68484797|H3.3  Candida_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  279.9   4.7   6.6e-87     3e-86       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  279.9   4.7   6.8e-87   1.2e-85       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 279.9 bits;  conditional E-value: 6.6e-87
+  == domain 1  score: 279.9 bits;  conditional E-value: 6.8e-87
                    H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                             martkqtarkstggkaprkqla+kaarksap+tggvkkphry+pgtvalreir++qkstellirklpfqrlvreiaqdfktdlrfqs+a+ alqea eaylvglfedtnlcaihakrvti  kd+qlarr+rger
   Candida|68484797|H3.3   1 MARTKQTARKSTGGKAPRKQLASKAARKSAPSTGGVKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSSAIGALQEAVEAYLVGLFEDTNLCAIHAKRVTIQKKDMQLARRLRGER 135
@@ -282,10 +283,10 @@ Domain annotation for each sequence (and alignments):
 >> Schizosaccharomyces|122076|H3.3  Schizosaccharomyces_H3.3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  277.5   4.3   3.6e-86   1.6e-85       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  277.5   4.3   3.7e-86   6.5e-85       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 277.5 bits;  conditional E-value: 3.6e-86
+  == domain 1  score: 277.5 bits;  conditional E-value: 3.7e-86
                              H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                       martkqtarkstggkaprkqla+kaark+ap+tggvkkphryrp tvalreir+yqkstellirklpfqrlvreiaqdfktdlrfqs+a+ alqea eaylv lfedtnlcaih krvti pkd+qlarr+rger
   Schizosaccharomyces|122076|H3.3   1 MARTKQTARKSTGGKAPRKQLASKAARKAAPATGGVKKPHRYRPPTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSSAIGALQEAVEAYLVSLFEDTNLCAIHGKRVTIQPKDMQLARRLRGER 135
@@ -294,10 +295,10 @@ Domain annotation for each sequence (and alignments):
 >> Debaryomyces|50408553|H3.3  Debaryomyces_H3.3_XP_456791
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  277.3   4.5   4.3e-86   1.9e-85       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  277.3   4.5   4.4e-86   7.7e-85       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 277.3 bits;  conditional E-value: 4.3e-86
+  == domain 1  score: 277.3 bits;  conditional E-value: 4.4e-86
                         H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                  martkqtarkstggkaprkqla+kaarksap+tggvkkphry+pgtvalreir++qkstellirklpfqrlvreiaqdfktdlrfqs+a+ alqe+ eaylv lfedtnlcaihakrvti  kdiqlarr+rger
   Debaryomyces|50408553|H3.3   1 MARTKQTARKSTGGKAPRKQLASKAARKSAPSTGGVKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSSAIGALQESVEAYLVSLFEDTNLCAIHAKRVTIQKKDIQLARRLRGER 135
@@ -306,10 +307,10 @@ Domain annotation for each sequence (and alignments):
 >> Neurospora|85077297|H3.1  Neurospora_H3.31
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  276.6   3.3   6.8e-86   3.1e-85       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  276.6   3.3   6.9e-86   1.2e-84       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 276.6 bits;  conditional E-value: 6.8e-86
+  == domain 1  score: 276.6 bits;  conditional E-value: 6.9e-86
                       H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                martkqtarkstggkaprkqla+kaarksap+tggvkkphry+pgtvalreir+yqkstellirklpfqrlvreiaqdfk+dlrfqs+a+ alqe+ e+ylv lfedtnlcaihakrvti  kdiqlarr+rger
   Neurospora|85077297|H3.1   1 MARTKQTARKSTGGKAPRKQLASKAARKSAPSTGGVKKPHRYKPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRLRGER 135
@@ -318,10 +319,10 @@ Domain annotation for each sequence (and alignments):
 >> Trichoderma|589115521|H3.3  Trichoderma_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  276.6   3.3   6.8e-86   3.1e-85       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  276.6   3.3   6.9e-86   1.2e-84       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 276.6 bits;  conditional E-value: 6.8e-86
+  == domain 1  score: 276.6 bits;  conditional E-value: 6.9e-86
                         H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                  martkqtarkstggkaprkqla+kaarksap+tggvkkphry+pgtvalreir+yqkstellirklpfqrlvreiaqdfk+dlrfqs+a+ alqe+ e+ylv lfedtnlcaihakrvti  kdiqlarr+rger
   Trichoderma|589115521|H3.3   1 MARTKQTARKSTGGKAPRKQLASKAARKSAPSTGGVKKPHRYKPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQESVESYLVSLFEDTNLCAIHAKRVTIQSKDIQLARRLRGER 135
@@ -330,7 +331,7 @@ Domain annotation for each sequence (and alignments):
 >> Candida|68472183|H3.1  Candida_H3.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  275.6   4.2   1.4e-85   6.3e-85       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  275.6   4.2   1.4e-85   2.5e-84       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
   == domain 1  score: 275.6 bits;  conditional E-value: 1.4e-85
@@ -342,10 +343,10 @@ Domain annotation for each sequence (and alignments):
 >> Debaryomyces|50423783|H3.1  Debaryomyces_H3.1_XP_460476
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  274.4   4.4   3.2e-85   1.5e-84       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  274.4   4.4   3.3e-85   5.8e-84       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 274.4 bits;  conditional E-value: 3.2e-85
+  == domain 1  score: 274.4 bits;  conditional E-value: 3.3e-85
                         H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                  martkqtarkstggkaprkqla+kaarksap++ggvkkphry+pgtvalreir++qkstellirklpfqrlvreiaqdfk+dlrfqs+a+ alqea eaylv lfedtnlcaihakrvti  kdiqlarr+rger
   Debaryomyces|50423783|H3.1   1 MARTKQTARKSTGGKAPRKQLASKAARKSAPVSGGVKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKSDLRFQSSAIGALQEAVEAYLVSLFEDTNLCAIHAKRVTIQKKDIQLARRLRGER 135
@@ -354,7 +355,7 @@ Domain annotation for each sequence (and alignments):
 >> Crypto|58260270|H3.3  Crypto_H3.3_XP_567545
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  272.8   4.9     1e-84   4.7e-84       1     135 [.       1     137 [.       1     138 [] 0.98
+   1 !  272.8   4.9     1e-84   1.8e-83       1     135 [.       1     137 [.       1     138 [] 0.98
 
   Alignments for each domain:
   == domain 1  score: 272.8 bits;  conditional E-value: 1e-84
@@ -366,10 +367,10 @@ Domain annotation for each sequence (and alignments):
 >> Saccharomyces|6319482|H3.3  Saccharomyces_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  270.1   5.1   7.2e-84   3.3e-83       1     135 [.       1     135 [.       1     136 [] 0.99
+   1 !  270.1   5.1   7.4e-84   1.3e-82       1     135 [.       1     135 [.       1     136 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 270.1 bits;  conditional E-value: 7.2e-84
+  == domain 1  score: 270.1 bits;  conditional E-value: 7.4e-84
                         H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                  martkqtarkstggkaprkqla+kaarksap+tggvkkphry+pgtvalreir++qkstellirklpfqrlvreiaqdfktdlrfqs+a+ alqe+ eaylv lfedtnl+aihakrvti  kdi+larr+rger
   Saccharomyces|6319482|H3.3   1 MARTKQTARKSTGGKAPRKQLASKAARKSAPSTGGVKKPHRYKPGTVALREIRRFQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSSAIGALQESVEAYLVSLFEDTNLAAIHAKRVTIQKKDIKLARRLRGER 135
@@ -378,7 +379,7 @@ Domain annotation for each sequence (and alignments):
 >> Tetrahymena|118350232|H3.3  Tetrahymena_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  266.0   5.1   1.3e-82   5.8e-82       1     135 [.       1     135 [.       1     136 [] 1.00
+   1 !  266.0   5.1   1.3e-82   2.3e-81       1     135 [.       1     135 [.       1     136 [] 1.00
 
   Alignments for each domain:
   == domain 1  score: 266.0 bits;  conditional E-value: 1.3e-82
@@ -390,10 +391,10 @@ Domain annotation for each sequence (and alignments):
 >> Homo|NO_GI|H3.Y.2.s1  Homo_H3.Y.2.s1_H3.X.s1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  241.8   4.2   3.9e-75   1.8e-74       1     136 []      45     180 ..      45     180 .. 0.99
+   1 !  241.8   4.2     4e-75   7.1e-74       1     136 []      45     180 ..      45     180 .. 0.99
 
   Alignments for each domain:
-  == domain 1  score: 241.8 bits;  conditional E-value: 3.9e-75
+  == domain 1  score: 241.8 bits;  conditional E-value: 4e-75
                   H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera 136
                            martkqtark+t  +aprk latkaark a  tgg+kkphry+pgt+alreirkyqkst+ll+rklpfqrlvreiaq +  dlrfqs a+ alqea+eaylv lfedtnlcaiha+rvtimp+d+qlarr+rge a
   Homo|NO_GI|H3.Y.2.s1  45 MARTKQTARKATAWQAPRKPLATKAARKRASPTGGIKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPDLRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRGEGA 180
@@ -402,7 +403,7 @@ Domain annotation for each sequence (and alignments):
 >> Homo|NO_GI|H3.Y.2  Homo_H3.Y.2_H3.X
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  240.0   4.3   1.4e-74   6.4e-74       2     136 .]       1     135 [.       1     135 [. 0.99
+   1 !  240.0   4.3   1.4e-74   2.5e-73       2     136 .]       1     135 [.       1     135 [. 0.99
 
   Alignments for each domain:
   == domain 1  score: 240.0 bits;  conditional E-value: 1.4e-74
@@ -414,7 +415,7 @@ Domain annotation for each sequence (and alignments):
 >> Pan|NO_GI|H3.Y.2  Pan_H3.Y.2_H3.X
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  239.9   4.3   1.5e-74   6.6e-74       2     136 .]       1     135 [.       1     135 [. 0.99
+   1 !  239.9   4.3   1.5e-74   2.6e-73       2     136 .]       1     135 [.       1     135 [. 0.99
 
   Alignments for each domain:
   == domain 1  score: 239.9 bits;  conditional E-value: 1.5e-74
@@ -426,10 +427,10 @@ Domain annotation for each sequence (and alignments):
 >> Homo|NO_GI|H3.Y.1  Homo_H3.Y.1_H3.Y
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  236.3   3.7   1.9e-73   8.8e-73       2     134 ..       1     133 [.       1     134 [. 0.99
+   1 !  236.3   3.7     2e-73   3.5e-72       2     134 ..       1     133 [.       1     134 [. 0.99
 
   Alignments for each domain:
-  == domain 1  score: 236.3 bits;  conditional E-value: 1.9e-73
+  == domain 1  score: 236.3 bits;  conditional E-value: 2e-73
                H3.2   2 artkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirge 134
                         artkqtark+t  +aprk latkaa k ap tgg+kkphry+pgt+alreirkyqkst+ll+rklpfqrlvreiaq +  dlrfqs a+ alqea+eaylv lfedtnlcaiha+rvtimp+d+qlarr+r e
   Homo|NO_GI|H3.Y.1   1 ARTKQTARKATAWQAPRKPLATKAAGKRAPPTGGIKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPDLRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRRE 133
@@ -438,10 +439,10 @@ Domain annotation for each sequence (and alignments):
 >> Pan|NO_GI|H3.Y.1  Pan_H3.Y.1_H3.Y
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  236.3   3.7   1.9e-73   8.8e-73       2     134 ..       1     133 [.       1     134 [. 0.99
+   1 !  236.3   3.7     2e-73   3.5e-72       2     134 ..       1     133 [.       1     134 [. 0.99
 
   Alignments for each domain:
-  == domain 1  score: 236.3 bits;  conditional E-value: 1.9e-73
+  == domain 1  score: 236.3 bits;  conditional E-value: 2e-73
               H3.2   2 artkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirge 134
                        artkqtark+t  +aprk latkaa k ap tgg+kkphry+pgt+alreirkyqkst+ll+rklpfqrlvreiaq +  dlrfqs a+ alqea+eaylv lfedtnlcaiha+rvtimp+d+qlarr+r e
   Pan|NO_GI|H3.Y.1   1 ARTKQTARKATAWQAPRKPLATKAAGKRAPPTGGIKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPDLRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRRE 133
@@ -450,10 +451,10 @@ Domain annotation for each sequence (and alignments):
 >> Macaca|NO_GI|H3.Y.1  Macaca_H3.Y.1_H3.Y
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  235.2   2.4   4.2e-73   1.9e-72       2     136 .]       1     135 []       1     135 [] 0.99
+   1 !  235.2   2.4   4.3e-73   7.5e-72       2     136 .]       1     135 []       1     135 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 235.2 bits;  conditional E-value: 4.2e-73
+  == domain 1  score: 235.2 bits;  conditional E-value: 4.3e-73
                  H3.2   2 artkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera 136
                           artkqtark+t  +aprk latka  k  p  gg+kkphryrpgt alreirkyqkst+ll+rklpfqrlvreiaq +  dlrfqs a+ alqea+eaylv lfedtnlcaiha+rvtimp+d+qlarrirge a
   Macaca|NO_GI|H3.Y.1   1 ARTKQTARKATNWQAPRKPLATKAPGKRLPPRGGIKKPHRYRPGTQALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPDLRFQSAAIGALQEASEAYLVNLFEDTNLCAIHARRVTIMPRDMQLARRIRGEGA 135
@@ -462,10 +463,10 @@ Domain annotation for each sequence (and alignments):
 >> Macaca|NO_GI|H3.Y.2  Macaca_H3.Y.2_H3.X
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  234.8   3.1   5.7e-73   2.6e-72       2     136 .]       1     135 [.       1     135 [. 0.99
+   1 !  234.8   3.1   5.8e-73     1e-71       2     136 .]       1     135 [.       1     135 [. 0.99
 
   Alignments for each domain:
-  == domain 1  score: 234.8 bits;  conditional E-value: 5.7e-73
+  == domain 1  score: 234.8 bits;  conditional E-value: 5.8e-73
                  H3.2   2 artkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirgera 136
                           artkqtark+t  +aprk latkaa k ap  gg+kkphry+pgt alreirkyqkst+ll+rklpfq lvreiaq +  dlrfqs a+ alqea+eaylv lfedtnlcaiha+rvtimp+d+qlarrirge a
   Macaca|NO_GI|H3.Y.2   1 ARTKQTARKATNWQAPRKPLATKAAAKRAPPRGGIKKPHRYKPGTQALREIRKYQKSTQLLLRKLPFQCLVREIAQVISLDLRFQSAAIGALQEASEAYLVNLFEDTNLCAIHARRVTIMPRDMQLARRIRGEGA 135
@@ -474,10 +475,10 @@ Domain annotation for each sequence (and alignments):
 >> Homo|119628413|H3.Y.2.s2  Homo_H3.Y.2.s2_H3.X.s2
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  169.5   2.8   8.3e-53   3.8e-52       1     101 [.      45     145 ..      45     158 .. 0.98
+   1 !  169.5   2.8   8.5e-53   1.5e-51       1     101 [.      45     145 ..      45     158 .. 0.98
 
   Alignments for each domain:
-  == domain 1  score: 169.5 bits;  conditional E-value: 8.3e-53
+  == domain 1  score: 169.5 bits;  conditional E-value: 8.5e-53
                       H3.2   1 martkqtarkstggkaprkqlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeayl 101
                                martkqtark+t  +aprk latkaark a  tgg+kkphry+pgt+alreirkyqkst+ll+rklpfqrlvreiaq +  dlrfqs a+ alqea+eayl
   Homo|119628413|H3.Y.2.s2  45 MARTKQTARKATAWQAPRKPLATKAARKRASPTGGIKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPDLRFQSAAIGALQEASEAYL 145
@@ -486,7 +487,7 @@ Domain annotation for each sequence (and alignments):
 >> Cyanidioschyzon|544210412|cenH3  Cyanidioschyzon_CenH3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  141.6   0.4   3.3e-44   1.5e-43      25     134 ..     158     267 ..     133     269 .. 0.88
+   1 !  141.6   0.4   3.3e-44   5.9e-43      25     134 ..     158     267 ..     133     269 .. 0.88
 
   Alignments for each domain:
   == domain 1  score: 141.6 bits;  conditional E-value: 3.3e-44
@@ -498,10 +499,10 @@ Domain annotation for each sequence (and alignments):
 >> Thallassiosira|223995905|cenH3  Thallassiosira_CenH3_short
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  140.3   0.5   8.5e-44   3.9e-43      30     133 ..      59     162 ..      22     165 .. 0.85
+   1 !  140.3   0.5   8.7e-44   1.5e-42      30     133 ..      59     162 ..      22     165 .. 0.85
 
   Alignments for each domain:
-  == domain 1  score: 140.3 bits;  conditional E-value: 8.5e-44
+  == domain 1  score: 140.3 bits;  conditional E-value: 8.7e-44
                             H3.2  30 apttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdf.ktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirg 133
                                      + +   v++  r rp   alreir+yq st ll+r+lpf rlvrei   + +   r+q +a+lalqeaaea+lvglfed+nlcaih krvtimpkd+qlarrirg
   Thallassiosira|223995905|cenH3  59 TSAQPTVRRKRRMRPE-KALREIRQYQSSTSLLLRRLPFARLVREIQYGMtRQPYRWQGSAILALQEAAEAHLVGLFEDSNLCAIHGKRVTIMPKDMQLARRIRG 162
@@ -510,10 +511,10 @@ Domain annotation for each sequence (and alignments):
 >> Plasmodium|124513424|cenH3  Plasmodium_CenH3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  137.8   0.1   4.9e-43   2.2e-42      34     134 ..      66     169 ..      39     170 .] 0.91
+   1 !  137.8   0.1     5e-43   8.9e-42      34     134 ..      66     169 ..      39     170 .] 0.91
 
   Alignments for each domain:
-  == domain 1  score: 137.8 bits;  conditional E-value: 4.9e-43
+  == domain 1  score: 137.8 bits;  conditional E-value: 5e-43
                         H3.2  34 ggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfk...tdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirge 134
                                    ++kphryrpg +al+eir yq st+lli k+pf r+v+ei++ f     ++r+  +a+lalq a+eaylv lfed+ lc++ha+rvt+mpkdi larrirg 
   Plasmodium|124513424|cenH3  66 TNIRKPHRYRPGVLALKEIRAYQASTQLLIPKIPFVRVVKEITRLFElpdEQFRYTPEALLALQTASEAYLVSLFEDAYLCSLHANRVTLMPKDIHLARRIRGR 169
@@ -522,10 +523,10 @@ Domain annotation for each sequence (and alignments):
 >> Phytophthora|695416328|cenH3  Phytophthora_CenH3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  130.8   2.7   7.4e-41   3.4e-40       5     135 ..      86     218 ..      83     219 .. 0.89
+   1 !  130.8   2.7   7.6e-41   1.3e-39       5     135 ..      86     218 ..      83     219 .. 0.89
 
   Alignments for each domain:
-  == domain 1  score: 130.8 bits;  conditional E-value: 7.4e-41
+  == domain 1  score: 130.8 bits;  conditional E-value: 7.6e-41
                           H3.2   5 kqtarkstggkaprkqlatkaark.sapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfk.tdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                    +q+a ++t     rk+ at   r+ s+p++      +r +pg  alreir  q+st+ll+rklpf r+vrei  +f     r+q++a+lalqeaae+ylv  fed+nlcaih krvt+  kdiql+ rirg r
   Phytophthora|695416328|cenH3  86 RQAAIHATPTAPRRKRKATPPRRRpSSPASATQTVKKRRKPGEAALREIRLLQRSTKLLLRKLPFARVVREIQTEFTgVGYRWQAEALLALQEAAETYLVRTFEDANLCAIHGKRVTLQVKDIQLSLRIRGIR 218
@@ -534,17 +535,17 @@ Domain annotation for each sequence (and alignments):
 >> Arabidopsis|18378832|cenH3  Arabidopsis_CenH3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 ?   -2.1   1.4         8        36       1      37 [.       1      32 [.       1      41 [. 0.52
-   2 !  118.4   0.2   4.9e-37   2.2e-36      20     134 ..      59     174 ..      42     176 .. 0.86
+   1 ?   -2.1   1.4       8.1   1.4e+02       1      37 [.       1      32 [.       1      41 [. 0.52
+   2 !  118.4   0.2     5e-37   8.9e-36      20     134 ..      59     174 ..      42     176 .. 0.86
 
   Alignments for each domain:
-  == domain 1  score: -2.1 bits;  conditional E-value: 8
+  == domain 1  score: -2.1 bits;  conditional E-value: 8.1
                         H3.2  1 martkqtarkstggkaprkqlatkaarksapttggvk 37
                                 martk    +s     pr+q  +  a  s+ ++g   
   Arabidopsis|18378832|cenH3  1 MARTKHRVTRS----QPRNQTDAAGAS-SSQAAGPTT 32
                                 67777666555....477775443333.333334333 PP
 
-  == domain 2  score: 118.4 bits;  conditional E-value: 4.9e-37
+  == domain 2  score: 118.4 bits;  conditional E-value: 5e-37
                         H3.2  20 qlatkaarksapttggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfkt..dlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirge 134
                                  +  +k +r++ p  g  kk +ryrpgtval+eir++qk t+lli    f r vr i+  +      r+ ++a++alqeaae ylvglf d+ lcaiha+rvt+m kd +larr+ g+
   Arabidopsis|18378832|cenH3  59 RRGAKRSRQAMP-RGSQKKSYRYRPGTVALKEIRHFQKQTNLLIPAASFIREVRSITHMLAPpqINRWTAEALVALQEAAEDYLVGLFSDSMLCAIHARRVTLMRKDFELARRLGGK 174
@@ -553,10 +554,10 @@ Domain annotation for each sequence (and alignments):
 >> Guillardia|13794280|cenH3  Guillardia_CenH3_AAK39657.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  115.7   0.2   3.4e-36   1.6e-35      40     134 ..       8     102 ..       2     103 .] 0.96
+   1 !  115.7   0.2   3.5e-36   6.2e-35      40     134 ..       8     102 ..       2     103 .] 0.96
 
   Alignments for each domain:
-  == domain 1  score: 115.7 bits;  conditional E-value: 3.4e-36
+  == domain 1  score: 115.7 bits;  conditional E-value: 3.5e-36
                        H3.2  40 hryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirge 134
                                 +r++  + +l +irk+qkst+lli +lpf rlv+ei+  ++  l +q  av alq a+e y++gl++d+nl+aihakrvt+mpkd++la+ irge
   Guillardia|13794280|cenH3   8 KRFKKSSNSLVDIRKFQKSTDLLIHRLPFARLVKEISLKYHHSLNWQQVAVEALQFASEDYIIGLLQDANLAAIHAKRVTVMPKDLKLAKIIRGE 102
@@ -565,10 +566,10 @@ Domain annotation for each sequence (and alignments):
 >> Tetrahymena|118356028|cenH3  Tetrahymena_CenH3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  112.2   0.5     4e-35   1.8e-34      17     135 ..      53     176 ..      35     177 .. 0.85
+   1 !  112.2   0.5   4.1e-35   7.3e-34      17     135 ..      53     176 ..      35     177 .. 0.85
 
   Alignments for each domain:
-  == domain 1  score: 112.2 bits;  conditional E-value: 4e-35
+  == domain 1  score: 112.2 bits;  conditional E-value: 4.1e-35
                          H3.2  17 prkqlatkaarksapt...tggvkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfk..tdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarrirger 135
                                    r++ +tk  r s+     +   k   r+rpg  al+++r+y+++  llirklpfqrl+rei+  +     lr+ s a++ lq   e y+v +fed+n ca+hakrvt+m kd+ la rirg++
   Tetrahymena|118356028|cenH3  53 QRNKASTKKKRESSGEkyeSARDKVIRRFRPGDNALKQLRQYNQTPSLLIRKLPFQRLIREISTRMTeeDSLRWTSFALVLLQTVVEDYMVSFFEDANACALHAKRVTLMSKDLALAARIRGQK 176
@@ -577,10 +578,10 @@ Domain annotation for each sequence (and alignments):
 >> Perkinsus|294874934|cenH3  Perkinsus_CenH3?
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   97.6   0.0   1.3e-30   6.1e-30      36     131 ..      23     118 ..       3     121 .. 0.90
+   1 !   97.6   0.0   1.4e-30   2.4e-29      36     131 ..      23     118 ..       3     121 .. 0.90
 
   Alignments for each domain:
-  == domain 1  score: 97.6 bits;  conditional E-value: 1.3e-30
+  == domain 1  score: 97.6 bits;  conditional E-value: 1.4e-30
                        H3.2  36 vkkphryrpgtvalreirkyqkstellirklpfqrlvreiaqdfktdlrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarri 131
                                   k  ryrpgtvalreir++q  t+ li k  fq l r +++++ + +r+q ++++alqea+e+++vg++e ++l a+h +r+t+m kd+++  r+
   Perkinsus|294874934|cenH3  23 SAKKGRYRPGTVALREIRRHQEITDPLIEKRCFQALARSLSREVEASMRWQPQSLVALQEASESFIVGMLEASQLLAVHGRRITLMEKDVKMWTRL 118
@@ -589,28 +590,47 @@ Domain annotation for each sequence (and alignments):
 >> Drosophila|22024004|cenH3  Drosophila_CenH3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   48.1   0.5   2.5e-15   1.1e-14      48     131 ..     133     218 ..      85     223 .. 0.83
+   1 !   48.1   0.5   2.6e-15   4.5e-14      48     131 ..     133     218 ..      85     223 .. 0.83
 
   Alignments for each domain:
-  == domain 1  score: 48.1 bits;  conditional E-value: 2.5e-15
+  == domain 1  score: 48.1 bits;  conditional E-value: 2.6e-15
                        H3.2  48 alreirkyqkstellirklpfqrlvreiaqdfktd..lrfqshavlalqeaaeaylvglfedtnlcaihakrvtimpkdiqlarri 131
                                   reir+ q+    li klpf rlvre    +  d  lr+   a+la+qe++e yl   + d+ + + h +rvt+  +d+ l   i
   Drosophila|22024004|cenH3 133 MDREIRRLQHHPGTLIPKLPFSRLVREFIVKYSDDepLRVTEGALLAMQESCEMYLTQRLADSYMLTKHRNRVTLEVRDMALMAYI 218
                                 459*************************9999987779*****************************************9987655 PP
+
+>> 291385835|Oryctolagus|canonicalH4  291385835|Oryctolagus_cuniculus/1-113
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    1.2   0.2      0.78        14      12      39 ..      16      43 ..       6      52 .. 0.79
+   2 !    9.2   0.0    0.0026     0.046      97     133 ..      69     105 ..      57     107 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 1.2 bits;  conditional E-value: 0.78
+                               H3.2 12 tggkaprkqlatkaarksapttggvkkp 39
+                                        ggk p k  a +  r  +    g+ kp
+  291385835|Oryctolagus|canonicalH4 16 KGGKGPGKGGAQRHHRVLCDNIQGITKP 43
+                                       5889999998988888888888888888 PP
+
+  == domain 2  score: 9.2 bits;  conditional E-value: 0.0026
+                               H3.2  97 aeaylvglfedtnlcaihakrvtimpkdiqlarrirg 133
+                                         ea+l  +f d+   + hakr t++  d   a + +g
+  291385835|Oryctolagus|canonicalH4  69 PEAFLENVFRDAVTYTEHAKRKTVLATDAVYALKHQG 105
+                                        69************************99888776655 PP
 
 
 
 Internal pipeline statistics summary:
 -------------------------------------
 Query model(s):                              1  (136 nodes)
-Target sequences:                          200  (32545 residues searched)
-Passed MSV filter:                       105  (0.525); expected 4.0 (0.02)
-Passed bias filter:                       70  (0.35); expected 4.0 (0.02)
-Passed Vit filter:                        49  (0.245); expected 0.2 (0.001)
-Passed Fwd filter:                        44  (0.22); expected 0.0 (1e-05)
-Initial search space (Z):                200  [actual number of targets]
-Domain search space  (domZ):              44  [number of targets reported over threshold]
-# CPU time: 0.03u 0.00s 00:00:00.03 Elapsed: 00:00:00.03
-# Mc/sec: 147.54
+Target sequences:                          793  (93765 residues searched)
+Passed MSV filter:                       653  (0.823455); expected 15.9 (0.02)
+Passed bias filter:                      496  (0.625473); expected 15.9 (0.02)
+Passed Vit filter:                       102  (0.128625); expected 0.8 (0.001)
+Passed Fwd filter:                        45  (0.0567465); expected 0.0 (1e-05)
+Initial search space (Z):                793  [actual number of targets]
+Domain search space  (domZ):              45  [number of targets reported over threshold]
+# CPU time: 0.04u 0.00s 00:00:00.04 Elapsed: 00:00:00.04
+# Mc/sec: 318.80
 //
 [ok]

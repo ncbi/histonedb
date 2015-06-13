@@ -13,7 +13,7 @@
             <button type="button" class="btn btn-default" id="show_advanced_filter"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Filter</button>
         </div>
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-disabled" id="reset_filter"><span class="glyphicon glyphicon-times" aria-hidden="true"></span> Reset</button>
+            <button type="button" class="btn btn-default" disabled="disabled" id="reset_filter"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reset</button>
         </div>
     </div>
 </div>
@@ -40,7 +40,7 @@
                 <th data-field="variant" data-align="" data-sortable="true">Variant</th>
                 <th data-field="gene" data-align="" data-sortable="true">Gene</th>
                 <th data-field="splice" data-align="" data-sortable="true">Splice</th>
-                <th data-field="species" data-align="" data-sortable="true">Species</th>
+                <th data-field="taxonomy" data-align="" data-sortable="true">Taxonomy</th>
                 <th data-field="header" data-align="" data-sortable="true">Header</th>
                 <th data-field="score" data-align="" data-sortable="true">Score</th>
                 <th data-field="evalue" data-align="" data-sortable="true">E-value</th>
@@ -203,10 +203,7 @@ var $table = $('#sequence_table'),
               break;
             }
           }
-          if(value == "none" || id == ""){
-            return {classes:"active"};
-          }
-          else if(row.data.this_classified[id] == true){
+          if(row.data.this_classified[id] == true){
             return {classes: "success"};
           }
           else if(row.data.above_threshold[id] == true){
@@ -220,7 +217,7 @@ var $table = $('#sequence_table'),
         $scores_modal_button.click(function() {
           $('#bootstrap_table_div').empty();
           console.log($('#bootstrap_table_div').innerHTML)
-          $('#bootstrap_table_div').append("<table id='scores_table' style='overflow: auto;'></table>");
+          $('#bootstrap_table_div').append("<table id='scores_table' style='width:418px;overflow: auto;'></table>");
           ids = getSelectedIDs();
           columns = [{field:'variant', title:''}];
           params = "?";

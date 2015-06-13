@@ -1,11 +1,11 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H2B/H2B.1.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H2B/H2B.1_negative_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H2B/H2B.1_negative_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2B/H2B.1.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.1_negative_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.1_negative_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -16,36 +16,36 @@ Scores for complete sequences (score includes all domains):
    --- full sequence ---   --- best 1 domain ---    -#dom-
     E-value  score  bias    E-value  score  bias    exp  N  Sequence                        Description
     ------- ------ -----    ------- ------ -----   ---- --  --------                        -----------
-    8.7e-54  174.6   1.2    9.3e-54  174.5   1.2    1.0  1  Toxoplasma|237840885|H2B.Z       Toxoplasma_Gondii
-    8.3e-52  168.2   1.5    8.9e-52  168.1   1.5    1.0  1  Plasmodium|68073549|H2B.Z        Plasmodium_Knowlessi
-    9.3e-52  168.1   1.8      1e-51  167.9   1.8    1.0  1  Plasmodium|124511826|H2B.Z       Plasmodium_Falciparum
-    5.3e-43  139.8   0.5    6.8e-43  139.4   0.5    1.1  1  Dog|545560116|H2B.W              Dog_H2BFWT_57113095_gi|57113095|ref|XP_548517.1|_PREDICTED:_histone_H2B_type_W-T_[Canis_lupus_familiaris]
-    1.4e-35  115.8   0.1    1.7e-35  115.5   0.1    1.1  1  Ailuropodia|301781100|H2B.W      Ailuropodia_H2BFWT
-    6.9e-34  110.3   0.3    8.3e-34  110.0   0.3    1.1  1  Oryctolagus|291407712|H2B.W      Oryctolagus_FWT_XM_002720165_rabbitFWT_XM_002720165
-    1.3e-31  103.0   0.7    2.7e-31  101.9   0.7    1.5  1  Macaca|302564969|H2B.W           Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
-    1.3e-31  102.9   0.8    1.5e-31  102.8   0.8    1.0  1  Monodelphis|126320607|subH2B     Monodelphis_H2B.L
-    3.7e-31  101.5   0.1    4.3e-31  101.3   0.1    1.1  1  Sus|311273883|subH2B             Sus_H2B.L
-    4.9e-31  101.1   1.9    1.7e-30   99.4   1.9    1.7  1  Homo|223590216|H2B.W             Homo_H2BFWT_NP_001002916
-      3e-30   98.6   0.2    4.1e-30   98.1   0.2    1.2  1  Bos|296470943|H2B.W              Bos_FWT_XM_610149
-      9e-30   97.0   2.0    1.8e-29   96.0   2.0    1.5  1  Bos|45429973|subH2B              Bos_subH2Bv
-    1.6e-29   96.2   0.7      2e-29   95.9   0.7    1.1  1  Cricetulus|354507874|subH2B      Cricetulus_H2B.L
-    2.7e-29   95.5   0.5    3.3e-29   95.2   0.5    1.2  1  Ailuropoda|301771932|subH2B      Ailuropoda_H2B.L
-      6e-28   91.1   0.1      7e-28   90.9   0.1    1.1  1  Loxodonta|344272356|subH2B       Loxodonta_H2B.L
-    6.8e-28   90.9   0.0    6.9e-28   90.9   0.0    1.1  1  Mus|254588081|subH2B             Mus_SubH2BvMus
-    1.7e-27   89.6   0.1      2e-27   89.4   0.1    1.0  1  Heterocephalus|512843645|subH2B  Heterocephalus_H2B.L
-    3.1e-27   88.8   0.2    3.7e-27   88.6   0.2    1.2  1  Cavia|348552306|subH2B           Cavia_H2B.L
-      1e-26   87.1   0.5    1.1e-26   87.0   0.5    1.1  1  Equus|149727070|subH2B           Equus_H2B.L
-    4.4e-19   62.4   0.6    4.8e-19   62.3   0.6    1.0  1  Macaca|109077646|subH2B          Macaca_H2B.L
-    0.00017   15.4   0.0    0.00018   15.2   0.0    1.1  1  Mus|13386420|H2A.L               Mus_H2A.L.1
-     0.0009   13.0   0.2     0.0019   11.9   0.1    1.5  1  Neurospora|85077297|H3.1         Neurospora_H3.31
-     0.0009   13.0   0.2     0.0019   11.9   0.1    1.5  1  Trichoderma|589115521|H3.3       Trichoderma_H3.3
+    3.5e-53  174.6   1.2    3.7e-53  174.5   1.2    1.0  1  Toxoplasma|237840885|H2B.Z       Toxoplasma_Gondii
+    3.3e-51  168.2   1.5    3.5e-51  168.1   1.5    1.0  1  Plasmodium|68073549|H2B.Z        Plasmodium_Knowlessi
+    3.7e-51  168.1   1.8      4e-51  167.9   1.8    1.0  1  Plasmodium|124511826|H2B.Z       Plasmodium_Falciparum
+    2.1e-42  139.8   0.5    2.7e-42  139.4   0.5    1.1  1  Dog|545560116|H2B.W              Dog_H2BFWT_57113095_gi|57113095|ref|XP_548517.1|_PREDICTED:_histone_H2B_type_W-T_[Canis_lupus_familiaris]
+    5.5e-35  115.8   0.1    6.6e-35  115.5   0.1    1.1  1  Ailuropodia|301781100|H2B.W      Ailuropodia_H2BFWT
+    2.7e-33  110.3   0.3    3.3e-33  110.0   0.3    1.1  1  Oryctolagus|291407712|H2B.W      Oryctolagus_FWT_XM_002720165_rabbitFWT_XM_002720165
+      5e-31  103.0   0.7    1.1e-30  101.9   0.7    1.5  1  Macaca|302564969|H2B.W           Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
+    5.2e-31  102.9   0.8    5.8e-31  102.8   0.8    1.0  1  Monodelphis|126320607|subH2B     Monodelphis_H2B.L
+    1.5e-30  101.5   0.1    1.7e-30  101.3   0.1    1.1  1  Sus|311273883|subH2B             Sus_H2B.L
+    1.9e-30  101.1   1.9    6.6e-30   99.4   1.9    1.7  1  Homo|223590216|H2B.W             Homo_H2BFWT_NP_001002916
+    1.2e-29   98.6   0.2    1.6e-29   98.1   0.2    1.2  1  Bos|296470943|H2B.W              Bos_FWT_XM_610149
+    3.6e-29   97.0   2.0    7.1e-29   96.0   2.0    1.5  1  Bos|45429973|subH2B              Bos_subH2Bv
+    6.4e-29   96.2   0.7    7.8e-29   95.9   0.7    1.1  1  Cricetulus|354507874|subH2B      Cricetulus_H2B.L
+    1.1e-28   95.5   0.5    1.3e-28   95.2   0.5    1.2  1  Ailuropoda|301771932|subH2B      Ailuropoda_H2B.L
+    2.4e-27   91.1   0.1    2.8e-27   90.9   0.1    1.1  1  Loxodonta|344272356|subH2B       Loxodonta_H2B.L
+    2.7e-27   90.9   0.0    2.7e-27   90.9   0.0    1.1  1  Mus|254588081|subH2B             Mus_SubH2BvMus
+    6.9e-27   89.6   0.1    7.9e-27   89.4   0.1    1.0  1  Heterocephalus|512843645|subH2B  Heterocephalus_H2B.L
+    1.2e-26   88.8   0.2    1.5e-26   88.6   0.2    1.2  1  Cavia|348552306|subH2B           Cavia_H2B.L
+      4e-26   87.1   0.5    4.5e-26   87.0   0.5    1.1  1  Equus|149727070|subH2B           Equus_H2B.L
+    1.8e-18   62.4   0.6    1.9e-18   62.3   0.6    1.0  1  Macaca|109077646|subH2B          Macaca_H2B.L
+    0.00066   15.4   0.0    0.00072   15.2   0.0    1.1  1  Mus|13386420|H2A.L               Mus_H2A.L.1
+     0.0036   13.0   0.2     0.0075   11.9   0.1    1.5  1  Neurospora|85077297|H3.1         Neurospora_H3.31
+     0.0036   13.0   0.2     0.0075   11.9   0.1    1.5  1  Trichoderma|589115521|H3.3       Trichoderma_H3.3
 
 
 Domain annotation for each sequence (and alignments):
 >> Toxoplasma|237840885|H2B.Z  Toxoplasma_Gondii
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  174.5   1.2   1.1e-54   9.3e-54      19     126 ..      12     121 ..       1     122 [. 0.89
+   1 !  174.5   1.2   1.1e-54   3.7e-53      19     126 ..      12     121 ..       1     122 [. 0.89
 
   Alignments for each domain:
   == domain 1  score: 174.5 bits;  conditional E-value: 1.1e-54
@@ -57,7 +57,7 @@ Domain annotation for each sequence (and alignments):
 >> Plasmodium|68073549|H2B.Z  Plasmodium_Knowlessi
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  168.1   1.5     1e-52   8.9e-52      12     126 ..       9     121 ..       1     122 [. 0.86
+   1 !  168.1   1.5     1e-52   3.5e-51      12     126 ..       9     121 ..       1     122 [. 0.86
 
   Alignments for each domain:
   == domain 1  score: 168.1 bits;  conditional E-value: 1e-52
@@ -69,7 +69,7 @@ Domain annotation for each sequence (and alignments):
 >> Plasmodium|124511826|H2B.Z  Plasmodium_Falciparum
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  167.9   1.8   1.2e-52     1e-51      12     126 ..       9     121 ..       1     122 [. 0.86
+   1 !  167.9   1.8   1.2e-52     4e-51      12     126 ..       9     121 ..       1     122 [. 0.86
 
   Alignments for each domain:
   == domain 1  score: 167.9 bits;  conditional E-value: 1.2e-52
@@ -81,7 +81,7 @@ Domain annotation for each sequence (and alignments):
 >> Dog|545560116|H2B.W  Dog_H2BFWT_57113095_gi|57113095|ref|XP_548517.1|_PREDICTED:_histone_H2B_type_W-T_[Canis_lupus_familiaris]
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  139.4   0.5   7.9e-44   6.8e-43      24     127 .]      88     191 .]      75     191 .] 0.93
+   1 !  139.4   0.5   7.9e-44   2.7e-42      24     127 .]      88     191 .]      75     191 .] 0.93
 
   Alignments for each domain:
   == domain 1  score: 139.4 bits;  conditional E-value: 7.9e-44
@@ -93,7 +93,7 @@ Domain annotation for each sequence (and alignments):
 >> Ailuropodia|301781100|H2B.W  Ailuropodia_H2BFWT
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  115.5   0.1   1.9e-36   1.7e-35      24     124 ..      31     138 ..      19     141 .] 0.85
+   1 !  115.5   0.1   1.9e-36   6.6e-35      24     124 ..      31     138 ..      19     141 .] 0.85
 
   Alignments for each domain:
   == domain 1  score: 115.5 bits;  conditional E-value: 1.9e-36
@@ -105,7 +105,7 @@ Domain annotation for each sequence (and alignments):
 >> Oryctolagus|291407712|H2B.W  Oryctolagus_FWT_XM_002720165_rabbitFWT_XM_002720165
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  110.0   0.3   9.6e-35   8.3e-34      24     124 ..      27     130 ..       8     132 .. 0.85
+   1 !  110.0   0.3   9.6e-35   3.3e-33      24     124 ..      27     130 ..       8     132 .. 0.85
 
   Alignments for each domain:
   == domain 1  score: 110.0 bits;  conditional E-value: 9.6e-35
@@ -117,7 +117,7 @@ Domain annotation for each sequence (and alignments):
 >> Macaca|302564969|H2B.W  Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  101.9   0.7   3.1e-32   2.7e-31      24     122 ..      61     164 ..      34     168 .. 0.85
+   1 !  101.9   0.7   3.1e-32   1.1e-30      24     122 ..      61     164 ..      34     168 .. 0.85
 
   Alignments for each domain:
   == domain 1  score: 101.9 bits;  conditional E-value: 3.1e-32
@@ -129,7 +129,7 @@ Domain annotation for each sequence (and alignments):
 >> Monodelphis|126320607|subH2B  Monodelphis_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  102.8   0.8   1.7e-32   1.5e-31      17     127 .]      11     121 .]       2     121 .] 0.93
+   1 !  102.8   0.8   1.7e-32   5.8e-31      17     127 .]      11     121 .]       2     121 .] 0.93
 
   Alignments for each domain:
   == domain 1  score: 102.8 bits;  conditional E-value: 1.7e-32
@@ -141,7 +141,7 @@ Domain annotation for each sequence (and alignments):
 >> Sus|311273883|subH2B  Sus_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  101.3   0.1   4.9e-32   4.3e-31      26     126 ..      22     122 .]       5     122 .] 0.92
+   1 !  101.3   0.1   4.9e-32   1.7e-30      26     126 ..      22     122 .]       5     122 .] 0.92
 
   Alignments for each domain:
   == domain 1  score: 101.3 bits;  conditional E-value: 4.9e-32
@@ -153,7 +153,7 @@ Domain annotation for each sequence (and alignments):
 >> Homo|223590216|H2B.W  Homo_H2BFWT_NP_001002916
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   99.4   1.9   1.9e-31   1.7e-30      24     122 ..      61     164 ..      34     168 .. 0.84
+   1 !   99.4   1.9   1.9e-31   6.6e-30      24     122 ..      61     164 ..      34     168 .. 0.84
 
   Alignments for each domain:
   == domain 1  score: 99.4 bits;  conditional E-value: 1.9e-31
@@ -165,7 +165,7 @@ Domain annotation for each sequence (and alignments):
 >> Bos|296470943|H2B.W  Bos_FWT_XM_610149
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   98.1   0.2   4.7e-31   4.1e-30      17     126 ..      83     194 ..      70     195 .] 0.88
+   1 !   98.1   0.2   4.7e-31   1.6e-29      17     126 ..      83     194 ..      70     195 .] 0.88
 
   Alignments for each domain:
   == domain 1  score: 98.1 bits;  conditional E-value: 4.7e-31
@@ -177,7 +177,7 @@ Domain annotation for each sequence (and alignments):
 >> Bos|45429973|subH2B  Bos_subH2Bv
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   96.0   2.0   2.1e-30   1.8e-29      17     125 ..      16     121 ..       2     122 .] 0.85
+   1 !   96.0   2.0   2.1e-30   7.1e-29      17     125 ..      16     121 ..       2     122 .] 0.85
 
   Alignments for each domain:
   == domain 1  score: 96.0 bits;  conditional E-value: 2.1e-30
@@ -189,7 +189,7 @@ Domain annotation for each sequence (and alignments):
 >> Cricetulus|354507874|subH2B  Cricetulus_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   95.9   0.7   2.3e-30     2e-29      20     125 ..      12     120 ..       2     121 .] 0.89
+   1 !   95.9   0.7   2.3e-30   7.8e-29      20     125 ..      12     120 ..       2     121 .] 0.89
 
   Alignments for each domain:
   == domain 1  score: 95.9 bits;  conditional E-value: 2.3e-30
@@ -201,7 +201,7 @@ Domain annotation for each sequence (and alignments):
 >> Ailuropoda|301771932|subH2B  Ailuropoda_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   95.2   0.5   3.8e-30   3.3e-29      24     126 ..      20     122 .]       2     122 .] 0.89
+   1 !   95.2   0.5   3.8e-30   1.3e-28      24     126 ..      20     122 .]       2     122 .] 0.89
 
   Alignments for each domain:
   == domain 1  score: 95.2 bits;  conditional E-value: 3.8e-30
@@ -213,7 +213,7 @@ Domain annotation for each sequence (and alignments):
 >> Loxodonta|344272356|subH2B  Loxodonta_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   90.9   0.1     8e-29     7e-28      36     126 ..      32     122 .]      13     122 .] 0.95
+   1 !   90.9   0.1     8e-29   2.8e-27      36     126 ..      32     122 .]      13     122 .] 0.95
 
   Alignments for each domain:
   == domain 1  score: 90.9 bits;  conditional E-value: 8e-29
@@ -225,7 +225,7 @@ Domain annotation for each sequence (and alignments):
 >> Mus|254588081|subH2B  Mus_SubH2BvMus
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   90.9   0.0   7.9e-29   6.9e-28      36     125 ..      33     122 ..       1     123 [] 0.86
+   1 !   90.9   0.0   7.9e-29   2.7e-27      36     125 ..      33     122 ..       1     123 [] 0.86
 
   Alignments for each domain:
   == domain 1  score: 90.9 bits;  conditional E-value: 7.9e-29
@@ -237,7 +237,7 @@ Domain annotation for each sequence (and alignments):
 >> Heterocephalus|512843645|subH2B  Heterocephalus_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   89.4   0.1   2.3e-28     2e-27      18     126 ..      14     122 .]       3     122 .] 0.91
+   1 !   89.4   0.1   2.3e-28   7.9e-27      18     126 ..      14     122 .]       3     122 .] 0.91
 
   Alignments for each domain:
   == domain 1  score: 89.4 bits;  conditional E-value: 2.3e-28
@@ -249,7 +249,7 @@ Domain annotation for each sequence (and alignments):
 >> Cavia|348552306|subH2B  Cavia_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   88.6   0.2   4.2e-28   3.7e-27      36     126 ..      32     122 .]       4     122 .] 0.92
+   1 !   88.6   0.2   4.2e-28   1.5e-26      36     126 ..      32     122 .]       4     122 .] 0.92
 
   Alignments for each domain:
   == domain 1  score: 88.6 bits;  conditional E-value: 4.2e-28
@@ -261,7 +261,7 @@ Domain annotation for each sequence (and alignments):
 >> Equus|149727070|subH2B  Equus_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   87.0   0.5   1.3e-27   1.1e-26      24     125 ..      21     121 ..       1     122 [] 0.84
+   1 !   87.0   0.5   1.3e-27   4.5e-26      24     125 ..      21     121 ..       1     122 [] 0.84
 
   Alignments for each domain:
   == domain 1  score: 87.0 bits;  conditional E-value: 1.3e-27
@@ -273,7 +273,7 @@ Domain annotation for each sequence (and alignments):
 >> Macaca|109077646|subH2B  Macaca_H2B.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   62.3   0.6   5.6e-20   4.8e-19       9     125 ..       5     121 ..       1     122 [] 0.92
+   1 !   62.3   0.6   5.6e-20   1.9e-18       9     125 ..       5     121 ..       1     122 [] 0.92
 
   Alignments for each domain:
   == domain 1  score: 62.3 bits;  conditional E-value: 5.6e-20
@@ -285,7 +285,7 @@ Domain annotation for each sequence (and alignments):
 >> Mus|13386420|H2A.L  Mus_H2A.L.1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   15.2   0.0   2.1e-05   0.00018      22     100 ..       4      83 ..       1      96 [. 0.85
+   1 !   15.2   0.0   2.1e-05   0.00072      22     100 ..       4      83 ..       1      96 [. 0.85
 
   Alignments for each domain:
   == domain 1  score: 15.2 bits;  conditional E-value: 2.1e-05
@@ -297,7 +297,7 @@ Domain annotation for each sequence (and alignments):
 >> Neurospora|85077297|H3.1  Neurospora_H3.31
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   11.9   0.1   0.00022    0.0019      43     102 ..      72     131 ..      50     134 .. 0.84
+   1 !   11.9   0.1   0.00022    0.0075      43     102 ..      72     131 ..      50     134 .. 0.84
 
   Alignments for each domain:
   == domain 1  score: 11.9 bits;  conditional E-value: 0.00022
@@ -309,7 +309,7 @@ Domain annotation for each sequence (and alignments):
 >> Trichoderma|589115521|H3.3  Trichoderma_H3.3
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   11.9   0.1   0.00022    0.0019      43     102 ..      72     131 ..      50     134 .. 0.84
+   1 !   11.9   0.1   0.00022    0.0075      43     102 ..      72     131 ..      50     134 .. 0.84
 
   Alignments for each domain:
   == domain 1  score: 11.9 bits;  conditional E-value: 0.00022
@@ -323,14 +323,14 @@ Domain annotation for each sequence (and alignments):
 Internal pipeline statistics summary:
 -------------------------------------
 Query model(s):                              1  (127 nodes)
-Target sequences:                          200  (32581 residues searched)
-Passed MSV filter:                       104  (0.52); expected 4.0 (0.02)
-Passed bias filter:                       95  (0.475); expected 4.0 (0.02)
-Passed Vit filter:                        38  (0.19); expected 0.2 (0.001)
-Passed Fwd filter:                        23  (0.115); expected 0.0 (1e-05)
-Initial search space (Z):                200  [actual number of targets]
+Target sequences:                          793  (93801 residues searched)
+Passed MSV filter:                       603  (0.760404); expected 15.9 (0.02)
+Passed bias filter:                      494  (0.622951); expected 15.9 (0.02)
+Passed Vit filter:                        42  (0.0529634); expected 0.8 (0.001)
+Passed Fwd filter:                        23  (0.0290038); expected 0.0 (1e-05)
+Initial search space (Z):                793  [actual number of targets]
 Domain search space  (domZ):              23  [number of targets reported over threshold]
-# CPU time: 0.02u 0.00s 00:00:00.02 Elapsed: 00:00:00.03
-# Mc/sec: 137.93
+# CPU time: 0.04u 0.00s 00:00:00.04 Elapsed: 00:00:00.04
+# Mc/sec: 297.82
 //
 [ok]

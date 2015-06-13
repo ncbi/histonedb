@@ -1,12 +1,16 @@
+import sys
 import os
+import StringIO
 
 import uuid
-from Bio import SeqIO
+from Bio import SeqIO, SearchIO
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIXML
 
 from browse.models import *
 from django.conf import settings
+
+import subprocess
 
 class TooManySequences(RuntimeError):
     pass
@@ -15,32 +19,31 @@ class InvalidFASTA(RuntimeError):
     pass
 
 def process_upload(type, sequences, format):
-    seq_file = os.path.join("media", "{}.fasta".format(uuid.uuid4()))
-    if format == "text":
-        with open(seq_file, 'w+') as seqs: 
-            seqs.write(sequences)
-        sequences = seq_file
-                
-    processed_sequences = list(SeqIO.parse(sequences, "fasta"))
+    if format == "file":
+        processed_sequences = list(SeqIO.parse(sequences, "fasta"))
+        
+    elif format == "text":
+        seq_file = StringIO.StringIO()
+        seq_file.write(sequences)
+        seq_file.seek(0)
+        processed_sequences = list(SeqIO.parse(seq_file, "fasta"))
 
     if len(processed_sequences) > 50:
         raise TooManySequences
 
-    if format == "file":
-        os.remove(sequences)
-        SeqIO.write(processed_sequences, seq_file)
+    sequences = "\n".join([seq.format("fasta") for seq in processed_sequences])
 
     if type == "blastp":
-        result = upload_blastp(seq_file)
+        result = upload_blastp(sequences)
     elif type == "hmmer":
-        result = upload_hmmer(seq_file)
+        result = upload_hmmer(sequences)
+    else:
+        assert 0, type
 
-    os.remove(seq_file)
-
-    return {format: result}
+    return result
 
 def upload_blastp(seq_file):
-    output= os.path.join(settings.MEDIA_ROOT, "{}.xml".format(seq_file[:-6]))
+    output= os.path.join("/", "tmp", "{}.xml".format(seq_file[:-6]))
     blastx_cline = NcbiblastxCommandline(
         query=seq_file, db=os.path.join(settings.STATIC_ROOT, "static", "browse", "blast", "HistoneDB.db"), 
         evalue=0.01, outfmt=5, out=output)
@@ -72,23 +75,37 @@ def upload_blastp(seq_file):
     return result
 
 def upload_hmmer(seq_file, evalue=10):
-    variant_output= os.path.join(settings.MEDIA_ROOT, "{}_variant.out".format(seq_file[:-6]))
-    core_output= os.path.join(settings.MEDIA_ROOT, "{}_core.out".format(seq_file[:-6]))
-    variantdb = os.path(settings.STATIC_ROOT, "browse", "hmms", "combined_variants.hmm")
-    coredb = os.path(settings.STATIC_ROOT, "browse", "hmms", "combined_cores.hmm")
+    """
+    """    
+    variantdb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_variants.hmm")
+    coredb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_cores.hmm")
+    hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
 
-    subprocess.call(["hmmsearch", "-o", variant_output, "-E", str(evalue), "--cpu", "4", "--notextw", variantdb, seq_file])
-    subprocess.call(["hmmsearch", "-o", core_output, "-E", str(evalue), "--cpu", "4", "--notextw", variantdb, seq_file])
+    assert 0, " ".join([hmmsearch, "-E", str(evalue), "--notextw", variantdb, "-"]) + " < '" + seq_file +"'"
+    for db in (variantdb, coredb):
+        hmmerFile = StringIO.StringIO()
+        process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, "-"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        output, error = process.communicate(seq_file)
+        assert 0, process.poll()
+
+        assert 0, hmmerFile.getvalue()
 
     results = {}
-    for i, search_type in enumerate((variant_output, core_output)):
-        if i==1: 
-            variant = "canonical{}".format(core_query.id)
-        else:
-            variant = core_query.id
-        for query in SearchIO.parse(variant_output, "hmmer3-text"):
+    variants = []
+    for i, hmmer_string in enumerate((variant_output, core_output)):
+        hmmerFile = StringIO.StringIO()
+        hmmerFile.write(hmmer_string)
+        hmmerFile.seek(0)
+        for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
+            if i==1: 
+                variant = "canonical{}".format(variant_query.id)
+            else:
+                variant = variant_query.id
+
+            variants.append(variant)
+
             try:
-                variant_model = Variant.objects.get(id=name)
+                variant_model = Variant.objects.get(id=variant)
             except:
                 continue
 
@@ -102,10 +119,9 @@ def upload_hmmer(seq_file, evalue=10):
                         results[hit.id]["class"] = variant_model.id
                         results[hit.id]["best_score"] = hsp.score
 
-                    results["scores"].append({variant_model.id: hsp.score})
+                        results["scores"].append({variant_model.id: hsp.score})
 
-    os.remove(variant_output)
-    os.remove(core_output)
+    assert 0, variants
 
     return results
 

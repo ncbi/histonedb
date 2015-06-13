@@ -1,4 +1,4 @@
-HMMER3/f [3.1b1 | May 2013]
+HMMER3/f [3.1b2 | February 2015]
 NAME  H2B.W
 LENG  168
 ALPH  amino
@@ -7,7 +7,7 @@ MM    no
 CONS  yes
 CS    no
 MAP   yes
-DATE  Thu May 28 14:36:57 2015
+DATE  Thu Jun 11 01:43:58 2015
 NSEQ  6
 EFFN  0.829102
 CKSUM 803734789

@@ -1,11 +1,11 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H2B/H2B.W.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H2B/H2B.W_postive_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H2B/H2B.W_postive_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2B/H2B.W.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.W_postive_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.W_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -17,7 +17,7 @@ Scores for complete sequences (score includes all domains):
     E-value  score  bias    E-value  score  bias    exp  N  Sequence                    Description
     ------- ------ -----    ------- ------ -----   ---- --  --------                    -----------
     3.8e-91  292.2   1.5    4.2e-91  292.0   1.5    1.0  1  Homo|223590216|H2B.W         Homo_H2BFWT_NP_001002916
-    8.3e-91  291.0   1.4    9.4e-91  290.9   1.4    1.0  1  Macaca|302564969|H2B.W       Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
+    8.3e-91  291.0   1.4    9.3e-91  290.9   1.4    1.0  1  Macaca|302564969|H2B.W       Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
     2.1e-88  283.2   0.5    2.4e-88  283.0   0.5    1.0  1  Dog|545560116|H2B.W          Dog_H2BFWT_57113095_gi|57113095|ref|XP_548517.1|_PREDICTED:_histone_H2B_type_W-T_[Canis_lupus_familiaris]
     1.9e-83  267.1   1.3    2.2e-83  266.9   1.3    1.0  1  Bos|296470943|H2B.W          Bos_FWT_XM_610149
     2.5e-77  247.2   1.6    2.8e-77  247.0   1.6    1.0  1  Ailuropodia|301781100|H2B.W  Ailuropodia_H2BFWT
@@ -40,10 +40,10 @@ Domain annotation for each sequence (and alignments):
 >> Macaca|302564969|H2B.W  Macaca_H2BFWT_302564969_gi|302564969|ref|NP_001180847.1|_histone_H2B_type_W-T_[Macaca_mulatta]
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  290.9   1.4   9.4e-91   9.4e-91       1     167 [.       1     168 [.       1     169 [. 0.99
+   1 !  290.9   1.4   9.3e-91   9.3e-91       1     167 [.       1     168 [.       1     169 [. 0.99
 
   Alignments for each domain:
-  == domain 1  score: 290.9 bits;  conditional E-value: 9.4e-91
+  == domain 1  score: 290.9 bits;  conditional E-value: 9.3e-91
                    H2B.W   1 kleeevptletevaaivrsckemakasamaePssettseeqlitkePkeaesstpdkkekqpkrqrkgrrRcr.rcrndsfatYfprvLkqvhkGlsLskeavsvlDslvkDiferiaeeagrLarstkrstitsreiqaavRLLLPGelgkyavseatkallrysls 167
                              +l+++vp l ++++aiv+sc+ ma+asamaePssettseeqlit+ePkea+s++++k++kq+kr+r+g++Rc+ +cr+dsfatYf+rvLkqvh+GlsLs+eavsv+Dslv+Di++ria+eagrLarstkr+tit++e+++avRLLLPGe+gk+a+se+tka+lr+sl+
   Macaca|302564969|H2B.W   1 MLRTQVPPLLRSTTAIVWSCRVMAAASAMAEPSSETTSEEQLITQEPKEANSTMAQKQSKQRKRGRRGPCRCHaNCRGDSFATYFRRVLKQVHQGLSLSREAVSVMDSLVHDILDRIATEAGRLARSTKRQTITAWETRIAVRLLLPGEMGKLAESEGTKAVLRTSLY 168
@@ -109,7 +109,7 @@ Passed Vit filter:                         6  (1); expected 0.0 (0.001)
 Passed Fwd filter:                         6  (1); expected 0.0 (1e-05)
 Initial search space (Z):                  6  [actual number of targets]
 Domain search space  (domZ):               6  [number of targets reported over threshold]
-# CPU time: 0.00u 0.00s 00:00:00.00 Elapsed: 00:00:00.00
-# Mc/sec: inf
+# CPU time: 0.01u 0.00s 00:00:00.01 Elapsed: 00:00:00.01
+# Mc/sec: 16.97
 //
 [ok]

@@ -1,11 +1,11 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H2A/H2A.L.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H2A/H2A.L_postive_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H2A/H2A.L_postive_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2A/H2A.L.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/H2A.L_postive_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/H2A.L_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -16,37 +16,37 @@ Scores for complete sequences (score includes all domains):
    --- full sequence ---   --- best 1 domain ---    -#dom-
     E-value  score  bias    E-value  score  bias    exp  N  Sequence                       Description
     ------- ------ -----    ------- ------ -----   ---- --  --------                       -----------
-    9.5e-70  222.4   0.4    1.3e-69  222.0   0.4    1.2  1  Heterocephalus|351714308|H2A.L  Heterocephalus_H2A.L.3_351714308
-    1.2e-67  215.7   0.4    1.4e-67  215.4   0.4    1.1  1  Heterocephalus|351701334|H2A.L  Heterocephalus_H2A.L.1_351701334
-    8.4e-67  212.9   0.3    9.3e-67  212.8   0.3    1.0  1  Heterocephalus|351707644|H2A.L  Heterocephalus_H2A.L.2_351707644
-    1.1e-59  190.0   0.1    1.2e-59  189.8   0.1    1.0  1  Canis|57112025|H2A.L            Canis_H2A.L.1
-    1.5e-58  186.3   0.0    1.6e-58  186.2   0.0    1.0  1  Canis|57112039|H2A.L            Canis_H2A.L.2
-    1.7e-57  182.9   0.8    1.8e-57  182.8   0.8    1.0  1  Oryctolagus|291407300|H2A.L     Oryctolagus_H2A.L.2_291407300
-    2.3e-57  182.4   0.7    2.6e-57  182.3   0.7    1.0  1  Oryctolagus|291407314|H2A.L     Oryctolagus_H2A.L.1_291407314
+    9.8e-70  222.4   0.4    1.3e-69  221.9   0.4    1.2  1  Heterocephalus|351714308|H2A.L  Heterocephalus_H2A.L.3_351714308
+    1.2e-67  215.6   0.4    1.4e-67  215.4   0.4    1.1  1  Heterocephalus|351701334|H2A.L  Heterocephalus_H2A.L.1_351701334
+    8.6e-67  212.9   0.3    9.5e-67  212.7   0.3    1.0  1  Heterocephalus|351707644|H2A.L  Heterocephalus_H2A.L.2_351707644
+    1.1e-59  189.9   0.1    1.2e-59  189.8   0.1    1.0  1  Canis|57112025|H2A.L            Canis_H2A.L.1
+    1.5e-58  186.3   0.0    1.7e-58  186.1   0.0    1.0  1  Canis|57112039|H2A.L            Canis_H2A.L.2
+    1.7e-57  182.9   0.8    1.9e-57  182.7   0.8    1.0  1  Oryctolagus|291407300|H2A.L     Oryctolagus_H2A.L.2_291407300
+    2.4e-57  182.4   0.7    2.6e-57  182.3   0.7    1.0  1  Oryctolagus|291407314|H2A.L     Oryctolagus_H2A.L.1_291407314
     7.7e-57  180.8   2.0    8.7e-57  180.6   2.0    1.0  1  Sus|350595614|H2A.L             Sus_H2A.L.1_350595614
-      1e-56  180.4   0.1      1e-56  180.3   0.1    1.0  1  Ailuropoda|301783589|H2A.L      Ailuropoda_H2A.L.2_301783589
+      1e-56  180.4   0.1    1.1e-56  180.3   0.1    1.0  1  Ailuropoda|301783589|H2A.L      Ailuropoda_H2A.L.2_301783589
     2.5e-55  175.9   0.0    2.6e-55  175.8   0.0    1.0  1  Bos|118151026|H2A.L             Bos_H2A.L.1_118151026
-    8.2e-55  174.2   1.1      9e-55  174.1   1.1    1.0  1  Cavia|348567220|H2A.L           Cavia_H2A.L.2_348567220
+    8.4e-55  174.2   1.1    9.3e-55  174.1   1.1    1.0  1  Cavia|348567220|H2A.L           Cavia_H2A.L.2_348567220
     1.7e-54  173.2   0.1      2e-54  173.0   0.1    1.0  1  Bos|119923405|H2A.L             Bos_H2A.L.2_119923405
-    1.1e-53  170.6   0.8    1.2e-53  170.4   0.8    1.0  1  Cavia|348567212|H2A.L           Cavia_H2A.L.1_348567212
+    1.2e-53  170.5   0.8    1.3e-53  170.4   0.8    1.0  1  Cavia|348567212|H2A.L           Cavia_H2A.L.1_348567212
     1.7e-53  170.0   0.5      2e-53  169.8   0.5    1.0  1  Sus|350595620|H2A.L             Sus_H2A.L.3_350595620
     3.2e-53  169.1   0.2    3.7e-53  168.9   0.2    1.0  1  Mus|13386112|H2A.L              Mus_H2A.L.2
-    5.9e-49  155.3   0.1    6.3e-49  155.2   0.1    1.0  1  Cricetulus|354492135|H2A.L      Cricetulus_H2A.L
-    1.1e-41  132.0   0.9    1.1e-41  131.9   0.9    1.0  1  Mus|13386420|H2A.L              Mus_H2A.L.1
+      6e-49  155.3   0.1    6.5e-49  155.2   0.1    1.0  1  Cricetulus|354492135|H2A.L      Cricetulus_H2A.L
+      1e-41  132.0   0.9    1.1e-41  131.9   0.9    1.0  1  Mus|13386420|H2A.L              Mus_H2A.L.1
 
 
 Domain annotation for each sequence (and alignments):
 >> Heterocephalus|351714308|H2A.L  Heterocephalus_H2A.L.3_351714308
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  222.0   0.4   1.3e-69   1.3e-69       1     118 []      68     185 .]      68     185 .] 0.99
+   1 !  221.9   0.4   1.3e-69   1.3e-69       1     118 []      68     185 .]      68     185 .] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 222.0 bits;  conditional E-value: 1.3e-69
+  == domain 1  score: 221.9 bits;  conditional E-value: 1.3e-69
                            H2A.L   1 magkkrrqnsskrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtkslldetsqlkkka 118
                                      magkkrrqnssk+rkqavsrstRaeLqfpvsrverylreggyaqrL+sstpvFLagvLeyLtaniLdLagkeAegn+kkritP+hlet++ennqqLralfq+dtkslldetsqlkkk+
   Heterocephalus|351714308|H2A.L  68 MAGKKRRQNSSKPRKQAVSRSTRAELQFPVSRVERYLREGGYAQRLGSSTPVFLAGVLEYLTANILDLAGKEAEGNCKKRITPQHLETVMENNQQLRALFQGDTKSLLDETSQLKKKC 185
-                                     9*******************************************************************************************************************96 PP
+                                     9******************************************************************************************************************996 PP
 
 >> Heterocephalus|351701334|H2A.L  Heterocephalus_H2A.L.1_351701334
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
@@ -63,10 +63,10 @@ Domain annotation for each sequence (and alignments):
 >> Heterocephalus|351707644|H2A.L  Heterocephalus_H2A.L.2_351707644
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  212.8   0.3   9.3e-67   9.3e-67       1     117 [.       1     117 []       1     117 [] 0.99
+   1 !  212.7   0.3   9.5e-67   9.5e-67       1     117 [.       1     117 []       1     117 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 212.8 bits;  conditional E-value: 9.3e-67
+  == domain 1  score: 212.7 bits;  conditional E-value: 9.5e-67
                            H2A.L   1 magkkrrqnsskrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtkslldetsqlkkk 117
                                      magkkrrqnssk+rkqavsrstRaeLqfpvsrve+ylreggya+rL+sstpvFLagvL+yL+aniLdLagkeA+g+rkk+i+P+hleta+ennq+Lr lfq+++kslldetsq+kkk
   Heterocephalus|351707644|H2A.L   1 MAGKKRRQNSSKPRKQAVSRSTRAELQFPVSRVEHYLREGGYAHRLGSSTPVFLAGVLKYLRANILDLAGKEAQGKRKKCIAPQHLETAMENNQHLRPLFQDGPKSLLDETSQPKKK 117
@@ -87,10 +87,10 @@ Domain annotation for each sequence (and alignments):
 >> Canis|57112039|H2A.L  Canis_H2A.L.2
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  186.2   0.0   1.6e-58   1.6e-58       1     117 [.       1     117 [.       1     118 [. 0.99
+   1 !  186.1   0.0   1.7e-58   1.7e-58       1     117 [.       1     117 [.       1     118 [. 0.99
 
   Alignments for each domain:
-  == domain 1  score: 186.2 bits;  conditional E-value: 1.6e-58
+  == domain 1  score: 186.1 bits;  conditional E-value: 1.7e-58
                  H2A.L   1 magkkrrqnsskrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtkslldetsqlkkk 117
                            m+g++   +s+++r++ +srs+RaeLqfpvsrv+r+lreg+ya+rLssstpvFL+g+LeyLt+niL+L+g+eA++++k+ritPeh+++al nnq L++lf+e+t s+ d++ q++k+
   Canis|57112039|H2A.L   1 MSGERGPGHSRRPRRHGLSRSRRAELQFPVSRVDRLLREGCYAHRLSSSTPVFLTGILEYLTSNILELVGQEACNSHKMRITPEHMQKALGNNQYLSQLFEENTYSQGDGMVQARKW 117
@@ -99,10 +99,10 @@ Domain annotation for each sequence (and alignments):
 >> Oryctolagus|291407300|H2A.L  Oryctolagus_H2A.L.2_291407300
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  182.8   0.8   1.8e-57   1.8e-57       1     117 [.       1     117 [.       1     118 [] 0.99
+   1 !  182.7   0.8   1.9e-57   1.9e-57       1     117 [.       1     117 [.       1     118 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 182.8 bits;  conditional E-value: 1.8e-57
+  == domain 1  score: 182.7 bits;  conditional E-value: 1.9e-57
                         H2A.L   1 magkkrrqnsskrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtkslldetsqlkkk 117
                                   m+gkk ++++ krrk +vsrstRaeLqfpvsrv+r+l++++yaqrLssstpvFLagvLeyLt+niL+Lag+eA++n+++ritPeh+++a+e++++Lr+l++ed+k++ ++++q+++k
   Oryctolagus|291407300|H2A.L   1 MRGKKPSKKAGKRRKPNVSRSTRAELQFPVSRVDRHLHHDRYAQRLSSSTPVFLAGVLEYLTSNILELAGEEAHKNSRVRITPEHMRKAIESSEHLRDLLEEDPKPRDEDVAQPEEK 117
@@ -135,10 +135,10 @@ Domain annotation for each sequence (and alignments):
 >> Ailuropoda|301783589|H2A.L  Ailuropoda_H2A.L.2_301783589
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  180.3   0.1     1e-56     1e-56       1     107 [.       1     106 [.       1     117 [] 0.94
+   1 !  180.3   0.1   1.1e-56   1.1e-56       1     107 [.       1     106 [.       1     117 [] 0.94
 
   Alignments for each domain:
-  == domain 1  score: 180.3 bits;  conditional E-value: 1e-56
+  == domain 1  score: 180.3 bits;  conditional E-value: 1.1e-56
                        H2A.L   1 magkkrrqnsskrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtksl 107
                                  m+g+++ ++s++++++ +srs+RaeLqfpvsrv+r+lreg+yaqrLssstpvFL+gvLeyLtaniL+Lag+eA++++k+ritPeh+++al nnq+L++lf++  +sl
   Ailuropoda|301783589|H2A.L   1 MSGRRSPWHSHQHKRHGLSRSMRAELQFPVSRVDRLLREGCYAQRLSSSTPVFLTGVLEYLTANILELAGQEARNHHKMRITPEHVQRALVNNQHLSCLFEDI-TSL 106
@@ -147,7 +147,7 @@ Domain annotation for each sequence (and alignments):
 >> Bos|118151026|H2A.L  Bos_H2A.L.1_118151026
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  175.8   0.0   2.6e-55   2.6e-55       1     109 [.       1     109 [.       1     117 [] 0.95
+   1 !  175.8   0.0   2.6e-55   2.6e-55       1     109 [.       1     109 [.       1     117 [] 0.96
 
   Alignments for each domain:
   == domain 1  score: 175.8 bits;  conditional E-value: 2.6e-55
@@ -159,10 +159,10 @@ Domain annotation for each sequence (and alignments):
 >> Cavia|348567220|H2A.L  Cavia_H2A.L.2_348567220
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  174.1   1.1     9e-55     9e-55       1     117 [.       1     117 []       1     117 [] 0.99
+   1 !  174.1   1.1   9.3e-55   9.3e-55       1     117 [.       1     117 []       1     117 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 174.1 bits;  conditional E-value: 9e-55
+  == domain 1  score: 174.1 bits;  conditional E-value: 9.3e-55
                   H2A.L   1 magkkrrqnsskrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtkslldetsqlkkk 117
                             m+gkk++++ss+ rk+ vs+s+RaeLq+pvsr+erylre++ya +L  stpvFL+gvLeyLta+iLdLa keA+g+rkk+i P+hleta ennqqL   f +++ks+lde++q+kkk
   Cavia|348567220|H2A.L   1 MDGKKSNEKSSQLRKHPVSCSRRAELQLPVSRMERYLRENSYAPHLPFSTPVFLEGVLEYLTASILDLARKEARGKRKKHILPQHLETAAENNQQLGLRFGDSRKSMLDEMTQNKKK 117
@@ -183,14 +183,14 @@ Domain annotation for each sequence (and alignments):
 >> Cavia|348567212|H2A.L  Cavia_H2A.L.1_348567212
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  170.4   0.8   1.2e-53   1.2e-53       1     117 [.       1     116 []       1     116 [] 0.99
+   1 !  170.4   0.8   1.3e-53   1.3e-53       1     117 [.       1     116 []       1     116 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 170.4 bits;  conditional E-value: 1.2e-53
+  == domain 1  score: 170.4 bits;  conditional E-value: 1.3e-53
                   H2A.L   1 magkkrrqnsskrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtkslldetsqlkkk 117
                             ma kk +  ssk+rk+ vsrstRa+Lqfpvsrverylre+gy  rLs++tpvFLag+LeyLta+ L+La+++A++++kkri+Pehl +ale+++qLr++f ++tk+llde+ q+kkk
   Cavia|348567212|H2A.L   1 MAAKKCKGISSKPRKHPVSRSTRAQLQFPVSRVERYLRENGYL-RLSACTPVFLAGILEYLTASALHLAARVAHRRHKKRISPEHLARALEKSEQLRQVFGDSTKALLDEIIQAKKK 116
-                            99****************************************9.*********************************************************************9997 PP
+                            99****************************************9.*********************************************************************9996 PP
 
 >> Sus|350595620|H2A.L  Sus_H2A.L.3_350595620
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
@@ -219,10 +219,10 @@ Domain annotation for each sequence (and alignments):
 >> Cricetulus|354492135|H2A.L  Cricetulus_H2A.L
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  155.2   0.1   6.3e-49   6.3e-49      11     116 ..       3     108 ..       1     109 [] 0.98
+   1 !  155.2   0.1   6.5e-49   6.5e-49      11     116 ..       3     108 ..       1     109 [] 0.98
 
   Alignments for each domain:
-  == domain 1  score: 155.2 bits;  conditional E-value: 6.3e-49
+  == domain 1  score: 155.2 bits;  conditional E-value: 6.5e-49
                        H2A.L  11 skrrkqavsrstRaeLqfpvsrverylreggyaqrLssstpvFLagvLeyLtaniLdLagkeAegnrkkritPehletalennqqLralfqedtkslldetsqlkk 116
                                  +k+rk+++sr tR++Lqf+++r+er++r+g+++qrLs+s+pvFLagvLe+Lt+niLdLag+eA++n ++ itPeh++++++nn+qLr++f+e+++++++et +++k
   Cricetulus|354492135|H2A.L   3 EKKRKETISRITRGQLQFSLDRIERFFRDGNFSQRLSASAPVFLAGVLEFLTSNILDLAGREAHANGTRLITPEHVTQVVQNNDQLREVFKEHEDPVVSETPEPEK 108
@@ -252,7 +252,7 @@ Passed Vit filter:                        17  (1); expected 0.0 (0.001)
 Passed Fwd filter:                        17  (1); expected 0.0 (1e-05)
 Initial search space (Z):                 17  [actual number of targets]
 Domain search space  (domZ):              17  [number of targets reported over threshold]
-# CPU time: 0.01u 0.00s 00:00:00.01 Elapsed: 00:00:00.01
-# Mc/sec: 24.72
+# CPU time: 0.01u 0.00s 00:00:00.01 Elapsed: 00:00:00.00
+# Mc/sec: inf
 //
 [ok]
