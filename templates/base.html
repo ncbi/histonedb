@@ -32,8 +32,17 @@
           $("#advanced_filter_title").html("Advanced Filter");
           $("#advanced_search_button").html("Filter");
           $("#advanced_search_button").click(function(){
-            $.post("{% url 'browse.views.search' %}", function( data ) {
-              table.bootstrapTable('refresh');
+            var formData = {reset:false};
+            
+            $.each($('#advanced_search_form').serializeArray(), function(_, kv) {
+              formData[kv.name] = kv.value;
+            });
+            console.log(formData);
+            $.post(
+              "{% url 'browse.views.search' %}", 
+              formData,
+              function( data ) {
+                table.bootstrapTable('refresh');
             });
           });
         }
@@ -65,7 +74,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{% url 'browse.views.browse_types' %}">Browse</a></li>
             <li><a href="#" id="show_advanced_search">Advanced Search</a></li>
-            <li><a href="{% url 'browse.views.upload' %}">Upload</a></li>
+            <li><a href="{% url 'browse.views.analyze' %}">Analyze Sequences</a></li>
             <li><a href="{% url 'browse.views.help' %}">Help</a></li>
             <form role="search" class="navbar-form navbar-right" action="{% url 'browse.views.search' %}" method="POST">{% csrf_token %}
               <input type="text" name="search" class="form-control" aria-label="..." placeholder="Search (H2A.Z.2.s1)">
@@ -135,7 +144,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="advanced_search_button">Search</button>
+            <button type="button" class="btn btn-primary" id="advanced_search_button" data-dismiss="modal">Search</button>
           </div>
         </div>
       </div>

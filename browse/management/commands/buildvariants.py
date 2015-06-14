@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from browse.models import *
+from browse.models import Histone, Variant, Sequence, Score, Features 
 from tools.load_hmmsearch import load_variants, load_cores
 from tools.test_model import test_model
 import subprocess
@@ -64,12 +64,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.get_nr(force=options["nr"])
 
-        if options["test_models"]:
-            self.build(only_cores=options["only_cores"], only_variants=options["only_variants"], varaints=options["variants"])
-
         if not options["force"] and \
           ((not options["only_cores"] and os.path.isfile(self.results_file)) or \
             (not options["only_variants"] and os.path.isfile(self.core_results_file))):
+            if options["test_models"]:
+                self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
             if not options["only_cores"]: 
                 self.load_variants()
             if not options["only_variants"]: 
@@ -92,7 +91,7 @@ class Command(BaseCommand):
             self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
             if not options["only_cores"]:
                 self.press_variants()
-                self.search_varaints()
+                self.search_variants()
                 self.load_variants()
             if not options["only_variants"]: 
                 self.press_cores()
@@ -249,19 +248,42 @@ class Command(BaseCommand):
 
             parameters = test_model(variant, output_dir, positive_examples, negative_examples)
 
+            if variant == "H1.8":
+                parameters["threshold"] = 100.
+
             try:
                 variant_model = Variant.objects.get(id=variant)
             except:
                 if "H2A" in variant:
-                    core_histone = Histone.objects.get(id="H2A")
+                    try:
+                        core_histone = Histone.objects.get(id="H2A")
+                    except Histone.DoesNotExist:
+                        core_histone = Histone("H2A")
+                        core_histone.save()
                 elif "H2B" in variant:
-                    core_histone = Histone.objects.get(id="H2B")
+                    try:
+                        core_histone = Histone.objects.get(id="H2B")
+                    except Histone.DoesNotExist:
+                        core_histone = Histone("H2B")
+                        core_histone.save()
                 elif "H3" in variant:
-                    core_histone = Histone.objects.get(id="H3")
+                    try:
+                        core_histone = Histone.objects.get(id="H3")
+                    except Histone.DoesNotExist:
+                        core_histone = Histone("H3")
+                        core_histone.save()
                 elif "H4" in variant:
-                    core_histone = Histone.objects.get(id="H4")
+                    try:
+                        core_histone = Histone.objects.get(id="H4")
+                    except Histone.DoesNotExist:
+                        core_histone = Histone("H4")
+                        core_histone.save()
                 elif "H1" in variant:
-                    core_histone = Histone.objects.get(id="H1")
+                    try:
+                        core_histone = Histone.objects.get(id="H1")
+                    except Histone.DoesNotExist:
+                        core_histone = Histone("H1")
+                        core_histone.save()
                 else:
                     continue
                 variant_model = Variant(id=variant, core_type=core_histone)

@@ -1,11 +1,11 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H1/H1.7.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H1/H1.7_negative_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H1/H1.7_negative_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H1/H1.7.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H1/H1.7_negative_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H1/H1.7_negative_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -16,23 +16,23 @@ Scores for complete sequences (score includes all domains):
    --- full sequence ---   --- best 1 domain ---    -#dom-
     E-value  score  bias    E-value  score  bias    exp  N  Sequence                  Description
     ------- ------ -----    ------- ------ -----   ---- --  --------                  -----------
-    1.6e-10   34.3  26.1    2.1e-10   33.9  26.1    1.1  1  Xenopus|147901299|H1.6     Xenopus_H1t
-    1.2e-09   31.4  17.1    1.5e-09   31.1  17.1    1.2  1  Mus|112807207|H1.6         Mus_H1t
-    2.5e-09   30.4  16.4    4.1e-09   29.6  16.4    1.4  1  Equus|379643033|H1.6       Equus_H1t
-    5.8e-09   29.1  21.5    6.7e-09   28.9  21.5    1.1  1  Macaca|124053434|H1.6      Macaca_H1t
-    7.5e-09   28.8  21.5    8.4e-09   28.6  21.5    1.1  1  Homo|20544168|H1.6         Homo_H1t
-    5.3e-08   26.0   8.3    5.7e-08   25.9   8.3    1.1  1  Rattus|157818369|H1.9      Rattus_Hils1
-    7.5e-08   25.5  17.1      4e-07   23.1  17.1    2.0  1  Canis|545554579|H1.6       Canis_H1t
-    7.9e-08   25.4  19.2      1e-07   25.0  19.2    1.2  1  Rattus|6981006|H1.6        Rattus_H1t
-    1.7e-07   24.3  22.5      2e-07   24.1  22.5    1.1  1  Salmo|221221722|H1.6       Salmo_H1t
-    7.8e-07   22.1  12.6    1.4e-06   21.3  12.6    1.4  1  Peromyscus|207081162|H1.9  Peromyscus_Hils1
+    6.1e-10   34.3  26.1    8.4e-10   33.9  26.1    1.1  1  Xenopus|147901299|H1.6     Xenopus_H1t
+    4.7e-09   31.4  17.1    5.9e-09   31.1  17.1    1.2  1  Mus|112807207|H1.6         Mus_H1t
+    9.9e-09   30.4  16.4    1.6e-08   29.6  16.4    1.4  1  Equus|379643033|H1.6       Equus_H1t
+    2.3e-08   29.1  21.5    2.7e-08   28.9  21.5    1.1  1  Macaca|124053434|H1.6      Macaca_H1t
+      3e-08   28.8  21.5    3.3e-08   28.6  21.5    1.1  1  Homo|20544168|H1.6         Homo_H1t
+    2.1e-07   26.0   8.3    2.2e-07   25.9   8.3    1.1  1  Rattus|157818369|H1.9      Rattus_Hils1
+    2.9e-07   25.5  17.1    1.6e-06   23.1  17.1    2.0  1  Canis|545554579|H1.6       Canis_H1t
+    3.1e-07   25.4  19.2    4.1e-07   25.0  19.2    1.2  1  Rattus|6981006|H1.6        Rattus_H1t
+    6.7e-07   24.3  22.5    7.9e-07   24.1  22.5    1.1  1  Salmo|221221722|H1.6       Salmo_H1t
+    3.1e-06   22.1  12.6    5.6e-06   21.3  12.6    1.4  1  Peromyscus|207081162|H1.9  Peromyscus_Hils1
 
 
 Domain annotation for each sequence (and alignments):
 >> Xenopus|147901299|H1.6  Xenopus_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   33.9  26.1   1.1e-11   2.1e-10       5     199 ..      10     205 ..       6     219 .. 0.72
+   1 !   33.9  26.1   1.1e-11   8.4e-10       5     199 ..      10     205 ..       6     219 .. 0.72
 
   Alignments for each domain:
   == domain 1  score: 33.9 bits;  conditional E-value: 1.1e-11
@@ -44,7 +44,7 @@ Domain annotation for each sequence (and alignments):
 >> Mus|112807207|H1.6  Mus_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   31.1  17.1   7.4e-11   1.5e-09      41     199 ..      42     195 ..      16     207 .. 0.81
+   1 !   31.1  17.1   7.4e-11   5.9e-09      41     199 ..      42     195 ..      16     207 .. 0.81
 
   Alignments for each domain:
   == domain 1  score: 31.1 bits;  conditional E-value: 7.4e-11
@@ -56,7 +56,7 @@ Domain annotation for each sequence (and alignments):
 >> Equus|379643033|H1.6  Equus_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   29.6  16.4   2.1e-10   4.1e-09      41     152 ..      43     161 ..      19     211 .. 0.69
+   1 !   29.6  16.4   2.1e-10   1.6e-08      41     152 ..      43     161 ..      19     211 .. 0.69
 
   Alignments for each domain:
   == domain 1  score: 29.6 bits;  conditional E-value: 2.1e-10
@@ -68,7 +68,7 @@ Domain annotation for each sequence (and alignments):
 >> Macaca|124053434|H1.6  Macaca_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   28.9  21.5   3.3e-10   6.7e-09      39     202 ..      41     202 ..      10     208 .] 0.61
+   1 !   28.9  21.5   3.3e-10   2.7e-08      39     202 ..      41     202 ..      10     208 .] 0.61
 
   Alignments for each domain:
   == domain 1  score: 28.9 bits;  conditional E-value: 3.3e-10
@@ -80,7 +80,7 @@ Domain annotation for each sequence (and alignments):
 >> Homo|20544168|H1.6  Homo_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   28.6  21.5   4.2e-10   8.4e-09       1     186 [.       1     188 [.       1     207 [] 0.67
+   1 !   28.6  21.5   4.2e-10   3.3e-08       1     186 [.       1     188 [.       1     207 [] 0.67
 
   Alignments for each domain:
   == domain 1  score: 28.6 bits;  conditional E-value: 4.2e-10
@@ -92,7 +92,7 @@ Domain annotation for each sequence (and alignments):
 >> Rattus|157818369|H1.9  Rattus_Hils1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   25.9   8.3   2.8e-09   5.7e-08      39     149 ..      44     165 ..       4     169 .] 0.73
+   1 !   25.9   8.3   2.8e-09   2.2e-07      39     149 ..      44     165 ..       4     169 .] 0.73
 
   Alignments for each domain:
   == domain 1  score: 25.9 bits;  conditional E-value: 2.8e-09
@@ -104,7 +104,7 @@ Domain annotation for each sequence (and alignments):
 >> Canis|545554579|H1.6  Canis_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   23.1  17.1     2e-08     4e-07      40     159 ..      42     171 ..      23     211 .. 0.67
+   1 !   23.1  17.1     2e-08   1.6e-06      40     159 ..      42     171 ..      23     211 .. 0.67
 
   Alignments for each domain:
   == domain 1  score: 23.1 bits;  conditional E-value: 2e-08
@@ -116,7 +116,7 @@ Domain annotation for each sequence (and alignments):
 >> Rattus|6981006|H1.6  Rattus_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   25.0  19.2   5.1e-09     1e-07      40     198 ..      40     193 ..       7     207 .. 0.75
+   1 !   25.0  19.2   5.1e-09   4.1e-07      40     198 ..      40     193 ..       7     207 .. 0.75
 
   Alignments for each domain:
   == domain 1  score: 25.0 bits;  conditional E-value: 5.1e-09
@@ -128,7 +128,7 @@ Domain annotation for each sequence (and alignments):
 >> Salmo|221221722|H1.6  Salmo_H1t
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   24.1  22.5     1e-08     2e-07      41     181 ..      28     174 ..       4     179 .] 0.65
+   1 !   24.1  22.5     1e-08   7.9e-07      41     181 ..      28     174 ..       4     179 .] 0.65
 
   Alignments for each domain:
   == domain 1  score: 24.1 bits;  conditional E-value: 1e-08
@@ -140,7 +140,7 @@ Domain annotation for each sequence (and alignments):
 >> Peromyscus|207081162|H1.9  Peromyscus_Hils1
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   21.3  12.6     7e-08   1.4e-06      42     138 ..      49     149 ..      29     158 .. 0.80
+   1 !   21.3  12.6     7e-08   5.6e-06      42     138 ..      49     149 ..      29     158 .. 0.80
 
   Alignments for each domain:
   == domain 1  score: 21.3 bits;  conditional E-value: 7e-08
@@ -154,14 +154,14 @@ Domain annotation for each sequence (and alignments):
 Internal pipeline statistics summary:
 -------------------------------------
 Query model(s):                              1  (398 nodes)
-Target sequences:                          202  (32436 residues searched)
-Passed MSV filter:                        66  (0.326733); expected 4.0 (0.02)
-Passed bias filter:                       21  (0.10396); expected 4.0 (0.02)
-Passed Vit filter:                        13  (0.0643564); expected 0.2 (0.001)
-Passed Fwd filter:                        10  (0.049505); expected 0.0 (1e-05)
-Initial search space (Z):                202  [actual number of targets]
+Target sequences:                          795  (93656 residues searched)
+Passed MSV filter:                        75  (0.0943396); expected 15.9 (0.02)
+Passed bias filter:                       22  (0.027673); expected 15.9 (0.02)
+Passed Vit filter:                        13  (0.0163522); expected 0.8 (0.001)
+Passed Fwd filter:                        10  (0.0125786); expected 0.0 (1e-05)
+Initial search space (Z):                795  [actual number of targets]
 Domain search space  (domZ):              10  [number of targets reported over threshold]
-# CPU time: 0.04u 0.00s 00:00:00.04 Elapsed: 00:00:00.04
-# Mc/sec: 322.74
+# CPU time: 0.04u 0.01s 00:00:00.05 Elapsed: 00:00:00.04
+# Mc/sec: 931.88
 //
 [ok]

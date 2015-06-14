@@ -16,13 +16,31 @@ p#intro {
   margin: 1em 0;
 }
 </style>
-<div class="row">
-  <div class="col-xs-8">
-    <div id="vis"></div>
-  </div>
-  <div class="col-xs-4">
-    <div class="row center-block">
-      <ul class="breadcrumb" id="breadcrumb"></ul>
+<div class="container">
+  <div class="row" style="margin-top:5px;">
+    <div class="col-xs-8">
+      <div id="vis"></div>
+    </div>
+    <div class="col-xs-4">
+      <div class="row center-block">
+        {% for color in colors %}
+          <div class="col-xs-1" style="background-color:{{ color }}; height:20px;"> </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-xs-6 pull-left">Min Score</div>
+        <div class="col-xs-6 pull-right" style="float:right; clear:right;">Max Score</div>
+      </div> 
+      <div class="row">
+        <div class="col-xs-6 pull-left">{{ score_min }}</div>
+        <div class="col-xs-6">{{ score_max }}</div>
+      </div><br />
+      <div class="row center-block">
+        <h4>You selected: <span id="taxa_selection" style="font-style: italic;">root</span></h4>
+      </div>
+      <div class="row pull-right">
+        <button class="btn btn-default" type="button" id="view_sequences_of_taxa_button">View {{ variant }} sequences within this taxa</button>
+      </div>
     </div>
   </div>
 </div>
@@ -124,6 +142,8 @@ d3.json("{% static sunburst_url %}", function(error, json) {
         .each("end", function(e) {
           d3.select(this).style("visibility", isParentOf(d, e) ? null : "hidden");
         });
+
+    $("#taxa_selection").html(d.name);
   }
 });
 
@@ -168,4 +188,37 @@ function maxY(d) {
 function brightness(rgb) {
   return rgb.r * .299 + rgb.g * .587 + rgb.b * .114;
 }
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+$("#view_sequences_of_taxa_button").click(function() {
+  var taxa = $("#taxa_selection").html();
+  if(taxa == "root"){
+    alert("You must select a taxa lower than root.");
+    return;
+  }
+  var formData = {"id_taxonomy":taxa, "id_variant":"{{ variant }}", "csrfmiddlewaretoken":csrftoken};
+  $.post(
+    "{% url 'browse.views.search' %}", 
+    formData,
+    function( data ) {
+      $('#sequence_table').bootstrapTable('refresh');
+  });
+  $("#sequences_tab").tab("show")
+});
 </script>

@@ -5,9 +5,11 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import get_list_or_404
 
-from browse.forms import AdvancedFilterForm, UploadFileForm
+from browse.forms import AdvancedFilterForm, AnalyzeFileForm
 from browse.search import HistoneSearch
 from browse.process_upload import process_upload
+
+from colour import Color
 
 #Django libraires
 from browse.models import *
@@ -46,9 +48,9 @@ def browse_variants(request, histone_type):
         return "404"
 
     #Store sequences in session, accesed in get_sequence_table_data
-    HistoneSearch(request, {"core_type":histone_type}, reset=True)
+    HistoneSearch(request, {"id_core_histone":histone_type}, reset=True)
 
-    variants = core_histone.variants.annotate(num_sequences=Count('sequences')).all().values_list("id", "num_sequences")
+    variants = core_histone.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences")
     variants = [(id, num, color) for (id, num), color in zip(variants, colors)]
 
 
@@ -71,7 +73,13 @@ def browse_variant(request, histone_type, variant):
     except:
         return "404"
 
-    HistoneSearch(request, {"variant":variant.id}, reset=True)
+    HistoneSearch(request, {"id_variant":variant.id}, reset=True)
+
+    green = Color("#66c2a5")
+    red = Color("#fc8d62")
+    color_range = map(str, red.range_to(green, 12))
+
+    scores = Sequence.objects.filter(variant__id=variant).filter(all_model_scores__used_for_classifiation=True).annotate(score=Max("all_model_scores__score")).aggregate(max=Max("score"), min=Min("score"))
 
     data = {
         "core_type": variant.core_type.id,
@@ -79,6 +87,9 @@ def browse_variant(request, histone_type, variant):
         "name": variant.id,
         "sunburst_url": "browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id),
         "seed_file":"browse/seeds/{}/{}.fasta".format(variant.core_type.id, variant.id),
+        "colors":color_range,
+        "score_min":scores["min"],
+        "score_max":scores["max"],
         "browse_section": "variant",
         "description": variant.description,
         "filter_form": AdvancedFilterForm(),
@@ -87,8 +98,12 @@ def browse_variant(request, histone_type, variant):
 
 def search(request):
     data = {}
-    if request.method == "POST":
-        result = HistoneSearch(request, request.POST, reset=True, navbar="search" in request.POST)
+    if request.method == "POST": 
+        result = HistoneSearch(
+            request, 
+            request.POST.copy(), 
+            reset=request.POST.get("reset", True), 
+            navbar="search" in request.POST)
     else:
         #Show all sequence
         result = HistoneSearch.all(request)
@@ -98,7 +113,7 @@ def search(request):
         
     return render(request, 'search.html', {"result":result, "filter_form": AdvancedFilterForm(),})
 
-def upload(request):
+def analyze(request):
     if request.method == "POST":
         type = request.POST.get("type")
         if request.POST.get("sequences"):
@@ -109,9 +124,9 @@ def upload(request):
             sequences = request.POST["file"]
         data = process_upload(type, sequences, format)
     else:
-        data = {'form':UploadFileForm()}
+        data = {'form':AnalyzeFileForm()}
     data["filter_form"] = AdvancedFilterForm()
-    return render(request, 'upload.html', data)
+    return render(request, 'analyze.html', data)
 
 def get_sequence_table_data(request):
     """Downloads the previos search and converts into json required by Bootstrap table
@@ -139,13 +154,13 @@ def get_all_scores(request, ids=None):
         #Returning 'false' stops Bootstrap table
         return "false"
     
-    variants = list(Variant.objects.all().values_list("id", flat=True))
-    indices = {variant: i for i, variant in enumerate(variants)}
+    variants = list(Variant.objects.all().order_by("id").values_list("id", "hmmthreshold"))
+    indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
     rows = [{} for _ in xrange(len(variants))]
-    for i, variant in enumerate(variants):
-        rows[i]["variant"] = variant
+    for i, (variant, threshold) in enumerate(variants):
+        rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
         for id in ids:
-            rows[i][id] = "none"
+            rows[i][id] = "<0"
         rows[i]["data"] = {}
         rows[i]["data"]["above_threshold"] = {id:False for id in ids}
         rows[i]["data"]["this_classified"] = {id:False for id in ids}
@@ -157,15 +172,15 @@ def get_all_scores(request, ids=None):
             return "404"
         classified_variant = sequence.variant.id
         
-        scores = sequence.scores.all().order_by("variant__id")
+        scores = sequence.all_model_scores.all().order_by("variant__id")
 
         for j, score in enumerate(scores):
-            if score.variant.id in variants:
+            if score.variant.id in indices:
                 threshold = score.variant.hmmthreshold
-                if rows[indices[score.variant.id]][id] == "none" or score.score > rows[indices[score.variant.id]][id]:
+                if rows[indices[score.variant.id]][id] == "<0" or score.score > rows[indices[score.variant.id]][id]:
                     rows[indices[score.variant.id]][id] = score.score
                     rows[indices[score.variant.id]]["data"]["above_threshold"][id] = score.score>=threshold
-                    rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.variant.id == classified_variant
+                    rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.used_for_classifiation
             
     return JsonResponse(rows, safe=False)
 

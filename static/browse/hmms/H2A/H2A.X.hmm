@@ -1,4 +1,4 @@
-HMMER3/f [3.1b1 | May 2013]
+HMMER3/f [3.1b2 | February 2015]
 NAME  H2A.X
 LENG  135
 ALPH  amino
@@ -7,7 +7,7 @@ MM    no
 CONS  yes
 CS    no
 MAP   yes
-DATE  Thu May 28 14:36:56 2015
+DATE  Thu Jun 11 01:44:02 2015
 NSEQ  20
 EFFN  0.776367
 CKSUM 1611438213

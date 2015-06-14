@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container" style="top: 5px">
+  <div class="alert alert-danger" role="alert">Error: Upload feature not implemented yet</div>
+  <div class="page-header">
+	  {% if not result %}
+	    <h1>Upload histone sequence to classify their variants</h1>
+	  {% else %}
+	  	<h1>Upload results</small>
+	  {% endif %}
+  </div>
+  {% if not result %}
+	  <form action="{% url 'browse.views.analyze' %}" method="post">{% csrf_token %}
+      	<div class="container">
+          {% for field in form %}
+            <div class="row">
+              <div class="col-xs-6">
+                {{ field.label_tag }}
+              </div>
+              <div class="col-xs-6">
+                {{ field }}
+              </div>
+            </div>
+          {% endfor %}
+      	</div>
+      	<div class="modal-footer">
+        	<button type="submit" class="btn btn-primary">Upload</button>
+      	</div>
+    </form>
+  {% else %}
+  	{% include "sequences.html" %}
+  {% endif %}
+</div>
+{% endblock %}

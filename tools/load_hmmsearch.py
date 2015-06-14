@@ -10,10 +10,13 @@ from Bio.Seq import Seq
 from browse.models import *
 from djangophylocore.models import Taxonomy
 from django.db.models import Max
+from django.db.utils import IntegrityError
 
 #Custom librairies
 from tools.hist_ss import get_hist_ss
 from tools.taxonomy_from_gis import taxonomy_from_gis
+
+already_exists = []
 
 def get_sequence(gi, sequence_file):
   """sequences is likely large, so we don't want to store it in memory.
@@ -102,7 +105,16 @@ def load_variants(hmmerFile, sequences, reset=True):
     Features.objects.all().delete()
     Score.objects.all().delete()
 
-  unknown_model = Variant.objects.get(id="Unknown")
+  try:
+    unknown_model = Variant.objects.get(id="Unknown")
+  except Variant.DoesNotExist:
+    try:
+      core_unknown = Histone.objects.get(id="Unknown")
+    except:
+      core_unknown = Histone("Unknown")
+      core_unknown.save()
+    unknown_model = Variant(core_type=core_unknown, id="Unknown")
+    unknown_model.save()
   
   for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
     print "Loading variant:", variant_query.id
@@ -128,41 +140,66 @@ def load_variants(hmmerFile, sequences, reset=True):
       for header in headers:
         gi = header.split("|")[0]
         for i, hsp in enumerate(hit):
-          seqs = Sequence.objects.filter(id=gi).annotate(score=Max("scores__score"))
+          seqs = Sequence.objects.filter(id=gi)
           if len(seqs) > 0: 
             #Sequence already exists. Compare bit scores, if current bit score is 
             #greater than current, reassign variant and update scores. Else, append score
             seq = seqs.first()
-            if (hsp.bitscore > seq.score) and hsp.bitscore>=variant_model.hmmthreshold:
-              #best scoring
-              seq.variant = variant_model
-              seq.sequence = str(hsp.hit.seq)
-              seq.save()
-              update_features(seq)
-              print "UPDATED VARIANT"
+            print "Repeated", seq
+            best_scores = seq.all_model_scores.filter(used_for_classifiation=True)
+            if len(best_scores)>0:
+              best_score = best_scores.first()
+              if (hsp.bitscore > best_score.score) and hsp.bitscore>=variant_model.hmmthreshold:
+                #best scoring
+                seq.variant = variant_model
+                seq.sequence = str(hsp.hit.seq)
+                update_features(seq)
+                best_score_2 = Score.objects.get(id=best_score.id)
+                best_score_2.used_for_classification=False
+                best_score_2.save()
+                seq.save()
+                print "UPDATED VARIANT"
+                add_score(seq, variant_model, hsp, best=True)
+              else:
+                add_score(seq, variant_model, hsp, best=False)
+            else:
+              #Was not classified, just test against this model
+              if hsp.bitscore>=variant_model.hmmthreshold:
+                seq.variant = variant_model
+                seq.sequence = str(hsp.hit.seq)
+                seq.save()
+                update_features(seq)
+                add_score(seq, variant_model, hsp, best=True)
+              else:
+                add_score(seq, variant_model, hsp, best=False)
           else:
             taxonomy = taxonomy_from_header(header, gi)
             sequence = Seq(str(hsp.hit.seq))
-            seq = add_sequence(
-              gi,  
-              variant_model if hsp.bitscore >= variant_model.hmmthreshold else unknown_model, 
-              taxonomy, 
-              header, 
-              sequence)
+            best = hsp.bitscore >= variant_model.hmmthreshold
+            try:
+              seq = add_sequence(
+                gi,  
+                variant_model if best else unknown_model, 
+                taxonomy, 
+                header, 
+                sequence)
+              add_score(seq, variant_model, hsp, best=best)
+            except IntegrityError as e:
+              print "Error adding sequence {}".format(seq)
+              global already_exists
+              already_exists.append(gi)
+              continue
           print seq
-          #Add a score even if it is a below threshold
-          add_score(seq, variant_model, hsp)
 
 def load_cores(hmmerFile, reset=True):
   unknown_model = Variant.objects.get(id="Unknown")
-  score_num = 0
-
+  
   if reset:
     variants = Variant.objects.filter(id__contains="cononical")
     for variant in variants:
       for sequence in variant.sequences:
         sequence.features.delete()
-        sequence.scores.delete()
+        sequence.scores.filter(variant__id=variant__id).delete()
       variant.sequences.delete()
     variants.delete()
 
@@ -184,31 +221,58 @@ def load_cores(hmmerFile, reset=True):
       for header in headers:
         gi = header.split("|")[0]
         for i, hsp in enumerate(hit):
-          seqs = Sequence.objects.filter(id=gi).annotate(score=Max("scores__score"))
+          seqs = Sequence.objects.filter(id=gi)
           if len(seqs) > 0: 
             #Sequence already exists. Compare bit scores, if current bit score is 
             #greater than current, reassign variant and update scores. Else, append score
             seq = seqs.first()
-            if hsp.bitscore >= canonical_model.hmmthreshold and \
-                (seq.variant.id == "Unknown" or  \
-                  ("canonical" in seq.variant.id and hsp.bitscore > seq.score)) :
-              seq.variant = canonical_model
-              seq.sequence = str(hsp.hit.seq)
-              seq.save()
-              update_features(seq)
-              print "UPDATED VARIANT"
+            best_scores = seq.all_model_scores.filter(used_for_classifiation=True)
+            if len(best_scores)>0:
+              best_score = best_scores.first()
+              if hsp.bitscore >= canonical_model.hmmthreshold and \
+                  (seq.variant.id == "Unknown" or  \
+                    ("canonical" in seq.variant.id and hsp.bitscore > best_score.score)) :
+                seq.variant = canonical_model
+                seq.sequence = str(hsp.hit.seq)
+                update_features(seq)
+                best_score_2 = Score.objects.get(id=best_score.id)
+                best_score_2.used_for_classification=False
+                best_score_2.save()
+                seq.save()
+                print "UPDATED VARIANT"
+                add_score(seq, canonical_model, hsp, best=True)
+              else:
+                add_score(seq, canonical_model, hsp, best=False)
+            else:
+              #Was not classified, just test against this model
+              if hsp.bitscore>=canonical_model.hmmthreshold:
+                seq.variant = canonical_model
+                seq.sequence = str(hsp.hit.seq)
+                seq.save()
+                update_features(seq)
+                add_score(seq, canonical_model, hsp, best=True)
+              else:
+                add_score(seq, canonical_model, hsp, best=False)
           else:
             #only add sequence if it was not found by the variant models
             taxonomy = taxonomy_from_header(header, gi)
             sequence = Seq(str(hsp.hit.seq))
-            seq = add_sequence(
-              gi,  
-              canonical_model if hsp.bitscore >= canonical_model.hmmthreshold else unknown_model, 
-              taxonomy, 
-              header, 
-              sequence)
+            best = hsp.bitscore >= canonical_model.hmmthreshold
+            try:
+              seq = add_sequence(
+                gi,  
+                canonical_model if best else unknown_model, 
+                taxonomy, 
+                header, 
+                sequence)
+              add_score(seq, canonical_model, hsp, best=best)
+            except IntegrityError as e:
+              print "Error adding sequence {}".format(seq)
+              global already_exists
+              already_exists.append(gi)
+              continue
           print seq
-          add_score(seq, canonical_model, hsp)
+  print already_exists
 
 def add_sequence(gi, variant_model, taxonomy, header, sequence):
   if not variant_model.core_type.id == "H1" and not variant_model.core_type.id == "Unknown":
@@ -277,19 +341,20 @@ def update_features(seq,ss_position=None, variant_model=None):
     features.save()
 
 
-def add_score(seq, variant_model, hsp):
+def add_score(seq, variant_model, hsp, best=False):
   score_num = Score.objects.count()+1
   score = Score(
-    id              = score_num,
-    sequence        = seq,
-    variant         = variant_model,
-    score           = hsp.bitscore,
-    evalue          = hsp.evalue,
-    above_threshold = hsp.bitscore >= variant_model.hmmthreshold,
-    hmmStart        = hsp.query_start,
-    hmmEnd          = hsp.query_end,
-    seqStart        = hsp.hit_start,
-    seqEnd          = hsp.hit_end
+    id                     = score_num,
+    sequence               = seq,
+    variant                = variant_model,
+    score                  = hsp.bitscore,
+    evalue                 = hsp.evalue,
+    above_threshold        = hsp.bitscore >= variant_model.hmmthreshold,
+    hmmStart               = hsp.query_start,
+    hmmEnd                 = hsp.query_end,
+    seqStart               = hsp.hit_start,
+    seqEnd                 = hsp.hit_end,
+    used_for_classifiation = best,
     )
   score.save()
   

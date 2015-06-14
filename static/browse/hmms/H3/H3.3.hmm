@@ -1,4 +1,4 @@
-HMMER3/f [3.1b1 | May 2013]
+HMMER3/f [3.1b2 | February 2015]
 NAME  H3.3
 LENG  136
 ALPH  amino
@@ -7,7 +7,7 @@ MM    no
 CONS  yes
 CS    no
 MAP   yes
-DATE  Thu May 28 14:36:58 2015
+DATE  Thu Jun 11 01:43:59 2015
 NSEQ  15
 EFFN  0.465088
 CKSUM 1414492335

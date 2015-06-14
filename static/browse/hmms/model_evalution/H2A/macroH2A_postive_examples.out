@@ -1,11 +1,11 @@
 # hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b1 (May 2013); http://hmmer.org/
-# Copyright (C) 2013 Howard Hughes Medical Institute.
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  static/browse/hmms/H2A/macroH2A.hmm
-# target sequence database:        static/browse/hmms/model_evalution/H2A/macroH2A_postive_examples.fasta
-# output directed to file:         static/browse/hmms/model_evalution/H2A/macroH2A_postive_examples.out
+# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2A/macroH2A.hmm
+# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/macroH2A_postive_examples.fasta
+# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/macroH2A_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4

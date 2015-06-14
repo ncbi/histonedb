@@ -2,6 +2,9 @@
 # Author: Eli Draizen
 # Date: 16-3-2014
 # File: classify.py
+
+import matplotlib
+matplotlib.use('Agg')
  
 #Standard Libraries
 import argparse
@@ -16,11 +19,12 @@ from Bio.Seq import Seq
 #Required Libraries
 import numpy as np
 import seaborn as sns
+
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, matthews_corrcoef
 from matplotlib.backends.backend_pdf import PdfPages
 
-from scipy.stats import linregress
+from scipy.interpolate import interp1d
 
 sns.set(style="white", context="talk")
 
@@ -76,6 +80,7 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
 
     best_threshold, thresholds, values = calcualte_threshold(postive_scores, negative_scores, measure=measure, thresholds=reversed(thresholds))
 
+
     pp = PdfPages(os.path.join(save_dir, "{}_model_evaluation.pdf".format(model_name)))
 
     sns.set(style="darkgrid")
@@ -104,7 +109,8 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     for i, (measure, values) in enumerate(values.iteritems()):
         print measure, values
         print len(thresholds), len(values)
-        axes[2].plot(list(reversed(thresholds)), values, label=measure, linewidth=2, color=colors[i])
+        label = "SPC: (>={})".format(best_threshold) if measure=="SPC" else measure
+        axes[2].plot(list(thresholds), values, label=label, linewidth=2, color=colors[i])
     axes[2].axvline(best_threshold)
 
     axes[2].legend()
@@ -130,9 +136,10 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
     assert measure in ["TPR", "FPR", "SPC", "MCC", "PPV", "FDR", "ACC"]
     y_true = [1]*len(positives)+[0]*len(negatives)
     values = {name:[] for name in ["TPR", "FPR", "SPC", "MCC", "PPV", "FDR", "ACC"]}
-    saveTheshold = None
+    saveThreshold = None
     saveValue = 1.0
-    thresholds = list(thresholds or map(lambda i: i/10., xrange(1,10000)))
+    thresholds = list(sorted(thresholds or map(lambda i: i/10., xrange(1,10000))))
+
     for threshold in thresholds:
         #print threshold
         TN = sum([1 for score in negatives if score < threshold])
@@ -140,6 +147,8 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
         TP = sum([1 for score in positives if score >= threshold])
         FN = sum([1 for score in positives if score < threshold])
         #print "FP", FP
+
+
         values["FPR"].append(float(FP)/(FP+TN))
         values["TPR"].append(float(TP)/(TP+FN))
         values["SPC"].append(float(TN)/(FP+TN))
@@ -150,12 +159,21 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
         values["FDR"].append(float(FP)/(TP+FP) if TP+FP>0 else 0.0)
         values["ACC"].append(float(TP+TN)/(len(positives)+len(negatives)))
         
-        if round(values[measure][-1]*20)/20 == measure_threshold and \
+        """if round(values[measure][-1]*20)/20 == measure_threshold and \
             abs(measure_threshold-values[measure][-1])<abs(measure_threshold-saveValue):
             saveTheshold = threshold
-            saveValue = values[measure][-1]
+            saveValue = values[measure][-1]"""
 
-    if saveTheshold is None:
+    #b = np.ascontiguousarray(a).view(np.dtype((np.void, a.dtype.itemsize * a.shape[1])))
+    #_, idx = np.unique(b, return_index=True)
+
+    print values[measure]
+    print
+    print thresholds
+    specificity_curve_inverse = interp1d(values[measure], thresholds)
+    saveThreshold = specificity_curve_inverse(0.95)
+    
+    """if saveTheshold is None:
         print "Try again"
         if attempt == 0:
             #Try again without given threshold levels
@@ -175,9 +193,9 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
                 continue
                 slope, intercept, r_value, p_value, std_err = linregress(zip(nearby))
                 print slope, intercept, r_value, p_value, std_err
-                saveTheshold = float(0.95-intercept)/slope
+                saveTheshold = float(0.95-intercept)/slope"""
                 
 
-    return saveTheshold, thresholds, values
+    return saveThreshold, thresholds, values
 
 
