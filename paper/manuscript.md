@@ -11,10 +11,10 @@ Eli Draizen (eli.draizen@nih.gov) or Anna Panchenkeno (panch@ncbi.nlm.nih.gov)
 ### Abstract ###
 Since the initial creation of the Histone Database, several variants, or non-allelic protein isoforms, for each core histone have gained new interest. These variants have have a vast number of functions and play important roles in nucleosome dynamics. We need the Histone Database to account for these new variants. Here, The Histone Database has been renamed HistoneDB and rebuilt to be organized and searchable by variants and taxonomy. We created profile-HMMs for each variant to search the nr database. Sequences were added into the HistoneDB if they were found to have 95% specificity. HistoneDB 2.0 is built with the Django Python Web Framework and the source is available at GitHub: http://github.com/edraizen/HistoneDB.
 
-Database URL: http://www.ncbi.nlm.nih.gov/HistoneDB 
+Database URL: http://www.ncbi.nlm.nih.gov/projects/HistoneDB 
 
 ## Introduction ##
-The traditional role of histone proteins is in their formation of the the nucleosome. This compacts and organized the DNA to fit inside the nucleus. However, as we uncover more information about histones, we have learned they are necessary to controlling and regulating gene expression, cell reprogramming, and much more.
+The traditional role of histone proteins is in their formation of the the nucleosome. Histones were previosly thought to only have a sturcutral role, compacting and organizing the DNA to fit inside the nucleus. However, as we uncover more information about histones, we have learned they are necessary to controlling and regulating gene expression, cell reprogramming, and much more.
 
 Fig 1. Chromatin and nucleosome structure. Modified from From Lewins Genes X & Molecular Cell Biology, Lodish H et al. 
  
