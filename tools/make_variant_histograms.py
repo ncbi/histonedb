@@ -4,8 +4,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from django.db.models import Min, Max, Count
 
+brewer = list(sns.color_palette("Set2", 7))
+print brewer
+
 #Set2 Brewer, used in variant colors
-colors = [
+brewer_colors = [
     "#66c2a5",
     "#fc8d62",
     "#8da0cb",
@@ -18,13 +21,24 @@ colors = [
 f, axes = plt.subplots(2,3, figsize=(8, 6), sharey=True)
 axes[0,0].set_ylabel("Counts")
 
-for i, histone in enumerate(["H2A", "H2B", "H3", "H4", "H1"]):
-	variants = Histone.objects.get(id=histone).variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences")
-	variants = [(id, num, color) for (id, num), color in zip(sorted(variants, key=lambda v:v[0]), colors)]
-	names, counts, colors = zip(*variants)
-	print names
-	sns.barplot(np.array(names), np.array(counts), color=np.array(colors), ci=None, hline=.1, ax=axes[int(i>=3), i%3])
-	axes[int(i>3), i%3].set_title(histone)
+for i, histone in enumerate([u'H2A', u'H2B', u'H3', u'H4', u'H1']):
+    try:
+        core_histone = Histone.objects.get(id=histone)
+    except:
+        continue
+    variants = core_histone.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences")
+    print variants
+    variants = [(v[0], v[1], color) for v, color in zip(variants, brewer_colors)]
+    print variants
+    names, counts, colors = zip(*variants)
+    print names
+    print np.array(names)
+    ax = axes[int(i>=3), i%3]
+    sns.set_palette("Set2", 7)
+    g = sns.barplot(names, counts, ci=None, hline=.1, order=names, ax=ax)
+    #g.set_xticklabels(ax, rotation=30)
+    ax.set_title(histone)
+
 
 sns.despine(bottom=True)
 plt.setp(f.axes, yticks=[])

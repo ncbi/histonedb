@@ -28,15 +28,26 @@ p#intro {
         {% endfor %}
       </div>
       <div class="row">
-        <div class="col-xs-6 pull-left">Min Score</div>
-        <div class="col-xs-6 pull-right" style="float:right; clear:right;">Max Score</div>
+        <div class="col-xs-3">Min Score</div>
+        <div class="col-xs-5"></div>
+        <div class="col-xs-4 pull-right">Max Score</div>
       </div> 
       <div class="row">
-        <div class="col-xs-6 pull-left">{{ score_min }}</div>
-        <div class="col-xs-6">{{ score_max }}</div>
+        <div class="col-xs-3 pull-left">{{ score_min }}</div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">{{ score_max }}</div>
       </div><br />
       <div class="row center-block">
-        <h4>You selected: <span id="taxa_selection" style="font-style: italic;">root</span></h4>
+        <div class="row">
+          <div class="col-xs-9">
+            <h4>You selected: <span id="taxa_selection" style="font-style: italic;">root</span></h4>
+          </div>
+          <div class="col-xs-3">
+            <button class="btn btn-default" type="button" id="reset_sunburst_button">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reset
+            </button>
+          </div>
+        </div>
       </div>
       <div class="row pull-right">
         <button class="btn btn-default" type="button" id="view_sequences_of_taxa_button">View {{ variant }} sequences within this taxa</button>
@@ -56,6 +67,10 @@ var width = 840,
 
 var div = d3.select("#vis");
 
+div.append("div")
+    .attr("id", "intro")
+    .text("Click on a taxa to zoom in, or the center to go up a level. You may also select 'Reset' to be taken back to root.");
+
 div.select("img").remove();
 
 var vis = div.append("svg")
@@ -63,10 +78,6 @@ var vis = div.append("svg")
     .attr("height", height + padding * 2)
   .append("g")
     .attr("transform", "translate(" + [radius + padding, radius + padding] + ")");
-
-div.append("p")
-    .attr("id", "intro")
-    .text("Click to zoom!");
 
 var partition = d3.layout.partition()
     .sort(null)
@@ -145,6 +156,10 @@ d3.json("{% static sunburst_url %}", function(error, json) {
 
     $("#taxa_selection").html(d.name);
   }
+
+  $("#reset_sunburst_button").click(function() {
+    click(nodes[0]);
+  });
 });
 
 function isParentOf(p, c) {
@@ -206,6 +221,8 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 
+
+
 $("#view_sequences_of_taxa_button").click(function() {
   var taxa = $("#taxa_selection").html();
   if(taxa == "root"){
@@ -219,6 +236,7 @@ $("#view_sequences_of_taxa_button").click(function() {
     function( data ) {
       $('#sequence_table').bootstrapTable('refresh');
   });
-  $("#sequences_tab").tab("show")
+  $("#sequences_tab").tab("show");
+  $("#page_title").html("{{ variant }} - "+taxa);
 });
 </script>
