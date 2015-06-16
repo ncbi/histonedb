@@ -114,18 +114,19 @@ def search(request):
     return render(request, 'search.html', {"result":result, "filter_form": AdvancedFilterForm(),})
 
 def analyze(request):
+    data = {"filter_form":AdvancedFilterForm()}
     if request.method == "POST":
-        type = request.POST.get("type")
+        type = request.POST.get("id_type_0")
         if request.POST.get("sequences"):
             format = "text"
             sequences = request.POST["sequences"]
         elif request.POST.get("file"):
             format="file"
             sequences = request.POST["file"]
-        data = process_upload(type, sequences, format)
+        data["result"] = process_upload(type, sequences, format)
+        data["search_type"] = type
     else:
-        data = {'form':AnalyzeFileForm()}
-    data["filter_form"] = AdvancedFilterForm()
+        data["analyze_form"] = AnalyzeFileForm(initial={"type":"blastp"})
     return render(request, 'analyze.html', data)
 
 def get_sequence_table_data(request):

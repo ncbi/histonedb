@@ -3,6 +3,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from djangophylocore.models import Taxonomy
 
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+
 class Histone(models.Model):
     id             = models.CharField(max_length=25, primary_key=True)
     taxonomic_span = models.CharField(max_length=25)
@@ -66,6 +69,24 @@ class Sequence(models.Model):
             name += ".s{}".format(self.splice)
         return name
 
+    def to_biopython(self, ungap=False):
+        seq = Seq(self.sequence)
+        try:
+            score_desc = self.all_model_scores.fiter(used_for_classifiation=True).first().description()
+        except:
+            score_desc = ""
+        if ungap:
+            seq = seq.ungap("-")
+        return SeqRecord(
+            seq, 
+            id="{}|{}|{}".format(self.id, self.taxonomy.name.split(" ")[0], self.full_variant_name),
+            description=score_desc,
+            )
+
+    def format(self, format="fasta", ungap=False):
+        return self.to_biopython(ungap=ungap).format(format)
+    
+
 class Score(models.Model):
     id                     = models.IntegerField(primary_key=True)
     sequence               = models.ForeignKey(Sequence, related_name="all_model_scores")
@@ -78,6 +99,12 @@ class Score(models.Model):
     seqStart               = models.IntegerField()
     seqEnd                 = models.IntegerField()
     used_for_classifiation = models.BooleanField()
+
+    def __unicode__(self):
+        return "<{} variant={}; score={}; above_threshold={}; used_for_classifiation={} >".format(self.sequence.id, self.variant.id, self.score, self.above_threshold, self.used_for_classifiation)
+
+    def description(self):
+        return "[Score: {}; Evalue:{}]"
 
 class Features(models.Model):
     sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 

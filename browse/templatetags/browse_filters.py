@@ -20,6 +20,24 @@ def bootchoice_choice(field):
 
     return html
 
+@register.filter('simple_choice')
+def simple_choice(field):
+    html = '<input type="hidden" name="{0}" id="{0}" value="{1}">'.format(field.id_for_label, field.field.initial)
+    html += '<div class="btn-group" role="group" aria-label="..." id="{}_button_group">'.format(field.id_for_label)
+    for choice in field.field.choices:
+        color = "primary" if field.field.initial == choice[0] else "default"
+        html += '<button type="button" class="btn btn-{} data-form-{}" data-value="{}">{}</button>'.format(color, field.id_for_label, choice[0], choice[1])
+    html += '</div>'
+    js = '<script type="text/javascript">'
+    js += '$(".data-form-{}").on("click", function() {{'.format(field.id_for_label)
+    js +=     '$("#{}_button_group").find("button").removeClass("btn-primary").addClass("btn-default");'.format(field.id_for_label)
+    js +=     '$(this).removeClass("btn-default").addClass("btn-primary");'
+    js +=     '$("#{}").val($(this).attr("data-value"));'.format(field.id_for_label)
+    js += "});"
+    js += '</script>' 
+    html += js
+    return html
+
 @register.filter('get_search_type')
 def get_search_type(field):
     if fieldtype(field) in ["CharField", "ModelChoiceField"]:

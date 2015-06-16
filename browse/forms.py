@@ -31,8 +31,7 @@ class FeatureForm(ModelForm):
 
 SEARCH_CHOICES = (("blastp", "Search HistoneDB (blastp)"), ("hmmer", "Classify your sequence(s) (hmmer)"))
 class AnalyzeFileForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    type = forms.ChoiceField(widget=forms.RadioSelect, choices=SEARCH_CHOICES)
+    type = forms.ChoiceField(widget=forms.RadioSelect, choices=SEARCH_CHOICES, initial=SEARCH_CHOICES[0][0])
     sequences = forms.CharField(widget=forms.Textarea)
     file  = forms.FileField()
 

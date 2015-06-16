@@ -1,36 +1,56 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load browse_filters %}
 
 {% block content %}
 <div class="container" style="top: 5px">
   <div class="alert alert-danger" role="alert">Error: Upload feature not implemented yet</div>
   <div class="page-header">
 	  {% if not result %}
-	    <h1>Upload histone sequence to classify their variants</h1>
+	    <h1>Analyze Sequences</h1>
 	  {% else %}
 	  	<h1>Upload results</small>
 	  {% endif %}
   </div>
   {% if not result %}
-	  <form action="{% url 'browse.views.analyze' %}" method="post">{% csrf_token %}
-      	<div class="container">
-          {% for field in form %}
-            <div class="row">
-              <div class="col-xs-6">
+    <form role="search" action="{% url 'browse.views.analyze' %}" id="advanced_search_form" method="POST">
+      {% csrf_token %}
+      {% for field in analyze_form %}
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-2">
+              <span class="pull-right">
                 {{ field.label_tag }}
-              </div>
-              <div class="col-xs-6">
-                {{ field }}
-              </div>
+              </span>
             </div>
-          {% endfor %}
-      	</div>
-      	<div class="modal-footer">
-        	<button type="submit" class="btn btn-primary">Upload</button>
-      	</div>
+            <div class="col-lg-10">
+              <div class="input-group">
+                {% if field|fieldtype == "ChoiceField" %}
+                  {% autoescape off %}
+                    {{ field|simple_choice }}
+                  {% endautoescape %}
+                {% else %}
+                  {{ field}}
+                {% endif %}
+              </div>
+              {% if field.help_text %}
+                <span class="help-text">{{ field.help_text }}</span>
+              {% endif %}
+            </div>
+          </div>
+      </div>
+      {% endfor %}
+    <button type="submit" class="btn btn-primary">Upload</button>
     </form>
-  {% else %}
-  	{% include "sequences.html" %}
+  {% elif result %}
+    {{ result }}
+    {% if search_type == "hmmer" %}
+      {% include "scores.html" with precomputed_sscores=results.1 %}
+    {% endif %}
+    {% if search_type == "blastp" %}
+      {{ result }}
+  	 {% include "test.html" with blast_results=result %}
+    {% endif %}
   {% endif %}
 </div>
 {% endblock %}

@@ -44,6 +44,9 @@
                 <th data-field="header" data-align="" data-sortable="true" data-width="50">Header</th>
                 <th data-field="score" data-align="" data-sortable="true">Score</th>
                 <th data-field="evalue" data-align="" data-sortable="true">E-value</th>
+                {% if show_blast_results %}
+                  <th data-field="search_e" data-align="" data-sortable="true">BLAST E-value</th>
+                {% endif %}
             </tr>
         </thead>
     </table>
@@ -98,6 +101,14 @@ var $table = $('#sequence_table'),
     $scores_modal_button = $('#scores_modal_button'),
     $download_fasta = $('#download_fasta')
     $entrez = $('#entrez');
+
+    {% if blast_results %}
+      alert("precomputed");
+      $table.bootstrapTable({
+        url: false,
+        data: {% autoescape off %}{{ blast_results }}{% endautoescape %}
+      });
+    {% endif %}
 
     $(function () {
         $("#show_advanced_filter").click( function (){

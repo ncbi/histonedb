@@ -1,6 +1,7 @@
 import sys
 import os
 import StringIO
+import shlex
 
 import uuid
 from Bio import SeqIO, SearchIO
@@ -11,6 +12,9 @@ from browse.models import *
 from django.conf import settings
 
 import subprocess
+
+from django.db.models import Q
+from django.db.models import Max, Min, Count
 
 class TooManySequences(RuntimeError):
     pass
@@ -34,7 +38,7 @@ def process_upload(type, sequences, format):
     sequences = "\n".join([seq.format("fasta") for seq in processed_sequences])
 
     if type == "blastp":
-        result = upload_blastp(sequences)
+        result = upload_blastp(sequences, len(processed_sequences))
     elif type == "hmmer":
         result = upload_hmmer(sequences)
     else:
@@ -42,59 +46,69 @@ def process_upload(type, sequences, format):
 
     return result
 
-def upload_blastp(seq_file):
+def upload_blastp(seq_file, num_seqs):
     output= os.path.join("/", "tmp", "{}.xml".format(seq_file[:-6]))
-    blastx_cline = NcbiblastxCommandline(
-        query=seq_file, db=os.path.join(settings.STATIC_ROOT, "static", "browse", "blast", "HistoneDB.db"), 
-        evalue=0.01, outfmt=5, out=output)
-    stdout, stderr = blastx_cline()
-    result = {"total":0, "rows":[]}
-    with open(output) as result_handle:
-        for blast_record in NCBIXML.parse(result_handle):
-            for alignment in blast_record.alignments:
-                try:
-                    gi = alignment.title.split("|")[0]
-                except IndexError:
-                    continue
-                for hsp in alignment.hsps:
-                    sequence = Sequence.objects.annotate(evalue=Min("scores__evalue"), score=Max("scores__score")).get(id=gi)
-                    search_evalue = hsp.expect
-                    result["rows"].append({
-                        "gi":sequence.id, 
-                        "variant":sequence.variant_id, 
-                        "gene":sequence.gene, 
-                        "splice":sequence.splice, 
-                        "species":sequence.taxonomy.name, 
-                        "score":sequence.score, 
-                        "evalue":sequence.evalue, 
-                        "header":sequence.header, 
-                        "search_e":search_evalue
-                    })
-                    result["total"] += 1
-    os.remove(output)
+    blastp_cline = NcbiblastpCommandline(
+        db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa"), 
+        evalue=0.01, outfmt=5)
+    out, err = blastp_cline(stdin=seq_file)
+    #cmd = str(blastp_cline)
+    #process = subprocess.Popen(shlex.shlex(cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    #assert 0, "'{}'".format(seq_file)
+    #output, error = process.communicate(seq_file)
+    blastFile = StringIO.StringIO()
+    blastFile.write(out)
+    blastFile.seek(0)
+
+    result = []
+    for i, blast_record in enumerate(NCBIXML.parse(blastFile)):
+        for alignment in blast_record.alignments:
+            try:
+                gi = alignment.hit_def.split("|")[0]
+            except IndexError:
+                continue
+            for hsp in alignment.hsps:
+                sequence = Sequence.objects.filter(
+                        (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \
+                        (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=False)) \
+                    ).annotate(
+                        num_scores=Count("all_model_scores"), 
+                        score=Max("all_model_scores__score"),
+                        evalue=Min("all_model_scores__evalue")
+                    ).get(id=gi)
+                search_evalue = hsp.expect
+                result.append({
+                    "gi":str(sequence.id), 
+                    "variant":str(sequence.variant_id), 
+                    "gene":str(sequence.gene) if sequence.gene else "-", 
+                    "splice":str(sequence.splice) if sequence.splice else "-", 
+                    "species":str(sequence.taxonomy.name), 
+                    "score":str(sequence.score), 
+                    "evalue":str(sequence.evalue), 
+                    "header":str(sequence.header), 
+                    "search_e":str(search_evalue),
+                })
     return result
 
 def upload_hmmer(seq_file, evalue=10):
     """
-    """    
+    """
+    temp_seq_path = "/tmp/{}.fasta".format(uuid.uuid4())
+    with open(temp_seq_path, "w") as seqs:
+        seqs.write(seq_file);
+
     variantdb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_variants.hmm")
     coredb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_cores.hmm")
     hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
 
-    assert 0, " ".join([hmmsearch, "-E", str(evalue), "--notextw", variantdb, "-"]) + " < '" + seq_file +"'"
-    for db in (variantdb, coredb):
-        hmmerFile = StringIO.StringIO()
-        process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, "-"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-        output, error = process.communicate(seq_file)
-        assert 0, process.poll()
-
-        assert 0, hmmerFile.getvalue()
-
     results = {}
     variants = []
-    for i, hmmer_string in enumerate((variant_output, core_output)):
+
+    for i, db in enumerate((variantdb, coredb)):
+        process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        output, error = process.communicate()
         hmmerFile = StringIO.StringIO()
-        hmmerFile.write(hmmer_string)
+        hmmerFile.write(output)
         hmmerFile.seek(0)
         for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
             if i==1: 
@@ -112,17 +126,15 @@ def upload_hmmer(seq_file, evalue=10):
             for hit in variant_query:
                 for hsp in hit:
                     if not hit.id in results:
-                        results[hit.id] = {"class":"Unknown", "best_score": 0, "Scores":[]}
+                        results[hit.id] = {"class":"Unknown", "best_score": 0, "scores":{}}
                     if hsp.bitscore >= variant_model.hmmthreshold and hsp.bitscore > results[hit.id]["best_score"]:
                         if i==1 and not (results[hit.id]["class"] == "Unknown" or "canonical" in results[hit.id]["class"]):
                             continue
+                        model = variant_model.id
+
                         results[hit.id]["class"] = variant_model.id
-                        results[hit.id]["best_score"] = hsp.score
+                        results[hit.id]["best_score"] = hsp.bitscore
 
-                        results["scores"].append({variant_model.id: hsp.score})
-
-    assert 0, variants
+                    results[hit.id]["scores"][variant_model.id] = (hsp.bitscore, hsp.bitscore>=variant_model.hmmthreshold)
 
     return results
-
-
