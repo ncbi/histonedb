@@ -3,10 +3,11 @@
 <script src="{% static 'browse/js/xhr@latest.js' %}"></script>
 <script src="{% static 'browse/js/msa@0.4.0.js' %}"></script>
 <script src="{% static 'browse/js/biojs-io-fasta.js' %}"></script>
+<script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
 
 
-<div id="container" style="margin-top:5px;">
-	<div id="row">
+<div class="container" style="margin-top:5px;">
+	<div class="row">
 		<div id="col-xs-12">
 			<div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
 				<div class="btn-group">
@@ -41,14 +42,14 @@
 			</div>
 		</div>
 	</div>
-	<div id="row" style="margin-top:5px;">
-		<div id="col-xs-12">
-			<div id="container"><div id='snippetDiv'></div></div>
+	<div class="row" style="margin-top:5px;">
+		<div class="col-xs-12">
+			<div class="container"><div id='snippetDiv'></div></div>
 		</div>
 	</div>
 </div>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
 	var yourDiv = document.getElementById('snippetDiv');
 

@@ -4,7 +4,6 @@
 
 {% block content %}
 <div class="container" style="top: 5px">
-  <div class="alert alert-danger" role="alert">Error: Upload feature not implemented yet</div>
   <div class="page-header">
 	  {% if not result %}
 	    <h1>Analyze Sequences</h1>
@@ -43,13 +42,14 @@
     <button type="submit" class="btn btn-primary">Upload</button>
     </form>
   {% elif result %}
-    {{ result }}
     {% if search_type == "hmmer" %}
-      {% include "scores.html" with precomputed_sscores=results.1 %}
+      {% for seq in result.0 %}
+        <div class="alert alert-success" role="alert">Sequence {{seq.0}} is most likely: {{seq.1}}</div>
+      {% endfor %}
+      {% include "scores.html" with hmmer_results=result.2 ids=result.1 %}
     {% endif %}
     {% if search_type == "blastp" %}
-      {{ result }}
-  	 {% include "test.html" with blast_results=result %}
+  	  {% include "test.html" with blast_results=result %}
     {% endif %}
   {% endif %}
 </div>

@@ -203,22 +203,44 @@ def get_all_sequences(request, ids=None):
             response['Content-Disposition'] = 'attachment; filename="histone_variants.fasta"'
 
         for s in sequences:
-            response.write(">{}|{}|{}\n{}\n".format(
-                s.id, 
-                s.taxonomy.name.split(" ")[0], 
-                s.variant.id, 
-                s.sequence)
-            )
+            response.write(str(s))
+
         return response
 
     else:
-        sequences = [{"id":"{}|{}|{}".format(s.variant.id, s.taxonomy.name.split(" ")[0], s.id), "seq":s.sequence} for s in sequences]
+        sequences = [s.to_dict() for s in sequences]
         return JsonResponse(sequences, safe=False)
+
+def get_sequence_features(request, ids=None):
+    if ids is None and request.method == "GET" and "id" in request.GET:
+        ids = request.GET.getlist("id")
+    else:
+        #Returning 'false' stops Bootstrap table
+        return "false"
+
+    download = request.GET.get("download", "false") == "true"
+    sequences = Sequence.objects.filter(id__in=ids[:50])
+
+    response = HttpResponse(content_type='text')
+
+    if download:
+        response['Content-Disposition'] = 'attachment; filename="histone_annotations.fasta"'
+
+    response.write(Features.gff_colors())
+    for s in sequences:
+        response.write(str(s.features))
+
+    return response
+
 
 def get_starburst_json(request, browse_type, search, debug=False):
     """
     """
-
+    if ids is None and request.method == "GET" and "id" in request.GET:
+        ids = request.GET.getlist("id")
+    else:
+        #Returning 'false' stops Bootstrap table
+        return "false"
     
 
 def create_sunburst(root, sunburst=None, level=0):

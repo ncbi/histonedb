@@ -69,6 +69,13 @@ class Sequence(models.Model):
             name += ".s{}".format(self.splice)
         return name
 
+    @property
+    def description(self):
+        return "{}|{}|{}".format(self.id, self.taxonomy.name.split(" ")[0], self.full_variant_name)
+
+    def to_dict(self):
+        return {"id":self.description, "seq":self.sequence}
+
     def to_biopython(self, ungap=False):
         seq = Seq(self.sequence)
         try:
@@ -79,7 +86,7 @@ class Sequence(models.Model):
             seq = seq.ungap("-")
         return SeqRecord(
             seq, 
-            id="{}|{}|{}".format(self.id, self.taxonomy.name.split(" ")[0], self.full_variant_name),
+            id=self.description,
             description=score_desc,
             )
 
@@ -139,6 +146,52 @@ class Features(models.Model):
     docking_domain_start = models.IntegerField(null=True)
     docking_domain_end   = models.IntegerField(null=True)
     core                 = models.FloatField()
+
+    def __unicode__(self):
+        """Returns Jalview GFF format"""
+        
+        features = [
+            ("alphaN", "", "helix"),
+            ("alpha1", "", "helix"),
+            ("alpha1ext", "", "helix"),
+            ("alpha2", "", "helix"),
+            ("alpha3", "", "helix"),
+            ("alpha3ext", "", "helix"),
+            ("alphaC", "", "helix"),
+            ("beta1", "", "stand"),
+            ("beta2", "", "stand"),
+            ("beta3", "", "stand"),
+            ("loopL1", "", "loop"),
+            ("loopL2", "", "loop"),
+            ("mgarg1", "Minor Groov Arg 1", "residue"),
+            ("mgarg2", "Minor Groov Arg 2", "residue"),
+            ("mgarg3", "Minor Groov Arg 3", "residue"),
+            ("docking_domain", "Docking Domain", "domain")
+        ]
+        outl = ""
+        for feature, description, type in features:
+            start = str(getattr(self, "{}_start".format(feature), -1))
+            end = str(getattr(self, "{}_end".format(feature), -1))
+
+            if "-1" in (start, end):
+                continue
+
+            description = description or feature
+
+            id = self.sequence.description
+            outl += "\t".join((description, id, "-1", start, end, type))
+            outl += "\n"
+        return outl
+
+    @classmethod
+    def gff_colors(cls):
+        return """domain\tred
+chain\t225,105,0
+residue\t105,225,35
+helix\tff0000
+strand\t00ff00
+loop\tcccccc
+"""
 
 class Structure(models.Model):
     sequence = models.OneToOneField(Sequence, primary_key=True, related_name="structures")

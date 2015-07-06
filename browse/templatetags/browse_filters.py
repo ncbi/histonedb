@@ -1,4 +1,5 @@
 from browse.search import search_types
+import json
 from django import template
 register = template.Library()
 
@@ -81,7 +82,9 @@ def get_pull_down(names, id, reset="menu", default_name=""):
     html += js
     return html
 
-
+@register.filter('jsonify')
+def jsonify(object):
+    return json.dumps(object)
 
 @register.filter('bootstrapify')
 def bootstrapify(field):

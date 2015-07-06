@@ -125,6 +125,8 @@ def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False)
     test_record = SeqRecord(test_seq, id='Query')
     SeqIO.write(test_record, "query_{}.fasta".format(n2),'fasta')
 
+    ss_test = collections.defaultdict(lambda: [-1, -1])
+
     if hist_type == "Unknown":
         if not os.path.isfile("core_histones_1kx5.db"):
             SeqIO.write(core_histones, "core_histones_1kx5.faa", "fasta")
@@ -134,8 +136,16 @@ def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False)
         stdout, stderr = blastp_cline()
         with open("query_{}.xml".format(n2)) as results_file:
             blast_results = [(alignment.title, hsp.expect, hsp) for blast_record in NCBIXML.parse(results_file) for alignment in blast_record.alignments for hsp in alignment.hsps]
-        hist_identified, evalue, hsp = min(blast_results, key=lambda x:x[1])
-        hist_identified = hist_identified.split()[1]
+        
+        try:
+            hist_identified, evalue, hsp = min(blast_results, key=lambda x:x[1])
+            hist_identified = hist_identified.split()[1]
+        except ValueError:
+            #No best match
+            if save_alignment:
+                return None, ss_test, test_record
+            return None, ss_test
+
 
         if debug:
             print "Most likely this is histone:", hist_identified
@@ -151,7 +161,6 @@ def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False)
     core_histone = align[0]
     query = align[1]
 
-    ss_test = collections.defaultdict(lambda: [-1, -1])
     hist = templ[hist_identified]
 
     corresponding_hist = range(len(hist))
@@ -224,6 +233,26 @@ def get_hist_ss_in_aln(alignment,hist_type='Unknown',debug=True):
     hv,ss=get_hist_ss(cons,hist_type,True)
     return hv,ss
 
+def get_gff_from_align(alignment, outfile, hist_type='Unknown', debug=True):
+    hv,ss=get_hist_ss_in_aln(alignment, hist_type, debug)
+    print >> outfile, "startgroup\tsecondarystucture\n"
+    for description, (start, end) in ss.iteritems():
+        if "alpha" in i:
+            type = "alpha"
+        elif "beta" in i:
+            type = "beta"
+        elif "loop" in i:
+            type = "loop"
+        elif "domain" in i:
+            type = "domain"
+        elif "tail" in i:
+            type = "tail"
+        elif "mgarg" in i:
+            type = "mgarg"
+        else:
+            continue
+        print >> outfile, "\t".join(map(str, (description, id, sequenceIndex, start+1, end+1, type)))
+    print >> outfile, "endgroup\tsecondarystructure"
 
 def get_core_lendiff(test_ss,temp_ss,debug=0):
     """Returns ration of core length for test_seq versus template sequence"""

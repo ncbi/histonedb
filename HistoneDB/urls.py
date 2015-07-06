@@ -20,6 +20,7 @@ urlpatterns = patterns('browse.views',
     url(r'^data/sequences/json$', 'get_sequence_table_data'),
     url(r'^data/scores/json$', 'get_all_scores'),
     url(r'^data/msa/json$', 'get_all_sequences'),
+    url(r'^data/features/gff$', 'get_sequence_features'),
 
     url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
     url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', 'get_starburst_json'),

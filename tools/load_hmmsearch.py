@@ -294,13 +294,15 @@ def add_sequence(gi, variant_model, taxonomy, header, sequence):
   seq.save()
   return seq
 
-def update_features(seq,ss_position=None, variant_model=None):
+def update_features(seq, ss_position=None, variant_model=None):
   if ss_position is None and variant_model is not None:
-    hist_identified, ss_position, sequence = get_hist_ss(sequence, variant_model.core_type.id, save_alignment=True)
+    hist_identified, ss_position, sequence = get_hist_ss(seq.to_biopython(ungap=True).seq, variant_model.core_type.id, save_alignment=True)
     sequence = str(sequence.seq)
-  if ss_position is None: return
 
-  if seq.features:
+  if ss_position is None:
+    assert 0
+
+  if hasattr(seq, "features") and seq.features:
     seq.features.delete()
 
   if not variant_model.core_type.id == "H1":
@@ -338,7 +340,10 @@ def update_features(seq,ss_position=None, variant_model=None):
       docking_domain_end   = ss_position["docking domain"][1],
       core                 = ss_position["core"],
       )
-    features.save()
+    try:
+      features.save()
+    except:
+      pass
 
 
 def add_score(seq, variant_model, hsp, best=False):
@@ -357,4 +362,3 @@ def add_score(seq, variant_model, hsp, best=False):
     used_for_classifiation = best,
     )
   score.save()
-  

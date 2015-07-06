@@ -268,7 +268,7 @@ class HistoneSearch(object):
 
     def get_dict(self):
         sequences = self.sorted()
-        result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "taxonomy":r.taxonomy.name, "score":r.score, "evalue":r.evalue, "header":r.header} for r in sequences]
+        result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "taxonomy":r.taxonomy.name.capitalize(), "score":r.score, "evalue":r.evalue, "header":r.header} for r in sequences]
         return {"total":self.count, "rows":result}
 
     def simple_search(self, search_text):

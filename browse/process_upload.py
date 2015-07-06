@@ -8,7 +8,7 @@ from Bio import SeqIO, SearchIO
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIXML
 
-from browse.models import *
+from browse.models import Histone, Variant, Sequence
 from django.conf import settings
 
 import subprocess
@@ -40,7 +40,7 @@ def process_upload(type, sequences, format):
     if type == "blastp":
         result = upload_blastp(sequences, len(processed_sequences))
     elif type == "hmmer":
-        result = upload_hmmer(sequences)
+        result = upload_hmmer(processed_sequences, len(processed_sequences))
     else:
         assert 0, type
 
@@ -82,7 +82,7 @@ def upload_blastp(seq_file, num_seqs):
                     "variant":str(sequence.variant_id), 
                     "gene":str(sequence.gene) if sequence.gene else "-", 
                     "splice":str(sequence.splice) if sequence.splice else "-", 
-                    "species":str(sequence.taxonomy.name), 
+                    "taxonomy":str(sequence.taxonomy.name), 
                     "score":str(sequence.score), 
                     "evalue":str(sequence.evalue), 
                     "header":str(sequence.header), 
@@ -90,12 +90,13 @@ def upload_blastp(seq_file, num_seqs):
                 })
     return result
 
-def upload_hmmer(seq_file, evalue=10):
+def upload_hmmer(seq_file, num_seqs, evalue=10):
     """
     """
     temp_seq_path = "/tmp/{}.fasta".format(uuid.uuid4())
     with open(temp_seq_path, "w") as seqs:
-        seqs.write(seq_file);
+        for s in seq_file:
+            SeqIO.write(s, seqs, "fasta");
 
     variantdb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_variants.hmm")
     coredb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_cores.hmm")
@@ -103,6 +104,20 @@ def upload_hmmer(seq_file, evalue=10):
 
     results = {}
     variants = []
+
+    variants = list(Variant.objects.all().order_by("id").values_list("id", "hmmthreshold"))
+    indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
+    seqs_index = {seq.id:i for i, seq in enumerate(seq_file)}
+    ids = map(lambda s: s.id, seq_file)
+    rows = [{} for _ in xrange(len(variants))]
+    classifications = {s.id:"Unknown" for s in seq_file}
+    for i, (variant, threshold) in enumerate(variants):
+        rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
+        for id in ids:
+            rows[i][id] = "<0"
+        rows[i]["data"] = {}
+        rows[i]["data"]["above_threshold"] = {id:False for id in ids}
+        rows[i]["data"]["this_classified"] = {id:False for id in ids}
 
     for i, db in enumerate((variantdb, coredb)):
         process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
@@ -120,21 +135,24 @@ def upload_hmmer(seq_file, evalue=10):
 
             try:
                 variant_model = Variant.objects.get(id=variant)
-            except:
+            except Variant.DoesNotExist:
                 continue
 
             for hit in variant_query:
                 for hsp in hit:
-                    if not hit.id in results:
-                        results[hit.id] = {"class":"Unknown", "best_score": 0, "scores":{}}
-                    if hsp.bitscore >= variant_model.hmmthreshold and hsp.bitscore > results[hit.id]["best_score"]:
-                        if i==1 and not (results[hit.id]["class"] == "Unknown" or "canonical" in results[hit.id]["class"]):
+                    if hsp.bitscore>=variant_model.hmmthreshold and \
+                         (rows[indices[variant]][hit.id] == "<0" or \
+                          hsp.bitscore > rows[indices[variant]][hit.id]):
+                        if i==1 and not (classifications[hit.id] == "Unknown" or "canonical" in classifications[hit.id]):
+                            #Skip canoninical score if already classfied as a variant
                             continue
-                        model = variant_model.id
-
-                        results[hit.id]["class"] = variant_model.id
-                        results[hit.id]["best_score"] = hsp.bitscore
-
-                    results[hit.id]["scores"][variant_model.id] = (hsp.bitscore, hsp.bitscore>=variant_model.hmmthreshold)
-
-    return results
+                        classifications[hit.id] = variant
+                        for id in rows[indices[variant]]["data"]["this_classified"].keys():
+                            rows[indices[variant]]["data"]["this_classified"][id] = id == hit.id
+                        
+                    
+                    rows[indices[variant]]["data"]["above_threshold"][hit.id] = hsp.bitscore>=variant_model.hmmthreshold
+                    rows[indices[variant]][hit.id] = hsp.bitscore
+                        
+    classifications = [(id, classifications[id]) for id in ids]
+    return classifications, ids, rows

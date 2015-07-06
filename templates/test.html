@@ -1,7 +1,9 @@
+{% load browse_filters %}
+
 <div id="sequence_toolbar">
     <div class="btn-group" role="group" aria-label="...">
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="fasle">View/Download Selected <span class="caret"></span></button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="false">View/Download Selected <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#" id="msa_modal_button">View alignment/secondary structure</a></li>
                 <li><a href="#" id="scores_modal_button">View against all profiles</a></li>
@@ -10,7 +12,9 @@
             </ul>
         </div>
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" id="show_advanced_filter"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Filter</button>
+            <button type="button" class="btn btn-default" id="show_advanced_filter" {% if blast_results %}disabled="disabled"{% endif %}>
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advanced Filter
+            </button>
         </div>
         <div class="btn-group" role="group" aria-label="...">
             <button type="button" class="btn btn-default" disabled="disabled" id="reset_filter"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reset</button>
@@ -19,37 +23,7 @@
 </div>
 
 <div class="container" style="margin-top:5px;">
-    <table id="sequence_table"
-           data-toggle="table"
-           data-url="{% url 'browse.views.get_sequence_table_data' %}"
-           data-show-columns="true"
-           data-search="true"
-           data-show-toggle="true"
-           data-pagination="true"
-           data-side-pagination="server"
-           data-page-list="[5, 10, 20, 50, 100, 200]"
-           data-click-to-select="true"
-           data-sort-name="score"
-           data-sort-order="desc"
-           data-show-refresh="true"
-           data-toolbar="#sequence_toolbar">
-        <thead>
-            <tr>
-                <th data-field="state" data-checkbox="true"></th>
-                <th data-field="gi" data-align="" data-sortable="true">GI</th>
-                <th data-field="variant" data-align="" data-sortable="true">Variant</th>
-                <th data-field="gene" data-align="" data-sortable="true">Gene</th>
-                <th data-field="splice" data-align="" data-sortable="true">Splice</th>
-                <th data-field="taxonomy" data-align="" data-sortable="true">Taxonomy</th>
-                <th data-field="header" data-align="" data-sortable="true" data-width="50">Header</th>
-                <th data-field="score" data-align="" data-sortable="true">Score</th>
-                <th data-field="evalue" data-align="" data-sortable="true">E-value</th>
-                {% if show_blast_results %}
-                  <th data-field="search_e" data-align="" data-sortable="true">BLAST E-value</th>
-                {% endif %}
-            </tr>
-        </thead>
-    </table>
+  <table id="sequence_table"></table>
 </div>
 
 <div class="modal fade" id="msa_modal" tabindex="-1" role="dialog" aria-labelledby="seqs" aria-hidden="true">
@@ -76,18 +50,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="all_profiles">All Profile Scores</h4>
       </div>
-      <div class="modal-body">
-        <div class="btn-group">
-          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Classified Variant</button>
-        </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Above Variant Threshold</button>
-        </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Below Variant Threshold</button>
-        </div>
-        <div id="bootstrap_table_div"></div>
-      </div>
+      {% include "scores.html" %}
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
@@ -99,34 +62,66 @@
 var $table = $('#sequence_table'),
     $msa_modal_button = $('#msa_modal_button'),
     $scores_modal_button = $('#scores_modal_button'),
-    $download_fasta = $('#download_fasta')
+    $download_fasta = $('#download_fasta'),
     $entrez = $('#entrez');
 
-    {% if blast_results %}
-      alert("precomputed");
-      $table.bootstrapTable({
-        url: false,
-        data: {% autoescape off %}{{ blast_results }}{% endautoescape %}
-      });
-    {% endif %}
+    $('#sequence_table').bootstrapTable({
+      pagination:true,
+      pageList:[5, 10, 20, 50, 100, 200],
+      {% if blast_results %}
+      data: {% autoescape off %}{{ blast_results|jsonify }}{% endautoescape %},
+      sidePagination:"client",
+      {% else %}
+      url: "{% url 'browse.views.get_sequence_table_data' %}",
+      sidePagination:"server",
+      {% endif %}
+      columns: [
+        {field:"state", checkbox:true},
+        {field:"gi", sortable:true, title:"GI"},
+        {field:"variant", sortable:true, title:"Variant"},
+        {field:"gene", sortable:true, title:"Gene"},
+        {field:"splice", sortable:true, title:"Splice"},
+        {field:"taxonomy", sortable:true, title:"Taxonomy"},
+        {field:"header", sortable:true, width:50, title:"Header"},
+        {field:"score", sortable:true, title:"Score"},
+        {field:"evalue", sortable:true, title:"E-value"},
+        {% if blast_results %}
+          {field:"search_e", sortable:true, title:"BLAST E-value", cellStyle: function(value, row, index) {
+            return {classes:"danger"};
+            }},
+        {% endif %}
+      ],
+      showColumns:true,
+      search:true,
+      showToggle:true,
+      clickToSelect:true,
+      showRefresh:true,
+      toolbar:"#sequence_toolbar",
+    });
+
+    function getSelectedIDs(){
+      selections = $table.bootstrapTable('getSelections');
+      var ids = [];
+      for (var i = 0; i < selections.length; i++) {
+        ids.push(selections[i].gi);
+      }
+      if(ids.length==0){
+        alert("You must select one ore more sequences.");
+        return;
+      }
+      return ids;
+    };
+    
+    $scores_modal_button.click(function() {
+      ids = getSelectedIDs();
+      make_scores_table($('#scores_table_div'), ids, "418px");
+      $('#scores_modal').modal('show');
+    });
 
     $(function () {
         $("#show_advanced_filter").click( function (){
           open_advanced_filter("filter", $table);
         });
-
-        function getSelectedIDs(){
-          selections = $table.bootstrapTable('getSelections');
-          var ids = [];
-          for (var i = 0; i < selections.length; i++) {
-            ids.push(selections[i].gi);
-          }
-          if(ids.length==0){
-            alert("You must select one ore more sequences.");
-            return;
-          }
-          return ids;
-        };
 
         $msa_modal_button.click(function() {
           ids = getSelectedIDs();
@@ -197,16 +192,22 @@ var $table = $('#sequence_table'),
             }
           };
 
+          var xhr = msa.io.xhr;
+          var gff = msa.io.gff;
+          xhr("{% url 'browse.views.get_sequence_features' %}"+params.substring(0, params.length-1), function(err, request, body) {
+            var features = gff.parseSeqs(body);
+            m.seqs.addFeatures(features);
+          });
+
           m.g.colorscheme.addDynScheme("colorConservation", colorConservation);
           m.g.colorscheme.set("scheme", "colorConservation");
           $('#msa_modal').modal('show');
         });
         
-        function cellStyle(value, row, index) {
-          //console.log(index);
+        function scoreCellStyle(value, row, index) {
           console.log(row);
           console.log(value);
-          //console.log(row.data.this_classified);
+          
           id = "";
           for (var key in row){
             if(row[key] == value){
@@ -224,24 +225,6 @@ var $table = $('#sequence_table'),
             return {classes:"danger"};
           }
         }
-
-        $scores_modal_button.click(function() {
-          $('#bootstrap_table_div').empty();
-          console.log($('#bootstrap_table_div').innerHTML)
-          $('#bootstrap_table_div').append("<table id='scores_table' style='width:418px;overflow: auto;'></table>");
-          ids = getSelectedIDs();
-          columns = [{field:'variant', title:''}];
-          params = "?";
-          for (var i = 0; i < ids.length; i++) {
-            columns.push({field:ids[i], title:ids[i], cellStyle:cellStyle});
-            params += "id="+ids[i]+"&"
-          }
-          $('#scores_table').bootstrapTable({
-              url: "{% url 'browse.views.get_all_scores' %}"+params.substring(0, params.length-1),
-              columns: columns,
-          });
-          $('#scores_modal').modal('show');
-        });
 
         $download_fasta.click(function() {
           ids = getSelectedIDs();

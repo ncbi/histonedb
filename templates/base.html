@@ -14,8 +14,11 @@
 
     <link href="{% static 'browse/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'browse/css/starter-template.css' %}" rel="stylesheet">
+    <link href="{% static 'browse/css/bootstrap-table.min.css' %}" rel="stylesheet">
 
     <script src="{% static 'browse/js/jquery-2.1.3.min.js' %}"></script>
+    <script src="{% static 'browse/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'browse/js/bootstrap-table.min.js' %}"></script>
 
     {% block includes %} {% endblock %}
 
@@ -149,11 +152,5 @@
         </div>
       </div>
     </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'browse/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'browse/js/bootstrap-table.min.js' %}"></script>
   </body>
 </html>
