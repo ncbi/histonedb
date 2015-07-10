@@ -1,9 +1,10 @@
 # The HistoneDB 2.0: a phylogeny-based resource for all histone proteins and their variants #
 
-Eli J. Draizen<sup>1</sup>, Alexey K. Shaytan<sup>1</sup>, Leonardo Marino-Ramirez<sup>1</sup>, Paul B. Talbert<sup>2</sup>, David Landsman<sup>1</sup>, Anna R. Panchenko<sup>1</sup>
+Eli J. Draizen<sup>1</sup>, Alexey K. Shaytan<sup>1</sup>, Leonardo Marino-Ramirez<sup>2</sup>, Paul B. Talbert<sup>3</sup>, David Landsman<sup>2</sup>, Anna R. Panchenko<sup>1</sup>
 
-<sup>1</sup>Computational Biology Branch, National Center for Biotechnology Information, National Library of Medicine, National Institutes of Health, 8600 Rockville Pike, MSC 6075, Bethesda, MD 20894-6075, USA,
-<sup>2</sup>Howard Hughes Medical Institute, Basic Sciences Division, Fred Hutchinson Cancer Research Center, Seattle, WA 98109, USA.
+<sup>1</sup>Computational Biophysics Group, Computational Biology Branch, National Center for Biotechnology Information, National Library of Medicine, National Institutes of Health, 8600 Rockville Pike, MSC 6075, Bethesda, MD 20894-6075, USA,
+<sup>2</sup>Bioinformatics of Chromatin Structure Group, Computational Biology Branch, National Center for Biotechnology Information, National Library of Medicine, National Institutes of Health, 8600 Rockville Pike, MSC 6075, Bethesda, MD 20894-6075, USA,
+<sup>3</sup>Howard Hughes Medical Institute, Basic Sciences Division, Fred Hutchinson Cancer Research Center, Seattle, WA 98109, USA.
 
 #### Contact ####
 Eli Draizen (eli.draizen@nih.gov) or Anna Panchenkeno (panch@ncbi.nlm.nih.gov)
@@ -120,13 +121,16 @@ The next tab contains all of the sequences for that variant, with the same funct
 The final tab consists of the multiple sequence alignment for the specific variant, which have been created using the sequences identified by Talbert. This is also made with the BioJS msa module.
 
 #### All Sequences ####
-You are presented with the GI, Variant, Gene, Splice, Species, Header, and Score for each sequence using wenzhixin’s bootstrap-table. You can then select one or more sequences to see its multiple sequence alignments with secondary structure annotations, scores for the sequence in other models, view in Entrez, and download all. The Multiple Sequence Alignment is made from the BioJS msa package. Viewing scores of the sequence from other models is important to see if there was a classification error, or there may be other significant variants but we don’t know for sure, e.g. the sequence with GI xxxx from Drosophila is classified at H2A.Z, but it contains the motif “SQEY,” which is common in H2A.X.
+A table is shown with GI, Variant, Gene, Splice, Species, Protein name in NR, and HMMER hmmsearch score and evalue for each sequence using wenzhixin’s bootstrap-table. One or more sequences can be selected to to view a multiple sequence alignment with secondary structure annotations, scores for the sequence in against other models, view in Entrez, and download all in FASTA format. The Multiple Sequence Alignment is made from the BioJS msa package. Viewing scores of the sequence against other models is important to see if there was a classification error, or sequence may act as another variant but the signal might not be as strong. If the score of the sequence is above a threshold for a variant, but less than the score againt he model it was classified as, it will apear blue. An exaple can be seen in the sequence with GI 121989 from Drosophila melanogaster, which is classified at H2A.Z, but contains the motif which is common in H2A.X, and is thus thought to exhibit feautres of both variants.
 
 #### Search ####
-There are two types of search, ‘filter’ and ‘simple search’. Filter is the standard search, where you presented by database column names to filter by. You can also use the filter modal to search for high scoring sequences in other variants. This is used in Advanced Search and the All Sequences Advanced Filter, where the Adanced Search takes you to a new seach page with results and the Advanced Filter filters the current view, which is saved in a sission variable. Simple search is when you have a single textbox that filters the entire database, which can be seen on the navigation bar and the All Sequences search textbox. The simple search searches in order GI number, core histone type, variant, old name schemes for variant, taxonomy, sequence headers, and finally sequence motifs, stopping if a match is made. If the search was from the navigation bar and the result was a core histone type or variant, the page is redirected to its respective browse page. 
+There are two types of search, ‘filter’ and ‘simple search’. Filter is the standard search, where you presented by database column names to filter by. This is used in Advanced Search and the All Sequences Advanced Filter, where the Adanced Search takes you to a new seach page with results and the Advanced Filter filters the current view, which is saved in a session variable. Simple search is when one is presented with a single textbox that filters the entire database or the current table, which can be seen on the navigation bar and the All Sequences search textbox. The simple search searches in order GI number, core histone type, variant, old naming schemes for variants, taxonomy, sequence headers, and finally sequence motifs, stopping if a match is made. If the search was from the navigation bar and the result was a core histone type or variant, the page is redirected to its respective browse page. 
+
+#### Analyze ####
+A user can also enter their own sequences in FASTA format to classify their own sequences. There are two options to classify a sequence using either blastp against the sequences in the HistoneDB or HMMER hmmsearch against all of our variant models witht he same classifaction algorthm descrobed above. For blastp, the results are shown in the All Sequences table with an extra column for the blastp e-value, which is shown in red. For hmmer, the classifiactions are listed as well as a table containing the scores against all models, which is the same format as the table variant browse.
 
 ## Results and Discussion ##
-We were able to classify most histone sequences by variant in the nr database.For the varaints we were able to classify, we were able to show.
+We were able to classify most histone sequences by variant in the nr database. For the varaints we were able to classify, we were able to show.
 
 H2A | | H2B | | H3 | | H4 | | H1
 ----|-|-----|-|----|-|----|-|----
@@ -141,7 +145,7 @@ canonicalH2A | 0 | | | | |
 Compared to the previous Histone Database, we have found **X** more variants, and **Y** more sequences.  
 
 
-Our models, however, are not able to distinguish between paralogous genes and splice isoforms, which we we call gene and splice isofform in the database.
+Our models, however, are not able to distinguish between paralogous genes and splice isoforms, which we we call gene and splice in the database, but can be added manually.
 
 ## Conclusion ##
 The HistoneDB has been redesigned to organize the histones in nr by variant; provide reference alignments for each variant; understand how the variants evolved; find orthologs of variants in other species; and finally, promote the new histone varaint nomenclature \ref{Talbert2012}. 
