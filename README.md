@@ -1,5 +1,7 @@
 # HistoneDB
-A database for all histone proteins in NR organized by their known non-allelic protein isoforms, called variants. This resource can be used to understand how changes in histone variants affect structure, complex formation, and nucleosome function. For more information, please read our paper (citaion below) in 
+A database for all histone proteins in NR organized by their known non-allelic protein isoforms, called variants. This resource can be used to understand how changes in histone variants affect structure, complex formation, and nucleosome function. For more information, please read our [paper](manuscript/paper.md) (citaion below).
+
+The database can be accesed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
 
 ## Requirements ##
 - Python 2.7
@@ -14,25 +16,37 @@ A database for all histone proteins in NR organized by their known non-allelic p
 - EMBOSS
 
 ## Setup ##
-1) Build NCBI Taxonomy with djangophylocore
+If you want to test the server on your own machine, you must make sure have all of the dependies listed above and follow these steps.
+
+1) Create MySQL database and store login information in HistoneDB/NCBI_database_info.py, which is formated in the follwing way:
+```
+#This file contains the user name and password for the HistoneDB 2.0
+#Keep hidden
+name = "DB NAME"
+user = "DB USER"
+password = "DB PASS"
+host = "DB URL"
+```
+
+2) Build NCBI Taxonomy with djangophylocore
 ```
 python manage.py buildncbi
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
 ```
-2) Classify sequences in NR
+3) Classify sequences in NR
 ```
 python manage.py buildvariants
 ```
-3) Build trees from seed sequences
+4) Build trees from seed sequences
 ```
 python manage.py buildtrees
 ```
-4) Build organism sunbursts for each variant
+5) Build organism sunbursts for each variant
 ```
 python manage.py buildsunburst
 ```
-5) Build MSA and GFF seuqence features for variants
+6) Build MSA and GFF seuqence features for variants
 ```
 python manage.py buildseedinfo
 ```
