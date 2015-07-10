@@ -5,8 +5,30 @@
 <link rel="stylesheet" type="text/css" href="{% static 'browse/css/unitip.css' %}" />
 <script type="text/javascript" src="{% static 'browse/js/unitip.js' %}"></script>
 <script type="text/javascript" src="{% static 'browse/js/raphael-min.js' %}"></script>
-<script type="text/javascript" src="{% static 'browse/js/jsphylosvg-min.js' %}"></script>  
+<script type="text/javascript" src="{% static 'browse/js/jsphylosvg-min.js' %}"></script> 
+<script src="{% static 'browse/js/xhr@latest.js' %}"></script>
+<script src="{% static 'browse/js/msa@0.4.6' %}"></script>
+<script src="{% static 'browse/js/biojs-io-fasta.js' %}"></script>
+<script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
+<script src="{% static 'browse/js/msa.js' %}"></script> 
 <script type="text/javascript">
+  $(function() { 
+    // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        // save the latest tab; use cookies if you like 'em better:
+        localStorage.setItem('lastPage', "{{ request.path }}");
+        localStorage.setItem('lastTab', $(this).attr('href'));
+    });
+
+    // go to the latest tab, if it exists:
+    var lastPage = localStorage.getItem('lastPage');
+    if(lastPage && lastPage == "{{ request.path }}"){
+      var lastTab = localStorage.getItem('lastTab');
+      if (lastTab) {
+          $('[href="' + lastTab + '"]').tab('show');
+      }
+    }
+  });
   $(document).ready(function(){
     $.ajax({
       url:"{% static tree_url %}",
@@ -49,7 +71,10 @@
     <div class="col-xs-9">
       <div class="row">
         <div class="col-xs-12">
-          <h1>{{ histone_type }}</h1>
+          <h1>
+            <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
+            Core type: {{ histone_type }}
+          </h1>
         </div>
         <div class="col-xs-12">
           {{ histone_description }}
@@ -72,6 +97,7 @@
           <div role="tabpanel" class="tab-pane active" id="variant">
             <div class="row">
               <div class="col-xs-8">
+                Seed alignments for each variant have been constructed. Click on a variant in the right hand menu to view its seed alignment. Below, all of the seed alignments have been combined and realigned to construct the following tree. It is important to note that most of the variants cluster in separate clades.
                 <div id="tree"></div>
               </div>
               <div class="col-xs-4">
@@ -93,7 +119,7 @@
             </div>
           </div>
           <div role="tabpanel" class="tab-pane" id="sequences">
-            {% include "test.html" %} 
+            {% include "test.html" with page_name="browse-variants-"|add:histone_type %} 
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
             {% include "seed.html" %}

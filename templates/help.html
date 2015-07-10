@@ -6,41 +6,114 @@
   <div class="row">
     <div class="col-xs-2">
       <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" class="active"><a href="#background">Background</a></li>
-        <li role="presentation"><a href="#nomenclature">Nomenclature</a></li>
-        <li role="presentation"><a href="#classification">Classification</a></li>
-        <li role="presentation"><a href="#references">References</a></li>
-        <li role="presentation"><a href="#cite">How To Cite</a></li>
+        <li role="presentation" class="active"><a href="#background" aria-controls="background" role="tab" data-toggle="tab">Background</a></li>
+        <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
+        <li role="presentation"><a href="#nomenclature" aria-controls="nomencalture" role="tab" data-toggle="tab">Nomenclature</a></li>
+        <li role="presentation"><a href="#classification" aria-controls="classification" role="tab" data-toggle="tab">Classification</a></li>
+        <li role="presentation"><a href="#references" aria-controls="references" role="tab" data-toggle="tab">References</a></li>
+        <li role="presentation"><a href="#cite" aria-controls="cite" role="tab" data-toggle="tab">How To Cite</a></li>
       </ul>
     </div>
     <div class="col-xs-10">
-      <h2 id="background">Background</h2>
-      Histones proteins form the core of the nucleosome, which is primaily thought to only be important structurally so the DNA can fit inside the nucleaus and to control gene expression. However, as we are slowly starting to realize, nucleosmes have a range of different functions and can change by the different histones variants....
-
-      <h2 id="nomencalture">Nomenclature</h2>
-      Histone variants need to be .. <br /><br />
-      [desc] [prefix]<font color="red">TYPE</font>.<font color="blue">VARIANT</font>.<font color="orange">GENE</font>.<font color="pink">sSPLICE</font> <br />
-      <ol>
-        <li><font color="red">TYPE</font> = Core histone name (H2A, H2B, H3, H4, H1)</li>
-        <li><font color="blue">VARIANT</font>:
-          <ul>
-            <li>Letter: "Structurally distinct monophyletic clade of a histone family", exception is H2A.X</li>
-            <li>Number: Species-specific variant, not defined by phylogeny but clear orthology</li>
-          </ul>
-        </li>
-        <li><font color="orange">GENE</font> = Gene number, or more specially phylogenetic branch point order (Optional if unknown)</li>
-        <li><font color="pink">SPLICE</font> = Splice isoform index, or paralogous sequences, preceded by ‘s’ character (Optional if unknown)</li>
-      </ol>
-      prefix = Structurally distinct clade of core histone (<b>macro</b>H2A, <b>sub</b>H2B, <b>cen</b>H3)<br />
-      desc = Specify features about variant (location, species)<br />
-      Note:<br />
-      <ul>
-        <li>Capitalization</li>
-        <li>Periods (Phylogenetic branch points)</li>
-        <li>Spaces (Separate description from variant description)</li>
-      </ul>
-      <div class="container text-center">Example: <font color="red">H2A</font>.<font color="blue">Z</font>.<font color="orange">1</font>.<font color="pink">s1</font></div>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="background">
+          <h2 id="background">Background</h2>
+          Histones proteins form the core of the nucleosome, which is primaily thought to only be important structurally so the DNA can fit inside the nucleaus and to control gene expression. However, as we are slowly starting to realize, nucleosmes have a range of different functions and can change by the different histones variants....
+        </div>
+        <div role="tabpanel" class="tab-pane" id="contact">
+          <h2 id="contact">Contact</h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <!-- Place this tag where you want the button to render. -->
+                <!-- Place this tag where you want the button to render. -->
+                <a class="github-button" href="https://github.com/edraizen/HistoneDB" data-style="mega" data-count-href="/edraizen/HistoneDB/watchers" data-count-api="/repos/edraizen/HistoneDB#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch edraizen/HistoneDB on GitHub">Watch</a>
+                <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 center-block">
+                <h3><a href="http://www.ncbi.nlm.nih.gov/CBBresearch/Panchenko/">Anna Panchenko</a></h3><br />
+                Computational Biophysics Group<br />
+                NIH, NLM, CBB<br />
+                8600 Rockville Pike, Bldg 38A<br />
+                Bethesda, MD, 20894<br />
+                email here<br />
+              </div>
+              <div class="col-xs-4 center-block">
+                <h3>Eli Draizen</h3><br />
+                Computational Biophysics Group<br />
+                NIH, NLM, CBB<br />
+                8600 Rockville Pike, Bldg 38A<br />
+                Bethesda, MD, 20894<br />
+                email here<br />
+              </div>
+              <div class="col-xs-4 center-block">
+                <h3>Alexey K. Shaytan</h3><br />
+                Computational Biophysics Group<br />
+                NIH, NLM, CBB<br />
+                8600 Rockville Pike, Bldg 38A<br />
+                Bethesda, MD, 20894<br />
+                email here<br />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 center-block">
+                <h3><a href="http://www.ncbi.nlm.nih.gov/research/staff/landsman/">David Landsman</a></h3><br />
+                Bioinformatics of Chromatin Structure Group<br />
+                NIH, NLM, CBB<br />
+                8600 Rockville Pike, Bldg 38A<br />
+                Bethesda, MD, 20894<br />
+                email here<br />
+              </div>
+              <div class="col-xs-4 center-block">
+                <h3><a href="http://www.ncbi.nlm.nih.gov/research/staff/marino/">Leonardo Mariño-Ramírez</a></h3><br />
+                Bioinformatics of Chromatin Structure Group<br />
+                NIH, NLM, CBB<br />
+                8600 Rockville Pike, Bldg 38A<br />
+                Bethesda, MD, 20894<br />
+                email here<br />
+              </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="nomenclature">
+        <h2 id="nomencalture">Nomenclature</h2>
+        Histone variants need to be .. <br /><br />
+        [desc] [prefix]<font color="red">TYPE</font>.<font color="blue">VARIANT</font>.<font color="orange">GENE</font>.<font color="pink">sSPLICE</font> <br />
+        <ol>
+          <li><font color="red">TYPE</font> = Core histone name (H2A, H2B, H3, H4, H1)</li>
+          <li><font color="blue">VARIANT</font>:
+            <ul>
+              <li>Letter: "Structurally distinct monophyletic clade of a histone family", exception is H2A.X</li>
+              <li>Number: Species-specific variant, not defined by phylogeny but clear orthology</li>
+            </ul>
+          </li>
+          <li><font color="orange">GENE</font> = Gene number, or more specially phylogenetic branch point order (Optional if unknown)</li>
+          <li><font color="pink">SPLICE</font> = Splice isoform index, or paralogous sequences, preceded by ‘s’ character (Optional if unknown)</li>
+        </ol>
+        prefix = Structurally distinct clade of core histone (<b>macro</b>H2A, <b>sub</b>H2B, <b>cen</b>H3)<br />
+        desc = Specify features about variant (location, species)<br />
+        Note:<br />
+        <ul>
+          <li>Capitalization</li>
+          <li>Periods (Phylogenetic branch points)</li>
+          <li>Spaces (Separate description from variant description)</li>
+        </ul>
+        <div class="container text-center">Example: <font color="red">H2A</font>.<font color="blue">Z</font>.<font color="orange">1</font>.<font color="pink">s1</font></div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="classification">
+        We used HMMs!!!
+      </div>
+      <div role="tabpanel" class="tab-pane" id="references">
+        We cited these papers!
+      </div>
+      <div role="tabpanel" class="tab-pane" id="cite">
+        Eli J. Draizen, Alexey K. Shaytan, Leonardo Marino-Ramirez, Paul B. Talbert, David Landsman, Anna R. Panchenko. "The HistoneDB 2.0: a phylogeny-based resource for all histone proteins and their variants." <i>Database</i>. In Preparation.
+      </div>
     </div>
   </div>
 </div>
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 {% endblock %}

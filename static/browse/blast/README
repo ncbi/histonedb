@@ -1,0 +1,1 @@
+This directory is used to store the blast databse of the HistoneDB. It must be created after the variants have been loeaded, by calling 'python manage.py buildblast'

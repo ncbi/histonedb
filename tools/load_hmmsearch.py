@@ -294,7 +294,7 @@ def add_sequence(gi, variant_model, taxonomy, header, sequence):
   seq.save()
   return seq
 
-def update_features(seq, ss_position=None, variant_model=None):
+def update_features(seq, ss_position=None, variant_model=None, return_not_save=False):
   if ss_position is None and variant_model is not None:
     hist_identified, ss_position, sequence = get_hist_ss(seq.to_biopython(ungap=True).seq, variant_model.core_type.id, save_alignment=True)
     sequence = str(sequence.seq)
@@ -306,40 +306,11 @@ def update_features(seq, ss_position=None, variant_model=None):
     seq.features.delete()
 
   if not variant_model.core_type.id == "H1":
-    features = Features(
-      sequence             = seq,
-      alphaN_start         = ss_position["alphaN"][0],
-      alphaN_end           = ss_position["alphaN"][1],
-      alpha1_start         = ss_position["alpha1"][0],
-      alpha1_end           = ss_position["alpha1"][1],
-      alpha1ext_start      = ss_position["alpha1ext"][0],
-      alpha1ext_end        = ss_position["alpha1ext"][1],
-      alpha2_start         = ss_position["alpha2"][0],
-      alpha2_end           = ss_position["alpha2"][1],
-      alpha3_start         = ss_position["alpha3"][0],
-      alpha3_end           = ss_position["alpha3"][1],
-      alpha3ext_start      = ss_position["alpha3ext"][0],
-      alpha3ext_end        = ss_position["alpha3ext"][1],
-      alphaC_start         = ss_position["alphaC"][0],
-      alphaC_end           = ss_position["alphaC"][1],
-      beta1_start          = ss_position["beta1"][0],
-      beta1_end            = ss_position["beta1"][1],
-      beta2_start          = ss_position["beta2"][0],
-      beta2_end            = ss_position["beta2"][1],
-      loopL1_start         = ss_position["loopL1"][0],
-      loopL1_end           = ss_position["loopL1"][1],
-      loopL2_start         = ss_position["loopL2"][0],
-      loopL2_end           = ss_position["loopL2"][1],
-      mgarg1_start         = ss_position["mgarg1"][0],
-      mgarg1_end           = ss_position["mgarg1"][1],
-      mgarg2_start         = ss_position["mgarg2"][0],
-      mgarg2_end           = ss_position["mgarg2"][1],
-      mgarg3_start         = ss_position["mgarg3"][0],
-      mgarg3_end           = ss_position["mgarg3"][1],
-      docking_domain_start = ss_position["docking domain"][0],
-      docking_domain_end   = ss_position["docking domain"][1],
-      core                 = ss_position["core"],
-      )
+    features = Features.from_dict(seq, ss_position)
+    
+    if return_not_save:
+      return features
+
     try:
       features.save()
     except:

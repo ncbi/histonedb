@@ -1,3 +1,5 @@
+import sys
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -17,6 +19,8 @@ from djangophylocore.models import *
 
 #BioPython
 from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
 
 from django.db.models import Min, Max, Count
 
@@ -35,7 +39,7 @@ def treemap(request):
     return render(request, 'circle.html', {"starburst_url": "data/type/json/{}/species/".format("H2A")})
 
 def help(request):
-    return render(request, 'help.html', {})
+    return render(request, 'help.html', {"filter_form":AdvancedFilterForm()})
 
 def browse_types(request):
     """Home"""
@@ -61,7 +65,7 @@ def browse_variants(request, histone_type):
         "name": histone_type,
         "variants": variants,
         "tree_url": "browse/trees/{}.xml".format(core_histone.id),
-        "seed_file":"browse/seeds/{}.fasta".format(core_histone.id),
+        "seed_file":"browse/seeds/{}".format(core_histone.id),
         "filter_form": AdvancedFilterForm(),
     }
 
@@ -86,7 +90,7 @@ def browse_variant(request, histone_type, variant):
         "variant": variant.id,
         "name": variant.id,
         "sunburst_url": "browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id),
-        "seed_file":"browse/seeds/{}/{}.fasta".format(variant.core_type.id, variant.id),
+        "seed_file":"browse/seeds/{}/{}".format(variant.core_type.id, variant.id),
         "colors":color_range,
         "score_min":scores["min"],
         "score_max":scores["max"],
@@ -159,9 +163,9 @@ def get_all_scores(request, ids=None):
     indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
     rows = [{} for _ in xrange(len(variants))]
     for i, (variant, threshold) in enumerate(variants):
-        rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
+        rows[i]["variant"] = variant #"{} (T:{})".format(variant, threshold)
         for id in ids:
-            rows[i][id] = "<0"
+            rows[i][id] = "n/a"
         rows[i]["data"] = {}
         rows[i]["data"]["above_threshold"] = {id:False for id in ids}
         rows[i]["data"]["this_classified"] = {id:False for id in ids}
@@ -178,7 +182,7 @@ def get_all_scores(request, ids=None):
         for j, score in enumerate(scores):
             if score.variant.id in indices:
                 threshold = score.variant.hmmthreshold
-                if rows[indices[score.variant.id]][id] == "<0" or score.score > rows[indices[score.variant.id]][id]:
+                if rows[indices[score.variant.id]][id] == "n/a" or score.score > rows[indices[score.variant.id]][id]:
                     rows[indices[score.variant.id]][id] = score.score
                     rows[indices[score.variant.id]]["data"]["above_threshold"][id] = score.score>=threshold
                     rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.used_for_classifiation
@@ -210,6 +214,47 @@ def get_all_sequences(request, ids=None):
     else:
         sequences = [s.to_dict() for s in sequences]
         return JsonResponse(sequences, safe=False)
+
+def get_aln_and_features(request, ids=None):
+    from tools.hist_ss import templ, get_hist_ss_in_aln
+    import subprocess
+    import StringIO
+    from Bio.Align import MultipleSeqAlignment
+    from Bio.Align.AlignInfo import SummaryInfo
+
+    if ids is None and request.method == "GET" and "id" in request.GET:
+        ids = request.GET.getlist("id")
+    else:
+        #Returning 'false' stops Bootstrap table
+        return "false"
+
+    sequences = Sequence.objects.filter(id__in=ids[:50])
+    if len(sequences) == 0:
+        return None, None
+    elif len(sequences) == 1:
+        canonical = {"name":"canonical{}".format(sequences.first().variant.core_type), "seq":str(templ[sequences.first().variant.core_type].seq)}
+        sequences = [canonical, sequences.first().sequence.to_dict()]
+        features = sequences.first().features
+    else:
+        muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
+        process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        sequences = "\n".join([s.format() for s in sequences])
+        aln, error = process.communicate(sequences)
+        seqFile = StringIO.StringIO()
+        seqFile.write(aln)
+        seqFile.seek(0)
+        sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
+        msa = MultipleSeqAlignment(sequences) 
+        hv,ss = get_hist_ss_in_aln(msa, save_dir="/tmp", debug=False)
+        a = SummaryInfo(msa)
+        cons = Sequence(id="consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+        features = Features.from_dict(cons, ss)
+
+        sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
+        sequences.insert(0, cons.to_dict())
+        
+    result = {"seqs":sequences, "features":features.full_gff()}
+    return JsonResponse(result, safe=False) 
 
 def get_sequence_features(request, ids=None):
     if ids is None and request.method == "GET" and "id" in request.GET:

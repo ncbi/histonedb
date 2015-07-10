@@ -32,8 +32,13 @@
       </a>
     </div>
     <div class="col-xs-4">
-      <div class="vcenter center-block">
-        <img class="img-responsive center-block" src="{% static 'browse/img/nucleosome.png' %}" />
+      <div class="vcenter center-block" style="position: relative; left: 0; top: 0;">
+        <img class="img-responsive center-block" src="{% static 'browse/img/nucleosome.png' %}" style="position: relative; top: 0; left: 0;"/>
+        <a href="{% url 'browse.views.browse_variants' 'H1' %}">
+        	<div style="position: absolute; top: 0px; left: 215px;"><h3>H1</h3></div>
+	        <div style="position: absolute; top: 40px; left: 180px;"><img class="img-responsive" src="{% static 'browse/img/H1.png' %}" width="20%"></div>
+	    </a>
+        
         The Nucleosome Core Particle (PDB: <a href="http://www.rcsb.org/pdb/explore.do?structureId=1AOI">1AOI</a>) is comprised of H2A, H2B, H3, and H4 core histones types, wrapping ~147 bp of DNA. H2A-H2B form a dimer and H3-H4 form a tetramer. 
       </div>
     </div>

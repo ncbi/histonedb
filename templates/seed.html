@@ -1,11 +1,5 @@
 {% load staticfiles %}
 
-<script src="{% static 'browse/js/xhr@latest.js' %}"></script>
-<script src="{% static 'browse/js/msa@0.4.0.js' %}"></script>
-<script src="{% static 'browse/js/biojs-io-fasta.js' %}"></script>
-<script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
-
-
 <div class="container" style="margin-top:5px;">
 	<div class="row">
 		<div id="col-xs-12">
@@ -13,28 +7,11 @@
 				<div class="btn-group">
 					<div class="btn-group">
 					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					    View <span class="caret"></span>
+					    <span class="glyphicon glyphicon-export"></span> Export <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
-					  	<li><a href="#" id="msa_view_tree">Tree</a></li>
-					  	<li class="divider"></li>
-					  	<li><a href="#" id="msa_view_col">Jump to column</a></li>
-					  	<li class="divider"></li>
-					  	<li><a href="#" id="msa_view_font+">Increase font size</a></li>
-					    <li><a href="#" id="msa_view_font-">Decrease font size</a></li>
-					  </ul>
-					</div>
-					<div class="btn-group">
-					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					    Export <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" role="menu">
-					  	<li><a href="#" id="msa_export_pdf">Save as PDF</a></li>
-					  	<li><a href="#" id="msa_export_png">Save as PNG</a></li>
-					  	<li class="divider"></li>
-					  	<li><a href="#" id="msa_export_fasta_all">Save FASTA (All)</a></li>
-					    <li><a href="#" id="msa_export_fasta_selection">Save FASTA (Selected)</a></li>
-					    <li class="divider"></li>
+					  	<li><a href="#" id="msa_export_pdf">Save as PDF (TeXShade)</a></li>
+					  	<li><a href="#" id="msa_export_fasta">Save FASTA</a></li>
 					  	<li><a href="#" id="msa_export_features">Save Features (GFF)</a></li>
 					  </ul>
 					</div>
@@ -50,10 +27,28 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
+var $pdf_button = $('#msa_export_pdf'),
+    $fasta_button = $('#msa_export_fasta'),
+    $gff_button = $('#msa_export_features');
+
+$pdf_button.click(function() {
+	document.location.href = "{{ seed_file }}"+".pdf";
+});
+
+$fasta_button.click(function() {
+	document.location.href = "{{ seed_file }}"+".fasta";
+});
+
+$gff_button.click(function() {
+	document.location.href = "{{ seed_file }}"+".gff";
+});
+</script>
+
+<script type="text/javascript">
+createMSA("snippetDiv", "{% static seed_file %}", 975, true);
+/*$(document).ready(function() {
 	var yourDiv = document.getElementById('snippetDiv');
 
-	/* global yourDiv */
 	var msa = require("msa");
 	var fasta = require("biojs-io-fasta");
 
@@ -69,10 +64,11 @@ $(document).ready(function() {
 	  seqlogo: true,
 	  markers: false,
 	  leftHeader: false,
-	  labelName: false,
+	  labelName: true,
+	  labelId: false
 	};
 	opts.zoomer = {
-	  labelIdLength: 160,
+	  labelNameLength: 160,
 	  alignmentHeight: 500,
 	  alignmentWidth: 975,
 	};
@@ -85,31 +81,5 @@ $(document).ready(function() {
     	m.seqs.reset(seqs);
     	m.render();
 	});
-
-	var colorConservation = {}
-
-	// the init function is only called once
-	colorConservation.init = function(){
-	  // you have here access to the conservation or the sequence object
-	  this.cons = this.opt.conservation();
-	  this.cons80 = true;
-	  this.cons50 = true;
-	}
-
-	colorConservation.run = function(letter,opts){
-	  if(this.cons80 && this.cons[opts.pos] > 0.8){
-	  	return "red";
-	  }
-	  else if(this.cons50 && this.cons[opts.pos] > 0.5){
-	  	return "blue";
-	  }
-	  else{
-	  	return "#000";
-	  }
-	};
-
-	m.g.colorscheme.addDynScheme("colorConservation", colorConservation);
-	m.g.colorscheme.set("scheme", "colorConservation");
-});
-
+});*/
 </script>

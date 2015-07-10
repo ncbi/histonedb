@@ -2,13 +2,13 @@
 
 <div class="modal-body">
   <div class="btn-group">
-    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Classified Variant</button>
+    <button type="button" class="btn btn-success" aria-expanded="false">Classified Variant</button>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Above Variant Threshold</button>
+    <button type="button" class="btn btn-info" aria-expanded="false">Above Variant Threshold</button>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Below Variant Threshold</button>
+    <button type="button" class="btn btn-default" aria-expanded="false">Not Significant</button>
   </div>
 </div>
 <div id="scores_table_div"></div>
@@ -33,7 +33,7 @@ function scoreCellStyle(value, row, index) {
     return {classes: "info"};
   }
   else{
-    return {classes:"danger"};
+    return {classes:"none"};
   }
 }
 

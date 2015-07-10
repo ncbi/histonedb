@@ -12,6 +12,7 @@ import re
 import sys
 from subprocess import Popen, PIPE, STDOUT
 import argparse
+import glob
 
 #Required libraires
 from Bio.Seq import Seq
@@ -73,7 +74,7 @@ def write_texshade(file_handle,aln_fname,res_per_line,features=None,shading_mode
 
         print >> file_handle, "    \end{texshade}"
 
-def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True):
+def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True, save_dir=""):
     """
     """
     ns='consensus'
@@ -89,10 +90,12 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
         splitN=splitN+1
         num=int(a_len/splitN)+1
     name = os.path.splitext(title)[0]
+    
     for i in xrange(num):
         t_aln=align[(i*splitN):((i+1)*splitN)]
-        with open("data/alignment_{}_{}.fasta".format(name, i), "w") as aln_file:
+        with open(os.path.join(save_dir, "alignment_{}_{}.fasta".format(name, i)), "w") as aln_file:
             AlignIO.write(t_aln, aln_file, "fasta")
+            print "wrote", aln_file.name
     
     res_per_line=len(align[0])
 
@@ -124,7 +127,7 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
     for i in xrange(num):
         write_texshade(
             tex, 
-            "data/alignment_{}_{}.fasta".format(name, i),
+            os.path.join(save_dir, "alignment_{}_{}.fasta".format(name, i)),
             res_per_line, 
             features,
             shading_modes=shading_modes, 
@@ -134,10 +137,10 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
         print >> tex, "    \\newpage"
 
 
-def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True):
+def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True, save_dir=""):
     """
     """
-    with open("data/{}.tex".format(outfile), "w") as tex:
+    with open("{}.tex".format(outfile), "w") as tex:
         print >> tex, "\\documentclass[11pt,landscape]{article}"
         print >> tex, "\\usepackage{hyperref}"
         print >> tex, "\\usepackage[paperwidth={}in, paperheight=18in]{{geometry}}".format(22/200.*200+2.5)
@@ -154,13 +157,23 @@ def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False,
                 logo=logo, 
                 hideseqs=hideseqs, 
                 splitN=splitN,
-                secondary_structure=secondary_structure
+                secondary_structure=secondary_structure,
+                save_dir=save_dir
                 )
         print >> tex, "\\end{document}"
 
     #Turn latex into pdf
-    process = Popen(["pdflatex", "--file-line-error", "--synctex=1", "-output-directory=data", "--save-size=10000", "data/{}.tex".format(outfile)])
+    #assert 0, ["pdflatex", "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))]
+    process = Popen(["pdflatex", "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))])
     process.communicate()
+
+    os.remove(os.path.join(save_dir, "{}.tex".format(outfile)))
+    os.remove(os.path.join(save_dir, "{}.aux".format(outfile)))
+    os.remove(os.path.join(save_dir, "{}.log".format(outfile)))
+    os.remove(os.path.join(save_dir, "{}.out".format(outfile)))
+
+    for fasta_part in glob.glob(os.path.join(save_dir, "alignment_{}_*.fasta".format(name))):
+        os.remove(fasta_part)
 
 def parse_args():
     parser = argparse.ArgumentParser(description="")

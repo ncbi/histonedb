@@ -52,10 +52,6 @@ def upload_blastp(seq_file, num_seqs):
         db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa"), 
         evalue=0.01, outfmt=5)
     out, err = blastp_cline(stdin=seq_file)
-    #cmd = str(blastp_cline)
-    #process = subprocess.Popen(shlex.shlex(cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    #assert 0, "'{}'".format(seq_file)
-    #output, error = process.communicate(seq_file)
     blastFile = StringIO.StringIO()
     blastFile.write(out)
     blastFile.seek(0)
@@ -114,7 +110,7 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
     for i, (variant, threshold) in enumerate(variants):
         rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
         for id in ids:
-            rows[i][id] = "<0"
+            rows[i][id] = "n/a"
         rows[i]["data"] = {}
         rows[i]["data"]["above_threshold"] = {id:False for id in ids}
         rows[i]["data"]["this_classified"] = {id:False for id in ids}
@@ -131,6 +127,8 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
             else:
                 variant = variant_query.id
 
+            print variant
+
             variants.append(variant)
 
             try:
@@ -139,20 +137,31 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
                 continue
 
             for hit in variant_query:
+                print "Hit is", hit.id
                 for hsp in hit:
                     if hsp.bitscore>=variant_model.hmmthreshold and \
-                         (rows[indices[variant]][hit.id] == "<0" or \
-                          hsp.bitscore > rows[indices[variant]][hit.id]):
+                         (classifications[hit.id] == "Unknown" or \
+                          float(hsp.bitscore) >= rows[indices[classifications[hit.id]]][hit.id]):
                         if i==1 and not (classifications[hit.id] == "Unknown" or "canonical" in classifications[hit.id]):
                             #Skip canoninical score if already classfied as a variant
                             continue
                         classifications[hit.id] = variant
-                        for id in rows[indices[variant]]["data"]["this_classified"].keys():
-                            rows[indices[variant]]["data"]["this_classified"][id] = id == hit.id
+
+                        if not classifications[hit.id] == "Unknown":
+                            for row in rows:
+                                row["data"]["this_classified"][hit.id] = False
+                            #rows[indices[classifications[hit.id]]]["data"]["this_classified"][hit.id] = False
+                        rows[indices[variant]]["data"]["this_classified"][hit.id] = True
+                        print 
+                        print
+                        print hit.id, "is", variant
+                        print hsp.bitscore, rows[indices[variant]][hit.id]
+                        print
+                        print
                         
                     
-                    rows[indices[variant]]["data"]["above_threshold"][hit.id] = hsp.bitscore>=variant_model.hmmthreshold
-                    rows[indices[variant]][hit.id] = hsp.bitscore
+                    rows[indices[variant]]["data"]["above_threshold"][hit.id] = float(hsp.bitscore)>=variant_model.hmmthreshold
+                    rows[indices[variant]][hit.id] = float(hsp.bitscore)
                         
     classifications = [(id, classifications[id]) for id in ids]
     return classifications, ids, rows

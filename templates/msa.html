@@ -1,0 +1,85 @@
+<script type="text/javascript">
+function createMSA(div_id, url, width, height, is_seed){
+  var yourDiv = document.getElementById(div_id);
+  yourDiv.innerHTML = "";
+
+  /* global yourDiv */
+  var msa = require("msa");
+
+  var msaDiv = document.createElement('div');
+  yourDiv.appendChild(msaDiv);
+
+  var opts = {
+    el: msaDiv
+  }
+  opts.vis = {
+    conserv: false,
+    overviewbox: false,
+    seqlogo: true,
+    markers: false,
+    leftHeader: false,
+    labelName: true,
+  };
+  opts.zoomer = {
+    alignmentWidth: width,
+  };
+
+  var m = msa(opts);
+  var features;
+
+  if(!is_seed){
+    // init msa
+    $.ajax({
+      url:url,
+      dataType: "json",
+      success: function(result) {
+        m.seqs.reset(result.seqs);
+        m.render();
+        features = gff.parseSeqs(result.features);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus);
+        console.log(errorThrown)
+      }
+    });
+  else{
+    //load sequences
+    fasta.read(sequences_url+".fasta", function(err, seqs){
+        m.seqs.reset(seqs);
+        m.render();
+    });
+    var xhr = msa.io.xhr;
+    xhr(sequences_url+".gff", function(err, request, body) {
+      var features = gff.parseSeqs(body);
+    });
+  }
+
+  m.seqs.addFeatures(features);
+  m.render();
+
+  var colorConservation = {}
+
+  // the init function is only called once
+  colorConservation.init = function(){
+    // you have here access to the conservation or the sequence object
+    this.cons = this.opt.conservation();
+    this.cons80 = true;
+    this.cons50 = true;
+  }
+
+  colorConservation.run = function(letter,opts){
+    if(this.cons80 && this.cons[opts.pos] > 0.8){
+      return "red";
+    }
+    else if(this.cons50 && this.cons[opts.pos] > 0.5){
+      return "blue";
+    }
+    else{
+      return "#000";
+    }
+  };
+
+  m.g.colorscheme.addDynScheme("colorConservation", colorConservation);
+  m.g.colorscheme.set("scheme", "colorConservation");
+}
+</script>

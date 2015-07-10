@@ -119,22 +119,27 @@ core_histones = [
     SeqRecord(templ_H2B,id='H2B',name='H2B')
 ]
 
-def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False):
+def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_alignment=False):
     """Returns sequence elements in histone sequence, all numbers assume first element in seq has number 0!!! Not like in PDB"""
     n2=str(uuid.uuid4())
     test_record = SeqRecord(test_seq, id='Query')
-    SeqIO.write(test_record, "query_{}.fasta".format(n2),'fasta')
+    SeqIO.write(test_record, os.path.join(save_dir, "query_{}.fasta".format(n2)),'fasta')
 
     ss_test = collections.defaultdict(lambda: [-1, -1])
 
     if hist_type == "Unknown":
         if not os.path.isfile("core_histones_1kx5.db"):
-            SeqIO.write(core_histones, "core_histones_1kx5.faa", "fasta")
+            SeqIO.write(core_histones, os.path.join(save_dir, "core_histones_1kx5.faa"), "fasta")
             print "makeblastdb"
-            subprocess.call(["makeblastdb", "-dbtype", "prot", "-in", "core_histones_1kx5.faa", "-out", "core_histones_1kx5.db"])
-        blastp_cline = NcbiblastpCommandline(query="query_{}.fasta".format(n2), db="core_histones_1kx5.db", evalue=10000000,outfmt=5, out="query_{}.xml".format(n2))
+            subprocess.call(["makeblastdb", "-dbtype", "prot", "-in", os.path.join(save_dir, "core_histones_1kx5.faa"), "-out", os.path.join(save_dir, "core_histones_1kx5.db")])
+        blastp_cline = NcbiblastpCommandline(
+            query=os.path.join(save_dir, "query_{}.fasta".format(n2)), 
+            db=os.path.join(save_dir, "core_histones_1kx5.db"), 
+            evalue=10000000,
+            outfmt=5, 
+            out=os.path.join(save_dir, "query_{}.xml".format(n2)))
         stdout, stderr = blastp_cline()
-        with open("query_{}.xml".format(n2)) as results_file:
+        with open(os.path.join(save_dir, "query_{}.xml".format(n2))) as results_file:
             blast_results = [(alignment.title, hsp.expect, hsp) for blast_record in NCBIXML.parse(results_file) for alignment in blast_record.alignments for hsp in alignment.hsps]
         
         try:
@@ -153,11 +158,21 @@ def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False)
     else:
         hist_identified = hist_type
 
-    SeqIO.write(SeqRecord(templ[hist_identified],id=hist_identified,name=hist_identified),"{}_{}.fasta".format(hist_identified, n2), "fasta")
-    needle_cline = NeedleCommandline(asequence="{}_{}.fasta".format(hist_identified, n2), bsequence="query_{}.fasta".format(n2), gapopen=20, gapextend=1, outfile="needle_{}.txt".format(n2))
+    SeqIO.write(SeqRecord(templ[hist_identified],id=hist_identified,name=hist_identified), os.path.join(save_dir, "{}_{}.fasta".format(hist_identified, n2)), "fasta")
+
+    cmd = os.path.join(os.path.dirname(sys.executable), "needle")
+    if not os.path.isfile(cmd):
+        cmd = "needle"
+    needle_cline = NeedleCommandline(
+        cmd=cmd,
+        asequence=os.path.join(save_dir, "{}_{}.fasta".format(hist_identified, n2)), 
+        bsequence=os.path.join(save_dir, "query_{}.fasta".format(n2)), 
+        gapopen=20, 
+        gapextend=1, 
+        outfile=os.path.join(save_dir, "needle_{}.txt".format(n2)))
     stdout, stderr = needle_cline()
 
-    align = AlignIO.read("needle_{}.txt".format(n2), "emboss")
+    align = AlignIO.read(os.path.join(save_dir, "needle_{}.txt".format(n2)), "emboss")
     core_histone = align[0]
     query = align[1]
 
@@ -210,7 +225,7 @@ def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False)
 
     for f in ["needle_{}.txt".format(n2), "query_{}.fasta".format(n2), "{}_{}.fasta".format(hist_identified, n2), "query_{}.xml".format(n2), "query_{}.fasta".format(n2)]:
         try:
-            os.remove(f)
+            os.remove(os.path.join(save_dir, f))
         except OSError:
             pass
         
@@ -219,7 +234,7 @@ def get_hist_ss(test_seq, hist_type="Unknown", debug=True, save_alignment=False)
 
     return hist_identified,ss_test
 
-def get_hist_ss_in_aln(alignment,hist_type='Unknown',debug=True):
+def get_hist_ss_in_aln(alignment, hist_type='Unknown', save_dir="", debug=True, save_censesus=False):
     """Returns sequence elements in histone alignment, all numbers assume first element in seq has number 0!!! Not like in PDB"""
 
     #Let's extract consensus
@@ -230,29 +245,17 @@ def get_hist_ss_in_aln(alignment,hist_type='Unknown',debug=True):
     if(debug):
         print "Consensus"
         print cons
-    hv,ss=get_hist_ss(cons,hist_type,True)
+    hv, ss = get_hist_ss(cons,hist_type,save_dir,True)
+    if save_censesus:
+        return hv,ss,cons
     return hv,ss
 
-def get_gff_from_align(alignment, outfile, hist_type='Unknown', debug=True):
-    hv,ss=get_hist_ss_in_aln(alignment, hist_type, debug)
-    print >> outfile, "startgroup\tsecondarystucture\n"
-    for description, (start, end) in ss.iteritems():
-        if "alpha" in i:
-            type = "alpha"
-        elif "beta" in i:
-            type = "beta"
-        elif "loop" in i:
-            type = "loop"
-        elif "domain" in i:
-            type = "domain"
-        elif "tail" in i:
-            type = "tail"
-        elif "mgarg" in i:
-            type = "mgarg"
-        else:
-            continue
-        print >> outfile, "\t".join(map(str, (description, id, sequenceIndex, start+1, end+1, type)))
-    print >> outfile, "endgroup\tsecondarystructure"
+def get_gff_from_align(alignment, outfile, hist_type='Unknown', save_dir="", debug=True):
+    from browse.models import Sequence, Features
+    hv,ss,cons=get_hist_ss_in_aln(alignment, hist_type, save_dir=save_dir, debug=debug, save_censesus=True)
+    seq = Sequence(id="Consensus", sequence=cons.tostring())
+    features = Features.from_dict(seq, ss)
+    print >> outfile, features.full_gff()
 
 def get_core_lendiff(test_ss,temp_ss,debug=0):
     """Returns ration of core length for test_seq versus template sequence"""

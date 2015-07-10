@@ -10,30 +10,41 @@ from django.http import JsonResponse
 from collections import Counter
 
 import django_filters
+from itertools import groupby
 
 def tax_sub_search(value):
     """
     """
     ids = set()
-
+    value = value.strip()
+    
     if not format_query.current_query.startswith("taxonomy"):
         return list(ids)
     
     search_type = format_query.current_query[len("taxonomy"):]
+    if search_type.endswith("iin"):
+        search_type = "__iexact"
+    elif search_type.endswith("in"):
+        search_type = "__exact"
     queryName = {"name{}".format(search_type):value.lower()}
     try:
         queryID = {"id{}".format(search_type):int(value)}
     except ValueError:
         queryID = {}
     query = Q(**queryName)|Q(**queryID)
+    
+    taxons = []
     for taxon in Taxonomy.objects.filter(query):
+        taxons.append(taxon)
         if taxon.type_name != "scientific name":
             #Convert homonym into real taxon
             taxon = taxon.get_scientific_names()[0]
         ids.add(taxon.id)
         children = set(taxon.children.values_list("id", flat=True).filter(rank=2))
         ids |= children
+
     format_query.current_query = "taxonomy__in"
+    
     return list(ids)
 
 def variant_sub_search(value):
@@ -113,7 +124,8 @@ search_types[str] = {
     "starts with (case-insesitive)": "__istartswith",
     "ends with": "__endswith",
     "ends with (case-insesitive)": "__iendswith",
-    "in (comma separated, case-sensitive)": "__in"
+    "in (comma separated)": "__in",
+    "in (comma separated, case-insensitive)": "__iin"
 }
 search_types[int] = {
     ">": "__gt",
@@ -121,7 +133,7 @@ search_types[int] = {
     "is": "",
     "<": "__lt",
     "<=": "__lte",
-    "range (dash separator)": "__range",
+    "range (dash separated)": "__range",
     "in (comma separated)": "__in",
 }
 search_types[float] = search_types[int]
@@ -150,6 +162,8 @@ class HistoneSearch(object):
             HistoneSearch.reset(request)
         elif "query" in request.session and request.session["query"]:
             parameters.update(request.session["query"])
+            assert request.session["query"]=={u'id_variant': u'H2A.Z'}, parameters
+            
             self.ajax = True
 
         if "search" in parameters:
@@ -219,6 +233,8 @@ class HistoneSearch(object):
             raise RuntimeError(str(query.errors))
             return False
         
+        #assert 0, query
+
         self.query_set = Sequence.objects.filter(
                 (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \
                 (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=False)) \
@@ -233,8 +249,9 @@ class HistoneSearch(object):
         #if not reset:
         #    raise RuntimeError(str(query))
         
-    def sorted(self):
-        #Sort by best score. Using e-value so we can compare HMMER and SAM
+    def sorted(self, unique=False):
+        """Sort the query set and paginate results.
+        """
         result = self.query_set
         
         sort_by = self.request.session["sort"]["sort"]
@@ -258,7 +275,29 @@ class HistoneSearch(object):
 
         result = result[start:end]
 
-        return result
+        if unique:
+            used = {}
+            for seq in results:
+                if not seq.sequence in used_taxa:
+                    used[seq.sequence] = [seq.taxa.id]
+                    yield seq
+                elif seq.sequence in used_taxa and not seq.taxa.id in used[seq.sequence]:
+                    used[seq.sequence].append(seq.taxa.id)
+                    yield seq
+                else:
+                    pass
+            """#Old method using group by, might be faster, but doesn;t preserver order
+            result = sorted(self.query_set, key=lambda s:s.sequence)
+            for sequence, same_sequences in groupby(result, key=lambda s:s.sequence):
+                used_taxa = []
+                for seq in same_sequences:
+                    if seq.taxonomy.id not in used_taxa:
+                        used_taxa.append(seq.taxonomy.id)
+                        yield seq
+            """
+        else:
+            for seq in result:
+                yield seq
 
     def __len__(self):
         return self.query_set.count()
@@ -266,9 +305,9 @@ class HistoneSearch(object):
     def count(self):
         return self.query_set.count()
 
-    def get_dict(self):
-        sequences = self.sorted()
-        result = [{"gi":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "taxonomy":r.taxonomy.name.capitalize(), "score":r.score, "evalue":r.evalue, "header":r.header} for r in sequences]
+    def get_dict(self, unique=False):
+        sequences = self.sorted(unique=unique)
+        result = [{"id":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "taxonomy":r.taxonomy.name.capitalize(), "score":r.score, "evalue":r.evalue, "header":r.header[:80]} for r in sequences]
         return {"total":self.count, "rows":result}
 
     def simple_search(self, search_text):
@@ -308,9 +347,8 @@ class HistoneSearch(object):
                 self.redirect = redirect(variant)
             return parameters
         except Variant.DoesNotExist:
-            raise e
             pass
-        assert 0, "No varaint?"
+        
         try:
             #Searches H2A.Z.1.s1
             sequences = Sequence.objects.filter(full_variant_name=search_text)
@@ -322,7 +360,7 @@ class HistoneSearch(object):
             pass
 
         try:
-            variant = OldStyleVariant.objects.get(id=search_text).updated_variant
+            variant = OldStyleVariant.objects.get(name=search_text).updated_variant
             parameters["id_variant"] = variant.id
             parameters["id_variant_search_type"] = "is"
             if self.navbar:
@@ -333,7 +371,7 @@ class HistoneSearch(object):
 
         try:
             #Search species
-            sequences = Taxononomy.objects.filter(name__icontains=search_text)
+            sequences = Taxonomy.objects.filter(name__icontains=search_text)
             if sequences.count() > 0:
                 parameters["id_taxonomy"] = search_text
                 parameters["id_taxonomy_search_type"] = "contains (case-insesitive)"
@@ -367,6 +405,7 @@ class HistoneSearch(object):
             #Search sequence moetifs if everything else fails
             parameters["id_sequence"] = search_text
             parameters["id_sequence_search_type"] = "contains (case-insesitive)"
+
         return parameters
 
 class format_query(dict):
@@ -393,15 +432,21 @@ class format_query(dict):
 
         try:
             if search_type.endswith("range"):
+                values = []
                 if "-" in value:
-                    value = map(conv_type, value.split("-"))
+                    for v in value.split("-"):
+                        values += conv_type(v)
                 else:
-                    self.errors["Must include a dash if searching range"] += 1
+                    self.errors["Must include a dash if searching 'range'"] += 1
+                value = values
             elif search_type.endswith("in"):
+                values = []
                 if "," in value:
-                    value = map(conv_type, value.split(","))
+                    for v in value.split(","):
+                        values += conv_type(v)
                 else:
-                    self.errors["Must include a dash if searching range"] += 1
+                    self.errors["Must include a comma if searching 'in'"] += 1
+                value = values
             else:
                 value = conv_type(value)
 

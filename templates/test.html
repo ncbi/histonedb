@@ -34,7 +34,7 @@
         <h4 class="modal-title" id="seqs">Sequence(s)</h4>
       </div>
       <div class="modal-body">
-        <div id="msa_modal_sniper"></div>
+        <div id="msa_modal_sniper">Please wait while the MSA is created.</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -67,7 +67,9 @@ var $table = $('#sequence_table'),
 
     $('#sequence_table').bootstrapTable({
       pagination:true,
-      pageList:[5, 10, 20, 50, 100, 200],
+      pageList:[5, 10, 20, 50, 100, 200, 500],
+      cookie:true,
+      cookieIdTable:"table-{{ page_name }}",
       {% if blast_results %}
       data: {% autoescape off %}{{ blast_results|jsonify }}{% endautoescape %},
       sidePagination:"client",
@@ -77,12 +79,12 @@ var $table = $('#sequence_table'),
       {% endif %}
       columns: [
         {field:"state", checkbox:true},
-        {field:"gi", sortable:true, title:"GI"},
+        {field:"id", sortable:true, title:"GI"},
         {field:"variant", sortable:true, title:"Variant"},
         {field:"gene", sortable:true, title:"Gene"},
         {field:"splice", sortable:true, title:"Splice"},
         {field:"taxonomy", sortable:true, title:"Taxonomy"},
-        {field:"header", sortable:true, width:50, title:"Header"},
+        {field:"header", sortable:true, width:50, title:"Previous Name in NR"},
         {field:"score", sortable:true, title:"Score"},
         {field:"evalue", sortable:true, title:"E-value"},
         {% if blast_results %}
@@ -103,7 +105,7 @@ var $table = $('#sequence_table'),
       selections = $table.bootstrapTable('getSelections');
       var ids = [];
       for (var i = 0; i < selections.length; i++) {
-        ids.push(selections[i].gi);
+        ids.push(selections[i].id);
       }
       if(ids.length==0){
         alert("You must select one ore more sequences.");
@@ -129,102 +131,9 @@ var $table = $('#sequence_table'),
           for (var i = 0; i < ids.length; i++) {
             params += "id="+ids[i]+"&"
           }
-
-          var yourDiv = document.getElementById('msa_modal_sniper');
-          yourDiv.innerHTML = "";
-
-          /* global yourDiv */
-          var msa = require("msa");
-
-          var msaDiv = document.createElement('div');
-          yourDiv.appendChild(msaDiv);
-
-          var opts = {
-            el: msaDiv
-          }
-          opts.vis = {
-            conserv: false,
-            overviewbox: false,
-            seqlogo: true,
-            markers: false,
-            leftHeader: false,
-            labelName: true,
-          };
-          opts.zoomer = {
-            alignmentWidth: 418, //$('#msa_modal').width()
-          };
-
-          // init msa
-          var m = msa(opts);
-          $.ajax({
-            url:"{% url 'browse.views.get_all_sequences' %}"+params.substring(0, params.length-1),
-            dataType: "json",
-            success: function(seqs) {
-              console.log(seqs)
-              m.seqs.reset(seqs);
-              m.render();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              console.log(textStatus);
-              console.log(errorThrown)
-            }
-          });
-
-          var colorConservation = {}
-
-          // the init function is only called once
-          colorConservation.init = function(){
-            // you have here access to the conservation or the sequence object
-            this.cons = this.opt.conservation();
-            this.cons80 = true;
-            this.cons50 = true;
-          }
-
-          colorConservation.run = function(letter,opts){
-            if(this.cons80 && this.cons[opts.pos] > 0.8){
-              return "red";
-            }
-            else if(this.cons50 && this.cons[opts.pos] > 0.5){
-              return "blue";
-            }
-            else{
-              return "#000";
-            }
-          };
-
-          var xhr = msa.io.xhr;
-          var gff = msa.io.gff;
-          xhr("{% url 'browse.views.get_sequence_features' %}"+params.substring(0, params.length-1), function(err, request, body) {
-            var features = gff.parseSeqs(body);
-            m.seqs.addFeatures(features);
-          });
-
-          m.g.colorscheme.addDynScheme("colorConservation", colorConservation);
-          m.g.colorscheme.set("scheme", "colorConservation");
+          createMSA("msa_modal_sniper", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), 418, false);
           $('#msa_modal').modal('show');
         });
-        
-        function scoreCellStyle(value, row, index) {
-          console.log(row);
-          console.log(value);
-          
-          id = "";
-          for (var key in row){
-            if(row[key] == value){
-              id = key;
-              break;
-            }
-          }
-          if(row.data.this_classified[id] == true){
-            return {classes: "success"};
-          }
-          else if(row.data.above_threshold[id] == true){
-            return {classes: "info"};
-          }
-          else{
-            return {classes:"danger"};
-          }
-        }
 
         $download_fasta.click(function() {
           ids = getSelectedIDs();

@@ -1,0 +1,16 @@
+domain	red
+chain	225,105,0
+residue	105,225,35
+helix	ff0000
+strand	00ff00
+loop	cccccc
+
+alpha1	Consensus	-1	33	45	helix
+alpha2	Consensus	-1	51	80	helix
+alpha3	Consensus	-1	86	98	helix
+alphaC	Consensus	-1	99	119	helix
+beta1	Consensus	-1	49	50	stand
+beta2	Consensus	-1	84	85	stand
+loopL1	Consensus	-1	46	50	loop
+loopL2	Consensus	-1	81	85	loop
+

@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block includes %}
+<script src="{% static 'browse/js/xhr@latest.js' %}"></script>
+<script src="{% static 'browse/js/msa@0.4.6' %}"></script>
+<script src="{% static 'browse/js/biojs-io-fasta.js' %}"></script>
+<script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
+<script src="{% static 'browse/js/msa.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
   <div class="page-header">
@@ -20,7 +28,7 @@
       	</div>
     </form>
   {% else %}
-  	{% include "test.html" %}
+  	{% include "test.html" with page_name="search" %}
   {% endif %}
 </div>
 {% endblock %}
