@@ -155,16 +155,12 @@ class HistoneSearch(object):
         self.sanitized = False
         self.query_set = None
         self.redirect = None
+        self.query = {}
+        self.sort = {}
         self.count = 0
 
-        #assert 0, "search"+str("query" in request.session and request.session["query"])
-        if reset:
-            HistoneSearch.reset(request)
-        elif "query" in request.session and request.session["query"]:
-            parameters.update(request.session["query"])
-            assert request.session["query"]=={u'id_variant': u'H2A.Z'}, parameters
-            
-            self.ajax = True
+        #if reset:
+        #    HistoneSearch.reset(request)
 
         if "search" in parameters:
             parameters.update(self.simple_search(parameters["search"]))
@@ -175,14 +171,14 @@ class HistoneSearch(object):
         self.sanitize_parameters(parameters, reset)
         self.create_queryset(reset)
 
-    @classmethod
-    def reset(cls, request):
-        """Clears search from session"""
-        try:
-            del request.session["query"]
-            del request.session["sort"]
-        except KeyError:
-            pass
+    # @classmethod
+    # def reset(cls, request):
+    #     """Clears search from session"""
+    #     try:
+    #         del request.session["query"]
+    #         del request.session["sort"]
+    #     except KeyError:
+    #         pass
 
     @classmethod
     def all(cls, request):
@@ -191,16 +187,13 @@ class HistoneSearch(object):
     def sanitize_parameters(self, parameters, reset=False):
         """
         """
-        self.request.session["query"] = {field:parameters[field] for fields in allowable_fields \
+        self.query = {field:parameters[field] for fields in allowable_fields \
             for field in (fields[0], fields[2]) if field in parameters}
         
         sort_parameters = {"limit": 10, "offset":0, "sort":"evalue", "order":"asc"}
         sort_query = {p:parameters.get(p, v) for p, v in sort_parameters.iteritems()}
 
-        if reset or not "sort" in self.request.session:
-            self.request.session["sort"] = sort_query
-        else:
-            self.request.session["sort"].update(sort_query)
+        self.sort = sort_query
 
         #if not reset:
             #raise RuntimeError(str(self.request.session["query"]))
@@ -211,7 +204,7 @@ class HistoneSearch(object):
         if not self.sanitized:
             raise RuntimeError("Parameters must be sanitized")
 
-        parameters = self.request.session["query"]
+        parameters = self.query
         
         query = format_query()
 
@@ -254,24 +247,14 @@ class HistoneSearch(object):
         """
         result = self.query_set
         
-        sort_by = self.request.session["sort"]["sort"]
-        sort_order = "-" if self.request.session["sort"]["order"] == "desc" else ""
+        sort_by = self.sort["sort"]
+        sort_order = "-" if self.sort["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
         result = result.order_by(sort_key)
         
-        try:
-            page_size = int(self.request.session["sort"]["limit"])
-        except ValueError:
-            page_size = 10
-
-        try:
-            page_number = int(self.request.session["sort"]["offset"])
-        except ValueError:
-            page_number = 0
-
-        start = page_size*page_number
+        page_size = int(self.sort["limit"])
+        start = int(self.sort["offset"])
         end = start+page_size
-
 
         result = result[start:end]
 

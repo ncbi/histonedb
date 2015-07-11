@@ -28,28 +28,15 @@
         if(search_or_filter == "search"){
           $("#advanced_filter_title").html("Advanced Search");
           $("#advanced_search_button").html("Search");
-          $("#advanced_search_button").click(function(){
-            $("#advanced_search_form").submit();
-          });
         }
         else if(search_or_filter == "filter"){
           $("#advanced_filter_title").html("Advanced Filter");
           $("#advanced_search_button").html("Filter");
-          $("#advanced_search_button").click(function(){
-            var formData = {reset:false};
-            
-            $.each($('#advanced_search_form').serializeArray(), function(_, kv) {
-              formData[kv.name] = kv.value;
-            });
-            console.log(formData);
-            $.post(
-              "{% url 'browse.views.search' %}", 
-              formData,
-              function( data ) {
-                table.bootstrapTable('refresh');
-            });
-          });
+          $("#reset_previous_searches").val("false");
         }
+        $("#advanced_search_button").click(function(){
+            $("#advanced_search_form").submit();
+          });
         $("#advanced_filter").modal('show');
       }
       $(function () {
@@ -81,6 +68,7 @@
             <li><a href="{% url 'browse.views.analyze' %}">Analyze Sequences</a></li>
             <li><a href="{% url 'browse.views.help' %}">Help</a></li>
             <form role="search" class="navbar-form navbar-right" action="{% url 'browse.views.search' %}" method="POST">{% csrf_token %}
+              <input type="hidden" name="reset" id="reset_previous_searches" value="true" />
               <input type="text" name="search" class="form-control" aria-label="..." placeholder="Search (H2A.Z.2.s1)">
             </form>
           </ul>
@@ -114,7 +102,7 @@
             <h4 class="modal-title" id="advanced_filter_title">Advanced Search</h4>
           </div>
           <div class="modal-body">
-            <form role="search" action="{% url 'browse.views.search' %}" id="advanced_search_form" method="POST">
+            <form role="search" action="{{ request.url }}" id="advanced_search_form" method="POST">
               {% csrf_token %}
               {% for field in filter_form %}
                 <div class="form-group">
@@ -128,12 +116,12 @@
                       <div class="input-group">
                         {% if field|fieldtype != "ModelChoiceField" %}
                           {% autoescape off %}
-                            {{ field|get_search_type }}
+                            {{ field|get_search_type:original_query }}
                           {% endautoescape %}
-                          <input type="text" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" />
+                          <input type="text" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" value="{{ original_query|get:field.id_for_label }}"/>
                         {% else %}
                           {% autoescape off %}
-                            {{ field|bootchoice_choice }}
+                            {{ field|bootchoice_choice:original_query }}
                           {% endautoescape %}
                         {% endif %}
                       </div>
@@ -144,6 +132,7 @@
                   </div>
               </div>
               {% endfor %}
+              <input type="hidden" name="reset" id="reset_previous_searches" value="true" />
             </form>
           </div>
           <div class="modal-footer">

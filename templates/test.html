@@ -17,7 +17,7 @@
             </button>
         </div>
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" disabled="disabled" id="reset_filter"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reset</button>
+            <button type="button" class="btn btn-default" id="reset_filter"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reset</button>
         </div>
     </div>
 </div>
@@ -64,6 +64,7 @@ var $table = $('#sequence_table'),
     $scores_modal_button = $('#scores_modal_button'),
     $download_fasta = $('#download_fasta'),
     $entrez = $('#entrez');
+    $reset = $('#reset_filter');
 
     $('#sequence_table').bootstrapTable({
       pagination:true,
@@ -76,6 +77,10 @@ var $table = $('#sequence_table'),
       {% else %}
       url: "{% url 'browse.views.get_sequence_table_data' %}",
       sidePagination:"server",
+      queryParams: function(params){
+        var current_query = {% autoescape off %}{{ current_query|jsonify }}{% endautoescape %};
+        return $.extend(params, current_query);
+      },
       {% endif %}
       columns: [
         {field:"state", checkbox:true},
@@ -99,6 +104,16 @@ var $table = $('#sequence_table'),
       clickToSelect:true,
       showRefresh:true,
       toolbar:"#sequence_toolbar",
+    });
+
+    $reset.click(function(){
+      {% if original_query|length == 0 %}
+      if(!confirm("No original query. Do you want to view all sequences? If not, use the Advanced Filter option.")) return;
+      {% else %}
+      if(!confirm("Do you want to clear all filters and return to original query?")) return;
+      {% endif %}
+
+      document.location.href = "{{ request.path }}";
     });
 
     function getSelectedIDs(){

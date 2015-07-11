@@ -32,15 +32,15 @@ var $pdf_button = $('#msa_export_pdf'),
     $gff_button = $('#msa_export_features');
 
 $pdf_button.click(function() {
-	document.location.href = "{{ seed_file }}"+".pdf";
+	document.location.href = "{% static seed_file %}"+".pdf";
 });
 
 $fasta_button.click(function() {
-	document.location.href = "{{ seed_file }}"+".fasta";
+	document.location.href = "{% static seed_file %}"+".fasta";
 });
 
 $gff_button.click(function() {
-	document.location.href = "{{ seed_file }}"+".gff";
+	document.location.href = "{% static seed_file %}"+".gff";
 });
 </script>
 

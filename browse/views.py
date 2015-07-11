@@ -1,4 +1,5 @@
 import sys
+import json
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -35,15 +36,22 @@ colors = [
     "#e5c494"
     ]
 
-def treemap(request):
-    return render(request, 'circle.html', {"starburst_url": "data/type/json/{}/species/".format("H2A")})
-
 def help(request):
-    return render(request, 'help.html', {"filter_form":AdvancedFilterForm()})
+    data = {
+        "filter_form":AdvancedFilterForm(), 
+        "original_query":{},
+        "current_query":{}
+    }
+    return render(request, 'help.html', data)
 
 def browse_types(request):
     """Home"""
-    return render(request, 'browse_types.html', {"filter_form":AdvancedFilterForm()})
+    data = {
+        "filter_form":AdvancedFilterForm(), 
+        "original_query":{},
+        "current_query":{}
+    }
+    return render(request, 'browse_types.html', data)
 
 def browse_variants(request, histone_type):
     try:
@@ -52,11 +60,15 @@ def browse_variants(request, histone_type):
         return "404"
 
     #Store sequences in session, accesed in get_sequence_table_data
-    HistoneSearch(request, {"id_core_histone":histone_type}, reset=True)
+    original_query = {"id_core_histone":histone_type}
+    if request.method == "POST":
+        query = request.POST.copy()
+    else:
+        query = original_query
+    HistoneSearch(request, query, reset=True)
 
     variants = core_histone.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences")
     variants = [(id, num, color) for (id, num), color in zip(variants, colors)]
-
 
     data = {
         "histone_type": histone_type,
@@ -66,6 +78,8 @@ def browse_variants(request, histone_type):
         "variants": variants,
         "tree_url": "browse/trees/{}.xml".format(core_histone.id),
         "seed_file":"browse/seeds/{}".format(core_histone.id),
+        "original_query":original_query,
+        "current_query":query,
         "filter_form": AdvancedFilterForm(),
     }
 
@@ -77,7 +91,12 @@ def browse_variant(request, histone_type, variant):
     except:
         return "404"
 
-    HistoneSearch(request, {"id_variant":variant.id}, reset=True)
+    original_query = {"id_variant":variant.id}
+    if request.method == "POST":
+        query = request.POST.copy()
+    else:
+        query = original_query
+    HistoneSearch(request, query, reset=True)
 
     green = Color("#66c2a5")
     red = Color("#fc8d62")
@@ -96,26 +115,35 @@ def browse_variant(request, histone_type, variant):
         "score_max":scores["max"],
         "browse_section": "variant",
         "description": variant.description,
+        "original_query":original_query,
+        "current_query":query, 
         "filter_form": AdvancedFilterForm(),
     }
     return render(request, 'browse_variant.html', data)
 
 def search(request):
-    data = {}
+    data = {"filter_form": AdvancedFilterForm()}
     if request.method == "POST": 
+        query = request.POST.copy()
         result = HistoneSearch(
             request, 
-            request.POST.copy(), 
-            reset=request.POST.get("reset", True), 
+            query,
             navbar="search" in request.POST)
+        if request.POST.get("reset", True):
+            request.session["original_query"] = query
+        data["original_query"] = request.session.get("original_query", query)
+        data["current_query"] = query
     else:
         #Show all sequence
         result = HistoneSearch.all(request)
+        data["current_query"] = data["original_query"] = {}
         
     if result.redirect: 
         return result.redirect
+
+    data["result"] = result
         
-    return render(request, 'search.html', {"result":result, "filter_form": AdvancedFilterForm(),})
+    return render(request, 'search.html', data)
 
 def analyze(request):
     data = {"filter_form":AdvancedFilterForm()}
@@ -134,7 +162,7 @@ def analyze(request):
     return render(request, 'analyze.html', data)
 
 def get_sequence_table_data(request):
-    """Downloads the previos search and converts into json required by Bootstrap table
+    """Downloads the previous search and converts into json required by Bootstrap table
     """
 
     if request.method == "GET":
