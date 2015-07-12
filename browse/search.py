@@ -223,7 +223,6 @@ class HistoneSearch(object):
             query.format(field, search_type, value, convert)                
 
         if query.has_errors():
-            raise RuntimeError(str(query.errors))
             return False
         
         #assert 0, query
@@ -236,7 +235,6 @@ class HistoneSearch(object):
                 score=Max("all_model_scores__score"),
                 evalue=Min("all_model_scores__evalue")
             ).filter(**query)
-        #if hasattr(self, 'ajax'):
         
         self.count = self.query_set.count()
         #if not reset:
@@ -259,13 +257,13 @@ class HistoneSearch(object):
         result = result[start:end]
 
         if unique:
-            used = {}
-            for seq in results:
+            used_taxa = {}
+            for seq in result:
                 if not seq.sequence in used_taxa:
-                    used[seq.sequence] = [seq.taxa.id]
+                    used_taxa[seq.sequence] = [seq.taxonomy.id]
                     yield seq
-                elif seq.sequence in used_taxa and not seq.taxa.id in used[seq.sequence]:
-                    used[seq.sequence].append(seq.taxa.id)
+                elif seq.sequence in used_taxa and not seq.taxonomy.id in used_taxa[seq.sequence]:
+                    used_taxa[seq.sequence].append(seq.taxonomy.id)
                     yield seq
                 else:
                     pass

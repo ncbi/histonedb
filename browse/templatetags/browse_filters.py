@@ -1,24 +1,36 @@
-from browse.search import search_types
+from browse.search import search_types, allowable_fields
 import json
 from django import template
 register = template.Library()
+
+@register.filter('get')
+def get(dict, value):
+    return dict.get(value, "");
+
+@register.filter('default')
+def default(value, default):
+    return value or default
 
 @register.filter('fieldtype')
 def fieldtype(field):
     return field.field.__class__.__name__
 
 @register.filter('bootchoice_choice')
-def bootchoice_choice(field):
+def bootchoice_choice(field, default_values={}):
     #choice = str(field).replace("<select", "<select width=100% class=\"form-control\"")
     #return choice
+    value = default_values.get(field.id_for_label, "")
 
     if field.label != "Histone":
         html = get_search_type(field)
-        html += '<input type="text" class="form-control" name="{0}" id="{0}" />'.format(field.id_for_label)
+        html += '<input type="text" class="form-control" name="{0}" id="{0}" value="{1}"/>'.format(field.id_for_label, value)
         html += get_pull_down(field.field.queryset.values_list("id", flat=True), field.id_for_label, reset="text")
     else:
-        html = get_pull_down(field.field.queryset.values_list("id", flat=True), field.id_for_label, default_name="----")
-
+        if field.id_for_label in default_values and default_values[field.id_for_label]:
+            default_name = default_values[field.id_for_label]
+        else:
+            default_name = "----"
+        html = get_pull_down(field.field.queryset.values_list("id", flat=True), field.id_for_label, default_name=default_name)
     return html
 
 @register.filter('simple_choice')
@@ -40,14 +52,24 @@ def simple_choice(field):
     return html
 
 @register.filter('get_search_type')
-def get_search_type(field):
+def get_search_type(field, default_values={}):
     if fieldtype(field) in ["CharField", "ModelChoiceField"]:
         search_type = search_types[str]
     elif fieldtype(field)in ["IntegerField", "FloatField"]:
         search_type = search_types[int]
     else:
-        return ""
-    return get_pull_down(search_type.keys(), field.id_for_label+"_search_type")
+        return "" 
+    default_name = default_values.get(field.id_for_label, "")
+    
+    if default_name not in search_type:
+        for a_field in allowable_fields:
+            if a_field[0] == field.id_for_label: 
+                default_name = default_values.get(a_field[2], "")
+                break
+        else:
+            default_name=""
+
+    return get_pull_down(search_type.keys(), field.id_for_label+"_search_type", default_name=default_name)
 
 def get_pull_down(names, id, reset="menu", default_name=""):
     """This will turn a list into a pulldown menu from Bootstrap, Assoociated javascript is also
@@ -58,7 +80,7 @@ def get_pull_down(names, id, reset="menu", default_name=""):
     html = '<div class="input-group-btn">'
     if reset == "menu":
         default_name = default_name or "is"
-        html += '<input type="hidden" name="{0}" id="{0}" value="{1}">'.format(id, default_name if default_name == "is" else "")
+        html += '<input type="hidden" name="{0}" id="{0}" value="{1}">'.format(id, default_name if default_name and default_name != "----" else "")
     else:
         default_name= ""
     html += '<button type="button" id="{}_drop_down_button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" width="100%">{} <span class="caret"></span></button>'.format(id, default_name)

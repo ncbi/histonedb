@@ -28,7 +28,7 @@
       	</div>
     </form>
   {% else %}
-  	{% include "test.html" with page_name="search" %}
+  	{% include "test.html" with page_name="search-"|add:current_query %}
   {% endif %}
 </div>
 {% endblock %}

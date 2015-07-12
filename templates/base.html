@@ -30,6 +30,7 @@
           $("#advanced_search_button").html("Search");
         }
         else if(search_or_filter == "filter"){
+          $('#advanced_search_form').attr('action', '{{ request.url }}');
           $("#advanced_filter_title").html("Advanced Filter");
           $("#advanced_search_button").html("Filter");
           $("#reset_previous_searches").val("false");
@@ -102,7 +103,10 @@
             <h4 class="modal-title" id="advanced_filter_title">Advanced Search</h4>
           </div>
           <div class="modal-body">
-            <form role="search" action="{{ request.url }}" id="advanced_search_form" method="POST">
+            {% for error, count in filter_errors.items %}
+              <div class="alert alert-danger" role="alert">Error: {{error}} (Number of error: {{ count }}</div>
+            {% endfor %}
+            <form role="search" action="{% url 'browse.views.search' %}" id="advanced_search_form" method="POST">
               {% csrf_token %}
               {% for field in filter_form %}
                 <div class="form-group">
@@ -114,7 +118,9 @@
                     </div>
                     <div class="col-lg-10">
                       <div class="input-group">
-                        {% if field|fieldtype != "ModelChoiceField" %}
+                        {% if field|fieldtype == "BooleanField" %}
+                          <input type="checkbox" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" {% if original_query|get:field.id_for_label  == "on" %} checked{% endif %} />
+                        {% elif field|fieldtype != "ModelChoiceField" %}
                           {% autoescape off %}
                             {{ field|get_search_type:original_query }}
                           {% endautoescape %}

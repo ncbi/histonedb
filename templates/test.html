@@ -168,5 +168,9 @@ var $table = $('#sequence_table'),
             }
             document.location.href = url.substring(0, url.length-4);
         });
+
+        {% if filter_errors %}
+        open_advanced_filter("filter", $table);
+        {% endif %}
     });
 </script>

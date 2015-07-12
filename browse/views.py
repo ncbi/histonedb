@@ -59,14 +59,6 @@ def browse_variants(request, histone_type):
     except:
         return "404"
 
-    #Store sequences in session, accesed in get_sequence_table_data
-    original_query = {"id_core_histone":histone_type}
-    if request.method == "POST":
-        query = request.POST.copy()
-    else:
-        query = original_query
-    HistoneSearch(request, query, reset=True)
-
     variants = core_histone.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences")
     variants = [(id, num, color) for (id, num), color in zip(variants, colors)]
 
@@ -78,10 +70,23 @@ def browse_variants(request, histone_type):
         "variants": variants,
         "tree_url": "browse/trees/{}.xml".format(core_histone.id),
         "seed_file":"browse/seeds/{}".format(core_histone.id),
-        "original_query":original_query,
-        "current_query":query,
         "filter_form": AdvancedFilterForm(),
     }
+
+    #Store sequences in session, accesed in get_sequence_table_data
+    original_query = {"id_core_histone":histone_type}
+    if request.method == "POST":
+        query = request.POST.copy()
+    else:
+        query = original_query
+    
+    result = HistoneSearch(request, query, reset=True)
+
+    data["original_query"] = original_query
+    if result.errors:
+        query = original_query
+        data["filter_errors"] = result.errors
+    data["current_query"] = query
 
     return render(request, 'browse_variants.html', data)
 
@@ -90,13 +95,6 @@ def browse_variant(request, histone_type, variant):
         variant = Variant.objects.get(id=variant)
     except:
         return "404"
-
-    original_query = {"id_variant":variant.id}
-    if request.method == "POST":
-        query = request.POST.copy()
-    else:
-        query = original_query
-    HistoneSearch(request, query, reset=True)
 
     green = Color("#66c2a5")
     red = Color("#fc8d62")
@@ -115,10 +113,22 @@ def browse_variant(request, histone_type, variant):
         "score_max":scores["max"],
         "browse_section": "variant",
         "description": variant.description,
-        "original_query":original_query,
-        "current_query":query, 
         "filter_form": AdvancedFilterForm(),
     }
+
+    original_query = {"id_variant":variant.id}
+    if request.method == "POST":
+        query = request.POST.copy()
+    else:
+        query = original_query
+    result = HistoneSearch(request, query, reset=True)
+
+    data["original_query"] = original_query
+    if result.errors:
+        query = original_query
+        data["filter_errors"] = result.errors
+    data["current_query"] = query
+
     return render(request, 'browse_variant.html', data)
 
 def search(request):
@@ -133,16 +143,19 @@ def search(request):
             request.session["original_query"] = query
         data["original_query"] = request.session.get("original_query", query)
         data["current_query"] = query
+        if len(result.errors) == 0:
+            data["result"] = True
+        else:
+            data["filter_errors"] = result.errors
     else:
         #Show all sequence
         result = HistoneSearch.all(request)
         data["current_query"] = data["original_query"] = {}
-        
+        data["result"] = True
+
     if result.redirect: 
         return result.redirect
 
-    data["result"] = result
-        
     return render(request, 'search.html', data)
 
 def analyze(request):
@@ -177,8 +190,10 @@ def get_sequence_table_data(request):
     if len(results.errors) > 0:
         #Returning 'false' stops Bootstrap table
         return "false"
+
+    unique = "id_unique" in parameters
     
-    return JsonResponse(results.get_dict())
+    return JsonResponse(results.get_dict(unique=unique))
 
 def get_all_scores(request, ids=None):
     if ids is None and request.method == "GET" and "id" in request.GET:

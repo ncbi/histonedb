@@ -9,6 +9,7 @@ class AdvancedFilterForm(ModelForm):
     sequence     = forms.CharField(max_length=50)
     score        = forms.FloatField()
     evalue       = forms.FloatField()
+    unique       = forms.BooleanField()
 
     class Meta:
         model = Sequence
@@ -23,6 +24,7 @@ class AdvancedFilterForm(ModelForm):
         self.fields['taxonomy'].help_text = "Supports all NCBI Taxonomy names and IDs"
         self.fields['gene'].help_text = "Gene number, or more specially phylogenetic branch point order"
         self.fields['splice'].help_text = "Splice isoform index, or paralogous sequence number"
+        self.fields['unique'].help_text = "Only show unique sequences where no organism has multiple sequenes that are identical"
 
 class FeatureForm(ModelForm):
     class Meta:
@@ -35,3 +37,6 @@ class AnalyzeFileForm(forms.Form):
     sequences = forms.CharField(widget=forms.Textarea)
     file  = forms.FileField()
 
+    def __init__(self, *args, **kwargs):
+        super(AnalyzeFileForm, self).__init__(*args, **kwargs)
+        self.fields['sequences'].help_text = "Max 50 Sequences. However, running > 1 sequence in blastp will not be meaningful"
