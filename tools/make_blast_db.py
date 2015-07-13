@@ -12,11 +12,12 @@ def make_blast_db(force=False):
 	"""Create new BLAST databse with seuqences in the HistoneDB. This will create a new subset of nr"""
 	
 	seqs_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa")
-	"""with open(seqs_file, "w") as seqs:
-		for s in Sequence.objects.all():
-			SeqIO.write(s.to_biopython(ungap=True), seqs, "fasta")"""
+	if not os.path.isfile(seqs_file) or force:
+		with open(seqs_file, "w") as seqs:
+			for s in Sequence.objects.all():
+				SeqIO.write(s.to_biopython(ungap=True), seqs, "fasta")
 
-	print " ".join(["makeblastdb", "-in", seqs_file, "-dbtype", "'prot'","-title", "HistoneDB"])
+	makeblastdb = os.path.join(os.path.dirname(sys.executable), "makeblastdb")
 	subprocess.call("makeblastdb", "-in", seqs_file, "-dbtype", "'prot'","-title", "HistoneDB"])
 
 def from_nr(force=True):

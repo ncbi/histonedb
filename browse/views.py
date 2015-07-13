@@ -159,7 +159,11 @@ def search(request):
     return render(request, 'search.html', data)
 
 def analyze(request):
-    data = {"filter_form":AdvancedFilterForm()}
+    data = {
+        "filter_form":AdvancedFilterForm(), 
+        "original_query":{},
+        "current_query":{}
+    }
     if request.method == "POST":
         type = request.POST.get("id_type_0")
         if request.POST.get("sequences"):
@@ -275,10 +279,19 @@ def get_aln_and_features(request, ids=None):
     if len(sequences) == 0:
         return None, None
     elif len(sequences) == 1:
+        #Already aligned to core histone
         canonical = {"name":"canonical{}".format(sequences.first().variant.core_type), "seq":str(templ[sequences.first().variant.core_type].seq)}
         sequences = [canonical, sequences.first().sequence.to_dict()]
         features = sequences.first().features
     else:
+        try:
+            hist_type = max(
+               [(hist, sequences.filter(variant__core_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
+               key=lambda x:x[1]
+               )[0]
+        except ValueError:
+            hist_type = "Unknown"
+        
         muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
         process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         sequences = "\n".join([s.format() for s in sequences])
@@ -287,8 +300,13 @@ def get_aln_and_features(request, ids=None):
         seqFile.write(aln)
         seqFile.seek(0)
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
-        msa = MultipleSeqAlignment(sequences) 
-        hv,ss = get_hist_ss_in_aln(msa, save_dir="/tmp", debug=False)
+        msa = MultipleSeqAlignment(sequences)
+
+        save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+
+        hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
         a = SummaryInfo(msa)
         cons = Sequence(id="consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
         features = Features.from_dict(cons, ss)

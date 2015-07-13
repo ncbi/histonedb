@@ -47,8 +47,10 @@ def process_upload(type, sequences, format):
     return result
 
 def upload_blastp(seq_file, num_seqs):
+    blastp = os.path.join(os.path.dirname(sys.executable), "blastp")
     output= os.path.join("/", "tmp", "{}.xml".format(seq_file[:-6]))
     blastp_cline = NcbiblastpCommandline(
+        cmd=blastp,
         db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa"), 
         evalue=0.01, outfmt=5)
     out, err = blastp_cline(stdin=seq_file)
@@ -74,7 +76,7 @@ def upload_blastp(seq_file, num_seqs):
                     ).get(id=gi)
                 search_evalue = hsp.expect
                 result.append({
-                    "gi":str(sequence.id), 
+                    "id":str(sequence.id), 
                     "variant":str(sequence.variant_id), 
                     "gene":str(sequence.gene) if sequence.gene else "-", 
                     "splice":str(sequence.splice) if sequence.splice else "-", 
@@ -89,7 +91,11 @@ def upload_blastp(seq_file, num_seqs):
 def upload_hmmer(seq_file, num_seqs, evalue=10):
     """
     """
-    temp_seq_path = "/tmp/{}.fasta".format(uuid.uuid4())
+    save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+
+    temp_seq_path = os.path.join(save_dir, "{}.fasta".format(uuid.uuid4()))
     with open(temp_seq_path, "w") as seqs:
         for s in seq_file:
             SeqIO.write(s, seqs, "fasta");
@@ -150,18 +156,14 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
                         if not classifications[hit.id] == "Unknown":
                             for row in rows:
                                 row["data"]["this_classified"][hit.id] = False
-                            #rows[indices[classifications[hit.id]]]["data"]["this_classified"][hit.id] = False
                         rows[indices[variant]]["data"]["this_classified"][hit.id] = True
-                        print 
-                        print
-                        print hit.id, "is", variant
-                        print hsp.bitscore, rows[indices[variant]][hit.id]
-                        print
-                        print
-                        
                     
                     rows[indices[variant]]["data"]["above_threshold"][hit.id] = float(hsp.bitscore)>=variant_model.hmmthreshold
                     rows[indices[variant]][hit.id] = float(hsp.bitscore)
-                        
+    
     classifications = [(id, classifications[id]) for id in ids]
+
+    #Cleanup
+    os.remove(temp_seq_path)
+    
     return classifications, ids, rows

@@ -24,6 +24,9 @@ import pylab
 import pandas as pd
 import networkx as nx
 
+#Django
+from django.conf import settings 
+
 #BioPython
 from Bio import AlignIO
 from Bio import Entrez
@@ -123,30 +126,44 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
     """Returns sequence elements in histone sequence, all numbers assume first element in seq has number 0!!! Not like in PDB"""
     n2=str(uuid.uuid4())
     test_record = SeqRecord(test_seq, id='Query')
-    SeqIO.write(test_record, os.path.join(save_dir, "query_{}.fasta".format(n2)),'fasta')
+    
 
     ss_test = collections.defaultdict(lambda: [-1, -1])
 
+    if hist_type == "H1":
+        #H1 cannot be aligned becuase it does not share the histone fold
+        if save_alignment:
+            return None, ss_test, test_record
+        return None, ss_test
+
+    query_file = os.path.join(save_dir, "query_{}.fasta".format(n2))
+    SeqIO.write(test_record, query_file, 'fasta')
+
     if hist_type == "Unknown":
-        if not os.path.isfile("core_histones_1kx5.db"):
-            SeqIO.write(core_histones, os.path.join(save_dir, "core_histones_1kx5.faa"), "fasta")
-            print "makeblastdb"
-            subprocess.call(["makeblastdb", "-dbtype", "prot", "-in", os.path.join(save_dir, "core_histones_1kx5.faa"), "-out", os.path.join(save_dir, "core_histones_1kx5.db")])
+        results_file = os.path.join(save_dir, "query_{}.xml".format(n2))
+        blastp = os.path.join(os.path.dirname(sys.executable), "blastp")
         blastp_cline = NcbiblastpCommandline(
-            query=os.path.join(save_dir, "query_{}.fasta".format(n2)), 
-            db=os.path.join(save_dir, "core_histones_1kx5.db"), 
+            cmd=blastp,
+            query=query_file, 
+            db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "core_histones_1kx5.faa"), 
             evalue=10000000,
             outfmt=5, 
-            out=os.path.join(save_dir, "query_{}.xml".format(n2)))
+            out=results_file)
         stdout, stderr = blastp_cline()
-        with open(os.path.join(save_dir, "query_{}.xml".format(n2))) as results_file:
-            blast_results = [(alignment.title, hsp.expect, hsp) for blast_record in NCBIXML.parse(results_file) for alignment in blast_record.alignments for hsp in alignment.hsps]
+
+        with open(result_file) as results:
+            blast_results = [(alignment.title, hsp.expect, hsp) for blast_record in NCBIXML.parse(results) \
+                for alignment in blast_record.alignments for hsp in alignment.hsps]
+
+        #Cleanup
+        os.remove(results_file)
         
         try:
             hist_identified, evalue, hsp = min(blast_results, key=lambda x:x[1])
             hist_identified = hist_identified.split()[1]
         except ValueError:
             #No best match
+            os.remove(query_file)
             if save_alignment:
                 return None, ss_test, test_record
             return None, ss_test
@@ -157,22 +174,23 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
             print hsp
     else:
         hist_identified = hist_type
+    
+    core_histone_query = os.path.join(settings.STATIC_ROOT, "browse", "blast", "{}.faa".format(hist_identified))
 
-    SeqIO.write(SeqRecord(templ[hist_identified],id=hist_identified,name=hist_identified), os.path.join(save_dir, "{}_{}.fasta".format(hist_identified, n2)), "fasta")
-
+    needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
     cmd = os.path.join(os.path.dirname(sys.executable), "needle")
     if not os.path.isfile(cmd):
         cmd = "needle"
     needle_cline = NeedleCommandline(
         cmd=cmd,
-        asequence=os.path.join(save_dir, "{}_{}.fasta".format(hist_identified, n2)), 
-        bsequence=os.path.join(save_dir, "query_{}.fasta".format(n2)), 
+        asequence=core_histone_query, 
+        bsequence=query_file, 
         gapopen=20, 
         gapextend=1, 
-        outfile=os.path.join(save_dir, "needle_{}.txt".format(n2)))
+        outfile=needle_results)
     stdout, stderr = needle_cline()
 
-    align = AlignIO.read(os.path.join(save_dir, "needle_{}.txt".format(n2)), "emboss")
+    align = AlignIO.read(needle_results, "emboss")
     core_histone = align[0]
     query = align[1]
 
@@ -223,11 +241,9 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
 
     ss_test["core"] = get_core_lendiff(ss_test, ss_templ[hist_identified])
 
-    for f in ["needle_{}.txt".format(n2), "query_{}.fasta".format(n2), "{}_{}.fasta".format(hist_identified, n2), "query_{}.xml".format(n2), "query_{}.fasta".format(n2)]:
-        try:
-            os.remove(os.path.join(save_dir, f))
-        except OSError:
-            pass
+    #Cleanup
+    os.remove(query_file)
+    os.remove(needle_results)
         
     if save_alignment:
         return hist_identified,ss_test,query

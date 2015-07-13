@@ -129,13 +129,14 @@ USE_TZ = True
 
 STATIC_URL = '/projects/histonedb/HistoneDB/static/'
 
-STATIC_ROOT = '/net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/'
+STATIC_ROOT = '/web/public/htdocs/projects/histonedb/HistoneDB/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
 MEDIA_URL = "/projects/histonedb/HistoneDB/media/"
+MEDIA_ROOT = "/web/projects/histonedb/HistoneDB/media/"
 
 # List of finder classes that know how to find static files in
 # various locations.
