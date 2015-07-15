@@ -42,15 +42,15 @@ p#intro {
           <div class="col-xs-9">
             <h4>You selected: <span id="taxa_selection" style="font-style: italic;">root</span></h4>
           </div>
-          <div class="col-xs-3">
-            <button class="btn btn-default" type="button" id="reset_sunburst_button">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reset
-            </button>
+          <div class="col-xs-3 pull-right">
+            <button class="btn btn-default" type="button" id="reset_sunburst_button">Reset</button>
           </div>
         </div>
       </div>
       <div class="row pull-right">
-        <button class="btn btn-default" type="button" id="view_sequences_of_taxa_button">View {{ variant }} sequences within this taxa</button>
+        <div class="col-xs-12">
+          <button class="btn btn-default" type="button" id="view_sequences_of_taxa_button">View {{ variant }} sequences within this taxa</button>
+        </div>
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@ var div = d3.select("#vis");
 
 div.append("div")
     .attr("id", "intro")
-    .text("Click on a taxa to zoom in, or the center to go up a level. You may also select 'Reset' to be taken back to root.");
+    .text("Click on a taxa to zoom in, or on the center to go up a level. 'Reset' will take you back to the whole tree.");
 
 div.select("img").remove();
 
