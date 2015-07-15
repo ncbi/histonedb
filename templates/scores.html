@@ -1,6 +1,7 @@
 {% load browse_filters %}
 
-<div class="modal-body">
+<div {% if modal %}class="modal-body"{% endif %}>
+  Score shows how well a sequence was classified by a variant HMM. Each sequence has been classified as a variant (Green), but it may share similar functions to another variant (Blue). Please see the 'Help' page to learn about the classification alogorthm.<br /> <br /> 
   <div class="btn-group">
     <button type="button" class="btn btn-success" aria-expanded="false">Classified Variant</button>
   </div>
@@ -10,8 +11,10 @@
   <div class="btn-group">
     <button type="button" class="btn btn-default" aria-expanded="false">Not Significant</button>
   </div>
+  <br /><br />
+  <div id="scores_table_div" class="top: 5px;"></div>
 </div>
-<div id="scores_table_div"></div>
+
 
 <script type="text/javascript">
 function scoreCellStyle(value, row, index) {
