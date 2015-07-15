@@ -204,39 +204,17 @@ function brightness(rgb) {
   return rgb.r * .299 + rgb.g * .587 + rgb.b * .114;
 }
 
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie != '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-var csrftoken = getCookie('csrftoken');
-
-
-
 $("#view_sequences_of_taxa_button").click(function() {
   var taxa = $("#taxa_selection").html();
   if(taxa == "root"){
-    alert("You must select a taxa lower than root.");
-    return;
+    delete extra_seq_params["id_taxonomy"];
+    $("#page_title").html("{{ variant }}");
   }
-  var formData = {"id_taxonomy":taxa, "id_variant":"{{ variant }}", "csrfmiddlewaretoken":csrftoken};
-  $.post(
-    "{% url 'browse.views.search' %}", 
-    formData,
-    function( data ) {
-      $('#sequence_table').bootstrapTable('refresh');
-  });
+  else{
+    extra_seq_params["id_taxonomy"] = taxa
+    $("#page_title").html("{{ variant }} - "+taxa);
+  }
+  $('#sequence_table').bootstrapTable('refresh');
   $("#sequences_tab").tab("show");
-  $("#page_title").html("{{ variant }} - "+taxa);
 });
 </script>
