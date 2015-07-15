@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block includes %}
+<script type="text/javascript">
+  $(function() {
+    $('#browse_navbar_button').addClass('active'); 
+  });
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="jumbotron">
   <div class="container">

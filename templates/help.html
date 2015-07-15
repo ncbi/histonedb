@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block includes %}
+<script type="text/javascript">
+$(function() {
+  $('#help_navbar_button').addClass('active');      
+});
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="container" style="margin-top:15px;">
   <div class="row">

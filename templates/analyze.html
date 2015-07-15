@@ -8,6 +8,11 @@
 <script src="{% static 'browse/js/biojs-io-fasta.js' %}"></script>
 <script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
 <script src="{% static 'browse/js/msa.js' %}"></script>
+<script type="text/javascript">
+  $(function() {
+    $('#analyze_navbar_button').addClass('active'); 
+  });
+</script>
 {% endblock %}
 
 {% block content %}

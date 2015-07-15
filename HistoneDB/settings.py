@@ -13,10 +13,16 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-#This file contains name,user,password, and host for HistoneDB as single variable with those names.
-#It has been obscured to follow the NCBI privacy policy. If the file is not present (e.g. on GitHub),
-#you will revice a 500 Server Error.
-from HistoneDB import NCBI_database_info
+# Set the MySQL dtabase information. If this in an NCBI machine, it will already be set as an environment variable
+NCBI_database_info = {
+    "name": "DB_NAME",
+    "user": "DB_USER",
+    "password": "DB_PASS",
+    "host": "DB_HOST",
+    "port": "DB_PORT",
+    "SECRET_KEY": "DJANGO_SECRET_KEY"
+}
+NCBI_database_info.update({key.replace("NCBI_database_info_", ""): value for key, value in os.environ.iteritems() if key.startswith("NCBI_database_info")})
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = NCBI_database_info.SECRET_KEY
+SECRET_KEY = NCBI_database_info["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -100,11 +106,11 @@ WSGI_APPLICATION = 'HistoneDB.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': NCBI_database_info.name,
-        'USER': NCBI_database_info.user,
-        'PASSWORD': NCBI_database_info.password,
-        'HOST': NCBI_database_info.host,
-        'PORT':NCBI_database_info.port
+        'NAME': NCBI_database_info["name"],
+        'USER': NCBI_database_info["user"],
+        'PASSWORD': NCBI_database_info["password"],
+        'HOST': NCBI_database_info["host"],
+        'PORT':NCBI_database_info["port"]
     }
 }
 
