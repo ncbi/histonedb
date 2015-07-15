@@ -119,7 +119,7 @@
                     <div class="col-lg-10">
                       <div class="input-group">
                         {% if field|fieldtype == "BooleanField" %}
-                          <input type="checkbox" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" {% if original_query|get:field.id_for_label  == "on" %} checked{% endif %} />
+                          <input type="checkbox" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" {% if original_query|get:field.id_for_label  == "on" %} checked{% endif %} />
                         {% elif field|fieldtype != "ModelChoiceField" %}
                           {% autoescape off %}
                             {{ field|get_search_type:original_query }}
