@@ -45,41 +45,5 @@ $gff_button.click(function() {
 </script>
 
 <script type="text/javascript">
-createMSA("snippetDiv", "{% static seed_file %}", 975, true);
-/*$(document).ready(function() {
-	var yourDiv = document.getElementById('snippetDiv');
-
-	var msa = require("msa");
-	var fasta = require("biojs-io-fasta");
-
-	var msaDiv = document.createElement('div');
-	yourDiv.appendChild(msaDiv);
-
-	var opts = {
-	  el: msaDiv
-	}
-	opts.vis = {
-	  conserv: false,
-	  overviewbox: false,
-	  seqlogo: true,
-	  markers: false,
-	  leftHeader: false,
-	  labelName: true,
-	  labelId: false
-	};
-	opts.zoomer = {
-	  labelNameLength: 160,
-	  alignmentHeight: 500,
-	  alignmentWidth: 975,
-	};
-
-	// init msa
-	var m = msa(opts);
-
-	//load sequences
-	fasta.read("{% static seed_file %}", function(err, seqs){
-    	m.seqs.reset(seqs);
-    	m.render();
-	});
-});*/
+createMSA("snippetDiv", "{% url 'browse.views.get_seed_aln_and_features' name %}?limit=500&consensus=limit", 975);
 </script>

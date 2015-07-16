@@ -1,6 +1,6 @@
-function createMSA(div_id, url, width, is_seed){
+function createMSA(div_id, url, width){
   var yourDiv = document.getElementById(div_id);
-  yourDiv.innerHTML = "<span id='load_msa'>Please wait while we construct the MSA...</span>";
+  yourDiv.innerHTML = "<div id='load_msa'>Please wait while we construct the MSA...</div>";
 
   /* global yourDiv */
   var msa = require("msa");
@@ -12,6 +12,9 @@ function createMSA(div_id, url, width, is_seed){
 
   var opts = {
     el: msaDiv
+  }
+  opts.conf = {
+    manualRendering: true
   }
   opts.vis = {
     conserv: false,
@@ -30,39 +33,22 @@ function createMSA(div_id, url, width, is_seed){
 
   var m = msa(opts);
 
-  if(!is_seed){
-    // init msa
-    $.ajax({
-      url:url,
-      dataType: "json",
-      success: function(result) {
-        console.log(result)
-        m.seqs.reset(result.seqs);
-        var features = gff.parseSeqs(result.features);
-        m.seqs.addFeatures(features);
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus);
-        console.log(errorThrown)
-      }
-    });
-  }
-  else{
-    //load sequences
-    fasta.read(url+".fasta", function(err, seqs){
-        m.seqs.reset(seqs);
-        m.seqs.unshift({name:"Consensus", seq:m.g.stats.consensus()});
-    });
-    var xhr = msa.io.xhr;
-    if(url.substring(url.length-2, url.length) != "H1"){
-      xhr(url+".gff", function(err, request, body) {
-        var features = gff.parseSeqs(body);
-        m.seqs.addFeatures(features);
-      });
+  // init msa
+  $.ajax({
+    url:url,
+    dataType: "json",
+    success: function(result) {
+      m.seqs.reset(result.seqs);
+      var features = gff.parseSeqs(result.features);
+      m.seqs.addFeatures(features);
+      m.render()
+      $("#load_msa").html("");
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus);
+      console.log(errorThrown)
     }
-  }
-  m.render();
-  $("#load_msa").html("")
+  });
 
   var colorConservation = {}
 

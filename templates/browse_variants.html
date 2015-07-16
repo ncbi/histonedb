@@ -35,7 +35,6 @@
       url:"{% static tree_url %}",
       dataType: "xml",
       success: function(data) {
-        console.log(data)
         var dataObject = {
           xml: data,
           fileSource: true
@@ -48,7 +47,7 @@
           'circular'
         );
 
-        init(); //unitip
+        //init(); //unitip
 
         treediv = $("#tree");
         treediv.width(800);

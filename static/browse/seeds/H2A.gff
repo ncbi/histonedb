@@ -4,17 +4,18 @@ residue	105,225,35
 helix	ff0000
 strand	00ff00
 loop	cccccc
+extension ff00ff
 
 alpha1	Consensus	-1	129	140	helix
-alpha1ext	Consensus	-1	119	125	helix
+alpha1ext	Consensus	-1	119	125	extension
 alpha2	Consensus	-1	150	179	helix
 alpha3	Consensus	-1	185	195	helix
-alpha3ext	Consensus	-1	196	203	helix
-beta1	Consensus	-1	146	147	stand
-beta2	Consensus	-1	183	184	stand
+alpha3ext	Consensus	-1	196	203	extension
+beta1	Consensus	-1	146	147	strand
+beta2	Consensus	-1	183	184	strand
 loopL1	Consensus	-1	142	149	loop
 loopL2	Consensus	-1	180	184	loop
-Minor Groov Arg 1	Consensus	-1	146	146	residue
-Minor Groov Arg 2	Consensus	-1	183	183	residue
+Minor Groove Arg 1	Consensus	-1	146	146	residue
+Minor Groove Arg 2	Consensus	-1	183	183	residue
 Docking Domain	Consensus	-1	187	228	domain
 

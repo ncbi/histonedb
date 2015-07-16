@@ -148,7 +148,7 @@ var extra_seq_params = {};
           for (var i = 0; i < ids.length; i++) {
             params += "id="+ids[i]+"&"
           }
-          createMSA("msa_modal_sniper", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), 418, false);
+          createMSA("msa_modal_sniper", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), 418);
           $('#msa_modal').modal('show');
         });
 

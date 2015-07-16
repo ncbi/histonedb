@@ -338,6 +338,50 @@ def get_sequence_features(request, ids=None):
 
     return response
 
+def get_seed_aln_and_features(request, seed):
+    from Bio.Align import MultipleSeqAlignment
+    from Bio.Align.AlignInfo import SummaryInfo
+
+    seed_file = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    try:
+        histone = Histone.objects.get(id=seed)
+        seed_file = os.path.join(seed_file, "{}".format(histone.id))
+    except Histone.DoesNotExist:
+        try:
+            variant = Variant.objects.get(id=seed)
+            seed_file = os.path.join(seed_file, variant.core_type.id, "{}".format(variant.id))
+        except Variant.DoesNotExist:
+            return HttpResponseNotFound('<h1>No histone variant with name {}</h1>'.format(seed))
+
+    try:
+        limit = int(request.GET.get("limit", 0))
+    except ValueError:
+        limit = 0
+
+    consensus = request.GET.get("consensus", False)
+
+    if not consensus in ["limit", "all", False]:
+        consensus = "all"
+
+    response = HttpResponse(content_type='text')
+
+    sequences = SeqIO.parse("{}.fasta".format(seed_file), "fasta")
+
+    if consensus:
+        sequences = [s for i, s in enumerate(sequences) if consensus == "all" or (consensus == "limit" and i < limit)]
+        msa = MultipleSeqAlignment(sequences)
+        a = SummaryInfo(msa)
+        sequences.insert(0, SeqRecord(id="Consensus", description="", seq=a.dumb_consensus(threshold=0.1, ambiguous='X')))
+        limit = limit+1 if limit > 0 else 0
+
+    sequences = [{"name":seq.id, "seq":seq.seq.tostring()} for seq in sequences \
+        if not consensus or consensus == "limit" or (limit > 0 and i < limit)]
+
+    with open("{}.gff".format(seed_file)) as feature_file:
+        features = feature_file.read()
+
+    result = {"seqs":sequences, "features":features}
+    return JsonResponse(result, safe=False) 
 
 def get_starburst_json(request, browse_type, search, debug=False):
     """
