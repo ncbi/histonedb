@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_list_or_404
 
 from browse.forms import AdvancedFilterForm, AnalyzeFileForm
@@ -69,7 +70,7 @@ def browse_variants(request, histone_type):
         "name": histone_type,
         "variants": variants,
         "tree_url": "browse/trees/{}.xml".format(core_histone.id),
-        "seed_file":"browse/seeds/{}".format(core_histone.id),
+        "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[core_histone.id]),
         "filter_form": AdvancedFilterForm(),
     }
 
@@ -107,7 +108,7 @@ def browse_variant(request, histone_type, variant):
         "variant": variant.id,
         "name": variant.id,
         "sunburst_url": "browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id),
-        "seed_file":"browse/seeds/{}/{}".format(variant.core_type.id, variant.id),
+        "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[variant.id]),
         "colors":color_range,
         "score_min":scores["min"],
         "score_max":scores["max"],
@@ -271,51 +272,84 @@ def get_aln_and_features(request, ids=None):
 
     if ids is None and request.method == "GET" and "id" in request.GET:
         ids = request.GET.getlist("id")
+        download = False
+    elif request.GET.get("download", False) == "true":
+        download = True
     else:
         #Returning 'false' stops Bootstrap table
         return "false"
 
-    sequences = Sequence.objects.filter(id__in=ids[:50])
-    if len(sequences) == 0:
-        return None, None
-    elif len(sequences) == 1:
-        #Already aligned to core histone
-        canonical = {"name":"canonical{}".format(sequences.first().variant.core_type), "seq":str(templ[sequences.first().variant.core_type].seq)}
-        sequences = [canonical, sequences.first().sequence.to_dict()]
-        features = sequences.first().features
+    if not download:
+        sequences = Sequence.objects.filter(id__in=ids[:50])
+        if len(sequences) == 0:
+            return None, None
+        elif len(sequences) == 1:
+            #Already aligned to core histone
+            canonical = {"name":"canonical{}".format(sequences.first().variant.core_type), "seq":str(templ[sequences.first().variant.core_type].seq)}
+            sequences = [canonical, sequences.first().sequence.to_dict()]
+            features = sequences.first().features
+        else:
+            try:
+                hist_type = max(
+                   [(hist, sequences.filter(variant__core_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
+                   key=lambda x:x[1]
+                   )[0]
+            except ValueError:
+                hist_type = "Unknown"
+            
+            muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
+            process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            sequences = "\n".join([s.format() for s in sequences])
+            aln, error = process.communicate(sequences)
+            seqFile = StringIO.StringIO()
+            seqFile.write(aln)
+            seqFile.seek(0)
+            sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
+            msa = MultipleSeqAlignment(sequences)
+
+            save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+            if not os.path.exists(save_dir):
+                os.makedirs(save_dir)
+
+            hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
+            a = SummaryInfo(msa)
+            cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+            features = Features.from_dict(cons, ss)
+
+            sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
+            sequences.insert(0, cons.to_dict())
+
+        request.session["calculated_msa_seqs"] = sequences
+        request.session["calculated_msa_features"] = features.to_dict()
+
+        result = {"seqs":sequences, "features":features.full_gff()}
+        return JsonResponse(result, safe=False) 
     else:
-        try:
-            hist_type = max(
-               [(hist, sequences.filter(variant__core_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
-               key=lambda x:x[1]
-               )[0]
-        except ValueError:
-            hist_type = "Unknown"
+        format = request.GET.get("format", "json")
+        response = HttpResponse(content_type='text')
+        if not format == "pdf":
+            response['Content-Disposition'] = 'attachment; filename="sequences.{}"'.format(format)
+
         
-        muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
-        process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-        sequences = "\n".join([s.format() for s in sequences])
-        aln, error = process.communicate(sequences)
-        seqFile = StringIO.StringIO()
-        seqFile.write(aln)
-        seqFile.seek(0)
-        sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
-        msa = MultipleSeqAlignment(sequences)
+        sequences = request.session.get("calculated_msa_seqs", [])
+        features = request.session.get("calculated_msa_features", None)
+        features = Features.from_dict(Sequence("Consensus"), features) if features else None
 
-        save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
+        if format == "fasta":
+            for s in sequences:
+                print >> response, ">{}\n{}".format(s["name"], s["seq"])
+        elif format == "gff":
+            response.write(features.full_gff() if features else "")
+        elif format == "pdf":
+            response.write("Sorry PDF Feature is still in development")
+            #return redirect("{}.pdf".format(seed_file))
+        else:
+            #Default format is json
+            sequences = [{"name":seq.id, "seq":seq.seq.tostring()} for seq in limited_seqs()]
+            result = {"seqs":sequences, "features":features.full_gff() if features else ""}
+            response.write(json.dumps(result))
 
-        hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
-        a = SummaryInfo(msa)
-        cons = Sequence(id="consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
-        features = Features.from_dict(cons, ss)
-
-        sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
-        sequences.insert(0, cons.to_dict())
-        
-    result = {"seqs":sequences, "features":features.full_gff()}
-    return JsonResponse(result, safe=False) 
+        return response    
 
 def get_sequence_features(request, ids=None):
     if ids is None and request.method == "GET" and "id" in request.GET:
@@ -353,6 +387,10 @@ def get_seed_aln_and_features(request, seed):
         except Variant.DoesNotExist:
             return HttpResponseNotFound('<h1>No histone variant with name {}</h1>'.format(seed))
 
+    download = request.GET.get("download", False) == "true"
+
+    format = request.GET.get("format", "json")
+
     try:
         limit = int(request.GET.get("limit", 0))
     except ValueError:
@@ -365,6 +403,9 @@ def get_seed_aln_and_features(request, seed):
 
     response = HttpResponse(content_type='text')
 
+    if download:
+        response['Content-Disposition'] = 'attachment; filename="{}.{}"'.format(seed, format)
+
     sequences = SeqIO.parse("{}.fasta".format(seed_file), "fasta")
 
     if consensus:
@@ -374,14 +415,27 @@ def get_seed_aln_and_features(request, seed):
         sequences.insert(0, SeqRecord(id="Consensus", description="", seq=a.dumb_consensus(threshold=0.1, ambiguous='X')))
         limit = limit+1 if limit > 0 else 0
 
-    sequences = [{"name":seq.id, "seq":seq.seq.tostring()} for seq in sequences \
-        if not consensus or consensus == "limit" or (limit > 0 and i < limit)]
+    def limited_seqs():
+        for i, seq in enumerate(sequences):
+            if not consensus or consensus == "limit" or (limit > 0 and i < limit):
+                yield seq
 
     with open("{}.gff".format(seed_file)) as feature_file:
         features = feature_file.read()
 
-    result = {"seqs":sequences, "features":features}
-    return JsonResponse(result, safe=False) 
+    if format == "fasta":
+        SeqIO.write(limited_seqs(), response, "fasta")
+    elif format == "gff":
+        response.write(features)
+    elif format == "pdf":
+        return redirect("{}.pdf".format(seed_file))
+    else:
+        #Default format is json
+        sequences = [{"name":seq.id, "seq":seq.seq.tostring()} for seq in limited_seqs()]
+        result = {"seqs":sequences, "features":features}
+        response.write(json.dumps(result))
+
+    return response
 
 def get_starburst_json(request, browse_type, search, debug=False):
     """

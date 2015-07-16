@@ -69,8 +69,7 @@
             {% include "test.html" with page_name="browse-variant-"|add:variant %}
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
-            <!-- This tab might not exist here just for testing -->
-            {% include "seed.html" %}
+            {% include "seed.html" with msa_id="browse" msa_url=seed_url|add:"?limit=500&consensus=limit" download_url=seed_url|add:"?download=true" %}
           </div>
         </div>
       </div>

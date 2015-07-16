@@ -6,6 +6,8 @@ from djangophylocore.models import Taxonomy
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
+from collections import defaultdict
+
 class Histone(models.Model):
     id             = models.CharField(max_length=25, primary_key=True)
     taxonomic_span = models.CharField(max_length=25)
@@ -163,6 +165,25 @@ class Features(models.Model):
     docking_domain_end   = models.IntegerField(null=True)
     core                 = models.FloatField()
 
+    features = [
+        ("alphaN", "", "helix"),
+        ("alpha1", "", "helix"),
+        ("alpha1ext", "", "helix"),
+        ("alpha2", "", "helix"),
+        ("alpha3", "", "helix"),
+        ("alpha3ext", "", "helix"),
+        ("alphaC", "", "helix"),
+        ("beta1", "", "stand"),
+        ("beta2", "", "stand"),
+        ("beta3", "", "stand"),
+        ("loopL1", "", "loop"),
+        ("loopL2", "", "loop"),
+        ("mgarg1", "Minor Groov Arg 1", "residue"),
+        ("mgarg2", "Minor Groov Arg 2", "residue"),
+        ("mgarg3", "Minor Groov Arg 3", "residue"),
+        ("docking_domain", "Docking Domain", "domain")
+    ]
+
     @classmethod
     def from_dict(cls, sequence, ss_position):
         """Create model from secondary structure dictionary
@@ -173,64 +194,47 @@ class Features(models.Model):
         ss_dict : dict
             Created from tools.hist_ss
         """
+        ss_test = defaultdict(lambda: [-1, -1])
+        ss_test.update(ss_position)
         return cls(
           sequence             = sequence,
-          alphaN_start         = ss_position["alphaN"][0],
-          alphaN_end           = ss_position["alphaN"][1],
-          alpha1_start         = ss_position["alpha1"][0],
-          alpha1_end           = ss_position["alpha1"][1],
-          alpha1ext_start      = ss_position["alpha1ext"][0],
-          alpha1ext_end        = ss_position["alpha1ext"][1],
-          alpha2_start         = ss_position["alpha2"][0],
-          alpha2_end           = ss_position["alpha2"][1],
-          alpha3_start         = ss_position["alpha3"][0],
-          alpha3_end           = ss_position["alpha3"][1],
-          alpha3ext_start      = ss_position["alpha3ext"][0],
-          alpha3ext_end        = ss_position["alpha3ext"][1],
-          alphaC_start         = ss_position["alphaC"][0],
-          alphaC_end           = ss_position["alphaC"][1],
-          beta1_start          = ss_position["beta1"][0],
-          beta1_end            = ss_position["beta1"][1],
-          beta2_start          = ss_position["beta2"][0],
-          beta2_end            = ss_position["beta2"][1],
-          loopL1_start         = ss_position["loopL1"][0],
-          loopL1_end           = ss_position["loopL1"][1],
-          loopL2_start         = ss_position["loopL2"][0],
-          loopL2_end           = ss_position["loopL2"][1],
-          mgarg1_start         = ss_position["mgarg1"][0],
-          mgarg1_end           = ss_position["mgarg1"][1],
-          mgarg2_start         = ss_position["mgarg2"][0],
-          mgarg2_end           = ss_position["mgarg2"][1],
-          mgarg3_start         = ss_position["mgarg3"][0],
-          mgarg3_end           = ss_position["mgarg3"][1],
-          docking_domain_start = ss_position["docking domain"][0],
-          docking_domain_end   = ss_position["docking domain"][1],
-          core                 = ss_position["core"],
+          alphaN_start         = ss_test["alphaN"][0],
+          alphaN_end           = ss_test["alphaN"][1],
+          alpha1_start         = ss_test["alpha1"][0],
+          alpha1_end           = ss_test["alpha1"][1],
+          alpha1ext_start      = ss_test["alpha1ext"][0],
+          alpha1ext_end        = ss_test["alpha1ext"][1],
+          alpha2_start         = ss_test["alpha2"][0],
+          alpha2_end           = ss_test["alpha2"][1],
+          alpha3_start         = ss_test["alpha3"][0],
+          alpha3_end           = ss_test["alpha3"][1],
+          alpha3ext_start      = ss_test["alpha3ext"][0],
+          alpha3ext_end        = ss_test["alpha3ext"][1],
+          alphaC_start         = ss_test["alphaC"][0],
+          alphaC_end           = ss_test["alphaC"][1],
+          beta1_start          = ss_test["beta1"][0],
+          beta1_end            = ss_test["beta1"][1],
+          beta2_start          = ss_test["beta2"][0],
+          beta2_end            = ss_test["beta2"][1],
+          loopL1_start         = ss_test["loopL1"][0],
+          loopL1_end           = ss_test["loopL1"][1],
+          loopL2_start         = ss_test["loopL2"][0],
+          loopL2_end           = ss_test["loopL2"][1],
+          mgarg1_start         = ss_test["mgarg1"][0],
+          mgarg1_end           = ss_test["mgarg1"][1],
+          mgarg2_start         = ss_test["mgarg2"][0],
+          mgarg2_end           = ss_test["mgarg2"][1],
+          mgarg3_start         = ss_test["mgarg3"][0],
+          mgarg3_end           = ss_test["mgarg3"][1],
+          docking_domain_start = ss_test["docking domain"][0],
+          docking_domain_end   = ss_test["docking domain"][1],
+          core                 = ss_test["core"],
         )
 
     def __unicode__(self):
         """Returns Jalview GFF format"""
-        
-        features = [
-            ("alphaN", "", "helix"),
-            ("alpha1", "", "helix"),
-            ("alpha1ext", "", "helix"),
-            ("alpha2", "", "helix"),
-            ("alpha3", "", "helix"),
-            ("alpha3ext", "", "helix"),
-            ("alphaC", "", "helix"),
-            ("beta1", "", "stand"),
-            ("beta2", "", "stand"),
-            ("beta3", "", "stand"),
-            ("loopL1", "", "loop"),
-            ("loopL2", "", "loop"),
-            ("mgarg1", "Minor Groov Arg 1", "residue"),
-            ("mgarg2", "Minor Groov Arg 2", "residue"),
-            ("mgarg3", "Minor Groov Arg 3", "residue"),
-            ("docking_domain", "Docking Domain", "domain")
-        ]
         outl = ""
-        for feature, description, type in features:
+        for feature, description, type in Features.features:
             start = str(getattr(self, "{}_start".format(feature), -1))
             end = str(getattr(self, "{}_end".format(feature), -1))
 
@@ -256,6 +260,16 @@ loop\tcccccc
     
     def full_gff(self):
         return "{}\n{}".format(Features.gff_colors(), str(self))
+
+    def to_dict(self):
+        ss_position = {}
+        for feature, description, type in Features.features:
+            start = str(getattr(self, "{}_start".format(feature), -1))
+            end = str(getattr(self, "{}_end".format(feature), -1))
+            ss_position[feature] = [start, end]
+        ss_position["core"] = self.core
+        return ss_position
+
 
 class Structure(models.Model):
     sequence = models.OneToOneField(Sequence, primary_key=True, related_name="structures")

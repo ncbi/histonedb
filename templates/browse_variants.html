@@ -122,7 +122,7 @@
             {% include "test.html" with page_name="browse-variants-"|add:histone_type %} 
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
-            {% include "seed.html" %}
+            {% include "seed.html" with msa_id="browse" msa_url=seed_url|add:"?limit=500&consensus=limit" download_url=seed_url|add:"?download=true" %}
           </div>
         </div>
       </div>

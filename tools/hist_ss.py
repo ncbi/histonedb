@@ -178,7 +178,8 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
     core_histone_query = os.path.join(settings.STATIC_ROOT, "browse", "blast", "{}.faa".format(hist_identified))
 
     needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
-    cmd = os.path.join(os.path.dirname(sys.executable), "needle")
+    cmd = os.path.join(os.path.dirname(sys.executable), "EMBOSS-6.6.0", "emboss", "needle")
+    
     if not os.path.isfile(cmd):
         cmd = "needle"
     needle_cline = NeedleCommandline(
