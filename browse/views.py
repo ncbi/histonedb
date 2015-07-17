@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_list_or_404
+from django.core.exceptions import ObjectDoesNotExist
 
 from browse.forms import AdvancedFilterForm, AnalyzeFileForm
 from browse.search import HistoneSearch
@@ -285,9 +286,16 @@ def get_aln_and_features(request, ids=None):
             return None, None
         elif len(sequences) == 1:
             #Already aligned to core histone
-            canonical = {"name":"canonical{}".format(sequences.first().variant.core_type), "seq":str(templ[sequences.first().variant.core_type].seq)}
-            sequences = [canonical, sequences.first().sequence.to_dict()]
-            features = sequences.first().features
+            canonical = {"name":"Consensus".format(sequences.first().variant.core_type.id), "seq":str(templ[sequences.first().variant.core_type.id])}
+            seq = sequences.first()
+            sequences = [canonical, seq.to_dict()]
+            try:
+                features = seq.features 
+            except ObjectDoesNotExist:
+                features = ""
+            finally:
+                if "H1" in seq.variant.id:
+                    features = ""
         else:
             try:
                 hist_type = max(
@@ -311,18 +319,21 @@ def get_aln_and_features(request, ids=None):
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
 
-            hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
-            a = SummaryInfo(msa)
-            cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
-            features = Features.from_dict(cons, ss)
+            if not hist_type == "H1":
+                hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
+                a = SummaryInfo(msa)
+                cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+                features = Features.from_dict(cons, ss)
+            else:
+                features = ""
 
             sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
             sequences.insert(0, cons.to_dict())
 
         request.session["calculated_msa_seqs"] = sequences
-        request.session["calculated_msa_features"] = features.to_dict()
+        request.session["calculated_msa_features"] = features.to_dict() if features else {}
 
-        result = {"seqs":sequences, "features":features.full_gff()}
+        result = {"seqs":sequences, "features":features.full_gff() if features else ""}
         return JsonResponse(result, safe=False) 
     else:
         format = request.GET.get("format", "json")
@@ -332,8 +343,8 @@ def get_aln_and_features(request, ids=None):
 
         
         sequences = request.session.get("calculated_msa_seqs", [])
-        features = request.session.get("calculated_msa_features", None)
-        features = Features.from_dict(Sequence("Consensus"), features) if features else None
+        features_dict = request.session.get("calculated_msa_features", None)
+        features = Features.from_dict(Sequence("Consensus"), features_dict) if features_dict else None
 
         if format == "fasta":
             for s in sequences:

@@ -12,6 +12,8 @@ from collections import Counter
 import django_filters
 from itertools import groupby
 
+import re
+
 def tax_sub_search(value):
     """
     """
@@ -89,8 +91,6 @@ def variant_sub_search(value):
         
   
     else:
-        
-    
         variants = Variant.objects.filter(query).values_list("id", flat=True)
     
         if len(variants) > 0:
@@ -111,6 +111,7 @@ allowable_fields = [
     ("id_taxonomy", "taxonomy", "id_taxonomy_search_type", tax_sub_search),
     ("id_evalue", "evalue", "id_evalue_search_type", float),
     ("id_score", "score", "id_score_search_type", float),
+    ("id_sequence", "sequence", "id_sequence_search_type", str),
     #("show_lower_scoring_models", None, None, (""))
 ]
 
@@ -119,13 +120,14 @@ search_types[str] = {
     "is": "__exact",
     "is (case-insesitive)": "__iexact",
     "contains": "__contains",
-    "contains (case-insesitive)": "__icontains",
+    "contains (case-insensitive)": "__icontains",
     "starts with": "__startswith",
-    "starts with (case-insesitive)": "__istartswith",
+    "starts with (case-insensitive)": "__istartswith",
     "ends with": "__endswith",
-    "ends with (case-insesitive)": "__iendswith",
+    "ends with (case-insensitive)": "__iendswith",
     "in (comma separated)": "__in",
-    "in (comma separated, case-insensitive)": "__iin"
+    "regex": "__regex",
+    "regex (case-insensitive)": "__iregex"
 }
 search_types[int] = {
     ">": "__gt",
@@ -220,12 +222,10 @@ class HistoneSearch(object):
 
             search_type = parameters.get(search_type, "is")
             
-            query.format(field, search_type, value, convert)                
+            query.format(field, search_type, value, convert)               
 
         if query.has_errors():
             return False
-        
-        #assert 0, query
 
         self.query_set = Sequence.objects.filter(
                 (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \

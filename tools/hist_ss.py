@@ -53,6 +53,9 @@ templ_H4 = Seq("SGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLEN
 templ_H2A = Seq("SGRGKQGGKTRAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAVRNDEELNKLLGRVTIAQGGVLPNIQSVLLPKKTESSKSKSK", IUPAC.protein)
 templ_H2B = Seq("AKSAPAPKKGSKKAVTKTQKKDGKKRRKTRKESYAIYVYKVLKQVHPDTGISSKAMSIMNSFVNDVFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSAK", IUPAC.protein)
 
+#from 1HST
+templ_H1 = Seq("SRRSASHPTYSEMIAAAIRAEKSRGGSSRQSIQKYIKSHYKVGHNADLQIKLSIRRLLAAGVLKQTKGVGASGSFRLAKSDKAKRSPGKK", IUPAC.protein)
+
 #'element_name':[start,stop], start stop - are inclusive as in PDB file
 #Numbering differes between symmetrical chains and 1kx5 vs 1aoi.
 #We simply take the minimum length of alpha helices over all chains in 1kx5
@@ -113,7 +116,7 @@ ss_templ_H2B = {
 }
 
 ss_templ = {'H3':ss_templ_H3,'H4':ss_templ_H4,'H2A':ss_templ_H2A,'H2B':ss_templ_H2B}
-templ = {'H3':templ_H3,'H4':templ_H4,'H2A':templ_H2A,'H2B':templ_H2B}
+templ = {'H3':templ_H3,'H4':templ_H4,'H2A':templ_H2A,'H2B':templ_H2B, "H1":templ_H1}
 
 core_histones = [
     SeqRecord(templ_H3,id='H3',name='H3'),
@@ -179,7 +182,7 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
 
     needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
     cmd = os.path.join(os.path.dirname(sys.executable), "EMBOSS-6.6.0", "emboss", "needle")
-    
+
     if not os.path.isfile(cmd):
         cmd = "needle"
     needle_cline = NeedleCommandline(

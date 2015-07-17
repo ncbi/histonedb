@@ -34,17 +34,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = NCBI_database_info["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("HistonDB_DEBUG", True)
 
-if not DEBUG or False:
-    X_FRAME_OPTIONS = "DENY"
-    CSRF_COOKIE_HTTPONLY = True
+if not DEBUG:
+    #X_FRAME_OPTIONS = "DENY"
+    #CSRF_COOKIE_HTTPONLY = True
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
+    #SECURE_SSL_REDIRECT = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_HSTS_SECONDS = 0
+    #SECURE_HSTS_SECONDS = 0
 
 ALLOWED_HOSTS = ['*']
 

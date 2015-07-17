@@ -81,11 +81,13 @@ function createMSA(div_id, url, download_url, width, height){
       var features = gff.parseSeqs(result.features);
       m.seqs.addFeatures(features);
       $("#load_msa").html("");
-      for (var i = features.seqs.Consensus.length-1; i>=0; i--) {
-        var feature = features.seqs.Consensus[i];
-        if(feature.attributes.Name.lastIndexOf("Minor Groov", 0) === 0){
-          arginines.push(feature.start);
-          features.seqs.Consensus.splice(i, 1);
+      if(features.seqs.Consensus != undefined){
+        for (var i = features.seqs.Consensus.length-1; i>=0; i--) {
+          var feature = features.seqs.Consensus[i];
+          if(feature.attributes.Name.lastIndexOf("Minor Groov", 0) === 0){
+            arginines.push(feature.start);
+            features.seqs.Consensus.splice(i, 1);
+          }
         }
       }
       m.render();

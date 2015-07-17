@@ -24,7 +24,7 @@ class AdvancedFilterForm(ModelForm):
         self.fields['taxonomy'].help_text = "Supports all NCBI Taxonomy names and IDs"
         self.fields['gene'].help_text = "Gene number, or more specially phylogenetic branch point order"
         self.fields['splice'].help_text = "Splice isoform index, or paralogous sequence number"
-        self.fields['unique'].help_text = "Only show unique sequences where no organism has multiple sequenes that are identical"
+        self.fields['unique'].help_text = "Only show unique sequences where no organism has multiple sequences that are identical"
 
 class FeatureForm(ModelForm):
     class Meta:
@@ -39,4 +39,4 @@ class AnalyzeFileForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(AnalyzeFileForm, self).__init__(*args, **kwargs)
-        self.fields['sequences'].help_text = "Max 50 Sequences. However, running > 1 sequence in blastp will not be meaningful"
+        self.fields['sequences'].help_text = "Max 50 Sequences. However, running > 1 sequence in blastp will not be meaningful."
