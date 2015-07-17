@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block set_filter_by_page %}
+$("#id_core_histone_drop_down a").not(":contains('{{ histone_type }}')").parent().hide();
+$('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hide();
+{% endblock %}
+
 {% block includes %}
 <link rel="stylesheet" type="text/css" href="{% static 'browse/css/unitip.css' %}" />
 <script type="text/javascript" src="{% static 'browse/js/unitip.js' %}"></script>

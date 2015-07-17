@@ -86,15 +86,18 @@ def get_pull_down(names, id, reset="menu", default_name=""):
     html += '<button type="button" id="{}_drop_down_button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" width="100%">{} <span class="caret"></span></button>'.format(id, default_name)
     html += '<ul class="dropdown-menu" role="menu" id="{}_drop_down">'.format(id)
     js = '<script type="text/javascript">'
-    if default_name != "is":
+    
+    if default_name != "is" and default_name not in names:
         html +=  '<li><a href="#" id="{}_drop_down_default">{}</a></li>\n'.format(id, default_name)
         js += "$('#{}_drop_down_default').on('click', function(){{ ".format(id)
+        js += "if($(this).parent().hasClass('disabled')){ return; }"
         js += "$('#{}_drop_down_button').html($(this).html() + ' <span class=\"caret\"></span>'); ".format(id)
         js +=  "$('#{}').val(""); ".format(id)
         js += "});"
     for i, name in enumerate(names):
         html +=  '<li><a href="#" id="{}_drop_down_{}">{}</a></li>\n'.format(id, i, name)
         js += "$('#{}_drop_down_{}').on('click', function(){{ ".format(id, i)
+        js += "if($(this).parent().hasClass('disabled')){ return; }"
         if reset == "menu":
             js +=     "$('#{}_drop_down_button').html($(this).html() + ' <span class=\"caret\"></span>'); ".format(id)
         js +=         "$('#{}').val($(this).html()); ".format(id)

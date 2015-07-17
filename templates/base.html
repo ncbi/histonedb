@@ -28,12 +28,17 @@
         if(search_or_filter == "search"){
           $("#advanced_filter_title").html("Advanced Search");
           $("#advanced_search_button").html("Search");
+          $("#id_core_histone_drop_down a").parent().show();
+          $('#id_variant_drop_down a').parent().show();
         }
         else if(search_or_filter == "filter"){
           $('#advanced_search_form').attr('action', '{{ request.url }}');
           $("#advanced_filter_title").html("Advanced Filter");
           $("#advanced_search_button").html("Filter");
           $("#reset_previous_searches").val("false");
+
+          {% block set_filter_by_page %}
+          {% endblock %}
         }
         $("#advanced_search_button").click(function(){
             $("#advanced_search_form").submit();
@@ -112,9 +117,9 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-lg-2">
-                      <span class="pull-right">
+                      <div class="pull-right">
                         {{ field.label_tag }}
-                      </span>
+                      </div>
                     </div>
                     <div class="col-lg-10">
                       <div class="input-group">
@@ -122,17 +127,17 @@
                           <input type="checkbox" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" {% if original_query|get:field.id_for_label  == "on" %} checked{% endif %} />
                         {% elif field|fieldtype != "ModelChoiceField" %}
                           {% autoescape off %}
-                            {{ field|get_search_type:original_query }}
+                            {{ field|get_search_type:current_query }}
                           {% endautoescape %}
                           <input type="text" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" value="{{ original_query|get:field.id_for_label }}"/>
                         {% else %}
                           {% autoescape off %}
-                            {{ field|bootchoice_choice:original_query }}
+                            {{ field|bootchoice_choice:current_query }}
                           {% endautoescape %}
                         {% endif %}
                       </div>
                       {% if field.help_text %}
-                        <span class="help-text">{{ field.help_text }}</span>
+                        <div class="help-text">{{ field.help_text }}</div>
                       {% endif %}
                     </div>
                   </div>
