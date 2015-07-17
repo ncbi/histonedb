@@ -3,7 +3,9 @@
 
 {% block includes %}
 <script type="text/javascript">
-$('ul.nav a[href="#browse"]').parent().addClass('active');
+  $(function() { 
+    $('#browse_navbar_button').addClass('active');
+  });
 </script>
 {% endblock %}
 

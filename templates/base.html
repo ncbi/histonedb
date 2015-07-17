@@ -30,6 +30,7 @@
           $("#advanced_search_button").html("Search");
           $("#id_core_histone_drop_down a").parent().show();
           $('#id_variant_drop_down a').parent().show();
+          $("#id_variant").removeAttr("readonly");
         }
         else if(search_or_filter == "filter"){
           $('#advanced_search_form').attr('action', '{{ request.url }}');

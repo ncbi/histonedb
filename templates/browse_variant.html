@@ -4,6 +4,7 @@
 {% block set_filter_by_page %}
 $("#id_core_histone_drop_down a").not(":contains('{{ core_type }}')").parent().hide();
 $('#id_variant_drop_down a').not(":contains('{{ variant }}')").parent().hide();
+$("#id_variant").prop("readonly", true);
 {% endblock %}
 
 {% block includes %}
