@@ -19,6 +19,11 @@
         // save the latest tab; use cookies if you like 'em better:
         localStorage.setItem('lastPage', "{{ request.path }}");
         localStorage.setItem('lastTab', $(this).attr('href'));
+
+        if($(e.target).attr('href') == "#variant" && $("#tree").html() == ""){
+          //Load phylogenetic tree
+          buildTree();
+        }
     });
 
     // go to the latest tab, if it exists:
@@ -28,9 +33,16 @@
       if (lastTab) {
           $('[href="' + lastTab + '"]').tab('show');
       }
+      else{
+        $('[href="#variant"]').tab('show');
+      }
+    }
+    else{
+      $('[href="#variant"]').tab('show');
     }
   });
-  $(document).ready(function(){
+  
+  function buildTree(){
     $.ajax({
       url:"{% static tree_url %}",
       dataType: "xml",
@@ -58,7 +70,7 @@
         console.log(errorThrown)
       }
     });
- });
+  }
 </script>
 {% endblock %}
 
@@ -87,14 +99,14 @@
       <div class="container">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">Known Variants / Phylogenetic Tree</a></li>
+          <li role="presentation"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">Known Variants / Phylogenetic Tree</a></li>
           <li role="presentation"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
           <li role="presentation"><a href="#seed" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="variant">
+          <div role="tabpanel" class="tab-pane" id="variant">
             <div class="row">
               <div class="col-xs-8">
                 Below, alignments of all {{ histone_type }} variants have been combined to construct the phylogenetic tree. Most of the variants cluster in separate clades.
