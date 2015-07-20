@@ -161,8 +161,14 @@ class HistoneSearch(object):
         self.sort = {}
         self.count = 0
 
-        #if reset:
-        #    HistoneSearch.reset(request)
+        self.query_set = Sequence.objects.filter(
+                (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \
+                (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=False)) \
+            ).annotate(
+                num_scores=Count("all_model_scores"), 
+                score=Max("all_model_scores__score"),
+                evalue=Min("all_model_scores__evalue")
+            )
 
         if "search" in parameters:
             parameters.update(self.simple_search(parameters["search"]))
@@ -172,15 +178,6 @@ class HistoneSearch(object):
 
         self.sanitize_parameters(parameters, reset)
         self.create_queryset(reset)
-
-    # @classmethod
-    # def reset(cls, request):
-    #     """Clears search from session"""
-    #     try:
-    #         del request.session["query"]
-    #         del request.session["sort"]
-    #     except KeyError:
-    #         pass
 
     @classmethod
     def all(cls, request):
@@ -227,14 +224,7 @@ class HistoneSearch(object):
         if query.has_errors():
             return False
 
-        self.query_set = Sequence.objects.filter(
-                (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \
-                (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=False)) \
-            ).annotate(
-                num_scores=Count("all_model_scores"), 
-                score=Max("all_model_scores__score"),
-                evalue=Min("all_model_scores__evalue")
-            ).filter(**query)
+        self.query_set = self.query_set.filter(**query)
         
         self.count = self.query_set.count()
         #if not reset:
@@ -300,13 +290,15 @@ class HistoneSearch(object):
             #If search is just a single digit, try to match id
             #Other int values don't make sense to search like this
             value = int(search_text)
-            sequence = self.query_set.filter(id=value)
+            sequence = self.query_set.filter(id=str(value))
             if len(sequence):
-                parameters["id"] = value
+                parameters["id_id"] = value
                 parameters["id_search_type"] = "is"
                 return parameters
         except ValueError:
             pass
+
+        assert 0, "NO GI "+search_text
 
         #search core_type, variant, old variant names, header if doens't match variant or core_type, taxonomy
         try:
