@@ -1,16 +1,17 @@
-domain	red
+domain	990099
 chain	225,105,0
 residue	105,225,35
 helix	ff0000
 strand	00ff00
 loop	cccccc
+extension	ffff66
 
 alpha1	Consensus	-1	73	84	helix
-alpha1ext	Consensus	-1	67	72	helix
+alpha1ext	Consensus	-1	67	72	extension
 alpha2	Consensus	-1	92	119	helix
 alpha3	Consensus	-1	125	136	helix
-beta1	Consensus	-1	88	89	stand
-beta2	Consensus	-1	123	124	stand
+beta1	Consensus	-1	88	89	strand
+beta2	Consensus	-1	123	124	strand
 loopL1	Consensus	-1	85	91	loop
 loopL2	Consensus	-1	120	125	loop
 Minor Groov Arg 1	Consensus	-1	88	88	residue

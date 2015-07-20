@@ -15,7 +15,7 @@ class Command(BaseCommand):
         
     def handle(self, *args, **options):
         for core_type, seed in self.get_seeds():
-            #write_alignments([seed], seed[:-6], save_dir=os.path.dirname(seed))
+            write_alignments([seed], seed[:-6], save_dir=os.path.dirname(seed))
 
             with open("{}.gff".format(seed[:-6]), "w") as gff:
                 msa = MultipleSeqAlignment(list(SeqIO.parse(seed, "fasta")))

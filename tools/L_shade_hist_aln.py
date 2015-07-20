@@ -13,6 +13,7 @@ import sys
 from subprocess import Popen, PIPE, STDOUT
 import argparse
 import glob
+import uuid
 
 #Required libraires
 from Bio.Seq import Seq
@@ -89,11 +90,13 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
     if((a_len-(num-1)*splitN)<2):
         splitN=splitN+1
         num=int(a_len/splitN)+1
-    name = os.path.splitext(title)[0]
+    name = os.path.splitext(title)[0].replace(" ", "")
+
+    filename = tex.name[:-4]
     
     for i in xrange(num):
         t_aln=align[(i*splitN):((i+1)*splitN)]
-        with open(os.path.join(save_dir, "alignment_{}_{}.fasta".format(name, i)), "w") as aln_file:
+        with open(os.path.join(save_dir, "{}_{}.fasta".format(filename, i)), "w") as aln_file:
             AlignIO.write(t_aln, aln_file, "fasta")
             print "wrote", aln_file.name
     
@@ -101,7 +104,7 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
 
     #Let's make some drawing
     if secondary_structure:
-        hv,ss=get_hist_ss_in_aln(align,debug=1)
+        hv,ss=get_hist_ss_in_aln(align,save_dir=save_dir)
     else:
         hv,ss="None",{}
     
@@ -127,9 +130,9 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
     for i in xrange(num):
         write_texshade(
             tex, 
-            os.path.join(save_dir, "alignment_{}_{}.fasta".format(name, i)),
+            os.path.join(save_dir, "{}_{}.fasta".format(filename, i)),
             res_per_line, 
-            features,
+            "", #features,
             shading_modes=shading_modes, 
             logo=logo,
             hideseqs=hideseqs,
@@ -137,18 +140,28 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
         print >> tex, "    \\newpage"
 
 
-def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True, save_dir=""):
+def write_alignments(alignments, outfile=None, shading_modes=["similar"], logo=True, hideseqs=False, splitN=20, secondary_structure=True, save_dir=""):
     """
     """
-    with open("{}.tex".format(outfile), "w") as tex:
+    if outfile is None:
+        n2=str(uuid.uuid4())
+        outfile = "alignment_{}".format(n2)
+    with open(os.path.join(save_dir, "{}.tex".format(outfile)), "w") as tex:
         print >> tex, "\\documentclass[11pt,landscape]{article}"
         print >> tex, "\\usepackage{hyperref}"
         print >> tex, "\\usepackage[paperwidth={}in, paperheight=18in]{{geometry}}".format(22/200.*200+2.5)
         print >> tex, "\\usepackage{texshade}\n"
         print >> tex, "\\begin{document}"
         for aln in alignments:
-            name = os.path.basename(aln)
-            msa = MultipleSeqAlignment(list(SeqIO.parse(aln, "fasta")))
+            if isinstance(aln, str):
+                name = os.path.basename(aln)
+                msa = MultipleSeqAlignment(list(SeqIO.parse(aln, "fasta")))
+            elif isinstance(aln, MultipleSeqAlignment):
+                msa = aln
+                name = aln.annotations.get("name", "HistoneDB")
+            else:
+                raise RuntimeError("Invalid alignments: Must be a path to a FASTA format or a BioPython MultipleSequenceAlignment object.")
+            
             write_alignment(
                 tex, 
                 msa, 
@@ -163,17 +176,23 @@ def write_alignments(alignments, outfile, shading_modes=["similar"], logo=False,
         print >> tex, "\\end{document}"
 
     #Turn latex into pdf
-    #assert 0, ["pdflatex", "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))]
-    process = Popen(["pdflatex", "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))])
+    pdflatex = os.path.join(os.path.dirname(sys.executable), "pdflatex")
+    #assert 0, " ".join([pdflatex, "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))])
+    process = Popen([pdflatex, "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))])
     process.communicate()
+
+    #assert 0, 
+    #assert os.path.exists(os.path.join(save_dir, "{}.pdf".format(outfile))),"Where are you?"
 
     os.remove(os.path.join(save_dir, "{}.tex".format(outfile)))
     os.remove(os.path.join(save_dir, "{}.aux".format(outfile)))
     os.remove(os.path.join(save_dir, "{}.log".format(outfile)))
     os.remove(os.path.join(save_dir, "{}.out".format(outfile)))
 
-    for fasta_part in glob.glob(os.path.join(save_dir, "alignment_{}_*.fasta".format(name))):
+    for fasta_part in glob.glob(os.path.join(save_dir, "{}_*.fasta".format(name))):
         os.remove(fasta_part)
+
+    return os.path.join(save_dir, "{}.pdf".format(outfile))
 
 def parse_args():
     parser = argparse.ArgumentParser(description="")

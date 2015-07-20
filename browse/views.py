@@ -174,7 +174,10 @@ def analyze(request):
         elif request.POST.get("file"):
             format="file"
             sequences = request.POST["file"]
-        data["result"] = process_upload(type, sequences, format)
+        try:
+            data["result"] = process_upload(type, sequences, format)
+        except Exception as e:
+            data["error"] = str(e)
         data["search_type"] = type
     else:
         data["analyze_form"] = AnalyzeFileForm(initial={"type":"blastp"})
@@ -266,6 +269,7 @@ def get_all_sequences(request, ids=None):
 
 def get_aln_and_features(request, ids=None):
     from tools.hist_ss import templ, get_hist_ss_in_aln
+    from tools.L_shade_hist_aln import write_alignments
     import subprocess
     import StringIO
     from Bio.Align import MultipleSeqAlignment
@@ -314,6 +318,8 @@ def get_aln_and_features(request, ids=None):
             seqFile.seek(0)
             sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
             msa = MultipleSeqAlignment(sequences)
+            a = SummaryInfo(msa)
+            cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
 
             save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
             if not os.path.exists(save_dir):
@@ -321,8 +327,6 @@ def get_aln_and_features(request, ids=None):
 
             if not hist_type == "H1":
                 hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
-                a = SummaryInfo(msa)
-                cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
                 features = Features.from_dict(cons, ss)
             else:
                 features = ""
@@ -338,8 +342,7 @@ def get_aln_and_features(request, ids=None):
     else:
         format = request.GET.get("format", "json")
         response = HttpResponse(content_type='text')
-        if not format == "pdf":
-            response['Content-Disposition'] = 'attachment; filename="sequences.{}"'.format(format)
+        response['Content-Disposition'] = 'attachment; filename="sequences.{}"'.format(format)
 
         
         sequences = request.session.get("calculated_msa_seqs", [])
@@ -354,9 +357,24 @@ def get_aln_and_features(request, ids=None):
         elif format == "pdf":
             response.write("Sorry PDF Feature is still in development")
             #return redirect("{}.pdf".format(seed_file))
+            save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+            if not os.path.exists(save_dir):
+                os.makedirs(save_dir)
+                os.chmod(save_dir,0o777)
+
+            aln = MultipleSeqAlignment([SeqRecord(Seq(s["seq"]), id=s["name"]) for s in sequences[1:]])
+            result_pdf = write_alignments(
+                [aln], 
+                save_dir = save_dir
+            )
+
+            with open(result_pdf) as pdf:
+                response.write(pdf.read())
+
+            #Cleanup
+            os.remove(result_pdf)
         else:
             #Default format is json
-            sequences = [{"name":seq.id, "seq":seq.seq.tostring()} for seq in limited_seqs()]
             result = {"seqs":sequences, "features":features.full_gff() if features else ""}
             response.write(json.dumps(result))
 
@@ -439,7 +457,8 @@ def get_seed_aln_and_features(request, seed):
     elif format == "gff":
         response.write(features)
     elif format == "pdf":
-        return redirect("{}.pdf".format(seed_file))
+        with open("{}.pdf".format(seed_file)) as pdf:
+            response.write(pdf.read())
     else:
         #Default format is json
         sequences = [{"name":seq.id, "seq":seq.seq.tostring()} for seq in limited_seqs()]

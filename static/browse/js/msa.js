@@ -79,8 +79,6 @@ function createMSA(div_id, url, download_url, width, height){
     success: function(result) {
       m.seqs.reset(result.seqs);
       var features = gff.parseSeqs(result.features);
-      m.seqs.addFeatures(features);
-      $("#load_msa").html("");
       if(features.seqs.Consensus != undefined){
         for (var i = features.seqs.Consensus.length-1; i>=0; i--) {
           var feature = features.seqs.Consensus[i];
@@ -90,6 +88,8 @@ function createMSA(div_id, url, download_url, width, height){
           }
         }
       }
+      m.seqs.addFeatures(features);
+      $("#load_msa").html("");
       m.render();
       $pdf_button.parent().removeClass("disabled");
       $fasta_button.parent().removeClass("disabled");

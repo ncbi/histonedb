@@ -168,14 +168,14 @@ class Features(models.Model):
     features = [
         ("alphaN", "", "helix"),
         ("alpha1", "", "helix"),
-        ("alpha1ext", "", "helix"),
+        ("alpha1ext", "", "extension"),
         ("alpha2", "", "helix"),
         ("alpha3", "", "helix"),
-        ("alpha3ext", "", "helix"),
-        ("alphaC", "", "helix"),
-        ("beta1", "", "stand"),
-        ("beta2", "", "stand"),
-        ("beta3", "", "stand"),
+        ("alpha3ext", "", "extension"),
+        ("alphaC", "", "extension"),
+        ("beta1", "", "strand"),
+        ("beta2", "", "strand"),
+        ("beta3", "", "strand"),
         ("loopL1", "", "loop"),
         ("loopL2", "", "loop"),
         ("mgarg1", "Minor Groov Arg 1", "residue"),
@@ -250,12 +250,13 @@ class Features(models.Model):
 
     @classmethod
     def gff_colors(cls):
-        return """domain\tred
+        return """domain\t990099
 chain\t225,105,0
 residue\t105,225,35
 helix\tff0000
 strand\t00ff00
 loop\tcccccc
+extension\tffff66
 """
     
     def full_gff(self):

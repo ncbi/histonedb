@@ -143,7 +143,6 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
     SeqIO.write(test_record, query_file, 'fasta')
 
     if hist_type == "Unknown":
-        results_file = os.path.join(save_dir, "query_{}.xml".format(n2))
         blastp = os.path.join(os.path.dirname(sys.executable), "blastp")
         blastp_cline = NcbiblastpCommandline(
             cmd=blastp,
@@ -151,15 +150,15 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
             db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "core_histones_1kx5.faa"), 
             evalue=10000000,
             outfmt=5, 
-            out=results_file)
+        )
         stdout, stderr = blastp_cline()
 
-        with open(result_file) as results:
-            blast_results = [(alignment.title, hsp.expect, hsp) for blast_record in NCBIXML.parse(results) \
-                for alignment in blast_record.alignments for hsp in alignment.hsps]
+        blastFile = StringIO()
+        blastFile.write(stdout)
+        blastFile.seek(0)
 
-        #Cleanup
-        os.remove(results_file)
+        blast_results = [(alignment.title, hsp.expect, hsp) for blast_record in NCBIXML.parse(blastFile) \
+            for alignment in blast_record.alignments for hsp in alignment.hsps]
         
         try:
             hist_identified, evalue, hsp = min(blast_results, key=lambda x:x[1])
