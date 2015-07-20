@@ -5,8 +5,10 @@ import shlex
 
 import uuid
 from Bio import SeqIO, SearchIO
+from Bio.Alphabet import IUPAC
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIXML
+from Bio import Alphabet
 
 from browse.models import Histone, Variant, Sequence
 from django.conf import settings
@@ -16,24 +18,36 @@ import subprocess
 from django.db.models import Q
 from django.db.models import Max, Min, Count
 
-class TooManySequences(RuntimeError):
+class TooManySequences(Exception):
     pass
 
-class InvalidFASTA(RuntimeError):
+class InvalidFASTA(Exception):
+    pass
+
+class InvalidSearchType(Exception):
     pass
 
 def process_upload(type, sequences, format):
-    if format == "file":
-        processed_sequences = list(SeqIO.parse(sequences, "fasta"))
-        
-    elif format == "text":
+    assert format in ["file", "text"], "Invalid format: {}. Must be either 'file' or 'text'.".format(format)
+
+    if format == "text":
         seq_file = StringIO.StringIO()
         seq_file.write(sequences)
         seq_file.seek(0)
-        processed_sequences = list(SeqIO.parse(seq_file, "fasta"))
+        sequences = seq_file
 
-    if len(processed_sequences) > 50:
-        raise TooManySequences
+    processed_sequences = []
+        
+    for i, seq in enumerate(SeqIO.parse(seq_file, "fasta", alphabet=IUPAC.protein)):
+        if i >= 50:
+            raise TooManySequences()
+        elif not Alphabet._verify_alphabet(seq.seq):
+            raise InvalidFASTA("Sequence {} is not a protein.".format(seq.id))
+
+        processed_sequences.append(seq)
+
+    if len(processed_sequences) == 0:
+        raise InvalidFASTA("No sequences parsed.")
 
     sequences = "\n".join([seq.format("fasta") for seq in processed_sequences])
 
@@ -42,7 +56,7 @@ def process_upload(type, sequences, format):
     elif type == "hmmer":
         result = upload_hmmer(processed_sequences, len(processed_sequences))
     else:
-        assert 0, type
+        raise InvalidSearchType
 
     return result
 
@@ -86,6 +100,8 @@ def upload_blastp(seq_file, num_seqs):
                     "header":str(sequence.header), 
                     "search_e":str(search_evalue),
                 })
+    if not result:
+        raise InvalidFASTA("No blast hits.")
     return result
 
 def upload_hmmer(seq_file, num_seqs, evalue=10):

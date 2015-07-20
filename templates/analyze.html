@@ -25,6 +25,9 @@
 	  {% endif %}
   </div>
   {% if not result %}
+    {% if error %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
     <form role="search" action="{% url 'browse.views.analyze' %}" id="advanced_search_form" method="POST">
       {% csrf_token %}
       {% for field in analyze_form %}

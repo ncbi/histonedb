@@ -168,16 +168,19 @@ def analyze(request):
     }
     if request.method == "POST":
         type = request.POST.get("id_type_0")
+        initial={"type":type}
         if request.POST.get("sequences"):
             format = "text"
             sequences = request.POST["sequences"]
+            initial["sequences"] = sequences
         elif request.POST.get("file"):
             format="file"
             sequences = request.POST["file"]
         try:
             data["result"] = process_upload(type, sequences, format)
         except Exception as e:
-            data["error"] = str(e)
+            data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
+            data["analyze_form"] = AnalyzeFileForm(initial=initial)
         data["search_type"] = type
     else:
         data["analyze_form"] = AnalyzeFileForm(initial={"type":"blastp"})
