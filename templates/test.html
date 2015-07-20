@@ -72,6 +72,7 @@ var extra_seq_params = {};
       pageList:[5, 10, 20, 50, 100, 200, 500],
       cookie:true,
       cookieIdTable:"table-{{ page_name }}",
+      height:750,
       {% if blast_results %}
       data: {% autoescape off %}{{ blast_results|jsonify }}{% endautoescape %},
       sidePagination:"client",
@@ -89,7 +90,7 @@ var extra_seq_params = {};
         {field:"variant", sortable:true, title:"Variant"},
         {field:"gene", sortable:true, title:"Gene"},
         {field:"splice", sortable:true, title:"Splice"},
-        {field:"taxonomy", sortable:true, title:"Taxonomy"},
+        {field:"taxonomy", sortable:true, title:"Taxonomy", clickToSelect:false},
         {field:"header", sortable:true, width:50, title:"Current GenBank Description"},
         {field:"score", sortable:true, title:"Score"},
         {field:"evalue", sortable:true, title:"E-value"},
@@ -105,6 +106,11 @@ var extra_seq_params = {};
       clickToSelect:true,
       showRefresh:true,
       toolbar:"#sequence_toolbar",
+      onClickCell:function(event, value, row, index){
+        if(event == "taxonomy"){
+          document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock"
+        }
+      }
     });
 
     $reset.click(function(){

@@ -277,8 +277,18 @@ class HistoneSearch(object):
         return self.query_set.count()
 
     def get_dict(self, unique=False):
-        sequences = self.sorted(unique=unique)
-        result = [{"id":r.id, "variant":r.variant_id, "gene":r.gene, "splice":r.splice, "taxonomy":r.taxonomy.name.capitalize(), "score":r.score, "evalue":r.evalue, "header":r.header[:80]} for r in sequences]
+        sequences = self.sorted(unique=unique) 
+        result = [{
+            "id":r.id, 
+            "variant":r.variant_id, 
+            "gene":r.gene, 
+            "splice":r.splice, 
+            "taxonomy":r.taxonomy.name.capitalize(), 
+            "taxid":str(r.taxonomy.id),
+            "score":r.score, 
+            "evalue":r.evalue, 
+            "header":r.header[:80]
+            } for r in sequences]
         return {"total":self.count, "rows":result}
 
     def simple_search(self, search_text):
