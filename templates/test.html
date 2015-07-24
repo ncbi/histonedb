@@ -39,7 +39,12 @@
 </div>
 
 <div class="container" style="margin-top:5px;">
+  {% if "curated" in page_name %}
+  <h4 class="page_title">Quick MSA (Click on any row to update):</h4>
+  <div id="quick_msa-{{page_name}}"></div>
+  {% endif %}
   <table id="sequence_table_{{ page_name }}"></table>
+  }
 </div>
 
 <div class="modal fade" id="msa_modal_{{ page_name }}" tabindex="-1" role="dialog" aria-labelledby="seqs" aria-hidden="true">
@@ -177,18 +182,18 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% endif %}
           columns: [
             {field:"state", checkbox:true},
-            {field:"id", sortable:true, title:"GI"},
-            {field:"variant", sortable:true, title:"Variant"},
-            {field:"gene", sortable:true, title:"Gene"},
-            {field:"splice", sortable:true, title:"Splice"},
+            {field:"id", sortable:true, title:"GI", clickToSelect:false},
+            {field:"variant", sortable:true, title:"Variant", clickToSelect:false},
+            {field:"gene", sortable:true, title:"Gene", clickToSelect:false},
+            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},
             {field:"taxonomy", sortable:true, title:"Taxonomy (Click to view NCBI Taxonomy)", clickToSelect:false},
             {% if not curated %}
-            {field:"header", sortable:true, width:50, title:"Current GenBank Description", rowspan:1},
-            {field:"score", sortable:true, title:"Score"},
-            {field:"evalue", sortable:true, title:"E-value"},
+            {field:"header", sortable:true, width:50, title:"Current GenBank Description", rowspan:1, clickToSelect:false},
+            {field:"score", sortable:true, title:"Score", clickToSelect:false},
+            {field:"evalue", sortable:true, title:"E-value", clickToSelect:false},
             {% endif %}
             {% if blast_results %}
-            {field:"search_e", sortable:true, title:"BLAST E-value", cellStyle: function(value, row, index) { return {classes:"danger"};}},
+            {field:"search_e", sortable:true, , clickToSelect:false, title:"BLAST E-value", cellStyle: function(value, row, index) { return {classes:"danger"};}},
             {% endif %}
           ],
           showColumns:true,
@@ -200,10 +205,20 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% if formatNoMatches %}
           formatNoMatches: function(){ return "{{ formatNoMatches }}"; },
           {% endif %}
+          {% if "curated" in page_name %}
+          onLoadSuccess: function(data){
+            createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75);
+          },
+          {% endif %}
           onClickCell:function(event, value, row, index){
             if(event == "taxonomy"){
-              document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock"
+              document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock";
             }
+            {% if "curated" in page_name %}
+            else if(event != "state"){
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75);
+            }
+            {% endif %}
           }
         });
         

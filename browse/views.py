@@ -292,6 +292,7 @@ def get_aln_and_features(request, ids=None):
     import StringIO
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
+    from Bio.SeqRecord import SeqRecord
 
     if ids is None and request.method == "GET" and "id" in request.GET:
         ids = request.GET.getlist("id")
@@ -308,16 +309,11 @@ def get_aln_and_features(request, ids=None):
             return None, None
         elif len(sequences) == 1:
             #Already aligned to core histone
-            canonical = {"name":"Consensus".format(sequences.first().variant.core_type.id), "seq":str(templ[sequences.first().variant.core_type.id])}
             seq = sequences.first()
-            sequences = [canonical, seq.to_dict()]
-            try:
-                features = seq.features 
-            except ObjectDoesNotExist:
-                features = ""
-            finally:
-                if "H1" in seq.variant.id:
-                    features = ""
+            hist_type = seq.variant.core_type.id
+            canonical = Sequence(id="canonical{}".format(hist_type), sequence=str(templ[hist_type]))
+            sequences = [canonical, seq]
+            
         else:
             try:
                 hist_type = max(
@@ -326,31 +322,31 @@ def get_aln_and_features(request, ids=None):
                    )[0]
             except ValueError:
                 hist_type = "Unknown"
-            
-            muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
-            process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            sequences = "\n".join([s.format() for s in sequences])
-            aln, error = process.communicate(sequences)
-            seqFile = StringIO.StringIO()
-            seqFile.write(aln)
-            seqFile.seek(0)
-            sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
-            msa = MultipleSeqAlignment(sequences)
-            a = SummaryInfo(msa)
-            cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+        
+        muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
+        process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        sequences = "\n".join([s.format() for s in sequences])
+        aln, error = process.communicate(sequences)
+        seqFile = StringIO.StringIO()
+        seqFile.write(aln)
+        seqFile.seek(0)
+        sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
+        msa = MultipleSeqAlignment(sequences)
+        a = SummaryInfo(msa)
+        cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
 
-            save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
-            if not os.path.exists(save_dir):
-                os.makedirs(save_dir)
+        save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
 
-            if not hist_type == "H1":
-                hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
-                features = Features.from_dict(cons, ss)
-            else:
-                features = ""
+        if not hist_type == "H1":
+            hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
+            features = Features.from_dict(cons, ss)
+        else:
+            features = ""
 
-            sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
-            sequences.insert(0, cons.to_dict())
+        sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
+        sequences.insert(0, cons.to_dict())
 
         request.session["calculated_msa_seqs"] = sequences
         request.session["calculated_msa_features"] = features.to_dict() if features else {}
@@ -396,7 +392,7 @@ def get_aln_and_features(request, ids=None):
             result = {"seqs":sequences, "features":features.full_gff() if features else ""}
             response.write(json.dumps(result))
 
-        return response    
+        return response
 
 def get_sequence_features(request, ids=None):
     if ids is None and request.method == "GET" and "id" in request.GET:
