@@ -29,6 +29,7 @@ from django.db.models import Min, Max, Count
 
 #Set2 Brewer, used in variant colors
 colors = [
+    "#000000", #Fix for cononical
     "#66c2a5",
     "#fc8d62",
     "#8da0cb",
@@ -61,8 +62,10 @@ def browse_variants(request, histone_type):
     except:
         return "404"
 
-    variants = core_histone.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences")
-    variants = [(id, num, color) for (id, num), color in zip(variants, colors)]
+    variants = core_histone.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences", "taxonmic_span")
+    curated_varaints = core_histone.variants.filter(sequences__reviewed=True).annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("num_sequences", flat=True)
+    variants = [(id, num_curated, num_all, ", ".join(Variant.objects.get(id=id).old_names.values_list("name", flat=True)), tax_span, color) \
+        for (id, num_all, tax_span), num_curated, color in zip(variants, curated_varaints, colors)]
 
     data = {
         "histone_type": histone_type,
@@ -115,6 +118,7 @@ def browse_variant(request, histone_type, variant):
         "score_max":scores["max"],
         "browse_section": "variant",
         "description": variant.description,
+        "alternate_names": ", ".join(variant.old_names.values_list("name", flat=True)),
         "filter_form": AdvancedFilterForm(),
     }
 
@@ -135,12 +139,13 @@ def browse_variant(request, histone_type, variant):
 
 def search(request):
     data = {"filter_form": AdvancedFilterForm()}
+    
     if request.method == "POST": 
         query = request.POST.copy()
         result = HistoneSearch(
             request, 
             query,
-            navbar="search" in request.POST)
+            navbar="search" in request.POST.keys())
         if request.POST.get("reset", True):
             request.session["original_query"] = query
         data["original_query"] = request.session.get("original_query", query)
@@ -160,6 +165,14 @@ def search(request):
 
     return render(request, 'search.html', data)
 
+def basket(request):
+    data = {
+        "filter_form":AdvancedFilterForm(), 
+        "original_query":{},
+        "current_query":{}
+    }
+    return render(request, 'basket.html', data)
+
 def analyze(request):
     data = {
         "filter_form":AdvancedFilterForm(), 
@@ -177,13 +190,15 @@ def analyze(request):
             format="file"
             sequences = request.POST["file"]
         try:
-            data["result"] = process_upload(type, sequences, format)
+            data["result"] = process_upload(type, sequences, format, request)
+            assert 0, data["result"]
         except Exception as e:
             data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
             data["analyze_form"] = AnalyzeFileForm(initial=initial)
         data["search_type"] = type
     else:
         data["analyze_form"] = AnalyzeFileForm(initial={"type":"blastp"})
+
     return render(request, 'analyze.html', data)
 
 def get_sequence_table_data(request):
@@ -204,8 +219,8 @@ def get_sequence_table_data(request):
         return "false"
 
     unique = "id_unique" in parameters
-    
-    return JsonResponse(results.get_dict(unique=unique))
+    result = results.get_dict(unique=unique)
+    return JsonResponse(result)
 
 def get_all_scores(request, ids=None):
     if ids is None and request.method == "GET" and "id" in request.GET:

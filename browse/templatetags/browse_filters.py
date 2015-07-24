@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.filter('get')
 def get(dict, value):
-    return dict.get(value, "");
+    return dict.get(value, "")
 
 @register.filter('default')
 def default(value, default):
@@ -14,6 +14,10 @@ def default(value, default):
 @register.filter('fieldtype')
 def fieldtype(field):
     return field.field.__class__.__name__
+
+@register.filter('rchar')
+def rchar(value, character):
+    return value.replace(character, "")
 
 @register.filter('bootchoice_choice')
 def bootchoice_choice(field, default_values={}):

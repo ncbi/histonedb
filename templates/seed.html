@@ -1,6 +1,6 @@
 {% load staticfiles %}
 
-<div class={% if msa_id == "modal" %}"modal-body"{% else %}"container"{% endif %} style="margin-top:5px;{% if msa_id == "modal" %}overflow-y:auto;{% endif %}">
+<div class={% if "modal" in msa_id %}"modal-body"{% else %}"container"{% endif %} style="margin-top:5px;{% if "modal" in msa_id %}overflow-y:auto;{% endif %}">
 	<div class="row">
 		<div class="col-xs-10">
 			Features characteristic for a given histone type are shown under the consensus sequence. Key: Red is 80% conserved, blue is 50% conserved, and green highlights key arginines that may interact with the minor groove.
@@ -24,9 +24,9 @@
 	</div>
 	<div class="row" style="margin-top:5px; {% if msa_id == "modal" %}overflow: auto;{% endif %}">
 		<div class="col-xs-12">
-			{% if msa_id != "modal" %}<div id="container">{% endif %}
+			{% if "modal" not in msa_id %}<div id="container">{% endif %}
 			<div id='msa_div_{{ msa_id }}'></div>
-			{% if msa_id != "modal" %}</div>{% endif %}
+			{% if "modal" not in msa_id %}</div>{% endif %}
 		</div>
 	</div>
 </div>

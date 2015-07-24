@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block includes %}
+<script src="{% static 'browse/js/xhr@latest.js' %}"></script>
+<script src="{% static 'browse/js/msa@0.4.6' %}"></script>
+<script src="{% static 'browse/js/biojs-io-fasta.js' %}"></script>
+<script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
+<script src="{% static 'browse/js/msa.js' %}"></script>
+<script type="text/javascript">
+  $(function() {
+    $('#basket_navbar_button').addClass('active');
+  });
+  var extra_seq_params_basket = {};
+  function reloadBasket(){
+    console.log("called");
+    var ids = JSON.parse(localStorage.getItem('basket')) || [];
+    if(ids.length > 0){
+      extra_seq_params_basket["id_id"] = ids.join(", ");
+      extra_seq_params_basket["id_id_search_type"] = "in (comma separated)";
+    }
+    else{
+      console.log("empty")
+      extra_seq_params_basket["id_id"] = "false";
+      extra_seq_params_basket["id_id_search_type"] = "is";
+    }
+  }
+  reloadBasket();
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+	  <h1><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Sequence basket</h1>
+  </div>
+  {% include "test.html" with page_name="basket" formatNoMatches="No sequences in basket. To add sequences, use the browse or search pages and click 'Add to Basket' when you have selected your desired sequences." %}
+</div>
+{% endblock %}

@@ -9,8 +9,36 @@
 <script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
 <script src="{% static 'browse/js/msa.js' %}"></script>
 <script type="text/javascript">
+  var autocollapse = function() {
+    var tabs = $('#analyze_results_tabs');
+    var tabsHeight = tabs.innerHeight();
+    
+    if (tabsHeight >= 50) {
+      while(tabsHeight > 50) {
+        var children = tabs.children('li:not(:last-child)');
+        var count = children.size();
+        $(children[count-1]).prependTo('#analyze_results_collapsed');
+        
+        tabsHeight = tabs.innerHeight();
+      }
+    }
+    else {
+      while(tabsHeight < 50 && (tabs.children('li').size()>0)) {
+        var collapsed = $('#analyze_results_collapsed').children('li');
+        var count = collapsed.size();
+        $(collapsed[0]).insertBefore(tabs.children('li:last-child'));
+        tabsHeight = tabs.innerHeight();
+      }
+      if (tabsHeight>50) { // double chk height again
+        autocollapse();
+      }
+    }
+  };
+
   $(function() {
     $('#analyze_navbar_button').addClass('active'); 
+    autocollapse(); // when document first loads
+    $(window).on('resize', autocollapse); // when window is resized
   });
 </script>
 {% endblock %}
@@ -65,7 +93,20 @@
       {% include "scores.html" with hmmer_results=result.2 ids=result.1 %}
     {% endif %}
     {% if search_type == "blastp" %}
-  	  {% include "test.html" with blast_results=result page_name="analyze"%}
+      <div class="container">
+        <div class="row">
+          <div role="tabpanel">
+            <ul class="nav nav-tabs" id="analyze_results_tabs">
+              <li id="lastTab">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  More <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" id="analyze_results_collapsed"></ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     {% endif %}
   {% endif %}
 </div>

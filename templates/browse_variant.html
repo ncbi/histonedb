@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load browse_filters %}
 
 {% block set_filter_by_page %}
 $("#id_core_histone_drop_down a").not(":contains('{{ core_type }}')").parent().hide();
@@ -51,7 +52,10 @@ $("#id_variant").prop("readonly", true);
           </h1>
         </div>
         <div class="col-xs-12">
-          {{ description }}
+          {{ description }} <br >
+          {% if alternate_names %}
+          <b>Alternate names:</b> {{ alternate_names }}
+          {% endif %}
         </div>
       </div>
     </div>
@@ -61,18 +65,22 @@ $("#id_variant").prop("readonly", true);
       <div role="tabpanel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#species" id="species_tab" aria-controls="species" role="tab" data-toggle="tab">By Species</a></li>
+          <li role="presentation" class="active"><a href="#curated" id="curated_tab" aria-controls="curated" role="tab" data-toggle="tab">Curated Sequences</a></li>
+          <li role="presentation"><a href="#species" id="species_tab" aria-controls="species" role="tab" data-toggle="tab">Taxonomy</a></li>
           <li role="presentation"><a href="#sequences" id="sequences_tab" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
           <li role="presentation"><a href="#seed" id="seed_tab" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="species">
+          <div role="tabpanel" class="tab-pane active" id="curated">
+            {% include "test.html" with page_name="browse_curated_variant_"|add:variant|rchar:"." curated=True %}
+          </div>
+          <div role="tabpanel" class="tab-pane" id="species">
             {% include "circle.html" %}
           </div>
           <div role="tabpanel" class="tab-pane" id="sequences">
-            {% include "test.html" with page_name="browse-variant-"|add:variant %}
+            {% include "test.html" with page_name="browse_variant_"|add:variant|rchar:"." %}
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
             {% include "seed.html" with msa_id="browse" msa_url=seed_url|add:"?limit=500&consensus=limit" download_url=seed_url|add:"?download=true" %}

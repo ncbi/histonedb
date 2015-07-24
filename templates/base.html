@@ -50,6 +50,8 @@
         $("#show_advanced_search").click(function() {
           open_advanced_filter("search", false);
         });
+
+        $(".badge-basket").html((JSON.parse(localStorage.getItem('basket')) || []).length);
       });
     </script>
   </head>
@@ -72,7 +74,8 @@
           <ul class="nav navbar-nav">
             <li id="browse_navbar_button"><a href="{% url 'browse.views.browse_types' %}">Browse</a></li>
             <li id="search_navbar_button"><a href="#" id="show_advanced_search">Advanced Search</a></li>
-            <li id="analyze_navbar_button"><a href="{% url 'browse.views.analyze' %}">Analyze Sequences</a></li>
+            <li id="basket_navbar_button"><a href="{% url 'browse.views.basket' %}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge badge-basket"></span></a></li>
+            <li id="analyze_navbar_button"><a href="{% url 'browse.views.analyze' %}">Analyze Your Sequence(s)</a></li>
             <li id="help_navbar_button"><a href="{% url 'browse.views.help' %}">Help</a></li>
             <form role="search" class="navbar-form navbar-right" action="{% url 'browse.views.search' %}" method="POST">{% csrf_token %}
               <input type="hidden" name="reset" id="reset_previous_searches" value="true" />
@@ -114,36 +117,52 @@
             {% endfor %}
             <form role="search" action="{% url 'browse.views.search' %}" id="advanced_search_form" method="POST">
               {% csrf_token %}
-              {% for field in filter_form %}
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-lg-2">
-                      <div class="pull-right">
-                        {{ field.label_tag }}
+
+              <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist">
+                {% for tab in filter_form.tabs_order %}
+                  <li role="presentation"{% if forloop.first %} class="active"{% endif %}><a href="#filter_{{ tab }}" aria-controls="filter_{{ tab }}" role="tab" data-toggle="tab"> {{ tab }}</a></li>
+                {% endfor %}
+                </ul>
+
+                <div class="tab-content">
+                  {% for tab in filter_form.tabs_order %}
+                  <div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="filter_{{ tab }}" style="margin-top:5px;">
+                  {% for field in filter_form %}
+                    {% if field.html_name in filter_form.tabs|get:tab %}
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-2">
+                            <div class="pull-right">
+                              {{ field.label_tag }}
+                            </div>
+                          </div>
+                          <div class="col-lg-10">
+                            <div class="input-group">
+                              {% if field|fieldtype == "BooleanField" %}
+                                <input type="checkbox" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" {% if original_query|get:field.id_for_label  == "on" %} checked{% endif %} />
+                              {% elif field|fieldtype != "ModelChoiceField" %}
+                                {% autoescape off %}
+                                  {{ field|get_search_type:current_query }}
+                                {% endautoescape %}
+                                <input type="text" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" value="{{ original_query|get:field.id_for_label }}"/>
+                              {% else %}
+                                {% autoescape off %}
+                                  {{ field|bootchoice_choice:current_query }}
+                                {% endautoescape %}
+                              {% endif %}
+                            </div>
+                            {% if field.help_text %}
+                              <div class="help-text">{{ field.help_text }}</div>
+                            {% endif %}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-lg-10">
-                      <div class="input-group">
-                        {% if field|fieldtype == "BooleanField" %}
-                          <input type="checkbox" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" {% if original_query|get:field.id_for_label  == "on" %} checked{% endif %} />
-                        {% elif field|fieldtype != "ModelChoiceField" %}
-                          {% autoescape off %}
-                            {{ field|get_search_type:current_query }}
-                          {% endautoescape %}
-                          <input type="text" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" value="{{ original_query|get:field.id_for_label }}"/>
-                        {% else %}
-                          {% autoescape off %}
-                            {{ field|bootchoice_choice:current_query }}
-                          {% endautoescape %}
-                        {% endif %}
-                      </div>
-                      {% if field.help_text %}
-                        <div class="help-text">{{ field.help_text }}</div>
                       {% endif %}
+                    {% endfor %}
                     </div>
-                  </div>
-              </div>
-              {% endfor %}
+                  {% endfor %}
+                </div>
               <input type="hidden" name="reset" id="reset_previous_searches" value="true" />
             </form>
           </div>

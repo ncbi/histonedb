@@ -98,7 +98,7 @@ def variant_sub_search(value):
             return list(variants)
         else:
             return []
-
+bool_conv = lambda b: b == "true"
 #Fields that are allowed: each row contains:
 #    POST name, django model paramter, POST name for search type, input type (must be in seach_types)
 allowable_fields = [
@@ -112,6 +112,7 @@ allowable_fields = [
     ("id_evalue", "evalue", "id_evalue_search_type", float),
     ("id_score", "score", "id_score_search_type", float),
     ("id_sequence", "sequence", "id_sequence_search_type", str),
+    ("id_reviewed", "reviewed", "", bool_conv),
     #("show_lower_scoring_models", None, None, (""))
 ]
 
@@ -188,7 +189,7 @@ class HistoneSearch(object):
         """
         self.query = {field:parameters[field] for fields in allowable_fields \
             for field in (fields[0], fields[2]) if field in parameters}
-        
+
         sort_parameters = {"limit": 10, "offset":0, "sort":"evalue", "order":"asc"}
         sort_query = {p:parameters.get(p, v) for p, v in sort_parameters.iteritems()}
 
@@ -223,7 +224,7 @@ class HistoneSearch(object):
 
         if query.has_errors():
             return False
-
+        
         self.query_set = self.query_set.filter(**query)
         
         self.count = self.query_set.count()
@@ -277,7 +278,8 @@ class HistoneSearch(object):
         return self.query_set.count()
 
     def get_dict(self, unique=False):
-        sequences = self.sorted(unique=unique) 
+        sequences = self.sorted(unique=unique)
+
         result = [{
             "id":r.id, 
             "variant":r.variant_id, 
@@ -287,7 +289,7 @@ class HistoneSearch(object):
             "taxid":str(r.taxonomy.id),
             "score":r.score, 
             "evalue":r.evalue, 
-            "header":r.header[:80]
+            "header":r.header.replace(r.taxonomy.name.capitalize(), "").replace("[]", "")[:80]
             } for r in sequences]
         return {"total":self.count, "rows":result}
 
@@ -307,8 +309,6 @@ class HistoneSearch(object):
                 return parameters
         except ValueError:
             pass
-
-        assert 0, "NO GI "+search_text
 
         #search core_type, variant, old variant names, header if doens't match variant or core_type, taxonomy
         try:
@@ -346,8 +346,10 @@ class HistoneSearch(object):
             variant = OldStyleVariant.objects.get(name=search_text).updated_variant
             parameters["id_variant"] = variant.id
             parameters["id_variant_search_type"] = "is"
+            
             if self.navbar:
-                self.redirct = redirect(variant)
+                self.redirect = redirect(variant)
+            
             return parameters
         except OldStyleVariant.DoesNotExist:
             pass
@@ -418,7 +420,11 @@ class format_query(dict):
                 values = []
                 if "-" in value:
                     for v in value.split("-"):
-                        values += conv_type(v)
+                        v = conv_type(v.strip())
+                        if isinstance(v, list):
+                            values += conv_type(v.strip())
+                        else:
+                            values.append(v)
                 else:
                     self.errors["Must include a dash if searching 'range'"] += 1
                 value = values
@@ -426,7 +432,11 @@ class format_query(dict):
                 values = []
                 if "," in value:
                     for v in value.split(","):
-                        values += conv_type(v)
+                        v = conv_type(v.strip())
+                        if isinstance(v, list):
+                            values += conv_type(v.strip())
+                        else:
+                            values.append(v)
                 else:
                     self.errors["Must include a comma if searching 'in'"] += 1
                 value = values

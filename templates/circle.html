@@ -214,7 +214,7 @@ $("#view_sequences_of_taxa_button").click(function() {
     extra_seq_params["id_taxonomy"] = taxa
     $("#page_title").html("{{ variant }} - "+taxa);
   }
-  $('#sequence_table').bootstrapTable('refresh');
+  $('#sequence_table_{{ page_name }}').bootstrapTable('refresh');
   $("#sequences_tab").tab("show");
 });
 </script>

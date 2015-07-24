@@ -15,6 +15,7 @@ urlpatterns = patterns('browse.views',
     url(r'^search/$', 'search'),
     url(r'^analyze/$', 'analyze'),
     url(r'^help/$', 'help'),
+    url(r'^basket/$', 'basket'),
 
     #Parameters are stored as session variables a GET response
     url(r'^data/sequences/json$', 'get_sequence_table_data'),
