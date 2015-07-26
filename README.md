@@ -7,7 +7,7 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
 
 - Python 2.7
 - Flup 1.0.2, if using fastcgi
-- Django 1.8
+- Django 1.8, django-debug_toolbar, django-filter, django-filters(?)
 - django-extensions 1.5.3
 - MySQL-python 1.2.5
 - BioPython 1.65
