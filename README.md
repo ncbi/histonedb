@@ -12,9 +12,9 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
 - MySQL-python 1.2.5
 - BioPython 1.65
 - colour 0.1.1
-- HMMER 3.1b2
-- BLAST+
-- EMBOSS
+- [HMMER 3.1b2](http://hmmer.janelia.org)
+- [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+- [EMBOSS](http://emboss.sourceforge.net)
 
 ## Setup ##
 
