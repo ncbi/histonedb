@@ -3,7 +3,7 @@ from optparse import make_option
 
 import os
 from django.conf import settings
-from server.phylocore_models import *
+from djangophylocore.models import *
 try:
     import cPickle as pickle
 except:
