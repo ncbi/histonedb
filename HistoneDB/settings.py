@@ -15,11 +15,11 @@ import os
 
 # Set the MySQL dtabase information. If this in an NCBI machine, it will already be set as an environment variable
 NCBI_database_info = {
-    "name": "DB_NAME",
-    "user": "DB_USER",
-    "password": "DB_PASS",
-    "host": "DB_HOST",
-    "port": "DB_PORT",
+    "name": "histdb",
+    "user": "histdb",
+    "password": "pass",
+    "host": "localhost",
+    "port": 3306,
     "SECRET_KEY": "DJANGO_SECRET_KEY"
 }
 NCBI_database_info.update({key.replace("NCBI_database_info_", ""): value for key, value in os.environ.iteritems() if key.startswith("NCBI_database_info")})
@@ -133,16 +133,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/projects/histonedb/HistoneDB/static/'
+STATIC_URL = '/static/'
 
-STATIC_ROOT = '/web/public/htdocs/projects/histonedb/HistoneDB/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static"),
+#]
 
-MEDIA_URL = "/projects/histonedb/HistoneDB/media/"
-MEDIA_ROOT = "/web/projects/histonedb/HistoneDB/media/"
+#MEDIA_URL = "/projects/histonedb/HistoneDB/media/"
+#MEDIA_ROOT = "/web/projects/histonedb/HistoneDB/media/"
 
 # List of finder classes that know how to find static files in
 # various locations.
