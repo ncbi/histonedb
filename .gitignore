@@ -10,3 +10,4 @@ static/browse/hmms/combined_variants.hmm.out
 static/browse/blast/HistoneDB_sequences.fa*
 .sink_*
 djangophylocore/dumps/*
+.DS_Store
