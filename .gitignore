@@ -11,3 +11,6 @@ static/browse/blast/HistoneDB_sequences.fa*
 .sink_*
 djangophylocore/dumps/*
 .DS_Store
+names.dmp
+nodes.dmp
+taxdump.tar.gz
