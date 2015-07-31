@@ -3,9 +3,9 @@
 # Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2B/H2B.1.hmm
-# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.1_postive_examples.fasta
-# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.1_postive_examples.out
+# query HMM file:                  /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/H2B/H2B.1.hmm
+# target sequence database:        /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.1_postive_examples.fasta
+# output directed to file:         /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H2B/H2B.1_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4

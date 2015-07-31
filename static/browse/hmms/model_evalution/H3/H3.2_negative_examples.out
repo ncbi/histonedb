@@ -3,9 +3,9 @@
 # Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H3/H3.2.hmm
-# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/H3.2_negative_examples.fasta
-# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H3/H3.2_negative_examples.out
+# query HMM file:                  /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/H3/H3.2.hmm
+# target sequence database:        /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H3/H3.2_negative_examples.fasta
+# output directed to file:         /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H3/H3.2_negative_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -40,7 +40,7 @@ Scores for complete sequences (score includes all domains):
     1.1e-84  276.8   3.3    1.2e-84  276.6   3.3    1.0  1  Trichoderma|589115521|H3.3         Trichoderma_H3.3
     2.2e-84  275.8   4.2    2.5e-84  275.6   4.2    1.0  1  Candida|68472183|H3.1              Candida_H3.1
     5.2e-84  274.6   4.4    5.8e-84  274.4   4.4    1.0  1  Debaryomyces|50423783|H3.1         Debaryomyces_H3.1_XP_460476
-    1.7e-83  272.9   4.9    1.8e-83  272.8   4.9    1.0  1  Crypto|58260270|H3.3               Crypto_H3.3_XP_567545
+    1.7e-83  273.0   4.9    1.8e-83  272.8   4.9    1.0  1  Crypto|58260270|H3.3               Crypto_H3.3_XP_567545
     1.2e-82  270.2   5.1    1.3e-82  270.1   5.1    1.0  1  Saccharomyces|6319482|H3.3         Saccharomyces_H3.3
     2.1e-81  266.2   5.1    2.3e-81  266.0   5.1    1.0  1  Tetrahymena|118350232|H3.3         Tetrahymena_H3.3
     5.6e-74  242.1   4.2    7.1e-74  241.8   4.2    1.1  1  Homo|NO_GI|H3.Y.2.s1               Homo_H3.Y.2.s1_H3.X.s1
@@ -630,7 +630,7 @@ Passed Vit filter:                       102  (0.128625); expected 0.8 (0.001)
 Passed Fwd filter:                        45  (0.0567465); expected 0.0 (1e-05)
 Initial search space (Z):                793  [actual number of targets]
 Domain search space  (domZ):              45  [number of targets reported over threshold]
-# CPU time: 0.04u 0.00s 00:00:00.04 Elapsed: 00:00:00.04
-# Mc/sec: 318.80
+# CPU time: 0.05u 0.00s 00:00:00.05 Elapsed: 00:00:00.05
+# Mc/sec: 255.04
 //
 [ok]

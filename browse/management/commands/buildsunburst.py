@@ -55,8 +55,8 @@ class Command(BaseCommand):
         color_range = list(red.range_to(green, 100))
 
         taxas = Sequence.objects.filter(**filter).filter(all_model_scores__used_for_classifiation=True).annotate(score=Max("all_model_scores__score"))
-        scores_min = min(taxas.values_list("score", flat=True))
-        scores_max = max(taxas.values_list("score", flat=True))
+        scores_min = min(taxas.values_list("score", flat=True) or [0])
+        scores_max = max(taxas.values_list("score", flat=True) or [0])
 
         taxas = taxas.values_list("taxonomy", flat=True).distinct()
 
@@ -89,7 +89,10 @@ class Command(BaseCommand):
             for i, curr_taxa in enumerate(path):
                 if stopForOrder:
                     break
-                if curr_taxa.rank.name in ["no rank", "class"] or "sub" in curr_taxa.rank.name or  "super" in curr_taxa.rank.name:
+                try:
+                    if curr_taxa.rank.name in ["no rank", "class"] or "sub" in curr_taxa.rank.name or  "super" in curr_taxa.rank.name:
+                        continue
+                except:
                     continue
                 if "order" in curr_taxa.rank.name or "family" in curr_taxa.rank.name:
                     stopForOrder = True

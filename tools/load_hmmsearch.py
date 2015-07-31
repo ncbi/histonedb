@@ -100,6 +100,7 @@ def load_variants(hmmerFile, sequences, reset=True):
   threshold : float
     Keep HSPS with scores >= threshold. Optional.
   """
+
   if reset:
     Sequence.objects.all().delete()
     Features.objects.all().delete()
@@ -173,6 +174,8 @@ def load_variants(hmmerFile, sequences, reset=True):
               else:
                 add_score(seq, variant_model, hsp, best=False)
           else:
+            print "!!!!!!!!", header
+            print "!!!!!!!!!", gi
             taxonomy = taxonomy_from_header(header, gi)
             sequence = Seq(str(hsp.hit.seq))
             best = hsp.bitscore >= variant_model.hmmthreshold
@@ -299,14 +302,15 @@ def update_features(seq, ss_position=None, variant_model=None, return_not_save=F
     hist_identified, ss_position, sequence = get_hist_ss(seq.to_biopython(ungap=True).seq, variant_model.core_type.id, save_alignment=True)
     sequence = str(sequence.seq)
 
-  if ss_position is None:
-    assert 0
+  # if ss_position is None:
+    # assert 0
 
   if hasattr(seq, "features") and seq.features:
     seq.features.delete()
 
-  if not variant_model.core_type.id == "H1":
-    features = Features.from_dict(seq, ss_position)
+  if variant_model is not None:
+    if not variant_model.core_type.id == "H1":
+      features = Features.from_dict(seq, ss_position)
     
     if return_not_save:
       return features

@@ -69,9 +69,9 @@ class Command(BaseCommand):
             (not options["only_variants"] and os.path.isfile(self.core_results_file))):
             if options["test_models"]:
                 self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
-            if not options["only_cores"]: 
+            if not options["only_cores"]:
                 self.load_variants()
-            if not options["only_variants"]: 
+            if not options["only_variants"]:
                 self.load_cores()
 
         elif not options["force"] and \

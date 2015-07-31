@@ -3,9 +3,9 @@
 # Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H1/canonicalH1.hmm
-# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H1/canonicalH1_postive_examples.fasta
-# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H1/canonicalH1_postive_examples.out
+# query HMM file:                  /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/H1/canonicalH1.hmm
+# target sequence database:        /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H1/canonicalH1_postive_examples.fasta
+# output directed to file:         /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H1/canonicalH1_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -579,7 +579,7 @@ Scores for complete sequences (score includes all domains):
     2.9e-30  101.0  42.5    3.4e-30  100.8  42.5    1.0  1  221221588|Salmo_salar/1-193             
     2.9e-30  101.0  42.5    3.4e-30  100.8  42.5    1.0  1  225709312|Caligus_rogercresseyi/1-193   
     4.8e-30  100.3  44.0      6e-30  100.0  44.0    1.0  1  189473427|Camellia_sinensis/1-207       
-      5e-30  100.2  38.8    6.9e-30   99.8  38.8    1.3  1  47575778|Xenopus_(Silurana)/1-234       
+      5e-30  100.2  38.8    6.9e-30   99.7  38.8    1.3  1  47575778|Xenopus_(Silurana)/1-234       
     5.7e-30  100.0  42.4    7.2e-30   99.7  42.4    1.1  1  311269349|Sus_scrofa/1-214              
     6.4e-30   99.9  44.3      8e-30   99.5  44.3    1.1  1  57100980|Canis_lupus/1-213              
     6.9e-30   99.7  96.3    2.5e-25   84.9  96.3    2.0  1  302900131|Nectria_haematococca/1-229    
@@ -7417,10 +7417,10 @@ Domain annotation for each sequence (and alignments):
 >> 47575778|Xenopus_(Silurana)/1-234  
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !   99.8  38.8   6.9e-30   6.9e-30      12     192 ..      43     229 ..      11     234 .] 0.57
+   1 !   99.7  38.8   6.9e-30   6.9e-30      12     192 ..      43     229 ..      11     234 .] 0.57
 
   Alignments for each domain:
-  == domain 1  score: 99.8 bits;  conditional E-value: 6.9e-30
+  == domain 1  score: 99.7 bits;  conditional E-value: 6.9e-30
                                  H1  12 a..............akapkkkkakkakkpashp.pysemikaAikalkERgGsSlqAikKyiaanykvdveklnsfikkaLKsaVakGkLvqtkGkGASGsFKLakk....kkkkkkkkkaaakkakkkaaakkkkkakkaakkaakkkpkakkapkkakkpkakakkapkkakakkkaakskakkakkkkaakpka.k.p 192
                                                        ++++++  akk+kk++++p  ys++++++i++l ER+GsSl+ i    ++    d+++ ++++k ++K++V++++L+q+kG GA+GsF+L+kk         + +k+aa+ ak + + ++ ++ ++ ak+ +k+kp+a+k+     kp++++ kap k+ +k   ak k+     kk akp+  k p
   47575778|Xenopus_(Silurana)/1-234  43 MqtrspskrnkggasSSSSSSGSAKKKKKKKNQPgRYSQLVVDTIRKLGERNGSSLAKIYSEAKKVAWFDQQNGRTYLKYSIKALVQNDTLLQVKGVGANGSFRLNKKklegL----PFEKKAAPPAKPPSKRRAPAASSSPAKSHKKAKPTAEKE-----KPQKSSVKAPSKSHKK--GAKGKK----VKKGAKPSVpKvP 229
@@ -7834,7 +7834,7 @@ Passed Vit filter:                       597  (1); expected 0.6 (0.001)
 Passed Fwd filter:                       597  (1); expected 0.0 (1e-05)
 Initial search space (Z):                597  [actual number of targets]
 Domain search space  (domZ):             597  [number of targets reported over threshold]
-# CPU time: 1.51u 0.01s 00:00:01.52 Elapsed: 00:00:01.51
-# Mc/sec: 17.67
+# CPU time: 1.73u 0.01s 00:00:01.74 Elapsed: 00:00:01.87
+# Mc/sec: 14.27
 //
 [ok]

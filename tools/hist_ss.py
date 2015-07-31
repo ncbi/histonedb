@@ -141,7 +141,7 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
 
     query_file = os.path.join(save_dir, "query_{}.fasta".format(n2))
     SeqIO.write(test_record, query_file, 'fasta')
-
+    
     if hist_type == "Unknown":
         blastp = os.path.join(os.path.dirname(sys.executable), "blastp")
         blastp_cline = NcbiblastpCommandline(
@@ -177,8 +177,8 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
     else:
         hist_identified = hist_type
     
-    core_histone_query = os.path.join(settings.STATIC_ROOT, "browse", "blast", "{}.faa".format(hist_identified))
-
+    core_histone_query = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "{}.faa".format(hist_identified))
+    print "!!!!!!"
     needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
     cmd = os.path.join(os.path.dirname(sys.executable), "EMBOSS-6.6.0", "emboss", "needle")
 
@@ -265,6 +265,7 @@ def get_hist_ss_in_aln(alignment, hist_type='Unknown', save_dir="", debug=True, 
         print "Consensus"
         print cons
     hv, ss = get_hist_ss(cons,hist_type,save_dir,True)
+
     if save_censesus:
         return hv,ss,cons
     return hv,ss

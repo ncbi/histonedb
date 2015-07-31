@@ -3,9 +3,9 @@
 # Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2B/canonicalH2B.hmm
-# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/canonicalH2B_postive_examples.fasta
-# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2B/canonicalH2B_postive_examples.out
+# query HMM file:                  /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/H2B/canonicalH2B.hmm
+# target sequence database:        /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H2B/canonicalH2B_postive_examples.fasta
+# output directed to file:         /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H2B/canonicalH2B_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -186,7 +186,7 @@ Scores for complete sequences (score includes all domains):
     6.2e-71  232.0   3.3    6.7e-71  231.9   3.3    1.0  1  118151208|Bos_taurus/1-126              
     6.4e-71  232.0   4.7      7e-71  231.9   4.7    1.0  1  301623157|Xenopus_(Silurana)/1-126      
     6.6e-71  232.0   4.0    7.1e-71  231.8   4.0    1.0  1  229329|Bos_taurus/1-125                 
-    7.2e-71  231.8   4.3    7.7e-71  231.7   4.3    1.0  1  45767717|Homo_sapiens/1-126             
+    7.2e-71  231.8   4.3    7.8e-71  231.7   4.3    1.0  1  45767717|Homo_sapiens/1-126             
     7.2e-71  231.8   3.7    7.8e-71  231.7   3.7    1.0  1  110278998|Macaca_fascicularis/1-126     
     7.4e-71  231.8   4.6      9e-71  231.5   4.6    1.0  1  556310|Mus_musculus/1-134               
     7.6e-71  231.8   3.3    8.2e-71  231.7   3.3    1.0  1  109017921|Macaca_mulatta/1-126          
@@ -240,8 +240,8 @@ Scores for complete sequences (score includes all domains):
     6.1e-70  228.8   4.6    6.5e-70  228.7   4.6    1.0  1  47223817|Tetraodon_nigroviridis/1-126   
       7e-70  228.7   3.6    7.4e-70  228.6   3.6    1.0  1  57110397|Canis_lupus/1-127              
     8.2e-70  228.4   5.6    8.8e-70  228.3   5.6    1.0  1  47191279|Tetraodon_nigroviridis/1-124   
-    1.3e-69  227.8   3.0    1.4e-69  227.6   3.0    1.0  1  157954460|Danio_rerio/1-124             
-    1.3e-69  227.8   3.0    1.4e-69  227.6   3.0    1.0  1  288684309|Xenopus_(Silurana)/1-124      
+    1.3e-69  227.8   3.0    1.5e-69  227.6   3.0    1.0  1  157954460|Danio_rerio/1-124             
+    1.3e-69  227.8   3.0    1.5e-69  227.6   3.0    1.0  1  288684309|Xenopus_(Silurana)/1-124      
     1.5e-69  227.6   3.8    1.6e-69  227.5   3.8    1.0  1  74004168|Canis_lupus/1-127              
     4.1e-69  226.1   5.5    4.5e-69  226.0   5.5    1.0  1  296405|Xenopus_laevis/1-126             
     4.5e-69  226.0   5.0    4.8e-69  225.9   5.0    1.0  1  55589506|Pan_troglodytes/1-126          
@@ -249,7 +249,7 @@ Scores for complete sequences (score includes all domains):
     4.6e-69  226.0   5.5    5.3e-69  225.8   5.5    1.0  1  281352746|Ailuropoda_melanoleuca/1-130  
     5.3e-69  225.8   5.6    5.6e-69  225.7   5.6    1.0  1  399855|Rattus_norvegicus/1-127          
     5.7e-69  225.7   5.7    6.7e-69  225.5   5.7    1.0  1  297463902|Bos_taurus/1-127              
-      7e-69  225.4   4.7    8.2e-69  225.2   4.7    1.0  1  297463904|Bos_taurus/1-127              
+      7e-69  225.4   4.6    8.2e-69  225.2   4.6    1.0  1  297463904|Bos_taurus/1-127              
     8.3e-69  225.2   2.9    9.1e-69  225.1   2.9    1.0  1  225715654|Esox_lucius/1-124             
     8.7e-69  225.1   6.1    9.2e-69  225.0   6.1    1.0  1  28316750|Mus_musculus/1-127             
       9e-69  225.1   5.0    9.6e-69  225.0   5.0    1.0  1  12025524|Rattus_norvegicus/1-127        
@@ -555,7 +555,7 @@ Scores for complete sequences (score includes all domains):
     2.6e-64  210.7   5.2      3e-64  210.4   5.2    1.1  1  242059179|Sorghum_bicolor/1-137         
     2.6e-64  210.6   5.5    3.8e-64  210.1   5.5    1.3  1  15231313|Arabidopsis_thaliana/1-145     
     2.6e-64  210.6   5.5    3.8e-64  210.1   5.5    1.3  1  297819136|Arabidopsis_lyrata/1-145      
-    2.7e-64  210.6   4.6      3e-64  210.4   4.6    1.0  1  75102840|Triticum_aestivum/1-136        
+    2.7e-64  210.6   4.6      3e-64  210.5   4.6    1.0  1  75102840|Triticum_aestivum/1-136        
     2.7e-64  210.6   9.3    3.3e-64  210.3   9.3    1.1  1  168034277|Physcomitrella_patens/1-136   
     2.8e-64  210.6   4.6    3.2e-64  210.3   4.6    1.1  1  225685094|Paracoccidioides_brasi/1-141  
     2.8e-64  210.6   4.6    3.2e-64  210.3   4.6    1.1  1  226294408|Paracoccidioides_brasi/1-141  
@@ -844,7 +844,7 @@ Scores for complete sequences (score includes all domains):
     7.2e-60  196.3   2.9    7.8e-60  196.2   2.9    1.0  1  145521208|Paramecium_tetraurelia/1-125  
     8.3e-60  196.1   2.6      9e-60  196.0   2.6    1.0  1  124391390|Paramecium_tetraurelia/1-125  
     8.3e-60  196.1   2.6      9e-60  196.0   2.6    1.0  1  145476607|Paramecium_tetraurelia/1-125  
-    9.7e-60  195.9   5.2    1.1e-59  195.7   5.2    1.0  1  221111492|Hydra_magnipapillata/1-132    
+    9.6e-60  195.9   5.2    1.1e-59  195.7   5.2    1.0  1  221111492|Hydra_magnipapillata/1-132    
     9.9e-60  195.8   4.1    1.1e-59  195.7   4.1    1.0  1  50554033|Yarrowia_lipolytica/1-139      
     9.9e-60  195.8   4.1    1.1e-59  195.7   4.1    1.0  1  74633321|Yarrowia_lipolytica/1-139      
     1.7e-59  195.1   4.6    1.9e-59  195.0   4.6    1.0  1  154147099|Sordaria_macrospora/1-122     
@@ -3014,10 +3014,10 @@ Domain annotation for each sequence (and alignments):
 >> 45767717|Homo_sapiens/1-126  
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  231.7   4.3   7.7e-71   7.7e-71       7     125 .]       6     126 .]       1     126 [] 0.95
+   1 !  231.7   4.3   7.8e-71   7.8e-71       7     125 .]       6     126 .]       1     126 [] 0.95
 
   Alignments for each domain:
-  == domain 1  score: 231.7 bits;  conditional E-value: 7.7e-71
+  == domain 1  score: 231.7 bits;  conditional E-value: 7.8e-71
                           H2B   7 ksae..kkgskkakkkaqkkkkkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrlllpGelakhavsegtkavtkytssk 125
                                   ksa+  kkgskka +kaqkk++kkrk++rkesys+y+ykvlkqvhpdtgisskam+imnsfvndiferia easrla+ynk+stitsreiqtavrlllpGelakhavsegtkavtkytssk
   45767717|Homo_sapiens/1-126   6 KSAPvpKKGSKKAINKAQKKDGKKRKRSRKESYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAREASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK 126
@@ -3662,10 +3662,10 @@ Domain annotation for each sequence (and alignments):
 >> 157954460|Danio_rerio/1-124  
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  227.6   3.0   1.4e-69   1.4e-69       2     125 .]       1     124 []       1     124 [] 0.98
+   1 !  227.6   3.0   1.5e-69   1.5e-69       2     125 .]       1     124 []       1     124 [] 0.98
 
   Alignments for each domain:
-  == domain 1  score: 227.6 bits;  conditional E-value: 1.4e-69
+  == domain 1  score: 227.6 bits;  conditional E-value: 1.5e-69
                           H2B   2 apkkkksaekkgskkakkkaqkkkkkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrlllpGelakhavsegtkavtkytssk 125
                                   +p+++k+a+kkgskka++k++ k +kkrk++rkesy+iy+ykvlkqvhpdtgisskam+imnsfvndiferia+easrla+ynk+stitsreiqtavrlllpGelakhavs gtkavtkytssk
   157954460|Danio_rerio/1-124   1 MPEPAKAAPKKGSKKAVTKTAGKGGKKRKRTRKESYAIYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSVGTKAVTKYTSSK 124
@@ -3674,10 +3674,10 @@ Domain annotation for each sequence (and alignments):
 >> 288684309|Xenopus_(Silurana)/1-124  
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  227.6   3.0   1.4e-69   1.4e-69       2     125 .]       1     124 []       1     124 [] 0.98
+   1 !  227.6   3.0   1.5e-69   1.5e-69       2     125 .]       1     124 []       1     124 [] 0.98
 
   Alignments for each domain:
-  == domain 1  score: 227.6 bits;  conditional E-value: 1.4e-69
+  == domain 1  score: 227.6 bits;  conditional E-value: 1.5e-69
                                  H2B   2 apkkkksaekkgskkakkkaqkkkkkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrlllpGelakhavsegtkavtkytssk 125
                                          +p+++k+a+kkgskka++k++ k +kkrk++rkesy+iy+ykvlkqvhpdtgisskam+imnsfvndiferia+easrla+ynk+stitsreiqtavrlllpGelakhavs gtkavtkytssk
   288684309|Xenopus_(Silurana)/1-124   1 MPEPAKAAPKKGSKKAVTKTAGKGGKKRKRTRKESYAIYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSVGTKAVTKYTSSK 124
@@ -3770,7 +3770,7 @@ Domain annotation for each sequence (and alignments):
 >> 297463904|Bos_taurus/1-127  
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  225.2   4.7   8.2e-69   8.2e-69       8     125 .]      10     127 .]       2     127 .] 0.96
+   1 !  225.2   4.6   8.2e-69   8.2e-69       8     125 .]      10     127 .]       2     127 .] 0.96
 
   Alignments for each domain:
   == domain 1  score: 225.2 bits;  conditional E-value: 8.2e-69
@@ -7442,10 +7442,10 @@ Domain annotation for each sequence (and alignments):
 >> 75102840|Triticum_aestivum/1-136  
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  210.4   4.6     3e-64     3e-64       7     124 ..       9     136 .]       1     136 [] 0.85
+   1 !  210.5   4.6     3e-64     3e-64       7     124 ..       9     136 .]       1     136 [] 0.85
 
   Alignments for each domain:
-  == domain 1  score: 210.4 bits;  conditional E-value: 3e-64
+  == domain 1  score: 210.5 bits;  conditional E-value: 3e-64
                                H2B   7 ksaekkg...skkakkkaqk.........kkkkkrkkkrkesysiyiykvlkqvhpdtgisskamsimnsfvndiferiaaeasrlarynkkstitsreiqtavrlllpGelakhavsegtkavtkytss 124
                                        ++aekk+   +kk+k++  k         +kkkk++kk++e+y+iyi+kvlkqvhpd+gisskamsimnsf+ndife++a+e+++larynkk+titsreiqtavrl+lpGelakhavsegtkavtk+tss
   75102840|Triticum_aestivum/1-136   9 PAAEKKPvetEKKPKAE--KrvpgkdggaDKKKKKAKKSVETYKIYIFKVLKQVHPDIGISSKAMSIMNSFINDIFEKLAGESAKLARYNKKPTITSREIQTAVRLVLPGELAKHAVSEGTKAVTKFTSS 136
@@ -12407,7 +12407,7 @@ Passed Vit filter:                       952  (1); expected 1.0 (0.001)
 Passed Fwd filter:                       952  (1); expected 0.0 (1e-05)
 Initial search space (Z):                952  [actual number of targets]
 Domain search space  (domZ):             952  [number of targets reported over threshold]
-# CPU time: 0.43u 0.01s 00:00:00.44 Elapsed: 00:00:00.44
-# Mc/sec: 34.46
+# CPU time: 0.42u 0.01s 00:00:00.43 Elapsed: 00:00:00.43
+# Mc/sec: 35.26
 //
 [ok]

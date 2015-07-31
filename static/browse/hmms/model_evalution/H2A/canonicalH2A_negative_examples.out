@@ -3,9 +3,9 @@
 # Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2A/canonicalH2A.hmm
-# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/canonicalH2A_negative_examples.fasta
-# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H2A/canonicalH2A_negative_examples.out
+# query HMM file:                  /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/H2A/canonicalH2A.hmm
+# target sequence database:        /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H2A/canonicalH2A_negative_examples.fasta
+# output directed to file:         /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H2A/canonicalH2A_negative_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -172,7 +172,7 @@ Passed Vit filter:                       186  (0.0175903); expected 10.6 (0.001)
 Passed Fwd filter:                         7  (0.000662001); expected 0.1 (1e-05)
 Initial search space (Z):              10574  [actual number of targets]
 Domain search space  (domZ):               7  [number of targets reported over threshold]
-# CPU time: 0.14u 0.01s 00:00:00.15 Elapsed: 00:00:00.08
-# Mc/sec: 5555.57
+# CPU time: 0.17u 0.01s 00:00:00.18 Elapsed: 00:00:00.09
+# Mc/sec: 4938.29
 //
 [ok]

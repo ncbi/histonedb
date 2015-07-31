@@ -3,9 +3,9 @@
 # Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H4/canonicalH4.hmm
-# target sequence database:        /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H4/canonicalH4_postive_examples.fasta
-# output directed to file:         /net/mwebdev2/export/home/web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evalution/H4/canonicalH4_postive_examples.out
+# query HMM file:                  /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/H4/canonicalH4.hmm
+# target sequence database:        /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H4/canonicalH4_postive_examples.fasta
+# output directed to file:         /Users/alexeyshaytan/histdb/HistoneDB/static/browse/hmms/model_evalution/H4/canonicalH4_postive_examples.out
 # max ASCII text line length:      unlimited
 # sequence reporting threshold:    E-value <= 500
 # number of worker threads:        4
@@ -299,7 +299,7 @@ Scores for complete sequences (score includes all domains):
     3.8e-64  208.6   5.3    4.1e-64  208.5   5.3    1.0  1  260766929|Eriobotrya|canonicalH4           260766929|Eriobotrya_japonica/1-103
     3.8e-64  208.6   5.2    4.2e-64  208.5   5.2    1.0  1  194765415|Drosophila|canonicalH4           194765415|Drosophila_ananassae/1-103
     3.8e-64  208.6   4.1    4.2e-64  208.5   4.1    1.0  1  134109925|Cryptococcus|canonicalH4         134109925|Cryptococcus_neoforman/1-103
-      4e-64  208.5   4.4    4.4e-64  208.4   4.4    1.0  1  156375402|Nematostella|canonicalH4         156375402|Nematostella_vectensis/1-103
+      4e-64  208.5   4.4    4.3e-64  208.4   4.4    1.0  1  156375402|Nematostella|canonicalH4         156375402|Nematostella_vectensis/1-103
       4e-64  208.5   4.9    4.5e-64  208.4   4.9    1.0  1  195361346|Drosophila|canonicalH4           195361346|Drosophila_sechellia/1-107
     4.3e-64  208.4   5.1    4.7e-64  208.3   5.1    1.0  1  114606047|Pan|canonicalH4                  114606047|Pan_troglodytes/1-106
     4.6e-64  208.3   4.9    5.1e-64  208.2   4.9    1.0  1  168031392|Physcomitrella|canonicalH4       168031392|Physcomitrella_patens/1-103
@@ -4011,10 +4011,10 @@ Domain annotation for each sequence (and alignments):
 >> 156375402|Nematostella|canonicalH4  156375402|Nematostella_vectensis/1-103
    #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
  ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
-   1 !  208.4   4.4   4.4e-64   4.4e-64       1     103 []       1     103 []       1     103 [] 0.99
+   1 !  208.4   4.4   4.3e-64   4.3e-64       1     103 []       1     103 []       1     103 [] 0.99
 
   Alignments for each domain:
-  == domain 1  score: 208.4 bits;  conditional E-value: 4.4e-64
+  == domain 1  score: 208.4 bits;  conditional E-value: 4.3e-64
                          canonicalH4   1 msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrgGvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg 103
                                          msgrgkggkglgkggakrhrk+lrdniqgitkpairrlarrgGvkrisgliyeetrg+lkvflenvirdavtytehakrktvta+dvvy lkrqgrtlygfgg
   156375402|Nematostella|canonicalH4   1 MSGRGKGGKGLGKGGAKRHRKILRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGLLKVFLENVIRDAVTYTEHAKRKTVTAMDVVYVLKRQGRTLYGFGG 103
@@ -7740,7 +7740,7 @@ Passed Vit filter:                       593  (1); expected 0.6 (0.001)
 Passed Fwd filter:                       593  (1); expected 0.0 (1e-05)
 Initial search space (Z):                593  [actual number of targets]
 Domain search space  (domZ):             593  [number of targets reported over threshold]
-# CPU time: 0.14u 0.01s 00:00:00.15 Elapsed: 00:00:00.15
-# Mc/sec: 42.04
+# CPU time: 0.19u 0.01s 00:00:00.20 Elapsed: 00:00:00.26
+# Mc/sec: 24.25
 //
 [ok]

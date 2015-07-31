@@ -135,11 +135,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, "static"),
-#]
+STATIC_ROOT_AUX = os.path.join(BASE_DIR, "static/")
+
+
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, "static"),
+]
 
 #MEDIA_URL = "/projects/histonedb/HistoneDB/media/"
 #MEDIA_ROOT = "/web/projects/histonedb/HistoneDB/media/"

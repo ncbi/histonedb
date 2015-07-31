@@ -177,6 +177,8 @@ def write_alignments(alignments, outfile=None, shading_modes=["similar"], logo=T
 
     #Turn latex into pdf
     pdflatex = os.path.join(os.path.dirname(sys.executable), "pdflatex")
+    # print pdflatex
+    # print os.path.join(save_dir, "{}.tex".format(outfile))
     #assert 0, " ".join([pdflatex, "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))])
     process = Popen([pdflatex, "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))])
     process.communicate()

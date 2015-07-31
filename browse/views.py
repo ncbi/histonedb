@@ -57,6 +57,7 @@ def browse_types(request):
     return render(request, 'browse_types.html', data)
 
 def browse_variants(request, histone_type):
+    # print histone_type, "!!!!!!!"
     try:
         core_histone = Histone.objects.get(id=histone_type)
     except:
@@ -134,7 +135,6 @@ def browse_variant(request, histone_type, variant):
         query = original_query
         data["filter_errors"] = result.errors
     data["current_query"] = query
-
     return render(request, 'browse_variant.html', data)
 
 def search(request):
@@ -293,7 +293,6 @@ def get_aln_and_features(request, ids=None):
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
     from Bio.SeqRecord import SeqRecord
-
     if ids is None and request.method == "GET" and "id" in request.GET:
         ids = request.GET.getlist("id")
         download = False
@@ -302,7 +301,7 @@ def get_aln_and_features(request, ids=None):
     else:
         #Returning 'false' stops Bootstrap table
         return "false"
-
+    
     if not download:
         sequences = Sequence.objects.filter(id__in=ids[:50])
         if len(sequences) == 0:
@@ -330,6 +329,7 @@ def get_aln_and_features(request, ids=None):
         seqFile = StringIO.StringIO()
         seqFile.write(aln)
         seqFile.seek(0)
+
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
         msa = MultipleSeqAlignment(sequences)
         a = SummaryInfo(msa)
@@ -338,13 +338,14 @@ def get_aln_and_features(request, ids=None):
         save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
-
+        
         if not hist_type == "H1":
             hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
+
             features = Features.from_dict(cons, ss)
         else:
             features = ""
-
+        
         sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
         sequences.insert(0, cons.to_dict())
 
@@ -418,8 +419,7 @@ def get_sequence_features(request, ids=None):
 def get_seed_aln_and_features(request, seed):
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
-
-    seed_file = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    seed_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
     try:
         histone = Histone.objects.get(id=seed)
         seed_file = os.path.join(seed_file, "{}".format(histone.id))

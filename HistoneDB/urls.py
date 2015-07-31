@@ -29,7 +29,9 @@ urlpatterns = patterns('browse.views',
     url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', 'get_starburst_json'),
 )
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += [url(r'^admin/', include(admin.site.urls))]
+
 
 if settings.DEBUG:
     import debug_toolbar
