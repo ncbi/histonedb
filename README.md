@@ -39,7 +39,6 @@ If running on the mweb, these values will already be set as environment variable
 
 ```
 python manage.py migrate
-python manage.py migrate
 ```
 
 3) Build NCBI Taxonomy with djangophylocore
