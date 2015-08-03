@@ -17,6 +17,7 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
 - [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 - [EMBOSS](http://emboss.sourceforge.net)
 - [MUSCLE](http://www.drive5.com/muscle/)
+- [ClustalW2](http://www.clustal.org/clustal2/)
 
 ## Setup ##
 
