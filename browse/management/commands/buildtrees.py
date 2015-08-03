@@ -24,7 +24,7 @@ colors = [
     "#e5c494"]
 
 class Command(BaseCommand):
-    help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of thi project and using those HMMs to search the NR database.'
+    help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of this project and using those HMMs to search the NR database.'
     seed_directory = os.path.join("static", "browse", "seeds")
     trees_path = os.path.join("static", "browse", "trees")
     def add_arguments(self, parser):

@@ -147,7 +147,7 @@ def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_ali
         blastp_cline = NcbiblastpCommandline(
             cmd=blastp,
             query=query_file, 
-            db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "core_histones_1kx5.faa"), 
+            db=os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "core_histones_1kx5.faa"),
             evalue=10000000,
             outfmt=5, 
         )

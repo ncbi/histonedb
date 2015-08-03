@@ -10,8 +10,8 @@ from Bio import SeqIO
 
 class Command(BaseCommand):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of this project and using those HMMs to search the NR database. To add or update a single variant, you must rebuild everything using the --force option'
-    seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
-    hmm_directory = os.path.join(settings.STATIC_ROOT, "browse", "hmms")
+    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
+    hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
     combined_varaints_file = os.path.join(hmm_directory, "combined_variants.hmm")
     combined_core_file = os.path.join(hmm_directory, "combined_cores.hmm")
     pressed_combined_varaints_file = os.path.join(hmm_directory, "combined_variants.h3f")
@@ -25,7 +25,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "-f", 
             "--force", 
-            default=False, 
+            default=False,
             action="store_true", 
             help="Force the recreation of the HistoneDB. If True and an hmmsearch file is not present, the program will redownload the nr db if not present, build and press the HMM, and search the nr databse using the HMMs.")
 
@@ -62,32 +62,21 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        self.get_nr(force=options["nr"])
+        #self.get_nr(force=options["nr"])
 
-        if not options["force"] and \
-          ((not options["only_cores"] and os.path.isfile(self.results_file)) or \
-            (not options["only_variants"] and os.path.isfile(self.core_results_file))):
-            if options["test_models"]:
-                self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
-            if not options["only_cores"]:
-                self.load_variants()
-            if not options["only_variants"]:
-                self.load_cores()
+        if not options["force"]:
+            self.search_variants()
+            self.load_variants()
+            self.search_cores()
+            self.load_cores()
 
-        elif not options["force"] and \
-          ((not options["only_cores"] and os.path.isfile(self.pressed_combined_varaints_file)) or \
-            (not options["only_variants"] and os.path.isfile(self.pressed_combined_cores_file))):
-            self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
-            if not options["only_cores"]: 
-                self.search_varaint()
-                self.load_variants()
-            if not options["only_variants"]: 
-                self.search_cores()
-                self.load_cores()
+
 
         else:
             #Force to rebuild everything
+            #Here we are building HMM from seeds.
             self.build(only_cores=options["only_cores"], only_variants=options["only_variants"])
+            #Here we are testing and calculating the right threshold parameters from ROC curves.
             self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
             if not options["only_cores"]:
                 self.press_variants()
@@ -97,6 +86,35 @@ class Command(BaseCommand):
                 self.press_cores()
                 self.search_cores()
                 self.load_cores()
+############An ad-hoc snippet to load the seeds sequence into the database.###########
+        try:
+            os.remove('/tmp/all.fasta')
+        except:
+            pass
+        for core_type, seed1 in self.get_seeds(core=True):
+            print core_type, seed1
+            #Seed1 is positive examples
+            if seed1 == None:
+                #Test Core HMM
+                variant = "canonical{}".format(core_type)
+                positive_path = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
+            else:
+                #Test Varaint HMM
+                variant = seed1[:-6]
+                positive_path = os.path.join(self.seed_directory, core_type, seed1)
+            print "Saving", positive_path, "into", "/tmp/all.fasta"
+            with open("/tmp/all.fasta", "a") as positive_file:
+                for s in SeqIO.parse(positive_path, "fasta"):
+                    s.seq = s.seq.ungap("-")
+                    SeqIO.write(s, positive_file, "fasta")
+#Search variants
+        self.search(self.combined_varaints_file, out=self.results_file,sequences="/tmp/all.fasta")
+#Search cores
+        self.search(db=self.combined_core_file, out=self.core_results_file,sequences="/tmp/all.fasta")
+        self.load_variants(reset=False)
+        self.load_cores(reset=False)
+
+    #####################
 
 
     def get_nr(self, force=False):
@@ -165,15 +183,15 @@ class Command(BaseCommand):
 
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", db, sequences])
 
-    def load_variants(self):
+    def load_variants(self,reset=True):
         """Load data into the histone database"""
         print >> self.stdout, "Loading data into HistoneDB..."
-        load_variants(self.results_file, self.nr_file)
+        load_variants(self.results_file, self.nr_file,reset=reset)
 
-    def load_cores(self):
+    def load_cores(self,reset=True):
         """Load data into the histone database"""
         print >> self.stdout, "Loading data into HistoneDB..."
-        load_cores(self.core_results_file)
+        load_cores(self.core_results_file,reset=reset)
 
     def get_seeds(self, core=False):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):

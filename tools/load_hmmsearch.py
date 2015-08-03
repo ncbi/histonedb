@@ -137,7 +137,22 @@ def load_variants(hmmerFile, sequences, reset=True):
       variant_model = Variant(id=variant_query.id, core_type=core_histone)
       variant_model.save()
     for hit in variant_query:
-      headers = "{}{}".format(hit.id, hit.description).split("gi|")[1:]
+      #here is the problem, following line works only for NR formatted seqs, not for our seeds. we will try to replace it with a comprehensive version
+      old_headers = "{}{}".format(hit.id, hit.description).split("gi|")[1:]
+      #88888|ref|XP_dfdf|description - this is what we should get
+      tmp = "{}{}".format(hit.id, hit.description).split("|")
+      if(tmp[0]=="gi"):
+        headers=["|".join(tmp[1:])]
+      else:
+        if(re.match("\d+",tmp[0])):
+          headers=["|".join(tmp)]
+        else:
+          if(re.match("\d+",tmp[1])):
+            headers=["|".join([tmp[1],tmp[0]]+tmp[2:])]
+      # print headers
+      # print old_headers
+      # assert headers==old_headers
+
       for header in headers:
         gi = header.split("|")[0]
         for i, hsp in enumerate(hit):
