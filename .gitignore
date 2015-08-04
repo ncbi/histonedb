@@ -9,3 +9,5 @@ static/browse/hmms/combined_cores.hmm.out
 static/browse/hmms/combined_variants.hmm.out
 static/browse/blast/HistoneDB_sequences.fa*
 .sink_*
+djangophylocore/models.pyc
+manage.py

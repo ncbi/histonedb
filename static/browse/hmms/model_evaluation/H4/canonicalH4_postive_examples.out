@@ -1,0 +1,128 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H4/canonicalH4.hmm
+# target sequence database:        /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H4/canonicalH4_postive_examples.fasta
+# output directed to file:         /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H4/canonicalH4_postive_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       canonicalH4  [M=103]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                            Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                            -----------
+    5.1e-66  208.4   8.4    5.7e-66  208.2   8.4    1.0  1  canonicalH4|Gallus|83745133          
+    5.1e-66  208.4   8.4    5.7e-66  208.2   8.4    1.0  1  canonicalH4|Mus|21361209             
+    5.1e-66  208.4   8.4    5.7e-66  208.2   8.4    1.0  1  canonicalH4|Xenopus|148228507        
+    5.7e-66  208.2   7.9    6.2e-66  208.1   7.9    1.0  1  canonicalH4|Caenorhabditis|17509199  
+    7.9e-66  207.8   8.3    8.7e-66  207.6   8.3    1.0  1  canonicalH4|Arabidopsis|15226944     
+    2.9e-65  205.9   8.5    3.2e-65  205.8   8.5    1.0  1  canonicalH4|Drosophila|78707094      
+    5.7e-55  172.9  10.1    6.2e-55  172.8  10.1    1.0  1  canonicalH4|Trypanosoma|84043542     
+
+
+Domain annotation for each sequence (and alignments):
+>> canonicalH4|Gallus|83745133  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  208.2   8.4   5.7e-66   5.7e-66       1     103 []       1     103 []       1     103 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 208.2 bits;  conditional E-value: 5.7e-66
+                  canonicalH4   1 msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg 103
+                                  msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvta+dvvyalkrqgrtlygfgg
+  canonicalH4|Gallus|83745133   1 MSGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG 103
+                                  8****************************************************************************************************98 PP
+
+>> canonicalH4|Mus|21361209  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  208.2   8.4   5.7e-66   5.7e-66       1     103 []       1     103 []       1     103 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 208.2 bits;  conditional E-value: 5.7e-66
+               canonicalH4   1 msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg 103
+                               msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvta+dvvyalkrqgrtlygfgg
+  canonicalH4|Mus|21361209   1 MSGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG 103
+                               8****************************************************************************************************98 PP
+
+>> canonicalH4|Xenopus|148228507  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  208.2   8.4   5.7e-66   5.7e-66       1     103 []       1     103 []       1     103 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 208.2 bits;  conditional E-value: 5.7e-66
+                    canonicalH4   1 msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg 103
+                                    msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvta+dvvyalkrqgrtlygfgg
+  canonicalH4|Xenopus|148228507   1 MSGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG 103
+                                    8****************************************************************************************************98 PP
+
+>> canonicalH4|Caenorhabditis|17509199  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  208.1   7.9   6.2e-66   6.2e-66       1     103 []       1     103 []       1     103 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 208.1 bits;  conditional E-value: 6.2e-66
+                          canonicalH4   1 msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg 103
+                                          msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavty+ehakrktvta+dvvyalkrqgrtlygfgg
+  canonicalH4|Caenorhabditis|17509199   1 MSGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYCEHAKRKTVTAMDVVYALKRQGRTLYGFGG 103
+                                          8****************************************************************************************************98 PP
+
+>> canonicalH4|Arabidopsis|15226944  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  207.6   8.3   8.7e-66   8.7e-66       1     103 []       1     103 []       1     103 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 207.6 bits;  conditional E-value: 8.7e-66
+                       canonicalH4   1 msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg 103
+                                       msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlk+flenvirdavtyteha+rktvta+dvvyalkrqgrtlygfgg
+  canonicalH4|Arabidopsis|15226944   1 MSGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKIFLENVIRDAVTYTEHARRKTVTAMDVVYALKRQGRTLYGFGG 103
+                                       8****************************************************************************************************98 PP
+
+>> canonicalH4|Drosophila|78707094  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  205.8   8.5   3.2e-65   3.2e-65       1     103 []       1     103 []       1     103 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 205.8 bits;  conditional E-value: 3.2e-65
+                      canonicalH4   1 msgrgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg 103
+                                      m+grgkggkglgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfgg
+  canonicalH4|Drosophila|78707094   1 MTGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYTEHAKRKTVTALDVVYALKRQGRTLYGFGG 103
+                                      89***************************************************************************************************98 PP
+
+>> canonicalH4|Trypanosoma|84043542  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  172.8  10.1   6.2e-55   6.2e-55       4     102 ..       1     100 []       1     100 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 172.8 bits;  conditional E-value: 6.2e-55
+                       canonicalH4   4 rgkggk.glgkggakrhrkvlrdniqgitkpairrlarrggvkrisgliyeetrgvlkvflenvirdavtytehakrktvtaldvvyalkrqgrtlygfg 102
+                                       ++kg++ g++kg++kr++kvlrdn++git+++irrlarr+gvkrisg+iy+e+rgvlk+f+e+++rda++yte++++ktvta++vv+al+++g++lyg++
+  canonicalH4|Trypanosoma|84043542   1 MAKGKRvGESKGAQKRQKKVLRDNVRGITRGSIRRLARRAGVKRISGVIYDEVRGVLKTFVESIVRDAGAYTEYSRKKTVTAAHVVFALRKRGKVLYGYD 100
+                                       68***99********************************************************************************************7 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (103 nodes)
+Target sequences:                            7  (718 residues searched)
+Passed MSV filter:                         7  (1); expected 0.1 (0.02)
+Passed bias filter:                        7  (1); expected 0.1 (0.02)
+Passed Vit filter:                         7  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         7  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  7  [actual number of targets]
+Domain search space  (domZ):               7  [number of targets reported over threshold]
+# CPU time: 0.00u 0.00s 00:00:00.00 Elapsed: 00:00:00.00
+# Mc/sec: inf
+//
+[ok]

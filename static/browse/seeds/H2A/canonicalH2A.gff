@@ -1,0 +1,21 @@
+domain	990099
+chain	225,105,0
+residue	105,225,35
+helix	ff0000
+strand	00ff00
+loop	cccccc
+extension	ffff66
+
+alpha1	Consensus	-1	28	39	helix
+alpha1ext	Consensus	-1	18	24	extension
+alpha2	Consensus	-1	48	77	helix
+alpha3	Consensus	-1	83	93	helix
+alpha3ext	Consensus	-1	94	101	extension
+beta1	Consensus	-1	44	45	strand
+beta2	Consensus	-1	81	82	strand
+loopL1	Consensus	-1	40	47	loop
+loopL2	Consensus	-1	78	82	loop
+Minor Groov Arg 1	Consensus	-1	44	44	residue
+Minor Groov Arg 2	Consensus	-1	81	81	residue
+Docking Domain	Consensus	-1	85	123	domain
+

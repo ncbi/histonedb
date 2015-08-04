@@ -8,8 +8,8 @@ extension	ffff66
 
 alpha1	Consensus	-1	119	131	helix
 alpha2	Consensus	-1	137	170	helix
-alpha3	Consensus	-1	176	188	extension
-alphaC	Consensus	-1	189	209	helix
+alpha3	Consensus	-1	176	188	helix
+alphaC	Consensus	-1	189	209	extension
 beta1	Consensus	-1	135	136	strand
 beta2	Consensus	-1	174	175	strand
 loopL1	Consensus	-1	132	136	loop

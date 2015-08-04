@@ -1,4 +1,4 @@
-from django.db.models import Max, Min, Count
+from django.db.models import Max, Min, Count, Sum
 from browse.models import Histone, Variant, OldStyleVariant, Sequence, Score
 import browse
 from djangophylocore.models import Taxonomy
@@ -62,10 +62,13 @@ def variant_sub_search(value):
         queryOld = {"old_names__name{}".format(search_type):value}
         query = Q(**queryCurrent)|Q(**queryOld)
 
-        variant = Variant.objects.filter(query)
+        variant = Variant.objects.filter(query).distinct()
         if len(variant) > 0:
-            format_query.current_query = "variant__id__in"
-            return variant.values_list("id", flat=True)
+            if len(variant) > 1:
+                format_query.current_query = "variant__id__in"
+                return variant.values_list("id", flat=True)
+            else:
+                return variant.first().id
         else:
             return variant.first().id
     except Variant.DoesNotExist:
@@ -98,23 +101,27 @@ def variant_sub_search(value):
             return list(variants)
         else:
             return []
-bool_conv = lambda b: b == "true"
+
+bool_conv = lambda b: b in ["true", "on"]
 #Fields that are allowed: each row contains:
 #    POST name, django model paramter, POST name for search type, input type (must be in seach_types)
-allowable_fields = [
-    ("id_id", "id", "id_id_search_type", str),
-    ("id_core_histone", "variant__core_type__id", "id_core_type_search_type", str),
-    ("id_variant", "variant__id", "id_variant_search_type", variant_sub_search),
-    ("id_gene", "gene", "id_gene_search_type", int),
-    ("id_splice","splice", "id_splice_search_type", int),
-    ("id_header", "header", "id_header_search_type", str),
-    ("id_taxonomy", "taxonomy", "id_taxonomy_search_type", tax_sub_search),
-    ("id_evalue", "evalue", "id_evalue_search_type", float),
-    ("id_score", "score", "id_score_search_type", float),
-    ("id_sequence", "sequence", "id_sequence_search_type", str),
-    ("id_reviewed", "reviewed", "", bool_conv),
-    #("show_lower_scoring_models", None, None, (""))
-]
+allowable_fields = {
+    "id_id": ("id", "id_id_search_type", str),
+    "id_core_histone": ("variant__core_type__id", "id_core_type_search_type", str),
+    "id_variant": ("variant__id", "id_variant_search_type", variant_sub_search),
+    "id_gene": ("gene", "id_gene_search_type", int),
+    "id_splice": ("splice", "id_splice_search_type", int),
+    "id_header": ("header", "id_header_search_type", str),
+    "id_taxonomy": ("taxonomy", "id_taxonomy_search_type", tax_sub_search),
+    "id_evalue": ("evalue", "id_evalue_search_type", float),
+    "id_score": ("score", "id_score_search_type", float),
+    "id_sequence": ("sequence", "id_sequence_search_type", str),
+    "id_reviewed": ("reviewed", "", bool_conv),
+}
+
+bool_fields = {
+    "id_refseq":{"id_header":"|ref|", "id_header_search_type":"contains"},
+}
 
 search_types = {}
 search_types[str] = {
@@ -143,11 +150,26 @@ search_types[float] = search_types[int]
 search_types["text"] = search_types[str]
 search_types["int"] = search_types[int]
 
+import itertools
+class Indexable(object):
+    """Allow an iterable to be sliceable. We want this to be able slice a query
+    if it is 'unique,' which is custom genrator mimicking query set"""
+    def __init__(self,it):
+        self.it = iter(it)
+    def __iter__(self):
+        for elt in self.it:
+            yield elt
+    def __getitem__(self,index):
+        try:
+            return next(itertools.islice(self.it,index,index+1))
+        except TypeError:
+            return list(itertools.islice(self.it,index.start,index.stop,index.step))
+
 class HistoneSearch(object):
     """
     """
 
-    def __init__(self, request, parameters, reset=False, navbar=False):
+    def __init__(self, request, parameters, navbar=False):
         """
         """
         assert isinstance(parameters, dict)
@@ -156,11 +178,12 @@ class HistoneSearch(object):
         self.navbar = navbar
         self.request = request
         self.sanitized = False
-        self.query_set = None
         self.redirect = None
-        self.query = {}
-        self.sort = {}
+        self.query = format_query()
         self.count = 0
+        self.sort = {}
+        self.parameters = parameters
+        self.unique = self.parameters.get("id_unique", False) in ["on", "true"]
 
         self.query_set = Sequence.objects.filter(
                 (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \
@@ -171,105 +194,89 @@ class HistoneSearch(object):
                 evalue=Min("all_model_scores__evalue")
             )
 
-        if "search" in parameters:
-            parameters.update(self.simple_search(parameters["search"]))
+        if "search" in self.parameters:
+            self.simple_search(self.parameters["search"])
 
         if self.redirect:
             return
 
-        self.sanitize_parameters(parameters, reset)
-        self.create_queryset(reset)
+        self.update_bool_options()
+        self.create_queryset()
+        self.get_sort_options()
 
     @classmethod
     def all(cls, request):
-        return cls(request, {}, reset=True)
+        return cls(request, {})
 
-    def sanitize_parameters(self, parameters, reset=False):
+    def get_sort_options(self):
         """
         """
-        self.query = {field:parameters[field] for fields in allowable_fields \
-            for field in (fields[0], fields[2]) if field in parameters}
-
         sort_parameters = {"limit": 10, "offset":0, "sort":"evalue", "order":"asc"}
-        sort_query = {p:parameters.get(p, v) for p, v in sort_parameters.iteritems()}
-
+        sort_query = {p:self.parameters.get(p, v) for p, v in sort_parameters.iteritems()}
         self.sort = sort_query
 
-        #if not reset:
-            #raise RuntimeError(str(self.request.session["query"]))
+    def update_bool_options(self):
+        for bool_field, updated_options in bool_fields.iteritems():
+            if self.parameters.get(bool_field, False) in ["true", "on"]:
+                self.parameters.update(updated_options)
 
-        self.sanitized = True
+    def create_queryset(self):
+        #Sanitize parameters
+        #parameters = {field:self.parameters[field] for fields in allowable_fields \
+        #    for field in (fields[0], fields[2]) if field in self.parameters}
+        #assert 0, allowable_fields
 
-    def create_queryset(self, reset=False):
-        if not self.sanitized:
-            raise RuntimeError("Parameters must be sanitized")
-
-        parameters = self.query
-        
-        query = format_query()
-
-        added = []
-        for form, field, search_type, convert in allowable_fields:
-            value = None
-            if form in parameters:
-                added.append((field, search_type, parameters.get(form)))
-                value = parameters.get(form)
-
+        added =[]
+        for form, (field, search_type, convert) in allowable_fields.iteritems():
+            value = self.parameters.get(form)
+            
             if not value: 
                 continue
 
-            search_type = parameters.get(search_type, "is")
+            search_type = self.parameters.get(search_type, "is")
             
-            query.format(field, search_type, value, convert)               
+            self.query.format(field, search_type, value, convert)               
+        
+        if self.query.has_errors():
+            return
+        
+        self.query_set = self.query_set.filter(**self.query)
 
-        if query.has_errors():
-            return False
-        
-        self.query_set = self.query_set.filter(**query)
-        
-        self.count = self.query_set.count()
-        #if not reset:
-        #    raise RuntimeError(str(query))
-        
-    def sorted(self, unique=False):
+        if self.unique:
+            unique_ids = self.query_set.values("sequence", "taxonomy").annotate(id=Max("id")).values_list("id", flat=True) #.annotate(num_unique=Sum("num_tax"))
+            self.count = unique_ids.count()
+            #assert 0, self.query_set
+        else:
+            self.count =  self.query_set.count()
+
+    def sort_query_set(self, unique=False):
         """Sort the query set and paginate results.
         """
-        result = self.query_set
-        
         sort_by = self.sort["sort"]
         sort_order = "-" if self.sort["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
-        result = result.order_by(sort_key)
+        self.query_set = self.query_set.order_by(sort_key)
         
+    def paginate(self, sequences=None):
+        if sequences is None:
+            sequences
         page_size = int(self.sort["limit"])
         start = int(self.sort["offset"])
         end = start+page_size
 
-        result = result[start:end]
+        self.query_set = self.query_set[start:end]
 
-        if unique:
-            used_taxa = {}
-            for seq in result:
-                if not seq.sequence in used_taxa:
-                    used_taxa[seq.sequence] = [seq.taxonomy.id]
-                    yield seq
-                elif seq.sequence in used_taxa and not seq.taxonomy.id in used_taxa[seq.sequence]:
-                    used_taxa[seq.sequence].append(seq.taxonomy.id)
-                    yield seq
-                else:
-                    pass
-            """#Old method using group by, might be faster, but doesn;t preserver order
-            result = sorted(self.query_set, key=lambda s:s.sequence)
-            for sequence, same_sequences in groupby(result, key=lambda s:s.sequence):
-                used_taxa = []
-                for seq in same_sequences:
-                    if seq.taxonomy.id not in used_taxa:
-                        used_taxa.append(seq.taxonomy.id)
-                        yield seq
-            """
-        else:
-            for seq in result:
+    def unique(self):
+        used_taxa = {}
+        for seq in self.query_set:
+            if not seq.sequence in used_taxa:
+                used_taxa[seq.sequence] = [seq.taxonomy.id]
                 yield seq
+            elif seq.sequence in used_taxa and not seq.taxonomy.id in used_taxa[seq.sequence]:
+                used_taxa[seq.sequence].append(seq.taxonomy.id)
+                yield seq
+            else:
+                pass
 
     def __len__(self):
         return self.query_set.count()
@@ -277,12 +284,24 @@ class HistoneSearch(object):
     def count(self):
         return self.query_set.count()
 
-    def get_dict(self, unique=False):
-        sequences = self.sorted(unique=unique)
+    def get_dict(self):
+        self.sort_query_set()
+    
+        if self.unique:
+            sequences = Indexable(self.unique())
+        else:
+            sequences = self.query_set
+
+        #Paginate
+        page_size = int(self.sort["limit"])
+        start = int(self.sort["offset"])
+        end = start+page_size
+        sequences = sequences[start:end]
 
         result = [{
             "id":r.id, 
-            "variant":r.variant_id, 
+            "variant":r.variant.id,
+            "core":r.variant.core_type.id,
             "gene":r.gene, 
             "splice":r.splice, 
             "taxonomy":r.taxonomy.name.capitalize(), 
@@ -293,10 +312,18 @@ class HistoneSearch(object):
             } for r in sequences]
         return {"total":self.count, "rows":result}
 
+    def get_sunburst(self):
+        from browse.management.commands.buildsunburst import build_sunburst
+        self.sort_query_set()
+        return build_sunburst(self.query_set)
+
+    def get_score_range(self):
+        scores = self.query_set.aggregate(scores_min=Min("score"), scores_max=Max("score"))
+        return scores["scores_min"], scores["scores_max"]
+
     def simple_search(self, search_text):
         """Search from simple text box in brand or sequence filter.
         """
-        parameters = {}
         #Search all fields
         try:
             #If search is just a single digit, try to match id
@@ -304,31 +331,29 @@ class HistoneSearch(object):
             value = int(search_text)
             sequence = self.query_set.filter(id=str(value))
             if len(sequence):
-                parameters["id_id"] = value
-                parameters["id_search_type"] = "is"
-                return parameters
+                self.query.format("id", "is", value, str)
+                return
         except ValueError:
             pass
 
         #search core_type, variant, old variant names, header if doens't match variant or core_type, taxonomy
         try:
             core_type = Histone.objects.get(id=search_text)
-            parameters["id_core_histone"] = core_type.id
-            parameters["id_core_histone_search_type"] = "is"
             if self.navbar:
                 self.redirect = redirect(core_type)
-            return parameters
+            else:
+                self.query.format("variant__core_type__id", "is", core_type.id, str)
+            return
         except Histone.DoesNotExist:
             pass
         
         try:
-
             variant = Variant.objects.get(id=search_text)
-            parameters["id_variant"] = variant.id
-            parameters["id_variant_search_type"] = "is"
             if self.navbar:
                 self.redirect = redirect(variant)
-            return parameters
+            else:
+                self.query.format("variant_id", "is", variant.id, str)
+            return
         except Variant.DoesNotExist:
             pass
         
@@ -336,62 +361,53 @@ class HistoneSearch(object):
             #Searches H2A.Z.1.s1
             sequences = Sequence.objects.filter(full_variant_name=search_text)
             if sequences.count() > 0:
-                parameters["id_id"] = ",".join(sequences.values_list("id", flat=True))
-                parameters["id_id_search_type"] = "in (comma separated, case-sensitive)"
-                return parameters
+                self.query_set &= sequences #Intersect query sets
+                #self.query.format("id", "in (comma separated)", ",".join(sequences.values_list("id", flat=True), str)
+                return
         except:
             pass
 
         try:
             variant = OldStyleVariant.objects.get(name=search_text).updated_variant
-            parameters["id_variant"] = variant.id
-            parameters["id_variant_search_type"] = "is"
             
             if self.navbar:
                 self.redirect = redirect(variant)
-            
-            return parameters
+            else:
+                self.query.format("variant_id", "is", variant.id, str)
+            return
         except OldStyleVariant.DoesNotExist:
             pass
 
         try:
             #Search species
-            sequences = Taxonomy.objects.filter(name__icontains=search_text)
-            if sequences.count() > 0:
-                parameters["id_taxonomy"] = search_text
-                parameters["id_taxonomy_search_type"] = "contains (case-insesitive)"
-                return parameters
+            taxas = Taxonomy.objects.filter(name__icontains=search_text)
+            if taxas.count() > 0:
+                self.query.format("taxonomy", "in (comma separated)", ",".join(map(str, taxas.values_list("id", flat=True))), str)
+                return
         except Taxonomy.DoesNotExist:
             pass
 
         try:
-            taxon = Taxonomy.objects.filter(name=parameters["search"])
-            try:
+            taxon = Taxonomy.objects.get(name=search_text)
+            if taxon.type_name != "scientific name":
                 #Convert homonym into real taxon
                 taxon = taxon.get_scientific_names()[0]
-            except IndexError:
-                #Already correct taxon
-                pass
-            taxa = taxon.children.filter(rank__name="species").values_list("pk")
-            sequences = self.query_set.filter(taxonomy__in=taxa)
+            taxas = taxon.children.filter(rank__name="species").values_list("pk")
             if sequences.count() > 0:
-                parameters["id_taxonomy"] = search_text
-                parameters["id_taxonomy_search_type"] = "contains (case-insesitive)"
-                return parameters
+                self.query.format("taxonomy", "in (comma separated)", ",".join(map(str, taxas.values_list("id", flat=True))), str)
+                return
         except Taxonomy.DoesNotExist:
             pass
             
         headers = Sequence.objects.filter(header__icontains=search_text)
 
         if headers.count() > 0:
-            parameters["id_header"] = search_text
-            parameters["id_header_search_type"] = "contains (case-insesitive)"
+            self.query_set &= headers
         else:
             #Search sequence moetifs if everything else fails
-            parameters["id_sequence"] = search_text
-            parameters["id_sequence_search_type"] = "contains (case-insesitive)"
+            self.query.format("sequence", "contains (case-insensitive)", search_text, str)
 
-        return parameters
+        return
 
 class format_query(dict):
     current_query = None
@@ -422,7 +438,7 @@ class format_query(dict):
                     for v in value.split("-"):
                         v = conv_type(v.strip())
                         if isinstance(v, list):
-                            values += conv_type(v.strip())
+                            values += v
                         else:
                             values.append(v)
                 else:
@@ -430,15 +446,12 @@ class format_query(dict):
                 value = values
             elif search_type.endswith("in"):
                 values = []
-                if "," in value:
-                    for v in value.split(","):
-                        v = conv_type(v.strip())
-                        if isinstance(v, list):
-                            values += conv_type(v.strip())
-                        else:
-                            values.append(v)
-                else:
-                    self.errors["Must include a comma if searching 'in'"] += 1
+                for v in value.split(","):
+                    v = conv_type(v.strip())
+                    if isinstance(v, list):
+                        values += v
+                    else:
+                        values.append(v)
                 value = values
             else:
                 value = conv_type(value)

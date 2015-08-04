@@ -1,0 +1,41 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H4/canonicalH4.hmm
+# target sequence database:        /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H4/canonicalH4_negative_examples.fasta
+# output directed to file:         /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H4/canonicalH4_negative_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       canonicalH4  [M=103]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence Description
+    ------- ------ -----    ------- ------ -----   ---- --  -------- -----------
+
+   [No hits detected that satisfy reporting thresholds]
+
+
+Domain annotation for each sequence (and alignments):
+
+   [No targets detected that satisfy reporting thresholds]
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (103 nodes)
+Target sequences:                          225  (35838 residues searched)
+Passed MSV filter:                        98  (0.435556); expected 4.5 (0.02)
+Passed bias filter:                       48  (0.213333); expected 4.5 (0.02)
+Passed Vit filter:                         9  (0.04); expected 0.2 (0.001)
+Passed Fwd filter:                         0  (0); expected 0.0 (1e-05)
+Initial search space (Z):                225  [actual number of targets]
+Domain search space  (domZ):               0  [number of targets reported over threshold]
+# CPU time: 0.00u 0.00s 00:00:00.00 Elapsed: 00:00:00.01
+# Mc/sec: 369.13
+//
+[ok]

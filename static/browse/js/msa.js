@@ -1,4 +1,4 @@
-function createMSA(div_id, url, download_url, width, height){
+function createMSA(div_id, url, download_url, width, height, show_logo){
   var $pdf_button = $('#msa_export_pdf_'+div_id)
       $fasta_button = $('#msa_export_fasta_'+div_id),
       $gff_button = $('#msa_export_features_'+div_id);
@@ -27,7 +27,7 @@ function createMSA(div_id, url, download_url, width, height){
   opts.vis = {
     conserv: false,
     overviewbox: false,
-    seqlogo: true,
+    seqlogo: show_logo,
     markers: false,
     leftHeader: false,
     labelName: true,

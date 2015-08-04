@@ -9,6 +9,7 @@ class AdvancedFilterForm(ModelForm):
     sequence     = forms.CharField(max_length=50)
     score        = forms.FloatField()
     evalue       = forms.FloatField()
+    refseq       = forms.BooleanField()
     unique       = forms.BooleanField()
 
     tabs = {"Basic": ["core_histone", "variant", "taxonomy"]}
@@ -17,7 +18,7 @@ class AdvancedFilterForm(ModelForm):
 
     class Meta:
         model = Sequence
-        fields = ["id", "core_histone", "variant", "taxonomy", "header", "sequence"] #"gene", "splice", 
+        fields = ["id", "core_histone", "variant", "taxonomy", "header", "sequence"] #"gene", "splice"], 
         
 
     def __init__(self, *args, **kwargs):
@@ -42,6 +43,8 @@ class AdvancedFilterForm(ModelForm):
         self.fields['score'].help_text = "Bitscore from HMM used for classification"
         self.fields['evalue'].label = "E-value"
         self.fields['evalue'].tab = "Advanced"
+        self.fields['refseq'].help_text = "Only show sequences from RefSeq"
+        self.fields['refseq'].tab = "Advanced"
         self.fields['unique'].help_text = "Only show unique sequences where no organism has multiple sequences that are identical"
         self.fields['unique'].tab = "Advanced"
 

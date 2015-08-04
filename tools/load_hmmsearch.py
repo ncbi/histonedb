@@ -153,7 +153,7 @@ def load_variants(hmmerFile, sequences, reset=True):
                 #best scoring
                 seq.variant = variant_model
                 seq.sequence = str(hsp.hit.seq)
-                update_features(seq)
+                #update_features(seq)
                 best_score_2 = Score.objects.get(id=best_score.id)
                 best_score_2.used_for_classification=False
                 best_score_2.save()
@@ -168,7 +168,7 @@ def load_variants(hmmerFile, sequences, reset=True):
                 seq.variant = variant_model
                 seq.sequence = str(hsp.hit.seq)
                 seq.save()
-                update_features(seq)
+                #update_features(seq)
                 add_score(seq, variant_model, hsp, best=True)
               else:
                 add_score(seq, variant_model, hsp, best=False)
@@ -211,9 +211,9 @@ def load_cores(hmmerFile, reset=True):
       continue
 
     try:
-      canonical_model = Variant.objects.get(id="canonical{}".format(core_query.id))
+      canonical_model = Variant.objects.get(id="unclassified{}".format(core_query.id))
     except:
-      canonical_model = Variant(id="canonical{}".format(core_query.id), core_type=core_histone)
+      canonical_model = Variant(id="unclassified{}".format(core_query.id), core_type=core_histone)
       canonical_model.save()
 
     for hit in core_query:
@@ -231,10 +231,10 @@ def load_cores(hmmerFile, reset=True):
               best_score = best_scores.first()
               if hsp.bitscore >= canonical_model.hmmthreshold and \
                   (seq.variant.id == "Unknown" or  \
-                    ("canonical" in seq.variant.id and hsp.bitscore > best_score.score)) :
+                    ("unclassified" in seq.variant.id and hsp.bitscore > best_score.score)) :
                 seq.variant = canonical_model
                 seq.sequence = str(hsp.hit.seq)
-                update_features(seq)
+                #update_features(seq)
                 best_score_2 = Score.objects.get(id=best_score.id)
                 best_score_2.used_for_classification=False
                 best_score_2.save()
@@ -249,7 +249,7 @@ def load_cores(hmmerFile, reset=True):
                 seq.variant = canonical_model
                 seq.sequence = str(hsp.hit.seq)
                 seq.save()
-                update_features(seq)
+                #update_features(seq)
                 add_score(seq, canonical_model, hsp, best=True)
               else:
                 add_score(seq, canonical_model, hsp, best=False)

@@ -1,0 +1,211 @@
+{
+	"H2A": {
+		"canonicalH2A":{
+			"description":"The original variant.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": []
+		},
+		"H2A.Z": {
+			"description":"H2A.Z has large acidic patch, and deletion and insertion in the core region. It is known to be involved with Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found at the ranscription start site and in an enhancers.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names":[
+				{"name":"H2A.Z-1", "gene":1},
+				{"name":"H2A.Z-2", "gene":2},
+				{"name":"H2A.Z", "splice":1},
+				{"name":"H2A.Z", "splice":2},
+				{"name":"H2A.Zc", "splice":3},
+				{"name":"Htz1p", "taxonomy":"saccharomyces"},
+				{"name":"hv1", "taxonomy":"tetrahymena"},
+				{"name":"H2A.V", "taxonomy":"drosophila"},
+				{"name":"H2Av", "taxonomy":"drosophila", "notes":"sometime H2A.X"},
+				{"name":"H2AvD", "taxonomy":"drosophila"},
+				{"name":"D2", "taxonomy":"drosophila"},
+				{"name":"member Z"}
+			]
+		},
+		"H2A.X": {
+			"description":"H2A.X has the motif SQE/DΦg motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals, and S is phosphorylated in DNA double strand breaks. It is known to be involved with DNA damage response, and chromatin remodeling and can be found in DNA double strand breaks, collapsed replication forks, and heterochromatin. H2A.X is the only non monophyletic variant in H2A.",
+			"taxonmic_span": "Eukaryotes except nematode",
+			"alternate_names": [
+				{"name":"member X"}
+			]
+		},
+		"macroH2A": {
+			"description":"macroH2A contains a ∼30 kDa additional globular macrodomain attached to C-terminus. It is known to be involved with X-inactivation, and positive or negative transcriptional regulation and can be found in Inactivated X chromosome, gene promoters, and heterochromatin.",
+			"taxonmic_span": "Mostly Vertebrate, but lost in several lineages including Caenorhabditis and Drosophila",
+			"alternate_names": [
+				{"name":"mH2A"},
+				{"name":"macroH2A1", "gene":1},
+				{"name":"macroH2A2", "gene":2},
+				{"name":"macroH2A1.1", "gene":1, "splice":1},
+				{"name":"macroH2A1.2", "gene":1, "splice":2},
+				{"name":"macroH2A2.1", "gene":2, "splice":1},
+				{"name":"macroH2A2.2", "gene":2, "splice":2}
+			]
+		},
+		"H2A.L": {
+			"description": "H2A.L has a short C-terminal tail, making the docking domain shorter to wrap less DNA. It is known to be involved with pericentric chromatin organization in spermatids and spermiogenesis. H2A.L is rapildy evolving and has large expansions it is also known to form subnucleosmal particles with TS H2B.1",
+			"taxonmic_span":"Mammals", 
+			"alternate_names": [
+				{"name":"H2AL"},
+				{"name":"H2AL1", "gene":1},
+				{"name":"H2AL2", "gene":2}
+			]
+		},
+		"H2A.B": {
+			"description": "H2A.B is a Barr body defficient varaint that have a short C-terminal tail, truncated acidic patch, and are arginine rich. The short C-terminal tail makes the docking domain shorter to wrap less DNA. It is known to be in involved with gene upregulation and splicing, and spermiogenesis and is found in active genes and transcription start site in testis. H2A.B is rapildy evolving and has large expansions and known to be closely related to H2A.L and H2A.M",
+			"taxonmic_span":"Mammals",
+			"alternate_names": [
+				{"name":"H2A.Bbd"}
+			]
+		},
+		"H2A.M": { 
+			"description":"H2A.M is a new variant that binds to huntington protein M. It known to be closele related to H2A.B and H2A.L",
+			"taxonmic_span":"Mammals",
+			"alternate_names": [
+				{"name":"Huntington protein M"}
+			]
+		}
+	},
+	"H2B": {
+		"canonicalH2B":{
+			"description":"The original variant.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": []
+		},
+		"subH2B": {
+			"description":"subH2B has a bipartite nuclear localization signal. It is known to be involved with spermiogenesis and is found in the subacrosome of spermatozoa.",
+			"taxonmic_span":"Primates, rodents, marsupials, and bovids",
+			"alternate_names": [
+				{"name":"H2BL1"},
+				{"name":"SubH2Bv"}
+			]
+		},
+		"H2B.1": {
+			"description":"H2B.1 is testis-specific variant that forms subnucleosomal particles condensed in spermatids. It can dimerize with H2A.L.1 and H2A.L.2",
+			"taxonmic_span":"Boreoeutheria mammals",
+			"alternate_names": [
+				{"name":"TH2B"},
+				{"name":"TS H2B.1"},
+				{"name":"hTSH2B", "taxonomy":"rodentia"}
+			]
+		},
+		"H2B.W": {
+			"description":"H2B.W has an extended N-tail. It is knwon to be involved in spermiogenesis, and telomere associated functions in sperm and is foudn in spermatogenic cells.",
+			"taxonmic_span":"Boreoeutheria mammals",
+			"alternate_names": [
+				{"name":"H2BFWT"},
+				{"name":"member W"},
+				{"name":"type W-T"}
+			]
+		},
+		"H2B.Z": {
+			"description":"H2B.Z in an apicomplexan specific variant that is known to interact with H2A.Z",
+			"taxonmic_span":"Apicomplexa",
+			"alternate_names": [
+				{"name":"H2Bv"}
+			]
+		}
+	},
+	"H3": {
+		"canonicalH3":{
+			"description":"The original variant.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": []
+		},
+		"cenH3":{
+			"description":"cenH3 are the H3 varaint, found in centromeres. Monophyly of cenH3 proteins is uncertain.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"CENP-A"},
+				{"name":"Cse4p"},
+				{"name":"Cse4"}
+			]
+		},
+		"H3.Y": {
+			"description": "H3.Y is known to be involved in memory formation due to its presence in neurons in the human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch.",
+			"taxonmic_span": "Primates",
+			"alternate_names": [
+				{"name":"H3.X", "gene":2}
+			]
+		},
+		"H3.1": {
+			"description": "No description yet. Evovled from H3.3",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"H3v1"}
+			]
+		},
+		"H3.2": {
+			"description": "No description yet. Evovled from H3.3",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": []
+		},
+		"H3.3": {
+			"description": "H3.3 localizes cenH3 and is important for development, transcription, and chromosome segregation.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"soH3-1", "gene":1},
+				{"name":"soH3-2", "gene":2}
+			]
+		} 
+	},
+	"H4": {
+		"canonicalH4":{
+			"description":"There is usually only one form of H4 fround in all nucleosomes.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": []
+		}
+	},
+	"H1": {
+		"canonicalH2A":{
+			"description":"The original variant.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": []
+		},
+		"H1.0":{
+			"description":"None provided.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"H1°"},
+				{"name":"H5", "taxonomy":"aves"},
+				{"name":"H1δ"}
+			]
+		},
+		"H1.6": {
+			"description":"None provided.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"H1t"}
+			]
+		},
+		"H1.7": {
+			"description":"None provided.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"H1T2"}
+			]
+		},
+		"H1.8": {
+			"description":"None provided.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"H1oo"}
+			]
+		},
+		"H1.9": {
+			"description":"None provided.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"Hils1"}
+			]
+		},
+		"H1.10": {
+			"description":"None provided.",
+			"taxonmic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"H1x"}
+			]
+		}
+	}
+}

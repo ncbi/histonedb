@@ -1,0 +1,148 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H1/H1.6.hmm
+# target sequence database:        /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H1/H1.6_postive_examples.fasta
+# output directed to file:         /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H1/H1.6_postive_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       H1.6  [M=207]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence               Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------               -----------
+   2.4e-100  323.8  44.9   2.6e-100  323.6  44.9    1.0  1  Macaca|124053434|H1.6   Macaca_H1t
+    1.5e-97  314.7  42.9    1.6e-97  314.5  42.9    1.0  1  Homo|20544168|H1.6      Homo_H1t
+    1.9e-94  304.5  37.0    2.1e-94  304.3  37.0    1.0  1  Canis|545554579|H1.6    Canis_H1t
+    4.5e-94  303.3  43.6    5.1e-94  303.1  43.6    1.0  1  Rattus|6981006|H1.6     Rattus_H1t
+    5.5e-94  303.0  43.2    6.2e-94  302.8  43.2    1.0  1  Mus|112807207|H1.6      Mus_H1t
+    3.1e-93  300.5  40.2    3.4e-93  300.4  40.2    1.0  1  Equus|379643033|H1.6    Equus_H1t
+    3.1e-75  241.7  61.8    3.1e-75  241.7  61.8    2.0  2  Xenopus|147901299|H1.6  Xenopus_H1t
+    9.5e-61  194.4  47.6    1.1e-60  194.3  47.6    1.0  1  Salmo|221221722|H1.6    Salmo_H1t
+
+
+Domain annotation for each sequence (and alignments):
+>> Macaca|124053434|H1.6  Macaca_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  323.6  44.9  2.6e-100  2.6e-100       1     207 []       1     208 []       1     208 [] 1.00
+
+  Alignments for each domain:
+  == domain 1  score: 323.6 bits;  conditional E-value: 2.6e-100
+                   H1.6   1 msetvpaasaavvaaplekkttkkrgkkpaG.laaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskkalekkakakkkksasakakklglkkaskspksaktnkaakkskatkpkkaarsgrkakgakakkqrksPakakaakpkaakqqkvnarkaaskk 207
+                            msetvpaasa++v+a++ek+ tkkrgkkpaG ++a+rka++lsvskli+ealsvsqeR+G+sLaaLkkaLaaaGYDveknnsRikL+lksLvnkG+Lvqt+GtGasGsFklskk+l+k++++k++ksasak+kkl+l+++skspk+aktnk+akk++at+pkka+rsgrkakgak+k+q+ksP+ka+a+kpk ++++k+n+rka+s+k
+  Macaca|124053434|H1.6   1 MSETVPAASAGAVPAVMEKPLTKKRGKKPAGlTSASRKAPNLSVSKLITEALSVSQERVGMSLAALKKALAAAGYDVEKNNSRIKLSLKSLVNKGILVQTRGTGASGSFKLSKKVLPKSTRRKANKSASAKTKKLVLSRDSKSPKTAKTNKRAKKPRATAPKKAVRSGRKAKGAKGKQQQKSPVKARATKPKLTQHHKANIRKATSRK 208
+                            9*************************************************************************************************************************************************************************************************************98 PP
+
+>> Homo|20544168|H1.6  Homo_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  314.5  42.9   1.6e-97   1.6e-97       1     207 []       1     207 []       1     207 [] 1.00
+
+  Alignments for each domain:
+  == domain 1  score: 314.5 bits;  conditional E-value: 1.6e-97
+                H1.6   1 msetvpaasaavvaaplekkttkkrgkkpaG.laaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskkalekkakakkkksasakakklglkkaskspksaktnkaakkskatkpkkaarsgrkakgakakkqrksPakakaakpkaakqqkvnarkaaskk 207
+                         msetvpaasa++ +a++ek +tkkrg+kpaG ++a+rk+++lsvskli+ealsvsqeR+G+sL+aLkkaLaaaGYDveknnsRikL+lksLvnkG+Lvqt+GtGasGsFklskk+++k++++k+kks+sak+kkl+l+++skspk+aktnk+akk++at+p k++rsgrkakgak+k+q+ksP+ka+a+k+k +++++vn+rka+skk
+  Homo|20544168|H1.6   1 MSETVPAASASAGVAAMEKLPTKKRGRKPAGlISASRKVPNLSVSKLITEALSVSQERVGMSLVALKKALAAAGYDVEKNNSRIKLSLKSLVNKGILVQTRGTGASGSFKLSKKVIPKSTRSKAKKSVSAKTKKLVLSRDSKSPKTAKTNKRAKKPRATTP-KTVRSGRKAKGAKGKQQQKSPVKARASKSKLTQHHEVNVRKATSKK 207
+                         9**************************************************************************************************************************************************************99.9********************************************8 PP
+
+>> Canis|545554579|H1.6  Canis_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  304.3  37.0   2.1e-94   2.1e-94       1     207 []       1     212 []       1     212 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 304.3 bits;  conditional E-value: 2.1e-94
+                  H1.6   1 msetvpaasaavvaaplekkttkkrgkkpaG.laaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskka.lekkakakkkksasakakklglkkaskspksaktnkaakkskatkpkkaarsgrkakgakakkqrksPakakaakpkaak....qqkvnarkaaskk 207
+                           msetvpa++a++++a++e++++kkrg+kp+G  +aa ka+glsvskli+ealsvsqeRaG+sLaaLkkaLaaaGYDveknnsRikL+lksLv+kG+LvqtkGtGasGsFkl+kka l+++ak+++k+++s+k+k+l+l+++skspk+aktnk akk+ ++ ++kaa+sgrkakgak+k+ rksP+ka ++kpkaak    qqkvn+rka+skk
+  Canis|545554579|H1.6   1 MSETVPAVAAGTALASMENPSAKKRGRKPGGiPEAAPKAPGLSVSKLIMEALSVSQERAGMSLAALKKALAAAGYDVEKNNSRIKLCLKSLVSKGTLVQTKGTGASGSFKLNKKAlLPTPAKSRVKRPPSTKTKRLVLSRDSKSPKAAKTNK-AKKPGGAGAQKAACSGRKAKGAKDKQPRKSPGKAPTGKPKAAKprlnQQKVNPRKAVSKK 212
+                           9******************************99**********************************************************************************88***********************************.***********************************************************8 PP
+
+>> Rattus|6981006|H1.6  Rattus_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  303.1  43.6   5.1e-94   5.1e-94       1     207 []       1     208 []       1     208 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 303.1 bits;  conditional E-value: 5.1e-94
+                 H1.6   1 msetvpaasaavvaaplekkttkkrgkkpaGlaaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskkalekkakakkkksasakakklglkkaskspksaktnkaakkskatkpkkaarsgrkakgakakkqrksPakakaakpkaak....qqkvnarkaaskk 207
+                          mset+paas+++v+ap+ek++tk+rgkkp G+a+ark++g+svskli eals+sqeRaG+sLaaLkkaLaaaGYDveknnsRikLalk+LvnkGvLvqtkGtGasGsFklskka++ ++k+k kksasakakklgl++as+spks+kt+  +kk+kat p+k++ s+rk+kgak+ +qrksPaka+a++++++k    +qk+++rkaa++k
+  Rattus|6981006|H1.6   1 MSETAPAASSTLVPAPVEKPATKRRGKKP-GMATARKPRGFSVSKLIPEALSMSQERAGMSLAALKKALAAAGYDVEKNNSRIKLALKRLVNKGVLVQTKGTGASGSFKLSKKAASGNDKGKGKKSASAKAKKLGLSRASRSPKSSKTKV-VKKPKAT-PTKGSGSRRKTKGAKGLQQRKSPAKARATNSNSGKskmvMQKTDLRKAAGRK 208
+                          9****************************.7*********************************************************************************************************************99.****999.*************************************************998 PP
+
+>> Mus|112807207|H1.6  Mus_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  302.8  43.2   6.2e-94   6.2e-94       1     207 []       1     209 []       1     209 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 302.8 bits;  conditional E-value: 6.2e-94
+                H1.6   1 msetvpaasaavvaapl.ekkttkkrgkkpaGlaaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskkalekkakakkkksasakakklglkkaskspksaktnkaakkskatkpkkaarsgrkakgakakkqrksPakakaakpkaak....qqkvnarkaaskk 207
+                         mset+paas+++v+ap+ ek+++k+rgkkp Gla ark++g+svskli eals+sqeRaG+sLaaLkkaLaaaGYDveknnsRikLalk+LvnkGvLvqtkGtGasGsFklskka++ ++k+k kksasakakk+gl++as+spks+kt++ +kk+kat p+ka+ sgrk+kgak+++qrksPaka+aa+p+++k    +qk+++rkaa++k
+  Mus|112807207|H1.6   1 MSETAPAASSTLVPAPVeEKPSSKRRGKKP-GLAPARKPRGFSVSKLIPEALSTSQERAGMSLAALKKALAAAGYDVEKNNSRIKLALKRLVNKGVLVQTKGTGASGSFKLSKKAASGNDKGKGKKSASAKAKKMGLPRASRSPKSSKTKA-VKKPKAT-PTKASGSGRKTKGAKGVQQRKSPAKARAANPNSGKakmvMQKTDLRKAAGRK 209
+                         9****************99***********.7*********************************************************************************************************************99.****999.************************************9************998 PP
+
+>> Equus|379643033|H1.6  Equus_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  300.4  40.2   3.4e-93   3.4e-93       1     207 []       1     212 []       1     212 [] 1.00
+
+  Alignments for each domain:
+  == domain 1  score: 300.4 bits;  conditional E-value: 3.4e-93
+                  H1.6   1 msetvpaasaavvaaplekkttkkrgkkpaG.laaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskkalekkakakkkksasakakklglkkaskspksaktnkaakkskatkpkkaarsgrkakgakakkqrksPakakaakpkaak....qqkvnarkaaskk 207
+                           mset+paa+a++v++++ek+++kkrgkkp+G +  +rk++g+svskli+ealsvsqeRaG+sLaaLkkaLaaaGYDveknn+RikL+lksLv+kG+Lvqt+GtGasGsFklskka++++ak+++kk+asa+akkl+l+k skspksaktnk+++k+++ +++ +ar+grk+kgak+k+q ksP+k++++kpk++k    qq++n+rk+askk
+  Equus|379643033|H1.6   1 MSETAPAAPAEPVLSSMEKPPAKKRGKKPVGlTGGSRKVPGSSVSKLITEALSVSQERAGMSLAALKKALAAAGYDVEKNNRRIKLGLKSLVSKGTLVQTRGTGASGSFKLSKKATPEPAKGRVKKGASANAKKLVLPKGSKSPKSAKTNKRTSKARTPAAQPSARGGRKSKGAKGKQQLKSPGKGRTGKPKTGKpkltQQRTNPRKTASKK 212
+                           9******************************99**********************************************************************************************************************************************************************************8 PP
+
+>> Xenopus|147901299|H1.6  Xenopus_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  241.7  61.8   3.1e-75   3.1e-75       1     194 [.       1     198 [.       1     198 [. 0.99
+   2 !    5.4  15.2    0.0073    0.0073     170     207 .]     188     220 .]     188     220 .] 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 241.7 bits;  conditional E-value: 3.1e-75
+                    H1.6   1 msetvpaasaavvaapl.ekkttkkrgkkpaGlaaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskkalekkakakkkksasakakk..lglkkaskspksaktnkaakks..katkpkkaarsgrkakgakakkqrksPakakaakpkaak 194
+                             m++t+++a++a++a+p+ +kkt+k+++kk+aG a+a+k+sg+s+s+liv+a+s+s+eR+GvsLaaLkkaLaa+GYDv+knnsR+kLalk+Lv+kG+L+q+kG+GasGsFkl+kk++e+k+ka+kkk+a++kakk  +g+kka+kspk++k+++aa+ks  k++kp+kaa+s++k+k++kakk++ksPak ka+kpk+ak
+  Xenopus|147901299|H1.6   1 MAATTESAPVAPPAEPAaAKKTKKQQPKKVAGGAKAKKPSGPSASELIVKAVSASKERSGVSLAALKKALAAGGYDVDKNNSRLKLALKALVTKGTLTQVKGSGASGSFKLNKKQPETKDKAAKKKPAAPKAKKpaAGAKKAPKSPKKPKKVSAAAKSpkKVKKPAKAAKSPKKPKAVKAKKVAKSPAK-KATKPKTAK 198
+                             99***************99*******************************************************************************************************************999********************9999***************************9.7899**998 PP
+
+  == domain 2  score: 5.4 bits;  conditional E-value: 0.0073
+                    H1.6 170 akgakakkqrksPakakaakpkaakqqkvnarkaaskk 207
+                             ak+a   k++ksPakak+akpkaak     a+k+a+kk
+  Xenopus|147901299|H1.6 188 AKKATKPKTAKSPAKAKVAKPKAAK-----AKKPAPKK 220
+                             688888999****************.....67777666 PP
+
+>> Salmo|221221722|H1.6  Salmo_H1t
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  194.3  47.6   1.1e-60   1.1e-60       9     206 ..       1     178 [.       1     179 [] 0.95
+
+  Alignments for each domain:
+  == domain 1  score: 194.3 bits;  conditional E-value: 1.1e-60
+                  H1.6   9 saavvaapl.ekkttkkrgkkpaGlaaarkasglsvsklivealsvsqeRaGvsLaaLkkaLaaaGYDveknnsRikLalksLvnkGvLvqtkGtGasGsFklskkalekkakakkkksasakakklglkkaskspksaktnkaakkskatkpkkaar.sgrkakgakakkqrksPakakaakpkaakqqkvnarkaask 206
+                           +++v+a+pl +++tt+k+++kp       k++g++vs++i++++s+s++R+GvsLaaLkk+Laa+GYDv knn+R+kLa+++Lv+kG+L+q+kGtGasGsFk++k++    a+akkk+++++k+kk+g+kk+++++  +k++++akks    pkk++r s++kak+++a+k+ ksP+k+k++++k+++     a++a++k
+  Salmo|221221722|H1.6   1 MSGVIAIPLaTPATTPKKRSKP-------KKTGPTVSDRILKVVSASSGRSGVSLAALKKSLAASGYDVVKNNARLKLAVRRLVAKGYLLQPKGTGASGSFKINKNK----AVAKKKRPTKNKVKKVGAKKVRRAS--PKKAAGAKKS----PKKTKRkSPKKAKRPAAAKKPKSPRKTKRRVAKSTR-----AKTAPKK 178
+                           57899999989999********.......9***************************************************************************99....9***********************9..**********....9999988*****************************.....5555554 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (207 nodes)
+Target sequences:                            8  (1655 residues searched)
+Passed MSV filter:                         8  (1); expected 0.2 (0.02)
+Passed bias filter:                        8  (1); expected 0.2 (0.02)
+Passed Vit filter:                         8  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         8  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  8  [actual number of targets]
+Domain search space  (domZ):               8  [number of targets reported over threshold]
+# CPU time: 0.02u 0.00s 00:00:00.02 Elapsed: 00:00:00.02
+# Mc/sec: 17.13
+//
+[ok]

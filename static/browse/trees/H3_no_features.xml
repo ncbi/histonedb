@@ -6,270 +6,330 @@
         <clade>
           <branch_length>0.0</branch_length>
           <clade>
-            <branch_length>0.01358</branch_length>
+            <branch_length>0.00223</branch_length>
             <clade>
-              <branch_length>0.00265</branch_length>
+              <branch_length>0.00617</branch_length>
               <clade>
-                <branch_length>0.00138</branch_length>
+                <branch_length>0.00479</branch_length>
                 <clade>
-                  <branch_length>0.00554</branch_length>
+                  <branch_length>0.00321</branch_length>
                   <clade>
-                    <branch_length>0.00889</branch_length>
+                    <branch_length>0.00325</branch_length>
                     <clade>
-                      <branch_length>0.0179</branch_length>
+                      <branch_length>0.00314</branch_length>
                       <clade>
-                        <branch_length>0.03598</branch_length>
+                        <branch_length>0.00711</branch_length>
                         <clade>
-                          <branch_length>0.07861</branch_length>
+                          <branch_length>0.00644</branch_length>
                           <clade>
-                            <branch_length>0.01139</branch_length>
+                            <branch_length>0.01799</branch_length>
                             <clade>
-                              <branch_length>0.01944</branch_length>
+                              <branch_length>0.02636</branch_length>
                               <clade>
-                                <branch_length>0.01875</branch_length>
+                                <branch_length>0.06205</branch_length>
                                 <clade>
-                                  <branch_length>0.01169</branch_length>
+                                  <branch_length>0.02949</branch_length>
                                   <clade>
-                                    <name>Drosophila|22024004|cenH3</name>
-                                    <branch_length>0.40156</branch_length>
+                                    <branch_length>0.01093</branch_length>
+                                    <clade>
+                                      <branch_length>0.0134</branch_length>
+                                      <clade>
+                                        <branch_length>0.00753</branch_length>
+                                        <clade>
+                                          <branch_length>0.02029</branch_length>
+                                          <clade>
+                                            <branch_length>0.02163</branch_length>
+                                            <clade>
+                                              <name>Drosophila|22024004|cenH3</name>
+                                              <branch_length>0.41672</branch_length>
+                                            </clade>
+                                            <clade>
+                                              <name>Perkinsus|294874934|cenH3</name>
+                                              <branch_length>0.32728</branch_length>
+                                            </clade>
+                                          </clade>
+                                          <clade>
+                                            <name>Arabidopsis|18378832|cenH3</name>
+                                            <branch_length>0.29962</branch_length>
+                                          </clade>
+                                        </clade>
+                                        <clade>
+                                          <name>Plasmodium|124513424|cenH3</name>
+                                          <branch_length>0.26346</branch_length>
+                                        </clade>
+                                      </clade>
+                                      <clade>
+                                        <name>Tetrahymena|118356028|cenH3</name>
+                                        <branch_length>0.3542</branch_length>
+                                      </clade>
+                                    </clade>
+                                    <clade>
+                                      <branch_length>0.04129</branch_length>
+                                      <clade>
+                                        <name>Cyanidioschyzon|544210412|cenH3</name>
+                                        <branch_length>0.231</branch_length>
+                                      </clade>
+                                      <clade>
+                                        <name>Guillardia|13794280|cenH3</name>
+                                        <branch_length>0.23502</branch_length>
+                                      </clade>
+                                    </clade>
                                   </clade>
                                   <clade>
-                                    <name>Tetrahymena|118356028|cenH3</name>
-                                    <branch_length>0.32447</branch_length>
+                                    <branch_length>0.02045</branch_length>
+                                    <clade>
+                                      <name>Phytophthora|695416328|cenH3</name>
+                                      <branch_length>0.29987</branch_length>
+                                    </clade>
+                                    <clade>
+                                      <name>Thallassiosira|223995905|cenH3</name>
+                                      <branch_length>0.21838</branch_length>
+                                    </clade>
                                   </clade>
                                 </clade>
                                 <clade>
-                                  <name>Perkinsus|294874934|cenH3</name>
-                                  <branch_length>0.35844</branch_length>
+                                  <name>Trypanosoma|115504299|canonicalH3</name>
+                                  <branch_length>0.2511</branch_length>
                                 </clade>
                               </clade>
                               <clade>
-                                <name>Arabidopsis|18378832|cenH3</name>
-                                <branch_length>0.28141</branch_length>
+                                <branch_length>0.07551</branch_length>
+                                <clade>
+                                  <branch_length>0.01348</branch_length>
+                                  <clade>
+                                    <name>Homo|119628413|H3.Y.2.s2</name>
+                                    <branch_length>0.17676</branch_length>
+                                  </clade>
+                                  <clade>
+                                    <branch_length>0.01721</branch_length>
+                                    <clade>
+                                      <branch_length>0.02321</branch_length>
+                                      <clade>
+                                        <name>Homo|NO_GI|H3.Y.1</name>
+                                        <branch_length>0.0</branch_length>
+                                      </clade>
+                                      <clade>
+                                        <name>Pan|NO_GI|H3.Y.1</name>
+                                        <branch_length>0.0</branch_length>
+                                      </clade>
+                                    </clade>
+                                    <clade>
+                                      <branch_length>0.00355</branch_length>
+                                      <clade>
+                                        <name>Pan|NO_GI|H3.Y.2</name>
+                                        <branch_length>0.01078</branch_length>
+                                      </clade>
+                                      <clade>
+                                        <branch_length>0.00977</branch_length>
+                                        <clade>
+                                          <name>-0.00129</name>
+                                        </clade>
+                                        <clade>
+                                          <name>Homo|NO_GI|H3.Y.2.s1</name>
+                                          <branch_length>0.00129</branch_length>
+                                        </clade>
+                                      </clade>
+                                    </clade>
+                                  </clade>
+                                </clade>
+                                <clade>
+                                  <branch_length>0.02881</branch_length>
+                                  <clade>
+                                    <name>Macaca|NO_GI|H3.Y.2</name>
+                                    <branch_length>0.02569</branch_length>
+                                  </clade>
+                                  <clade>
+                                    <name>Macaca|NO_GI|H3.Y.1</name>
+                                    <branch_length>0.02617</branch_length>
+                                  </clade>
+                                </clade>
                               </clade>
                             </clade>
                             <clade>
-                              <name>Plasmodium|124513424|cenH3</name>
-                              <branch_length>0.26225</branch_length>
+                              <name>Tetrahymena|118350232|H3.3</name>
+                              <branch_length>0.09883</branch_length>
                             </clade>
                           </clade>
                           <clade>
-                            <branch_length>0.01272</branch_length>
+                            <branch_length>0.01351</branch_length>
                             <clade>
-                              <branch_length>0.05089</branch_length>
+                              <branch_length>0.03041</branch_length>
                               <clade>
-                                <name>Cyanidioschyzon|544210412|cenH3</name>
-                                <branch_length>0.23844</branch_length>
+                                <name>Plasmodium|82541094|H3.1</name>
+                                <branch_length>0.0</branch_length>
                               </clade>
                               <clade>
-                                <name>Guillardia|13794280|cenH3</name>
-                                <branch_length>0.22758</branch_length>
+                                <name>Plamodium|82541094|H3.1</name>
+                                <branch_length>0.0</branch_length>
                               </clade>
                             </clade>
                             <clade>
-                              <branch_length>0.03349</branch_length>
+                              <branch_length>0.01371</branch_length>
                               <clade>
-                                <name>Phytophthora|695416328|cenH3</name>
-                                <branch_length>0.25476</branch_length>
+                                <name>Plasmodium|82594554|H3.3</name>
+                                <branch_length>0.02629</branch_length>
                               </clade>
                               <clade>
-                                <name>Thallassiosira|223995905|cenH3</name>
-                                <branch_length>0.21539</branch_length>
+                                <name>Toxoplasma|22476750|H3.3</name>
+                                <branch_length>0.01048</branch_length>
                               </clade>
                             </clade>
                           </clade>
                         </clade>
                         <clade>
-                          <branch_length>0.0658</branch_length>
+                          <branch_length>0.0154</branch_length>
                           <clade>
-                            <branch_length>0.01312</branch_length>
-                            <clade>
-                              <name>Homo|119628413|H3.Y.2.s2</name>
-                              <branch_length>0.17694</branch_length>
-                            </clade>
-                            <clade>
-                              <branch_length>0.01703</branch_length>
-                              <clade>
-                                <branch_length>0.0222</branch_length>
-                                <clade>
-                                  <name>Homo|NO_GI|H3.Y.1</name>
-                                  <branch_length>0.0</branch_length>
-                                </clade>
-                                <clade>
-                                  <name>Pan|NO_GI|H3.Y.1</name>
-                                  <branch_length>0.0</branch_length>
-                                </clade>
-                              </clade>
-                              <clade>
-                                <branch_length>0.00457</branch_length>
-                                <clade>
-                                  <name>Pan|NO_GI|H3.Y.2</name>
-                                  <branch_length>0.01104</branch_length>
-                                </clade>
-                                <clade>
-                                  <branch_length>0.0095</branch_length>
-                                  <clade>
-                                    <name>Homo|NO_GI|H3.Y.2</name>
-                                    <branch_length>0.00019</branch_length>
-                                  </clade>
-                                  <clade>
-                                    <name>-0.00019</name>
-                                  </clade>
-                                </clade>
-                              </clade>
-                            </clade>
+                            <name>Thallasiosira|224009486|H3.3</name>
+                            <branch_length>0.01031</branch_length>
                           </clade>
                           <clade>
-                            <branch_length>0.02918</branch_length>
-                            <clade>
-                              <name>Macaca|NO_GI|H3.Y.2</name>
-                              <branch_length>0.02601</branch_length>
-                            </clade>
-                            <clade>
-                              <name>Macaca|NO_GI|H3.Y.1</name>
-                              <branch_length>0.02584</branch_length>
-                            </clade>
+                            <name>Phytophthora|301090188|H3.3</name>
+                            <branch_length>0.0191</branch_length>
                           </clade>
                         </clade>
                       </clade>
                       <clade>
-                        <name>Tetrahymena|118350232|H3.3</name>
-                        <branch_length>0.09661</branch_length>
+                        <branch_length>0.0037</branch_length>
+                        <clade>
+                          <name>Griffithsia|73919915|H3.1</name>
+                          <branch_length>0.03817</branch_length>
+                        </clade>
+                        <clade>
+                          <name>Griffithsia|32401039|H3.3</name>
+                          <branch_length>0.028</branch_length>
+                        </clade>
                       </clade>
                     </clade>
                     <clade>
-                      <branch_length>0.01433</branch_length>
+                      <branch_length>0.01514</branch_length>
                       <clade>
-                        <branch_length>0.03245</branch_length>
+                        <branch_length>0.0</branch_length>
                         <clade>
-                          <name>Plasmodium|82541094|H3.1</name>
                           <branch_length>0.0</branch_length>
+                          <clade>
+                            <name>Arabidopsis|15236103|H3.3</name>
+                            <branch_length>0.0</branch_length>
+                          </clade>
+                          <clade>
+                            <name>Arabidopsis|15236103|H3.2</name>
+                            <branch_length>0.0</branch_length>
+                          </clade>
                         </clade>
                         <clade>
-                          <name>Plamodium|82541094|H3.1</name>
+                          <name>Oryza|115453351|H3.2</name>
                           <branch_length>0.0</branch_length>
                         </clade>
                       </clade>
                       <clade>
-                        <branch_length>0.01167</branch_length>
-                        <clade>
-                          <name>Plasmodium|82594554|H3.3</name>
-                          <branch_length>0.02577</branch_length>
-                        </clade>
-                        <clade>
-                          <name>Toxoplasma|22476750|H3.3</name>
-                          <branch_length>0.011</branch_length>
-                        </clade>
+                        <name>Selaginella|302792052|H3.2</name>
+                        <branch_length>0.0</branch_length>
                       </clade>
                     </clade>
                   </clade>
                   <clade>
-                    <branch_length>0.01337</branch_length>
+                    <branch_length>0.01379</branch_length>
                     <clade>
-                      <name>Thallasiosira|224009486|H3.3</name>
-                      <branch_length>0.0109</branch_length>
+                      <branch_length>0.0</branch_length>
+                      <clade>
+                        <name>Arabidopsis|15232146|canonicalH3</name>
+                        <branch_length>0.0</branch_length>
+                      </clade>
+                      <clade>
+                        <name>Arabidopsis|15232146|H3.1</name>
+                        <branch_length>0.0</branch_length>
+                      </clade>
                     </clade>
                     <clade>
-                      <name>Phytophthora|301090188|H3.3</name>
-                      <branch_length>0.01851</branch_length>
+                      <name>Oryza|115441249|H3.1</name>
+                      <branch_length>0.0</branch_length>
                     </clade>
                   </clade>
                 </clade>
                 <clade>
-                  <branch_length>0.00422</branch_length>
+                  <branch_length>0.01527</branch_length>
                   <clade>
-                    <branch_length>0.00454</branch_length>
-                    <clade>
-                      <name>Griffithsia|73919915|H3.1</name>
-                      <branch_length>0.04141</branch_length>
-                    </clade>
-                    <clade>
-                      <branch_length>0.01006</branch_length>
-                      <clade>
-                        <name>Thallassiosira|223998042|H3.1</name>
-                        <branch_length>0.01122</branch_length>
-                      </clade>
-                      <clade>
-                        <name>Phytophthora|301115049|H3.1</name>
-                        <branch_length>0.00349</branch_length>
-                      </clade>
-                    </clade>
+                    <name>Thallassiosira|223998042|H3.1</name>
+                    <branch_length>0.01272</branch_length>
                   </clade>
                   <clade>
-                    <name>Griffithsia|32401039|H3.3</name>
-                    <branch_length>0.02487</branch_length>
+                    <name>Phytophthora|301115049|H3.1</name>
+                    <branch_length>0.00199</branch_length>
                   </clade>
                 </clade>
               </clade>
               <clade>
-                <branch_length>0.00859</branch_length>
+                <branch_length>0.0112</branch_length>
                 <clade>
-                  <branch_length>0.01055</branch_length>
+                  <branch_length>0.0303</branch_length>
                   <clade>
-                    <branch_length>0.02787</branch_length>
+                    <name>Crypto|58260270|H3.3</name>
+                    <branch_length>0.0306</branch_length>
+                  </clade>
+                  <clade>
+                    <branch_length>0.0057</branch_length>
                     <clade>
-                      <name>Crypto|58260270|H3.3</name>
-                      <branch_length>0.03075</branch_length>
+                      <name>Schizosaccharomyces|122076|H3.3</name>
+                      <branch_length>0.03399</branch_length>
                     </clade>
                     <clade>
-                      <branch_length>0.00555</branch_length>
+                      <branch_length>0.0138</branch_length>
                       <clade>
-                        <name>Schizosaccharomyces|122076|H3.3</name>
-                        <branch_length>0.03484</branch_length>
-                      </clade>
-                      <clade>
-                        <branch_length>0.01295</branch_length>
+                        <branch_length>0.00713</branch_length>
                         <clade>
-                          <branch_length>0.00759</branch_length>
+                          <branch_length>0.02362</branch_length>
                           <clade>
-                            <branch_length>0.02408</branch_length>
-                            <clade>
-                              <name>Neurospora|85077297|H3.1</name>
-                              <branch_length>0.0</branch_length>
-                            </clade>
-                            <clade>
-                              <name>Trichoderma|589115521|H3.3</name>
-                              <branch_length>0.0</branch_length>
-                            </clade>
+                            <name>Neurospora|85077297|H3.1</name>
+                            <branch_length>0.0</branch_length>
                           </clade>
                           <clade>
-                            <branch_length>0.01269</branch_length>
-                            <clade>
-                              <name>Saccharomyces|6319482|H3.3</name>
-                              <branch_length>0.01418</branch_length>
-                            </clade>
-                            <clade>
-                              <name>Debaryomyces|50408553|H3.3</name>
-                              <branch_length>0.00053</branch_length>
-                            </clade>
+                            <name>Trichoderma|589115521|H3.3</name>
+                            <branch_length>0.0</branch_length>
                           </clade>
                         </clade>
                         <clade>
-                          <branch_length>0.00344</branch_length>
+                          <branch_length>0.01314</branch_length>
                           <clade>
-                            <name>Candida|68484797|H3.3</name>
-                            <branch_length>0.01079</branch_length>
+                            <name>Saccharomyces|6319482|H3.3</name>
+                            <branch_length>0.01409</branch_length>
                           </clade>
                           <clade>
-                            <branch_length>0.01126</branch_length>
-                            <clade>
-                              <name>Debaryomyces|50423783|H3.1</name>
-                              <branch_length>0.00712</branch_length>
-                            </clade>
-                            <clade>
-                              <name>Candida|68472183|H3.1</name>
-                              <branch_length>0.00758</branch_length>
-                            </clade>
+                            <name>Debaryomyces|50408553|H3.3</name>
+                            <branch_length>0.00062</branch_length>
+                          </clade>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <branch_length>0.0039</branch_length>
+                        <clade>
+                          <name>Candida|68484797|H3.3</name>
+                          <branch_length>0.01017</branch_length>
+                        </clade>
+                        <clade>
+                          <branch_length>0.01188</branch_length>
+                          <clade>
+                            <name>Debaryomyces|50423783|H3.1</name>
+                            <branch_length>0.00712</branch_length>
+                          </clade>
+                          <clade>
+                            <name>Candida|68472183|H3.1</name>
+                            <branch_length>0.00759</branch_length>
                           </clade>
                         </clade>
                       </clade>
                     </clade>
                   </clade>
+                </clade>
+                <clade>
+                  <branch_length>0.00922</branch_length>
                   <clade>
-                    <branch_length>0.0128</branch_length>
+                    <name>Caenorhabditis|17567723|canonicalH3</name>
+                    <branch_length>0.00297</branch_length>
+                  </clade>
+                  <clade>
+                    <branch_length>0.00438</branch_length>
                     <clade>
                       <name>Homo|51859376|H3.3</name>
-                      <branch_length>0.0073</branch_length>
+                      <branch_length>0.00734</branch_length>
                     </clade>
                     <clade>
                       <name>Drosophila|17530867|H3.3</name>
@@ -277,54 +337,43 @@
                     </clade>
                   </clade>
                 </clade>
-                <clade>
-                  <branch_length>0.00852</branch_length>
-                  <clade>
-                    <branch_length>0.01032</branch_length>
-                    <clade>
-                      <name>Drosphila|8070|H3.1</name>
-                      <branch_length>0.0</branch_length>
-                    </clade>
-                    <clade>
-                      <name>Drosophila|8070|H3.2</name>
-                      <branch_length>0.0</branch_length>
-                    </clade>
-                  </clade>
-                  <clade>
-                    <name>Homo|4504281|H3.1</name>
-                    <branch_length>0.00438</branch_length>
-                  </clade>
-                </clade>
               </clade>
             </clade>
             <clade>
-              <branch_length>0.01583</branch_length>
+              <branch_length>0.00512</branch_length>
               <clade>
-                <name>Arabidopsis|15232146|H3.1</name>
+                <name>Mus|21489955|canonicalH3</name>
                 <branch_length>0.0</branch_length>
               </clade>
               <clade>
-                <name>Oryza|115441249|H3.1</name>
+                <name>Homo|4504281|H3.1</name>
                 <branch_length>0.0</branch_length>
               </clade>
             </clade>
           </clade>
           <clade>
-            <name>Arabidopsis|15236103|H3.3</name>
-            <branch_length>0.0</branch_length>
+            <name>Xenopus|148234575|canonicalH3</name>
+            <branch_length>0.00735</branch_length>
           </clade>
         </clade>
         <clade>
-          <name>Arabidopsis|15236103|H3.2</name>
+          <name>Drosophila|78706960|canonicalH3</name>
           <branch_length>0.0</branch_length>
         </clade>
       </clade>
       <clade>
-        <name>Oryza|115453351|H3.2</name>
-        <branch_length>0.0</branch_length>
+        <branch_length>0.00735</branch_length>
+        <clade>
+          <name>Drosphila|8070|H3.1</name>
+          <branch_length>0.0</branch_length>
+        </clade>
+        <clade>
+          <name>Drosophila|8070|H3.2</name>
+          <branch_length>0.0</branch_length>
+        </clade>
       </clade>
       <clade>
-        <name>Selaginella|302792052|H3.2</name>
+        <name>Gallus|527498246|canonicalH3</name>
         <branch_length>0.0</branch_length>
       </clade>
     </clade>

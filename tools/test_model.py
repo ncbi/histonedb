@@ -28,7 +28,7 @@ from scipy.interpolate import interp1d
 
 sns.set(style="white", context="talk")
 
-#Thresholds decided by manualyy looking at the headers in the hmmsearchout. Useful to compare.
+#Thresholds decided by manualy looking at the headers in the hmmsearch output. Useful to compare.
 original_thresholds = {
     "H2A": {
         "H2A.X":275, 

@@ -19,7 +19,7 @@ class Command(BaseCommand):
     results_file = "{}.out".format(combined_varaints_file)
     core_results_file = "{}.out".format(combined_core_file)
     nr_file = "nr"
-    model_evalution = os.path.join(hmm_directory, "model_evalution")
+    model_evalution = os.path.join(hmm_directory, "model_evaluation")
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -115,7 +115,7 @@ class Command(BaseCommand):
             for core_type, seed in self.get_seeds(core=True):
                 if seed is None and not only_variants:
                     #Build Core HMM
-                    core_hmm_file = os.path.join(self.hmm_directory, core_type, "canonical{}.hmm".format(core_type))
+                    core_hmm_file = os.path.join(self.hmm_directory, "{}.hmm".format(core_type))
                     seed = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
                     self.build_hmm(core_type, core_hmm_file, seed)
 
@@ -190,18 +190,21 @@ class Command(BaseCommand):
     def test(self, only_cores=False, only_variants=False, specificity=0.95):
         for core_type, seed1 in self.get_seeds(core=True):
             #Seed1 is positive examples
+            
             if seed1 == None:
                 #Test Core HMM
-                variant = "canonical{}".format(core_type)
+                variant = core_type
                 positive_path = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
+                hmm_file = os.path.join(self.hmm_directory, "{}.hmm".format(variant))
                 if only_variants: continue
             else:
-                #Test Varaint HMM
+                #Test Variant HMM
                 variant = seed1[:-6]
                 positive_path = os.path.join(self.seed_directory, core_type, seed1)
+                hmm_file = os.path.join(self.hmm_directory, core_type, "{}.hmm".format(variant))
                 if only_cores: continue
             
-            hmm_file = os.path.join(self.hmm_directory, core_type, "{}.hmm".format(variant))
+            
 
             output_dir = os.path.join(self.model_evalution, core_type)
             if not os.path.exists(output_dir):
@@ -217,6 +220,8 @@ class Command(BaseCommand):
                 for s in SeqIO.parse(positive_path, "fasta"):
                     s.seq = s.seq.ungap("-")
                     SeqIO.write(s, positive_file, "fasta")
+            open(positive_examples_file)
+
             
             self.search(db=hmm_file, out=positive_examples, sequences=positive_examples_file, E=500)
             

@@ -2,163 +2,212 @@
   <phylogeny rooted="false">
     <clade>
       <clade>
-        <branch_length>0.00786</branch_length>
+        <branch_length>0.00862</branch_length>
         <clade>
-          <branch_length>0.02983</branch_length>
+          <branch_length>0.01293</branch_length>
           <clade>
-            <branch_length>0.0134</branch_length>
+            <branch_length>0.04327</branch_length>
             <clade>
-              <branch_length>0.01988</branch_length>
+              <branch_length>0.0155</branch_length>
               <clade>
-                <branch_length>0.08691</branch_length>
+                <branch_length>0.01024</branch_length>
                 <clade>
-                  <branch_length>0.07492</branch_length>
+                  <branch_length>0.04769</branch_length>
                   <clade>
-                    <branch_length>0.03853</branch_length>
+                    <branch_length>0.01554</branch_length>
                     <clade>
-                      <name>Bos|296470943|H2B.W</name>
-                      <branch_length>0.29387</branch_length>
+                      <branch_length>0.05131</branch_length>
+                      <clade>
+                        <branch_length>0.06516</branch_length>
+                        <clade>
+                          <name>Monodelphis|126320607|subH2B</name>
+                          <branch_length>0.27058</branch_length>
+                        </clade>
+                        <clade>
+                          <branch_length>0.08548</branch_length>
+                          <clade>
+                            <branch_length>0.05234</branch_length>
+                            <clade>
+                              <name>Mus|254588081|subH2B</name>
+                              <branch_length>0.15296</branch_length>
+                            </clade>
+                            <clade>
+                              <name>Cricetulus|354507874|subH2B</name>
+                              <branch_length>0.1363</branch_length>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <branch_length>0.02974</branch_length>
+                            <clade>
+                              <branch_length>0.00793</branch_length>
+                              <clade>
+                                <branch_length>0.02632</branch_length>
+                                <clade>
+                                  <branch_length>0.0236</branch_length>
+                                  <clade>
+                                    <name>Macaca|109077646|subH2B</name>
+                                    <branch_length>0.21406</branch_length>
+                                  </clade>
+                                  <clade>
+                                    <branch_length>0.00827</branch_length>
+                                    <clade>
+                                      <branch_length>0.00146</branch_length>
+                                      <clade>
+                                        <name>Equus|149727070|subH2B</name>
+                                        <branch_length>0.14728</branch_length>
+                                      </clade>
+                                      <clade>
+                                        <branch_length>0.00436</branch_length>
+                                        <clade>
+                                          <name>Sus|311273883|subH2B</name>
+                                          <branch_length>0.1138</branch_length>
+                                        </clade>
+                                        <clade>
+                                          <name>Ailuropoda|301771932|subH2B</name>
+                                          <branch_length>0.09932</branch_length>
+                                        </clade>
+                                      </clade>
+                                    </clade>
+                                    <clade>
+                                      <name>Loxodonta|344272356|subH2B</name>
+                                      <branch_length>0.12969</branch_length>
+                                    </clade>
+                                  </clade>
+                                </clade>
+                                <clade>
+                                  <name>Heterocephalus|512843645|subH2B</name>
+                                  <branch_length>0.15467</branch_length>
+                                </clade>
+                              </clade>
+                              <clade>
+                                <name>Bos|45429973|subH2B</name>
+                                <branch_length>0.17143</branch_length>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <name>Cavia|348552306|subH2B</name>
+                              <branch_length>0.17585</branch_length>
+                            </clade>
+                          </clade>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <branch_length>0.01141</branch_length>
+                        <clade>
+                          <branch_length>0.03416</branch_length>
+                          <clade>
+                            <name>Bos|296470943|H2B.W</name>
+                            <branch_length>0.32856</branch_length>
+                          </clade>
+                          <clade>
+                            <branch_length>0.00578</branch_length>
+                            <clade>
+                              <branch_length>0.0145</branch_length>
+                              <clade>
+                                <name>Oryctolagus|291407712|H2B.W</name>
+                                <branch_length>0.27113</branch_length>
+                              </clade>
+                              <clade>
+                                <branch_length>0.25909</branch_length>
+                                <clade>
+                                  <name>Macaca|302564969|H2B.W</name>
+                                  <branch_length>0.04207</branch_length>
+                                </clade>
+                                <clade>
+                                  <name>Homo|223590216|H2B.W</name>
+                                  <branch_length>0.04364</branch_length>
+                                </clade>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <branch_length>0.0993</branch_length>
+                              <clade>
+                                <name>Dog|545560116|H2B.W</name>
+                                <branch_length>0.12362</branch_length>
+                              </clade>
+                              <clade>
+                                <name>Ailuropodia|301781100|H2B.W</name>
+                                <branch_length>0.15045</branch_length>
+                              </clade>
+                            </clade>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <name>Trypanosoma|71748422|canonicalH2B</name>
+                          <branch_length>0.33062</branch_length>
+                        </clade>
+                      </clade>
                     </clade>
                     <clade>
-                      <branch_length>0.05819</branch_length>
-                      <clade>
-                        <name>Oryctolagus|291407712|H2B.W</name>
-                        <branch_length>0.23762</branch_length>
-                      </clade>
-                      <clade>
-                        <branch_length>0.01162</branch_length>
-                        <clade>
-                          <branch_length>0.1979</branch_length>
-                          <clade>
-                            <name>Macaca|302564969|H2B.W</name>
-                            <branch_length>0.0402</branch_length>
-                          </clade>
-                          <clade>
-                            <name>Homo|223590216|H2B.W</name>
-                            <branch_length>0.04551</branch_length>
-                          </clade>
-                        </clade>
-                        <clade>
-                          <branch_length>0.08765</branch_length>
-                          <clade>
-                            <name>Dog|545560116|H2B.W</name>
-                            <branch_length>0.1069</branch_length>
-                          </clade>
-                          <clade>
-                            <name>Ailuropodia|301781100|H2B.W</name>
-                            <branch_length>0.14496</branch_length>
-                          </clade>
-                        </clade>
-                      </clade>
-                    </clade>
-                  </clade>
-                  <clade>
-                    <branch_length>0.03998</branch_length>
-                    <clade>
-                      <branch_length>0.15003</branch_length>
-                      <clade>
-                        <name>Canis|545554624|TS_H2B.1</name>
-                        <branch_length>0.04066</branch_length>
-                      </clade>
-                      <clade>
-                        <branch_length>0.01642</branch_length>
-                        <clade>
-                          <name>Homo|24586679|TS_H2B.1</name>
-                          <branch_length>0.03697</branch_length>
-                        </clade>
-                        <clade>
-                          <branch_length>0.00634</branch_length>
-                          <clade>
-                            <name>Mus|28316750|TS_H2B.1</name>
-                            <branch_length>0.02035</branch_length>
-                          </clade>
-                          <clade>
-                            <name>Rattus|12025524|TS_H2B.1</name>
-                            <branch_length>0.01902</branch_length>
-                          </clade>
-                        </clade>
-                      </clade>
-                    </clade>
-                    <clade>
-                      <branch_length>0.17532</branch_length>
+                      <branch_length>0.16053</branch_length>
                       <clade>
                         <name>Toxoplasma|237840885|H2B.Z</name>
-                        <branch_length>0.04702</branch_length>
+                        <branch_length>0.0433</branch_length>
                       </clade>
                       <clade>
-                        <branch_length>0.05054</branch_length>
+                        <branch_length>0.05426</branch_length>
                         <clade>
                           <name>Plasmodium|124511826|H2B.Z</name>
-                          <branch_length>0.00426</branch_length>
+                          <branch_length>0.00407</branch_length>
                         </clade>
                         <clade>
                           <name>Plasmodium|68073549|H2B.Z</name>
-                          <branch_length>0.00387</branch_length>
+                          <branch_length>0.00407</branch_length>
                         </clade>
                       </clade>
                     </clade>
                   </clade>
+                  <clade>
+                    <name>Arabidopsis|15226943|canonicalH2B</name>
+                    <branch_length>0.19801</branch_length>
+                  </clade>
                 </clade>
                 <clade>
-                  <name>Monodelphis|126320607|subH2B</name>
-                  <branch_length>0.26717</branch_length>
+                  <name>Drosophila|24585671|canonicalH2B</name>
+                  <branch_length>0.08837</branch_length>
                 </clade>
               </clade>
               <clade>
-                <branch_length>0.04549</branch_length>
-                <clade>
-                  <name>Mus|254588081|subH2B</name>
-                  <branch_length>0.16582</branch_length>
-                </clade>
-                <clade>
-                  <name>Cricetulus|354507874|subH2B</name>
-                  <branch_length>0.13997</branch_length>
-                </clade>
+                <name>Caenorhabditis|17558794|canonicalH2B</name>
+                <branch_length>0.13028</branch_length>
               </clade>
             </clade>
             <clade>
-              <name>Cavia|348552306|subH2B</name>
-              <branch_length>0.18435</branch_length>
+              <branch_length>0.03542</branch_length>
+              <clade>
+                <name>Mus|28316760|canonicalH2B</name>
+                <branch_length>0.041</branch_length>
+              </clade>
+              <clade>
+                <branch_length>0.01456</branch_length>
+                <clade>
+                  <name>Xenopus|148222089|canonicalH2B</name>
+                  <branch_length>0.0347</branch_length>
+                </clade>
+                <clade>
+                  <name>Gallus|119331174|canonicalH2B</name>
+                  <branch_length>0.02086</branch_length>
+                </clade>
+              </clade>
             </clade>
           </clade>
           <clade>
-            <name>Heterocephalus|512843645|subH2B</name>
-            <branch_length>0.1457</branch_length>
+            <name>Canis|545554624|TS_H2B.1</name>
+            <branch_length>0.04325</branch_length>
           </clade>
         </clade>
         <clade>
-          <name>Loxodonta|344272356|subH2B</name>
-          <branch_length>0.11686</branch_length>
+          <name>Homo|24586679|TS_H2B.1</name>
+          <branch_length>0.03469</branch_length>
         </clade>
       </clade>
       <clade>
-        <branch_length>0.00492</branch_length>
-        <clade>
-          <name>Macaca|109077646|subH2B</name>
-          <branch_length>0.22789</branch_length>
-        </clade>
-        <clade>
-          <name>Equus|149727070|subH2B</name>
-          <branch_length>0.14096</branch_length>
-        </clade>
+        <name>Mus|28316750|TS_H2B.1</name>
+        <branch_length>0.0154</branch_length>
       </clade>
       <clade>
-        <branch_length>0.01148</branch_length>
-        <clade>
-          <branch_length>0.01142</branch_length>
-          <clade>
-            <name>Bos|45429973|subH2B</name>
-            <branch_length>0.16546</branch_length>
-          </clade>
-          <clade>
-            <name>Ailuropoda|301771932|subH2B</name>
-            <branch_length>0.08044</branch_length>
-          </clade>
-        </clade>
-        <clade>
-          <name>Sus|311273883|subH2B</name>
-          <branch_length>0.11972</branch_length>
-        </clade>
+        <name>Rattus|12025524|TS_H2B.1</name>
+        <branch_length>0.02397</branch_length>
       </clade>
     </clade>
   </phylogeny>

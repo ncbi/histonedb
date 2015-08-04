@@ -10,10 +10,49 @@ from lib.phylogelib import NewickParser
 from lib.nexus import Nexus, remove_nexus_comments
 from pyparsing import ParseException
 import datetime, re, sys, os, codecs
+from itertools import islice
 
 ##################################################
 #             TaxonomyReference                  #
 ##################################################
+
+def chunks(l, n):
+    """Divide a list of nodes `l` in `n` chunks"""
+    l_c = iter(l)
+    while 1:
+        x = tuple(islice(l_c, n))
+        if not x:
+            return
+        yield x
+
+def add_to_graph(parameters):
+    """Create graph of taxon and its parents"""
+    try:
+        taxa_list, tree, already_done, allow_ranks = parameters
+    except:
+        return
+
+    import networkx as NX
+    #tree = NX.DiGraph() 
+    #already_done = set([])
+    for taxon in taxa_list:
+        taxon = Taxonomy.objects.get(pk=taxon)
+        prev_taxon = None
+        while taxon.name != 'root' and taxon.name not in tree:
+
+            if allow_ranks and taxon.rank not in allow_ranks:
+                taxon = taxon.parent
+                continue
+            
+            if prev_taxon is not None:
+                tree.add_edge( taxon.name, prev_taxon.name )
+
+            #already_done.add( taxon )
+            prev_taxon = taxon
+            taxon = taxon.parent
+
+        if prev_taxon is not None:
+            tree.add_edge( taxon.name, prev_taxon.name)
 
 class TaxonomyReference( object ):
     """
@@ -242,6 +281,35 @@ class TaxonomyReference( object ):
                 tree.add_edge( taxon.parent, taxon )
                 already_done.add( taxon )
                 taxon = taxon.parent
+        return tree
+
+    def get_filtered_reference_graph( self, taxa_list, allow_ranks=None ):
+        """
+        Take a taxa list, search in reference all parents names and
+        return a networkx.DiGraph tree.
+        """
+        import networkx as NX
+        from itertools import imap
+        from multiprocessing import Pool
+
+        tree = NX.DiGraph() 
+        already_done = set([])
+
+        p = Pool(processes=3)
+        node_divisor = len(p._pool)*4
+        node_chunks = list(chunks(taxa_list, int(len(taxa_list)/node_divisor)))
+        num_chunks = len(node_chunks)
+        #assert 0, p.map(add_to_graph, zip(
+        #    node_chunks, 
+        #    [tree]*num_chunks, 
+        #    [already_done]*num_chunks, 
+        #    [allow_ranks]*num_chunks))
+        #for subtree in pool.imap_unordered(add_to_graph, node_chunks, chunks):
+        for chunk in node_chunks:
+            add_to_graph((chunk, tree, already_done, allow_ranks))
+            #assert 0, "{} {}".format(subtree.number_of_nodes(), subtree.number_of_edges())
+            #tree = NX.disjoint_union(tree, subtree)
+        
         return tree
 
 ##################################################

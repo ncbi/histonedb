@@ -1,0 +1,89 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2B/H2B.1.hmm
+# target sequence database:        /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H2B/H2B.1_postive_examples.fasta
+# output directed to file:         /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H2B/H2B.1_postive_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       H2B.1  [M=127]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                 Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                 -----------
+    3.4e-88  280.3   6.5    3.8e-88  280.2   6.5    1.0  1  Rattus|12025524|TS_H2B.1  gi|12025524|ref|NP_072169.1| histone H2B type 1-A [Rattus norvegicus]
+    4.9e-88  279.8   7.5    5.4e-88  279.7   7.5    1.0  1  Mus|28316750|TS_H2B.1     gi|28316750|ref|NP_783594.1| histone H2B type 1-A [Mus musculus]
+    1.7e-87  278.1   5.4    1.9e-87  277.9   5.4    1.0  1  Canis|545554624|TS_H2B.1  gi|545554624|ref|XP_005640164.1| PREDICTED: histone H2B type 1-A-like [Canis lupus familiaris]
+    1.9e-86  274.7   8.9    2.1e-86  274.5   8.9    1.0  1  Homo|24586679|TS_H2B.1    gi|24586679|ref|NP_733759.1| histone H2B type 1-A [Homo sapiens]
+
+
+Domain annotation for each sequence (and alignments):
+>> Rattus|12025524|TS_H2B.1  gi|12025524|ref|NP_072169.1| histone H2B type 1-A [Rattus norvegicus]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  280.2   6.5   3.8e-88   3.8e-88       1     127 []       1     127 []       1     127 [] 1.00
+
+  Alignments for each domain:
+  == domain 1  score: 280.2 bits;  conditional E-value: 3.8e-88
+                     H2B.1   1 mpevsskgatiskkgfkkavtktqkkegkkrkrcrkesysiyiykvlkqvhpdtgisskamsimnsfvtdiferiaseasrlahynkrstitsreiqtavrlllpgelakhavsegtkavtkytssk 127
+                               mpevs+kg+tiskkgfkkavtktqkkeg+krkrcr+esysiyiykvlkqvhpdtgisskamsimnsfvtdiferia+easrlahynkrstitsreiqtavrlllpgelakhavsegtkavtkytssk
+  Rattus|12025524|TS_H2B.1   1 MPEVSAKGTTISKKGFKKAVTKTQKKEGRKRKRCREESYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK 127
+                               9*****************************************************************************************************************************8 PP
+
+>> Mus|28316750|TS_H2B.1  gi|28316750|ref|NP_783594.1| histone H2B type 1-A [Mus musculus]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  279.7   7.5   5.4e-88   5.4e-88       1     127 []       1     127 []       1     127 [] 1.00
+
+  Alignments for each domain:
+  == domain 1  score: 279.7 bits;  conditional E-value: 5.4e-88
+                  H2B.1   1 mpevsskgatiskkgfkkavtktqkkegkkrkrcrkesysiyiykvlkqvhpdtgisskamsimnsfvtdiferiaseasrlahynkrstitsreiqtavrlllpgelakhavsegtkavtkytssk 127
+                            mpev++kgatiskkgfkkavtktqkkeg+krkrcrkesysiyiykvlkqvhpdtgisskamsimnsfvtdiferiaseasrlahynkrstitsreiqtavrlllpgelakhavsegtkavtkytssk
+  Mus|28316750|TS_H2B.1   1 MPEVAVKGATISKKGFKKAVTKTQKKEGRKRKRCRKESYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIASEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK 127
+                            9*****************************************************************************************************************************8 PP
+
+>> Canis|545554624|TS_H2B.1  gi|545554624|ref|XP_005640164.1| PREDICTED: histone H2B type 1-A-like [Canis lupus familiaris]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  277.9   5.4   1.9e-87   1.9e-87       1     127 []       1     127 []       1     127 [] 1.00
+
+  Alignments for each domain:
+  == domain 1  score: 277.9 bits;  conditional E-value: 1.9e-87
+                     H2B.1   1 mpevsskgatiskkgfkkavtktqkkegkkrkrcrkesysiyiykvlkqvhpdtgisskamsimnsfvtdiferiaseasrlahynkrstitsreiqtavrlllpgelakhavsegtkavtkytssk 127
+                               mpe++skg+tiskkgfk+av+ktqkkegkkr+rcrkesysiyiykvlkqvhpdtgisskam+imnsfv+diferia+easrlahynkrstitsreiqtavrlllpgelakhavsegtkavtkytssk
+  Canis|545554624|TS_H2B.1   1 MPELTSKGTTISKKGFKRAVAKTQKKEGKKRRRCRKESYSIYIYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK 127
+                               9*****************************************************************************************************************************8 PP
+
+>> Homo|24586679|TS_H2B.1  gi|24586679|ref|NP_733759.1| histone H2B type 1-A [Homo sapiens]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  274.5   8.9   2.1e-86   2.1e-86       1     127 []       1     127 []       1     127 [] 1.00
+
+  Alignments for each domain:
+  == domain 1  score: 274.5 bits;  conditional E-value: 2.1e-86
+                   H2B.1   1 mpevsskgatiskkgfkkavtktqkkegkkrkrcrkesysiyiykvlkqvhpdtgisskamsimnsfvtdiferiaseasrlahynkrstitsreiqtavrlllpgelakhavsegtkavtkytssk 127
+                             mpevsskgatiskkgfkkav+ktqkkegkkrkr+rkesysiyiykvlkqvhpdtgisskamsimnsfvtdiferiaseasrlahy+krsti+sreiqtavrlllpgelakhavsegtkavtkytssk
+  Homo|24586679|TS_H2B.1   1 MPEVSSKGATISKKGFKKAVVKTQKKEGKKRKRTRKESYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIASEASRLAHYSKRSTISSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK 127
+                             9*****************************************************************************************************************************8 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (127 nodes)
+Target sequences:                            4  (508 residues searched)
+Passed MSV filter:                         4  (1); expected 0.1 (0.02)
+Passed bias filter:                        4  (1); expected 0.1 (0.02)
+Passed Vit filter:                         4  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         4  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  4  [actual number of targets]
+Domain search space  (domZ):               4  [number of targets reported over threshold]
+# CPU time: 0.00u 0.00s 00:00:00.00 Elapsed: 00:00:00.01
+# Mc/sec: 6.45
+//
+[ok]

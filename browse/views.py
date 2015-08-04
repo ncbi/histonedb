@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_list_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from django.templatetags.static import static
 
 from browse.forms import AdvancedFilterForm, AnalyzeFileForm
 from browse.search import HistoneSearch
@@ -28,7 +29,7 @@ from Bio.SeqRecord import SeqRecord
 from django.db.models import Min, Max, Count
 
 #Set2 Brewer, used in variant colors
-colors = [
+colors7 = [
     "#000000", #Fix for cononical
     "#66c2a5",
     "#fc8d62",
@@ -38,6 +39,21 @@ colors = [
     "#ffd92f",
     "#e5c494"
     ]
+
+colors = [
+    "#8dd3c7",
+    "#ffffb3",
+    "#bebada",
+    "#fb8072",
+    "#80b1d3",
+    "#fdb462",
+    "#b3de69",
+    "#fccde5",
+    "#d9d9d9",
+    "#bc80bd",
+    "#ccebc5",
+    "#ffed6f",
+]
 
 def help(request):
     data = {
@@ -85,7 +101,7 @@ def browse_variants(request, histone_type):
     else:
         query = original_query
     
-    result = HistoneSearch(request, query, reset=True)
+    result = HistoneSearch(request, query)
 
     data["original_query"] = original_query
     if result.errors:
@@ -111,7 +127,7 @@ def browse_variant(request, histone_type, variant):
         "core_type": variant.core_type.id,
         "variant": variant.id,
         "name": variant.id,
-        "sunburst_url": "browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id),
+        "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id)),
         "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[variant.id]),
         "colors":color_range,
         "score_min":scores["min"],
@@ -127,7 +143,7 @@ def browse_variant(request, histone_type, variant):
         query = request.POST.copy()
     else:
         query = original_query
-    result = HistoneSearch(request, query, reset=True)
+    result = HistoneSearch(request, query)
 
     data["original_query"] = original_query
     if result.errors:
@@ -142,26 +158,32 @@ def search(request):
     
     if request.method == "POST": 
         query = request.POST.copy()
-        result = HistoneSearch(
-            request, 
-            query,
-            navbar="search" in request.POST.keys())
-        if request.POST.get("reset", True):
-            request.session["original_query"] = query
-        data["original_query"] = request.session.get("original_query", query)
-        data["current_query"] = query
-        if len(result.errors) == 0:
-            data["result"] = True
-        else:
-            data["filter_errors"] = result.errors
     else:
-        #Show all sequence
-        result = HistoneSearch.all(request)
-        data["current_query"] = data["original_query"] = {}
+        query = request.GET.copy()
+    result = HistoneSearch(
+        request, 
+        query,
+        navbar="search" in query.keys())
+
+    if query.get("reset", True):
+        request.session["original_query"] = query
+
+    data["original_query"] = request.session.get("original_query", query)
+    data["current_query"] = query
+
+    if len(result.errors) == 0:
         data["result"] = True
+    else:
+        data["filter_errors"] = result.errors
 
     if result.redirect: 
         return result.redirect
+
+    green = Color("#66c2a5")
+    red = Color("#fc8d62")
+    data["colors"] = map(str, red.range_to(green, 12))
+
+    data["score_min"], data["score_max"] = result.get_score_range()
 
     return render(request, 'search.html', data)
 
@@ -204,10 +226,11 @@ def analyze(request):
 def get_sequence_table_data(request):
     """Downloads the previous search and converts into json required by Bootstrap table
     """
-
+    
     if request.method == "GET":
         parameters =  request.GET.dict()
     else:
+        assert 0, request.method
         #Returning 'false' stops Bootstrap table
         parameters = []
 
@@ -218,8 +241,9 @@ def get_sequence_table_data(request):
         #Returning 'false' stops Bootstrap table
         return "false"
 
-    unique = "id_unique" in parameters
-    result = results.get_dict(unique=unique)
+    result = results.get_dict()
+    result["parameters"] = results.parameters
+    result["method"] = request.method
     return JsonResponse(result)
 
 def get_all_scores(request, ids=None):
@@ -481,26 +505,21 @@ def get_seed_aln_and_features(request, seed):
 
     return response
 
-def get_starburst_json(request, browse_type, search, debug=False):
+def get_sunburst_json(request, parameters=None):
     """
     """
-    if ids is None and request.method == "GET" and "id" in request.GET:
-        ids = request.GET.getlist("id")
+    if parameters and isinstance(parameters, dict):
+        query = parameters
+    elif request.method == "POST": 
+        query = request.POST.copy()
     else:
-        #Returning 'false' stops Bootstrap table
-        return "false"
+        query = request.GET.copy()
     
-
-def create_sunburst(root, sunburst=None, level=0):
-    if sunburst is None:
-        sunburst = {"name":root.name, "children":[]}
-
-    for curr_taxa in root.direct_children.filter(type_name="scientific name").all():
-        #print "{}{}".format(" "*level, curr_taxa.name),
-        child = {"name":curr_taxa.name, "children":[]}
-        #print child
-        sunburst["children"].append(create_sunburst(curr_taxa, child, level=level+1))
-    return sunburst
-
-def get_phyloxml_of_type(request):
-    return None
+    if query:
+        result = HistoneSearch(
+            request, 
+            query)
+        sunburst = result.get_sunburst()
+        return JsonResponse(sunburst, safe=False)
+    else:
+        raise Http404("No taxonomy distribution sunburst for query") 

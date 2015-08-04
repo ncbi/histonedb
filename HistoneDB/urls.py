@@ -25,8 +25,7 @@ urlpatterns = patterns('browse.views',
     url(r'^data/sequences\+features/json$', 'get_aln_and_features'),
     url(r'^data/seed/([a-zA-Z0-9\.]+)$', 'get_seed_aln_and_features'),
 
-    url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', 'get_starburst_json'),
-    url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', 'get_starburst_json'),
+    url(r'^data/sunburst$', 'get_sunburst_json'),
 )
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

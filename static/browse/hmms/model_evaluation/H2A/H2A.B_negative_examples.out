@@ -1,0 +1,1222 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/H2A/H2A.B.hmm
+# target sequence database:        /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H2A/H2A.B_negative_examples.fasta
+# output directed to file:         /web/public/htdocs/projects/histonedb/HistoneDB/static/browse/hmms/model_evaluation/H2A/H2A.B_negative_examples.out
+# max ASCII text line length:      unlimited
+# sequence reporting threshold:    E-value <= 500
+# number of worker threads:        4
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       H2A.B  [M=115]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                             Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                             -----------
+    1.1e-37  122.5   0.1    1.7e-37  121.9   0.1    1.2  1  Monodelphis|334338556|H2A.M           Monodelphis_M3
+    3.8e-35  114.3   0.0    4.5e-35  114.1   0.0    1.0  1  Canis|57112025|H2A.L                  Canis_H2A.L.1
+    4.9e-34  110.7   0.0    5.6e-34  110.6   0.0    1.0  1  Ailuropoda|301783589|H2A.L            Ailuropoda_H2A.L.2_301783589
+    5.9e-34  110.5   0.1    9.6e-34  109.8   0.1    1.3  1  Heterocephalus|351714308|H2A.L        Heterocephalus_H2A.L.3_351714308
+    6.3e-34  110.4   1.6    7.5e-34  110.2   1.6    1.0  1  Sus|350595614|H2A.L                   Sus_H2A.L.1_350595614
+    2.7e-32  105.1   0.1    2.9e-32  105.1   0.1    1.0  1  Mus|13386112|H2A.L                    Mus_H2A.L.2
+    3.1e-32  105.0   0.0      4e-32  104.6   0.0    1.1  1  Heterocephalus|351701334|H2A.L        Heterocephalus_H2A.L.1_351701334
+      7e-32  103.8   0.0    8.4e-32  103.6   0.0    1.0  1  Canis|57112039|H2A.L                  Canis_H2A.L.2
+    2.3e-31  102.1   0.0      3e-31  101.8   0.0    1.1  1  Rattus|157817664|H2A.X                Rattus_H2A.X
+    2.4e-31  102.1   0.0      3e-31  101.8   0.0    1.1  1  Homo|4504253|H2A.X                    Homo_H2A.X
+    2.4e-31  102.1   0.0      3e-31  101.8   0.0    1.1  1  Bos|119331192|H2A.X                   Bos_H2A.X
+    2.4e-31  102.1   0.0      3e-31  101.8   0.0    1.1  1  Mus|7106331|H2A.X                     Mus_H2A.X
+    2.4e-31  102.1   0.0    3.1e-31  101.7   0.0    1.1  1  Monodelphis|126326560|H2A.X           Monodelphis_H2A.X
+    2.6e-31  102.0   0.0      3e-31  101.8   0.0    1.1  1  canonicalH2A|Gallus|118405202         
+    3.3e-31  101.6   0.0    3.9e-31  101.4   0.0    1.0  1  Heterocephalus|351707644|H2A.L        Heterocephalus_H2A.L.2_351707644
+    1.5e-30   99.5   0.6    1.8e-30   99.2   0.0    1.4  1  Danio|41055102|H2A.X                  Danio_H2A.X
+    1.5e-30   99.5   0.0    1.9e-30   99.2   0.0    1.1  1  Cryptosporidium|66359884|H2A.X        Cryptosporidium_H2A.X
+    2.7e-30   98.7   0.0      3e-30   98.5   0.0    1.0  1  canonicalH2A|Caenorhabditis|17562014  
+      3e-30   98.5   0.2    3.4e-30   98.4   0.2    1.0  1  Oryctolagus|291407300|H2A.L           Oryctolagus_H2A.L.2_291407300
+    3.5e-30   98.3   0.2      4e-30   98.1   0.2    1.0  1  Oryctolagus|291407314|H2A.L           Oryctolagus_H2A.L.1_291407314
+    5.4e-30   97.7   0.0    6.2e-30   97.5   0.0    1.1  1  Ustilago|758974979|H2A.X              Ustilago_H2A.X
+    6.4e-30   97.5   0.0    7.6e-30   97.2   0.0    1.1  1  Trichoplax|196012824|H2A.X            Trichoplax_H2A.X
+    6.7e-30   97.4   0.0    7.8e-30   97.2   0.0    1.1  1  canonicalH2A|Mus|30061393             
+    1.2e-29   96.6   0.0    1.4e-29   96.3   0.0    1.1  1  Saccharomyces|398366187|H2A.X         Saccharomyces_H2A.X
+    1.4e-29   96.4   0.0    1.6e-29   96.2   0.0    1.0  1  Schizosaccharomyces|19115333|H2A.X    Schizosaccharomyces_H2A.X
+      2e-29   95.9   0.0    2.3e-29   95.7   0.0    1.0  1  canonicalH2A|Drosophila|78707122      
+    2.6e-29   95.5   0.6    2.9e-29   95.4   0.6    1.0  1  Sus|350595620|H2A.L                   Sus_H2A.L.3_350595620
+    4.1e-29   94.9   0.0      5e-29   94.6   0.0    1.1  1  Apis|66506394|H2A.X                   Apis_H2A.X
+    4.6e-29   94.7   0.0    5.4e-29   94.5   0.0    1.1  1  Toxoplasma|237831985|H2A.X            Toxoplasma_H2A.X
+    5.8e-29   94.4   0.0      7e-29   94.1   0.0    1.0  1  Bos|118151026|H2A.L                   Bos_H2A.L.1_118151026
+    6.2e-29   94.3   0.0    7.1e-29   94.1   0.0    1.0  1  canonicalH2A|Arabidopsis|15239697     
+    6.9e-29   94.2   0.1    7.3e-29   94.1   0.1    1.0  1  Bos|119923405|H2A.L                   Bos_H2A.L.2_119923405
+    1.2e-28   93.4   0.0    1.3e-28   93.2   0.0    1.0  1  Cricetulus|354492135|H2A.L            Cricetulus_H2A.L
+    3.1e-28   92.1   0.0    3.7e-28   91.8   0.0    1.1  1  Oryza|115488866|H2A.X                 Oryza_H2A.X
+    4.6e-28   91.5   0.0    6.1e-28   91.1   0.0    1.2  1  Dictyostelium|66814816|H2A.X          Dictyostelium_H2A.X
+    9.7e-28   90.5   0.0    1.3e-27   90.1   0.0    1.1  1  Arabidopsis|15221875|H2A.X            Arabidopsis_H2A.X.3
+    7.7e-27   87.6   0.0    9.7e-27   87.2   0.0    1.1  1  canonicalH2A|Xenopus|148225238        
+    1.6e-26   86.5   0.0    1.9e-26   86.3   0.0    1.1  1  Perkinsus|294943912|H2A.X             Perkinsus_H2A.X.1
+      2e-26   86.2   0.0    2.5e-26   85.9   0.0    1.1  1  Tetrahymena|118386111|H2A.X           Tetrahymena_H2A.X
+    2.1e-26   86.1   0.0    4.1e-23   75.6   0.0    2.3  2  Gallus|45384360|macroH2A              Gallus_macroH2A.1.2
+      8e-26   84.3   0.1    1.4e-25   83.5   0.1    1.3  1  Nematostella|156396795|macroH2A       Nematostella_macroH2A
+    1.1e-25   83.9   0.0    4.1e-23   75.6   0.0    2.3  2  Homo|93141018|macroH2A                Homo_macroH2A.1.2
+    1.7e-25   83.2   0.0    2.9e-25   82.5   0.0    1.4  1  Danio|70887615|macroH2A               Danio_macroH2A.2
+    2.1e-25   82.9   0.1      4e-23   75.6   0.0    2.3  2  Gallus|3395780|macroH2A               Gallus_macroH2A.1.1
+    1.1e-24   80.6   0.0    1.4e-24   80.3   0.0    1.1  1  Alexandrium|61658009|H2A.X            Alexandrium_H2A.X
+    4.7e-24   78.6   0.6    5.3e-24   78.4   0.6    1.0  1  Mus|13386420|H2A.L                    Mus_H2A.L.1
+    7.6e-24   77.9   0.0    1.8e-23   76.7   0.0    1.6  1  Gallus|472824980|macroH2A             Gallus_macroH2A.2
+    8.1e-24   77.8   0.0      4e-23   75.6   0.0    2.0  2  Homo|530380257|macroH2A               Homo_macroH2A.1.1
+    8.6e-24   77.7   0.1    1.1e-23   77.4   0.1    1.1  1  canonicalH2A|Trypanosoma|72391222     
+    9.5e-24   77.6   0.0    1.7e-23   76.8   0.0    1.4  1  Trichoplax|196003430|macroH2A         Trichoplax_macroH2A
+    2.7e-23   76.1   0.0      6e-23   75.0   0.0    1.6  1  Danio|94536607|macroH2A               Danio_macroH2A.1
+    3.1e-23   75.9   0.0    3.1e-23   75.9   0.0    1.6  1  Homo|8923920|macroH2A                 Homo_macroH2A.2
+    9.8e-23   74.3   0.0    1.1e-22   74.1   0.0    1.0  1  Cavia|348567220|H2A.L                 Cavia_H2A.L.2_348567220
+      1e-22   74.3   0.0    1.2e-22   74.0   0.0    1.2  1  Giardia|159108895|H2A.X               Giardia_H2A.X
+    2.6e-22   72.9   0.0    3.5e-22   72.5   0.0    1.1  1  Perkinsus|294944035|H2A.Z             Perkinsus_H2A.Z.2
+    3.7e-22   72.5   0.3    4.2e-22   72.3   0.3    1.0  1  Cavia|348567212|H2A.L                 Cavia_H2A.L.1_348567212
+    3.9e-22   72.4   0.0    5.6e-22   71.9   0.0    1.2  1  Perkinsus|294944037|H2A.Z             Perkinsus_H2A.Z.1
+    4.8e-22   72.1   0.0    6.4e-22   71.7   0.0    1.1  1  Perkinsus|294899805|H2A.Z             Perkinsus_H2A.Z.3
+    1.3e-21   70.7   0.0    1.5e-21   70.5   0.0    1.1  1  Saccharomyces|6324562|H2A.Z           Saccharomyces_H2A.Z
+    5.1e-21   68.8   0.0    5.8e-21   68.6   0.0    1.1  1  Gallus|71897327|H2A.Z                 Gallus_H2A.Z.1
+    5.5e-21   68.7   0.0    6.2e-21   68.5   0.0    1.1  1  Homo|4504255|H2A.Z                    Homo_H2A.Z.1
+    5.7e-21   68.6   0.1    7.1e-21   68.3   0.1    1.1  1  Oryza|115455263|H2A.Z                 Oryza_H2A.Z
+    6.1e-21   68.6   0.0    6.9e-21   68.4   0.0    1.1  1  Danio|112807244|H2A.Z                 Danio_H2A.Z.1
+    6.2e-21   68.5   0.0      7e-21   68.3   0.0    1.1  1  Danio|24111226|H2A.Z                  Danio_H2A.Z.2
+    6.2e-21   68.5   0.0      7e-21   68.3   0.0    1.1  1  Gallus|121988|H2A.Z                   Gallus_H2A.Z.2
+    6.2e-21   68.5   0.0      7e-21   68.3   0.0    1.1  1  Homo|6912616|H2A.Z                    Homo_H2A.Z.2
+    6.2e-21   68.5   0.0      7e-21   68.4   0.0    1.0  1  Trichoplax|196003262|H2A.Z            Trichoplax_H2A.Z
+    7.3e-21   68.3   0.0    8.7e-21   68.0   0.0    1.1  1  Drosophila|17738227|H2A.Z             Drosophila_H2Av_NP_524519
+    1.6e-20   67.2   0.0      2e-20   66.8   0.0    1.1  1  Cryptosporidium|66357734|H2A.Z        Cryptosporidium_H2A.Z
+    2.4e-20   66.6   0.0      3e-20   66.3   0.0    1.1  1  Toxoplasma|237844891|H2A.Z            Toxoplasma_H2A.Z
+    5.5e-20   65.5   0.0      7e-20   65.1   0.0    1.1  1  Schizosaccharomyces|429240082|H2A.Z   Schizosaccharomyces_H2A.Z
+      1e-19   64.6   0.1    1.2e-19   64.3   0.1    1.1  1  Arabidopsis|15224957|H2A.Z            Arabidopsis_H2A.Z.8
+    9.9e-19   61.4   0.0    1.3e-18   61.0   0.0    1.2  1  Tetrahymena|229596389|H2A.Z           Tetrahymena_H2A.Z
+    1.5e-18   60.8   0.0    2.1e-18   60.4   0.0    1.1  1  Trypanosoma|72391930|H2A.Z            Trypanosoma_H2A.Z
+    3.8e-15   49.9   0.3    2.5e-14   47.2   0.0    2.4  1  Tetrahymena|118385100|macroH2A        Tetrahymena_H2A.Y
+    5.5e-15   49.3   0.1      7e-15   49.0   0.1    1.1  1  Dictyostelium|66807867|H2A.Z          Dictyostelium_H2A.Z
+    3.6e-14   46.7   0.1    4.5e-14   46.4   0.1    1.1  1  Canis|545557820|H2A.M                 Canis_M3
+    8.2e-14   45.6   0.0      1e-13   45.3   0.0    1.1  1  Rattus|197386154|H2A.M                Rattus_M3
+      4e-13   43.4   0.0    4.3e-13   43.3   0.0    1.1  1  Sus|311276123|H2A.M                   Sus_M3
+    6.4e-12   39.5   0.0    7.3e-12   39.3   0.0    1.1  1  Cricetulus|354492127|H2A.M            Cricetulus_M3
+      7e-12   39.3   0.0    8.5e-12   39.1   0.0    1.1  1  Mus|13385600|H2A.M                    Mus_H2A.L.3
+    2.3e-11   37.7   0.0    2.6e-11   37.5   0.0    1.1  1  Ailuropoda|301755368|H2A.M            Ailuropoda_M3
+    1.9e-09   31.5   0.1    2.3e-09   31.2   0.1    1.2  1  Macaca|355704714|H2A.M                Macaca_M3
+    3.6e-09   30.6   0.0    6.9e-09   29.7   0.0    1.4  1  Ixodes|241122402|macroH2A             Ixodes_macroH2A
+    5.2e-08   26.9   0.1    5.9e-08   26.7   0.1    1.2  1  Pan|332860554|H2A.M                   Pan_M3
+    1.8e-07   25.1   0.2      2e-07   25.0   0.2    1.2  1  Homo|150456434|H2A.M                  Homo_M3
+    1.9e-07   25.0   0.2    2.3e-07   24.8   0.2    1.2  1  Homo|3329433|H2A.M                    Homo_HYPM
+    2.1e-05   18.5   0.0    2.8e-05   18.1   0.0    1.1  1  Heterocephalus|351707643|H2A.M        Heterocephalus_M3
+    9.7e-05   16.3   0.1    0.00016   15.6   0.1    1.2  1  Bos|296470943|H2B.W                   Bos_FWT_XM_610149
+
+
+Domain annotation for each sequence (and alignments):
+>> Monodelphis|334338556|H2A.M  Monodelphis_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  121.9   0.1   6.9e-38   1.7e-37       1     109 [.       1     107 [.       1     112 [. 0.96
+
+  Alignments for each domain:
+  == domain 1  score: 121.9 bits;  conditional E-value: 6.9e-38
+                        H2A.B   1 mprkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                  mp+krs+++s  +  +++ rsr sra+l f vs+v+r Lr+ghyAqrL+ssapvflaAvle+Lta +lELAgn A+ + + +i p  ++lav n+ +L +lf+ +tisq
+  Monodelphis|334338556|H2A.M   1 MPEKRSHHGSLNT--HNQIRSRSSRAQLQFPVSRVDRFLRQGHYAQRLASSAPVFLAAVLEYLTAEILELAGNAARDNKKTRIAPCHVQLAVRNDVELNQLFGHVTISQ 107
+                                  99****9997774..4469*****************************************************************************************9 PP
+
+>> Canis|57112025|H2A.L  Canis_H2A.L.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  114.1   0.0   1.9e-35   4.5e-35      15     109 ..      13     107 ..       1     110 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 114.1 bits;  conditional E-value: 1.9e-35
+                 H2A.B  15 rrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                            r++  sr  rael f vs+v+rlLreghyA+rLsss pvfla +le+Lt+ +lELAg+EA+ns + +itpe l+ a+ nn+ Ls+lf+  t sq
+  Canis|57112025|H2A.L  13 PRRHGLSRSRRAELQFPVSRVDRLLREGHYAHRLSSSTPVFLAGILEYLTSNILELAGQEARNSHKMRITPEHLQKALGNNQYLSQLFEENTYSQ 107
+                           23367799************************************************************************************998 PP
+
+>> Ailuropoda|301783589|H2A.L  Ailuropoda_H2A.L.2_301783589
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  110.6   0.0   2.3e-34   5.6e-34       1     106 [.       1     104 [.       1     112 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 110.6 bits;  conditional E-value: 2.3e-34
+                       H2A.B   1 mprkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqttt 106
+                                 m+++rs  +s+   ++++  sr  rael f vs+v+rlLreg yAqrLsss pvfl+ vle+Lta +lELAg+EA+n+ + +itpe ++ a+ nn+ Ls lf+ +t
+  Ailuropoda|301783589|H2A.L   1 MSGRRSPWHSHQ--HKRHGLSRSMRAELQFPVSRVDRLLREGCYAQRLSSSTPVFLTGVLEYLTANILELAGQEARNHHKMRITPEHVQRALVNNQHLSCLFEDIT 104
+                                 566666666544..666889**********************************************************************************9887 PP
+
+>> Heterocephalus|351714308|H2A.L  Heterocephalus_H2A.L.3_351714308
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  109.8   0.1   3.9e-34   9.6e-34       3     108 ..      70     173 ..      68     178 .. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 109.8 bits;  conditional E-value: 3.9e-34
+                           H2A.B   3 rkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                     +k++r  ++ss  r++  sr +rael f vs+ver Lreg yAqrL ss pvfla vle+Lta +l+LAg+EA+ + +++itp+ l+ ++ nn+ L +lfq  t s
+  Heterocephalus|351714308|H2A.L  70 GKKRR--QNSSKPRKQAVSRSTRAELQFPVSRVERYLREGGYAQRLGSSTPVFLAGVLEYLTANILDLAGKEAEGNCKKRITPQHLETVMENNQQLRALFQGDTKS 173
+                                     44444..445556779************************************************************************************987765 PP
+
+>> Sus|350595614|H2A.L  Sus_H2A.L.1_350595614
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  110.2   1.6   3.1e-34   7.5e-34       2     111 ..       2     109 ..       1     112 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 110.2 bits;  conditional E-value: 3.1e-34
+                H2A.B   2 prkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisqva 111
+                          +rkr+    +   r+++  sr srael f vs+v+r Lreg+yAqrLss+apvfla vle+Lta +lELA+ EA+ + + +i pe ++ a   n+ Ls+lfq+ ++s+ a
+  Sus|350595614|H2A.L   2 SRKRN--LPQCNRRKKHALSRSSRAELQFPVSRVDRYLREGRYAQRLSSQAPVFLAGVLEYLTANILELAASEARSNNKMRIAPEHVQRAASHNQTLSSLFQASSVSRGA 109
+                          44444..344555778999****************************************************************************************976 PP
+
+>> Mus|13386112|H2A.L  Mus_H2A.L.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  105.1   0.1   1.2e-32   2.9e-32       3     108 ..       3     101 ..       1     108 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 105.1 bits;  conditional E-value: 1.2e-32
+               H2A.B   3 rkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                         rkr+r       rr+r+ +r +rael f vs+v+r Lreg+y +rLsssapvfla vle+Lt+ +lELAg+ A+++g+++i pe +  +v nn  L +lf+    s
+  Mus|13386112|H2A.L   3 RKRQR-------RRRRKVTRSQRAELQFPVSRVDRFLREGNYSRRLSSSAPVFLAGVLEYLTSNILELAGEVAHTTGRKRIAPEHVCRVVQNNEQLHQLFKQGGTS 101
+                         33333.......556789999*******************************************************************************976665 PP
+
+>> Heterocephalus|351701334|H2A.L  Heterocephalus_H2A.L.1_351701334
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  104.6   0.0   1.6e-32     4e-32       3     103 ..       3     101 ..       1     107 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 104.6 bits;  conditional E-value: 1.6e-32
+                           H2A.B   3 rkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfq 103
+                                     +k++r  ++ss  r++  sr +rael f vs+ve+ Lreg yA+rL+ss pvfla vle+L a +l+LAg+EAq + +++itp+ l+ a+ nn+ L  lfq
+  Heterocephalus|351701334|H2A.L   3 GKKRR--QNSSKPRKQAVSRSTRAELQFPVSRVEHYLREGGYAHRLASSTPVFLAGVLEYLRANILDLAGKEAQGKRKKCITPQHLETAMENNQHLRPLFQ 101
+                                     44444..445556779********************************************************************************99997 PP
+
+>> Canis|57112039|H2A.L  Canis_H2A.L.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  103.6   0.0   3.4e-32   8.4e-32      15     109 ..      13     107 ..       1     110 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 103.6 bits;  conditional E-value: 3.4e-32
+                 H2A.B  15 rrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                            r++  sr  rael f vs+v+rlLreg yA+rLsss pvfl+ +le+Lt+ +lEL g+EA ns + +itpe ++ a+ nn+ Ls+lf+  t sq
+  Canis|57112039|H2A.L  13 PRRHGLSRSRRAELQFPVSRVDRLLREGCYAHRLSSSTPVFLTGILEYLTSNILELVGQEACNSHKMRITPEHMQKALGNNQYLSQLFEENTYSQ 107
+                           23367799************************************************************************************998 PP
+
+>> Rattus|157817664|H2A.X  Rattus_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.8   0.0   1.2e-31     3e-31       8     109 ..       4     105 ..       1     111 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 101.8 bits;  conditional E-value: 1.2e-31
+                   H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                             r+++++  r++ +sr sra l f v +v rlLr+ghyA+r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Rattus|157817664|H2A.X   4 RGKTGGKARAKAKSRSSRAGLQFPVGRVHRLLRKGHYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGGVTIAQ 105
+                             556677778899****************************************************************************************98 PP
+
+>> Homo|4504253|H2A.X  Homo_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.8   0.0   1.2e-31     3e-31       8     109 ..       4     105 ..       1     111 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 101.8 bits;  conditional E-value: 1.2e-31
+               H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                         r+++++  r++ +sr sra l f v +v rlLr+ghyA+r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Homo|4504253|H2A.X   4 RGKTGGKARAKAKSRSSRAGLQFPVGRVHRLLRKGHYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGGVTIAQ 105
+                         556677778899****************************************************************************************98 PP
+
+>> Bos|119331192|H2A.X  Bos_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.8   0.0   1.2e-31     3e-31       8     109 ..       4     105 ..       1     111 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 101.8 bits;  conditional E-value: 1.2e-31
+                H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                          r+++++  r++ +sr sra l f v +v rlLr+ghyA+r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Bos|119331192|H2A.X   4 RGKTGGKARAKAKSRSSRAGLQFPVGRVHRLLRKGHYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGGVTIAQ 105
+                          556677778899****************************************************************************************98 PP
+
+>> Mus|7106331|H2A.X  Mus_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.8   0.0   1.2e-31     3e-31       8     109 ..       4     105 ..       1     111 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 101.8 bits;  conditional E-value: 1.2e-31
+              H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                        r+++++  r++ +sr sra l f v +v rlLr+ghyA+r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Mus|7106331|H2A.X   4 RGKTGGKARAKAKSRSSRAGLQFPVGRVHRLLRKGHYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGGVTIAQ 105
+                        556677778899****************************************************************************************98 PP
+
+>> Monodelphis|126326560|H2A.X  Monodelphis_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.7   0.0   1.3e-31   3.1e-31       8     109 ..       4     105 ..       1     111 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 101.7 bits;  conditional E-value: 1.3e-31
+                        H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                  r+++++  r++ +sr sra l f v +v rlLr+ghyA+r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Monodelphis|126326560|H2A.X   4 RGKTGGKARAKAKSRSSRAGLQFPVGRVHRLLRKGHYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGGVTIAQ 105
+                                  556677778899****************************************************************************************98 PP
+
+>> canonicalH2A|Gallus|118405202  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.8   0.0   1.2e-31     3e-31       8     109 ..       4     105 ..       1     111 [. 0.95
+
+  Alignments for each domain:
+  == domain 1  score: 101.8 bits;  conditional E-value: 1.2e-31
+                          H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                    r+++++  r++ +sr sra l f v +v rlLr+g+yA+r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  canonicalH2A|Gallus|118405202   4 RGKQGGKARAKAKSRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGKVTIAQ 105
+                                    56677778889*****************************************************************************************98 PP
+
+>> Heterocephalus|351707644|H2A.L  Heterocephalus_H2A.L.2_351707644
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.4   0.0   1.6e-31   3.9e-31       3     103 ..       3     101 ..       1     106 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 101.4 bits;  conditional E-value: 1.6e-31
+                           H2A.B   3 rkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfq 103
+                                     +k++r  ++ss  r++  sr +rael f vs+ve+ Lreg yA+rL ss pvfla vl++L a +l+LAg+EAq + +++i p+ l+ a+ nn+ L  lfq
+  Heterocephalus|351707644|H2A.L   3 GKKRR--QNSSKPRKQAVSRSTRAELQFPVSRVEHYLREGGYAHRLGSSTPVFLAGVLKYLRANILDLAGKEAQGKRKKCIAPQHLETAMENNQHLRPLFQ 101
+                                     44444..445556779********************************************************************************99997 PP
+
+>> Danio|41055102|H2A.X  Danio_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   99.2   0.0   7.5e-31   1.8e-30       8     109 ..       4     105 ..       1     111 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 99.2 bits;  conditional E-value: 7.5e-31
+                 H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                           r+++++  r++ ++r sra l f v +v rlLr+g+yA+r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+lav n+ +L +l++ +ti+q
+  Danio|41055102|H2A.X   4 RGKTGGKARAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAVRNDEELNKLLGGVTIAQ 105
+                           45566677889999**************************************************************************************98 PP
+
+>> Cryptosporidium|66359884|H2A.X  Cryptosporidium_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   99.2   0.0   7.7e-31   1.9e-30       1     108 [.       1     110 [.       1     116 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 99.2 bits;  conditional E-value: 7.7e-31
+                           H2A.B   1 mprkrsrrkssssgrrg..rtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                     m++k ++++ +++g++   +t s+ ++a l f v +v+r L++g+yA+r+  +apv+laAvle+L a +lELAgn A+   + +itp+ ++lav n+ +Ls++++ +ti+
+  Cryptosporidium|66359884|H2A.X   1 MSGKVTSSGGRGGGKKTtrKTMSNSAKAGLQFPVGRVARYLKKGRYAKRIGAAAPVYLAAVLEYLCAELLELAGNAARDAKKTRITPRQIQLAVRNDEELSKFLGNVTIA 110
+                                     5666666666666655455788999***********************************************************************************97 PP
+
+>> canonicalH2A|Caenorhabditis|17562014  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   98.5   0.0   1.2e-30     3e-30      11     109 ..       8     106 ..       1     112 [. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 98.5 bits;  conditional E-value: 1.2e-30
+                                 H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                           + +   g+ +sr sra l f v ++ r Lr+g+yAqr+   apv+laAvle+L+a vlELAgn A+ + + +i p+ l+lav n+ +L +l+  +ti+q
+  canonicalH2A|Caenorhabditis|17562014   8 GKAKTGGKAKSRSSRAGLQFPVGRLHRILRKGNYAQRVGAGAPVYLAAVLEYLAAEVLELAGNAARDNKKTRIAPRHLQLAVRNDEELNKLLAGVTIAQ 106
+                                           344556789****************************************************************************************98 PP
+
+>> Oryctolagus|291407300|H2A.L  Oryctolagus_H2A.L.2_291407300
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   98.4   0.2   1.4e-30   3.4e-30      10     103 ..       7     101 ..       1     103 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 98.4 bits;  conditional E-value: 1.4e-30
+                        H2A.B  10 ssssg.rrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfq 103
+                                  s+ +g rr+ + sr +rael f vs+v+r+L   +yAqrLsss pvfla vle+Lt+ +lELAg+EA+++++ +itpe +  a+ ++  L +l++
+  Oryctolagus|291407300|H2A.L   7 SKKAGkRRKPNVSRSTRAELQFPVSRVDRHLHHDRYAQRLSSSTPVFLAGVLEYLTSNILELAGEEAHKNSRVRITPEHMRKAIESSEHLRDLLE 101
+                                  344440555689************************************************************************99999998875 PP
+
+>> Oryctolagus|291407314|H2A.L  Oryctolagus_H2A.L.1_291407314
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   98.1   0.2   1.7e-30     4e-30      10     103 ..       7     101 ..       1     103 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 98.1 bits;  conditional E-value: 1.7e-30
+                        H2A.B  10 ssssg.rrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfq 103
+                                  s+ +g rr+ + sr +rael f vs+v+r+L   +yAqrLsss pvfla vle+Lt+ +lELAg+EA+++++ +itpe +  a+ ++  L +l++
+  Oryctolagus|291407314|H2A.L   7 SKKAGkRRKPNVSRSTRAELQFPVSRVDRHLHHDRYAQRLSSSTPVFLAGVLEYLTSNILELAGEEAHKNSRIRITPEHMRKAIESSEHLRDLLE 101
+                                  344440555689************************************************************************99999998875 PP
+
+>> Ustilago|758974979|H2A.X  Ustilago_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   97.5   0.0   2.6e-30   6.2e-30      11     109 ..      10     108 ..       1     113 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 97.5 bits;  conditional E-value: 2.6e-30
+                     H2A.B  11 sssgrrg....rtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                               ++    g    + +sr ++a l f v ++ rlLr+g+yAqr+   apv+laAvle+L+a +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +tisq
+  Ustilago|758974979|H2A.X  10 KA----GdassKAQSRSAKAGLQFPVGRIHRLLRKGNYAQRVGAGAPVYLAAVLEYLAAEILELAGNAARDNKKSRIIPRHLQLAIRNDEELNKLLGGVTISQ 108
+                               22....23334899****************************************************************************************9 PP
+
+>> Trichoplax|196012824|H2A.X  Trichoplax_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   97.2   0.0   3.1e-30   7.6e-30      11     109 ..       6     104 ..       1     110 [. 0.93
+
+  Alignments for each domain:
+  == domain 1  score: 97.2 bits;  conditional E-value: 3.1e-30
+                       H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                 +++  r++ +sr +ra l f v +v r+Lr+g+yA+r+   apv+laAv+e+L+a +lELAgn A+ + +++i p+ l+la+ n+ +L +l++ +ti+q
+  Trichoplax|196012824|H2A.X   6 KGGKARNKAKSRSTRAGLQFPVGRVHRMLRKGNYAERVGAGAPVYLAAVMEYLAAEILELAGNAARDNKKQRIVPRHLQLAIRNDEELNKLLSGVTIAQ 104
+                                 3445566999***************************************************************************************98 PP
+
+>> canonicalH2A|Mus|30061393  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   97.2   0.0   3.2e-30   7.8e-30       8     109 ..       4     105 ..       1     111 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 97.2 bits;  conditional E-value: 3.2e-30
+                      H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                r+++++  r++ ++r sra l f v +v rlLr+g+y +r+   apv+laAvle+Lta +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  canonicalH2A|Mus|30061393   4 RGKQGGKARAKAKTRSSRAGLQFPVGRVHRLLRKGNYSERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGRVTIAQ 105
+                                5666777788999***************************************************************************************98 PP
+
+>> Saccharomyces|398366187|H2A.X  Saccharomyces_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   96.3   0.0   5.9e-30   1.4e-29      12     109 ..       9     106 ..       1     112 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 96.3 bits;  conditional E-value: 5.9e-30
+                          H2A.B  12 ssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                    +++  + ++sr ++a l+f v +v rlLr g+yAqr+ s apv+l+Avle+L+a +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Saccharomyces|398366187|H2A.X   9 AGSAAKASQSRSAKAGLTFPVGRVHRLLRRGNYAQRIGSGAPVYLTAVLEYLAAEILELAGNAARDNKKTRIIPRHLQLAIRNDDELNKLLGNVTIAQ 106
+                                    2333337899**************************************************************************************98 PP
+
+>> Schizosaccharomyces|19115333|H2A.X  Schizosaccharomyces_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   96.2   0.0   6.7e-30   1.6e-29      14     109 ..      11     106 ..       1     112 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 96.2 bits;  conditional E-value: 6.7e-30
+                               H2A.B  14 grrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                         +  +  +sr ++a l f v +v rlLr+g+yAqr+   apv+laAvle+L+a +lELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Schizosaccharomyces|19115333|H2A.X  11 AVAKSAQSRSAKAGLAFPVGRVHRLLRKGNYAQRVGAGAPVYLAAVLEYLAAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGHVTIAQ 106
+                                         22337899**************************************************************************************98 PP
+
+>> canonicalH2A|Drosophila|78707122  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   95.7   0.0   9.4e-30   2.3e-29      11     109 ..       6     104 ..       1     110 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 95.7 bits;  conditional E-value: 9.4e-30
+                             H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                       +++  +g+ +sr +ra l f v ++ rlLr+g+yA+r+   apv+laAv+e+L+a vlELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  canonicalH2A|Drosophila|78707122   6 KGGKVKGKAKSRSDRAGLQFPVGRIHRLLRKGNYAERVGAGAPVYLAAVMEYLAAEVLELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLSGVTIAQ 104
+                                       4556689******************************************************************************************98 PP
+
+>> Sus|350595620|H2A.L  Sus_H2A.L.3_350595620
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   95.4   0.6   1.2e-29   2.9e-29       5     111 ..       3     109 ..       1     113 [. 0.93
+
+  Alignments for each domain:
+  == domain 1  score: 95.4 bits;  conditional E-value: 1.2e-29
+                H2A.B   5 rsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisqva 111
+                          r+r+  + s r+++  s  srael f +s ++  L eg+yAqrLss  pvfla vle L a++lELA++EA+ s + +itpe ++ a+ nn  Ls lfq+ ++s+ a
+  Sus|350595620|H2A.L   3 RKRNLPQCSHRKKHALSCSSRAELQFPMSSLDCVLPEGQYAQRLSSYTPVFLAGVLEHLMAHILELAAREARSSRKVRITPEHVQRALNNNETLSRLFQASSVSRGA 109
+                          4445556777888999****************************************************************************************976 PP
+
+>> Apis|66506394|H2A.X  Apis_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   94.6   0.0   2.1e-29     5e-29      11     109 ..       6     104 ..       1     110 [. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 94.6 bits;  conditional E-value: 2.1e-29
+                H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                          +++  +g+ ++r sra l f v ++ rlLr+g+yA+r+   apv+laAv+e+L+a vlELAgn A+ + + +i p+ l+la+ n+ +L +l++ +ti+q
+  Apis|66506394|H2A.X   6 KGGKAKGKAKTRSSRAGLQFPVGRIHRLLRKGNYAERVGAGAPVYLAAVMEYLAAEVLELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLSGVTIAQ 104
+                          45567889*****************************************************************************************98 PP
+
+>> Toxoplasma|237831985|H2A.X  Toxoplasma_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   94.5   0.0   2.2e-29   5.4e-29       9     109 ..      10     107 ..       1     113 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 94.5 bits;  conditional E-value: 2.2e-29
+                       H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                 k++     g++ sr ++a l f vs++ r L++g+yA+r+   apv+laAvle+L a +lELAgn A+ + + +i p+ ++lav n+ +Ls++++ +ti++
+  Toxoplasma|237831985|H2A.X  10 KKT---SSGKKVSRSAKAGLQFPVSRIGRYLKKGRYAKRVGVGAPVYLAAVLEYLCAEILELAGNAARDHKKTRIIPRHIQLAVRNDEELSKFLGGVTIAN 107
+                                 222...234689**************************************************************************************975 PP
+
+>> Bos|118151026|H2A.L  Bos_H2A.L.1_118151026
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   94.1   0.0   2.9e-29     7e-29      14     111 ..      13     109 ..       2     114 .. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 94.1 bits;  conditional E-value: 2.9e-29
+                H2A.B  14 grrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisqva 111
+                          + r+r+ sr +rael f vs+v+rlLreg++A+rLss+ pvfl+ +le+L a +l+LAg+EA ++ + +i pe ++ a+ nn  L  lfq  + sq a
+  Bos|118151026|H2A.L  13 S-RRRSLSRSTRAELQFPVSRVDRLLREGQFANRLSSATPVFLTGILEYLIANILDLAGKEACTNHRVRISPEHVQTALVNNENLRCLFQPGAFSQPA 109
+                          3.448999***********************************************************************************9999977 PP
+
+>> canonicalH2A|Arabidopsis|15239697  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   94.1   0.0   2.9e-29   7.1e-29      10     109 ..       7     106 ..       1     112 [. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 94.1 bits;  conditional E-value: 2.9e-29
+                              H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                                        + +sg+ ++  sr s+a l f v +++r L+ g+yA+r+   apv+laAvle+L+a vlELAgn A+ + + +i p+ ++lav n+ +Ls+l++ +ti++
+  canonicalH2A|Arabidopsis|15239697   7 TLGSGGAKKATSRSSKAGLQFPVGRIARFLKAGKYAERVGAGAPVYLAAVLEYLAAEVLELAGNAARDNKKTRIVPRHIQLAVRNDEELSKLLGDVTIAN 106
+                                        3456667789***************************************************************************************975 PP
+
+>> Bos|119923405|H2A.L  Bos_H2A.L.2_119923405
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   94.1   0.1     3e-29   7.3e-29      13     109 ..      12     107 ..       1     113 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 94.1 bits;  conditional E-value: 3e-29
+                H2A.B  13 sgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                           +rr ++ sr +rael f vs+v+rlLreg+ A rLss+ pvfl+Avle+L a +l+LAg+EA ++ + +i pe ++ a+ nn  L  lfq  + sq
+  Bos|119923405|H2A.L  12 RSRR-HSLSRSTRAELQFPVSRVDRLLREGQGAYRLSSATPVFLTAVLEYLIANILDLAGKEACTNHRVRISPEHVQTALINNENLRRLFQPGAFSQ 107
+                          3444.899***********************************************************************************999998 PP
+
+>> Cricetulus|354492135|H2A.L  Cricetulus_H2A.L
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   93.2   0.0   5.5e-29   1.3e-28      15     103 ..       5      93 ..       1     101 [. 0.96
+
+  Alignments for each domain:
+  == domain 1  score: 93.2 bits;  conditional E-value: 5.5e-29
+                       H2A.B  15 rrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfq 103
+                                 +r++t sr +r++l fs  ++er  r+g++ qrLs sapvfla vlefLt+ +l+LAg+EA+ +g rlitpe +  +v nn  L ++f+
+  Cricetulus|354492135|H2A.L   5 KRKETISRITRGQLQFSLDRIERFFRDGNFSQRLSASAPVFLAGVLEFLTSNILDLAGREAHANGTRLITPEHVTQVVQNNDQLREVFK 93 
+                                 577899********************************************************************************997 PP
+
+>> Oryza|115488866|H2A.X  Oryza_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   91.8   0.0   1.5e-28   3.7e-28      15     108 ..       9     107 ..       1     113 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 91.8 bits;  conditional E-value: 1.5e-28
+                  H2A.B  15 rrg.....rtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                            +rg     ++ sr s+a l f v +++r L+ g+yA+r+   apv+l+Avle+L+a vlELAgn A+ + + +i p+ ++lav n+ +Ls l++++ti+
+  Oryza|115488866|H2A.X   9 GRGkskgsKSVSRSSKAGLQFPVGRIARYLKAGKYAERVGAGAPVYLSAVLEYLAAEVLELAGNAARDNKKNRIVPRHIQLAVRNDEELSRLLGAVTIA 107
+                            33333444899**************************************************************************************97 PP
+
+>> Dictyostelium|66814816|H2A.X  Dictyostelium_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   91.1   0.0   2.5e-28   6.1e-28       8     108 ..      23     123 ..      16     132 .. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 91.1 bits;  conditional E-value: 2.5e-28
+                         H2A.B   8 rkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                   r s+++  +++  sr +ra ++f vs+v+rlLreg++A r+ s+apv+laAvle+L   +lELA n    s + +itp+ ++ av n+ +L +lfq +ti+
+  Dictyostelium|66814816|H2A.X  23 RVSRTGEPKSKPESRSARAGITFPVSRVDRLLREGRFAPRVESTAPVYLAAVLEYLVFEILELAHNTCSISKKTRITPQHINWAVGNDLELNSLFQHVTIA 123
+                                   4555556677899**************************************************************************************97 PP
+
+>> Arabidopsis|15221875|H2A.X  Arabidopsis_H2A.X.3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   90.1   0.0   5.2e-28   1.3e-27      11     108 ..      14     111 ..       2     117 .. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 90.1 bits;  conditional E-value: 5.2e-28
+                       H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                 ++  +  ++ sr s+a l f v +++r L+ g+yA+r+   apv+l+Avle+L+a vlELAgn A+ + + +i p+ ++lav n+ +Ls+l++ +ti+
+  Arabidopsis|15221875|H2A.X  14 RGKPKATKSVSRSSKAGLQFPVGRIARFLKAGKYAERVGAGAPVYLSAVLEYLAAEVLELAGNAARDNKKTRIVPRHIQLAVRNDEELSKLLGSVTIA 111
+                                 2333344899***************************************************************************************7 PP
+
+>> canonicalH2A|Xenopus|148225238  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   87.2   0.0     4e-27   9.7e-27       3     108 ..       3     104 ..       1     110 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 87.2 bits;  conditional E-value: 4e-27
+                           H2A.B   3 rkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                     ++ ++ ++ +sg+     sr ++a l f v ++ rlLr+g+yA r+ s  +++laA+le+L a vlELAgn A+ + + +i p+ ++lav n+ +L++lf+ +ti+
+  canonicalH2A|Xenopus|148225238   3 GRGKKVQKAASGK----SSRSAKAGLQFPVGRIHRLLRKGNYAARIGSGSSIYLAATLEYLCAEVLELAGNAARDNKKSRIMPRHIQLAVRNDDELAKLFEGVTIA 104
+                                     4445555444444....59*************************************************************************************97 PP
+
+>> Perkinsus|294943912|H2A.X  Perkinsus_H2A.X.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   86.3   0.0   7.7e-27   1.9e-26       9     108 ..      13     109 ..       1     115 [. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 86.3 bits;  conditional E-value: 7.7e-27
+                      H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                +++s+   +  +sr ++a l f v +++r L++g+yA+r+ s apv+laAvle+L a +lELAgn A+ + + +i p+ ++lav n+ +L +++  +t++
+  Perkinsus|294943912|H2A.X  13 GKKSG---SGAKSRSAKAGLQFPVGRIARYLKKGRYAKRVGSGAPVYLAAVLEYLVAEILELAGNAARDHKKTRIIPRHIQLAVRNDEELNKFLAGVTLA 109
+                                22222...24589*********************************************************************************999875 PP
+
+>> Tetrahymena|118386111|H2A.X  Tetrahymena_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   85.9   0.0     1e-26   2.5e-26      10     108 ..      10     108 ..       1     114 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 85.9 bits;  conditional E-value: 1e-26
+                        H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                   ++ +  +++ sr +ra l f v ++ r L+ g+y +r+ + apv+laAvle+L+a vlELAgn A+ + + +i p+ + la+ n+ +L +l+  tti+
+  Tetrahymena|118386111|H2A.X  10 AKGKTASSKQVSRSARAGLQFPVGRISRFLKHGRYSERVGTGAPVYLAAVLEYLAAEVLELAGNAAKDNKKTRIVPRHILLAIRNDEELNKLMANTTIA 108
+                                  33334445799**************************************************************************************97 PP
+
+>> Gallus|45384360|macroH2A  Gallus_macroH2A.1.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   75.6   0.0   1.7e-23   4.1e-23      10     108 ..       3     101 ..       1     107 [. 0.94
+   2 ?    8.3   0.0     0.012      0.03       2      75 ..     139     212 ..     138     225 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 75.6 bits;  conditional E-value: 1.7e-23
+                     H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                               s+++ +++ + sr ++a +if v ++ r +++gh   r+   apv++aAvle+Lta +lELAgn A+ + + ++tp+ + lav n+ +L +l++ +ti+
+  Gallus|45384360|macroH2A   3 SRGGKKKSTKTSRSAKAGVIFPVGRMLRYIKKGHPKYRIGVGAPVYMAAVLEYLTAEILELAGNAARDNKKGRVTPRHILLAVANDEELNQLLKGVTIA 101
+                               445556678899*************************************************************************************97 PP
+
+  == domain 2  score: 8.3 bits;  conditional E-value: 0.012
+                     H2A.B   2 prkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLs..ssapvflaAvlefLtakvlELAgnEA 75 
+                               p ++++  ++++g++g ++s+++++e++ s+s    +  eg+ A   +  s+ ++fl   l+ + + + +LAg E 
+  Gallus|45384360|macroH2A 139 PSQKKTVSKKTGGKKGARKSKKKQGEVSKSASA--DSTTEGTPADGFTvlSTKSLFLGQKLNLIHSEISNLAGFEV 212
+                               5667777888899**************999996..56678887765432267889999999999999999999875 PP
+
+>> Nematostella|156396795|macroH2A  Nematostella_macroH2A
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   83.5   0.1   5.6e-26   1.4e-25       9     108 ..       4     103 ..       1     109 [. 0.95
+
+  Alignments for each domain:
+  == domain 1  score: 83.5 bits;  conditional E-value: 5.6e-26
+                            H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                      + + +++r++  sr ++a l f vs+v r Lr+ ++  r+s +apv+ aAv+e+Lta +lELAgn A+ + + +i p+ + lav n+ +L +l++ +ti+
+  Nematostella|156396795|macroH2A   4 RGGKAAKRAKAVSRSAKAGLQFPVSRVHRYLRKCTHHYRISAAAPVYQAAVMEYLTAEILELAGNAARDNKKTRIIPRHILLAVANDEELHKLLKGVTIA 103
+                                      446678999*****************************************************************************************97 PP
+
+>> Homo|93141018|macroH2A  Homo_macroH2A.1.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   75.6   0.0   1.7e-23   4.1e-23      10     108 ..       3     101 ..       1     107 [. 0.94
+   2 ?    6.0   0.0     0.065      0.16       3      75 ..     140     212 ..     138     223 .. 0.79
+
+  Alignments for each domain:
+  == domain 1  score: 75.6 bits;  conditional E-value: 1.7e-23
+                   H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                             s+++ +++ + sr ++a +if v ++ r +++gh   r+   apv++aAvle+Lta +lELAgn A+ + + ++tp+ + lav n+ +L +l++ +ti+
+  Homo|93141018|macroH2A   3 SRGGKKKSTKTSRSAKAGVIFPVGRMLRYIKKGHPKYRIGVGAPVYMAAVLEYLTAEILELAGNAARDNKKGRVTPRHILLAVANDEELNQLLKGVTIA 101
+                             445556678899*************************************************************************************97 PP
+
+  == domain 2  score: 6.0 bits;  conditional E-value: 0.065
+                   H2A.B   3 rkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLs..ssapvflaAvlefLtakvlELAgnEA 75 
+                              +++   ++++g++g ++s+++++e++ ++s    +  eg+ A   +  s+ ++fl   l+ + + + +LAg E 
+  Homo|93141018|macroH2A 140 SQKKPVSKKAGGKKGARKSKKKQGEVSKAASA--DSTTEGTPADGFTvlSTKSLFLGQKLNLIHSEISNLAGFEV 212
+                             566667778899**************999996..55677777765432267789999999999999999998775 PP
+
+>> Danio|70887615|macroH2A  Danio_macroH2A.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   82.5   0.0   1.2e-25   2.9e-25      12     109 ..       5     102 ..       1     107 [. 0.93
+
+  Alignments for each domain:
+  == domain 1  score: 82.5 bits;  conditional E-value: 1.2e-25
+                    H2A.B  12 ssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                              ++ ++  + sr +ra +if v ++ r Lr g++  r+   apv++aAv+e+L+a +lELAgn A+ + + +itp+ + lav n+ +L +l++ +tis+
+  Danio|70887615|macroH2A   5 GGKKKITKLSRSARAGVIFPVGRMMRYLRTGTHKYRIGMGAPVYMAAVIEYLAAEILELAGNAARDNKKGRITPRHIKLAVANDEELNQLLRGVTISN 102
+                              3344557889**************************************************************************************96 PP
+
+>> Gallus|3395780|macroH2A  Gallus_macroH2A.1.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   75.6   0.0   1.6e-23     4e-23      10     108 ..       3     101 ..       1     107 [. 0.94
+   2 ?    5.0   0.1      0.13      0.31       2      34 ..     139     171 ..     138     207 .. 0.81
+
+  Alignments for each domain:
+  == domain 1  score: 75.6 bits;  conditional E-value: 1.6e-23
+                    H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                              s+++ +++ + sr ++a +if v ++ r +++gh   r+   apv++aAvle+Lta +lELAgn A+ + + ++tp+ + lav n+ +L +l++ +ti+
+  Gallus|3395780|macroH2A   3 SRGGKKKSTKTSRSAKAGVIFPVGRMLRYIKKGHPKYRIGVGAPVYMAAVLEYLTAEILELAGNAARDNKKGRVTPRHILLAVANDEELNQLLKGVTIA 101
+                              445556678899*************************************************************************************97 PP
+
+  == domain 2  score: 5.0 bits;  conditional E-value: 0.13
+                    H2A.B   2 prkrsrrkssssgrrgrtrsrtsraelifsvsq 34 
+                              p ++++  ++++g++g ++s+++++e++ s+s 
+  Gallus|3395780|macroH2A 139 PSQKKTVSKKTGGKKGARKSKKKQGEVSKSASA 171
+                              5667777888899***************99985 PP
+
+>> Alexandrium|61658009|H2A.X  Alexandrium_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   80.3   0.0   5.6e-25   1.4e-24       7     108 ..      13     114 ..       4     120 .. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 80.3 bits;  conditional E-value: 5.6e-25
+                       H2A.B   7 rrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                 + ++   g++++++s  s+a l+f v + +++Lr+g y +rL+   +++l+Av+e++ta +lELAgn A++  +++i p+ ++la+ n+ +L + ++ +ti 
+  Alexandrium|61658009|H2A.X  13 KAGKPVQGEKKKHQSLSSKAGLVFPVQRFAKALRKGGYCKRLAAGGSIYLTAVIEYITAEILELAGNSAKEARKQRIIPRHIQLAIRNDEELNKYLSRVTIT 114
+                                 34445567777999*************************************************************************************996 PP
+
+>> Mus|13386420|H2A.L  Mus_H2A.L.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   78.4   0.6   2.2e-24   5.3e-24      14     103 ..       7      94 ..       1     100 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 78.4 bits;  conditional E-value: 2.2e-24
+               H2A.B  14 grrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfq 103
+                          rr+++r+r +r+el +  s+v+r Lre  +  rLsssa  fl+ vle+Lt+ +lELAg+ A+++g++++tpe + l+v nn  L +lf+
+  Mus|13386420|H2A.L   7 RRRRQKRTRSQRGELPL--SLVDRFLREEFHSSRLSSSALSFLTSVLEYLTSNILELAGEVAHTTGRKRVTPEDVRLVVQNNEQLRQLFK 94 
+                         46668899999999975..78*******************************************************************97 PP
+
+>> Gallus|472824980|macroH2A  Gallus_macroH2A.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   76.7   0.0   7.4e-24   1.8e-23      12     108 ..       5     101 ..       1     106 [. 0.93
+
+  Alignments for each domain:
+  == domain 1  score: 76.7 bits;  conditional E-value: 7.4e-24
+                      H2A.B  12 ssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                s+ ++  + sr sra +if v ++ r L++g+y  r+   apv++aAv+e+L+a +lELAgn A+ + + +i p+ + lav n+ +L +l++ +ti+
+  Gallus|472824980|macroH2A   5 SGKKKMSKLSRSSRAGVIFPVGRMMRYLKKGTYKYRIGVGAPVYMAAVIEYLAAEILELAGNAARDNKKGRIAPRHILLAVANDEELNQLLKGVTIA 101
+                                334455788**************************************************************************************96 PP
+
+>> Homo|530380257|macroH2A  Homo_macroH2A.1.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   75.6   0.0   1.6e-23     4e-23      10     108 ..       3     101 ..       1     107 [. 0.94
+   2 ?   -0.8   0.1       8.2        20       8      33 ..     145     169 ..     138     203 .. 0.68
+
+  Alignments for each domain:
+  == domain 1  score: 75.6 bits;  conditional E-value: 1.6e-23
+                    H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                              s+++ +++ + sr ++a +if v ++ r +++gh   r+   apv++aAvle+Lta +lELAgn A+ + + ++tp+ + lav n+ +L +l++ +ti+
+  Homo|530380257|macroH2A   3 SRGGKKKSTKTSRSAKAGVIFPVGRMLRYIKKGHPKYRIGVGAPVYMAAVLEYLTAEILELAGNAARDNKKGRVTPRHILLAVANDEELNQLLKGVTIA 101
+                              445556678899*************************************************************************************97 PP
+
+  == domain 2  score: -0.8 bits;  conditional E-value: 8.2
+                    H2A.B   8 rkssssgrrgrtrsrtsraelifsvs 33 
+                                ++++g++   r+ ++++e++ ++s
+  Homo|530380257|macroH2A 145 VSKKAGGKK-GARKSKKQGEVSKAAS 169
+                              344444444.4555566777776666 PP
+
+>> canonicalH2A|Trypanosoma|72391222  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   77.4   0.1   4.5e-24   1.1e-23       5     109 ..       5     107 ..       1     114 [. 0.87
+
+  Alignments for each domain:
+  == domain 1  score: 77.4 bits;  conditional E-value: 4.5e-24
+                              H2A.B   5 rsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsg..erlitpelldlavhnnalLstlfqtttisq 109
+                                        +++ k+ s g+     sr ++a lif v +v  lLr g+yA+r+  s  v++aAvle+Lta +lEL  + A +++   +++tp+ + lav  +  L +l++ +t+s+
+  canonicalH2A|Trypanosoma|72391222   5 KQAVKKASKGGS----SRSVKAGLIFPVGRVGTLLRRGQYARRIGASGAVYMAAVLEYLTAELLELSVKAAAQQTkkTKRLTPRTVTLAVRHDDDLGALLRNVTMSR 107
+                                        445554444444....899************************************************9987666545899*************************98 PP
+
+>> Trichoplax|196003430|macroH2A  Trichoplax_macroH2A
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   76.8   0.0   6.9e-24   1.7e-23      12     108 ..       5     101 ..       1     107 [. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 76.8 bits;  conditional E-value: 6.9e-24
+                          H2A.B  12 ssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                    ++  r++  sr +ra l f v ++ r L+ +++  r+ s apv+laA +e+Lta +lELAgn A+ + + +i p+ ++la+ n+ +L +l++ +ti+
+  Trichoplax|196003430|macroH2A   5 GGKARKKPSSRSARAGLQFPVGRMHRRLKSSTHHLRIGSGAPVYLAACIEYLTAEILELAGNAARDNKKLRIIPRHIQLAIGNDEELHKLLSDVTIA 101
+                                    3334557899*************************************************************************************96 PP
+
+>> Danio|94536607|macroH2A  Danio_macroH2A.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   75.0   0.0   2.4e-23     6e-23      11     109 ..       4     102 ..       1     107 [. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 75.0 bits;  conditional E-value: 2.4e-23
+                    H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                              +++ ++  + sr +ra +if v ++ r  r g    r+s  apv++aAvle+Lta +lELAgn A+ + + ++tp+ + la+ n+ +L +l++ +tis 
+  Danio|94536607|macroH2A   4 RGGKKKVSRGSRSARAGVIFPVGRMLRFFRRGLPKYRISVGAPVYMAAVLEYLTAEILELAGNAARDNKKGRVTPRHILLAIANDEELHQLLRGVTISA 102
+                              344455567799*************************************************************************************95 PP
+
+>> Homo|8923920|macroH2A  Homo_macroH2A.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   75.9   0.0   1.3e-23   3.1e-23      12     108 ..       5     101 ..       1     106 [. 0.93
+
+  Alignments for each domain:
+  == domain 1  score: 75.9 bits;  conditional E-value: 1.3e-23
+                  H2A.B  12 ssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                            s+ ++  + sr +ra +if v ++ r L++g++  r+s  apv++aAv+e+L+a +lELAgn A+ + + +i p+ + lav n+ +L +l++ +ti+
+  Homo|8923920|macroH2A   5 SGKKKMSKLSRSARAGVIFPVGRLMRYLKKGTFKYRISVGAPVYMAAVIEYLAAEILELAGNAARDNKKARIAPRHILLAVANDEELNQLLKGVTIA 101
+                            3344557889*************************************************************************************96 PP
+
+>> Cavia|348567220|H2A.L  Cavia_H2A.L.2_348567220
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   74.1   0.0   4.6e-23   1.1e-22       4      99 ..       4      97 ..       1     106 [. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 74.1 bits;  conditional E-value: 4.6e-23
+                  H2A.B  4 krsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLs 99
+                           k+s++  +ss  r++  s   rael + vs++er Lre +yA  L  s pvfl  vle+Lta +l+LA +EA+ + ++ i p+ l+ a  nn+ L 
+  Cavia|348567220|H2A.L  4 KKSNE--KSSQLRKHPVSCSRRAELQLPVSRMERYLRENSYAPHLPFSTPVFLEGVLEYLTASILDLARKEARGKRKKHILPQHLETAAENNQQLG 97
+                           44444..4556777999999************************************************************************9986 PP
+
+>> Giardia|159108895|H2A.X  Giardia_H2A.X
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   74.0   0.0     5e-23   1.2e-22      17     109 ..      10     102 ..       2     119 .. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 74.0 bits;  conditional E-value: 5e-23
+                    H2A.B  17 grtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttisq 109
+                              ++ +sr +ra ++f + ++ r+Lreg+yA+r+ss apv+laAvle + a v   A n  +++++++i p+ +  a+ ++++L+t+f  +ti +
+  Giardia|159108895|H2A.X  10 SKMKSRSARAGISFPIGRIHRHLREGRYAERISSDAPVYLAAVLENVVAEVFREACNHRDKKSQKRIVPNHILTALRKDKELATIFANVTIRE 102
+                              5789**************************************************************************************965 PP
+
+>> Perkinsus|294944035|H2A.Z  Perkinsus_H2A.Z.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   72.5   0.0   1.4e-22   3.5e-22       9     105 ..      47     144 ..      40     152 .. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 72.5 bits;  conditional E-value: 1.4e-22
+                      H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyAq.rLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                +++  g++g + +r +ra l f v +v r L++   A+ r+ s+a v+ aA+le+Lta vlELAgn A+ +  ++itp+ l la+  + +L  l+++t
+  Perkinsus|294944035|H2A.Z  47 GKGKMGGKGASMTRSARAGLQFPVGRVRRYLKDRATANcRVGSTAAVYTAAILEYLTAEVLELAGNAAKDQKVKRITPRHLHLAIRGDDELDVLIRAT 144
+                                566778999************************99997589***********************************************9998777654 PP
+
+>> Cavia|348567212|H2A.L  Cavia_H2A.L.1_348567212
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   72.3   0.3   1.7e-22   4.2e-22       6     106 ..       4     103 ..       1     107 [. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 72.3 bits;  conditional E-value: 1.7e-22
+                  H2A.B   6 srrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqttt 106
+                            +++k  ss  r++  sr +ra+l f vs+ver Lre  y  rLs   pvfla +le+Lta  l LA++ A+++ +++i pe l  a+ ++  L ++f+  t
+  Cavia|348567212|H2A.L   4 KKCKGISSKPRKHPVSRSTRAQLQFPVSRVERYLRENGYL-RLSACTPVFLAGILEYLTASALHLAARVAHRRHKKRISPEHLARALEKSEQLRQVFGDST 103
+                            45666677788899*************************6.8*****************************************************998655 PP
+
+>> Perkinsus|294944037|H2A.Z  Perkinsus_H2A.Z.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   71.9   0.0   2.3e-22   5.6e-22       9     105 ..      66     163 ..      59     171 .. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 71.9 bits;  conditional E-value: 2.3e-22
+                      H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyAq.rLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                +++  g++g + +r +ra l f v +v r L++   A+ r+ s+a v+ aA+le+Lta vlELAgn A+ +  ++itp+ l la+  + +L  l+++t
+  Perkinsus|294944037|H2A.Z  66 GKGKIGGKGTSMTRSARAGLQFPVGRVRRYLKDRATANcRVGSTAAVYTAAILEYLTAEVLELAGNAAKDQKVKRITPRHLHLAIRGDDELDVLIRAT 163
+                                556678999************************99997589***********************************************9998777654 PP
+
+>> Perkinsus|294899805|H2A.Z  Perkinsus_H2A.Z.3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   71.7   0.0   2.6e-22   6.4e-22       9     105 ..      47     144 ..      40     152 .. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 71.7 bits;  conditional E-value: 2.6e-22
+                      H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyAq.rLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                +++  g++g + +r +ra l f v +v r L++   A+ r+ s+a v+ aA+le+Lta vlELAgn A+ +  ++itp+ l la+  + +L  l+++t
+  Perkinsus|294899805|H2A.Z  47 GKGKIGGKGSSITRSARAGLQFPVGRVRRYLKDRATANcRVGSTAAVYTAAILEYLTAEVLELAGNAAKDQKVKRITPRHLHLAIRGDDELDVLIRAT 144
+                                5566789999***********************99997589***********************************************9998777654 PP
+
+>> Saccharomyces|6324562|H2A.Z  Saccharomyces_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   70.5   0.0   6.1e-22   1.5e-21      12     107 ..      13     111 ..       1     117 [. 0.83
+
+  Alignments for each domain:
+  == domain 1  score: 70.5 bits;  conditional E-value: 6.1e-22
+                        H2A.B  12 ssgrrg..rtrsrtsraelifsvsqverlLregh.yAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqttti 107
+                                  ++   g  r++s  +ra l f v +++r L+       r+ s+a ++l+Avle+Lta vlELAgn A+    ++itp+ l+la+  + +L +l+++t  
+  Saccharomyces|6324562|H2A.Z  13 GAKDSGslRSQSSSARAGLQFPVGRIKRYLKRHAtGRTRVGSKAAIYLTAVLEYLTAEVLELAGNAAKDLKVKRITPRHLQLAIRGDDELDSLIRATIA 111
+                                  22222244889999****************765505579***************************************************999988765 PP
+
+>> Gallus|71897327|H2A.Z  Gallus_H2A.Z.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.6   0.0   2.4e-21   5.8e-21       9     105 ..       7     104 ..       1     112 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 68.6 bits;  conditional E-value: 2.4e-21
+                  H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyA.qrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                            +++s+  + +  sr +ra l f v ++ r+L+  +    r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Gallus|71897327|H2A.Z   7 GKDSGKTKTKAVSRSQRAGLQFPVGRIHRHLKSRTTShGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 104
+                            445556677999*******************987655169***************************************************9999876 PP
+
+>> Homo|4504255|H2A.Z  Homo_H2A.Z.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.5   0.0   2.5e-21   6.2e-21       9     105 ..       7     104 ..       1     112 [. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 68.5 bits;  conditional E-value: 2.5e-21
+               H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyA.qrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                         +++s+  + +  sr +ra l f v ++ r+L+  +    r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Homo|4504255|H2A.Z   7 GKDSGKAKTKAVSRSQRAGLQFPVGRIHRHLKSRTTShGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 104
+                         445555667899*******************987655169***************************************************9999876 PP
+
+>> Oryza|115455263|H2A.Z  Oryza_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.3   0.1   2.9e-21   7.1e-21      11     105 ..      21     116 ..      11     124 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 68.3 bits;  conditional E-value: 2.9e-21
+                  H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAq.rLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                            +   +++   sr sra l f v ++ r+L++ ++A+ r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L tl++ t
+  Oryza|115455263|H2A.Z  21 EKDKGKKAPVSRSSRAGLQFPVGRIHRQLKQRTQANgRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDTLIKGT 116
+                            22233446789*******************99998669***************************************************9998754 PP
+
+>> Danio|112807244|H2A.Z  Danio_H2A.Z.1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.4   0.0   2.8e-21   6.9e-21       9     105 ..       7     104 ..       1     112 [. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 68.4 bits;  conditional E-value: 2.8e-21
+                  H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyA.qrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                            +++s+  + +  sr +ra l f v ++ r+L+  +    r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Danio|112807244|H2A.Z   7 GKDSGKAKTKAVSRSQRAGLQFPVGRIHRHLKTRTTShGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 104
+                            445555667899*******************986655169***************************************************9999876 PP
+
+>> Danio|24111226|H2A.Z  Danio_H2A.Z.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.3   0.0   2.9e-21     7e-21       9     105 ..       7     104 ..       1     112 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 68.3 bits;  conditional E-value: 2.9e-21
+                 H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyA.qrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                           +++s+  +++  sr +ra l f v ++ r+L+  +    r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Danio|24111226|H2A.Z   7 GKDSGKAKAKAVSRSQRAGLQFPVGRIHRHLKTRTTShGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 104
+                           445556677999*******************986655169***************************************************9999876 PP
+
+>> Gallus|121988|H2A.Z  Gallus_H2A.Z.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.3   0.0   2.9e-21     7e-21       9     105 ..       7     104 ..       1     112 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 68.3 bits;  conditional E-value: 2.9e-21
+                H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyA.qrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                          +++s+  +++  sr +ra l f v ++ r+L+  +    r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Gallus|121988|H2A.Z   7 GKDSGKAKAKAVSRSQRAGLQFPVGRIHRHLKTRTTShGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 104
+                          445556677999*******************986655169***************************************************9999876 PP
+
+>> Homo|6912616|H2A.Z  Homo_H2A.Z.2
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.3   0.0   2.9e-21     7e-21       9     105 ..       7     104 ..       1     112 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 68.3 bits;  conditional E-value: 2.9e-21
+               H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyA.qrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                         +++s+  +++  sr +ra l f v ++ r+L+  +    r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Homo|6912616|H2A.Z   7 GKDSGKAKAKAVSRSQRAGLQFPVGRIHRHLKTRTTShGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 104
+                         445556677999*******************986655169***************************************************9999876 PP
+
+>> Trichoplax|196003262|H2A.Z  Trichoplax_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.4   0.0   2.9e-21     7e-21      12     105 ..       9     103 ..       1     111 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 68.4 bits;  conditional E-value: 2.9e-21
+                       H2A.B  12 ssgrrgrtrsrtsraelifsvsqverlLreghyAq.rLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                  s  +++  sr +ra l f v ++ r+L++ +  + r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Trichoplax|196003262|H2A.Z   9 DSKTKAKAVSRSARAGLQFPVGRIHRHLKNRTTSHgRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 103
+                                 345566899*******************997765449***************************************************9999876 PP
+
+>> Drosophila|17738227|H2A.Z  Drosophila_H2Av_NP_524519
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.0   0.0   3.6e-21   8.7e-21       9     105 ..       7     104 ..       1     112 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 68.0 bits;  conditional E-value: 3.6e-21
+                      H2A.B   9 kssssgrrgrtrsrtsraelifsvsqverlLreghyA.qrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                +++s+  +++  sr +ra l f v ++ r+L+  +    r+  +a v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Drosophila|17738227|H2A.Z   7 GKDSGKAKAKAVSRSARAGLQFPVGRIHRHLKSRTTShGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 104
+                                445556677999*******************987655169***************************************************9999876 PP
+
+>> Cryptosporidium|66357734|H2A.Z  Cryptosporidium_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   66.8   0.0   8.4e-21     2e-20      10     105 ..      25     121 ..      17     129 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 66.8 bits;  conditional E-value: 8.4e-21
+                           H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghy.AqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                      s+ g +++  sr +ra l f v +++r+L+       r+ s+a+v+ aA+le+Lta vlELAgn  +    ++itp+ l+la+  + +L +l+++t
+  Cryptosporidium|66357734|H2A.Z  25 GSGKGSKKQPTSRAARAGLQFPVGRIQRMLKHRIPgDCRVGSTASVYAAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKAT 121
+                                     344455558899******************987651569***************************************************9999876 PP
+
+>> Toxoplasma|237844891|H2A.Z  Toxoplasma_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   66.3   0.0   1.2e-20     3e-20      10     105 ..      30     126 ..      22     134 .. 0.85
+
+  Alignments for each domain:
+  == domain 1  score: 66.3 bits;  conditional E-value: 1.2e-20
+                       H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreg.hyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                 s+s+ +++   sr +ra l f v +v r+L+   +   r+ s+a v+ +A+le+Lta vlELAgn  +    ++itp+ l+la+  + +L tl+++t
+  Toxoplasma|237844891|H2A.Z  30 SGSGKGKKAPLSRAARAGLQFPVGRVHRMLKSRiSSEGRVGSTAAVYASAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDTLIKAT 126
+                                 223333345689******************98614556******************************************************99876 PP
+
+>> Schizosaccharomyces|429240082|H2A.Z  Schizosaccharomyces_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   65.1   0.0   2.9e-20     7e-20      12     105 ..      18     111 ..       5     117 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 65.1 bits;  conditional E-value: 2.9e-20
+                                H2A.B  12 ssgrrgrtrsrtsraelifsvsqverlLr.eghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                            g+r  + s+ +ra l f v +v r L+ +++   r+  +  v+ aAvle+Lta vlELAgn A+    ++itp+ l+la+  + +L tl+++t
+  Schizosaccharomyces|429240082|H2A.Z  18 KIGER-GQMSHSARAGLQFPVGRVRRFLKaKTQNNMRVGAKSAVYSAAVLEYLTAEVLELAGNAAKDLKVKRITPRHLQLAIRGDEELDTLIRAT 111
+                                          22334.57899*****************83567789*****************************************************999875 PP
+
+>> Arabidopsis|15224957|H2A.Z  Arabidopsis_H2A.Z.8
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   64.3   0.1     5e-20   1.2e-19      10     105 ..      19     115 ..      10     123 .. 0.87
+
+  Alignments for each domain:
+  == domain 1  score: 64.3 bits;  conditional E-value: 5e-20
+                       H2A.B  10 ssssgrrgrtrsrtsraelifsvsqverlLreghyAq.rLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                  +  + ++++ sr sra + f v ++ r+L++   A+ r+  +a v+ a +le+Lta vlELAgn  +    ++itp+ l+la+  + +L tl++ t
+  Arabidopsis|15224957|H2A.Z  19 ANKDSVKKKSISRSSRAGIQFPVGRIHRQLKQRVSAHgRVGATAAVYTASILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDTLIKGT 115
+                                 33344555999********************98888659***************************************************9998754 PP
+
+>> Tetrahymena|229596389|H2A.Z  Tetrahymena_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   61.0   0.0   5.4e-19   1.3e-18      11     105 ..      19     114 ..       5     122 .. 0.86
+
+  Alignments for each domain:
+  == domain 1  score: 61.0 bits;  conditional E-value: 5.4e-19
+                        H2A.B  11 sssgrrgrtrsrtsraelifsvsqverlLreghyAq.rLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                  +++ +++  +sr  +a l f v ++ r L+    A+ r+  +a v+ aA+le+Lta vlELAgn  +    r+itp+ l la+  + +L  l+++t
+  Tetrahymena|229596389|H2A.Z  19 GGAKNKKTPQSRSYKAGLQFPVGRIHRFLKGRVSAKnRVGATAAVYAAAILEYLTAEVLELAGNASKDFKVRRITPRHLLLAIRGDEELDILIKAT 114
+                                  34444556789999***************987777449*************************************************998877765 PP
+
+>> Trypanosoma|72391930|H2A.Z  Trypanosoma_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   60.4   0.0   8.5e-19   2.1e-18       5     105 ..      53     153 ..      48     161 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 60.4 bits;  conditional E-value: 8.5e-19
+                       H2A.B   5 rsrrkssssgrrgrtrsrtsraelifsvsqverlLreg.hyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtt 105
+                                 r  ++ + +grr  + +r +ra+l f v ++   L++g ++ qr   sa ++ aA+le+Lt+ v+ELAg  A+ +   +i p+ l la+  + +L +++++t
+  Trypanosoma|72391930|H2A.Z  53 RGGKTGGKAGRR-DKMTRAARADLNFPVGRIHSRLKDGlNRKQRCGASAAIYCAALLEYLTSEVIELAGAAAKAQKTERIKPRHLLLAIRGDEELNQIVNAT 153
+                                 444444555555.8899********************95689*******************************************************99875 PP
+
+>> Tetrahymena|118385100|macroH2A  Tetrahymena_H2A.Y
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   47.2   0.0     1e-14   2.5e-14      17     108 ..     274     369 ..     255     375 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 47.2 bits;  conditional E-value: 1e-14
+                           H2A.B  17 g....rtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnalLstlfqtttis 108
+                                     +     ++s+ +++ l+f   ++ r L+++ +  r+sss  ++la vle+L+a vlE Agn A+n+   +i p  +  a  n+a+L ++++ t i+
+  Tetrahymena|118385100|macroH2A 274 KmnafSKQSTSQKSGLVFPCGRLRRYLKQACKQFRVSSSCNIYLAGVLEYLAAEVLETAGNIAKNNRLSRINPVHIREAFRNDAELNQFVNGTIIA 369
+                                     133446789999******************************************************************************999886 PP
+
+>> Dictyostelium|66807867|H2A.Z  Dictyostelium_H2A.Z
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   49.0   0.1   2.9e-15     7e-15       7     106 ..       5     109 ..       1     115 [. 0.84
+
+  Alignments for each domain:
+  == domain 1  score: 49.0 bits;  conditional E-value: 2.9e-15
+                         H2A.B   7 rrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsge.....rlitpelldlavhnnalLstlfqttt 106
+                                   +++s+   +r +   + ++a lif v ++ r+L++    +r+s   +v+laA+le+L++ vlEL       +++     r+i p+ l la+  + +L +l+++ t
+  Dictyostelium|66807867|H2A.Z   5 ETTSKKVNKRVKPVPKSTKAGLIFPVGRIHRMLKNKVPLKRVSILSSVYLAAILEYLASEVLELTISQVSIQSKeyhnvRRISPRHLLLAIKTDEELDNLIRVST 109
+                                   4556666788899999************************************************9776554442233339*******************998744 PP
+
+>> Canis|545557820|H2A.M  Canis_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   46.4   0.1   1.8e-14   4.5e-14      13      97 ..      17      98 ..       5     110 .. 0.81
+
+  Alignments for each domain:
+  == domain 1  score: 46.4 bits;  conditional E-value: 1.8e-14
+                  H2A.B 13 sgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnal 97
+                           s+  ++t+++ + +el f vs v+rlL+e ++ ++Lss+   fl A+l+ Lt  +lE  g EA+n+  +   p+ ++ av +n++
+  Canis|545557820|H2A.M 17 SS--NQTQAHLVTTELQFPVSYVDRLLQEDQRTHCLSSTSTEFLLAMLDSLTDYILERVGTEANNNNMQ-TAPQDVERAVGSNRE 98
+                           22..3577788899*************************************************998754.568888888777766 PP
+
+>> Rattus|197386154|H2A.M  Rattus_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   45.3   0.0   4.2e-14     1e-13       1      84 [.       1      82 [.       1      86 [. 0.89
+
+  Alignments for each domain:
+  == domain 1  score: 45.3 bits;  conditional E-value: 4.2e-14
+                   H2A.B  1 mprkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlit 84
+                            m++k+s++k  +++ +++t    sr e+ + v  v rlL+e +y  +L s+ + fl A+l++Lt  +lE+ g EA+ +++++i 
+  Rattus|197386154|H2A.M  1 MSGKKSQEK--ACSDNKQTEDPSSRPEVQVPVNYVYRLLQEEQYTPCLGSTTSDFLLAMLDYLTDYILEVVGSEANINSQQNIS 82
+                            555655555..4445568999************************************************************997 PP
+
+>> Sus|311276123|H2A.M  Sus_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   43.3   0.0   1.8e-13   4.3e-13      22      97 ..      16      90 ..       1     100 [. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 43.3 bits;  conditional E-value: 1.8e-13
+                H2A.B 22 rtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnnal 97
+                         + + +e  + vs v++lL+e +y + Lsss   fl  vle+Lt  +l+L +  A n+g+ ++tp+ ++ av +na+
+  Sus|311276123|H2A.M 16 HLTTTEPQVPVSFVDHLLQEDQYVHTLSSSTTHFLFSVLEYLTDYILDLVDTKA-NTGRMQMTPQDVERAVDSNAE 90
+                         44678999*******************************************999.689************999975 PP
+
+>> Cricetulus|354492127|H2A.M  Cricetulus_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   39.3   0.0     3e-12   7.3e-12       4      83 ..       4      81 ..       1      95 [. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 39.3 bits;  conditional E-value: 3e-12
+                       H2A.B  4 krsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerli 83
+                                k+++   +s++ +++     s+ e+ + v  v +lL+e +y  +L s+ + fl A+l+++t  +lE+ g EA+ ++++ i
+  Cricetulus|354492127|H2A.M  4 KKNQG--KSCSDNKKMEDPSSKPEVQIPVNYVYHLLQEEQYTPCLGSTTSDFLLAMLDYITDYILEVVGSEANINSQQDI 81
+                                44333..3444555899999*******************************************************99887 PP
+
+>> Mus|13385600|H2A.M  Mus_H2A.L.3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   39.1   0.0   3.5e-12   8.5e-12       2      84 ..       2      82 ..       1      90 [. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 39.1 bits;  conditional E-value: 3.5e-12
+               H2A.B  2 prkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlit 84
+                        ++k+s++k   ++ +++     sr e+ + v  v r L+e +y  ++ s+ + fl A+l++Lt  +lE+ g EA+ + +++i 
+  Mus|13385600|H2A.M  2 SEKKSQEK--PCSDNNQIEDPSSRPEVQVPVNYVYRILQEEQYTPCIGSTTSDFLLAMLDYLTDYILEVVGSEANINNQQNIS 82
+                        55555554..33455579999*********************************************************99997 PP
+
+>> Ailuropoda|301755368|H2A.M  Ailuropoda_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   37.5   0.0   1.1e-11   2.6e-11      16      79 ..      10      73 ..       1      89 [. 0.82
+
+  Alignments for each domain:
+  == domain 1  score: 37.5 bits;  conditional E-value: 1.1e-11
+                       H2A.B 16 rgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsg 79
+                                  +t+++   +el + vs v+rlL+e +y + Lsss   fl  +l++Lt  +l++ g EA+ns 
+  Ailuropoda|301755368|H2A.M 10 SYQTQAHLITTELQVPVSYVDRLLQENQYNHPLSSSTTDFLLTMLDYLTDYILDVVGTEANNSN 73
+                                224666677789999*********************************************9875 PP
+
+>> Macaca|355704714|H2A.M  Macaca_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   31.2   0.1   9.4e-10   2.3e-09       3      84 ..       3      81 ..       1      93 [. 0.84
+
+  Alignments for each domain:
+  == domain 1  score: 31.2 bits;  conditional E-value: 9.4e-10
+                   H2A.B  3 rkrsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlit 84
+                            +k +r++   s+ ++++ + +sr el + +s v+r +++ + Aq  sss    l  +l++L+  ++E  g EA n+g+ + t
+  Macaca|355704714|H2A.M  3 EKNNRKN---SSANNNQIQDRSRNELRVPMSFVDRVVQDEQDAQSQSSSTINILLTLLDCLADYIMEQVGLEAINNGRMRNT 81
+                            3333333...33445789999************************99988888889*********************76655 PP
+
+>> Ixodes|241122402|macroH2A  Ixodes_macroH2A
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   29.7   0.0   2.8e-09   6.9e-09      11      65 ..       4      58 ..       1      64 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 29.7 bits;  conditional E-value: 2.8e-09
+                      H2A.B 11 sssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLta 65
+                               +++ +r++  s+ ++a + f v ++ r L++g++  r+   apv++aAv+e+L+ 
+  Ixodes|241122402|macroH2A  4 RGGKKRAKVVSKSTKAGVLFPVGRMRRYLKKGTHHFRIGAGAPVYMAAVIEYLSG 58
+                               4556788999*******************************************85 PP
+
+>> Pan|332860554|H2A.M  Pan_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   26.7   0.1   2.4e-08   5.9e-08       6      95 ..       5      92 ..       1     106 [. 0.83
+
+  Alignments for each domain:
+  == domain 1  score: 26.7 bits;  conditional E-value: 2.4e-08
+                H2A.B  6 srrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnn 95
+                         +++k   s+ ++++ +  sr el + +s v+r +++ +  q  sss    l  +l++L+  ++E  g EA n+g  + t +  + +v nn
+  Pan|332860554|H2A.M  5 KNCK--NSSTNNNQTQDPSRNELQVPMSFVDRVVQDERDVQSQSSSTINTLLTLLDCLADYIMERVGLEASNNGSMRNTSQDREREVDNN 92
+                         3333..334455788999***************************9999999**********************8777777666666665 PP
+
+>> Homo|150456434|H2A.M  Homo_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   25.0   0.2   8.4e-08     2e-07       6      95 ..       5      92 ..       1     106 [. 0.83
+
+  Alignments for each domain:
+  == domain 1  score: 25.0 bits;  conditional E-value: 8.4e-08
+                 H2A.B  6 srrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnn 95
+                          +++k   s+ ++++ +  sr el +  s v+r +++ +  q  sss    l  +l++L+  ++E  g EA n+g  + t +  + +v nn
+  Homo|150456434|H2A.M  5 KNCK--NSSTNNNQTQDPSRNELQVPRSFVDRVVQDERDVQSQSSSTINTLLTLLDCLADYIMERVGLEASNNGSMRNTSQDREREVDNN 92
+                          3333..334455788999***************************9999999**********************8777777666666665 PP
+
+>> Homo|3329433|H2A.M  Homo_HYPM
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   24.8   0.2   9.4e-08   2.3e-07       6      95 ..      12      99 ..       7     113 .. 0.84
+
+  Alignments for each domain:
+  == domain 1  score: 24.8 bits;  conditional E-value: 9.4e-08
+               H2A.B  6 srrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlavhnn 95
+                        +++k+  s+ ++++ +  sr el +  s v+r +++ +  q  sss    l  +l++L+  ++E  g EA n+g  + t +  + +v nn
+  Homo|3329433|H2A.M 12 KNCKN--SSTNNNQTQDPSRNELQVPRSFVDRVVQDERDVQSQSSSTINTLLTLLDCLADYIMERVGLEASNNGSMRNTSQDREREVDNN 99
+                        33333..34455788999***************************9999999**********************8777777666666665 PP
+
+>> Heterocephalus|351707643|H2A.M  Heterocephalus_M3
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   18.1   0.0   1.1e-05   2.8e-05       4      79 ..       5      76 ..       2      81 .. 0.82
+
+  Alignments for each domain:
+  == domain 1  score: 18.1 bits;  conditional E-value: 1.1e-05
+                           H2A.B  4 krsrrkssssgrrgrtrsrtsraelifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsg 79
+                                    ++s+ +s     ++++    sr e  + vs +   L e +y    ss+  ++l A+le Lt  +l L g E +n g
+  Heterocephalus|351707643|H2A.M  5 QKSQYGSYK--DNNQQEDPASRPEQQLPVSDIYCILHE-EYNPYFSSTSDLLL-AMLESLTDYILTLVGSEGNNVG 76
+                                    444444433..445688999*************99988.79999**9999766.79***************99988 PP
+
+>> Bos|296470943|H2B.W  Bos_FWT_XM_610149
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   15.6   0.1   6.6e-05   0.00016       9      92 ..      86     168 ..      79     172 .. 0.75
+
+  Alignments for each domain:
+  == domain 1  score: 15.6 bits;  conditional E-value: 6.6e-05
+                H2A.B   9 kssssgrrgrtrsrtsrae.lifsvsqverlLreghyAqrLsssapvflaAvlefLtakvlELAgnEAqnsgerlitpelldlav 92 
+                          k++++ +  r+r+r+ + +  +  +    r Lr+ h+   Ls+     l   ++    ++ E Ag+ A  + +r+it e ++ av
+  Bos|296470943|H2B.W  86 KQKTAKG--RRRRRHCHHDsFSSFATYFPRVLRQIHKGMSLSHDSVNILDSFVKDTFERIAEEAGRLAGDNKRRTITTEDIEAAV 168
+                          2223223..33333333330333356799**************99999******************************9888776 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (115 nodes)
+Target sequences:                          217  (34831 residues searched)
+Passed MSV filter:                       139  (0.640553); expected 4.3 (0.02)
+Passed bias filter:                      108  (0.497696); expected 4.3 (0.02)
+Passed Vit filter:                        91  (0.419355); expected 0.2 (0.001)
+Passed Fwd filter:                        89  (0.410138); expected 0.0 (1e-05)
+Initial search space (Z):                217  [actual number of targets]
+Domain search space  (domZ):              89  [number of targets reported over threshold]
+# CPU time: 0.04u 0.00s 00:00:00.04 Elapsed: 00:00:00.04
+# Mc/sec: 100.14
+//
+[ok]

@@ -14,7 +14,8 @@ from Bio.Phylo import PhyloXMLIO
 import xml.etree.ElementTree as ET
 ET.register_namespace("", "http://www.phyloxml.org/1.10/phyloxml.xsd")
 
-colors = [
+colors7 = [
+    "#000000",
     "#66c2a5",
     "#fc8d62",
     "#8da0cb",
@@ -22,6 +23,21 @@ colors = [
     "#a6d854",
     "#ffd92f",
     "#e5c494"]
+
+colors = [
+    "#8dd3c7",
+    "#ffffb3",
+    "#bebada",
+    "#fb8072",
+    "#80b1d3",
+    "#fdb462",
+    "#b3de69",
+    "#fccde5",
+    "#d9d9d9",
+    "#bc80bd",
+    "#ccebc5",
+    "#ffed6f",
+]
 
 class Command(BaseCommand):
     help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of thi project and using those HMMs to search the NR database.'
@@ -77,7 +93,8 @@ class Command(BaseCommand):
             #Create trees and convert them to phyloxml
             tree = os.path.join(self.trees_path, "{}_aligned.ph".format(core_histone))
             subprocess.call(["muscle", "-in", combined_seed_file, '-out', combined_seed_aligned])
-            subprocess.call(["clustalw2", "-infile={}".format(combined_seed_aligned), '-tree'])
+            print " ".join(["clustalw2", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree'])
+            subprocess.call(["clustalw2", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree'])
             Phylo.convert(tree, 'newick', final_tree_name, 'phyloxml')
     
     def add_features(self):
@@ -104,7 +121,7 @@ class Command(BaseCommand):
                 render.append(charts)
 
                 styles = ET.Element("styles")
-                variants = list(Variant.objects.filter(core_type__id=core_histone).values_list("id", flat=True))
+                variants = list(Variant.objects.filter(core_type__id=core_histone).order_by("id").values_list("id", flat=True))
                 for i, variant in enumerate(variants):
                     color = colors[i]
                     background = ET.Element("{}".format(variant.replace(".","")), attrib={"fill":color, "stroke":color})
@@ -143,6 +160,9 @@ class Command(BaseCommand):
                             remove.append(clade)
                             continue
 
+                        if "canonical" in partial_variant:
+                            print genus, gi, partial_variant
+
                         for variant in variants:
                             if variant in partial_variant:
                                 break
@@ -151,10 +171,7 @@ class Command(BaseCommand):
 
                         name.attrib = {"bgStyle": variant.replace(".", "")}
 
-                        if "canonical" in variant:
-                            name.text = "."
-                        else:
-                            name.text = genus
+                        name.text = genus
                         
                         chart = ET.Element("chart")
                         group = ET.Element("group")

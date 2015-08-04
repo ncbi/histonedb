@@ -1,272 +1,332 @@
 <phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
   <phylogeny rooted="false">
-    <render><parameters><circular><bufferRadius>0.5</bufferRadius></circular></parameters><charts><group thickness="20" type="integratedBinary" /></charts><styles><cenH3 fill="#66c2a5" stroke="#66c2a5" /><markgroupcenH3 fill="#000" label="cenH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H31 fill="#fc8d62" stroke="#fc8d62" /><markgroupH31 fill="#000" label="H3.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H32 fill="#8da0cb" stroke="#8da0cb" /><markgroupH32 fill="#000" label="H3.2" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H33 fill="#e78ac3" stroke="#e78ac3" /><markgroupH33 fill="#000" label="H3.3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H3Y fill="#a6d854" stroke="#a6d854" /><markgroupH3Y fill="#000" label="H3.Y" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><canonicalH3 fill="#ffd92f" stroke="#ffd92f" /><markgroupcanonicalH3 fill="#000" label="canonicalH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="14" font-weight="bold" rotate="90" /></styles></render><clade>
+    <render><parameters><circular><bufferRadius>0.5</bufferRadius></circular></parameters><charts><group thickness="20" type="integratedBinary" /></charts><styles><canonicalH3 fill="#8dd3c7" stroke="#8dd3c7" /><markgroupcanonicalH3 fill="#000" label="canonicalH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><cenH3 fill="#ffffb3" stroke="#ffffb3" /><markgroupcenH3 fill="#000" label="cenH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H31 fill="#bebada" stroke="#bebada" /><markgroupH31 fill="#000" label="H3.1" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H32 fill="#fb8072" stroke="#fb8072" /><markgroupH32 fill="#000" label="H3.2" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H33 fill="#80b1d3" stroke="#80b1d3" /><markgroupH33 fill="#000" label="H3.3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><H3Y fill="#fdb462" stroke="#fdb462" /><markgroupH3Y fill="#000" label="H3.Y" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><unclassifiedH3 fill="#b3de69" stroke="#b3de69" /><markgroupunclassifiedH3 fill="#000" label="uH3" labelStyle="sectorHighlightText" opacity="0.7" stroke="#000" /><sectorHighlightText fill="#FFFFFF" font-family="Verdana" font-size="14" font-weight="bold" rotate="90" /></styles></render><clade>
       <clade>
         <branch_length>0.0</branch_length>
         <clade>
           <branch_length>0.0</branch_length>
           <clade>
-            <branch_length>0.01358</branch_length>
+            <branch_length>0.00223</branch_length>
             <clade>
-              <branch_length>0.00265</branch_length>
+              <branch_length>0.00617</branch_length>
               <clade>
-                <branch_length>0.00138</branch_length>
+                <branch_length>0.00479</branch_length>
                 <clade>
-                  <branch_length>0.00554</branch_length>
+                  <branch_length>0.00321</branch_length>
                   <clade>
-                    <branch_length>0.00889</branch_length>
+                    <branch_length>0.00325</branch_length>
                     <clade>
-                      <branch_length>0.0179</branch_length>
+                      <branch_length>0.00314</branch_length>
                       <clade>
-                        <branch_length>0.03598</branch_length>
+                        <branch_length>0.00711</branch_length>
                         <clade>
-                          <branch_length>0.07861</branch_length>
+                          <branch_length>0.00644</branch_length>
                           <clade>
-                            <branch_length>0.01139</branch_length>
+                            <branch_length>0.01799</branch_length>
                             <clade>
-                              <branch_length>0.01944</branch_length>
+                              <branch_length>0.02636</branch_length>
                               <clade>
-                                <branch_length>0.01875</branch_length>
+                                <branch_length>0.06205</branch_length>
                                 <clade>
-                                  <branch_length>0.01169</branch_length>
+                                  <branch_length>0.02949</branch_length>
                                   <clade>
-                                    <name bgStyle="cenH3">Drosophila</name>
-                                    <branch_length>0.40156</branch_length>
-                                  <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Drosophila (22024004)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                    <branch_length>0.01093</branch_length>
+                                    <clade>
+                                      <branch_length>0.0134</branch_length>
+                                      <clade>
+                                        <branch_length>0.00753</branch_length>
+                                        <clade>
+                                          <branch_length>0.02029</branch_length>
+                                          <clade>
+                                            <branch_length>0.02163</branch_length>
+                                            <clade>
+                                              <name bgStyle="cenH3">Drosophila</name>
+                                              <branch_length>0.41672</branch_length>
+                                            <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Drosophila (22024004)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                            <clade>
+                                              <name bgStyle="cenH3">Perkinsus</name>
+                                              <branch_length>0.32728</branch_length>
+                                            <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Perkinsus (294874934)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                          </clade>
+                                          <clade>
+                                            <name bgStyle="cenH3">Arabidopsis</name>
+                                            <branch_length>0.29962</branch_length>
+                                          <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Arabidopsis (18378832)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                        </clade>
+                                        <clade>
+                                          <name bgStyle="cenH3">Plasmodium</name>
+                                          <branch_length>0.26346</branch_length>
+                                        <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Plasmodium (124513424)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                      </clade>
+                                      <clade>
+                                        <name bgStyle="cenH3">Tetrahymena</name>
+                                        <branch_length>0.3542</branch_length>
+                                      <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Tetrahymena (118356028)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                    </clade>
+                                    <clade>
+                                      <branch_length>0.04129</branch_length>
+                                      <clade>
+                                        <name bgStyle="cenH3">Cyanidioschyzon</name>
+                                        <branch_length>0.231</branch_length>
+                                      <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Cyanidioschyzon (544210412)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                      <clade>
+                                        <name bgStyle="cenH3">Guillardia</name>
+                                        <branch_length>0.23502</branch_length>
+                                      <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Guillardia (13794280)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                    </clade>
+                                  </clade>
                                   <clade>
-                                    <name bgStyle="cenH3">Tetrahymena</name>
-                                    <branch_length>0.32447</branch_length>
-                                  <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Tetrahymena (118356028)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                    <branch_length>0.02045</branch_length>
+                                    <clade>
+                                      <name bgStyle="cenH3">Phytophthora</name>
+                                      <branch_length>0.29987</branch_length>
+                                    <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Phytophthora (695416328)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                    <clade>
+                                      <name bgStyle="cenH3">Thallassiosira</name>
+                                      <branch_length>0.21838</branch_length>
+                                    <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Thallassiosira (223995905)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                  </clade>
                                 </clade>
                                 <clade>
-                                  <name bgStyle="cenH3">Perkinsus</name>
-                                  <branch_length>0.35844</branch_length>
-                                <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Perkinsus (294874934)</desc><uri>variant/cenH3/</uri></annotation></clade>
+                                  <name bgStyle="canonicalH3">Trypanosoma</name>
+                                  <branch_length>0.2511</branch_length>
+                                <chart><group>markgroupcanonicalH3</group></chart><annotation><desc>Variant canonicalH3 from Trypanosoma (115504299)</desc><uri>variant/canonicalH3/</uri></annotation></clade>
                               </clade>
                               <clade>
-                                <name bgStyle="cenH3">Arabidopsis</name>
-                                <branch_length>0.28141</branch_length>
-                              <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Arabidopsis (18378832)</desc><uri>variant/cenH3/</uri></annotation></clade>
-                            </clade>
-                            <clade>
-                              <name bgStyle="cenH3">Plasmodium</name>
-                              <branch_length>0.26225</branch_length>
-                            <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Plasmodium (124513424)</desc><uri>variant/cenH3/</uri></annotation></clade>
-                          </clade>
-                          <clade>
-                            <branch_length>0.01272</branch_length>
-                            <clade>
-                              <branch_length>0.05089</branch_length>
-                              <clade>
-                                <name bgStyle="cenH3">Cyanidioschyzon</name>
-                                <branch_length>0.23844</branch_length>
-                              <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Cyanidioschyzon (544210412)</desc><uri>variant/cenH3/</uri></annotation></clade>
-                              <clade>
-                                <name bgStyle="cenH3">Guillardia</name>
-                                <branch_length>0.22758</branch_length>
-                              <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Guillardia (13794280)</desc><uri>variant/cenH3/</uri></annotation></clade>
-                            </clade>
-                            <clade>
-                              <branch_length>0.03349</branch_length>
-                              <clade>
-                                <name bgStyle="cenH3">Phytophthora</name>
-                                <branch_length>0.25476</branch_length>
-                              <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Phytophthora (695416328)</desc><uri>variant/cenH3/</uri></annotation></clade>
-                              <clade>
-                                <name bgStyle="cenH3">Thallassiosira</name>
-                                <branch_length>0.21539</branch_length>
-                              <chart><group>markgroupcenH3</group></chart><annotation><desc>Variant cenH3 from Thallassiosira (223995905)</desc><uri>variant/cenH3/</uri></annotation></clade>
-                            </clade>
-                          </clade>
-                        </clade>
-                        <clade>
-                          <branch_length>0.0658</branch_length>
-                          <clade>
-                            <branch_length>0.01312</branch_length>
-                            <clade>
-                              <name bgStyle="H3Y">Homo</name>
-                              <branch_length>0.17694</branch_length>
-                            <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (119628413)</desc><uri>variant/H3.Y/</uri></annotation></clade>
-                            <clade>
-                              <branch_length>0.01703</branch_length>
-                              <clade>
-                                <branch_length>0.0222</branch_length>
+                                <branch_length>0.07551</branch_length>
                                 <clade>
-                                  <name bgStyle="H3Y">Homo</name>
-                                  <branch_length>0.0</branch_length>
-                                <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
-                                <clade>
-                                  <name bgStyle="H3Y">Pan</name>
-                                  <branch_length>0.0</branch_length>
-                                <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Pan (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
-                              </clade>
-                              <clade>
-                                <branch_length>0.00457</branch_length>
-                                <clade>
-                                  <name bgStyle="H3Y">Pan</name>
-                                  <branch_length>0.01104</branch_length>
-                                <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Pan (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
-                                <clade>
-                                  <branch_length>0.0095</branch_length>
+                                  <branch_length>0.01348</branch_length>
                                   <clade>
                                     <name bgStyle="H3Y">Homo</name>
-                                    <branch_length>0.00019</branch_length>
-                                  <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                    <branch_length>0.17676</branch_length>
+                                  <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (119628413)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                  <clade>
+                                    <branch_length>0.01721</branch_length>
+                                    <clade>
+                                      <branch_length>0.02321</branch_length>
+                                      <clade>
+                                        <name bgStyle="H3Y">Homo</name>
+                                        <branch_length>0.0</branch_length>
+                                      <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                      <clade>
+                                        <name bgStyle="H3Y">Pan</name>
+                                        <branch_length>0.0</branch_length>
+                                      <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Pan (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                    </clade>
+                                    <clade>
+                                      <branch_length>0.00355</branch_length>
+                                      <clade>
+                                        <name bgStyle="H3Y">Pan</name>
+                                        <branch_length>0.01078</branch_length>
+                                      <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Pan (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                      <clade>
+                                        <branch_length>0.00977</branch_length>
+                                        <clade>
+                                          <name bgStyle="H3Y">Homo</name>
+                                          <branch_length>0.00129</branch_length>
+                                        <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Homo (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                      </clade>
+                                    </clade>
                                   </clade>
+                                </clade>
+                                <clade>
+                                  <branch_length>0.02881</branch_length>
+                                  <clade>
+                                    <name bgStyle="H3Y">Macaca</name>
+                                    <branch_length>0.02569</branch_length>
+                                  <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Macaca (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                  <clade>
+                                    <name bgStyle="H3Y">Macaca</name>
+                                    <branch_length>0.02617</branch_length>
+                                  <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Macaca (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                                </clade>
                               </clade>
                             </clade>
+                            <clade>
+                              <name bgStyle="H33">Tetrahymena</name>
+                              <branch_length>0.09883</branch_length>
+                            <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Tetrahymena (118350232)</desc><uri>variant/H3.3/</uri></annotation></clade>
                           </clade>
                           <clade>
-                            <branch_length>0.02918</branch_length>
+                            <branch_length>0.01351</branch_length>
                             <clade>
-                              <name bgStyle="H3Y">Macaca</name>
-                              <branch_length>0.02601</branch_length>
-                            <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Macaca (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                              <branch_length>0.03041</branch_length>
+                              <clade>
+                                <name bgStyle="H31">Plasmodium</name>
+                                <branch_length>0.0</branch_length>
+                              <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Plasmodium (82541094)</desc><uri>variant/H3.1/</uri></annotation></clade>
+                              <clade>
+                                <name bgStyle="H31">Plamodium</name>
+                                <branch_length>0.0</branch_length>
+                              <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Plamodium (82541094)</desc><uri>variant/H3.1/</uri></annotation></clade>
+                            </clade>
                             <clade>
-                              <name bgStyle="H3Y">Macaca</name>
-                              <branch_length>0.02584</branch_length>
-                            <chart><group>markgroupH3Y</group></chart><annotation><desc>Variant H3.Y from Macaca (NO_GI)</desc><uri>variant/H3.Y/</uri></annotation></clade>
+                              <branch_length>0.01371</branch_length>
+                              <clade>
+                                <name bgStyle="H33">Plasmodium</name>
+                                <branch_length>0.02629</branch_length>
+                              <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Plasmodium (82594554)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                              <clade>
+                                <name bgStyle="H33">Toxoplasma</name>
+                                <branch_length>0.01048</branch_length>
+                              <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Toxoplasma (22476750)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                            </clade>
                           </clade>
+                        </clade>
+                        <clade>
+                          <branch_length>0.0154</branch_length>
+                          <clade>
+                            <name bgStyle="H33">Thallasiosira</name>
+                            <branch_length>0.01031</branch_length>
+                          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Thallasiosira (224009486)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                          <clade>
+                            <name bgStyle="H33">Phytophthora</name>
+                            <branch_length>0.0191</branch_length>
+                          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Phytophthora (301090188)</desc><uri>variant/H3.3/</uri></annotation></clade>
                         </clade>
                       </clade>
                       <clade>
-                        <name bgStyle="H33">Tetrahymena</name>
-                        <branch_length>0.09661</branch_length>
-                      <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Tetrahymena (118350232)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                        <branch_length>0.0037</branch_length>
+                        <clade>
+                          <name bgStyle="H31">Griffithsia</name>
+                          <branch_length>0.03817</branch_length>
+                        <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Griffithsia (73919915)</desc><uri>variant/H3.1/</uri></annotation></clade>
+                        <clade>
+                          <name bgStyle="H33">Griffithsia</name>
+                          <branch_length>0.028</branch_length>
+                        <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Griffithsia (32401039)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                      </clade>
                     </clade>
                     <clade>
-                      <branch_length>0.01433</branch_length>
+                      <branch_length>0.01514</branch_length>
                       <clade>
-                        <branch_length>0.03245</branch_length>
+                        <branch_length>0.0</branch_length>
                         <clade>
-                          <name bgStyle="H31">Plasmodium</name>
                           <branch_length>0.0</branch_length>
-                        <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Plasmodium (82541094)</desc><uri>variant/H3.1/</uri></annotation></clade>
+                          <clade>
+                            <name bgStyle="H33">Arabidopsis</name>
+                            <branch_length>0.0</branch_length>
+                          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Arabidopsis (15236103)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                          <clade>
+                            <name bgStyle="H32">Arabidopsis</name>
+                            <branch_length>0.0</branch_length>
+                          <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Arabidopsis (15236103)</desc><uri>variant/H3.2/</uri></annotation></clade>
+                        </clade>
                         <clade>
-                          <name bgStyle="H31">Plamodium</name>
+                          <name bgStyle="H32">Oryza</name>
                           <branch_length>0.0</branch_length>
-                        <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Plamodium (82541094)</desc><uri>variant/H3.1/</uri></annotation></clade>
+                        <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Oryza (115453351)</desc><uri>variant/H3.2/</uri></annotation></clade>
                       </clade>
                       <clade>
-                        <branch_length>0.01167</branch_length>
-                        <clade>
-                          <name bgStyle="H33">Plasmodium</name>
-                          <branch_length>0.02577</branch_length>
-                        <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Plasmodium (82594554)</desc><uri>variant/H3.3/</uri></annotation></clade>
-                        <clade>
-                          <name bgStyle="H33">Toxoplasma</name>
-                          <branch_length>0.011</branch_length>
-                        <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Toxoplasma (22476750)</desc><uri>variant/H3.3/</uri></annotation></clade>
-                      </clade>
+                        <name bgStyle="H32">Selaginella</name>
+                        <branch_length>0.0</branch_length>
+                      <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Selaginella (302792052)</desc><uri>variant/H3.2/</uri></annotation></clade>
                     </clade>
                   </clade>
                   <clade>
-                    <branch_length>0.01337</branch_length>
+                    <branch_length>0.01379</branch_length>
                     <clade>
-                      <name bgStyle="H33">Thallasiosira</name>
-                      <branch_length>0.0109</branch_length>
-                    <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Thallasiosira (224009486)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                      <branch_length>0.0</branch_length>
+                      <clade>
+                        <name bgStyle="canonicalH3">Arabidopsis</name>
+                        <branch_length>0.0</branch_length>
+                      <chart><group>markgroupcanonicalH3</group></chart><annotation><desc>Variant canonicalH3 from Arabidopsis (15232146)</desc><uri>variant/canonicalH3/</uri></annotation></clade>
+                      <clade>
+                        <name bgStyle="H31">Arabidopsis</name>
+                        <branch_length>0.0</branch_length>
+                      <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Arabidopsis (15232146)</desc><uri>variant/H3.1/</uri></annotation></clade>
+                    </clade>
                     <clade>
-                      <name bgStyle="H33">Phytophthora</name>
-                      <branch_length>0.01851</branch_length>
-                    <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Phytophthora (301090188)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                      <name bgStyle="H31">Oryza</name>
+                      <branch_length>0.0</branch_length>
+                    <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Oryza (115441249)</desc><uri>variant/H3.1/</uri></annotation></clade>
                   </clade>
                 </clade>
                 <clade>
-                  <branch_length>0.00422</branch_length>
+                  <branch_length>0.01527</branch_length>
                   <clade>
-                    <branch_length>0.00454</branch_length>
-                    <clade>
-                      <name bgStyle="H31">Griffithsia</name>
-                      <branch_length>0.04141</branch_length>
-                    <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Griffithsia (73919915)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                    <clade>
-                      <branch_length>0.01006</branch_length>
-                      <clade>
-                        <name bgStyle="H31">Thallassiosira</name>
-                        <branch_length>0.01122</branch_length>
-                      <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Thallassiosira (223998042)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                      <clade>
-                        <name bgStyle="H31">Phytophthora</name>
-                        <branch_length>0.00349</branch_length>
-                      <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Phytophthora (301115049)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                    </clade>
-                  </clade>
+                    <name bgStyle="H31">Thallassiosira</name>
+                    <branch_length>0.01272</branch_length>
+                  <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Thallassiosira (223998042)</desc><uri>variant/H3.1/</uri></annotation></clade>
                   <clade>
-                    <name bgStyle="H33">Griffithsia</name>
-                    <branch_length>0.02487</branch_length>
-                  <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Griffithsia (32401039)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                    <name bgStyle="H31">Phytophthora</name>
+                    <branch_length>0.00199</branch_length>
+                  <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Phytophthora (301115049)</desc><uri>variant/H3.1/</uri></annotation></clade>
                 </clade>
               </clade>
               <clade>
-                <branch_length>0.00859</branch_length>
+                <branch_length>0.0112</branch_length>
                 <clade>
-                  <branch_length>0.01055</branch_length>
+                  <branch_length>0.0303</branch_length>
                   <clade>
-                    <branch_length>0.02787</branch_length>
+                    <name bgStyle="H33">Crypto</name>
+                    <branch_length>0.0306</branch_length>
+                  <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Crypto (58260270)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                  <clade>
+                    <branch_length>0.0057</branch_length>
                     <clade>
-                      <name bgStyle="H33">Crypto</name>
-                      <branch_length>0.03075</branch_length>
-                    <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Crypto (58260270)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                      <name bgStyle="H33">Schizosaccharomyces</name>
+                      <branch_length>0.03399</branch_length>
+                    <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Schizosaccharomyces (122076)</desc><uri>variant/H3.3/</uri></annotation></clade>
                     <clade>
-                      <branch_length>0.00555</branch_length>
+                      <branch_length>0.0138</branch_length>
                       <clade>
-                        <name bgStyle="H33">Schizosaccharomyces</name>
-                        <branch_length>0.03484</branch_length>
-                      <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Schizosaccharomyces (122076)</desc><uri>variant/H3.3/</uri></annotation></clade>
-                      <clade>
-                        <branch_length>0.01295</branch_length>
+                        <branch_length>0.00713</branch_length>
                         <clade>
-                          <branch_length>0.00759</branch_length>
+                          <branch_length>0.02362</branch_length>
                           <clade>
-                            <branch_length>0.02408</branch_length>
-                            <clade>
-                              <name bgStyle="H31">Neurospora</name>
-                              <branch_length>0.0</branch_length>
-                            <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Neurospora (85077297)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                            <clade>
-                              <name bgStyle="H33">Trichoderma</name>
-                              <branch_length>0.0</branch_length>
-                            <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Trichoderma (589115521)</desc><uri>variant/H3.3/</uri></annotation></clade>
-                          </clade>
+                            <name bgStyle="H31">Neurospora</name>
+                            <branch_length>0.0</branch_length>
+                          <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Neurospora (85077297)</desc><uri>variant/H3.1/</uri></annotation></clade>
                           <clade>
-                            <branch_length>0.01269</branch_length>
-                            <clade>
-                              <name bgStyle="H33">Saccharomyces</name>
-                              <branch_length>0.01418</branch_length>
-                            <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Saccharomyces (6319482)</desc><uri>variant/H3.3/</uri></annotation></clade>
-                            <clade>
-                              <name bgStyle="H33">Debaryomyces</name>
-                              <branch_length>0.00053</branch_length>
-                            <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Debaryomyces (50408553)</desc><uri>variant/H3.3/</uri></annotation></clade>
-                          </clade>
+                            <name bgStyle="H33">Trichoderma</name>
+                            <branch_length>0.0</branch_length>
+                          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Trichoderma (589115521)</desc><uri>variant/H3.3/</uri></annotation></clade>
                         </clade>
                         <clade>
-                          <branch_length>0.00344</branch_length>
+                          <branch_length>0.01314</branch_length>
                           <clade>
-                            <name bgStyle="H33">Candida</name>
-                            <branch_length>0.01079</branch_length>
-                          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Candida (68484797)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                            <name bgStyle="H33">Saccharomyces</name>
+                            <branch_length>0.01409</branch_length>
+                          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Saccharomyces (6319482)</desc><uri>variant/H3.3/</uri></annotation></clade>
                           <clade>
-                            <branch_length>0.01126</branch_length>
-                            <clade>
-                              <name bgStyle="H31">Debaryomyces</name>
-                              <branch_length>0.00712</branch_length>
-                            <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Debaryomyces (50423783)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                            <clade>
-                              <name bgStyle="H31">Candida</name>
-                              <branch_length>0.00758</branch_length>
-                            <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Candida (68472183)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                          </clade>
+                            <name bgStyle="H33">Debaryomyces</name>
+                            <branch_length>0.00062</branch_length>
+                          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Debaryomyces (50408553)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <branch_length>0.0039</branch_length>
+                        <clade>
+                          <name bgStyle="H33">Candida</name>
+                          <branch_length>0.01017</branch_length>
+                        <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Candida (68484797)</desc><uri>variant/H3.3/</uri></annotation></clade>
+                        <clade>
+                          <branch_length>0.01188</branch_length>
+                          <clade>
+                            <name bgStyle="H31">Debaryomyces</name>
+                            <branch_length>0.00712</branch_length>
+                          <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Debaryomyces (50423783)</desc><uri>variant/H3.1/</uri></annotation></clade>
+                          <clade>
+                            <name bgStyle="H31">Candida</name>
+                            <branch_length>0.00759</branch_length>
+                          <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Candida (68472183)</desc><uri>variant/H3.1/</uri></annotation></clade>
                         </clade>
                       </clade>
                     </clade>
                   </clade>
+                </clade>
+                <clade>
+                  <branch_length>0.00922</branch_length>
                   <clade>
-                    <branch_length>0.0128</branch_length>
+                    <name bgStyle="canonicalH3">Caenorhabditis</name>
+                    <branch_length>0.00297</branch_length>
+                  <chart><group>markgroupcanonicalH3</group></chart><annotation><desc>Variant canonicalH3 from Caenorhabditis (17567723)</desc><uri>variant/canonicalH3/</uri></annotation></clade>
+                  <clade>
+                    <branch_length>0.00438</branch_length>
                     <clade>
                       <name bgStyle="H33">Homo</name>
-                      <branch_length>0.0073</branch_length>
+                      <branch_length>0.00734</branch_length>
                     <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Homo (51859376)</desc><uri>variant/H3.3/</uri></annotation></clade>
                     <clade>
                       <name bgStyle="H33">Drosophila</name>
@@ -274,56 +334,45 @@
                     <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Drosophila (17530867)</desc><uri>variant/H3.3/</uri></annotation></clade>
                   </clade>
                 </clade>
-                <clade>
-                  <branch_length>0.00852</branch_length>
-                  <clade>
-                    <branch_length>0.01032</branch_length>
-                    <clade>
-                      <name bgStyle="H31">Drosphila</name>
-                      <branch_length>0.0</branch_length>
-                    <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Drosphila (8070)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                    <clade>
-                      <name bgStyle="H32">Drosophila</name>
-                      <branch_length>0.0</branch_length>
-                    <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Drosophila (8070)</desc><uri>variant/H3.2/</uri></annotation></clade>
-                  </clade>
-                  <clade>
-                    <name bgStyle="H31">Homo</name>
-                    <branch_length>0.00438</branch_length>
-                  <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Homo (4504281)</desc><uri>variant/H3.1/</uri></annotation></clade>
-                </clade>
               </clade>
             </clade>
             <clade>
-              <branch_length>0.01583</branch_length>
+              <branch_length>0.00512</branch_length>
               <clade>
-                <name bgStyle="H31">Arabidopsis</name>
+                <name bgStyle="canonicalH3">Mus</name>
                 <branch_length>0.0</branch_length>
-              <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Arabidopsis (15232146)</desc><uri>variant/H3.1/</uri></annotation></clade>
+              <chart><group>markgroupcanonicalH3</group></chart><annotation><desc>Variant canonicalH3 from Mus (21489955)</desc><uri>variant/canonicalH3/</uri></annotation></clade>
               <clade>
-                <name bgStyle="H31">Oryza</name>
+                <name bgStyle="H31">Homo</name>
                 <branch_length>0.0</branch_length>
-              <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Oryza (115441249)</desc><uri>variant/H3.1/</uri></annotation></clade>
+              <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Homo (4504281)</desc><uri>variant/H3.1/</uri></annotation></clade>
             </clade>
           </clade>
           <clade>
-            <name bgStyle="H33">Arabidopsis</name>
-            <branch_length>0.0</branch_length>
-          <chart><group>markgroupH33</group></chart><annotation><desc>Variant H3.3 from Arabidopsis (15236103)</desc><uri>variant/H3.3/</uri></annotation></clade>
+            <name bgStyle="canonicalH3">Xenopus</name>
+            <branch_length>0.00735</branch_length>
+          <chart><group>markgroupcanonicalH3</group></chart><annotation><desc>Variant canonicalH3 from Xenopus (148234575)</desc><uri>variant/canonicalH3/</uri></annotation></clade>
         </clade>
         <clade>
-          <name bgStyle="H32">Arabidopsis</name>
+          <name bgStyle="canonicalH3">Drosophila</name>
           <branch_length>0.0</branch_length>
-        <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Arabidopsis (15236103)</desc><uri>variant/H3.2/</uri></annotation></clade>
+        <chart><group>markgroupcanonicalH3</group></chart><annotation><desc>Variant canonicalH3 from Drosophila (78706960)</desc><uri>variant/canonicalH3/</uri></annotation></clade>
       </clade>
       <clade>
-        <name bgStyle="H32">Oryza</name>
-        <branch_length>0.0</branch_length>
-      <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Oryza (115453351)</desc><uri>variant/H3.2/</uri></annotation></clade>
+        <branch_length>0.00735</branch_length>
+        <clade>
+          <name bgStyle="H31">Drosphila</name>
+          <branch_length>0.0</branch_length>
+        <chart><group>markgroupH31</group></chart><annotation><desc>Variant H3.1 from Drosphila (8070)</desc><uri>variant/H3.1/</uri></annotation></clade>
+        <clade>
+          <name bgStyle="H32">Drosophila</name>
+          <branch_length>0.0</branch_length>
+        <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Drosophila (8070)</desc><uri>variant/H3.2/</uri></annotation></clade>
+      </clade>
       <clade>
-        <name bgStyle="H32">Selaginella</name>
+        <name bgStyle="canonicalH3">Gallus</name>
         <branch_length>0.0</branch_length>
-      <chart><group>markgroupH32</group></chart><annotation><desc>Variant H3.2 from Selaginella (302792052)</desc><uri>variant/H3.2/</uri></annotation></clade>
+      <chart><group>markgroupcanonicalH3</group></chart><annotation><desc>Variant canonicalH3 from Gallus (527498246)</desc><uri>variant/canonicalH3/</uri></annotation></clade>
     </clade>
   </phylogeny>
 </phyloxml>

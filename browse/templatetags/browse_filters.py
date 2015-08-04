@@ -19,6 +19,10 @@ def fieldtype(field):
 def rchar(value, character):
     return value.replace(character, "")
 
+@register.filter('add_parameters')
+def add_parameters(value, parameters):
+    return "{}?{}".format(value, "&".join(["{}={}".format(k,v) for k,v in parameters.iteritems()]))
+
 @register.filter('bootchoice_choice')
 def bootchoice_choice(field, default_values={}):
     #choice = str(field).replace("<select", "<select width=100% class=\"form-control\"")

@@ -20,7 +20,8 @@ NCBI_database_info = {
     "password": "DB_PASS",
     "host": "DB_HOST",
     "port": "DB_PORT",
-    "SECRET_KEY": "DJANGO_SECRET_KEY"
+    "SECRET_KEY": "DJANGO_SECRET_KEY",
+    "URL": os.path.sep,
 }
 NCBI_database_info.update({key.replace("NCBI_database_info_", ""): value for key, value in os.environ.iteritems() if key.startswith("NCBI_database_info")})
 
@@ -34,7 +35,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = NCBI_database_info["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("HistonDB_DEBUG", True)
+DEBUG = os.environ.get("NCBI_database_info_DEBUG", "True") == "True"
 
 if not DEBUG:
     #X_FRAME_OPTIONS = "DENY"
@@ -133,16 +134,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/projects/histonedb/HistoneDB/static/'
+STATIC_URL = os.path.join(NCBI_database_info["URL"], "HistoneDB", "static")
 
-STATIC_ROOT = '/web/public/htdocs/projects/histonedb/HistoneDB/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-MEDIA_URL = "/projects/histonedb/HistoneDB/media/"
-MEDIA_ROOT = "/web/projects/histonedb/HistoneDB/media/"
+MEDIA_URL = os.path.join(NCBI_database_info["URL"], "HistoneDB", "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # List of finder classes that know how to find static files in
 # various locations.

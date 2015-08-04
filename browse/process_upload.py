@@ -27,7 +27,7 @@ class InvalidFASTA(Exception):
 class InvalidSearchType(Exception):
     pass
 
-def process_upload(type, sequences, format):
+def process_upload(type, sequences, format, request):
     assert format in ["file", "text"], "Invalid format: {}. Must be either 'file' or 'text'.".format(format)
 
     if format == "text":
@@ -56,7 +56,7 @@ def process_upload(type, sequences, format):
     elif type == "hmmer":
         result = upload_hmmer(processed_sequences, len(processed_sequences))
     else:
-        raise InvalidSearchType
+        raise InvalidSearchType("Muse search only 'blastp' or 'hmmer'")
 
     return result
 
@@ -71,9 +71,10 @@ def upload_blastp(seq_file, num_seqs):
     blastFile = StringIO.StringIO()
     blastFile.write(out)
     blastFile.seek(0)
-
-    result = []
+    
+    results = []
     for i, blast_record in enumerate(NCBIXML.parse(blastFile)):
+        result = []
         for alignment in blast_record.alignments:
             try:
                 gi = alignment.hit_def.split("|")[0]
@@ -100,9 +101,13 @@ def upload_blastp(seq_file, num_seqs):
                     "header":str(sequence.header), 
                     "search_e":str(search_evalue),
                 })
-    if not result:
+        if not result:
+            raise InvalidFASTA("No blast hits for {}.".format(blast_record.query))
+        results.append(result)
+    if not results:
         raise InvalidFASTA("No blast hits.")
-    return result
+
+    return results
 
 def upload_hmmer(seq_file, num_seqs, evalue=10):
     """
@@ -145,7 +150,7 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
         hmmerFile.seek(0)
         for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
             if i==1: 
-                variant = "canonical{}".format(variant_query.id)
+                variant = "unclassified{}".format(variant_query.id)
             else:
                 variant = variant_query.id
 
@@ -164,7 +169,7 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
                     if hsp.bitscore>=variant_model.hmmthreshold and \
                          (classifications[hit.id] == "Unknown" or \
                           float(hsp.bitscore) >= rows[indices[classifications[hit.id]]][hit.id]):
-                        if i==1 and not (classifications[hit.id] == "Unknown" or "canonical" in classifications[hit.id]):
+                        if i==1 and not (classifications[hit.id] == "Unknown" or "unclassified" in classifications[hit.id]):
                             #Skip canoninical score if already classfied as a variant
                             continue
                         classifications[hit.id] = variant
