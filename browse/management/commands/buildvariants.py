@@ -8,17 +8,19 @@ import os, sys
 
 from Bio import SeqIO
 
+#This command is the main one in creating the histone database system from seed alignments
+#and by using HMMs constructed based on these alignment to classify the bigger database.
+#see handle() for the workflow description.
+#INPUT NEEDED: static/browse/seeds
+#db_file (nr) in the main directory - the database of raw sequences.
+
 class Command(BaseCommand):
-    help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of this project and using those HMMs to search the NR database. To add or update a single variant, you must rebuild everything using the --force option'
+    help = 'Build HistoneDB by first loading the seed sequences and then parsing the database file'
     seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
     hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
-    combined_varaints_file = os.path.join(hmm_directory, "combined_variants.hmm")
-    combined_core_file = os.path.join(hmm_directory, "combined_cores.hmm")
-    pressed_combined_varaints_file = os.path.join(hmm_directory, "combined_variants.h3f")
-    pressed_combined_cores_file = os.path.join(hmm_directory, "combined_cores.h3f")
-    results_file = "{}.out".format(combined_varaints_file)
-    core_results_file = "{}.out".format(combined_core_file)
-    nr_file = "nr"
+    combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
+    pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
+    results_file = "{}.out".format(combined_hmm_file)
     model_evalution = os.path.join(hmm_directory, "model_evalution")
 
     def add_arguments(self, parser):
@@ -27,65 +29,54 @@ class Command(BaseCommand):
             "--force", 
             default=False,
             action="store_true", 
-            help="Force the recreation of the HistoneDB. If True and an hmmsearch file is not present, the program will redownload the nr db if not present, build and press the HMM, and search the nr databse using the HMMs.")
+            help="Force the regeneration of HMM from seeds, HUMMER search in db_file, Test models and loading of results to database")
 
         parser.add_argument(
-            "--nr",
-            default=False,
-            action="store_true",
-            help="Redownload NR database. If force is also True, this option is redundant")
-
-        parser.add_argument(
-            "--only_variants",
-            default=False,
-            action="store_true",
-            help="Build and evaluate only variant HMMs. Default False, evalute both core and variant HMMs")
-
-        parser.add_argument(
-            "--only_cores",
-            default=False,
-            action="store_true",
-            help="Build and evaluate only core HMMs. Default False, evalute both core and variant HMMs")
-
-        parser.add_argument(
-            "--variant",
-            default=None,
-            nargs="+",
-            help="Only process this varaint. Can enter multiple")
-
-        parser.add_argument(
-            "--test_models",
-            default=False,
-            action="store_true",
-            help="Only test the models. This will updates the variant threshold and aucroc in model.")
-
+            "--db",
+            nargs=1,
+            dest="db_file",
+            default="nr",
+            help="Specify the database file, by default will use or download nr")
 
 
     def handle(self, *args, **options):
-        #self.get_nr(force=options["nr"])
+        ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
+        self.db_file=options['db_file']
+        if(self.db_file=="nr"):
+            self.get_nr()
+        ##If force=True, we do the default procedure:
+        if options["force"]:
+            ####Let's start by populating our Histone types table, add some descriptions to them.
+            self.create_histone_types()
+            ####We start next by creating HMMs from seeds and compressing them to one HMM file.
+            self.build_hmms_from_seeds()
+            ####HMMpress the combined list of HMMs to use it in fast search
+            self.press_hmms()
+            ####We need to determing HUMMER thresholds params,
+            ####that we would in HMM search resutls analysis to decide if seq fits to be a certain variant
+            ####AND load them to database.
+            self.estimate_thresholds()
 
-        if not options["force"]:
-            self.search_variants()
-            self.load_variants()
-            self.search_cores()
-            self.load_cores()
+            exit()
 
-
-
-        else:
-            #Force to rebuild everything
-            #Here we are building HMM from seeds.
-            self.build(only_cores=options["only_cores"], only_variants=options["only_variants"])
-            #Here we are testing and calculating the right threshold parameters from ROC curves.
             self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
             if not options["only_cores"]:
                 self.press_variants()
                 self.search_variants()
                 self.load_variants()
-            if not options["only_variants"]: 
+            if not options["only_variants"]:
                 self.press_cores()
                 self.search_cores()
                 self.load_cores()
+
+
+        #esle we only try to do things that are lacking
+        #do every step only if the corresponding files are missing
+        else:
+            self.search_variants()
+            self.load_variants()
+            self.search_cores()
+            self.load_cores()
 ############An ad-hoc snippet to load the seeds sequence into the database.###########
         try:
             os.remove('/tmp/all.fasta')
@@ -116,52 +107,54 @@ class Command(BaseCommand):
 
     #####################
 
+    def create_histone_types(self):
+        """Create basic histone types
+        Check that these names are consistent with the folder names in static/browse/seeds/
+        """
+        for i in ['H3','H4','H2A','H2B']:
+            obj,created = Histone.objects.get_or_create(id=i,taxonomic_span="Eukaryotes",\
+                      description="Core histone")
+        if created:
+            print "Histone ", obj," type was created in database."
 
-    def get_nr(self, force=False):
+        obj,created = Histone.objects.get_or_create(id="H1",taxonomic_span="Eukaryotes",\
+                      description="Linker histone")
+        if created:
+            print "Histone ", obj," type was created in database."
+
+    def get_nr(self):
         """Download nr if not present"""
-        if not os.path.isfile(self.nr_file) or force:
+        if not os.path.isfile(self.db_file):
             print >> self.stdout, "Downloading nr..."
             with open("nr.gz", "w") as nrgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
             subprocess.call(["gunzip", "nr.gz"])
 
-    def build(self, only_cores=False, only_variants=False):
-        """Build HMMs"""
+    def build_hmms_from_seeds(self):
+        """Build HMMs from seed histone sequences,
+        and outputing them to
+        static/browse/hmms/
+        to individual dirs as well as combining to pne file combined_hmm_file
+        """
         print >> self.stdout, "Building HMMs..."
         
-        with open(self.combined_varaints_file, "w") as combined_variants, open(self.combined_core_file, "w") as combined_core:
-            for core_type, seed in self.get_seeds(core=True):
-                if seed is None and not only_variants:
-                    #Build Core HMM
-                    core_hmm_file = os.path.join(self.hmm_directory, core_type, "canonical{}.hmm".format(core_type))
-                    seed = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
-                    self.build_hmm(core_type, core_hmm_file, seed)
-
-                    with open(core_hmm_file) as core_hmm:
-                        print >> combined_core, core_hmm.read().rstrip()
-                    continue
-
-                if only_cores:
-                    continue
-
-                #Build Variant HMM
-                hmm_dir = os.path.join(self.hmm_directory, core_type)
+        with open(self.combined_hmm_file, "w") as combined_hmm:
+            for hist_type, seed in self.get_seeds():
+                #Build HMMs
+                hmm_dir = os.path.join(self.hmm_directory, hist_type)
                 if not os.path.exists(hmm_dir):
                     os.makedirs(hmm_dir)
                 hmm_file = os.path.join(hmm_dir, "{}.hmm".format(seed[:-6]))
-                self.build_hmm(seed[:-6], hmm_file, os.path.join(self.seed_directory, core_type, seed))
+                self.build_hmm(seed[:-6], hmm_file, os.path.join(self.seed_directory, hist_type, seed))
                 with open(hmm_file) as hmm:
-                    print >> combined_variants, hmm.read().rstrip()
+                    print >> combined_hmm, hmm.read().rstrip()
 
     def build_hmm(self, name, db, seqs):
         print ["hmmbuild", "-n", name, db, seqs]
         subprocess.call(["hmmbuild", "-n", name, db, seqs])
 
-    def press_variants(self):
-        return self.press(self.combined_varaints_file)
-
-    def press_cores(self):
-        return self.press(self.combined_core_file)
+    def press_hmms(self):
+        return self.press(self.combined_hmm_file)
 
     def press(self, combined_hmm):
         """Press the HMMs into a single HMM file, overwriting if present"""
@@ -179,7 +172,7 @@ class Command(BaseCommand):
         print >> self.stdout, "Searching HMMs..."
 
         if sequences is None:
-            sequences = self.nr_file
+            sequences = self.db_file
 
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", db, sequences])
 
@@ -193,119 +186,80 @@ class Command(BaseCommand):
         print >> self.stdout, "Loading data into HistoneDB..."
         load_cores(self.core_results_file,reset=reset)
 
-    def get_seeds(self, core=False):
+    def get_seeds(self):
+        """
+        Goes through static/browse/seeds directories and returns histone type names and fasta file name of variant (without path).
+        """
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
-            core_type = os.path.basename(root)
-            if i==0:
-                #Skip parent directory, only allow variant hmms to be built/searched
-                continue
-            if core:
-                yield core_type, None
+            hist_type = os.path.basename(root)
             for seed in files: 
                 if not seed.endswith(".fasta"): continue
-                yield core_type, seed
+                yield hist_type, seed
 
-    def test(self, only_cores=False, only_variants=False, specificity=0.95):
-        for core_type, seed1 in self.get_seeds(core=True):
-            #Seed1 is positive examples
-            if seed1 == None:
-                #Test Core HMM
-                variant = "canonical{}".format(core_type)
-                positive_path = os.path.join(self.seed_directory, "{}.fasta".format(core_type))
-                if only_variants: continue
-            else:
-                #Test Varaint HMM
-                variant = seed1[:-6]
-                positive_path = os.path.join(self.seed_directory, core_type, seed1)
-                if only_cores: continue
-            
-            hmm_file = os.path.join(self.hmm_directory, core_type, "{}.hmm".format(variant))
+    def estimate_thresholds(self, specificity=0.95):
+        """
+        Estimate HMM threshold that we will use for variant classification.
+        Construct two sets for every variant - negative and positive.
+        And estimate params from ROC-curves.
+        """
+        for hist_type_pos, seed_pos in self.get_seeds():
+            variant_name = seed_pos[:-6]
 
-            output_dir = os.path.join(self.model_evalution, core_type)
+            #Getting all paths right
+            positive_seed_aln_file = os.path.join(self.seed_directory, hist_type_pos, seed_pos)
+            hmm_file = os.path.join(self.hmm_directory, hist_type_pos, "{}.hmm".format(variant_name))
+
+            output_dir = os.path.join(self.model_evalution, hist_type_pos)
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
+            positive_examples_file = os.path.join(output_dir, "{}_postive_examples.fasta".format(variant_name))
+            positive_examples_out = os.path.join(output_dir, "{}_postive_examples.out".format(variant_name))
+            negative_examples_file = os.path.join(output_dir, "{}_negative_examples.fasta".format(variant_name))
+            negative_examples_out = os.path.join(output_dir, "{}_negative_examples.out".format(variant_name))
 
-            positive_examples_file = os.path.join(output_dir, "{}_postive_examples.fasta".format(variant))
-            positive_examples = os.path.join(output_dir, "{}_postive_examples.out".format(variant))
-            negative_examples_file = os.path.join(output_dir, "{}_negative_examples.fasta".format(variant))
-            negative_examples = os.path.join(output_dir, "{}_negative_examples.out".format(variant))
-
-            print "Saving", positive_path, "into", positive_examples_file
-            with open(positive_examples_file, "w") as positive_file:
-                for s in SeqIO.parse(positive_path, "fasta"):
+            #Unagapping all sequence from seed aln - this will be the positive example
+            # print "Saving", positive_seed_aln_file, "into", positive_examples_file
+            with open(positive_examples_file, "w") as pf:
+                for s in SeqIO.parse(positive_seed_aln_file, "fasta"):
                     s.seq = s.seq.ungap("-")
-                    SeqIO.write(s, positive_file, "fasta")
-            
-            self.search(db=hmm_file, out=positive_examples, sequences=positive_examples_file, E=500)
+                    SeqIO.write(s, pf, "fasta")
+
+            #Searching the positive examples set
+            self.search(db=hmm_file, out=positive_examples_out, sequences=positive_examples_file, E=500)
             
             #Build negative examples from all other varaints
             
-            with open(negative_examples_file, "w") as negative_file:
-                for core_type2, seed2 in self.get_seeds(core=True):
-                    if seed1 is None and seed2 is None:
-                        #Compare Cores
-                        if core_type == core_type2:
-                            #Don't compare cores if they are the same
-                            continue
-                        
-                        sequences = os.path.join(self.seed_directory, "{}.fasta".format(core_type2))
-                    elif (seed1 is not None and seed2 is None) or (seed1 is None and seed2 is not None):
-                        #Do not compare core to varaints
+            with open(negative_examples_file, "w") as nf:
+                for hist_type_neg, seed_neg in self.get_seeds():
+                    if((hist_type_pos == hist_type_neg) and (seed_neg == seed_pos)):
                         continue
-                    elif not seed1 == seed2:
-                        sequences = os.path.join(self.seed_directory, core_type2, seed2)
                     else:
-                        #Do not compare files if they are the same
-                        continue
-                    print "Saving negatives from", sequences, "into", negative_examples_file 
+                        sequences = os.path.join(self.seed_directory, hist_type_neg, seed_neg)
+                    # print "Saving negatives from", sequences, "into", negative_examples_file
                     for s in SeqIO.parse(sequences, "fasta"):
                         s.seq = s.seq.ungap("-")
-                        SeqIO.write(s, negative_file, "fasta")
+                        SeqIO.write(s, nf, "fasta")
+            #Searching through negative example set
+            self.search(db=hmm_file, out=negative_examples_out, sequences=negative_examples_file, E=500)
 
-            self.search(db=hmm_file, out=negative_examples, sequences=negative_examples_file, E=500)
-
-            parameters = test_model(variant, output_dir, positive_examples, negative_examples)
-
-            if variant == "H1.8":
+            #Here we are doing ROC curve analysis and returning parameters
+            #TODO still need to be refurbished, breaks on H1.8
+            try:
+                parameters = test_model(variant_name, output_dir, positive_examples_out, negative_examples_out)
+            except:
+                print "Test model, failed for ", variant_name
                 parameters["threshold"] = 100.
 
-            try:
-                variant_model = Variant.objects.get(id=variant)
-            except:
-                if "H2A" in variant:
-                    try:
-                        core_histone = Histone.objects.get(id="H2A")
-                    except Histone.DoesNotExist:
-                        core_histone = Histone("H2A")
-                        core_histone.save()
-                elif "H2B" in variant:
-                    try:
-                        core_histone = Histone.objects.get(id="H2B")
-                    except Histone.DoesNotExist:
-                        core_histone = Histone("H2B")
-                        core_histone.save()
-                elif "H3" in variant:
-                    try:
-                        core_histone = Histone.objects.get(id="H3")
-                    except Histone.DoesNotExist:
-                        core_histone = Histone("H3")
-                        core_histone.save()
-                elif "H4" in variant:
-                    try:
-                        core_histone = Histone.objects.get(id="H4")
-                    except Histone.DoesNotExist:
-                        core_histone = Histone("H4")
-                        core_histone.save()
-                elif "H1" in variant:
-                    try:
-                        core_histone = Histone.objects.get(id="H1")
-                    except Histone.DoesNotExist:
-                        core_histone = Histone("H1")
-                        core_histone.save()
-                else:
-                    continue
-                variant_model = Variant(id=variant, core_type=core_histone)
-                variant_model.save()
+            # #Some addhoc, because the test_model breaks on it, redid it as seen above
+            # if variant_name == "H1.8":
+            #     parameters["threshold"] = 100.
+
+            #Let's put the parameter data to the database,
+            #We can set hist_type directly by ID, which is hist_type_pos in this case - because it is the primary key in Histone class.
+            variant_model, create = Variant.objects.get_or_create(id=variant_name,hist_type_id=hist_type_pos)
+            if create:
+                print "Created ",variant_model," variant model in database"
+            print "Updating thresholds for ", variant_model
             variant_model.hmmthreshold = parameters["threshold"]
             variant_model.aucroc = parameters["roc_auc"]
             variant_model.save()

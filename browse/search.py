@@ -1,5 +1,5 @@
 from django.db.models import Max, Min, Count
-from browse.models import Histone, Variant, OldStyleVariant, Sequence, Score
+from browse.models import Histone, Variant, Sequence, Score
 import browse
 from djangophylocore.models import Taxonomy
 from django.db.models import Q
@@ -342,17 +342,17 @@ class HistoneSearch(object):
         except:
             pass
 
-        try:
-            variant = OldStyleVariant.objects.get(name=search_text).updated_variant
-            parameters["id_variant"] = variant.id
-            parameters["id_variant_search_type"] = "is"
-            
-            if self.navbar:
-                self.redirect = redirect(variant)
-            
-            return parameters
-        except OldStyleVariant.DoesNotExist:
-            pass
+        # try:
+        #     variant = OldStyleVariant.objects.get(name=search_text).updated_variant
+        #     parameters["id_variant"] = variant.id
+        #     parameters["id_variant_search_type"] = "is"
+        #
+        #     if self.navbar:
+        #         self.redirect = redirect(variant)
+        #
+        #     return parameters
+        # except OldStyleVariant.DoesNotExist:
+        #     pass
 
         try:
             #Search species

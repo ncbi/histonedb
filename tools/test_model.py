@@ -67,7 +67,7 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     postive_scores = get_model_scores(postive_file)
     negative_scores = get_model_scores(negative_file)
     all_scores = postive_scores+negative_scores
-    print all_scores
+    # print all_scores
 
     if len(negative_scores) == 0:
         return {"roc_auc":0, "threshold":min(postive_scores)}
@@ -107,8 +107,8 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     #axes[1].set_title("ROC")
  
     for i, (measure, values) in enumerate(values.iteritems()):
-        print measure, values
-        print len(thresholds), len(values)
+        # print measure, values
+        # print len(thresholds), len(values)
         label = "SPC: (>={})".format(best_threshold) if measure=="SPC" else measure
         axes[2].plot(list(thresholds), values, label=label, linewidth=2, color=colors[i])
     axes[2].axvline(best_threshold)
@@ -167,9 +167,9 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
     #b = np.ascontiguousarray(a).view(np.dtype((np.void, a.dtype.itemsize * a.shape[1])))
     #_, idx = np.unique(b, return_index=True)
 
-    print values[measure]
-    print
-    print thresholds
+    # print values[measure]
+    # print
+    # print thresholds
     specificity_curve_inverse = interp1d(values[measure], thresholds)
     saveThreshold = specificity_curve_inverse(0.95)
     

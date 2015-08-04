@@ -26,11 +26,11 @@ class Variant(models.Model):
     H2A.10 -> one species, different varaint that are species speficific
     """
     id            = models.CharField(max_length=25, primary_key=True)
-    core_type     = models.ForeignKey(Histone, related_name="variants")
+    hist_type     = models.ForeignKey(Histone, related_name="variants")
     taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
     description   = models.CharField(max_length=255)
-    hmmthreshold  = models.FloatField(null=True)
-    aucroc        = models.IntegerField(null=True)
+    hmmthreshold  = models.FloatField(null=True) # parameter used in hmmersearch during sequence annotation
+    aucroc        = models.IntegerField(null=True) # another parameter - these paramters are calculated during testing phase of manage.py buildvariants
 
     def __unicode__(self):
         return self.id
@@ -39,15 +39,15 @@ class Variant(models.Model):
         from django.core.urlresolvers import reverse
         return reverse('browse.views.browse_variant', args=[str(self.core_type.id), str(self.id)])
 
-class OldStyleVariant(models.Model):
-    updated_variant = models.ForeignKey(Variant, related_name="old_names")
-    name            = models.CharField(max_length=255, primary_key=True)
-    gene            = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
-    splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
-    taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
-
-    def __unicode__(self):
-        return "{} (now called {})".format(self.name, self.updated_variant.id)
+# class OldStyleVariant(models.Model):
+#     updated_variant = models.ForeignKey(Variant, related_name="old_names")
+#     name            = models.CharField(max_length=255, primary_key=True)
+#     gene            = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
+#     splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
+#     taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
+#
+#     def __unicode__(self):
+#         return "{} (now called {})".format(self.name, self.updated_variant.id)
 
 class Sequence(models.Model):
     id       = models.CharField(max_length=25, primary_key=True) #GI
@@ -113,6 +113,9 @@ class Sequence(models.Model):
     
 
 class Score(models.Model):
+    """
+    The score class, assigns a bunch of score entries to the sequence. For each variant a score.
+    """
     id                     = models.IntegerField(primary_key=True)
     sequence               = models.ForeignKey(Sequence, related_name="all_model_scores")
     variant                = models.ForeignKey(Variant, related_name="+")
@@ -272,14 +275,14 @@ extension\tffff66
         return ss_position
 
 
-class Structure(models.Model):
-    sequence = models.OneToOneField(Sequence, primary_key=True, related_name="structures")
-    pdb      = models.CharField(max_length=25)
-    mmdb     = models.CharField(max_length=25)
-    chain    = models.CharField(max_length=25)
-
-class Publication(models.Model):
-    id       = models.IntegerField(primary_key=True) #PubmedID
-    variants = models.ManyToManyField(Variant)
-    cited    = models.BooleanField() 
-    
+# class Structure(models.Model):
+#     sequence = models.OneToOneField(Sequence, primary_key=True, related_name="structures")
+#     pdb      = models.CharField(max_length=25)
+#     mmdb     = models.CharField(max_length=25)
+#     chain    = models.CharField(max_length=25)
+#
+# class Publication(models.Model):
+#     id       = models.IntegerField(primary_key=True) #PubmedID
+#     variants = models.ManyToManyField(Variant)
+#     cited    = models.BooleanField()
+#
