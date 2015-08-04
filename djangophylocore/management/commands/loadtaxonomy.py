@@ -28,7 +28,7 @@ class Command(NoArgsCommand):
                 cmd = "sqlite3 -separator '|' %s '.import %s server_%s'" % (
                   db_name, map_dumps[name],  name) 
             elif db_engine.endswith('mysql'):
-                cmd = """mysql -h %s -u %s -p%s %s -e "LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
+                cmd = """mysql -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
                   settings.DATABASES["default"]["HOST"], settings.DATABASES["default"]["USER"], settings.DATABASES["default"]["PASSWORD"], db_name, map_dumps[name],  name )
             if verbose:
                 print cmd

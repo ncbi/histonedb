@@ -7,31 +7,42 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
 
 - Python 2.7
 - Flup 1.0.2, if using fastcgi
-- Django 1.8
+- Django 1.8, django-debug_toolbar, django-filter, django-filters(?)
 - django-extensions 1.5.3
 - MySQL-python 1.2.5
 - BioPython 1.65
 - colour 0.1.1
-- HMMER 3.1b2
-- BLAST+
-- EMBOSS
+- pyparsing, matplotlib, seaborn, sklearn
+- [HMMER 3.1b2](http://hmmer.janelia.org)
+- [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+- [EMBOSS](http://emboss.sourceforge.net)
+- [MUSCLE](http://www.drive5.com/muscle/)
+- [ClustalW2](http://www.clustal.org/clustal2/)
 
 ## Setup ##
 
 If you want to test the server on your own machine, you must make sure have all of the dependencies listed above and follow these steps.
 
-1) Create MySQL database, and store the login information in HistoneDB/NCBI_database_info.py, which is formatted in the following way:
+1) Create MySQL database, and store the login information in the dictionary NCBI_databse_info in HistoneDB/settings.py, which is formatted in the following way:
+```
+NCBI_database_info = {
+    "name": "DB_NAME",
+    "user": "DB_USER",
+    "password": "DB_PASS",
+    "host": "DB_HOST",
+    "port": "DB_PORT",
+    "SECRET_KEY": "DJANGO_SECRET_KEY"
+}
+```
+If running on the mweb, these values will already be set as environment variables.
+
+2) Migrate Django models into database
 
 ```
-#This file contains the user name and password for the HistoneDB 2.0
-#Keep hidden
-name = "DB NAME"
-user = "DB USER"
-password = "DB PASS"
-host = "DB URL"
+python manage.py migrate
 ```
 
-2) Build NCBI Taxonomy with djangophylocore
+3) Build NCBI Taxonomy with djangophylocore
 
 ```
 python manage.py buildncbi
@@ -39,25 +50,25 @@ python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
 ```
 
-3) Classify sequences in NR
+4) Classify sequences in NR
 
 ```
 python manage.py buildvariants
 ```
 
-4) Build trees from seed sequences
+5) Build trees from seed sequences
 
 ```
 python manage.py buildtrees
 ```
 
-5) Build organism sunbursts for each variant
+6) Build organism sunbursts for each variant
 
 ```
 python manage.py buildsunburst
 ```
 
-6) Build MSA and GFF sequence features for variants
+7) Build MSA and GFF sequence features for variants
 
 ```
 python manage.py buildseedinfo

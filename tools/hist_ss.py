@@ -20,9 +20,9 @@ import cPickle as pickle
 from StringIO import StringIO
 
 #Required libraires
-import pylab
-import pandas as pd
-import networkx as nx
+#import pylab
+#import pandas as pd
+#import networkx as nx
 
 #Django
 from django.conf import settings 
