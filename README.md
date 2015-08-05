@@ -81,7 +81,16 @@ python manage.py buildblastdb
 ```
 
 ## Update ##
-If youe need to update or rebuild the database, e.g. if a new variant is discovered, you must rerun steps 4-8 adding the --force parametr after each command to make sure everything gets updated.
+If youe need to update or rebuild the database, e.g. if a new variant is discovered, you must rerun steps 4-8 adding the --force parameter after each command to make sure everything gets updated.
+
+## Adding new variants ##
+1) Collect representative sequences and create seed alignments using any methods you wish. Please read our [paper](manuscript/paper.md) for more info on how we collected the sequences and aligned them.
+
+2) Place seed alignments in appropriate static directory:
+```
+static/browse/seeds/[CORE_HISTONE]/[VARIANT].fasta
+```
+3) Follow update instructions
 
 ## Run ##
 
