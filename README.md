@@ -31,7 +31,8 @@ NCBI_database_info = {
     "password": "DB_PASS",
     "host": "DB_HOST",
     "port": "DB_PORT",
-    "SECRET_KEY": "DJANGO_SECRET_KEY"
+    "SECRET_KEY": "DJANGO_SECRET_KEY",
+    "URL":"/" #Root of site when accessed from a browser
 }
 ```
 If running on the mweb, these values will already be set as environment variables.
@@ -73,6 +74,14 @@ python manage.py buildsunburst
 ```
 python manage.py buildseedinfo
 ```
+8) Build Blast database for custom sequence analysis
+
+```
+python manage.py buildblastdb
+```
+
+## Update ##
+If youe need to update or rebuild the database, e.g. if a new variant is discovered, you must rerun steps 4-8 adding the --force parametr after each command to make sure everything gets updated.
 
 ## Run ##
 
