@@ -1,0 +1,55 @@
+	"other": "H2B.V: 
+			interacts with H2A.Z, trypanoasma
+
+			H2A.1:
+				H2Abd1 -> H2A.1 (bdelloid)
+			H2A.2:
+				H2Abd2 -> H2A.2 (bdelloid)
+			H2A.3:
+				H2Abd -> H2A.3 (bdelloid)
+
+			H2A.L:
+				
+
+			H2A.Q:
+				H2Asq.1 -> H2A.Q.1 (Oikoplura)
+				H2Asq.2 -> H2A.Q.2 (Oikoplura)
+				H2Asq.3 -> H2A.Q.3 (Oikoplura)
+
+		H2B:
+				H2BV -> H2B.V (Trypanosoma)
+			H2B.Z:
+				
+
+		H3:
+			H3.P (Monuoplotes)
+				H3(P) -> H3.P
+
+			H3.3:
+				
+			H3.4:
+				H3t -> H3.4 (human)
+				H3t -> H3.4.1-.3 (TS, urochprdates)
+
+		H4:
+			H4.V:
+				H4V -> H4.V
+
+		H1:
+			H1.4:
+				B4 -> H1.4 (amphibian)
+				H1e -> H1.4 (mouse)
+
+	prefices:
+		TS -> testis-sepecific
+		GC -> generative cell
+		LE ->
+		OO -> oocyte speicific
+		RC -> replication coupled
+		RI -> replication independent
+
+			H2A.W:
+			SPKK motifs in plants in tals that wrap more DNA
+
+			H2A.Q:
+			Found in Oikopluera"

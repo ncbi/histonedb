@@ -1,11 +1,14 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from browse.models import Histone, Variant, Sequence, Score, Features 
-from tools.load_hmmsearch import load_variants, load_cores
+from tools.load_hmmsearch import load_hmm_results, add_score
 from tools.test_model import test_model
 import subprocess
 import os, sys
+import re
+from tools.taxonomy_from_gis import taxids_from_gis
 
+from Bio import SearchIO
 from Bio import SeqIO
 
 #This command is the main one in creating the histone database system from seed alignments
@@ -20,7 +23,9 @@ class Command(BaseCommand):
     hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
     combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
     pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
-    results_file = "{}.out".format(combined_hmm_file)
+    dbauto_search_results_file = os.path.join(hmm_directory, "dbauto_search_results.out")
+    curated_all_fasta=os.path.join(hmm_directory, "curated_all.fasta")
+    curated_search_results_file = os.path.join(hmm_directory, "curated_all_search_results.out")
     model_evalution = os.path.join(hmm_directory, "model_evalution")
 
     def add_arguments(self, parser):
@@ -34,18 +39,24 @@ class Command(BaseCommand):
         parser.add_argument(
             "--db",
             nargs=1,
-            dest="db_file",
+            dest="dbauto_file",
             default="nr",
             help="Specify the database file, by default will use or download nr")
 
 
     def handle(self, *args, **options):
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
-        self.db_file=options['db_file']
-        if(self.db_file=="nr"):
+        self.dbauto_file=options['dbauto_file']
+        if(self.dbauto_file=="nr"):
             self.get_nr()
         ##If force=True, we do the default procedure:
         if options["force"]:
+            ####Clean the DB first of all
+            Sequence.objects.all().delete()
+            Features.objects.all().delete()
+            Score.objects.all().delete()
+            Variant.objects.all().delete()
+            Histone.objects.all().delete()
             ####Let's start by populating our Histone types table, add some descriptions to them.
             self.create_histone_types()
             ####We start next by creating HMMs from seeds and compressing them to one HMM file.
@@ -54,25 +65,25 @@ class Command(BaseCommand):
             self.press_hmms()
             ####We need to determing HUMMER thresholds params,
             ####that we would in HMM search resutls analysis to decide if seq fits to be a certain variant
-            ####AND load them to database.
+            ####AND create variant recoreds in database and load variant params into database.
             self.estimate_thresholds()
-
+            ####Now we need to load our curated sets (which is indeed taken from seed alignments)
+            ####into the database
+            ####but we will subject them to the same classification as automatic seqs.
+            self.load_curated()
+            self.get_scores_for_curated_via_hmm()
+            ####Now we will do the atomated seach in the dbauto_file (nr or other) database
+            #### and load all automatically classified sequnces, as well as add scores to them.
+            self.search_in_dbauto()
+            self.load_from_dbauto()
             exit()
-
-            self.test(only_cores=options["only_cores"], only_variants=options["only_variants"])
-            if not options["only_cores"]:
-                self.press_variants()
-                self.search_variants()
-                self.load_variants()
-            if not options["only_variants"]:
-                self.press_cores()
-                self.search_cores()
-                self.load_cores()
-
+            ####Now we need to annotate sequneces with features: secondary structure, strucutral features, functional features.
+            exit()
 
         #esle we only try to do things that are lacking
         #do every step only if the corresponding files are missing
         else:
+            #TODO: Need to modify this section!!!
             self.search_variants()
             self.load_variants()
             self.search_cores()
@@ -124,7 +135,7 @@ class Command(BaseCommand):
 
     def get_nr(self):
         """Download nr if not present"""
-        if not os.path.isfile(self.db_file):
+        if not os.path.isfile(self.dbauto_file):
             print >> self.stdout, "Downloading nr..."
             with open("nr.gz", "w") as nrgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
@@ -161,30 +172,102 @@ class Command(BaseCommand):
         print >> self.stdout, "Pressing HMMs..."
         subprocess.call(["hmmpress", "-f", combined_hmm])
 
-    def search_variants(self):
-        return self.search(db=self.combined_varaints_file, out=self.results_file)
+    def search_in_dbauto(self):
+        return self.search(hmms_db=self.combined_hmm_file, out=self.dbauto_search_results_file,sequences=self.dbauto_file)
 
-    def search_cores(self):
-        return self.search(db=self.combined_core_file, out=self.core_results_file)
-
-    def search(self, db, out, sequences=None, E=10):
+    def search(self, hmms_db, out, sequences=None, E=10):
         """Use HMMs to search the nr database"""
         print >> self.stdout, "Searching HMMs..."
 
         if sequences is None:
-            sequences = self.db_file
+            sequences = self.dbauto_file
 
-        subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", db, sequences])
+        subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
 
-    def load_variants(self,reset=True):
+
+    def get_scores_for_curated_via_hmm(self):
+        """
+        For every curated variant we want to generate a set of scores against HMMs.
+        This is needed to supply the same type of information for curated as well as for automatic seqs.
+        """
+        #Construct the one big file from all cureated seqs.
+        with open(self.curated_all_fasta, "w") as f:
+            for hist_type, seed in self.get_seeds():
+                seed_aln_file = os.path.join(self.seed_directory, hist_type, seed)
+                for s in SeqIO.parse(seed_aln_file, "fasta"):
+                    s.seq = s.seq.ungap("-")
+                    SeqIO.write(s, f, "fasta")
+        #Search it by our HMMs
+        self.search(hmms_db=self.combined_hmm_file, out=self.curated_search_results_file,sequences=self.curated_all_fasta)
+        ##We need to parse this results file;
+        ##we take here a snippet from load_hmmsearch.py, and tune it to work for our curated seq header format
+        for variant_query in SearchIO.parse(self.curated_search_results_file, "hmmer3-text"):
+            print "Loading hmmsearch for variant:", variant_query.id
+            variant_model=Variant.objects.get(id=variant_query.id)
+            for hit in variant_query:
+                try:
+                    gi=re.search('(\d+)\|',hit.id).group(1)
+                except:
+                    print "NOT Loading ", hit.id
+                    continue
+                seq = Sequence.objects.get(id=gi)
+                for i, hsp in enumerate(hit):
+                    add_score(seq, variant_model, hsp)
+
+
+
+    def load_from_dbauto(self,reset=True):
         """Load data into the histone database"""
         print >> self.stdout, "Loading data into HistoneDB..."
-        load_variants(self.results_file, self.nr_file,reset=reset)
+        load_hmm_results(self.dbauto_search_results_file, reset=reset)
 
-    def load_cores(self,reset=True):
-        """Load data into the histone database"""
-        print >> self.stdout, "Loading data into HistoneDB..."
-        load_cores(self.core_results_file,reset=reset)
+
+    def load_curated(self):
+        """
+        Extracts sequences from seed alignments in static/browse/seeds
+        Loads them into the database with flag reviewed=True (which means curated)
+        An important fact:
+        the seqs in seeds, should have a special header currently:
+        either
+        >Ixodes|241122402|macroH2A Ixodes_macroH2A
+        we accept only these to patterns to extract GIs
+        """
+        for hist_type, seed in self.get_seeds():
+            variant_name = seed[:-6]
+            print variant_name,"==========="
+            seed_aln_file = os.path.join(self.seed_directory, hist_type, seed)
+            gis=[]
+            for s in SeqIO.parse(seed_aln_file, "fasta"):
+                s.seq = s.seq.ungap("-")
+                try:
+                    gi=re.search('(\d+)\|',s.id).group(1)
+                except:
+                    print "NOT Loading ", s.id
+                    continue
+                print "Loading ", s.id
+                #here is a trick, to assign dummy taxid at first and then batch update
+                gis.append(gi)
+                seq = Sequence(
+                id       = gi,
+                variant_id  = variant_name,
+                gene     = None,
+                splice   = None,
+                taxonomy_id = 1,
+                header   = s.id+" "+s.description,
+                sequence = s.seq,
+                reviewed = True,
+                )
+                seq.save()
+            #Now let's lookup gis via NCBI.
+            for taxid,gi in zip(taxids_from_gis(gis),gis):
+                seq=Sequence.objects.get(pk=gi)
+                seq.taxonomy_id=taxid
+                seq.save()
+
+
+
+
+
 
     def get_seeds(self):
         """
@@ -225,7 +308,7 @@ class Command(BaseCommand):
                     SeqIO.write(s, pf, "fasta")
 
             #Searching the positive examples set
-            self.search(db=hmm_file, out=positive_examples_out, sequences=positive_examples_file, E=500)
+            self.search(hmms_db=hmm_file, out=positive_examples_out, sequences=positive_examples_file, E=500)
             
             #Build negative examples from all other varaints
             
@@ -240,10 +323,10 @@ class Command(BaseCommand):
                         s.seq = s.seq.ungap("-")
                         SeqIO.write(s, nf, "fasta")
             #Searching through negative example set
-            self.search(db=hmm_file, out=negative_examples_out, sequences=negative_examples_file, E=500)
+            self.search(hmms_db=hmm_file, out=negative_examples_out, sequences=negative_examples_file, E=500)
 
             #Here we are doing ROC curve analysis and returning parameters
-            #TODO still need to be refurbished, breaks on H1.8
+            #TODO still needs to be refurbished, breaks on H1.8
             try:
                 parameters = test_model(variant_name, output_dir, positive_examples_out, negative_examples_out)
             except:

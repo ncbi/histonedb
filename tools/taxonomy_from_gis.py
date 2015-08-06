@@ -18,5 +18,12 @@ def taxonomy_from_gis(gis):
         print s.annotations["organism"]
         yield s.annotations["organism"]
 
-
+def taxids_from_gis(gis):
+    """
+    """
+    for s in seq_from_gi(gis):
+        a=s.features[0].qualifiers['db_xref'][0]
+        id=re.search(':(\d+)',a).group(1)
+        print "Taxid ",id
+        yield id
 

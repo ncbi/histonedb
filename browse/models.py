@@ -39,15 +39,16 @@ class Variant(models.Model):
         from django.core.urlresolvers import reverse
         return reverse('browse.views.browse_variant', args=[str(self.core_type.id), str(self.id)])
 
-# class OldStyleVariant(models.Model):
-#     updated_variant = models.ForeignKey(Variant, related_name="old_names")
-#     name            = models.CharField(max_length=255, primary_key=True)
-#     gene            = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
-#     splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
-#     taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
-#
-#     def __unicode__(self):
-#         return "{} (now called {})".format(self.name, self.updated_variant.id)
+#This is to handle other names for the same variants.like cenH3, CENPA, etc.
+class OldStyleVariant(models.Model):
+    updated_variant = models.ForeignKey(Variant, related_name="old_names")
+    name            = models.CharField(max_length=255, primary_key=True)
+    gene            = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
+    splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
+    taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
+
+    def __unicode__(self):
+        return "{} (now called {})".format(self.name, self.updated_variant.id)
 
 class Sequence(models.Model):
     id       = models.CharField(max_length=25, primary_key=True) #GI

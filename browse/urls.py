@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^data/sequences\+features/json$', views.get_aln_and_features),
     url(r'^data/seed/([a-zA-Z0-9\.]+)$', views.get_seed_aln_and_features),
 
-    url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', views.get_starburst_json),
-    url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', views.get_starburst_json),
+   # url(r'^data/(type)/json/([a-zA-Z0-9]+)/species/$', views.get_starburst_json),
+   #  url(r'^data/(variant)/json/([a-zA-Z0-9\.]+)/species/$', views.get_starburst_json),
+     url(r'^data/sunburst$', views.get_sunburst_json),
 ]
