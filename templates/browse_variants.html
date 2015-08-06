@@ -62,15 +62,15 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
         phylocanvas = new Smits.PhyloCanvas(
           dataObject,
           'tree',
-          800, 800,
+          600, 600,
           'circular'
         );
 
         //init(); //unitip
 
         treediv = $("#tree");
-        treediv.width(800);
-        treediv.height(800);
+        //treediv.width(800);
+        //treediv.height(800);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus);
@@ -78,6 +78,10 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
       }
     });
   }
+
+  {% with page_name="browse_variants_"|add:histone_type|rchar:"." %}
+  var extra_seq_params_{{ page_name }} = {};
+  {% endwith %}
 </script>
 {% endblock %}
 
@@ -136,7 +140,7 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
                 </div>
               </div>
               <div class="col-xs-8">
-                <h4 class="page-header">Phylegentic tree of variants (curated sequences)</h4>
+                <h4 class="page-header">Phylegenetic tree of variants (curated sequences)</h4>
                 <div id="tree"></div>
                 Above, alignments of curated sequences from all {{ histone_type }} variants have been combined to construct the phylogenetic tree. Most of the variants cluster in separate clades. Click on name within a variant to learn more about the variant.
               </div>

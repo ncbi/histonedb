@@ -3,7 +3,7 @@
 <div id="sequence_toolbar_{{ page_name }}">
     <div class="btn-group" role="group" aria-label="...">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" id="msa_modal_button_{{ page_name }}"><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span> View MSA</button>
+            <button type="button" class="btn btn-default" id="msa_modal_button_{{ page_name }}"><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span> View{% if "curated" in page_name %} Full{% endif %} MSA</button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="false"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export <span class="caret"></span></button>
@@ -40,11 +40,10 @@
 
 <div class="container" style="margin-top:5px;">
   {% if "curated" in page_name %}
-  <h4 class="page_title">Quick MSA (Click on any row to update):</h4>
+  <h4 class="page-header">Quick MSA - Align a single sequence to canonical <small>Select row to display here, else select multiple and click "View Full MSA"</small></h4>
   <div id="quick_msa-{{page_name}}"></div>
   {% endif %}
   <table id="sequence_table_{{ page_name }}"></table>
-  }
 </div>
 
 <div class="modal fade" id="msa_modal_{{ page_name }}" tabindex="-1" role="dialog" aria-labelledby="seqs" aria-hidden="true">
@@ -124,7 +123,11 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     $("#add_to_basket_{{ page_name }}").click(function (){
       var basket = JSON.parse(localStorage.getItem('basket')) || [];
       var ids = getSelectedIDs{{ page_name }}();
-      basket = $.extend(basket, ids);
+      console.log("basket: "+basket);
+      console.log("ids: "+ids);
+      var new_basket = $.extend(true, basket, ids);
+      console.log("new basket: "+new_basket);
+      console.log(ids);
       localStorage.setItem('basket', JSON.stringify(basket));
       $(".badge-basket").html(basket.length);
     });
@@ -151,7 +154,58 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     });
     {% endif %}
     $(function () {
-        console.log("HETY");
+        function variantFormatter(value, row, index) {
+          return [
+            value,
+            '<div class="button-group dropdown pull-right">',
+            '<a href="#" class="dropdown-toggle rowlink" data-toggle="dropdown" aria-haspopup="true">',
+            '<span class="caret"></span>',
+            '<ul class="dropdown-menu" role="menu">',
+            '<li><a href="#" id="variant_actions_browse_core">Browse core histone</a></li>',
+            '<li><a href="#" id="variant_actions_browse_variant">Browse variant</a></li>',
+            '</ul>',
+            '</a>',
+            '</div'
+          ].join('');
+        }
+
+        function taxonomyFormatter(value, row, index) {
+          return [
+            value,
+            '<div class="button-group dropdown pull-right">',
+            '<a href="#" class="dropdown-toggle rowlink" data-toggle="dropdown" aria-haspopup="true">',
+            '<span class="caret"></span>',
+            '<ul class="dropdown-menu" role="menu">',
+            '<li><a href="#" id="taxonomy_actions_browse_variant">Browse variant within taxonomy</a></li>',
+            '<li><a href="#" id="taxonomy_actions_browse_all">Browse all taxonomy</a></li>',
+            '<li><a href="#" id="taxonomy_actions_browse_ncbi">View NCBI Taxonomy record</a></li>',
+            '</ul>',
+            '</a>',
+            '</div'
+          ].join('');
+        }
+
+        window.variantEvents = {
+          'click #variant_actions_browse_core': function (e, value, row, index) {
+              document.location.href = "{% url 'browse.views.search' %}?search="+row.core;
+          },
+          'click #variant_actions_browse_variant': function (e, value, row, index) {
+              document.location.href = "{% url 'browse.views.search' %}?search="+row.variant;
+          }
+        }
+
+        window.taxonomyEvents = {
+          'click #taxonomy_actions_browse_variant': function (e, value, row, index) {
+              document.location.href = "{% url 'browse.views.search' %}?id_variant="+row.variant+"&id_taxonomy="+row.taxid;
+          },
+          'click #taxonomy_actions_browse_all': function (e, value, row, index) {
+              document.location.href = "{% url 'browse.views.search' %}?id_taxonomy="+row.taxid;
+          },
+          'click #taxonomy_actions_browse_ncbi': function (e, value, row, index) {
+              document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock";
+          }
+        }
+
         $('#sequence_table_{{ page_name }}').bootstrapTable({
           pagination:true,
           pageList:[5, 10, 20, 50, 100, 200, 500],
@@ -183,10 +237,10 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           columns: [
             {field:"state", checkbox:true},
             {field:"id", sortable:true, title:"GI", clickToSelect:false},
-            {field:"variant", sortable:true, title:"Variant", clickToSelect:false},
+            {field:"variant", sortable:true, title:"Variant", clickToSelect:false, events:variantEvents, formatter:variantFormatter},
             {field:"gene", sortable:true, title:"Gene", clickToSelect:false},
             {field:"splice", sortable:true, title:"Splice", clickToSelect:false},
-            {field:"taxonomy", sortable:true, title:"Taxonomy (Click to view NCBI Taxonomy)", clickToSelect:false},
+            {field:"taxonomy", sortable:true, title:"Taxonomy", clickToSelect:false, events:taxonomyEvents, formatter:taxonomyFormatter},
             {% if not curated %}
             {field:"header", sortable:true, width:50, title:"Current GenBank Description", rowspan:1, clickToSelect:false},
             {field:"score", sortable:true, title:"Score", clickToSelect:false},
@@ -207,19 +261,12 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% endif %}
           {% if "curated" in page_name %}
           onLoadSuccess: function(data){
-            createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75);
+            createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
           },
-          {% endif %}
-          onClickCell:function(event, value, row, index){
-            if(event == "taxonomy"){
-              document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock";
-            }
-            {% if "curated" in page_name %}
-            else if(event != "state"){
-              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75);
-            }
-            {% endif %}
+          onCheck:function(row){
+            createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
           }
+          {% endif %}
         });
         
         $("#show_advanced_filter_{{ page_name }}").click( function (){
@@ -232,7 +279,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           for (var i = 0; i < ids.length; i++) {
             params += "id="+ids[i]+"&"
           }
-          createMSA("msa_div_modal_{{ page_name }}", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse.views.get_aln_and_features' %}?download=true", 400);
+          createMSA("msa_div_modal_{{ page_name }}", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse.views.get_aln_and_features' %}?download=true", 400, true);
           $('#msa_modal_{{ page_name }}').modal('show');
         });
 

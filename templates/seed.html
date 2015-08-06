@@ -33,6 +33,6 @@
 
 {% if msa_url %}
 <script type="text/javascript">
-createMSA("msa_div_{{ msa_id }}", "{% autoescape off %}{{ msa_url }}{% endautoescape %}", "{{ download_url }}", 975, 500);
+createMSA("msa_div_{{ msa_id }}", "{% autoescape off %}{{ msa_url }}{% endautoescape %}", "{{ download_url }}", 975, 500, true);
 </script>
 {% endif %}
