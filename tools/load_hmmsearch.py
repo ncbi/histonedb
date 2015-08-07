@@ -80,6 +80,64 @@ def taxonomy_from_header(header, gi):
       except IndexError:
         return Taxonomy.objects.get(name="unidentified")
 
+easyspecies_re = re.compile(r'^(.*?)\|')
+def easytaxonomy_from_header(header):
+  """
+same as previous but different regex rule and no gi
+  """
+  match = easyspecies_re.findall(header)
+  if match:
+    organism = match[0]
+  else:
+    print "No match in header of taxonomy, attention needed!!!"
+    return -1
+  organism = organism.replace(":", " ")
+  organism = re.sub(r'([a-zA-Z0-9]+)[\./#_:]([a-zA-Z0-9]+)', r'\1 \2', organism)
+  organism = re.sub(r'([a-zA-Z0-9]+)\. ', r'\1 ', organism)
+  organism = re.sub(r"['\(\)\.]", r'', organism)
+  organism = organism.lower()
+  try:
+    return Taxonomy.objects.get(name=organism.lower())
+  except:
+    try:
+      genus = Taxonomy.objects.get(name=organism.split(" ")[0].lower())
+      if genus.type_name != "scientific name":
+        genus = genus.get_scientific_names()[0]
+    except:
+      print header
+      return Taxonomy.objects.get(name="unidentified")
+
+    #Maybe the var is wrong
+    if "var" in organism:
+      try:
+        org_end = organism.split("var ")[1]
+      except IndexError:
+        return Taxonomy.objects.get(name="unidentified")
+      best_orgs = genus.children.filter(name__endswith=org_end).all()
+      if len(best_orgs):
+        return best_orgs[0]
+      else:
+        return Taxonomy.objects.get(name="unidentified")
+    else:
+      return Taxonomy.objects.get(name="unidentified")
+      print organism
+      print "Genus =", genus
+      print "Are you sure there is no taxa that matches? Check again:"
+      taxas = []
+      for i, c in enumerate(genus.children.all()):
+        print "{}: {} ==?== {}".format(i, c, organism)
+        taxas.append(c)
+      index = raw_input("Choose the index that best matches: ")
+
+      try:
+        index = int(save)
+      except ValueError:
+        return Taxonomy.objects.get(name="unidentified")
+
+      try:
+        return taxas[index]
+      except IndexError:
+        return Taxonomy.objects.get(name="unidentified")
 
 def load_hmm_results(hmmerFile, reset=True):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone

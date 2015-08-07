@@ -50,8 +50,8 @@ $("#id_variant").prop("readonly", true);
       <div class="row">
         <div class="col-xs-12">
           <h1>
-            <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> / 
-            <a href="{% url 'browse.views.browse_variants' core_type %}">{{core_type}}</a> / 
+            <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
+            <a href="{% url 'browse.views.browse_variants' core_type %}">{{core_type}}</a> /
             Variant: {{ variant }}<span id="taxonomy_title"></span>
           </h1>
         </div>
@@ -71,7 +71,7 @@ $("#id_variant").prop("readonly", true);
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#curated" id="curated_tab" aria-controls="curated" role="tab" data-toggle="tab">Curated Sequences</a></li>
           <li role="presentation"><a href="#species" id="species_tab" aria-controls="species" role="tab" data-toggle="tab">Taxonomy Distribution</a></li>
-          <li role="presentation"><a href="#sequences" id="sequences_tab" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
+          <li role="presentation"><a href="#sequences" id="sequences_tab" aria-controls="sequences" role="tab" data-toggle="tab">Mined Sequences</a></li>
           <li role="presentation"><a href="#seed" id="seed_tab" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
         </ul>
 

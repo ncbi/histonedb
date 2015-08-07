@@ -111,7 +111,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
       }
       return ids;
     };
-    
+
     {% if "curated" not in page_name %}
     $scores_modal_button_{{ page_name }}.click(function() {
       ids = getSelectedIDs{{ page_name }}();
@@ -211,7 +211,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           pageList:[5, 10, 20, 50, 100, 200, 500],
           cookie:true,
           cookieIdTable:"table-{{ page_name }}",
-          
+
           height:{% if not curated %}750{% else %}450{% endif %},
           {% if blast_results %}
           data: {% autoescape off %}{{ blast_results|jsonify }}{% endautoescape %},
@@ -238,11 +238,12 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             {field:"state", checkbox:true},
             {field:"id", sortable:true, title:"GI", clickToSelect:false},
             {field:"variant", sortable:true, title:"Variant", clickToSelect:false, events:variantEvents, formatter:variantFormatter},
-            {field:"gene", sortable:true, title:"Gene", clickToSelect:false},
-            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},
+{#            {field:"gene", sortable:true, title:"Gene", clickToSelect:false},#}
+{#            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},#}
             {field:"taxonomy", sortable:true, title:"Taxonomy", clickToSelect:false, events:taxonomyEvents, formatter:taxonomyFormatter},
+            {field:"header", sortable:true, width:50, title:"Description", rowspan:1, clickToSelect:false},
+
             {% if not curated %}
-            {field:"header", sortable:true, width:50, title:"Current GenBank Description", rowspan:1, clickToSelect:false},
             {field:"score", sortable:true, title:"Score", clickToSelect:false},
             {field:"evalue", sortable:true, title:"E-value", clickToSelect:false},
             {% endif %}
@@ -268,7 +269,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           }
           {% endif %}
         });
-        
+
         $("#show_advanced_filter_{{ page_name }}").click( function (){
           open_advanced_filter("filter", $table_{{ page_name }});
         });

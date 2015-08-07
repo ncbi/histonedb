@@ -96,12 +96,12 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
         <div class="col-xs-12">
           <h1>
             <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
-            Core type: {{ histone_type }}
+            Histone type: {{ histone_type }}
           </h1>
         </div>
-        <div class="col-xs-12">
-          {{ histone_description }}
-        </div>
+{#        <div class="col-xs-12">#}
+{#          {{ histone_description }}#}
+{#        </div>#}
       </div>
     </div>
   </div>
@@ -112,13 +112,18 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">Summary</a></li>
           <li role="presentation"><a href="#curated" aria-controls="curated" role="tab" data-toggle="tab">Curated Sequences</a></li>
-          <li role="presentation"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">All Sequences</a></li>
+          <li role="presentation"><a href="#sequences" aria-controls="sequences" role="tab" data-toggle="tab">Mined Sequences</a></li>
           <li role="presentation"><a href="#seed" aria-controls="seed" role="tab" data-toggle="tab">Seed Alignments</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane" id="variant">
+            <div class="row">
+              <div class="col-xs-12">
+              {{ histone_description }}
+              </div>
+            </div>
             <div class="row">
               <div class="col-xs-4">
                 <div class="row center-block">
@@ -132,7 +137,7 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
 # of sequences in total set: {{ num_all }}">{{ num_curated }} / {{ num_all }}</span>
                           <b>{{ variant }}</b> <br />
                               <small>Alternate names: {% if alternate_names or alternate_names != "" %}{{ alternate_names }}{% else %}<i>None</i>{% endif %}</small><br />
-                              <small>Taxonomic span: {{ tax_span }}</small>  
+                              <small>Taxonomic span: {{ tax_span }}</small>
                         </a>
                       {% endfor %}
                     </div>
@@ -140,7 +145,7 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
                 </div>
               </div>
               <div class="col-xs-8">
-                <h4 class="page-header">Phylegenetic tree of variants (curated sequences)</h4>
+                <h4 class="page-header">Phylogenetic tree of variants (curated sequences)</h4>
                 <div id="tree"></div>
                 Above, alignments of curated sequences from all {{ histone_type }} variants have been combined to construct the phylogenetic tree. Most of the variants cluster in separate clades. Click on name within a variant to learn more about the variant.
               </div>
@@ -150,7 +155,7 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
             {% include "test.html" with page_name="browse_curated_variants_"|add:histone_type|rchar:"." curated=True %}
           </div>
           <div role="tabpanel" class="tab-pane" id="sequences">
-            {% include "test.html" with page_name="browse_variants_"|add:histone_type|rchar:"." %} 
+            {% include "test.html" with page_name="browse_variants_"|add:histone_type|rchar:"." %}
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
             {% include "seed.html" with msa_id="browse" msa_url=seed_url|add:"?limit=500&consensus=limit" download_url=seed_url|add:"?download=true" %}

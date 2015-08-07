@@ -31,17 +31,17 @@ class Command(BaseCommand):
             with open(os.path.join(path, "all_taxa.json"), "w") as all_taxa:
                 all_taxa.write(sb)
 
-        for core_histone in Histone.objects.all():
-            print "Saving", core_histone.id
-            #sb = self.build_sunburst(variant__core_type=core_histone)
-            #with open(os.path.join(path, "{}.json".format(core_histone.id)), "w") as core_burst:
+        for hist_type in Histone.objects.all():
+            print "Saving", hist_type.id
+            #sb = self.build_sunburst(variant__core_type=hist_type)
+            #with open(os.path.join(path, "{}.json".format(hist_type.id)), "w") as core_burst:
             #    core_burst.write(sb)
 
-            vpath = os.path.join(path, core_histone.id)
+            vpath = os.path.join(path, hist_type.id)
             if not os.path.exists(vpath):
                 os.makedirs(vpath)
 
-            for variant in Variant.objects.filter(core_type=core_histone):
+            for variant in Variant.objects.filter(hist_type=hist_type):
                 print "  Saving", variant.id
                 sb = self.build_sunburst(variant=variant)
                 with open(os.path.join(vpath, "{}.json".format(variant.id)), "w") as variant_burst:

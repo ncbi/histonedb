@@ -21,10 +21,10 @@ def tax_sub_search(value):
     """
     ids = set()
     value = value.strip()
-    
+
     if not format_query.current_query.startswith("taxonomy"):
         return list(ids)
-    
+
     search_type = format_query.current_query[len("taxonomy"):]
     if search_type.endswith("iin"):
         search_type = "__iexact"
@@ -36,7 +36,7 @@ def tax_sub_search(value):
     except ValueError:
         queryID = {}
     query = Q(**queryName)|Q(**queryID)
-    
+
     taxons = []
     for taxon in Taxonomy.objects.filter(query):
         taxons.append(taxon)
@@ -48,7 +48,7 @@ def tax_sub_search(value):
         ids |= children
 
     format_query.current_query = "taxonomy__in"
-    
+
     return list(ids)
 
 def variant_sub_search(value):
@@ -93,11 +93,11 @@ def variant_sub_search(value):
                             pass
                     format_query.multiple = True
                     return sequence_query
-        
-  
+
+
     else:
         variants = Variant.objects.filter(query).values_list("id", flat=True)
-    
+
         if len(variants) > 0:
             format_query.current_query = "variant__id__in"
             return list(variants)
@@ -109,7 +109,7 @@ bool_conv = lambda b: b in ["true", "on"]
 #    POST name, django model paramter, POST name for search type, input type (must be in seach_types)
 allowable_fields = {
     "id_id": ("id", "id_id_search_type", str),
-    "id_core_histone": ("variant__hist_type__id", "id_core_type_search_type", str),
+    "id_hist_type": ("variant__hist_type__id", "id_core_type_search_type", str),
     "id_variant": ("variant__id", "id_variant_search_type", variant_sub_search),
     "id_gene": ("gene", "id_gene_search_type", int),
     "id_splice": ("splice", "id_splice_search_type", int),
@@ -169,6 +169,10 @@ class Indexable(object):
 
 class HistoneSearch(object):
     """
+    This class constructs query_sets - to search any histones in DB.
+    The search parameters are in parameters - the dict should follow that defined in
+    allowable_fields
+    get_dict is used to evaluate the query_set and return the dict for rendering.
     """
 
     def __init__(self, request, parameters, navbar=False):
@@ -188,8 +192,15 @@ class HistoneSearch(object):
         self.unique = self.parameters.get("id_unique", False) in ["on", "true"]
         #this is the initial query set that is refined later by create_queryset
 
-        self.query_set = Sequence.objects.all(\
-                ).annotate(
+        # self.query_set = Sequence.objects.filter(
+        #         (Q(all_model_scores__used_for_classifiation=True)) \
+        #         ).annotate(
+        #         num_scores=Count("all_model_scores"),
+        #         score=Max("all_model_scores__score"),
+        #         evalue=Min("all_model_scores__evalue")
+        #     )
+
+        self.query_set = Sequence.objects.all().annotate(\
                 num_scores=Count("all_model_scores"),
                 score=Max("all_model_scores__score"),
                 evalue=Min("all_model_scores__evalue")
@@ -230,14 +241,14 @@ class HistoneSearch(object):
         added =[]
         for form, (field, search_type, convert) in allowable_fields.iteritems():
             value = self.parameters.get(form)
-            
-            if not value: 
+
+            if not value:
                 continue
 
             search_type = self.parameters.get(search_type, "is")
-            
-            self.query.format(field, search_type, value, convert)               
-        
+
+            self.query.format(field, search_type, value, convert)
+
         if self.query.has_errors():
             return
         # print self.query
@@ -257,7 +268,7 @@ class HistoneSearch(object):
         sort_order = "-" if self.sort["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
         self.query_set = self.query_set.order_by(sort_key)
-        
+
     def paginate(self, sequences=None):
         if sequences is None:
             sequences
@@ -287,7 +298,7 @@ class HistoneSearch(object):
 
     def get_dict(self):
         self.sort_query_set()
-    
+
         if self.unique:
             sequences = Indexable(self.unique())
         else:
@@ -300,7 +311,7 @@ class HistoneSearch(object):
         sequences = sequences[start:end]
 
         result = [{
-            "id":r.id, 
+            "id":r.id,
             "variant":r.variant.id,
             "core":r.variant.hist_type.id,
             "gene":r.gene, 

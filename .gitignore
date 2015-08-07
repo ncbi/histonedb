@@ -19,3 +19,4 @@ djangophylocore/taxonomy_toc_ncbi
 static/browse/hmms/
 static/browse/trees/
 static/browse/sunbursts/
+*.gff

@@ -24,7 +24,7 @@ colors = [
     "#e5c494"]
 
 class Command(BaseCommand):
-    help = 'Build the HistoneDB by training HMMs with seed sequences found in seeds directory in the top directory of this project and using those HMMs to search the NR database.'
+    help = 'Building data for variant trees using ClustalW2'
     seed_directory = os.path.join("static", "browse", "seeds")
     trees_path = os.path.join("static", "browse", "trees")
     def add_arguments(self, parser):
@@ -54,36 +54,37 @@ class Command(BaseCommand):
 
     def make_trees(self, force=False):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
-            core_histone = os.path.basename(root)
-            print "Creating tree for", core_histone
-            if i==0:
-                #Skip parent directory, only allow variant hmms to be built/searched
+            if i==0: #skip base path
                 continue
+            hist_type = os.path.basename(root)
+            print "Creating tree for", hist_type
 
-            final_tree_name = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
+            final_tree_name = os.path.join(self.trees_path, "{}_no_features.xml".format(hist_type))
             if not force and os.path.isfile(final_tree_name):
                 continue
 
+            if not os.path.exists(self.trees_path):
+                os.makedirs(self.trees_path)
             #Combine all varaints for a core histone type into one unaligned fasta file
-            combined_seed_file = os.path.join(self.trees_path, "{}.fasta".format(core_histone))
-            combined_seed_aligned = os.path.join(self.trees_path, "{}_aligned.fasta".format(core_histone))
+            combined_seed_file = os.path.join(self.trees_path, "{}.fasta".format(hist_type))
+            combined_seed_aligned = os.path.join(self.trees_path, "{}_aligned.fasta".format(hist_type))
             with open(combined_seed_file, "w") as combined_seed:
                 for seed in files: 
                     if not seed.endswith(".fasta"): continue
-                    for s in SeqIO.parse(os.path.join(self.seed_directory, core_histone, seed), "fasta"):
+                    for s in SeqIO.parse(os.path.join(self.seed_directory, hist_type, seed), "fasta"):
                         s.seq = s.seq.ungap("-")
                         SeqIO.write(s, combined_seed, "fasta")
 
             #Create trees and convert them to phyloxml
-            tree = os.path.join(self.trees_path, "{}_aligned.ph".format(core_histone))
+            tree = os.path.join(self.trees_path, "{}_aligned.ph".format(hist_type))
             subprocess.call(["muscle", "-in", combined_seed_file, '-out', combined_seed_aligned])
             subprocess.call(["clustalw2", "-infile={}".format(combined_seed_aligned), '-tree'])
             Phylo.convert(tree, 'newick', final_tree_name, 'phyloxml')
     
     def add_features(self):
-        for core_histone in ["H2A", "H2B", "H3", "H1", "H4"]:
-            print core_histone
-            tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
+        for hist_type in ["H2A", "H2B", "H3", "H1", "H4"]:
+            print hist_type
+            tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(hist_type))
             tree = ET.parse(tree_path)
             parent_map = {c: p for p in tree.getiterator() for c in p}
 
@@ -104,13 +105,13 @@ class Command(BaseCommand):
                 render.append(charts)
 
                 styles = ET.Element("styles")
-                variants = list(Variant.objects.filter(core_type__id=core_histone).values_list("id", flat=True))
+                variants = list(Variant.objects.filter(hist_type__id=hist_type).values_list("id", flat=True))
                 for i, variant in enumerate(variants):
                     color = colors[i]
                     background = ET.Element("{}".format(variant.replace(".","")), attrib={"fill":color, "stroke":color})
-                    if not variant.startswith(core_histone):
+                    if not variant.startswith(hist_type):
                         #Remove descriptor
-                        start, name = variant[:variant.find(core_histone)], variant[variant.find(core_histone):]
+                        start, name = variant[:variant.find(hist_type)], variant[variant.find(hist_type):]
                         if len(start) > 3 and start != "canonical":
                             start = start[0]
                         name = start+name
@@ -175,7 +176,7 @@ class Command(BaseCommand):
                         parent = parent_map[clade]
                         child = parent.remove(clade)
 
-            with open(os.path.join(self.trees_path, "{}.xml".format(core_histone)), "w") as outfile:
+            with open(os.path.join(self.trees_path, "{}.xml".format(hist_type)), "w") as outfile:
                 treestr = StringIO.StringIO()
                 tree.write(treestr)
                 treestr = treestr.getvalue().replace("phy:", "")

@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from browse.models import Histone, Variant, Sequence, Score, Features 
-from tools.load_hmmsearch import load_hmm_results, add_score
+from tools.load_hmmsearch import load_hmm_results, add_score, easytaxonomy_from_header
 from tools.test_model import test_model
 import subprocess
 import os, sys
@@ -84,10 +84,8 @@ class Command(BaseCommand):
         #do every step only if the corresponding files are missing
         else:
             #TODO: Need to modify this section!!!
-            self.search_variants()
-            self.load_variants()
-            self.search_cores()
-            self.load_cores()
+            print "Not currently implemented!!! Use -f"
+            pass
 ############An ad-hoc snippet to load the seeds sequence into the database.###########
         try:
             os.remove('/tmp/all.fasta')
@@ -208,8 +206,11 @@ class Command(BaseCommand):
                 try:
                     gi=re.search('(\d+)\|',hit.id).group(1)
                 except:
-                    print "NOT Loading ", hit.id
-                    continue
+                    try:
+                        gi=re.search('(NOGI_\d+)\|',hit.id).group(1)
+                    except:
+                        print "NOT Loading ", hit.id
+                        continue
                 seq = Sequence.objects.get(id=gi)
                 for i, hsp in enumerate(hit):
                     add_score(seq, variant_model, hsp)
@@ -228,37 +229,44 @@ class Command(BaseCommand):
         Loads them into the database with flag reviewed=True (which means curated)
         An important fact:
         the seqs in seeds, should have a special header currently:
-        either
         >Ixodes|241122402|macroH2A Ixodes_macroH2A
-        we accept only these to patterns to extract GIs
+        we accept only this patterns to extract GIs
         """
+        no_gi_index=1
         for hist_type, seed in self.get_seeds():
             variant_name = seed[:-6]
             print variant_name,"==========="
             seed_aln_file = os.path.join(self.seed_directory, hist_type, seed)
             gis=[]
             for s in SeqIO.parse(seed_aln_file, "fasta"):
+                # print s.id, "!!!!!!"
+                # print s.description
                 s.seq = s.seq.ungap("-")
                 try:
                     gi=re.search('(\d+)\|',s.id).group(1)
+                    temp_tax=1
+                    gis.append(gi)
                 except:
-                    print "NOT Loading ", s.id
-                    continue
+                    gi=re.search('(NOGI_\d+)\|',s.id).group(1)
+                    print "NO GI detected ", s.id
+                    print "Assigning NOGI_",no_gi_index
+                    temp_tax=easytaxonomy_from_header(s.id).id
+                    # continue # we will now try to put them in database
                 print "Loading ", s.id
                 #here is a trick, to assign dummy taxid at first and then batch update
-                gis.append(gi)
                 seq = Sequence(
                 id       = gi,
                 variant_id  = variant_name,
                 gene     = None,
                 splice   = None,
-                taxonomy_id = 1,
-                header   = s.id+" "+s.description,
+                taxonomy_id = temp_tax,
+                #header   = s.id+" "+s.description, #desc includes id
+                header   = "CURATED SEQUENCE: "+s.description,
                 sequence = s.seq,
                 reviewed = True,
                 )
                 seq.save()
-            #Now let's lookup gis via NCBI.
+            #Now let's lookup taxid for those having GIs via NCBI.
             for taxid,gi in zip(taxids_from_gis(gis),gis):
                 seq=Sequence.objects.get(pk=gi)
                 seq.taxonomy_id=taxid

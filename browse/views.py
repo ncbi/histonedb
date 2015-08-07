@@ -110,7 +110,7 @@ def browse_variants(request, histone_type):
         query = original_query
         data["filter_errors"] = result.errors
     data["current_query"] = query
-
+    print data
     return render(request, 'browse_variants.html', data)
 
 def browse_variant(request, histone_type, variant):
@@ -338,14 +338,14 @@ def get_aln_and_features(request, ids=None):
         elif len(sequences) == 1:
             #Already aligned to core histone
             seq = sequences.first()
-            hist_type = seq.variant.core_type.id
+            hist_type = seq.variant.hist_type.id
             canonical = Sequence(id="canonical{}".format(hist_type), sequence=str(templ[hist_type]))
             sequences = [canonical, seq]
             
         else:
             try:
                 hist_type = max(
-                   [(hist, sequences.filter(variant__core_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
+                   [(hist, sequences.filter(variant__hist_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
                    key=lambda x:x[1]
                    )[0]
             except ValueError:
@@ -447,14 +447,14 @@ def get_seed_aln_and_features(request, seed):
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
 
-    seed_file = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    seed_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
     try:
         histone = Histone.objects.get(id=seed)
         seed_file = os.path.join(seed_file, "{}".format(histone.id))
     except Histone.DoesNotExist:
         try:
             variant = Variant.objects.get(id=seed)
-            seed_file = os.path.join(seed_file, variant.core_type.id, "{}".format(variant.id))
+            seed_file = os.path.join(seed_file, variant.hist_type.id, "{}".format(variant.id))
         except Variant.DoesNotExist:
             return HttpResponseNotFound('<h1>No histone variant with name {}</h1>'.format(seed))
 
