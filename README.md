@@ -36,6 +36,8 @@ NCBI_database_info = {
 }
 ```
 If running on the mweb, these values will already be set as environment variables.
+Set the correct charset:
+ALTER DATABASE histdb CHARACTER SET utf8 COLLATE utf8_general_ci
 
 2) Migrate Django models into database
 
