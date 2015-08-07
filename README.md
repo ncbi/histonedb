@@ -79,7 +79,10 @@ python manage.py buildseedinfo
 ```
 python manage.py buildblastdb
 ```
-
+9) Build variantinfo
+```
+python manage.py buildvariantinfo
+```
 ## Update ##
 If youe need to update or rebuild the database, e.g. if a new variant is discovered, you must rerun steps 4-8 adding the --force parameter after each command to make sure everything gets updated.
 
