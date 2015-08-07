@@ -249,7 +249,7 @@ class Command(BaseCommand):
                 except:
                     gi=re.search('(NOGI_\d+)\|',s.id).group(1)
                     print "NO GI detected ", s.id
-                    print "Assigning NOGI_",no_gi_index
+                    # print "Ass igning NOGI_",no_gi_index
                     temp_tax=easytaxonomy_from_header(s.id).id
                     # continue # we will now try to put them in database
                 print "Loading ", s.id

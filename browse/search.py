@@ -192,8 +192,7 @@ class HistoneSearch(object):
         self.unique = self.parameters.get("id_unique", False) in ["on", "true"]
         #this is the initial query set that is refined later by create_queryset
 
-        # self.query_set = Sequence.objects.filter(
-        #         (Q(all_model_scores__used_for_classifiation=True)) \
+        # self.query_set = Sequence.objects.filter(all_model_scores__used_for_classifiation=True \
         #         ).annotate(
         #         num_scores=Count("all_model_scores"),
         #         score=Max("all_model_scores__score"),
