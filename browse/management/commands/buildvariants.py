@@ -283,6 +283,10 @@ class Command(BaseCommand):
         """
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             hist_type = os.path.basename(root)
+            if hist_type=="seeds": #means we are in top dir, we skip,
+            # combinded alignmnents for hist types are their, but we do not use them in database constuction,
+            #only in visualization on website
+                continue
             for seed in files: 
                 if not seed.endswith(".fasta"): continue
                 yield hist_type, seed
