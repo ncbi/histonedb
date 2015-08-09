@@ -9,7 +9,7 @@ from browse.models import Sequence
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
-    seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
 
     def add_arguments(self, parser):
          parser.add_argument(
@@ -21,9 +21,10 @@ class Command(BaseCommand):
         
     def handle(self, *args, **options):
         for variant, seed in self.get_seeds():
-            if not os.path.exists("{}.pdf".format(seed[:-6])) or options["force"]:
+            #PDF currently contaminates the dir with many files.
+            #if not os.path.exists("{}.pdf".format(seed[:-6])) or options["force"]:
                 #Write PDF
-                write_alignments([seed], seed[:-6], save_dir=os.path.dirname(seed))
+                #write_alignments([seed], seed[:-6], save_dir=os.path.dirname(seed))
 
             if not os.path.exists("{}.gff".format(seed[:-6])) or options["force"]:
                 #Write GFF
@@ -37,6 +38,8 @@ class Command(BaseCommand):
                 fields = s.id.split("|")
                 try:
                     #Core seed gi is first index, but we want to ignore them
+                    #This part is tricky, in seed alignmnets of variants fist argument is taxonomy name, second gi.
+                    #but in cores (canonicals???) - gi is first.
                     id = int(fields[0])
                     continue
                 except ValueError:

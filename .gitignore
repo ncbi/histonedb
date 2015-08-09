@@ -16,3 +16,10 @@ djangophylocore/dumps/*
 names.dmp
 nodes.dmp
 taxdump.tar.gz
+djangophylocore/taxonomy_toc_ncbi
+.idea
+static/browse/hmms/
+static/browse/trees/
+static/browse/sunbursts/
+*.gff
+static/browse/hmms/model_evaluation/*/*

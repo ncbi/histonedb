@@ -7,7 +7,7 @@ import json
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
-    info_directory = os.path.join(settings.STATIC_ROOT, "browse", "info")
+    info_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "info")
 
     def add_arguments(self, parser):
          parser.add_argument(
@@ -23,7 +23,7 @@ class Command(BaseCommand):
         with open(variant_info_path) as variant_info_file:  
             variant_info = json.load(variant_info_file)
 
-        for core_histone_name, variants in variant_info.iteritems():
+        for hist_type_name, variants in variant_info.iteritems():
             for variant_name, info in variants.iteritems():
                 variant = Variant.objects.get(id=variant_name)
                 variant.description = info["description"]

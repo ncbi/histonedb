@@ -20,7 +20,10 @@ class Command(NoArgsCommand):
         db_name = settings.DATABASES["default"]["NAME"]
         db_engine = settings.DATABASES["default"]["ENGINE"]
         map_dumps = {}
+        # print os.listdir( path_dumps )
+
         for dump in os.listdir( path_dumps ):
+        ###########
             if dump == '.svn': continue # XXX
             name = os.path.splitext( dump )[0]
             map_dumps[name] = os.path.join( path_dumps, dump )
@@ -28,7 +31,7 @@ class Command(NoArgsCommand):
                 cmd = "sqlite3 -separator '|' %s '.import %s server_%s'" % (
                   db_name, map_dumps[name],  name) 
             elif db_engine.endswith('mysql'):
-                cmd = """mysql -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
+                cmd = """mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
                   settings.DATABASES["default"]["HOST"], settings.DATABASES["default"]["USER"], settings.DATABASES["default"]["PASSWORD"], db_name, map_dumps[name],  name )
             if verbose:
                 print cmd

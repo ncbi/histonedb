@@ -11,18 +11,32 @@ from collections import Counter
 
 import django_filters
 from itertools import groupby
-
 import re
 
+"""These functions are for searching in histone database"""
+
 def tax_sub_search(value):
-    """
+    """Modify filter parameter for taxonomy. This function will allow users to 
+    search using either name or id and if users searched for a taxon with a 
+    rank higher than species, it will find all of the sequences with species
+    that fall in the taxon with higher order rank.
+
+    Parameters:
+    -----------
+    value : str
+        Name or ID fo taxononmy
+
+    Return:
+    -------
+    A list of taxon ids of species that in or under the given taxon. Also changes
+    the current_filter to "in", to allow multiple ids.
     """
     ids = set()
     value = value.strip()
-    
+
     if not format_query.current_query.startswith("taxonomy"):
         return list(ids)
-    
+
     search_type = format_query.current_query[len("taxonomy"):]
     if search_type.endswith("iin"):
         search_type = "__iexact"
@@ -34,7 +48,7 @@ def tax_sub_search(value):
     except ValueError:
         queryID = {}
     query = Q(**queryName)|Q(**queryID)
-    
+
     taxons = []
     for taxon in Taxonomy.objects.filter(query):
         taxons.append(taxon)
@@ -46,10 +60,25 @@ def tax_sub_search(value):
         ids |= children
 
     format_query.current_query = "taxonomy__in"
-    
+
     return list(ids)
 
 def variant_sub_search(value):
+    """Modify filter parameters for variant. This function will allow users to 
+    search using the new dot notation and for mapping previous varaint names to
+    current names
+
+    Parameters:
+    -----------
+    value : str
+        The name of the variant to search, new or old name allowed
+
+    Return:
+    -------
+    The corrected varaint name, a list of corrected variant names with 
+    modified "in" search type, or a list of variant, gene, and splice
+    filter paramters.
+    """
     ids = set()
 
     if not format_query.current_query.startswith("variant__id"):
@@ -72,7 +101,7 @@ def variant_sub_search(value):
         else:
             return variant.first().id
     except Variant.DoesNotExist:
-        #Search new nomencalture with gene and splice isoform
+        #Search new nomenclature with gene and splice isoform
         for histone in Histone.objects.all():
             for variant in histone.variants.all():
                 if value.startswith(variant.id):
@@ -91,11 +120,9 @@ def variant_sub_search(value):
                             pass
                     format_query.multiple = True
                     return sequence_query
-        
-  
     else:
         variants = Variant.objects.filter(query).values_list("id", flat=True)
-    
+
         if len(variants) > 0:
             format_query.current_query = "variant__id__in"
             return list(variants)
@@ -107,7 +134,7 @@ bool_conv = lambda b: b in ["true", "on"]
 #    POST name, django model paramter, POST name for search type, input type (must be in seach_types)
 allowable_fields = {
     "id_id": ("id", "id_id_search_type", str),
-    "id_core_histone": ("variant__core_type__id", "id_core_type_search_type", str),
+    "id_hist_type": ("variant__hist_type__id", "id_hist_type_search_type", str),
     "id_variant": ("variant__id", "id_variant_search_type", variant_sub_search),
     "id_gene": ("gene", "id_gene_search_type", int),
     "id_splice": ("splice", "id_splice_search_type", int),
@@ -123,6 +150,7 @@ bool_fields = {
     "id_refseq":{"id_header":"|ref|", "id_header_search_type":"contains"},
 }
 
+#Dictionary of search type for type of input. Keys are displayed in filter and the value is appended to the filter query
 search_types = {}
 search_types[str] = {
     "is": "__exact",
@@ -167,16 +195,27 @@ class Indexable(object):
 
 class HistoneSearch(object):
     """
+    This class constructs query_sets to search any histones in DB.
+    The search parameters are in parameters - the dict should follow that defined in
+    allowable_fields
+    get_dict is used to evaluate the query_set and return the dict for rendering.
     """
 
-    def __init__(self, request, parameters, navbar=False):
-        """
+    def __init__(self, parameters, navbar=False):
+        """Initalize the search and construct query sets to search databse.
+
+        Parameters:
+        -----------
+        request : dict
+            A dictionary of parameters that 
+        navbar : bool
+            True if the search originated from the navbar. If the user searched for 
+            a histone type or variant, the page will be redirected to the browse page.
         """
         assert isinstance(parameters, dict)
 
         self.errors = Counter()
         self.navbar = navbar
-        self.request = request
         self.sanitized = False
         self.redirect = None
         self.query = format_query()
@@ -184,15 +223,15 @@ class HistoneSearch(object):
         self.sort = {}
         self.parameters = parameters
         self.unique = self.parameters.get("id_unique", False) in ["on", "true"]
-
+        
+        #The initial query set that is refined later by create_queryset
         self.query_set = Sequence.objects.filter(
-                (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \
-                (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=False)) \
+                all_model_scores__used_for_classification=True #Used to make sure we are only annotation the score used for classification
             ).annotate(
-                num_scores=Count("all_model_scores"), 
+                num_scores=Count("all_model_scores"),
                 score=Max("all_model_scores__score"),
                 evalue=Min("all_model_scores__evalue")
-            )
+             )
 
         if "search" in self.parameters:
             self.simple_search(self.parameters["search"])
@@ -205,28 +244,26 @@ class HistoneSearch(object):
         self.get_sort_options()
 
     @classmethod
-    def all(cls, request):
-        return cls(request, {})
+    def all(cls):
+        """Get everything in the database"""
+        return cls({})
 
     def get_sort_options(self):
-        """
+        """Sanitize sort options
         """
         sort_parameters = {"limit": 10, "offset":0, "sort":"evalue", "order":"asc"}
         sort_query = {p:self.parameters.get(p, v) for p, v in sort_parameters.iteritems()}
         self.sort = sort_query
 
     def update_bool_options(self):
+        """Updated parameters to include boolean options expanding on their defintion in bool_fields"""
         for bool_field, updated_options in bool_fields.iteritems():
             if self.parameters.get(bool_field, False) in ["true", "on"]:
                 self.parameters.update(updated_options)
 
-    def create_queryset(self):
-        #Sanitize parameters
-        #parameters = {field:self.parameters[field] for fields in allowable_fields \
-        #    for field in (fields[0], fields[2]) if field in self.parameters}
-        #assert 0, allowable_fields
-
-        added =[]
+   def create_queryset(self):
+        """Sanitize parameters and add them into the query set"""
+        
         for form, (field, search_type, convert) in allowable_fields.iteritems():
             value = self.parameters.get(form)
             
@@ -239,13 +276,12 @@ class HistoneSearch(object):
         
         if self.query.has_errors():
             return
-        
+
         self.query_set = self.query_set.filter(**self.query)
 
         if self.unique:
             unique_ids = self.query_set.values("sequence", "taxonomy").annotate(id=Max("id")).values_list("id", flat=True) #.annotate(num_unique=Sum("num_tax"))
             self.count = unique_ids.count()
-            #assert 0, self.query_set
         else:
             self.count =  self.query_set.count()
 
@@ -256,8 +292,9 @@ class HistoneSearch(object):
         sort_order = "-" if self.sort["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
         self.query_set = self.query_set.order_by(sort_key)
-        
+
     def paginate(self, sequences=None):
+        """Split results into chunks/pages defined by sort_options"""
         if sequences is None:
             sequences
         page_size = int(self.sort["limit"])
@@ -267,6 +304,12 @@ class HistoneSearch(object):
         self.query_set = self.query_set[start:end]
 
     def unique(self):
+        """Make sure the results contain 'unique' sequences where there is one sequences per taxonomy.
+
+        NOTE: This is quite hacky becuase the django ORM does not support this for MySQL. If we were 
+        using PostgreSQL, it would be as simple as:
+            Sequence.objects.order_by('taxonomy', 'sequence').distinct('taxonomy', 'sequence')
+        """
         used_taxa = {}
         for seq in self.query_set:
             if not seq.sequence in used_taxa:
@@ -285,8 +328,11 @@ class HistoneSearch(object):
         return self.query_set.count()
 
     def get_dict(self):
+        """Get the results from the search and handles uniquness and pagination. Returns a list of dicts 
+        with columns anmes and their values.
+        """
         self.sort_query_set()
-    
+
         if self.unique:
             sequences = Indexable(self.unique())
         else:
@@ -299,9 +345,9 @@ class HistoneSearch(object):
         sequences = sequences[start:end]
 
         result = [{
-            "id":r.id, 
+            "id":r.id,
             "variant":r.variant.id,
-            "core":r.variant.core_type.id,
+            "type":r.variant.hist_type.id,
             "gene":r.gene, 
             "splice":r.splice, 
             "taxonomy":r.taxonomy.name.capitalize(), 
@@ -313,11 +359,13 @@ class HistoneSearch(object):
         return {"total":self.count, "rows":result}
 
     def get_sunburst(self):
+        """Return a taxonomy sunburst from the results. This is a dictionary taxonomy tree"""
         from browse.management.commands.buildsunburst import build_sunburst
         self.sort_query_set()
         return build_sunburst(self.query_set)
 
     def get_score_range(self):
+        """Get the range of scores from the result"""
         scores = self.query_set.aggregate(scores_min=Min("score"), scores_max=Max("score"))
         return scores["scores_min"], scores["scores_max"]
 
@@ -336,7 +384,7 @@ class HistoneSearch(object):
         except ValueError:
             pass
 
-        #search core_type, variant, old variant names, header if doens't match variant or core_type, taxonomy
+        #search core_type, variant, old variant names, header if doesn't match variant or core_type, taxonomy
         try:
             core_type = Histone.objects.get(id=search_text)
             if self.navbar:
@@ -410,10 +458,27 @@ class HistoneSearch(object):
         return
 
 class format_query(dict):
+    """The dictionary of parameters used to query sequences. Each key represents a key loopup
+    for the django filter, e.g. "field_name__search_type", and the values are the value to query
+    """
     current_query = None
     multiple = False
     errors = Counter()
+
     def format(self, field, search_type, value, conv_type):
+        """Add a parameter into the query, formatting them according the conv_type and search_type
+
+        Parameters:
+        -----------
+        field : str
+            Name of field to filter
+        search_type : str
+            Feild lookup type, e.g. exact, in, lt
+        value : str
+            Value to filter field by
+        conv_type : Function or object
+            Function to convert value into the correct format. e.g. int or string, or custon such as tax_sub_search
+        """
         #if allow and search_type not in allow:
         #    format_query.errors["Invalid search type ({}) for field {}".format(search_type, field)] += 1
          #   return False, errors
@@ -472,8 +537,3 @@ class format_query(dict):
 
     def has_errors(self):
         return len(format_query.errors) > 0
-
-
-
-
-

@@ -21,7 +21,7 @@ NCBI_database_info = {
     "host": "DB_HOST",
     "port": "DB_PORT",
     "SECRET_KEY": "DJANGO_SECRET_KEY",
-    "URL": os.path.sep,
+    "STATIC_URL": "/static/",
 }
 NCBI_database_info.update({key.replace("NCBI_database_info_", ""): value for key, value in os.environ.iteritems() if key.startswith("NCBI_database_info")})
 
@@ -134,21 +134,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = os.path.join(NCBI_database_info["URL"], "HistoneDB", "static")
+STATIC_URL = NCBI_database_info["STATIC_URL"]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT_AUX = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+   os.path.join(BASE_DIR, "static"),
 ]
-
-MEDIA_URL = os.path.join(NCBI_database_info["URL"], "HistoneDB", "media")
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-# List of finder classes that know how to find static files in
-# various locations.
-#STATICFILES_FINDERS = (
-#    'django.contrib.staticfiles.finders.FileSystemFinder',
-#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#)
-#STATIC_FINDERS = STATICFILES_FINDERS

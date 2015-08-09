@@ -74,41 +74,44 @@ def browse_types(request):
 
 def browse_variants(request, histone_type):
     try:
-        core_histone = Histone.objects.get(id=histone_type)
+        hist_type = Histone.objects.get(id=histone_type)
     except:
         return "404"
 
-    variants = core_histone.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences", "taxonmic_span")
-    curated_varaints = core_histone.variants.filter(sequences__reviewed=True).annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("num_sequences", flat=True)
+    variants = hist_type.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences", "taxonmic_span")
+
+    curated_variants = hist_type.variants.filter(sequences__reviewed=True).annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("num_sequences", flat=True)
+
     variants = [(id, num_curated, num_all, ", ".join(Variant.objects.get(id=id).old_names.values_list("name", flat=True)), tax_span, color) \
-        for (id, num_all, tax_span), num_curated, color in zip(variants, curated_varaints, colors)]
+        for (id, num_all, tax_span), num_curated, color in zip(variants, curated_variants, colors)]
 
     data = {
         "histone_type": histone_type,
-        "histone_description": core_histone.description,
+        "histone_description": hist_type.description,
         "browse_section": "type",
         "name": histone_type,
         "variants": variants,
-        "tree_url": "browse/trees/{}.xml".format(core_histone.id),
-        "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[core_histone.id]),
+        "tree_url": "browse/trees/{}.xml".format(hist_type.id),
+        "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[hist_type.id]),
         "filter_form": AdvancedFilterForm(),
     }
 
     #Store sequences in session, accesed in get_sequence_table_data
-    original_query = {"id_core_histone":histone_type}
+    original_query = {"id_hist_type":histone_type}
     if request.method == "POST":
         query = request.POST.copy()
     else:
         query = original_query
-    
-    result = HistoneSearch(request, query)
+
+    #Here we do the search
+    result = HistoneSearch(query)
 
     data["original_query"] = original_query
     if result.errors:
         query = original_query
         data["filter_errors"] = result.errors
     data["current_query"] = query
-
+    
     return render(request, 'browse_variants.html', data)
 
 def browse_variant(request, histone_type, variant):
@@ -124,10 +127,10 @@ def browse_variant(request, histone_type, variant):
     scores = Sequence.objects.filter(variant__id=variant).filter(all_model_scores__used_for_classifiation=True).annotate(score=Max("all_model_scores__score")).aggregate(max=Max("score"), min=Min("score"))
 
     data = {
-        "core_type": variant.core_type.id,
+        "core_type": variant.hist_type.id,
         "variant": variant.id,
         "name": variant.id,
-        "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.core_type.id, variant.id)),
+        "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.hist_type.id, variant.id)),
         "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[variant.id]),
         "colors":color_range,
         "score_min":scores["min"],
@@ -143,7 +146,7 @@ def browse_variant(request, histone_type, variant):
         query = request.POST.copy()
     else:
         query = original_query
-    result = HistoneSearch(request, query)
+    result = HistoneSearch(query)
 
     data["original_query"] = original_query
     if result.errors:
@@ -202,8 +205,6 @@ def analyze(request):
         "current_query":{}
     }
     if request.method == "POST":
-        type = request.POST.get("id_type_0")
-        initial={"type":type}
         if request.POST.get("sequences"):
             format = "text"
             sequences = request.POST["sequences"]
@@ -212,14 +213,13 @@ def analyze(request):
             format="file"
             sequences = request.POST["file"]
         try:
-            data["result"] = process_upload(type, sequences, format, request)
-            assert 0, data["result"]
+            data["result"] = process_upload(sequences, format, request)
         except Exception as e:
             data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
-            data["analyze_form"] = AnalyzeFileForm(initial=initial)
+            data["analyze_form"] = AnalyzeFileForm()
         data["search_type"] = type
     else:
-        data["analyze_form"] = AnalyzeFileForm(initial={"type":"blastp"})
+        data["analyze_form"] = AnalyzeFileForm()
 
     return render(request, 'analyze.html', data)
 
@@ -233,8 +233,7 @@ def get_sequence_table_data(request):
         assert 0, request.method
         #Returning 'false' stops Bootstrap table
         parameters = []
-
-    #Continues to filter previous search, unless paramters contains key 'reset'
+    
     results = HistoneSearch(request, parameters)
 
     if len(results.errors) > 0:
@@ -244,6 +243,7 @@ def get_sequence_table_data(request):
     result = results.get_dict()
     result["parameters"] = results.parameters
     result["method"] = request.method
+
     return JsonResponse(result)
 
 def get_all_scores(request, ids=None):
@@ -334,14 +334,14 @@ def get_aln_and_features(request, ids=None):
         elif len(sequences) == 1:
             #Already aligned to core histone
             seq = sequences.first()
-            hist_type = seq.variant.core_type.id
+            hist_type = seq.variant.hist_type.id
             canonical = Sequence(id="canonical{}".format(hist_type), sequence=str(templ[hist_type]))
             sequences = [canonical, seq]
             
         else:
             try:
                 hist_type = max(
-                   [(hist, sequences.filter(variant__core_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
+                   [(hist, sequences.filter(variant__hist_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
                    key=lambda x:x[1]
                    )[0]
             except ValueError:
@@ -443,14 +443,14 @@ def get_seed_aln_and_features(request, seed):
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
 
-    seed_file = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    seed_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
     try:
         histone = Histone.objects.get(id=seed)
         seed_file = os.path.join(seed_file, "{}".format(histone.id))
     except Histone.DoesNotExist:
         try:
             variant = Variant.objects.get(id=seed)
-            seed_file = os.path.join(seed_file, variant.core_type.id, "{}".format(variant.id))
+            seed_file = os.path.join(seed_file, variant.hist_type.id, "{}".format(variant.id))
         except Variant.DoesNotExist:
             return HttpResponseNotFound('<h1>No histone variant with name {}</h1>'.format(seed))
 

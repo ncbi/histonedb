@@ -67,7 +67,7 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     postive_scores = get_model_scores(postive_file)
     negative_scores = get_model_scores(negative_file)
     all_scores = postive_scores+negative_scores
-    print all_scores
+    # print all_scores
 
     if len(negative_scores) == 0:
         return {"roc_auc":0, "threshold":min(postive_scores)}
@@ -107,8 +107,6 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     #axes[1].set_title("ROC")
  
     for i, (measure, values) in enumerate(values.iteritems()):
-        print measure, values
-        print len(thresholds), len(values)
         label = "SPC: (>={})".format(best_threshold) if measure=="SPC" else measure
         axes[2].plot(list(thresholds), values, label=label, linewidth=2, color=colors[i])
     axes[2].axvline(best_threshold)
@@ -141,13 +139,10 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
     thresholds = list(sorted(thresholds or map(lambda i: i/10., xrange(1,10000))))
 
     for threshold in thresholds:
-        #print threshold
         TN = sum([1 for score in negatives if score < threshold])
         FP = sum([1 for score in negatives if score >= threshold])
         TP = sum([1 for score in positives if score >= threshold])
         FN = sum([1 for score in positives if score < threshold])
-        #print "FP", FP
-
 
         values["FPR"].append(float(FP)/(FP+TN))
         values["TPR"].append(float(TP)/(TP+FN))
@@ -159,43 +154,9 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
         values["FDR"].append(float(FP)/(TP+FP) if TP+FP>0 else 0.0)
         values["ACC"].append(float(TP+TN)/(len(positives)+len(negatives)))
         
-        """if round(values[measure][-1]*20)/20 == measure_threshold and \
-            abs(measure_threshold-values[measure][-1])<abs(measure_threshold-saveValue):
-            saveTheshold = threshold
-            saveValue = values[measure][-1]"""
-
-    #b = np.ascontiguousarray(a).view(np.dtype((np.void, a.dtype.itemsize * a.shape[1])))
-    #_, idx = np.unique(b, return_index=True)
-
-    print values[measure]
-    print
-    print thresholds
     specificity_curve_inverse = interp1d(values[measure], thresholds)
     saveThreshold = specificity_curve_inverse(0.95)
-    
-    """if saveTheshold is None:
-        print "Try again"
-        if attempt == 0:
-            #Try again without given threshold levels
-            return calcualte_threshold(positives, negatives, measure, measure_threshold, attempt=1)
-        else:
-            nearby = [None, None]
-            for threshold, value in zip(thresholds, values[measure]):
-                v = value-measure_threshold
-                print threshold, v, nearby
-                if v > 0:
-                    if nearby[1] is None or value < nearby[1][1]:
-                        nearby[1] = (threshold, value)
-                elif v < 0:
-                    if nearby[0] is None or value > nearby[0][1]:
-                        nearby[0] = (threshold, value)
-                print zip(nearby)
-                continue
-                slope, intercept, r_value, p_value, std_err = linregress(zip(nearby))
-                print slope, intercept, r_value, p_value, std_err
-                saveTheshold = float(0.95-intercept)/slope"""
                 
-
     return saveThreshold, thresholds, values
 
 
