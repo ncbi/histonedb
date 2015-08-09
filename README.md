@@ -31,10 +31,13 @@ NCBI_database_info = {
     "password": "DB_PASS",
     "host": "DB_HOST",
     "port": "DB_PORT",
-    "SECRET_KEY": "DJANGO_SECRET_KEY"
+    "SECRET_KEY": "DJANGO_SECRET_KEY",
+    "URL":"/" #Root of site when accessed from a browser
 }
 ```
 If running on the mweb, these values will already be set as environment variables.
+Set the correct charset:
+ALTER DATABASE histdb CHARACTER SET utf8 COLLATE utf8_general_ci
 
 2) Migrate Django models into database
 
@@ -73,6 +76,26 @@ python manage.py buildsunburst
 ```
 python manage.py buildseedinfo
 ```
+8) Build Blast database for custom sequence analysis
+
+```
+python manage.py buildblastdb
+```
+9) Build variantinfo
+```
+python manage.py buildvariantinfo
+```
+## Update ##
+If youe need to update or rebuild the database, e.g. if a new variant is discovered, you must rerun steps 4-8 adding the --force parameter after each command to make sure everything gets updated.
+
+## Adding new variants ##
+1) Collect representative sequences and create seed alignments using any methods you wish. Please read our [paper](manuscript/paper.md) for more info on how we collected the sequences and aligned them.
+
+2) Place seed alignments in appropriate static directory:
+```
+static/browse/seeds/[CORE_HISTONE]/[VARIANT].fasta
+```
+3) Follow update instructions
 
 ## Run ##
 
