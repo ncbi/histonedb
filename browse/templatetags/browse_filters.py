@@ -23,6 +23,13 @@ def rchar(value, character):
 def add_parameters(value, parameters):
     return "{}?{}".format(value, "&".join(["{}={}".format(k,v) for k,v in parameters.iteritems()]))
 
+@register.filter('listify')
+def listify(value):
+    if isinstance(value, list):
+        return value
+    else:
+        return [value]
+
 @register.filter('bootchoice_choice')
 def bootchoice_choice(field, default_values={}):
     #choice = str(field).replace("<select", "<select width=100% class=\"form-control\"")

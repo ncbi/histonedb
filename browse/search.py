@@ -266,7 +266,7 @@ class HistoneSearch(object):
 
         self.query_set = self.query_set[start:end]
 
-    def unique(self):
+    def get_unique(self):
         used_taxa = {}
         for seq in self.query_set:
             if not seq.sequence in used_taxa:
@@ -288,7 +288,7 @@ class HistoneSearch(object):
         self.sort_query_set()
     
         if self.unique:
-            sequences = Indexable(self.unique())
+            sequences = Indexable(self.get_unique())
         else:
             sequences = self.query_set
 
