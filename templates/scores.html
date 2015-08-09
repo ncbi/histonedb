@@ -1,20 +1,32 @@
 {% load browse_filters %}
 
-<div {% if modal %}class="modal-body"{% endif %}>
-  Score shows how well a sequence was classified by a variant HMM. Each sequence has been classified as a variant (Green), but it may share similar functions to another variant (Blue). Please see the 'Help' page to learn about the classification alogorthm.<br /> <br /> 
-  <div class="btn-group">
-    <button type="button" class="btn btn-success" aria-expanded="false">Classified Variant</button>
+<div class="modal fade" id="scores_modal_{{ page_name }}" tabindex="-1" role="dialog" aria-labelledby="all_profiles" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="all_profiles_{{ page_name }}">All Profile Scores</h4>
+      </div>
+      <div class="modal-body">
+        Score shows how well a sequence was classified by a variant HMM. Each sequence has been classified as a variant (Green), but it may share similar functions to another variant (Blue). Please see the 'Help' page to learn about the classification alogorthm.<br /> <br /> 
+        <div class="btn-group">
+          <button type="button" class="btn btn-success" aria-expanded="false">Classified Variant</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-info" aria-expanded="false">Above Variant Threshold</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default" aria-expanded="false">Not Significant</button>
+        </div>
+        <br /><br />
+        <div id="scores_table_div_{{ page_name }}" class="top: 5px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-info" aria-expanded="false">Above Variant Threshold</button>
-  </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-default" aria-expanded="false">Not Significant</button>
-  </div>
-  <br /><br />
-  <div id="scores_table_div" class="top: 5px;"></div>
 </div>
-
 
 <script type="text/javascript">
 function scoreCellStyle(value, row, index) {
@@ -38,14 +50,15 @@ function scoreCellStyle(value, row, index) {
 
 function make_scores_table(table_div, ids, width) {
   table_div.empty();
-  table_div.append("<table id='scores_table' style='width:"+width+";overflow: auto;'></table>");
+  table_div.append("<table id='scores_table_{{ page_name }}' style='width:"+width+";overflow: auto;'></table>");
   columns = [{field:'variant', title:''}];
   params = "?";
   for (var i = 0; i < ids.length; i++) {
     columns.push({field:ids[i], title:ids[i], cellStyle:scoreCellStyle});
     params += "id="+ids[i]+"&"
   }
-  $('#scores_table').bootstrapTable({
+  console.log("{% url 'browse.views.get_all_scores' %}"+params.substring(0, params.length-1));
+  $('#scores_table_{{ page_name }}').bootstrapTable({
       {% if hmmer_results %}
       data: {% autoescape off %}{{ hmmer_results|jsonify }}{% endautoescape %},
       {% else %}
@@ -57,6 +70,6 @@ function make_scores_table(table_div, ids, width) {
 
 {% if hmmer_results and ids %}
 $ids = {% autoescape off %}{{ ids|jsonify }}{% endautoescape %};
-make_scores_table($("#scores_table_div"), $ids, "100%");
+make_scores_table($("#scores_table_div_{{ page_name }}"), $ids, "100%");
 {% endif %}
 </script>

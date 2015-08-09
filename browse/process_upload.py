@@ -9,8 +9,10 @@ from Bio.Alphabet import IUPAC
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIXML
 from Bio import Alphabet
+from Bio.Alphabet import IUPAC
 
 from browse.models import Histone, Variant, Sequence
+from djangophylocore.models import Taxonomy
 from django.conf import settings
 
 import subprocess
@@ -27,7 +29,7 @@ class InvalidFASTA(Exception):
 class InvalidSearchType(Exception):
     pass
 
-def process_upload(type, sequences, format, request):
+def process_upload(sequences, format, request):
     assert format in ["file", "text"], "Invalid format: {}. Must be either 'file' or 'text'.".format(format)
 
     if format == "text":
@@ -36,38 +38,45 @@ def process_upload(type, sequences, format, request):
         seq_file.seek(0)
         sequences = seq_file
 
-    processed_sequences = []
-        
-    for i, seq in enumerate(SeqIO.parse(seq_file, "fasta", alphabet=IUPAC.protein)):
-        if i >= 50:
-            raise TooManySequences()
-        elif not Alphabet._verify_alphabet(seq.seq):
-            raise InvalidFASTA("Sequence {} is not a protein.".format(seq.id))
+    sequences = SeqIO.parse(sequences, "fasta", IUPAC.ExtendedIUPACProtein())
 
-        processed_sequences.append(seq)
-
-    if len(processed_sequences) == 0:
+    try:
+        sequence = sequences.next()
+    except StopIteration:
         raise InvalidFASTA("No sequences parsed.")
 
-    sequences = "\n".join([seq.format("fasta") for seq in processed_sequences])
+    if not Alphabet._verify_alphabet(sequence.seq):
+        raise InvalidFASTA("Sequence {} is not a protein.".format(seq.id))
 
-    if type == "blastp":
-        result = upload_blastp(sequences, len(processed_sequences))
-    elif type == "hmmer":
-        result = upload_hmmer(processed_sequences, len(processed_sequences))
-    else:
-        raise InvalidSearchType("Muse search only 'blastp' or 'hmmer'")
+    result = [sequence.id]
+
+    classifications, ids, rows = upload_hmmer(sequence)
+    result.append(classifications[0][1])
+    secondary_classification = classifications[0][2]
+    result.append(secondary_classification if secondary_classification != "Unknown" else None)
+    result.append(rows)
+    result.append(upload_blastp(sequence)[0])
+
+    request.session["uploaded_sequences"] = [{
+        "id":sequence.id,
+        "variant":classifications[0][1],
+        "sequence":str(sequence.seq),
+        "taxonomy":result[-1][0]["taxonomy"]
+    }]
 
     return result
 
-def upload_blastp(seq_file, num_seqs):
+def upload_blastp(sequences):
+    if not isinstance(sequences, list):
+        sequences = [sequences]
+
     blastp = os.path.join(os.path.dirname(sys.executable), "blastp")
-    output= os.path.join("/", "tmp", "{}.xml".format(seq_file[:-6]))
+    output= os.path.join("/", "tmp", "{}.xml".format(uuid.uuid4()))
     blastp_cline = NcbiblastpCommandline(
         cmd=blastp,
         db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa"), 
         evalue=0.01, outfmt=5)
-    out, err = blastp_cline(stdin=seq_file)
+    out, err = blastp_cline(stdin="\n".join([s.format("fasta") for s in sequences]))
     blastFile = StringIO.StringIO()
     blastFile.write(out)
     blastFile.seek(0)
@@ -109,16 +118,19 @@ def upload_blastp(seq_file, num_seqs):
 
     return results
 
-def upload_hmmer(seq_file, num_seqs, evalue=10):
+def upload_hmmer(sequences, evalue=10):
     """
     """
+    if not isinstance(sequences, list):
+        sequences = [sequences]
+
     save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
     temp_seq_path = os.path.join(save_dir, "{}.fasta".format(uuid.uuid4()))
     with open(temp_seq_path, "w") as seqs:
-        for s in seq_file:
+        for s in sequences:
             SeqIO.write(s, seqs, "fasta");
 
     variantdb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_variants.hmm")
@@ -126,14 +138,14 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
     hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
 
     results = {}
-    variants = []
 
     variants = list(Variant.objects.all().order_by("id").values_list("id", "hmmthreshold"))
     indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
-    seqs_index = {seq.id:i for i, seq in enumerate(seq_file)}
-    ids = map(lambda s: s.id, seq_file)
+    seqs_index = {seq.id:i for i, seq in enumerate(sequences)}
+    ids = [s.id for s in sequences]
     rows = [{} for _ in xrange(len(variants))]
-    classifications = {s.id:"Unknown" for s in seq_file}
+    classifications = {s.id:"Unknown" for s in sequences}
+    secondary_classifications = {s.id:"Unknown" for s in sequences}
     for i, (variant, threshold) in enumerate(variants):
         rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
         for id in ids:
@@ -166,23 +178,35 @@ def upload_hmmer(seq_file, num_seqs, evalue=10):
             for hit in variant_query:
                 print "Hit is", hit.id
                 for hsp in hit:
-                    if hsp.bitscore>=variant_model.hmmthreshold and \
-                         (classifications[hit.id] == "Unknown" or \
+                    if hsp.bitscore>=variant_model.hmmthreshold:
+                        if (classifications[hit.id] == "Unknown" or \
                           float(hsp.bitscore) >= rows[indices[classifications[hit.id]]][hit.id]):
-                        if i==1 and not (classifications[hit.id] == "Unknown" or "unclassified" in classifications[hit.id]):
-                            #Skip canoninical score if already classfied as a variant
-                            continue
-                        classifications[hit.id] = variant
+                            if i==1 and not (classifications[hit.id] == "Unknown" or "unclassified" in classifications[hit.id]):
+                                #Skip canoninical score if already classfied as a variant
+                                continue
 
-                        if not classifications[hit.id] == "Unknown":
-                            for row in rows:
-                                row["data"]["this_classified"][hit.id] = False
-                        rows[indices[variant]]["data"]["this_classified"][hit.id] = True
+                            if not classifications[hit.id] == "Unknown":
+                                secondary_classifications[hit.id] = rows[indices[classifications[hit.id]]]["variant"]
+                                
+                            classifications[hit.id] = variant
+
+
+                            if not classifications[hit.id] == "Unknown":
+                                for row in rows:
+                                    row["data"]["this_classified"][hit.id] = False
+                            rows[indices[variant]]["data"]["this_classified"][hit.id] = True
+                        else:
+                            try:
+                                previousScore = rows[indices[secondary_classifications[hit.id]]][hit.id]
+                            except KeyError:
+                                previousScore = 0
+                            if classifications[hit.id] == "Unknown" or float(hsp.bitscore) >= previousScore:
+                                secondary_classifications[hit.id] = variant_model.id
                     
                     rows[indices[variant]]["data"]["above_threshold"][hit.id] = float(hsp.bitscore)>=variant_model.hmmthreshold
                     rows[indices[variant]][hit.id] = float(hsp.bitscore)
     
-    classifications = [(id, classifications[id]) for id in ids]
+    classifications = [(id, classifications[id], secondary_classifications[id]) for id in ids]
 
     #Cleanup
     os.remove(temp_seq_path)

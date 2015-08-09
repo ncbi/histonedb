@@ -57,10 +57,9 @@ class FeatureForm(ModelForm):
 
 SEARCH_CHOICES = (("blastp", "Search HistoneDB (blastp)"), ("hmmer", "Classify your sequence(s) (hmmer)"))
 class AnalyzeFileForm(forms.Form):
-    type = forms.ChoiceField(widget=forms.RadioSelect, choices=SEARCH_CHOICES, initial=SEARCH_CHOICES[0][0])
     sequences = forms.CharField(widget=forms.Textarea)
     file  = forms.FileField()
 
     def __init__(self, *args, **kwargs):
         super(AnalyzeFileForm, self).__init__(*args, **kwargs)
-        self.fields['sequences'].help_text = "Max 50 Sequences. However, running > 1 sequence in blastp will not be meaningful."
+        self.fields['sequences'].help_text = "Max 1 Sequence. However, running > 1 sequence in blastp will not be meaningful."
