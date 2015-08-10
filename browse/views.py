@@ -124,7 +124,7 @@ def browse_variant(request, histone_type, variant):
     red = Color("#fc8d62")
     color_range = map(str, red.range_to(green, 12))
 
-    scores = Sequence.objects.filter(variant__id=variant).filter(all_model_scores__used_for_classifiation=True).annotate(score=Max("all_model_scores__score")).aggregate(max=Max("score"), min=Min("score"))
+    scores = Sequence.objects.filter(variant__id=variant).filter(all_model_scores__used_for_classification=True).annotate(score=Max("all_model_scores__score")).aggregate(max=Max("score"), min=Min("score"))
 
     data = {
         "core_type": variant.hist_type.id,
@@ -280,7 +280,7 @@ def get_all_scores(request, ids=None):
                 if rows[indices[score.variant.id]][id] == "n/a" or score.score > rows[indices[score.variant.id]][id]:
                     rows[indices[score.variant.id]][id] = score.score
                     rows[indices[score.variant.id]]["data"]["above_threshold"][id] = score.score>=threshold
-                    rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.used_for_classifiation
+                    rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.used_for_classification
             
     return JsonResponse(rows, safe=False)
 

@@ -10,8 +10,8 @@ from lib.phylogelib import NewickParser
 from lib.nexus import Nexus, remove_nexus_comments
 from pyparsing import ParseException
 import datetime, re, sys, os, codecs
-from itertools import islice
-
+from itertools import islice, chain
+from math import ceil
 ##################################################
 #             TaxonomyReference                  #
 ##################################################
@@ -35,24 +35,25 @@ def add_to_graph(parameters):
     import networkx as NX
     #tree = NX.DiGraph() 
     #already_done = set([])
+    
     for taxon in taxa_list:
-        taxon = Taxonomy.objects.get(pk=taxon)
+	taxon = Taxonomy.objects.get(pk=taxon)
+                
+        parents = taxon.parents
+        
+        if allow_ranks:
+            root = parents.last()
+            parents = parents.filter(rank__name__in=allow_ranks)
+            if "no rank" not in allow_ranks:
+                parents = chain(parents, [root])
+        
         prev_taxon = None
-        while taxon.name != 'root' and taxon.name not in tree:
-
-            if allow_ranks and taxon.rank not in allow_ranks:
-                taxon = taxon.parent
-                continue
-            
+       
+        for parent in parents:
             if prev_taxon is not None:
-                tree.add_edge( taxon.name, prev_taxon.name )
-
-            #already_done.add( taxon )
-            prev_taxon = taxon
-            taxon = taxon.parent
-
-        if prev_taxon is not None:
-            tree.add_edge( taxon.name, prev_taxon.name)
+                tree.add_edge( parent.name, prev_taxon.name )
+                
+            prev_taxon = parent
 
 class TaxonomyReference( object ):
     """
@@ -297,9 +298,10 @@ class TaxonomyReference( object ):
 
         p = Pool(processes=3)
         node_divisor = len(p._pool)*4
-        node_chunks = list(chunks(taxa_list, int(len(taxa_list)/node_divisor)))
+        node_chunks = list(chunks(taxa_list, int(float(len(taxa_list))/node_divisor)+1))
         num_chunks = len(node_chunks)
-        #assert 0, p.map(add_to_graph, zip(
+         
+#assert 0, p.map(add_to_graph, zip(
         #    node_chunks, 
         #    [tree]*num_chunks, 
         #    [already_done]*num_chunks, 
@@ -309,7 +311,7 @@ class TaxonomyReference( object ):
             add_to_graph((chunk, tree, already_done, allow_ranks))
             #assert 0, "{} {}".format(subtree.number_of_nodes(), subtree.number_of_edges())
             #tree = NX.disjoint_union(tree, subtree)
-        
+                
         return tree
 
 ##################################################

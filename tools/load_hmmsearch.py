@@ -59,7 +59,7 @@ def load_hmm_results(hmmerFile):
           #greater than current, reassign variant and update scores. Else, append score
             seq=seqs.first()
             print "Already in database", seq
-            best_scores = seq.all_model_scores.filter(used_for_classifiation=True)
+            best_scores = seq.all_model_scores.filter(used_for_classification=True)
             if len(best_scores)>0:
             ##Sequence have passed the threshold for one of previous models.
               best_score = best_scores.first()
@@ -77,7 +77,7 @@ def load_hmm_results(hmmerFile):
                 #A strange thing, bitscore is bigger, but threshold is not passed.
                 add_score(seq, variant_model, hsp, best=False)
             else:
-              #Did not pass threshold for previous models.
+              #No previous model  passed the threshold, will this one?
               if hsp.bitscore>=variant_model.hmmthreshold:
                 seq.variant = variant_model
                 seq.sequence = str(hsp.hit.seq)
@@ -141,7 +141,7 @@ def add_score(seq, variant_model, hsp, best=False):
     hmmEnd                 = hsp.query_end,
     seqStart               = hsp.hit_start,
     seqEnd                 = hsp.hit_end,
-    used_for_classifiation = best,
+    used_for_classification = best,
     )
   score.save()
 

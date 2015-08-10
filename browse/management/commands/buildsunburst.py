@@ -32,7 +32,7 @@ class Command(BaseCommand):
             with open(os.path.join(path, "all_taxa.json"), "w") as all_taxa:
                 all_taxa.write(sb)
 
-        for hist_type in Histone.objects.all():
+        for hist_type in Histone.objects.exclude(id="Unknown"):
             print "Saving", hist_type.id
 
             vpath = os.path.join(path, hist_type.id)
@@ -48,7 +48,7 @@ class Command(BaseCommand):
     def build_sunburst(self, **filter):
         """Build the sunburst
         """
-        sequences = Sequence.objects.filter(**filter).filter(all_model_scores__used_for_classifiation=True).annotate(score=Avg("all_model_scores__score"))
+        sequences = Sequence.objects.filter(**filter).filter(all_model_scores__used_for_classification=True).annotate(score=Avg("all_model_scores__score"))
         return json.dumps(build_sunburst(sequences))
 
 def build_sunburst(sequences):
@@ -65,7 +65,7 @@ def build_sunburst(sequences):
     color_range = list(red.range_to(green, 100))
 
     def get_color_for_taxa(taxon): 
-        avg_score = taxon.children.filter(sequence__all_model_scores__used_for_classifiation=True).aggregate(score=Avg("sequence__all_model_scores__score"))["score"]
+        avg_score = taxon.children.filter(sequence__all_model_scores__used_for_classification=True).aggregate(score=Avg("sequence__all_model_scores__score"))["score"]
         avg_score = avg_score if avg_score else scores_min
         scaled = int(floor((float(avg_score-scores_min)/float(scores_max-scores_min))*100))
         color_index = scaled if scaled <= 99 else 99

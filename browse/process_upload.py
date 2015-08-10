@@ -69,7 +69,7 @@ def upload_blastp(sequences):
     output= os.path.join("/", "tmp", "{}.xml".format(uuid.uuid4()))
     blastp_cline = NcbiblastpCommandline(
         cmd=blastp,
-        db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa"), 
+        db=os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fa"), 
         evalue=0.01, outfmt=5)
     out, err = blastp_cline(stdin="\n".join([s.format("fasta") for s in sequences]))
     blastFile = StringIO.StringIO()
@@ -86,8 +86,8 @@ def upload_blastp(sequences):
                 continue
             for hsp in alignment.hsps:
                 sequence = Sequence.objects.filter(
-                        (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=True)) | \
-                        (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classifiation=False)) \
+                        (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=True)) | \
+                        (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=False)) \
                     ).annotate(
                         num_scores=Count("all_model_scores"), 
                         score=Max("all_model_scores__score"),
@@ -128,8 +128,8 @@ def upload_hmmer(sequences, evalue=10):
         for s in sequences:
             SeqIO.write(s, seqs, "fasta");
 
-    variantdb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_variants.hmm")
-    coredb = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_cores.hmm")
+    variantdb = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms", "combined_variants.hmm")
+    coredb = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms", "combined_cores.hmm")
     hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
 
     results = {}

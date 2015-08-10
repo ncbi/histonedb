@@ -98,7 +98,7 @@ class Sequence(models.Model):
     def to_biopython(self, ungap=False):
         seq = Seq(self.sequence)
         try:
-            score_desc = self.all_model_scores.fiter(used_for_classifiation=True).first().description()
+            score_desc = self.all_model_scores.fiter(used_for_classification=True).first().description()
         except:
             score_desc = ""
         if ungap:
@@ -117,20 +117,20 @@ class Score(models.Model):
     """
     The score class, assigns a bunch of score entries to the sequence. For each variant a score.
     """
-    id                     = models.IntegerField(primary_key=True)
-    sequence               = models.ForeignKey(Sequence, related_name="all_model_scores")
-    variant                = models.ForeignKey(Variant, related_name="+")
-    above_threshold        = models.BooleanField()
-    score                  = models.FloatField()
-    evalue                 = models.FloatField()
-    hmmStart               = models.IntegerField()
-    hmmEnd                 = models.IntegerField()
-    seqStart               = models.IntegerField()
-    seqEnd                 = models.IntegerField()
-    used_for_classifiation = models.BooleanField()
+    id                      = models.IntegerField(primary_key=True)
+    sequence                = models.ForeignKey(Sequence, related_name="all_model_scores")
+    variant                 = models.ForeignKey(Variant, related_name="+")
+    above_threshold         = models.BooleanField()
+    score                   = models.FloatField()
+    evalue                  = models.FloatField()
+    hmmStart                = models.IntegerField()
+    hmmEnd                  = models.IntegerField()
+    seqStart                = models.IntegerField()
+    seqEnd                  = models.IntegerField()
+    used_for_classification = models.BooleanField()
 
     def __unicode__(self):
-        return "<{} variant={}; score={}; above_threshold={}; used_for_classifiation={} >".format(self.sequence.id, self.variant.id, self.score, self.above_threshold, self.used_for_classifiation)
+        return "<{} variant={}; score={}; above_threshold={}; used_for_classification={} >".format(self.sequence.id, self.variant.id, self.score, self.above_threshold, self.used_for_classification)
 
     def description(self):
         return "[Score: {}; Evalue:{}]"

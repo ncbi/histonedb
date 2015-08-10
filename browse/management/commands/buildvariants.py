@@ -167,8 +167,8 @@ class Command(BaseCommand):
             for hit in variant_query:
                 gi = hit.id.split("|")[1]
                 seq = Sequence.objects.get(id=gi)
-                for i, hsp in enumerate(hit):
-                    add_score(seq, variant_model, hsp)
+                best_hsp = max(hit, key=lambda hsp: hsp.bitscore)
+                add_score(seq, variant_model, best_hsp, seq.variant==variant_model)
 
     def load_from_db(self,reset=True):
         """Load data into the histone database"""
