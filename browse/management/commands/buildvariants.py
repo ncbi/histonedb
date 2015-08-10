@@ -1,12 +1,12 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from browse.models import Histone, Variant, Sequence, Score, Features 
-from tools.load_hmmsearch import load_hmm_results, add_score, easytaxonomy_from_header
+from tools.load_hmmsearch import load_hmm_results, add_score
 from tools.test_model import test_model
 import subprocess
 import os, sys
 import re
-from tools.taxonomy_from_gis import taxids_from_gis
+from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header
 
 from Bio import SearchIO
 from Bio import SeqIO
@@ -23,7 +23,7 @@ class Command(BaseCommand):
     hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
     combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
     pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
-    dbauto_search_results_file = os.path.join(hmm_directory, "dbauto_search_results.out")
+    db_search_results_file = os.path.join(hmm_directory, "db_search_results.out")
     curated_all_fasta=os.path.join(hmm_directory, "curated_all.fasta")
     curated_search_results_file = os.path.join(hmm_directory, "curated_all_search_results.out")
     model_evaluation = os.path.join(hmm_directory, "model_evaluation")
@@ -38,7 +38,6 @@ class Command(BaseCommand):
 
         parser.add_argument(
             "--db",
-            nargs=1,
             dest="db_file",
             default="nr",
             help="Specify the database file, by default will use or download nr")
@@ -46,8 +45,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
-        self.dbauto_file=options['dbauto_file']
-        if self.dbauto_file == "nr":
+        self.db_file=options['db_file']
+        if self.db_file == "nr":
             self.get_nr()
 
         if options["force"]:
@@ -72,7 +71,7 @@ class Command(BaseCommand):
             self.load_curated()
             self.get_scores_for_curated_via_hmm()
 
-        if options["force"] or not os.path.isfile(self.dbauto_search_results_file):
+        if options["force"] or not os.path.isfile(self.db_search_results_file):
             #Search inputted seuqence database using our variantt models
             self.search_in_db()
 
@@ -134,7 +133,7 @@ class Command(BaseCommand):
         subprocess.call(["hmmpress", "-f", combined_hmm])
 
     def search_in_db(self):
-        return self.search(hmms_db=self.combined_hmm_file, out=self.dbauto_search_results_file,sequences=self.dbauto_file)
+        return self.search(hmms_db=self.combined_hmm_file, out=self.db_search_results_file, sequences=self.db_file)
 
     def search(self, hmms_db, out, sequences=None, E=10):
         """Use HMMs to search the nr database"""
@@ -142,7 +141,7 @@ class Command(BaseCommand):
 
         if sequences is None:
             sequences = self.dbauto_file
-
+        print " ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
 
 
@@ -196,7 +195,7 @@ class Command(BaseCommand):
                     print "NO GI detected ", s.id
                     taxonomy = easytaxonomy_from_header(s.id)
                 else:
-                    taxonomy = taxids_from_gis([gi]).next()
+                    taxonomy = taxonomy_from_header("", gi=gi)
                 print "Loading ", s.id
                 
                 seq = Sequence(
@@ -204,7 +203,7 @@ class Command(BaseCommand):
                     variant_id  = variant_name,
                     gene     = None,
                     splice   = None,
-                    taxonomy = temp_tax,
+                    taxonomy = taxonomy,
                     header   = "CURATED SEQUENCE: {}".format(s.description),
                     sequence = s.seq,
                     reviewed = True,
@@ -223,7 +222,7 @@ class Command(BaseCommand):
                 continue
             for seed in files: 
                 if not seed.endswith(".fasta"): continue
-                yield core_type, seed
+                yield hist_type, seed
 
     def estimate_thresholds(self, specificity=0.95):
         """

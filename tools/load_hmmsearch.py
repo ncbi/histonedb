@@ -14,7 +14,7 @@ from django.db.utils import IntegrityError
 
 #Custom librairies
 from tools.hist_ss import get_hist_ss
-from tools.taxonomy_from_gis import easytaxonomy_from_header, taxonomy_from_gis
+from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_gis
 
 def load_hmm_results(hmmerFile):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
@@ -87,6 +87,10 @@ def load_hmm_results(hmmerFile):
                 add_score(seq, variant_model, hsp, best=False)
           else:
             ##A new sequence is found.
+            try:
+                int(gi)
+            except ValueError:
+                continue
             taxonomy = taxonomy_from_header(header, gi)
             sequence = Seq(str(hsp.hit.seq))
             best = hsp.bitscore >= variant_model.hmmthreshold

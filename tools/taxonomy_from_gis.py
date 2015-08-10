@@ -2,6 +2,7 @@ import re
 from Bio import Entrez, SeqIO
 # *Always* tell NCBI who you are
 Entrez.email = "eli.draizen@nih.gov"
+from djangophylocore.models import Taxonomy
 
 def seq_from_gi(gis):
     post_results = Entrez.read(Entrez.epost("protein", id=",".join(gis)))
