@@ -52,6 +52,12 @@ python manage.py buildncbi
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
 ```
+WARNING: This will download the entire NCBI taxonomy database and load into the databse, which can take a long time. If you want to speed things up, we have a datadump of the djangophylocore taxonomy database to easily load into django, but may not be up-to-date, available [here](http://www.ncbi.nlm.nih.gov/projects/histonedb/HistoneDB/static/databsese/djangophylocore_datadump.json). To use this datadump, follow these intructions:
+
+```
+wget http://www.ncbi.nlm.nih.gov/projects/histonedb/HistoneDB/static/databases/djangophylocore_datadump.json
+python manage.py loaddata djangophylocore_datadump.json
+```
 
 4) Classify sequences in NR
 
@@ -93,7 +99,7 @@ If youe need to update or rebuild the database, e.g. if a new variant is discove
 
 2) Place seed alignments in appropriate static directory:
 ```
-static/browse/seeds/[CORE_HISTONE]/[VARIANT].fasta
+static/browse/seeds/[HISTONE_TYPE]/[VARIANT].fasta
 ```
 3) Follow update instructions
 
@@ -116,6 +122,6 @@ Coming soon.
 * Eli Draizen
 * Alexey K. Shaytan
 * Anna Panchenko
-* Leonardu Marino-Ramirez
+* Leonardo Marino-Ramirez
 * David Landsman
 * Paul Talbert
