@@ -52,11 +52,22 @@ python manage.py buildncbi
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
 ```
+WARNING: This will download the entire NCBI taxonomy database and load into the databse, which can take a long time. If you want to speed things up, we have a datadump of the djangophylocore taxonomy database to easily load into django, but may not be up-to-date, available [here](http://www.ncbi.nlm.nih.gov/projects/histonedb/HistoneDB/static/databsese/djangophylocore_datadump.json). To use this datadump, follow these intructions:
+
+```
+wget http://www.ncbi.nlm.nih.gov/projects/histonedb/HistoneDB/static/databases/djangophylocore_datadump.json
+python manage.py loaddata djangophylocore_datadump.json
+```
 
 4) Classify sequences in NR
 
 ```
 python manage.py buildvariants
+```
+WARNING: This will by default download the entire nr database and classify all sequences in the nr. If you want to build the HistoneDB using a smaller database of proteins in FASTA format using the NR formatted header (">gi|UNIQUE_GI|anything description [TAXONOMY_NAME]"), run the following command:
+
+```
+python manage.py buildvariants --db small_database.fasta
 ```
 
 5) Build trees from seed sequences
@@ -89,13 +100,15 @@ python manage.py buildvariantinfo
 If youe need to update or rebuild the database, e.g. if a new variant is discovered, you must rerun steps 4-8 adding the --force parameter after each command to make sure everything gets updated.
 
 ## Adding new variants ##
-1) Collect representative sequences and create seed alignments using any methods you wish. Please read our [paper](manuscript/paper.md) for more info on how we collected the sequences and aligned them.
+1) Collect representative sequences of the new variant and create seed alignments using any method you wish. Please read our [paper](manuscript/paper.md) for more info on how we collected the sequences and aligned them.
 
 2) Place seed alignments in appropriate static directory:
 ```
-static/browse/seeds/[CORE_HISTONE]/[VARIANT].fasta
+static/browse/seeds/[HISTONE_TYPE]/[VARIANT].fasta
 ```
 3) Follow update instructions
+
+4) If this is a new variant, please let us know by creating a pull request, a new issue (enhancement), or emailing us.
 
 ## Run ##
 
@@ -116,6 +129,6 @@ Coming soon.
 * Eli Draizen
 * Alexey K. Shaytan
 * Anna Panchenko
-* Leonardu Marino-Ramirez
+* Leonardo Marino-Ramirez
 * David Landsman
 * Paul Talbert
