@@ -303,13 +303,14 @@ class HistoneSearch(object):
 
         self.query_set = self.query_set[start:end]
 
-    def unique(self):
+    def get_unique(self):
         """Make sure the results contain 'unique' sequences where there is one sequences per taxonomy.
 
         NOTE: This is quite hacky becuase the django ORM does not support this for MySQL. If we were 
         using PostgreSQL, it would be as simple as:
             Sequence.objects.order_by('taxonomy', 'sequence').distinct('taxonomy', 'sequence')
         """
+        
         used_taxa = {}
         for seq in self.query_set:
             if not seq.sequence in used_taxa:
@@ -334,7 +335,7 @@ class HistoneSearch(object):
         self.sort_query_set()
 
         if self.unique:
-            sequences = Indexable(self.unique())
+            sequences = Indexable(self.get_unique())
         else:
             sequences = self.query_set
 

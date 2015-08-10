@@ -78,7 +78,7 @@ $("#id_variant").prop("readonly", true);
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="curated">
-            {% include "test.html" with page_name="browse_curated_variant_"|add:variant|rchar:"." curated=True %}
+            {% include "test.html" with page_name="browse_curated_variant_"|add:variant|rchar:"." quick_msa=True curated=True %}
           </div>
           <div role="tabpanel" class="tab-pane" id="species">
             {% include "circle.html" with page_name="browse_variant_"|add:variant|rchar:"." %}

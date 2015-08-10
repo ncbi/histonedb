@@ -9,36 +9,8 @@
 <script src="{% static 'browse/js/biojs-io-gff.js' %}"></script>
 <script src="{% static 'browse/js/msa.js' %}"></script>
 <script type="text/javascript">
-  var autocollapse = function() {
-    var tabs = $('#analyze_results_tabs');
-    var tabsHeight = tabs.innerHeight();
-    
-    if (tabsHeight >= 50) {
-      while(tabsHeight > 50) {
-        var children = tabs.children('li:not(:last-child)');
-        var count = children.size();
-        $(children[count-1]).prependTo('#analyze_results_collapsed');
-        
-        tabsHeight = tabs.innerHeight();
-      }
-    }
-    else {
-      while(tabsHeight < 50 && (tabs.children('li').size()>0)) {
-        var collapsed = $('#analyze_results_collapsed').children('li');
-        var count = collapsed.size();
-        $(collapsed[0]).insertBefore(tabs.children('li:last-child'));
-        tabsHeight = tabs.innerHeight();
-      }
-      if (tabsHeight>50) { // double chk height again
-        autocollapse();
-      }
-    }
-  };
-
   $(function() {
-    $('#analyze_navbar_button').addClass('active'); 
-    autocollapse(); // when document first loads
-    $(window).on('resize', autocollapse); // when window is resized
+    $('#analyze_navbar_button').addClass('active');
   });
 </script>
 {% endblock %}
@@ -49,7 +21,7 @@
 	  {% if not result %}
 	    <h1>Analyze Sequences</h1>
 	  {% else %}
-	  	<h1>Upload results</small>
+	  	<h1>Results for {{ result.0 }}</small>
 	  {% endif %}
   </div>
   {% if not result %}
@@ -86,28 +58,20 @@
     <button type="submit" class="btn btn-primary">Upload</button>
     </form>
   {% elif result %}
-    {% if search_type == "hmmer" %}
-      {% for seq in result.0 %}
-        <div class="alert alert-success" role="alert">Sequence {{seq.0}} is most likely: {{seq.1}}</div>
-      {% endfor %}
-      {% include "scores.html" with hmmer_results=result.2 ids=result.1 %}
+    <div class="alert alert-success" role="alert">Most likely: {{result.1}}</div>
+    {% if result.2 %}
+      <div class="alert alert-info" role="alert">Second best (Or may share characteristcs with): {{result.2}}</div>
     {% endif %}
-    {% if search_type == "blastp" %}
-      <div class="container">
-        <div class="row">
-          <div role="tabpanel">
-            <ul class="nav nav-tabs" id="analyze_results_tabs">
-              <li id="lastTab">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                  More <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" id="analyze_results_collapsed"></ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    {% endif %}
+    <div class="btn-group">
+        <button type="button" class="btn btn-default" aria-expanded="false" data-toggle="modal" data-target="#scores_modal_analyze_scores">View against all profiles...</button>
+    </div> 
+    {% include "test.html" with page_name="analyze_sequences" blast_results=result.4 quick_msa=True analyze=True %}
+    {% include "scores.html" with hmmer_results=result.3 ids=result.0|listify page_name="analyze_scores"%}
+    <script type="text/javascript">
+      $(function() {
+        createMSA("quick_msa-analyze_sequences", "{% url 'browse.views.get_aln_and_features' %}?upload=true", "", 975, 75, false);
+      });
+    </script>
   {% endif %}
 </div>
 {% endblock %}
