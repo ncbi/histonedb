@@ -10,35 +10,33 @@ from lib.phylogelib import NewickParser
 from lib.nexus import Nexus, remove_nexus_comments
 from pyparsing import ParseException
 import datetime, re, sys, os, codecs
-from itertools import islice, chain
+from itertools import islice, chain, imap
 from math import ceil
+
+import multiprocessing
 ##################################################
 #             TaxonomyReference                  #
 ##################################################
 
 def chunks(l, n):
     """Divide a list of nodes `l` in `n` chunks"""
-    l_c = iter(l)
-    while 1:
-        x = tuple(islice(l_c, n))
-        if not x:
-            return
-        yield x
+    #assert 0, l.__class__.__name__
+    i = iter(l)
+    piece = tuple(islice(i, n))
+    while piece:
+        yield piece
+        piece = tuple(islice(i, n))
 
 def add_to_graph(parameters):
     """Create graph of taxon and its parents"""
     try:
-        taxa_list, tree, already_done, allow_ranks = parameters
+        taxa_list, allow_ranks = parameters
     except:
-        return
-
-    import networkx as NX
-    #tree = NX.DiGraph() 
-    #already_done = set([])
-    
+        return set()
+	
+    edges = set() 
     for taxon in taxa_list:
-	taxon = Taxonomy.objects.get(pk=taxon)
-                
+	taxon = Taxonomy.objects.get(pk=taxon)         
         parents = taxon.parents
         
         if allow_ranks:
@@ -51,9 +49,10 @@ def add_to_graph(parameters):
        
         for parent in parents:
             if prev_taxon is not None:
-                tree.add_edge( parent.name, prev_taxon.name )
-                
+                edges.add(( parent.name, prev_taxon.name ))
             prev_taxon = parent
+    
+    return edges
 
 class TaxonomyReference( object ):
     """
@@ -294,24 +293,15 @@ class TaxonomyReference( object ):
         from multiprocessing import Pool
 
         tree = NX.DiGraph() 
-        already_done = set([])
 
-        p = Pool(processes=3)
+        p = Pool(processes=multiprocessing.cpu_count())
         node_divisor = len(p._pool)*4
         node_chunks = list(chunks(taxa_list, int(float(len(taxa_list))/node_divisor)+1))
         num_chunks = len(node_chunks)
-         
-#assert 0, p.map(add_to_graph, zip(
-        #    node_chunks, 
-        #    [tree]*num_chunks, 
-        #    [already_done]*num_chunks, 
-        #    [allow_ranks]*num_chunks))
-        #for subtree in pool.imap_unordered(add_to_graph, node_chunks, chunks):
-        for chunk in node_chunks:
-            add_to_graph((chunk, tree, already_done, allow_ranks))
-            #assert 0, "{} {}".format(subtree.number_of_nodes(), subtree.number_of_edges())
-            #tree = NX.disjoint_union(tree, subtree)
-                
+        
+        for edges in p.imap_unordered(add_to_graph, zip(node_chunks, [allow_ranks]*num_chunks),  num_chunks):
+            tree.add_edges_from(edges)        
+            
         return tree
 
 ##################################################
