@@ -18,8 +18,8 @@ NCBI_database_info = {
     "name": "DB_NAME",
     "user": "DB_USER",
     "password": "DB_PASS",
-    "host": "DB_HOST",
-    "port": "DB_PORT",
+    "host": "localhost",
+    "port": 3306,
     "SECRET_KEY": "DJANGO_SECRET_KEY",
     "STATIC_URL": "/static/",
 }
