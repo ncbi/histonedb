@@ -1,6 +1,6 @@
 #!/bin/bash
 #This script runs all the commands to initialize hisoneDB from scratch.
-echo "Reinitializing histDB from scratch"
+echo "Reinitializing HistDB from scratch"
 echo "will use a dummy file for the database, comment this out in reinit_histdb.sh if you want a full db"
 
 echo ">gi|68448473|ref|NP_001020347.1| histone [Danio rerio]
