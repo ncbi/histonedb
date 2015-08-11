@@ -25,3 +25,4 @@ static/browse/sunbursts/
 static/browse/hmms/model_evaluation/*/*
 *.pdf
 HistoneDB/settings.py
+rh.sh
