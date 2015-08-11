@@ -127,7 +127,7 @@ def browse_variant(request, histone_type, variant):
     scores = Sequence.objects.filter(variant__id=variant).filter(all_model_scores__used_for_classification=True).annotate(score=Max("all_model_scores__score")).aggregate(max=Max("score"), min=Min("score"))
 
     data = {
-        "core_type": variant.hist_type.id,
+        "hist_type": variant.hist_type.id,
         "variant": variant.id,
         "name": variant.id,
         "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.hist_type.id, variant.id)),
@@ -164,7 +164,6 @@ def search(request):
     else:
         query = request.GET.copy()
     result = HistoneSearch(
-        request, 
         query,
         navbar="search" in query.keys())
 
@@ -235,7 +234,7 @@ def get_sequence_table_data(request):
         #Returning 'false' stops Bootstrap table
         parameters = []
     
-    results = HistoneSearch(request, parameters)
+    results = HistoneSearch(parameters)
 
     if len(results.errors) > 0:
         #Returning 'false' stops Bootstrap table
@@ -346,7 +345,7 @@ def get_aln_and_features(request, ids=None):
         elif len(sequences) == 1:
             #Already aligned to core histone
             seq = sequences[0]
-            hist_type = seq.variant.core_type.id
+            hist_type = seq.variant.hist_type.id
             canonical = Sequence(id="canonical{}".format(hist_type), sequence=str(templ[hist_type]))
             sequences = [canonical, seq]
             
@@ -528,9 +527,7 @@ def get_sunburst_json(request, parameters=None):
         query = request.GET.copy()
     
     if query:
-        result = HistoneSearch(
-            request, 
-            query)
+        result = HistoneSearch(query)
         sunburst = result.get_sunburst()
         return JsonResponse(sunburst, safe=False)
     else:

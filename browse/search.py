@@ -261,7 +261,7 @@ class HistoneSearch(object):
             if self.parameters.get(bool_field, False) in ["true", "on"]:
                 self.parameters.update(updated_options)
 
-   def create_queryset(self):
+    def create_queryset(self):
         """Sanitize parameters and add them into the query set"""
         
         for form, (field, search_type, convert) in allowable_fields.iteritems():

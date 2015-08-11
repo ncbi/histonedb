@@ -223,6 +223,7 @@ $("#view_sequences_of_taxa_button").click(function() {
     $("#taxonomy_title").html(" - "+taxa);
   }
   $('#sequence_table_{{ page_name }}').bootstrapTable('refresh');
+  $('#sequence_table_{{ page_name }}').bootstrapTable('selectPage', "0");
   $("#sequences_tab").tab("show");
 });
 </script>
