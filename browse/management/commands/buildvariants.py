@@ -95,7 +95,7 @@ class Command(BaseCommand):
 
     def get_nr(self):
         """Download nr if not present"""
-        if not os.path.isfile(self.dbauto_file):
+        if not os.path.isfile(self.db_file):
             print >> self.stdout, "Downloading nr..."
             with open("nr.gz", "w") as nrgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
@@ -140,7 +140,7 @@ class Command(BaseCommand):
         print >> self.stdout, "Searching HMMs..."
 
         if sequences is None:
-            sequences = self.dbauto_file
+            sequences = self.db_file
         print " ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
 
