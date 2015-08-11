@@ -6,7 +6,7 @@ from tools.test_model import test_model
 import subprocess
 import os, sys
 import re
-from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header
+from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxids_from_gis
 
 from Bio import SearchIO
 from Bio import SeqIO
@@ -184,6 +184,7 @@ class Command(BaseCommand):
         >Ixodes|241122402|macroH2A Ixodes_macroH2A
         we accept only this patterns to extract GIs
         """
+        gis=[]
         for hist_type, seed in self.get_seeds():
             variant_name = seed[:-6]
             print variant_name,"==========="
@@ -193,9 +194,12 @@ class Command(BaseCommand):
                 gi = s.id.split("|")[1]
                 if gi.startswith("NOGI"):
                     print "NO GI detected ", s.id
-                    taxonomy = easytaxonomy_from_header(s.id)
+                    taxid= easytaxonomy_from_header(s.id).id
                 else:
-                    taxonomy = taxonomy_from_header("", gi=gi)
+                    #trick to make taxid retrieval faster
+                    # taxonomy = taxonomy_from_header("", gi=gi)
+                    taxid=1
+                    gis.append(gi)
                 print "Loading ", s.id
                 
                 seq = Sequence(
@@ -203,12 +207,17 @@ class Command(BaseCommand):
                     variant_id  = variant_name,
                     gene     = None,
                     splice   = None,
-                    taxonomy = taxonomy,
+                    taxonomy_id = taxid,
                     header   = "CURATED SEQUENCE: {}".format(s.description),
                     sequence = s.seq,
                     reviewed = True,
                 )
                 seq.save()
+        #Now let's lookup taxid for those having GIs via NCBI.
+        for taxid,gi in zip(taxids_from_gis(gis),gis):
+            seq=Sequence.objects.get(pk=gi)
+            seq.taxonomy_id=taxid
+            seq.save()
 
     def get_seeds(self):
         """
