@@ -42,7 +42,7 @@ colors7 = [
 
 colors = [
     "#8dd3c7",
-    "#ffffb3",
+    "#E6E600",
     "#bebada",
     "#fb8072",
     "#80b1d3",
