@@ -24,5 +24,4 @@ static/browse/sunbursts/
 *.gff
 static/browse/hmms/model_evaluation/*/*
 *.pdf
-HistoneDB/settings.py
 rh.sh

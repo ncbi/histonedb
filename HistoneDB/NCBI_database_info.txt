@@ -1,0 +1,12 @@
+#This file contains the user name and password for the HistoneDB 2.0
+#and specific computer settings. Chnages values here or, if you need 
+#the information to kept sectret use the "file = path", to load from
+# a hidden directory
+name = DB_NAME
+user = DB_USER
+password = DB_PASS
+host = localhost
+port = 3306
+SECRET_KEY = DJANGO_SECRET_KEY
+STATIC_URL = /static/
+DEBUG = True

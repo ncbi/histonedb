@@ -13,20 +13,24 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-# Set the MySQL dtabase information. If this in an NCBI machine, it will already be set as an environment variable
-NCBI_database_info = {
-    "name": "DB_NAME",
-    "user": "DB_USER",
-    "password": "DB_PASS",
-    "host": "localhost",
-    "port": 3306,
-    "SECRET_KEY": "DJANGO_SECRET_KEY",
-    "STATIC_URL": "/static/",
-}
-NCBI_database_info.update({key.replace("NCBI_database_info_", ""): value for key, value in os.environ.iteritems() if key.startswith("NCBI_database_info")})
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Set the MySQL dtabase information
+def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "NCBI_database_info.txt")):
+    with open(path) as NCBI_database_info:
+        for line in NCBI_database_info:
+            if line.startswith("#"): continue
+
+            try:
+                name, value = map(lambda s:s.strip(), line.strip().split("="))
+            except:
+                continue
+
+            if name == "file" and value != path:
+                load_settings(value)
+            else:
+                NCBI_database_info[key] = value
+load_settings()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
