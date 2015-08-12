@@ -16,9 +16,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Set the MySQL dtabase information
+NCBI_database_info = {}
 def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "NCBI_database_info.txt")):
-    with open(path) as NCBI_database_info:
-        for line in NCBI_database_info:
+    with open(path) as NCBI_database_info_file:
+        for line in NCBI_database_info_file:
             if line.startswith("#"): continue
 
             try:
@@ -29,7 +30,7 @@ def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "NCBI_database_info.t
             if name == "file" and value != path:
                 load_settings(value)
             else:
-                NCBI_database_info[key] = value
+                NCBI_database_info[name] = value
 load_settings()
 
 # Quick-start development settings - unsuitable for production
