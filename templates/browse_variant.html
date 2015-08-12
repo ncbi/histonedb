@@ -44,7 +44,7 @@ $("#id_variant").prop("readonly", true);
 <div class="container" style="margin-top:30px;">
   <div class="row">
     <div class="col-xs-3">
-      <img src="{% with 'browse/img/'|add:hist_type|add:'.png' as image_static %}{% static image_static %}{% endwith %}" width="75%" />
+      <img src="{% with 'browse/img/'|add:hist_type|add:'_cropped'|add:'.png' as image_static %}{% static image_static %}{% endwith %}" width="75%" />
     </div>
     <div class="col-xs-9">
       <div class="row">

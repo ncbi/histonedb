@@ -1,0 +1,5 @@
+convert H2A.png -trim -gravity SouthWest -background none -splice 150x20  H2A_cropped.png
+convert H2B.png -trim -gravity SouthWest -background none -splice 170x40  H2B_cropped.png
+convert H3.png -trim -gravity SouthWest -background none -splice 170x40  H3_cropped.png
+convert H4.png -trim -gravity SouthWest -background none -splice 100x30  H4_cropped.png
+convert H1.png -trim -gravity SouthWest -background none -splice 200x40  H1_cropped.png
