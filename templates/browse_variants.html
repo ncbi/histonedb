@@ -99,9 +99,7 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
             Histone type: {{ histone_type }}
           </h1>
         </div>
-        <div class="col-xs-12">
-          {{ histone_description }}
-        </div>
+
       </div>
     </div>
   </div>
@@ -120,6 +118,22 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane" id="variant">
             <div class="row">
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="row center-block">
+
+                    <h4 class="page-header">Description</h4>
+
+                    {{ histone_description }} <br >
+                    {% if alternate_names %}
+                    <b>Alternate names:</b> {{ alternate_names }}
+                    {% endif %}
+
+
+
+                </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-xs-4">

@@ -52,15 +52,14 @@ $("#id_variant").prop("readonly", true);
           <h1>
             <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
             <a href="{% url 'browse.views.browse_variants' hist_type %}">{{hist_type}}</a> /
+            {% if "canonical" in variant %}
+            {{ variant }}<span id="taxonomy_title"></span>
+            {%  else %}
             Variant: {{ variant }}<span id="taxonomy_title"></span>
+            {%  endif %}
           </h1>
         </div>
-        <div class="col-xs-12">
-          {{ description }} <br >
-          {% if alternate_names %}
-          <b>Alternate names:</b> {{ alternate_names }}
-          {% endif %}
-        </div>
+
       </div>
     </div>
   </div>
@@ -69,6 +68,7 @@ $("#id_variant").prop("readonly", true);
       <div role="tabpanel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">Summary</a></li>
           <li role="presentation" class="active"><a href="#curated" id="curated_tab" aria-controls="curated" role="tab" data-toggle="tab">Curated Sequences</a></li>
           <li role="presentation"><a href="#species" id="species_tab" aria-controls="species" role="tab" data-toggle="tab">Taxonomy Distribution</a></li>
           <li role="presentation"><a href="#sequences" id="sequences_tab" aria-controls="sequences" role="tab" data-toggle="tab">Automatically Extracted Sequences</a></li>
@@ -77,6 +77,36 @@ $("#id_variant").prop("readonly", true);
 
         <!-- Tab panes -->
         <div class="tab-content">
+          <div role="tabpanel" class="tab-pane" id="variant">
+            <div class="row">
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="row center-block">
+
+                    <h4 class="page-header">Description</h4>
+
+                    {{ description }} <br >
+                    {% if alternate_names %}
+                    <b>Alternate names:</b> {{ alternate_names }}
+                    {% endif %}
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="row center-block">
+
+                    <h4 class="page-header">References</h4>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
           <div role="tabpanel" class="tab-pane active" id="curated">
             {% include "test.html" with page_name="browse_curated_variant_"|add:variant|rchar:"." quick_msa=True curated=True %}
           </div>
