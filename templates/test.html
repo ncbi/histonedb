@@ -152,6 +152,19 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     });
     {% endif %}
     $(function () {
+        function giFormatter(value, row, index){
+          return [
+            value,
+            '<div class="button-group dropdown pull-right">',
+            '<a href="#" class="dropdown-toggle rowlink" data-toggle="dropdown" aria-haspopup="true">',
+            '<span class="caret"></span>',
+            '<ul class="dropdown-menu" role="menu">',
+            '<li><a href="#" id="gi_actions_view_entrez">View in Entrez</a></li>',
+            '</ul>',
+            '</a>',
+            '</div>'
+          ].join('');
+        }
         function variantFormatter(value, row, index) {
           return [
             value,
@@ -163,7 +176,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             '<li><a href="#" id="variant_actions_browse_variant">Browse variant</a></li>',
             '</ul>',
             '</a>',
-            '</div'
+            '</div>'
           ].join('');
         }
 
@@ -179,7 +192,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             '<li><a href="#" id="taxonomy_actions_browse_ncbi">View NCBI Taxonomy record</a></li>',
             '</ul>',
             '</a>',
-            '</div'
+            '</div>'
           ].join('');
         }
 
@@ -201,6 +214,12 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           },
           'click #taxonomy_actions_browse_ncbi': function (e, value, row, index) {
               document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock";
+          }
+        }
+
+        window.giEvents = {
+          'click #gi_actions_view_entrez': function (e, value, row, index) {
+              document.location.href = "http://www.ncbi.nlm.nih.gov/protein/?term="+row.id;
           }
         }
 
@@ -233,7 +252,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% endif %}
           columns: [
             {field:"state", checkbox:true},
-            {field:"id", sortable:true, title:"GI", clickToSelect:false},
+            {field:"id", sortable:true, title:"GI", clickToSelect:false, events:giEvents, formatter:giFormatter},
             {field:"variant", sortable:true, title:"Variant", clickToSelect:false, events:variantEvents, formatter:variantFormatter},
 {#            {field:"gene", sortable:true, title:"Gene", clickToSelect:false},#}
 {#            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},#}
