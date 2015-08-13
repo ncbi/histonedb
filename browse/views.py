@@ -310,7 +310,7 @@ def get_all_sequences(request, ids=None):
         return JsonResponse(sequences, safe=False)
 
 def get_aln_and_features(request, ids=None):
-    from tools.hist_ss import templ, get_hist_ss_in_aln
+    from tools.hist_ss import templ, get_hist_ss_in_aln, get_hist_ss
     from tools.L_shade_hist_aln import write_alignments
     import subprocess
     import StringIO
@@ -375,13 +375,18 @@ def get_aln_and_features(request, ids=None):
             os.makedirs(save_dir)
 
         if not hist_type == "H1":
+            #TODO: we need to test if gff annotation works correctly. MSA needs numbering with respect to MSA or individual seqs as TexShade???
             hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
+            # hv,ss = get_hist_ss(Seq(canonical.sequence), hist_type=hist_type, save_dir=save_dir, debug=False)
             features = Features.from_dict(cons, ss)
+            features = Features.from_dict(Sequence(sequence=sequences[0]), ss)
+            # features = Features.from_dict(canonical, ss)
         else:
             features = ""
 
         sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
-        sequences.insert(0, cons.to_dict())
+        #Uncomment to add consesus as first line
+        # sequences.insert(0, cons.to_dict())
 
         request.session["calculated_msa_seqs"] = sequences
         request.session["calculated_msa_features"] = features.to_dict() if features else {}
