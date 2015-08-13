@@ -1,7 +1,7 @@
 import os
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from browse.models import Variant, OldStyleVariant
+from browse.models import Variant, OldStyleVariant, Histone
 from djangophylocore.models import Taxonomy
 import json
 
@@ -41,3 +41,15 @@ class Command(BaseCommand):
                         taxonomy        = Taxonomy.objects.get(name=tax_name)
                     )
                     alt_variant.save()
+
+        type_info_path = os.path.join(self.info_directory, "types.json")
+
+        with open(type_info_path) as type_info_file:  
+            type_info = json.load(type_info_file)
+
+
+        for type_name, info in type_info.iteritems():
+            type = Histone.objects.get(id=type_name)
+            type.description = info["description"]
+            type.save()
+
