@@ -138,9 +138,16 @@ class Command(BaseCommand):
                     else:
                         name = variant
                     print "Adding", name
+                    #uncomment following line to remove names
+                    # name=''
                     label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name, "labelStyle":"sectorHighlightText"})
                     styles.append(background)
                     styles.append(label)
+                #Let's add default markgroup with no label
+                label = ET.Element("markgroupDEF", attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":'', "labelStyle":"sectorHighlightText"})
+                styles.append(background)
+                styles.append(label)
+
                 label_sector = ET.Element("sectorHighlightText", attrib={"font-family":"Verdana", "font-size":"14", "font-weight":"bold", "fill":"#FFFFFF", "rotate":"90"})
                 styles.append(label_sector)
                 render.append(styles)
@@ -148,6 +155,13 @@ class Command(BaseCommand):
                 phylogeny.insert(0, render)
 
                 remove = []
+
+                #Here we need to decide if we have enough space to output group name:
+                #count how many clades we have in a row
+                #and if more than 3, set retrospectively the group name
+                inrow_counter=0
+                old_var='';
+                clade_hist=[]
                 for clade in phylogeny.iter("{http://www.phyloxml.org}clade"):
                     name = clade.find("{http://www.phyloxml.org}name")
                     print "CLADE", clade
@@ -172,16 +186,35 @@ class Command(BaseCommand):
                                 break
                         else:
                             continue
+                        #Here is the group naming trick
+                        if(old_var==variant):
+                            inrow_counter+=1
+                        else:
+                            if(inrow_counter>1):
+                                #retrospectively set the markup
+                                for c in clade_hist:
+                                    chart = ET.Element("chart")
+                                    group = ET.Element("group")
+                                    group.text = "markgroup{}".format(old_var.replace(".", ""))
+                                    chart.append(group)
+                                    c.append(chart)
+                            else:
+                                for c in clade_hist:
+                                    chart = ET.Element("chart")
+                                    group = ET.Element("group")
+                                    group.text = "markgroupDEF"
+                                    chart.append(group)
+                                    c.append(chart)
+                            inrow_counter=0
+                            clade_hist=[]
+                        old_var=variant
+                        clade_hist.append(clade)
+                        ############
 
                         name.attrib = {"bgStyle": variant.replace(".", "")}
 
                         name.text = genus
-                        
-                        chart = ET.Element("chart")
-                        group = ET.Element("group")
-                        group.text = "markgroup{}".format(variant.replace(".", ""))
-                        chart.append(group)
-                        clade.append(chart)
+
 
                         annotation = ET.Element("annotation")
                         desc = ET.Element("desc")
@@ -195,6 +228,23 @@ class Command(BaseCommand):
                     for clade in remove:
                         parent = parent_map[clade]
                         child = parent.remove(clade)
+
+                #Finish markup
+                if(inrow_counter>1):
+                #retrospectively set the markup
+                    for c in clade_hist:
+                        chart = ET.Element("chart")
+                        group = ET.Element("group")
+                        group.text = "markgroup{}".format(old_var.replace(".", ""))
+                        chart.append(group)
+                        c.append(chart)
+                else:
+                    for c in clade_hist:
+                        chart = ET.Element("chart")
+                        group = ET.Element("group")
+                        group.text = "markgroupDEF"
+                        chart.append(group)
+                        c.append(chart)
 
             with open(os.path.join(self.trees_path, "{}.xml".format(hist_type)), "w") as outfile:
                 treestr = StringIO.StringIO()

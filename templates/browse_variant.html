@@ -68,8 +68,8 @@ $("#id_variant").prop("readonly", true);
       <div role="tabpanel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">Summary</a></li>
-          <li role="presentation" class="active"><a href="#curated" id="curated_tab" aria-controls="curated" role="tab" data-toggle="tab">Curated Sequences</a></li>
+          <li role="presentation" class="active"><a href="#variant" aria-controls="variant" role="tab" data-toggle="tab">Summary</a></li>
+          <li role="presentation"><a href="#curated" id="curated_tab" aria-controls="curated" role="tab" data-toggle="tab">Curated Sequences</a></li>
           <li role="presentation"><a href="#species" id="species_tab" aria-controls="species" role="tab" data-toggle="tab">Taxonomy Distribution</a></li>
           <li role="presentation"><a href="#sequences" id="sequences_tab" aria-controls="sequences" role="tab" data-toggle="tab">Automatically Extracted Sequences</a></li>
           <li role="presentation"><a href="#seed" id="seed_tab" aria-controls="seed" role="tab" data-toggle="tab">Curated Alignments</a></li>
@@ -77,7 +77,7 @@ $("#id_variant").prop("readonly", true);
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane" id="variant">
+          <div role="tabpanel" class="tab-pane active" id="variant">
             <div class="row">
             </div>
             <div class="row">
@@ -107,7 +107,7 @@ $("#id_variant").prop("readonly", true);
               </div>
             </div>
           </div>
-          <div role="tabpanel" class="tab-pane active" id="curated">
+          <div role="tabpanel" class="tab-pane" id="curated">
             {% include "test.html" with page_name="browse_curated_variant_"|add:variant|rchar:"." quick_msa=True curated=True %}
           </div>
           <div role="tabpanel" class="tab-pane" id="species">
