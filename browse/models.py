@@ -10,7 +10,7 @@ from collections import defaultdict
 
 class Histone(models.Model):
     id             = models.CharField(max_length=25, primary_key=True)
-    taxonomic_span = models.CharField(max_length=25)
+    taxonomic_span = models.CharField(max_length=50)
     description    = models.CharField(max_length=600)
 
     def __unicode__(self):
@@ -91,6 +91,11 @@ class Sequence(models.Model):
             desc += "|{}".format(self.full_variant_name)
 
         return desc
+
+    @property
+    def short_description(self):
+        return "{n[0]:<.3}..|{n[1]:<.10}..|{n[2]}".format(n=self.description.replace("canonical","canon").split('|'))
+
 
     def to_dict(self, ref=False):
         return {"name":self.description, "seq":self.sequence, "ref":ref}
@@ -182,9 +187,9 @@ class Features(models.Model):
         ("beta3", "", "strand"),
         ("loopL1", "", "loop"),
         ("loopL2", "", "loop"),
-        ("mgarg1", "Minor Groov Arg 1", "residue"),
-        ("mgarg2", "Minor Groov Arg 2", "residue"),
-        ("mgarg3", "Minor Groov Arg 3", "residue"),
+        ("mgarg1", "Minor Groove Arg 1", "residue"),
+        ("mgarg2", "Minor Groove Arg 2", "residue"),
+        ("mgarg3", "Minor Groove Arg 3", "residue"),
         ("docking_domain", "Docking Domain", "domain")
     ]
 
@@ -247,7 +252,9 @@ class Features(models.Model):
 
             description = description or feature
 
-            id = self.sequence.description
+            #revert this back if smths fails in MSA names
+            # id = self.sequence.description
+            id = self.sequence.short_description
             outl += "\t".join((description, id, "-1", start, end, type))
             outl += "\n"
         return outl

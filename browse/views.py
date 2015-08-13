@@ -310,7 +310,7 @@ def get_all_sequences(request, ids=None):
         return JsonResponse(sequences, safe=False)
 
 def get_aln_and_features(request, ids=None):
-    from tools.hist_ss import templ, get_hist_ss_in_aln
+    from tools.hist_ss import templ, get_hist_ss_in_aln, get_hist_ss
     from tools.L_shade_hist_aln import write_alignments
     import subprocess
     import StringIO
@@ -346,7 +346,11 @@ def get_aln_and_features(request, ids=None):
             #Already aligned to core histone
             seq = sequences[0]
             hist_type = seq.variant.hist_type.id
-            canonical = Sequence(id="canonical{}".format(hist_type), sequence=str(templ[hist_type]))
+            #let's load the corresponding canonical
+            try:
+                canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
+            except:
+                canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(templ[hist_type]))
             sequences = [canonical, seq]
             
         else:
@@ -375,13 +379,19 @@ def get_aln_and_features(request, ids=None):
             os.makedirs(save_dir)
 
         if not hist_type == "H1":
+            #TODO: we need to test if gff annotation works correctly. MSA needs numbering with respect to MSA or individual seqs as TexShade???
             hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
-            features = Features.from_dict(cons, ss)
+            # hv,ss = get_hist_ss(Seq(canonical.sequence), hist_type=hist_type, save_dir=save_dir, debug=False)
+            # features = Features.from_dict(cons, ss)
+            #Indeed the features are for MSA, we need just to use the name of canonical:
+            features = Features.from_dict(seq, ss)
         else:
             features = ""
-
-        sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
-        sequences.insert(0, cons.to_dict())
+        #an awkward expression, doing the Sequence.short_description work
+        sequences = [{"name":"{n[0]:<.3}..|{n[1]:<.10}..|{n[2]}".format(n=s.id.replace("canonical","canon").split('|')), "seq":s.seq.tostring()} for s in sequences]
+        # sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
+        #Uncomment to add consesus as first line
+        # sequences.insert(0, cons.to_dict())
 
         request.session["calculated_msa_seqs"] = sequences
         request.session["calculated_msa_features"] = features.to_dict() if features else {}
