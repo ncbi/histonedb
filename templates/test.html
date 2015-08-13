@@ -266,12 +266,12 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             {field:"search_e", sortable:true, clickToSelect:false, title:"BLAST E-value", cellStyle: function(value, row, index) { return {classes:"danger"};}},
             {% endif %}
           ],
-{#          showColumns:true,#}
-{#          search:true,#}
-{#          showToggle:true,#}
+          showColumns:true,
+          search:true,
+          showToggle:true,
           clickToSelect:true,
-{#          showRefresh:true,#}
-{#          toolbar:"#sequence_toolbar_{{ page_name }}",#}
+          showRefresh:true,
+          toolbar:"#sequence_toolbar_{{ page_name }}",
           {% if formatNoMatches %}
           formatNoMatches: function(){ return "{{ formatNoMatches }}"; },
           {% endif %}
