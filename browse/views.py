@@ -354,6 +354,7 @@ def get_aln_and_features(request, ids=None):
             sequences = [canonical, seq]
             
         else:
+            seq = sequences[0]
             try:
                 hist_type = max(
                    [(hist, sequences.filter(variant__hist_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
@@ -381,9 +382,8 @@ def get_aln_and_features(request, ids=None):
         if not hist_type == "H1":
             #TODO: we need to test if gff annotation works correctly. MSA needs numbering with respect to MSA or individual seqs as TexShade???
             hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
-            # hv,ss = get_hist_ss(Seq(canonical.sequence), hist_type=hist_type, save_dir=save_dir, debug=False)
             # features = Features.from_dict(cons, ss)
-            #Indeed the features are for MSA, we need just to use the name of canonical:
+            #Indeed the features are for MSA, we need just to use the name of last sequence:
             features = Features.from_dict(seq, ss)
         else:
             features = ""
