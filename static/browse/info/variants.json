@@ -109,12 +109,12 @@
 	},
 	"H3": {
 		"canonicalH3":{
-			"description":"The original variant.",
+			"description":"The cannonical H3 variant.",
 			"taxonmic_span": "Eukaryotes",
 			"alternate_names": []
 		},
 		"cenH3":{
-			"description":"cenH3 are the H3 varaint, found in centromeres. Monophyly of cenH3 proteins is uncertain.",
+			"description":"cenH3 are the H3 variant, found in centromeres. Monophyly of cenH3 proteins is uncertain.",
 			"taxonmic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
@@ -130,19 +130,19 @@
 			]
 		},
 		"H3.1": {
-			"description": "No description yet. Evovled from H3.3",
-			"taxonmic_span": "Eukaryotes",
+			"description": "H3.1 is a more recent mammal-specific divergence from H3.2, which is the replication-coupled H3 variant found throughout animals",
+			"taxonmic_span": "Mammals",
 			"alternate_names": [
 				{"name":"H3v1"}
 			]
 		},
 		"H3.2": {
-			"description": "No description yet. Evovled from H3.3",
-			"taxonmic_span": "Eukaryotes",
+			"description": "Replication-coupled H3 variant found throughout animals",
+			"taxonmic_span": "Metazoa",
 			"alternate_names": []
 		},
 		"H3.3": {
-			"description": "H3.3 localizes cenH3 and is important for development, transcription, and chromosome segregation.",
+			"description": "H3.3 localizes cenH3 and is important for development, transcription, and chromosome segregation. Replication-independent ",
 			"taxonmic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"soH3-1", "gene":1},
