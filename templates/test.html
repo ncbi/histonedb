@@ -21,11 +21,11 @@
         </div>
         <div class="btn-group" role="group" aria-label="...">
             <button type="button" class="btn btn-default" id="show_advanced_filter_{{ page_name }}" {% if blast_results %}disabled="disabled"{% endif %}>
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filter
+              <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Add filters
             </button>
         </div>
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" id="reset_filter_{{ page_name }}"  {% if blast_results %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reset</button>
+            <button type="button" class="btn btn-default" id="reset_filter_{{ page_name }}"  {% if blast_results %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear filters</button>
         </div>
         {% if not curated %}
         <div class="btn-group" role="group">
@@ -253,7 +253,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           columns: [
             {field:"state", checkbox:true},
             {field:"id", sortable:true, title:"GI", clickToSelect:false, events:giEvents, formatter:giFormatter},
-            {field:"variant", sortable:true, title:"Variant", clickToSelect:false, events:variantEvents, formatter:variantFormatter},
+            {field:"variant", sortable:true, title:"Variant", clickToSelect:false, events:variantEvents{#, formatter:variantFormatter#}},
 {#            {field:"gene", sortable:true, title:"Gene", clickToSelect:false},#}
 {#            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},#}
             {field:"taxonomy", sortable:true, title:"Taxonomy", clickToSelect:false, events:taxonomyEvents, formatter:taxonomyFormatter},
@@ -266,11 +266,11 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             {field:"search_e", sortable:true, clickToSelect:false, title:"BLAST E-value", cellStyle: function(value, row, index) { return {classes:"danger"};}},
             {% endif %}
           ],
-          showColumns:true,
+{#          showColumns:true,#}
           search:true,
-          showToggle:true,
+{#          showToggle:true,#}
           clickToSelect:true,
-          showRefresh:true,
+{#          showRefresh:true,#}
           toolbar:"#sequence_toolbar_{{ page_name }}",
           {% if formatNoMatches %}
           formatNoMatches: function(){ return "{{ formatNoMatches }}"; },
