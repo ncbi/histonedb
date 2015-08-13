@@ -6,7 +6,7 @@
 			"alternate_names": []
 		},
 		"H2A.Z": {
-			"description":"H2A.Z has large acidic patch, and deletion and insertion in the core region. It is known to be involved with Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found at the ranscription start site and in an enhancers.",
+			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the ranscription start site and in an enhancers. It has a larger acidic patch compared to the conventional H2.A, deletions and insertions in the histone core region.",
 			"taxonmic_span": "Eukaryotes",
 			"alternate_names":[
 				{"name":"H2A.Z-1", "gene":1},
@@ -24,14 +24,14 @@
 			]
 		},
 		"H2A.X": {
-			"description":"H2A.X has the motif SQE/DΦg motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals, and S is phosphorylated in DNA double strand breaks. It is known to be involved with DNA damage response, and chromatin remodeling and can be found in DNA double strand breaks, collapsed replication forks, and heterochromatin. H2A.X is the only non monophyletic variant in H2A.",
+			"description":"H2A.X is involved in DNA damage response, chromatin remodeling and can be found in DNA double strand breaks, collapsed replication forks, and heterochromatin. It is the only non-monophyletic variant in H2A and has the motif SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals, and S is phosphorylated in H2A.X -containing nucleosomes at the DNA double strand breaks.",
 			"taxonmic_span": "Eukaryotes except nematode",
 			"alternate_names": [
 				{"name":"member X"}
 			]
 		},
 		"macroH2A": {
-			"description":"macroH2A contains a ∼30 kDa additional globular macrodomain attached to C-terminus. It is known to be involved with X-inactivation, and positive or negative transcriptional regulation and can be found in Inactivated X chromosome, gene promoters, and heterochromatin.",
+			"description":"MacroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus.",
 			"taxonmic_span": "Mostly Vertebrate, but lost in several lineages including Caenorhabditis and Drosophila",
 			"alternate_names": [
 				{"name":"mH2A"},
@@ -44,7 +44,7 @@
 			]
 		},
 		"H2A.L": {
-			"description": "H2A.L has a short C-terminal tail, making the docking domain shorter to wrap less DNA. It is known to be involved with pericentric chromatin organization in spermatids and spermiogenesis. H2A.L is rapildy evolving and has large expansions it is also known to form subnucleosmal particles with TS H2B.1",
+			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1 H2A.L has a shorter C-terminal tail and docking domain. ",
 			"taxonmic_span":"Mammals", 
 			"alternate_names": [
 				{"name":"H2AL"},
@@ -53,14 +53,14 @@
 			]
 		},
 		"H2A.B": {
-			"description": "H2A.B is a Barr body defficient varaint that have a short C-terminal tail, truncated acidic patch, and are arginine rich. The short C-terminal tail makes the docking domain shorter to wrap less DNA. It is known to be in involved with gene upregulation and splicing, and spermiogenesis and is found in active genes and transcription start site in testis. H2A.B is rapildy evolving and has large expansions and known to be closely related to H2A.L and H2A.M",
+			"description": "H2A.B is a Barr body defficient varaint which is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a short C-terminal tail and docking domain and a truncated acidic patch.",
 			"taxonmic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2A.Bbd"}
 			]
 		},
 		"H2A.M": { 
-			"description":"H2A.M is a new variant that binds to huntington protein M. It known to be closele related to H2A.B and H2A.L",
+			"description":"H2A.M is a new variant that binds to huntington protein M. It is closely related to H2A.B and H2A.L",
 			"taxonmic_span":"Mammals",
 			"alternate_names": [
 				{"name":"Huntington protein M"}
@@ -74,7 +74,7 @@
 			"alternate_names": []
 		},
 		"subH2B": {
-			"description":"subH2B has a bipartite nuclear localization signal. It is known to be involved with spermiogenesis and is found in the subacrosome of spermatozoa.",
+			"description":"subH2B is involved in spermiogenesis and is found in subacrosomes of spermatozoa. It has a bipartite nuclear localization signal.",
 			"taxonmic_span":"Primates, rodents, marsupials, and bovids",
 			"alternate_names": [
 				{"name":"H2BL1"},
@@ -82,7 +82,7 @@
 			]
 		},
 		"H2B.1": {
-			"description":"H2B.1 is testis-specific variant that forms subnucleosomal particles condensed in spermatids. It can dimerize with H2A.L.1 and H2A.L.2",
+			"description":"H2B.1 is a testis-specific variant that forms subnucleosomal particles in spermatids. It can dimerize with H2A.L.1 and H2A.L.2",
 			"taxonmic_span":"Boreoeutheria mammals",
 			"alternate_names": [
 				{"name":"TH2B"},
@@ -91,7 +91,7 @@
 			]
 		},
 		"H2B.W": {
-			"description":"H2B.W has an extended N-tail. It is knwon to be involved in spermiogenesis, and telomere associated functions in sperm and is foudn in spermatogenic cells.",
+			"description":"H2B.W is involved in spermiogenesis and telomere associated functions in sperm and is found in spermatogenic cells. It has an extended N-terminal tail.",
 			"taxonmic_span":"Boreoeutheria mammals",
 			"alternate_names": [
 				{"name":"H2BFWT"},
