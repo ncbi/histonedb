@@ -51,7 +51,9 @@
   {% else %}
   <h4 class="page-header">Quick MSA - Align a single sequence to canonical</h4>
   {% endif %}
-  <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING</div>
+  <div style="height: 100px;">
+  <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING<br><br><br><br><br><br></div>
+  </div>
   {% endif %}
 {#  <h4 class="page-header" style="margin-bottom: 0px; margin-top: 10px"> List of sequences </h4>#}
   <table id="sequence_table_{{ page_name }}"></table>
@@ -279,9 +281,16 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           onLoadSuccess: function(data){
             createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
           },
-          onCheck:function(row){
-            createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
-          }
+
+          onClickCell:function(event, value, row, index){
+          createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75);
+          },
+
+
+
+{#          onCheck:function(row){#}
+{#            createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);#}
+{#          }#}
           {% endif %}
         });
 
@@ -321,5 +330,17 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
         {% if filter_errors %}
         open_advanced_filter("filter", $table_{{ page_name }});
         {% endif %}
-      });
+
+
+{#    Row coloring upon click#}
+        $('#sequence_table_{{ page_name }}').on('click-row.bs.table', function (e, row, $element) {
+        $('.success').removeClass('success');
+        $($element).addClass('success');});
+
+
+    });
+
+
+
+
 </script>
