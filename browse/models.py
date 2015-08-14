@@ -11,7 +11,7 @@ from collections import defaultdict
 class Histone(models.Model):
     id             = models.CharField(max_length=25, primary_key=True)
     taxonomic_span = models.CharField(max_length=100)
-    description    = models.CharField(max_length=600)
+    description    = models.CharField(max_length=1000)
 
     def __unicode__(self):
         return self.id
@@ -28,7 +28,7 @@ class Variant(models.Model):
     id            = models.CharField(max_length=25, primary_key=True)
     hist_type     = models.ForeignKey(Histone, related_name="variants")
     taxonmic_span = models.CharField(max_length=100) #models.ForeignKey(Taxonomy)?
-    description   = models.CharField(max_length=255)
+    description   = models.CharField(max_length=1000)
     hmmthreshold  = models.FloatField(null=True) # parameter used in hmmersearch during sequence annotation
     aucroc        = models.IntegerField(null=True) # another parameter - these paramters are calculated during testing phase of manage.py buildvariants
 
