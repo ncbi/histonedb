@@ -94,10 +94,15 @@ class Sequence(models.Model):
 
     @property
     def short_description(self):
+        return self.long_to_short_description(self.description)
+
+    @staticmethod
+    def long_to_short_description(desc):
         try:
-            return "{n[0]:<.3}..|{n[1]:<.10}..|{n[2]}".format(n=self.description.replace("canonical","canon").split('|'))
+            gi,tax,var=desc.replace("canonical","canon").split('|')
+            return "{0}..{1}|{2:<.10}..|{3}".format(gi[0:2],gi[-3:-1],tax,var)
         except:
-            return self.description
+            return desc
 
     def to_dict(self, ref=False):
         return {"name":self.description, "seq":self.sequence, "ref":ref}

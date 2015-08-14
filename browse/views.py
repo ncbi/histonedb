@@ -388,7 +388,7 @@ def get_aln_and_features(request, ids=None):
         else:
             features = ""
         #an awkward expression, doing the Sequence.short_description work
-        sequences = [{"name":"{n[0]:<.3}..|{n[1]:<.10}..|{n[2]}".format(n=s.id.replace("canonical","canon").split('|')), "seq":s.seq.tostring()} for s in sequences]
+        sequences = [{"name":Sequence.long_to_short_description(s.id), "seq":s.seq.tostring()} for s in sequences]
         # sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
         #Uncomment to add consesus as first line
         # sequences.insert(0, cons.to_dict())
