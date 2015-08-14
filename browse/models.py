@@ -106,7 +106,7 @@ class Sequence(models.Model):
     def long_to_short_description(desc):
         try:
             gi,tax,var=desc.replace("canonical","canon").split('|')
-            return "{0}..{1}|{2:<.10}..|{3}".format(gi[0:2],gi[-3:-1],tax,var)
+            return "{0}..{1}|{2:<.10}..|{3}".format(gi[0:2],gi[-2:],tax,var)
         except:
             return desc
 
