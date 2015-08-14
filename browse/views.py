@@ -387,8 +387,11 @@ def get_aln_and_features(request, ids=None):
             features = Features.from_dict(seq, ss)
         else:
             features = ""
-        #an awkward expression, doing the Sequence.short_description work
-        sequences = [{"name":Sequence.long_to_short_description(s.id), "seq":s.seq.tostring()} for s in sequences]
+        #A hack to avoid two canonical seqs
+        unique_sequences = [sequences[0]] if sequences[0].id==sequences[1].id else sequences
+        # doing the Sequence.short_description work
+        #Note that the gffs are also generated with the short description not
+        sequences = [{"name":Sequence.long_to_short_description(s.id), "seq":s.seq.tostring()} for s in unique_sequences]
         # sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
         #Uncomment to add consesus as first line
         # sequences.insert(0, cons.to_dict())

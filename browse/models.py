@@ -60,6 +60,12 @@ class Sequence(models.Model):
     sequence = models.TextField()
     reviewed = models.BooleanField()
 
+    def __eq__(self, other):
+        if isinstance(other, Sequence):
+            return (self.id == other.id)
+        else:
+            return False
+
     def __unicode__(self):
         return self.format() #"{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name, self.taxonomy.name)
 
