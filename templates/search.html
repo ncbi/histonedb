@@ -40,7 +40,7 @@
 <div class="container">
   {% if not result %}
     <div class="page-header">
-        <h1>Search for histone sequences<span id="taxonomy_title"></span></h1>
+        <h1>Search for histone sequences</h1>
     </div>
   	<form action="{% url 'browse.views.search' %}" method="post">{% csrf_token %}
       	<div class="modal-body">
@@ -52,20 +52,20 @@
     </form>
   {% else %}
     <div class="page-header">
-      <h1>Search for histone sequences</h1>
+      <h1>Search for histone sequences<span id="taxonomy_title"></span></h1>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="container">
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#sequences_tab" aria-controls="sequences" role="tab" data-toggle="tab">Search Results</a></li>
+            <li role="presentation" class="active"><a href="#sequences" id="sequences_tab" aria-controls="sequences" role="tab" data-toggle="tab">Search Results</a></li>
             <li role="presentation"><a href="#taxonomy" aria-controls="taxonomy" role="tab" data-toggle="tab">Taxonomy Distribution</a></li>
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="sequences_tab">
+            <div role="tabpanel" class="tab-pane active" id="sequences">
               {% include "sequences.html" with page_name="search" %}
             </div>
             <div role="tabpanel" class="tab-pane" id="taxonomy">

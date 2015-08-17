@@ -143,9 +143,6 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     $("#remove_from_basket_{{ page_name }}").click(function (){
       var basket = JSON.parse(localStorage.getItem('basket')) || [];
       var ids = getSelectedIDs{{ page_name }}();
-      console.log("TO EMPTY: ");
-      console.log(ids);
-      console.log(basket);
       for(var i=basket.length-1; i>=0; i--){
         for (var j = 0; j < ids.length; j++) {
           if(ids[j] == basket[i]){
@@ -154,7 +151,6 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           }
         }
       }
-      console.log(basket);
       localStorage.setItem('basket', JSON.stringify(basket));
       $(".badge-basket").html(basket.length);
       reloadBasket();
