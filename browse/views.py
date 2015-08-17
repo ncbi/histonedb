@@ -78,7 +78,7 @@ def browse_variants(request, histone_type):
     except:
         return "404"
 
-    variants = hist_type.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences", "taxonmic_span")
+    variants = hist_type.variants.annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("id", "num_sequences", "taxonomic_span")
 
     curated_variants = hist_type.variants.filter(sequences__reviewed=True).annotate(num_sequences=Count('sequences')).order_by("id").all().values_list("num_sequences", flat=True)
 
