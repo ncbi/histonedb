@@ -10,8 +10,8 @@ from collections import defaultdict
 
 class Histone(models.Model):
     id             = models.CharField(max_length=25, primary_key=True)
-    taxonomic_span = models.CharField(max_length=25)
-    description    = models.CharField(max_length=600)
+    taxonomic_span = models.CharField(max_length=100)
+    description    = models.CharField(max_length=1000)
 
     def __unicode__(self):
         return self.id
@@ -27,8 +27,8 @@ class Variant(models.Model):
     """
     id            = models.CharField(max_length=25, primary_key=True)
     hist_type     = models.ForeignKey(Histone, related_name="variants")
-    taxonmic_span = models.CharField(max_length=25) #models.ForeignKey(Taxonomy)?
-    description   = models.CharField(max_length=600)
+    taxonomic_span = models.CharField(max_length=100) #models.ForeignKey(Taxonomy)?
+    description   = models.CharField(max_length=1000)
     hmmthreshold  = models.FloatField(null=True) # parameter used in hmmersearch during sequence annotation
     aucroc        = models.IntegerField(null=True) # another parameter - these paramters are calculated during testing phase of manage.py buildvariants
 
@@ -59,6 +59,12 @@ class Sequence(models.Model):
     header   = models.CharField(max_length=255)
     sequence = models.TextField()
     reviewed = models.BooleanField()
+
+    def __eq__(self, other):
+        if isinstance(other, Sequence):
+            return (self.id == other.id)
+        else:
+            return False
 
     def __unicode__(self):
         return self.format() #"{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name, self.taxonomy.name)
@@ -91,6 +97,18 @@ class Sequence(models.Model):
             desc += "|{}".format(self.full_variant_name)
 
         return desc
+
+    @property
+    def short_description(self):
+        return self.long_to_short_description(self.description)
+
+    @staticmethod
+    def long_to_short_description(desc):
+        try:
+            gi,tax,var=desc.replace("canonical","canon").split('|')
+            return "{0}..{1}|{2:<.10}..|{3}".format(gi[0:2],gi[-2:],tax,var)
+        except:
+            return desc
 
     def to_dict(self, ref=False):
         return {"name":self.description, "seq":self.sequence, "ref":ref}
@@ -182,9 +200,9 @@ class Features(models.Model):
         ("beta3", "", "strand"),
         ("loopL1", "", "loop"),
         ("loopL2", "", "loop"),
-        ("mgarg1", "Minor Groov Arg 1", "residue"),
-        ("mgarg2", "Minor Groov Arg 2", "residue"),
-        ("mgarg3", "Minor Groov Arg 3", "residue"),
+        ("mgarg1", "Minor Groove Arg 1", "residue"),
+        ("mgarg2", "Minor Groove Arg 2", "residue"),
+        ("mgarg3", "Minor Groove Arg 3", "residue"),
         ("docking_domain", "Docking Domain", "domain")
     ]
 
@@ -247,7 +265,9 @@ class Features(models.Model):
 
             description = description or feature
 
-            id = self.sequence.description
+            #revert this back if smths fails in MSA names
+            # id = self.sequence.description
+            id = self.sequence.short_description
             outl += "\t".join((description, id, "-1", start, end, type))
             outl += "\n"
         return outl

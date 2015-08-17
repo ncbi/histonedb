@@ -25,13 +25,16 @@ function createMSA(div_id, url, download_url, width, height, show_logo){
     manualRendering: true
   }
   opts.vis = {
+    sequences: true,
     conserv: false,
     overviewbox: false,
     seqlogo: show_logo,
-    markers: false,
+    markers: true,
     leftHeader: false,
     labelName: true,
     labelId: false,
+    labelPartition: false,
+    labelCheckbox: false,
   };
   opts.zoomer = {
     labelNameLength: 160,
@@ -82,7 +85,7 @@ function createMSA(div_id, url, download_url, width, height, show_logo){
       if(features.seqs.Consensus != undefined){
         for (var i = features.seqs.Consensus.length-1; i>=0; i--) {
           var feature = features.seqs.Consensus[i];
-          if(feature.attributes.Name.lastIndexOf("Minor Groov", 0) === 0){
+          if(feature.attributes.Name.lastIndexOf("Minor Groove", 0) === 0){
             arginines.push(feature.start);
             features.seqs.Consensus.splice(i, 1);
           }
