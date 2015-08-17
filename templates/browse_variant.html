@@ -120,13 +120,13 @@ $("#id_variant").prop("readonly", true);
             </div>
           </div>
           <div role="tabpanel" class="tab-pane" id="curated">
-            {% include "test.html" with page_name="browse_curated_variant_"|add:variant|rchar:"." quick_msa=True curated=True %}
+            {% include "sequences.html" with page_name="browse_curated_variant_"|add:variant|rchar:"." quick_msa=True curated=True %}
           </div>
           <div role="tabpanel" class="tab-pane" id="species">
             {% include "circle.html" with page_name="browse_variant_"|add:variant|rchar:"." %}
           </div>
           <div role="tabpanel" class="tab-pane" id="sequences">
-            {% include "test.html" with page_name="browse_variant_"|add:variant|rchar:"." %}
+            {% include "sequences.html" with page_name="browse_variant_"|add:variant|rchar:"." %}
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
             {% include "seed.html" with msa_id="browse" msa_url=seed_url|add:"?limit=500&consensus=limit" download_url=seed_url|add:"?download=true" %}

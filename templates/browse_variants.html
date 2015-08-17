@@ -164,10 +164,10 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
             </div>
           </div>
           <div role="tabpanel" class="tab-pane" id="curated">
-            {% include "test.html" with page_name="browse_curated_variants_"|add:histone_type|rchar:"." quick_msa=True curated=True %}
+            {% include "sequences.html" with page_name="browse_curated_variants_"|add:histone_type|rchar:"." quick_msa=True curated=True %}
           </div>
           <div role="tabpanel" class="tab-pane" id="sequences">
-            {% include "test.html" with page_name="browse_variants_"|add:histone_type|rchar:"." %}
+            {% include "sequences.html" with page_name="browse_variants_"|add:histone_type|rchar:"." %}
           </div>
           <div role="tabpanel" class="tab-pane" id="seed">
             {% include "seed.html" with msa_id="browse" msa_url=seed_url|add:"?limit=500&consensus=limit" download_url=seed_url|add:"?download=true" %}
