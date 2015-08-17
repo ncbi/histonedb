@@ -104,6 +104,17 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
       }
       return ids;
     };
+
+    function addToBasket{{ page_name }}(ids){
+      var basket = JSON.parse(localStorage.getItem('basket')) || [];
+      console.log("basket: "+basket);
+      console.log("ids: "+ids);
+      var new_basket = $.extend(true, basket, ids);
+      console.log("new basket: "+new_basket);
+      console.log(ids);
+      localStorage.setItem('basket', JSON.stringify(basket));
+      $(".badge-basket").html(basket.length);
+    }
     
     {% if not curated %}
     $scores_modal_button_{{ page_name }}.click(function() {
@@ -114,15 +125,8 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     {% endif %}
     {% if page_name != "basket" %}
     $("#add_to_basket_{{ page_name }}").click(function (){
-      var basket = JSON.parse(localStorage.getItem('basket')) || [];
       var ids = getSelectedIDs{{ page_name }}();
-      console.log("basket: "+basket);
-      console.log("ids: "+ids);
-      var new_basket = $.extend(true, basket, ids);
-      console.log("new basket: "+new_basket);
-      console.log(ids);
-      localStorage.setItem('basket', JSON.stringify(basket));
-      $(".badge-basket").html(basket.length);
+      addToBasket{{ page_name }}(ids);
     });
     {% else %}
     $("#remove_from_basket_{{ page_name }}").click(function (){
@@ -149,12 +153,15 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     $(function () {
         function giFormatter(value, row, index){
           return [
-            value,
+            '<a href="http://www.ncbi.nlm.nih.gov/protein/?term='+value+'">'+value+"</a>",
             '<div class="button-group dropdown pull-right">',
             '<a href="#" class="dropdown-toggle rowlink" data-toggle="dropdown" aria-haspopup="true">',
             '<span class="caret"></span>',
             '<ul class="dropdown-menu" role="menu">',
             '<li><a href="#" id="gi_actions_view_entrez">View in Entrez</a></li>',
+            '<li><a href="#" id="gi_actions_view_fasta">View in FASTA</a></li>',
+            '<li class="nav-divider"></li>',
+            '<li><a href="#" id="gi_actions_basket">Add to Basket</a></li>',
             '</ul>',
             '</a>',
             '</div>'
@@ -215,6 +222,12 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
         window.giEvents = {
           'click #gi_actions_view_entrez': function (e, value, row, index) {
               document.location.href = "http://www.ncbi.nlm.nih.gov/protein/?term="+row.id;
+          },
+          'click #gi_actions_view_fasta': function (e, value, row, index) {
+              document.location.href = "{% url 'browse.views.get_all_sequences' %}?id="+row.id;
+          },
+          'click #gi_actions_basket': function (e, value, row, index) {
+              addToBasket{{ page_name }}([row.id]);
           }
         }
 

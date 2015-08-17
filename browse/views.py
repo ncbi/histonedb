@@ -204,15 +204,15 @@ def analyze(request):
         "current_query":{}
     }
     if request.method == "POST":
-        if request.POST.get("sequences"):
+        if request.POST.get("sequence"):
             format = "text"
-            sequences = request.POST["sequences"]
+            sequence = request.POST["sequence"]
         elif request.POST.get("file"):
             format="file"
-            sequences = request.POST["file"]
+            sequence = request.POST["file"]
 
         try:
-            data["result"] = process_upload(sequences, format, request)
+            data["result"] = process_upload(sequence, format, request)
         except InvalidFASTA as e:
             data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
             data["analyze_form"] = AnalyzeFileForm()

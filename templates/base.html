@@ -75,7 +75,7 @@
             <li id="browse_navbar_button"><a href="{% url 'browse.views.browse_types' %}">Browse</a></li>
             <li id="search_navbar_button"><a href="#" id="show_advanced_search">Advanced Search</a></li>
             <li id="basket_navbar_button"><a href="{% url 'browse.views.basket' %}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge badge-basket"></span></a></li>
-            <li id="analyze_navbar_button"><a href="{% url 'browse.views.analyze' %}">Analyze Your Sequence(s)</a></li>
+            <li id="analyze_navbar_button"><a href="{% url 'browse.views.analyze' %}">Analyze Your Sequence</a></li>
             <li id="help_navbar_button"><a href="{% url 'browse.views.help' %}">Help</a></li>
             <form role="search" class="navbar-form navbar-right" action="{% url 'browse.views.search' %}" method="POST">{% csrf_token %}
               <input type="hidden" name="reset" id="reset_previous_searches" value="true" />
