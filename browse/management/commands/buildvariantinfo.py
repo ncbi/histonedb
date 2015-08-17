@@ -27,7 +27,7 @@ class Command(BaseCommand):
             for variant_name, info in variants.iteritems():
                 variant = Variant.objects.get(id=variant_name)
                 variant.description = info["description"]
-                variant.taxonmic_span = info["taxonmic_span"]
+                variant.taxonomic_span = info["taxonomic_span"]
                 variant.save()
 
                 for alternate_name in info["alternate_names"]:
