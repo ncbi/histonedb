@@ -293,6 +293,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% if quick_msa and curated %}
           onLoadSuccess: function(data){
             createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
+            $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
           },
 
           onClickCell:function(event, value, row, index){
@@ -344,12 +345,12 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
         open_advanced_filter("filter", $table_{{ page_name }});
         {% endif %}
 
-
-{#    Row coloring upon click#}
+        {% if quick_msa and curated %}
+        {# Row coloring upon click#}
         $('#sequence_table_{{ page_name }}').on('click-row.bs.table', function (e, row, $element) {
         $('.success').removeClass('success');
         $($element).addClass('success');});
-
+        {% endif %}
 
     });
 
