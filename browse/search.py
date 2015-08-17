@@ -391,7 +391,7 @@ class HistoneSearch(object):
             if self.navbar:
                 self.redirect = redirect(core_type)
             else:
-                self.query.format("variant__core_type__id", "is", core_type.id, str)
+                self.query.format("variant__hist_type__id", "is", core_type.id, str)
             return
         except Histone.DoesNotExist:
             pass

@@ -37,7 +37,7 @@ class Variant(models.Model):
 
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
-        return reverse('browse.views.browse_variant', args=[str(self.core_type.id), str(self.id)])
+        return reverse('browse.views.browse_variant', args=[str(self.hist_type.id), str(self.id)])
 
 #This is to handle other names for the same variants.like cenH3, CENPA, etc.
 class OldStyleVariant(models.Model):
