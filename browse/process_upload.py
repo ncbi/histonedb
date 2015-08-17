@@ -99,7 +99,7 @@ def upload_blastp(sequences):
                     "variant":str(sequence.variant_id), 
                     "gene":str(sequence.gene) if sequence.gene else "-", 
                     "splice":str(sequence.splice) if sequence.splice else "-", 
-                    "taxonomy":str(sequence.taxonomy.name), 
+                    "taxonomy":str(sequence.taxonomy.name.capitalize()), 
                     "score":str(sequence.score), 
                     "evalue":str(sequence.evalue), 
                     "header":str(sequence.header), 
@@ -128,8 +128,7 @@ def upload_hmmer(sequences, evalue=10):
         for s in sequences:
             SeqIO.write(s, seqs, "fasta");
 
-    variantdb = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms", "combined_variants.hmm")
-    coredb = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms", "combined_cores.hmm")
+    db = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms", "combined_hmm.hmm")
     hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
 
     results = {}
@@ -149,57 +148,48 @@ def upload_hmmer(sequences, evalue=10):
         rows[i]["data"]["above_threshold"] = {id:False for id in ids}
         rows[i]["data"]["this_classified"] = {id:False for id in ids}
 
-    for i, db in enumerate((variantdb, coredb)):
-        process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-        output, error = process.communicate()
-        hmmerFile = StringIO.StringIO()
-        hmmerFile.write(output)
-        hmmerFile.seek(0)
-        for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
-            if i==1: 
-                variant = "unclassified{}".format(variant_query.id)
-            else:
-                variant = variant_query.id
+    process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    hmmerFile = StringIO.StringIO()
+    hmmerFile.write(output)
+    hmmerFile.seek(0)
+    for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
+        variant = variant_query.id
 
-            print variant
+        try:
+            variant_model = Variant.objects.get(id=variant)
+        except Variant.DoesNotExist:
+            continue
 
-            variants.append(variant)
+        for hit in variant_query:
+            for hsp in hit:
+                if hsp.bitscore>=variant_model.hmmthreshold:
+                    if (classifications[hit.id] == "Unknown" or \
+                      float(hsp.bitscore) >= rows[indices[classifications[hit.id]]][hit.id]):
+                        if i==1 and not (classifications[hit.id] == "Unknown" in classifications[hit.id]):
+                            #Skip canoninical score if already classfied as a variant
+                            continue
 
-            try:
-                variant_model = Variant.objects.get(id=variant)
-            except Variant.DoesNotExist:
-                continue
-
-            for hit in variant_query:
-                print "Hit is", hit.id
-                for hsp in hit:
-                    if hsp.bitscore>=variant_model.hmmthreshold:
-                        if (classifications[hit.id] == "Unknown" or \
-                          float(hsp.bitscore) >= rows[indices[classifications[hit.id]]][hit.id]):
-                            if i==1 and not (classifications[hit.id] == "Unknown" or "unclassified" in classifications[hit.id]):
-                                #Skip canoninical score if already classfied as a variant
-                                continue
-
-                            if not classifications[hit.id] == "Unknown":
-                                secondary_classifications[hit.id] = rows[indices[classifications[hit.id]]]["variant"]
-                                
-                            classifications[hit.id] = variant
+                        if not classifications[hit.id] == "Unknown":
+                            secondary_classifications[hit.id] = rows[indices[classifications[hit.id]]]["variant"]
+                            
+                        classifications[hit.id] = variant
 
 
-                            if not classifications[hit.id] == "Unknown":
-                                for row in rows:
-                                    row["data"]["this_classified"][hit.id] = False
-                            rows[indices[variant]]["data"]["this_classified"][hit.id] = True
-                        else:
-                            try:
-                                previousScore = rows[indices[secondary_classifications[hit.id]]][hit.id]
-                            except KeyError:
-                                previousScore = 0
-                            if classifications[hit.id] == "Unknown" or float(hsp.bitscore) >= previousScore:
-                                secondary_classifications[hit.id] = variant_model.id
-                    
-                    rows[indices[variant]]["data"]["above_threshold"][hit.id] = float(hsp.bitscore)>=variant_model.hmmthreshold
-                    rows[indices[variant]][hit.id] = float(hsp.bitscore)
+                        if not classifications[hit.id] == "Unknown":
+                            for row in rows:
+                                row["data"]["this_classified"][hit.id] = False
+                        rows[indices[variant]]["data"]["this_classified"][hit.id] = True
+                    else:
+                        try:
+                            previousScore = rows[indices[secondary_classifications[hit.id]]][hit.id]
+                        except KeyError:
+                            previousScore = 0
+                        if classifications[hit.id] == "Unknown" or float(hsp.bitscore) >= previousScore:
+                            secondary_classifications[hit.id] = variant_model.id
+                
+                rows[indices[variant]]["data"]["above_threshold"][hit.id] = float(hsp.bitscore)>=variant_model.hmmthreshold
+                rows[indices[variant]][hit.id] = float(hsp.bitscore)
     
     classifications = [(id, classifications[id], secondary_classifications[id]) for id in ids]
 

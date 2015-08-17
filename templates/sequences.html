@@ -47,7 +47,9 @@
   {#  Click on a row in table to change the displayed sequnce variant.#}
 
   {% elif analyze %}
-  <h4 class="page-header">Quick MSA - Align analyzed sequence to canonical</h4>
+  <div class="page-header" style="margin-bottom: 0px; margin-top: 10px"> Your sequence was BLASTED against our database and the results are listed in the table. The annotated sequence preview compares your sequence with the canonical of the same, or closely related, species.
+
+  You can tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search to find particular entries. Filters are not working yet on this page.</div>
   {% else %}
   <h4 class="page-header">Quick MSA - Align a single sequence to canonical</h4>
   {% endif %}
@@ -297,7 +299,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           },
 
           onClickCell:function(event, value, row, index){
-          createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75);
+          createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
           },
 
 
