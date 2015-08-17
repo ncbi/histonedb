@@ -112,15 +112,19 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
       return ids;
     };
 
+    function unique(list) {
+      var result = [];
+      $.each(list, function(i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
+      });
+      return result;
+    }
+
     function addToBasket{{ page_name }}(ids){
       var basket = JSON.parse(localStorage.getItem('basket')) || [];
-      console.log("basket: "+basket);
-      console.log("ids: "+ids);
-      var new_basket = $.extend(true, basket, ids);
-      console.log("new basket: "+new_basket);
-      console.log(ids);
-      localStorage.setItem('basket', JSON.stringify(basket));
-      $(".badge-basket").html(basket.length);
+      var new_basket = unique($.merge(basket, ids));
+      localStorage.setItem('basket', JSON.stringify(new_basket));
+      $(".badge-basket").html(new_basket.length);
     }
     
     {% if not curated %}
