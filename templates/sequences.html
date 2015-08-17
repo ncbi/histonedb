@@ -320,7 +320,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           for (var i = 0; i < ids.length; i++) {
             params += "id="+ids[i]+"&"
           }
-          createMSA("msa_div_modal_{{ page_name }}", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse.views.get_aln_and_features' %}?download=true", 400, true);
+          createMSA("msa_div_modal_{{ page_name }}", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse.views.get_aln_and_features' %}?download=true", 400, 0, true);
           $('#msa_modal_{{ page_name }}').modal('show');
         });
 
