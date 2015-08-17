@@ -125,6 +125,95 @@ core_histones = [
     SeqRecord(templ_H2B,id='H2B',name='H2B')
 ]
 
+def get_variant_features(sequence):
+    """Get the features of a sequence based on its variant
+
+    Parameters:
+    -----------
+    sequence : Sequence django model
+
+    Return:
+    -------
+    feature_postions : defaultdict
+        A dictionary with keys the names of the feature and values a 2-tuple of their positions
+    """
+    feature_postions = collections.defaultdict(lambda: [-1, -1])
+    features = Feature.objects.filter(Q(template__variant=sequence.variant.id)|Q(template__variant="General{}".format(sequence.variant.hist_type.id)))
+    #Find features with the same taxonomy
+    tax_features = features.filter(template__taxonomy=sequence.taxonomy)
+    if len(tax_features) == 0:
+        #Find features with closest taxonomy => rank class
+        tax_features = features.filter(template__taxonomy__parent__parent__parent=sequence.taxonomy.parent.parent.parent)
+    if len(tax_features) == 0:
+        #Nothing, use unidentified which is the standard
+        tax_features = features.filter(template__taxonomy__name="undefined")
+    features = tax_features
+    template_file = features.first().sequence.path()
+
+    n2=str(uuid.uuid4())
+    test_record = sequence.to_biopython()
+    query_file = os.path.join(save_dir, "query_{}.fasta".format(n2))
+    SeqIO.write(test_record, query_file, 'fasta')
+
+    needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
+    cmd = os.path.join(os.path.dirname(sys.executable), "EMBOSS-6.6.0", "emboss", "needle")
+
+    if not os.path.isfile(cmd):
+        cmd = "needle"
+    needle_cline = NeedleCommandline(
+        cmd=cmd,
+        asequence=template_file, 
+        bsequence=query_file, 
+        gapopen=20, 
+        gapextend=1, 
+        outfile=needle_results)
+    stdout, stderr = needle_cline()
+
+    align = AlignIO.read(needle_results, "emboss")
+    core_histone = align[0]
+    query = align[1]
+
+    
+    corresponding_hist = range(len(SeqIO.parse(template_file, "fasta").next()))
+    for feature in features:
+        start = feature.start
+        stop = feature.stop
+        start_in_aln = corresponding_hist[start]
+        end_in_aln = corresponding_hist[stop]
+        start_in_test_seq = -1
+        end_in_test_seq = -1
+
+        for k in xrange(len(core_histone)):
+            try:
+                start_in_test_seq = corresponding_test.index(start_in_aln+k)
+                break
+            except ValueError:
+                continue
+
+        for k in xrange(len(core_histone)):
+            try:
+                end_in_test_seq = corresponding_test.index(end_in_aln-k)
+                break
+            except ValueError:
+                continue
+
+        if start_in_test_seq == -1 or end_in_test_seq == -1 or start_in_test_seq > end_in_test_seq:
+            feature_postions[feature]=[-1,-1]
+        else:
+            feature_postions[feature]=[start_in_test_seq,end_in_test_seq]
+
+    feature_postions["core"] = get_core_lendiff(feature_postions, ss_templ[hist_identified])
+
+    #Cleanup
+    os.remove(query_file)
+    os.remove(needle_results)
+        
+    if save_alignment:
+        return hist_identified,ss_test,query
+
+    return feature_postions
+
+
 def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_alignment=False):
     """Returns sequence elements in histone sequence, all numbers assume first element in seq has number 0!!! Not like in PDB"""
     n2=str(uuid.uuid4())

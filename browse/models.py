@@ -50,6 +50,14 @@ class OldStyleVariant(models.Model):
     def __unicode__(self):
         return "{} (now called {})".format(self.name, self.updated_variant.id)
 
+class TemplateSequence(models.model):
+    variant  = models.CharField(max_length=255) #Not a foreign key; Maybe it is "General". It is just used to specify path
+    taxonomy = models.ForeignKey(Taxonomy)
+
+    def path(self):
+        return os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "{}_{}.fasta".format(variant, taxonomy))
+
+
 class Sequence(models.Model):
     id       = models.CharField(max_length=25, primary_key=True) #GI
     variant  = models.ForeignKey(Variant, related_name="sequences")
@@ -58,7 +66,7 @@ class Sequence(models.Model):
     taxonomy = models.ForeignKey(Taxonomy)
     header   = models.CharField(max_length=255)
     sequence = models.TextField()
-    reviewed = models.BooleanField()
+    reviewed = models.BooleanField() 
 
     def __eq__(self, other):
         if isinstance(other, Sequence):
@@ -152,6 +160,13 @@ class Score(models.Model):
 
     def description(self):
         return "[Score: {}; Evalue:{}]"
+
+class Feature(models.Model):
+    template    = models.ForeignKey(TemplateSequence)
+    start       = models.IntegerField()
+    end         = models.IntegerField()
+    name        = models.CharField(max_length=600)
+    description = models.CharField(max_length=600)
 
 class Features(models.Model):
     sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 

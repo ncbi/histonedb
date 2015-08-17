@@ -83,7 +83,7 @@
 		},
 		"H2B.1": {
 			"description":"H2B.1 is a testis-specific variant that forms subnucleosomal particles in spermatids. It can dimerize with H2A.L.1 and H2A.L.2",
-			"taxonmic_span":"Boreoeutheria mammals",
+			"taxonmic_span":"Mammals",
 			"alternate_names": [
 				{"name":"TH2B"},
 				{"name":"TS H2B.1"},
@@ -92,7 +92,7 @@
 		},
 		"H2B.W": {
 			"description":"H2B.W is involved in spermiogenesis and telomere associated functions in sperm and is found in spermatogenic cells. It has an extended N-terminal tail.",
-			"taxonmic_span":"Boreoeutheria mammals",
+			"taxonmic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2BFWT"},
 				{"name":"member W"},
