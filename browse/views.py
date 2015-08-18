@@ -160,7 +160,7 @@ def browse_variant(request, histone_type, variant):
         # print records.next()
         # publications = ['{}. "{}" <i>{}</i> {}. {} ({}): {}. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">PubMed</a>'.format(
         publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
-                ", ".join(record["AU"][0:2])+", et al" if (len(record["AU"])>2) else record["AU"][0]+" and "+record["AU"][1],
+                "{}, {}, et al".format(*record["AU"][0:2]) if len(record["AU"])>2 else " and ".join(*record["AU"]),
                 record["TI"],
                 record["TA"],
                 re.search("\d\d\d\d",record["SO"]).group(0), #added by Alexey
