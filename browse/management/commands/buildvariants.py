@@ -282,7 +282,8 @@ class Command(BaseCommand):
             self.search(hmms_db=hmm_file, out=negative_examples_out, sequences=negative_examples_file, E=500)
 
             #Here we are doing ROC curve analysis and returning parameters
-            parameters = test_model(variant_name, output_dir, positive_examples_out, negative_examples_out)
+            specificity = 0.95 #0.9 if "canonical" in variant_name else 0.98 #Hack to make canoical have a lower threshold and ther variants higher threshold
+            parameters = test_model(variant_name, output_dir, positive_examples_out, negative_examples_out, measure_threshold=specificity)
 
             #Let's put the parameter data to the database,
             #We can set hist_type directly by ID, which is hist_type_pos in this case - because it is the primary key in Histone class.

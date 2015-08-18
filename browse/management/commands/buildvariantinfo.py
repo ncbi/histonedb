@@ -1,9 +1,11 @@
 import os
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from browse.models import Variant, OldStyleVariant, Histone, Publication
+from browse.models import Variant, OldStyleVariant, Histone, Publication, TemplateSequence, Feature
 from djangophylocore.models import Taxonomy
 import json
+from Bio import SeqIO
+from itertools import groupby
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
@@ -25,6 +27,7 @@ class Command(BaseCommand):
 
         for hist_type_name, variants in variant_info.iteritems():
             for variant_name, info in variants.iteritems():
+                print variant_name
                 variant = Variant.objects.get(id=variant_name)
                 variant.description = info["description"]
                 variant.taxonomic_span = info["taxonomic_span"]
@@ -40,7 +43,13 @@ class Command(BaseCommand):
                         splice          = alternate_name.get("splice"),
                         taxonomy        = Taxonomy.objects.get(name=tax_name)
                     )
-                    alt_variant.save()
+                    try:
+                        alt_variant.save()
+                    except:
+                        from django.db import connection
+                        cursor = connection.cursor()
+                        cursor.execute("ALTER DATABASE histdb CHARACTER SET utf8 COLLATE utf8_general_ci")
+                        alt_variant.save()
 
                 for publication_id in info["publications"]:
                     publication, created = Publication.objects.get_or_create(id=publication_id, cited=False)
@@ -57,31 +66,28 @@ class Command(BaseCommand):
             type.description = info["description"]
             type.save()
 
-
-        return
         feature_info_path = os.path.join(self.info_directory, "features.json")
         with open(feature_info_path) as feature_info_file:  
             feature_info = json.load(feature_info_file)
-
         
         #Features not working yet
         for type_name, variants in feature_info.iteritems():
             type = Histone.objects.get(id=type_name)
             for variant_name, info in variants.iteritems():
-                if variant_name == "General":
+                if variant_name.startswith("General"):
                     variant = type
                 else:
+                    print variant_name
                     variant = Variant.objects.get(id=variant_name)
 
-                try:
-                    sequence, positions = [x.strip() for x in info["format"].split("\n") if x.strip()]
-                except:
-                    raise RuntimeError("Invalid feature format")
+                sequence = info["sequence"]
+                position_lines = [position for key, position in info.iteritems() if key.startswith("feature") and not key == "feature_info"]
+                assert False not in [len(position)==len(sequence) for position in position_lines]
 
                 try:
-                    taxonomy = Taxononomy.objects.get(name=info["format"]["taxonomy"])
+                    taxonomy = Taxonomy.objects.get(name=info.get("taxonomy", "root"))
                 except Taxononomy.DoesNotExist:
-                    taxonomy = Taxononomy.objects.get(name="unidentified")
+                    taxonomy = Taxonomy.objects.get(name="root")
 
                 template, created = TemplateSequence.objects.get_or_create(taxonomy=taxonomy, variant=variant.id)
                 if created:
@@ -90,13 +96,15 @@ class Command(BaseCommand):
                         template.path()
                     )
 
-                for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
-                    if feature_name:
-                        Feature(
-                            template    = template,
-                            start       = group[0][0],
-                            end         = group[-1][0],
-                            name        = info["features"][feature_name]["name"],
-                            description = info["features"][feature_name]["description"],
-                        )
-                        Feature.save()
+                for positions in position_lines:
+                    for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
+                        group = list(group)
+                        if not feature_name in [" ", "="]:
+                            feature = Feature(
+                                template    = template,
+                                start       = group[0][0],
+                                end         = group[-1][0],
+                                name        = info["feature_info"][feature_name]["name"],
+                                description = info["feature_info"][feature_name]["description"],
+                            )
+                            feature.save()

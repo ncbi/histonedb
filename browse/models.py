@@ -54,8 +54,11 @@ class TemplateSequence(models.Model):
     variant  = models.CharField(max_length=255) #Not a foreign key; Maybe it is "General". It is just used to specify path
     taxonomy = models.ForeignKey(Taxonomy)
 
+    def __unicode__(self):
+        return "{}_{}".format(variant, taxonomy)
+
     def path(self):
-        return os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "{}_{}.fasta".format(variant, taxonomy))
+        return os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "{}.fasta".format(str(self)))
 
 
 class Sequence(models.Model):
@@ -161,69 +164,8 @@ class Score(models.Model):
     def description(self):
         return "[Score: {}; Evalue:{}]"
 
-class Feature(models.Model):
-    template    = models.ForeignKey(TemplateSequence)
-    start       = models.IntegerField()
-    end         = models.IntegerField()
-    name        = models.CharField(max_length=600)
-    description = models.CharField(max_length=600)
-    color       = models.CharField(max_length=25)
-
-class Features(models.Model):
-    sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 
-    alphaN_start         = models.IntegerField(null=True)
-    alphaN_end           = models.IntegerField(null=True)
-    alpha1_start         = models.IntegerField(null=True)
-    alpha1_end           = models.IntegerField(null=True)
-    alpha1ext_start      = models.IntegerField(null=True)
-    alpha1ext_end        = models.IntegerField(null=True)
-    alpha2_start         = models.IntegerField(null=True)
-    alpha2_end           = models.IntegerField(null=True)
-    alpha3_start         = models.IntegerField(null=True)
-    alpha3_end           = models.IntegerField(null=True)
-    alpha3ext_start      = models.IntegerField(null=True)
-    alpha3ext_end        = models.IntegerField(null=True)
-    alphaC_start         = models.IntegerField(null=True)
-    alphaC_end           = models.IntegerField(null=True)
-    beta1_start          = models.IntegerField(null=True)
-    beta1_end            = models.IntegerField(null=True)
-    beta2_start          = models.IntegerField(null=True)
-    beta2_end            = models.IntegerField(null=True)
-    loopL1_start         = models.IntegerField(null=True)
-    loopL1_end           = models.IntegerField(null=True)
-    loopL2_start         = models.IntegerField(null=True)
-    loopL2_end           = models.IntegerField(null=True)
-    mgarg1_start         = models.IntegerField(null=True)
-    mgarg1_end           = models.IntegerField(null=True)
-    mgarg2_start         = models.IntegerField(null=True)
-    mgarg2_end           = models.IntegerField(null=True)
-    mgarg3_start         = models.IntegerField(null=True)
-    mgarg3_end           = models.IntegerField(null=True)
-    docking_domain_start = models.IntegerField(null=True)
-    docking_domain_end   = models.IntegerField(null=True)
-    core                 = models.FloatField()
-
-    features = [
-        ("alphaN", "", "helix"),
-        ("alpha1", "", "helix"),
-        ("alpha1ext", "", "extension"),
-        ("alpha2", "", "helix"),
-        ("alpha3", "", "helix"),
-        ("alpha3ext", "", "extension"),
-        ("alphaC", "", "extension"),
-        ("beta1", "", "strand"),
-        ("beta2", "", "strand"),
-        ("beta3", "", "strand"),
-        ("loopL1", "", "loop"),
-        ("loopL2", "", "loop"),
-        ("mgarg1", "Minor Groove Arg 1", "residue"),
-        ("mgarg2", "Minor Groove Arg 2", "residue"),
-        ("mgarg3", "Minor Groove Arg 3", "residue"),
-        ("docking_domain", "Docking Domain", "domain")
-    ]
-
-    @classmethod
-    def from_dict(cls, sequence, ss_position):
+class FeatureManager(models.Manager):
+    def from_dict(self, template, features, save=False):
         """Create model from secondary structure dictionary
 
         Parameters:
@@ -232,65 +174,22 @@ class Features(models.Model):
         ss_dict : dict
             Created from tools.hist_ss
         """
-        ss_test = defaultdict(lambda: [-1, -1])
-        ss_test.update(ss_position)
-        return cls(
-          sequence             = sequence,
-          alphaN_start         = ss_test["alphaN"][0],
-          alphaN_end           = ss_test["alphaN"][1],
-          alpha1_start         = ss_test["alpha1"][0],
-          alpha1_end           = ss_test["alpha1"][1],
-          alpha1ext_start      = ss_test["alpha1ext"][0],
-          alpha1ext_end        = ss_test["alpha1ext"][1],
-          alpha2_start         = ss_test["alpha2"][0],
-          alpha2_end           = ss_test["alpha2"][1],
-          alpha3_start         = ss_test["alpha3"][0],
-          alpha3_end           = ss_test["alpha3"][1],
-          alpha3ext_start      = ss_test["alpha3ext"][0],
-          alpha3ext_end        = ss_test["alpha3ext"][1],
-          alphaC_start         = ss_test["alphaC"][0],
-          alphaC_end           = ss_test["alphaC"][1],
-          beta1_start          = ss_test["beta1"][0],
-          beta1_end            = ss_test["beta1"][1],
-          beta2_start          = ss_test["beta2"][0],
-          beta2_end            = ss_test["beta2"][1],
-          loopL1_start         = ss_test["loopL1"][0],
-          loopL1_end           = ss_test["loopL1"][1],
-          loopL2_start         = ss_test["loopL2"][0],
-          loopL2_end           = ss_test["loopL2"][1],
-          mgarg1_start         = ss_test["mgarg1"][0],
-          mgarg1_end           = ss_test["mgarg1"][1],
-          mgarg2_start         = ss_test["mgarg2"][0],
-          mgarg2_end           = ss_test["mgarg2"][1],
-          mgarg3_start         = ss_test["mgarg3"][0],
-          mgarg3_end           = ss_test["mgarg3"][1],
-          docking_domain_start = ss_test["docking domain"][0],
-          docking_domain_end   = ss_test["docking domain"][1],
-          core                 = ss_test["core"],
-        )
+        objs = [Feature(
+            template=template,
+            start=start,
+            end=end,
+            name=name,
+            description="",
+            color="") for name, (start, end) in features]
+        
+        if save:
+            [o.save() for o in objs]
 
-    def __unicode__(self):
-        """Returns Jalview GFF format"""
-        outl = ""
-        for feature, description, type in Features.features:
-            start = str(getattr(self, "{}_start".format(feature), -1))
-            end = str(getattr(self, "{}_end".format(feature), -1))
+        return objs
 
-            if "-1" in (start, end):
-                continue
-
-            description = description or feature
-
-            #revert this back if smths fails in MSA names
-            # id = self.sequence.description
-            id = self.sequence.short_description
-            outl += "\t".join((description, id, "-1", start, end, type))
-            outl += "\n"
-        return outl
-
-    @classmethod
-    def gff_colors(cls):
-        return """domain\t990099
+    def gff(self, sequence_label="Consensus", features=None):
+        """#Old colors:
+domain\t990099
 chain\t225,105,0
 residue\t105,225,35
 helix\tff0000
@@ -298,26 +197,49 @@ strand\t00ff00
 loop\tcccccc
 extension\tffff66
 """
-    
-    def full_gff(self):
-        return "{}\n{}".format(Features.gff_colors(), str(self))
+        assert isinstance(sequence_label, str), "Sequence label must be a string"
+        colors = {}
+        gff_features = ""
+        if features is None:
+            features =  self.all()
+        for feature in features:
+            try:
+                colorName = colors[feature.color]
+            except KeyError:
+                colorName = "color{}".format(len(colors))
+                colors[feature.color] = colorName
+            gff_features += feature.gff(sequence_label, colorName)
+        gff_colors = "\n".join(["{}\t{}".format(name, color) for color, name in colors.iteritems()])
+        return "{}\n{}".format(gff_colors, gff_features)
 
-    def to_dict(self):
-        ss_position = {}
-        for feature, description, type in Features.features:
-            start = str(getattr(self, "{}_start".format(feature), -1))
-            end = str(getattr(self, "{}_end".format(feature), -1))
-            ss_position[feature] = [start, end]
-        ss_position["core"] = self.core
-        return ss_position
+    def to_dict(self, features=None):
+        if features is None:
+            features =  self.all()
+        
+        return {feature.name:(feature.start, feature.end) for feature in features}
 
+class Feature(models.Model):
+    template    = models.ForeignKey(TemplateSequence, null=True)
+    start       = models.IntegerField()
+    end         = models.IntegerField()
+    name        = models.CharField(max_length=600)
+    description = models.CharField(max_length=600)
+    color       = models.CharField(max_length=25)
 
-# class Structure(models.Model):
-#     sequence = models.OneToOneField(Sequence, primary_key=True, related_name="structures")
-#     pdb      = models.CharField(max_length=25)
-#     mmdb     = models.CharField(max_length=25)
-#     chain    = models.CharField(max_length=25)
-#
+    def __unicode__(self):
+        """Returns Jalview GFF format"""
+        return self.gff(self.template)
+
+    def gff(self, sequence_label=None, featureType="{}"):
+        tmp = ""
+        if sequence_label is None:
+            tmp += "color1\t{}\n".format(self.color)
+            sequence_label = str(self.template)
+            featureType = "color1"
+
+        tmp += "\t".join((self.name, id, "-1", self.start, self.end, featureType))
+        tmp += "\n"
+        return tmp
 
 class Publication(models.Model):
      id       = models.IntegerField(primary_key=True) #PubmedID

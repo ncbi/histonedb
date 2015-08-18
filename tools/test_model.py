@@ -56,7 +56,7 @@ def get_model_scores(model_output):
     return [hsp.bitscore for query in SearchIO.parse(model_output, "hmmer3-text") \
         for hit in query for hsp in hit] 
 
-def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC"):
+def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC", measure_threshold=0.95):
     """Test the model by calcuating
 
     Returns:
@@ -78,7 +78,12 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC")
     fpr, tpr, thresholds = roc_curve(y_true, y_score)
     roc_auc = auc(fpr, tpr)
 
-    best_threshold, thresholds, values = calcualte_threshold(postive_scores, negative_scores, measure=measure, thresholds=reversed(thresholds))
+    best_threshold, thresholds, values = calcualte_threshold(
+        postive_scores, 
+        negative_scores, 
+        measure=measure,
+        measure_threshold=measure_threshold, 
+        thresholds=reversed(thresholds))
 
 
     pp = PdfPages(os.path.join(save_dir, "{}_model_evaluation.pdf".format(model_name)))
