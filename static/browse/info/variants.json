@@ -172,7 +172,7 @@ ficity of variant nucleosomes.",
 	},
 	"H4": {
 		"canonicalH4":{
-			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail. No variants are recorded for this histone.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
