@@ -8,8 +8,9 @@ SGRGKKKKKQGGKTRAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPPPPPVYLAAVLEYLTAEILELAGNARRR
 		     "features": {
 		        "1":{
 		        	"type":"secondary",
-		     		"description":"minor goove argneine 1",
+		     		"description":"minor groove arginine 1",
 		     		"color":"#000",
+				  	"source":"This is an optional field, indicating from where the information about this feature was obtained. Eg. PDB file, or publications."
 		     	},
 		     },
 		     "exclude_from_general": [
