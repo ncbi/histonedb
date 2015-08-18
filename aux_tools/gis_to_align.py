@@ -105,7 +105,7 @@ def refactor_title(msa,variant):
 
 
 if __name__ == '__main__':
-    
+
     gis=read_gis('canonicalH2A.gis')
     seqrecs=get_prot_seqrec_by_gis(gis)
     msa=muscle_aln(seqrecs)
