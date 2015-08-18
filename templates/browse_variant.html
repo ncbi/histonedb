@@ -135,7 +135,13 @@ $("#id_variant").prop("readonly", true);
                 <div class="row center-block">
 
                     <h4 class="page-header">References</h4>
-
+                    {% if not publications %}
+                      <i>No publications in database yet</i>
+                    {% else %}
+                      {% for publication in publications %}
+                        {% autoescape off %}publication{% endautoescape %}
+                      {% endfor %}
+                    {% endif %}
 
                 </div>
               </div>

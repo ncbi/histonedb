@@ -25,6 +25,9 @@ from djangophylocore.models import *
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
+from Bio import Medline
+from Bio import Entrez
+Entrez.email = "HistoneDB_user@ncbi.nlm.nih.gov"
 
 from django.db.models import Min, Max, Count
 
@@ -137,17 +140,35 @@ def browse_variant(request, histone_type, variant):
         Feature.objects.filter( \
             Q(template__variant=variant)|Q(template__variant="General{}".format(histone_type)\
         ))]
-    human_sequences = Sequence.objects.filter(
-            variant__id=variant, 
-            taxonomy__name="homo sapiens",
+    sequences = Sequence.objects.filter(
+            variant__id=variant,
             all_model_scores__used_for_classification=True
         ).annotate(
             score=Max("all_model_scores__score")
         ).order_by("score")
+
+    human_sequence = sequences.filter(taxonomy__name="homo sapiens", reviewed=True).first()
+    if not human_sequence:
+        human_sequence = sequences.filter(taxonomy__name="homo sapiens").first()
+    if not human_sequence:
+        human_sequence = sequences.first()
+
     try:
-        human_sequence = human_sequences.filter(reviewed=True).first()
+        publication_ids = variant.publication_set.values_list("id", flat=True)
+        handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
+        records = Medline.parse(handle)
+        publications = ['{}. "{}" <i>{}</i> {}. {} ({}): {}. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">PubMed</a>'.format(
+                ", ".join(record["AU"]), 
+                record["TI"], 
+                record["TA"], 
+                record["VI"], 
+                record["IS"], 
+                record["EDAT"], 
+                record["PG"], 
+                record["PMID"]
+            ) for record in records]
     except:
-        human_sequence = human_sequences.first()
+        publications = []
 
     data = {
         "hist_type": variant.hist_type.id,
@@ -155,6 +176,7 @@ def browse_variant(request, histone_type, variant):
         "name": variant.id,
         "features": features,
         "human_sequence":human_sequence.id,
+        "publications":publications,
         "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.hist_type.id, variant.id)),
         "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[variant.id]),
         "colors":color_range,

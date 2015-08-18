@@ -318,8 +318,9 @@ extension\tffff66
 #     mmdb     = models.CharField(max_length=25)
 #     chain    = models.CharField(max_length=25)
 #
-# class Publication(models.Model):
-#     id       = models.IntegerField(primary_key=True) #PubmedID
-#     variants = models.ManyToManyField(Variant)
-#     cited    = models.BooleanField()
-#
+
+class Publication(models.Model):
+     id       = models.IntegerField(primary_key=True) #PubmedID
+     variants = models.ManyToManyField(Variant)
+     cited    = models.BooleanField()
+
