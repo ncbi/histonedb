@@ -125,19 +125,22 @@ core_histones = [
     SeqRecord(templ_H2B,id='H2B',name='H2B')
 ]
 
-def get_variant_features(sequence):
-    """Get the features of a sequence based on its variant
+def get_variant_features(sequence, save_dir="", save_not_found=False):
+    """Get the features of a sequence based on its variant.
 
     Parameters:
     -----------
     sequence : Sequence django model
+        The seuqence to add get features for with identified variant
+    save_dir : str
+        Path to save temp files.
+    save_not_found : bool
+        Add Features even if they weren't found. Indices will be (-1, -1)
 
     Return:
     -------
-    feature_postions : defaultdict
-        A dictionary with keys the names of the feature and values a 2-tuple of their positions
+    A string containing the gff file of all features
     """
-    feature_postions = collections.defaultdict(lambda: [-1, -1])
     features = Feature.objects.filter(Q(template__variant=sequence.variant.id)|Q(template__variant="General{}".format(sequence.variant.hist_type.id)))
     #Find features with the same taxonomy
     tax_features = features.filter(template__taxonomy=sequence.taxonomy)
@@ -173,6 +176,7 @@ def get_variant_features(sequence):
     core_histone = align[0]
     query = align[1]
 
+    variant_features = []
     
     corresponding_hist = range(len(SeqIO.parse(template_file, "fasta").next()))
     for feature in features:
@@ -198,20 +202,26 @@ def get_variant_features(sequence):
                 continue
 
         if start_in_test_seq == -1 or end_in_test_seq == -1 or start_in_test_seq > end_in_test_seq:
-            feature_postions[feature]=[-1,-1]
+            if save_not_found:
+                variant_features.append(Feature(
+                    name = feature.name,
+                    description = feature.description,
+                    start = -1,
+                    end = -1
+                ))
         else:
-            feature_postions[feature]=[start_in_test_seq,end_in_test_seq]
-
-    feature_postions["core"] = get_core_lendiff(feature_postions, ss_templ[hist_identified])
+            variant_features.append(Feature(
+                name = feature.name,
+                description = feature.description,
+                start = start_in_test_seq,
+                end = end_in_test_seq
+            ))
 
     #Cleanup
     os.remove(query_file)
     os.remove(needle_results)
-        
-    if save_alignment:
-        return hist_identified,ss_test,query
 
-    return feature_postions
+    return Feature.objects.gff("Consensus", variant_feature)
 
 
 def get_hist_ss(test_seq, hist_type="Unknown", save_dir="", debug=True, save_alignment=False):

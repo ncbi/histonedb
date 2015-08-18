@@ -40,7 +40,13 @@ class Command(BaseCommand):
                         splice          = alternate_name.get("splice"),
                         taxonomy        = Taxonomy.objects.get(name=tax_name)
                     )
-                    alt_variant.save()
+                    try:
+                        alt_variant.save()
+                    except:
+                        from django.db import connection
+                        cursor = connection.cursor()
+                        cursor.execute("ALTER DATABASE histdb CHARACTER SET utf8 COLLATE utf8_general_ci")
+                        alt_variant.save()
 
                 for publication_id in info["publications"]:
                     publication, created = Publication.objects.get_or_create(id=publication_id, cited=False)
@@ -58,7 +64,6 @@ class Command(BaseCommand):
             type.save()
 
 
-        return
         feature_info_path = os.path.join(self.info_directory, "features.json")
         with open(feature_info_path) as feature_info_file:  
             feature_info = json.load(feature_info_file)
@@ -74,12 +79,16 @@ class Command(BaseCommand):
                     variant = Variant.objects.get(id=variant_name)
 
                 try:
-                    sequence, positions = [x.strip() for x in info["format"].split("\n") if x.strip()]
-                except:
+                    lines = [l.rstrip() for l in info["format"].split("\n") if l.rstrip()]
+                    sequence = lines[0]
+                    position_lines = lines[1:]
+                except IndexError:
                     raise RuntimeError("Invalid feature format")
 
+                assert False not in [len(position)==len(sequence) for position in position_lines]
+
                 try:
-                    taxonomy = Taxononomy.objects.get(name=info["format"]["taxonomy"])
+                    taxonomy = Taxononomy.objects.get(name=info.get("taxonomy", "unidentified"))
                 except Taxononomy.DoesNotExist:
                     taxonomy = Taxononomy.objects.get(name="unidentified")
 
@@ -90,13 +99,14 @@ class Command(BaseCommand):
                         template.path()
                     )
 
-                for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
-                    if feature_name:
-                        Feature(
-                            template    = template,
-                            start       = group[0][0],
-                            end         = group[-1][0],
-                            name        = info["features"][feature_name]["name"],
-                            description = info["features"][feature_name]["description"],
-                        )
-                        Feature.save()
+                for positions in position_lines:
+                    for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
+                        if not feature_name in [" ", "="]:
+                            Feature(
+                                template    = template,
+                                start       = group[0][0],
+                                end         = group[-1][0],
+                                name        = info["features"][feature_name]["name"],
+                                description = info["features"][feature_name]["description"],
+                            )
+                            Feature.save()
