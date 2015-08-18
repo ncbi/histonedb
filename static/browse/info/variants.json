@@ -34,7 +34,7 @@
 			"publications":["22650316"]
 		},
 		"macroH2A": {
-			"description":"MacroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus.",
+			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus.",
 			"taxonomic_span": "Mostly Vertebrate, but lost in several lineages including Caenorhabditis and Drosophila",
 			"alternate_names": [
 				{"name":"mH2A"},
@@ -58,7 +58,7 @@
 			"publications":["22650316"]
 		},
 		"H2A.B": {
-			"description": "H2A.B is a Barr body defficient varaint which is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a short C-terminal tail and docking domain and a truncated acidic patch.",
+			"description": "H2A.B, also known as \"Barr body defficient\" varaint, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2A.Bbd"}
