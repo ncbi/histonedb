@@ -25,6 +25,9 @@ from djangophylocore.models import *
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
+from Bio import Medline
+from Bio import Entrez
+Entrez.email = "HistoneDB_user@ncbi.nlm.nih.gov"
 
 from django.db.models import Min, Max, Count
 
@@ -124,12 +127,56 @@ def browse_variant(request, histone_type, variant):
     red = Color("#fc8d62")
     color_range = map(str, red.range_to(green, 12))
 
-    scores = Sequence.objects.filter(variant__id=variant).filter(all_model_scores__used_for_classification=True).annotate(score=Max("all_model_scores__score")).aggregate(max=Max("score"), min=Min("score"))
+    scores = Sequence.objects.filter(
+            variant__id=variant,
+            all_model_scores__used_for_classification=True
+        ).annotate(
+            score=Max("all_model_scores__score")
+        ).aggregate(
+            max=Max("score"), 
+            min=Min("score")
+        )
+    features = [(f.name, f.description, f.color) for f in \
+        Feature.objects.filter( \
+            Q(template__variant=variant)|Q(template__variant="General{}".format(histone_type)\
+        ))]
+    sequences = Sequence.objects.filter(
+            variant__id=variant,
+            all_model_scores__used_for_classification=True
+        ).annotate(
+            score=Max("all_model_scores__score")
+        ).order_by("score")
+
+    human_sequence = sequences.filter(taxonomy__name="homo sapiens", reviewed=True).first()
+    if not human_sequence:
+        human_sequence = sequences.filter(taxonomy__name="homo sapiens").first()
+    if not human_sequence:
+        human_sequence = sequences.first()
+
+    try:
+        publication_ids = variant.publication_set.values_list("id", flat=True)
+        handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
+        records = Medline.parse(handle)
+        publications = ['{}. "{}" <i>{}</i> {}. {} ({}): {}. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">PubMed</a>'.format(
+                ", ".join(record["AU"]), 
+                record["TI"], 
+                record["TA"], 
+                record["VI"], 
+                record["IS"], 
+                record["EDAT"], 
+                record["PG"], 
+                record["PMID"]
+            ) for record in records]
+    except:
+        publications = []
 
     data = {
         "hist_type": variant.hist_type.id,
         "variant": variant.id,
         "name": variant.id,
+        "features": features,
+        "human_sequence":human_sequence.id,
+        "publications":publications,
         "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.hist_type.id, variant.id)),
         "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[variant.id]),
         "colors":color_range,

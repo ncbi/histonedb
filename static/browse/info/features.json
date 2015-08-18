@@ -1,0 +1,36 @@
+{"H2A":	
+	{
+		"GeneralH2A":{
+			"taxa":"unidentified",
+			"format" : "
+SGRGKKKKKQGGKTRAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPPPPPVYLAAVLEYLTAEILELAGNARRRRARDNKTTTTTTKTRIIPRHLQLAVRNDEELNKLLGRVTIAQGGVLPNIQSVLLPKKTESSKSKSK
+	                           111111111                2222222           333333",
+		     "features": {
+		        "1":{
+		        	"type":"secondary",
+		     		"description":"minor goove argneine 1",
+		     		"color":"#000",
+		     	},
+		     },
+		     "exclude_from_general": [
+		     	"1"
+		     ]
+		},
+		"H2A.Z":{
+		    "taxa":"unidentified",
+			"format" : "
+SGRGKKKKKQGGKTRAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPPPPPVYLAAVLEYLTAEILELAGNARRRRARDNKTTTTTTKTRIIPRHLQLAVRNDEELNKLLGRVTIAQGGVLPNIQSVLLPKKTESSKSKSK
+	                           111111111                2222222           333333",
+		     "features": {
+		        "1":{
+		        	"type":"secondary",
+		     		"description":"minor goove argneine 1",
+		     		"color":"#000",
+		     	},
+		     },
+		     "exclude_from_general": [
+		     	"1"
+		     ]
+		}
+	}
+}

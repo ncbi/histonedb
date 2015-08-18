@@ -53,3 +53,43 @@ class Command(BaseCommand):
             type.description = info["description"]
             type.save()
 
+        feature_info_path = os.path.join(self.info_directory, "features.json")
+        with open(feature_info_path) as feature_info_file:  
+            feature_info = json.load(feature_info_file)
+
+        for type_name, variants in feature_info.iteritems():
+            type = Histone.objects.get(id=type_name)
+            for variant_name, info in variants.iteritems():
+                if variant_name == "General":
+                    variant = type
+                else:
+                    variant = Variant.objects.get(id=variant_name)
+
+                try:
+                    sequence, positions = [x.strip() for x in info["format"].split("\n") if x.strip()]
+                except:
+                    raise RuntimeError("Invalid feature format")
+
+                try:
+                    taxonomy = Taxononomy.objects.get(name=info["format"]["taxonomy"])
+                except Taxononomy.DoesNotExist:
+                    taxonomy = Taxononomy.objects.get(name="unidentified")
+
+                template, created = TemplateSequence.objects.get_or_create(taxonomy=taxonomy, variant=variant.id)
+                if created:
+                    SeqIO.write(
+                        id = "{}_{}".format(type_name, variant)
+                        SeqRecord(Sequence(sequence), id=id),
+                        template.path()
+                    )
+
+                for feature_name, group in groupby(enumerate(positions)), key=lambda x:x[1]):
+                    if feature_name:
+                        Feature(
+                            template    = template,
+                            start       = group[0][0],
+                            end         = group[-1][0],
+                            name        = info["features"][feature_name]["name"],
+                            description = info["features"][feature_name]["description"],
+                        )
+                        Feature.save()

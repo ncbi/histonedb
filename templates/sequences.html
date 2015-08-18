@@ -47,7 +47,7 @@
   {#  Click on a row in table to change the displayed sequnce variant.#}
 
   {% elif analyze %}
-  <div class="page-header" style="margin-bottom: 0px; margin-top: 10px"> Your sequence was BLASTED against our database and the results are listed in the table. The annotated sequence preview compares your sequence with the canonical of the same, or closely related, species.
+  <div class="page-header" style="margin-bottom: 0px; margin-top: 10px"> Your sequence was BLASTED against our database and the results are listed in the table with the e-value from your BLAST run. The annotated sequence preview compares your sequence with the canonical of the same, or closely related, species.
 
   You can tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search to find particular entries. Filters are not working yet on this page.</div>
   {% else %}
@@ -209,7 +209,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
 
         window.variantEvents = {
           'click #variant_actions_browse_core': function (e, value, row, index) {
-              document.location.href = "{% url 'browse.views.search' %}?search="+row.core;
+              document.location.href = "{% url 'browse.views.search' %}?search="+row.type;
           },
           'click #variant_actions_browse_variant': function (e, value, row, index) {
               document.location.href = "{% url 'browse.views.search' %}?search="+row.variant;
@@ -280,7 +280,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             {field:"evalue", sortable:true, title:"E-value", clickToSelect:false},
             {% endif %}
             {% if blast_results %}
-            {field:"search_e", sortable:true, clickToSelect:false, title:"BLAST E-value", cellStyle: function(value, row, index) { return {classes:"danger"};}},
+            {field:"search_e", sortable:true, clickToSelect:false, title:"BLAST E-value"},
             {% endif %}
           ],
 {#          showColumns:true,#}
