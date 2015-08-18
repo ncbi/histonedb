@@ -23,21 +23,23 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
 
 If you want to test the server on your own machine, you must make sure have all of the dependencies listed above and follow these steps.
 
-1) Create MySQL database, and store the login information in the dictionary NCBI_databse_info in HistoneDB/settings.py, which is formatted in the following way:
+1) Create MySQL database, and store the login information in the file  HistoneDB/NCBI_databse_info.txt, which is formatted in the following way (key = value):
 ```
-NCBI_database_info = {
-    "name": "DB_NAME",
-    "user": "DB_USER",
-    "password": "DB_PASS",
-    "host": "DB_HOST",
-    "port": "DB_PORT",
-    "SECRET_KEY": "DJANGO_SECRET_KEY",
-    "URL":"/" #Root of site when accessed from a browser
-}
+name = DB_NAME
+user = DB_USER
+password = DB_PASS
+host = DB_HOST
+port = DB_PORT
+SECRET_KEY = DJANGO_SECRET_KEY
+
+#Root of site when accessed from a browser
+STATIC_URL = /static/ 
 ```
-If running on the mweb, these values will already be set as environment variables.
-Set the correct charset:
-ALTER DATABASE histdb CHARACTER SET utf8 COLLATE utf8_general_ci
+If running on the mweb, these values will already be set.
+Finally, make sure the database has the correct charset:
+```
+ALTER DATABASE DB_NAME CHARACTER SET utf8 COLLATE utf8_general_ci
+```
 
 2) Migrate Django models into database
 
@@ -52,12 +54,7 @@ python manage.py buildncbi
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
 ```
-WARNING: This will download the entire NCBI taxonomy database and load into the databse, which can take a long time. If you want to speed things up, we have a datadump of the djangophylocore taxonomy database to easily load into django, but may not be up-to-date, available [here](http://www.ncbi.nlm.nih.gov/projects/histonedb/HistoneDB/static/databsese/djangophylocore_datadump.json). To use this datadump, follow these intructions:
-
-```
-wget http://www.ncbi.nlm.nih.gov/projects/histonedb/HistoneDB/static/databases/djangophylocore_datadump.json
-python manage.py loaddata djangophylocore_datadump.json
-```
+WARNING: This will download the entire NCBI taxonomy database and load into the database, which can take a long time.
 
 4) Classify sequences in NR
 
