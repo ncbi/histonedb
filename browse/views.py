@@ -157,15 +157,19 @@ def browse_variant(request, histone_type, variant):
         publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
         handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
         records = Medline.parse(handle)
-        publications = ['{}. "{}" <i>{}</i> {}. {} ({}): {}. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">PubMed</a>'.format(
-                ", ".join(record["AU"]), 
-                record["TI"], 
-                record["TA"], 
-                record["VI"], 
-                record["IS"], 
-                record["EDAT"], 
-                record["PG"], 
-                record["PMID"]
+        # print records.next()
+        # publications = ['{}. "{}" <i>{}</i> {}. {} ({}): {}. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">PubMed</a>'.format(
+        publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
+                ", ".join(record["AU"][0:2])+", et al" if (len(record["AU"])>2) else record["AU"][0]+" and "+record["AU"][1],
+                record["TI"],
+                record["TA"],
+                re.search("\d\d\d\d",record["SO"]).group(0), #added by Alexey
+                # record["VI"],
+                # record["IS"],
+                # record["EDAT"],
+                # record["PG"],
+                record["PMID"],
+                record["PMID"], #added by Alexey
             ) for record in records]
     else:
         publications = []
