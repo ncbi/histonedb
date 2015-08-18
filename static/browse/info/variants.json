@@ -7,9 +7,7 @@
 			"publications":["22650316"]
 		},
 		"H2A.Z": {
-			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the ranscription start site and in an enhancers. It has a larger acidic patch, an amino acid insertion in a1-helix and one
-deletion in the docking domain compared to canonical H2.A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional speci-
-ficity of variant nucleosomes.",
+			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the ranscription start site and in an enhancers. It has a larger acidic patch, an amino acid insertion in a1-helix and one deletion in the docking domain compared to canonical H2.A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional specificity of variant nucleosomes.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names":[
 				{"name":"H2A.Z-1", "gene":1},
@@ -179,12 +177,6 @@ ficity of variant nucleosomes.",
 		}
 	},
 	"H1": {
-		"canonicalH1":{
-			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
-			"taxonomic_span": "Eukaryotes",
-			"alternate_names": [],
-			"publications":["22650316"]
-		},
 		"H1.0":{
 			"description":"None provided.",
 			"taxonomic_span": "Eukaryotes",
