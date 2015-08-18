@@ -32,6 +32,9 @@ host = DB_HOST
 port = DB_PORT
 SECRET_KEY = DJANGO_SECRET_KEY
 
+#Reference another file with same paramters, useful if it needs be hidden
+file = /path/to/other/file.txt
+
 #Root of site when accessed from a browser
 STATIC_URL = /static/ 
 ```
