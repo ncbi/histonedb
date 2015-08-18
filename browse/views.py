@@ -153,8 +153,8 @@ def browse_variant(request, histone_type, variant):
     if not human_sequence:
         human_sequence = sequences.first()
 
-    try:
-        publication_ids = variant.publication_set.values_list("id", flat=True)
+    if True:
+        publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
         handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
         records = Medline.parse(handle)
         publications = ['{}. "{}" <i>{}</i> {}. {} ({}): {}. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">PubMed</a>'.format(
@@ -167,7 +167,7 @@ def browse_variant(request, histone_type, variant):
                 record["PG"], 
                 record["PMID"]
             ) for record in records]
-    except:
+    else:
         publications = []
 
     data = {

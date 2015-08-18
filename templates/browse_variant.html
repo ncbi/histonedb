@@ -139,7 +139,7 @@ $("#id_variant").prop("readonly", true);
                       <i>No publications in database yet</i>
                     {% else %}
                       {% for publication in publications %}
-                        {% autoescape off %}publication{% endautoescape %}
+                        {% autoescape off %}{{ publication }}{% endautoescape %}
                       {% endfor %}
                     {% endif %}
 
