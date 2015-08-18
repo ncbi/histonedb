@@ -90,15 +90,26 @@ def muscle_aln(seqreclist):
     msa = MultipleSeqAlignment(sequences)
     return msa
 
-def refactor_title(msa):
+def refactor_title(msa,variant):
     """
     refactors titles of sequence in format needed for histoneDB seeds
     """
+    msa_r=MultipleSeqAlignment([])
+    for i in msa:
+        genus=re.search(r"\[(\S+)\s+\S+\]",i.description).group(1)
+        gi=re.search(r"gi\|(\d+)\|",i.id).group(1)
+        i.id=genus+"|"+gi+"|"+variant
+        i.description=genus+"_"+variant+"_"+gi
+        msa_r.append(i)
+    return msa_r
 
 
 if __name__ == '__main__':
+    
     gis=read_gis('canonicalH2A.gis')
     seqrecs=get_prot_seqrec_by_gis(gis)
     msa=muscle_aln(seqrecs)
     print msa
-    AlignIO.write(msa,"H2A_aln.fasta",'fasta')
+    msa_r=refactor_title(msa,'canonicalH2A')
+    print msa_r
+    AlignIO.write(msa_r,"H2A_aln.fasta",'fasta')
