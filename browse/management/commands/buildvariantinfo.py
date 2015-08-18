@@ -1,7 +1,7 @@
 import os
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from browse.models import Variant, OldStyleVariant, Histone
+from browse.models import Variant, OldStyleVariant, Histone, Publication
 from djangophylocore.models import Taxonomy
 import json
 
@@ -42,6 +42,10 @@ class Command(BaseCommand):
                     )
                     alt_variant.save()
 
+                for publication_id in info["publications"]:
+                    publication, created = Publication.objects.get_or_create(id=publication_id, cited=False)
+                    publication.variants.add(variant)
+
         type_info_path = os.path.join(self.info_directory, "types.json")
 
         with open(type_info_path) as type_info_file:  
@@ -53,10 +57,14 @@ class Command(BaseCommand):
             type.description = info["description"]
             type.save()
 
+
+        return
         feature_info_path = os.path.join(self.info_directory, "features.json")
         with open(feature_info_path) as feature_info_file:  
             feature_info = json.load(feature_info_file)
 
+        
+        #Features not working yet
         for type_name, variants in feature_info.iteritems():
             type = Histone.objects.get(id=type_name)
             for variant_name, info in variants.iteritems():
@@ -78,12 +86,11 @@ class Command(BaseCommand):
                 template, created = TemplateSequence.objects.get_or_create(taxonomy=taxonomy, variant=variant.id)
                 if created:
                     SeqIO.write(
-                        id = "{}_{}".format(type_name, variant)
-                        SeqRecord(Sequence(sequence), id=id),
+                        SeqRecord(Sequence(sequence), id="{}_{}".format(type_name, variant)),
                         template.path()
                     )
 
-                for feature_name, group in groupby(enumerate(positions)), key=lambda x:x[1]):
+                for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
                     if feature_name:
                         Feature(
                             template    = template,
