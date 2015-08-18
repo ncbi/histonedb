@@ -1,17 +1,17 @@
 {
 	"H2A": {
-			"description":"H2A is of the core histones. H2A forms dimers with H2B via \"hand shake\" motif. Two H2A-H2B dimers in turn associate with H3-H4 tetramer to form complete nucleosome core. Structurally H2A consists of histone fold domain extended by short αC-helix and has both N- and C-terminal tails. The αC-helix and C-terminal tail form \"docking domain\" that locks the H2A-H2B dimer onto the surface of H3-H4 tetramer."
+			"description":"H2A is one of the core histones. H2A forms dimers with H2B via the \"hand shake\" motif. Two H2A-H2B dimers in turn associate with H3-H4 tetramer to form complete nucleosome core. Structure of H2A consists of histone fold domain extended by a short αC-helix and has both N- and C-terminal tails. αC-helix and C-terminal tail form \"docking domain\" that locks the H2A-H2B dimer onto the surface of H3-H4 tetramer."
 		},
 	"H2B": {
-			"description":"H2B is one of the core histones. H2B forms dimers with H2A via \"hand shake\" motif. Two H2A-H2B dimers in turn associate with H3-H4 tetramer to form complete nucleosome core. Structurally H2B consists of histone fold has long flexible N-terminal tail which protrudes between the DNA gyres. H2B interacts with H4 in nucleosome core via four helix bundle motif. Addtional αC-helix of H2B decorates the surface of nucleosome."
+			"description":"H2B is one of the core histones. H2B forms dimers with H2A via the \"hand shake\" motif. Two H2A-H2B dimers in turn associate with H3-H4 tetramer to form complete nucleosome core. Structure of H2B consists of histone fold with a long flexible N-terminal tail which protrudes between the DNA gyres. H2B interacts with H4 in the nucleosome core via four helix bundle motif. Addtional αC-helix of H2B decorates the surface of nucleosome."
 		},
 	"H3": {
-			"description":"H3 is one of the core histones. Two H3s and two H4s form H3-H4 tetramer via two  via \"hand shake\" motifs between H3 and H4 and a \"four helix bundle\" between two H3s. Two H2A-H2B dimers then associate with H3-H4 tetramer to form complete nucleosome core. Structurally H3 has a histone fold domain, αN-helix and a long N-terminal tail with many important post-translational modification sites. The αN-helix organizes the terminal segment of core nucleosomal DNA."
+			"description":"H3 is one of the core histones. Two H3 and two H4 histones form H3-H4 tetramer via \"hand shake\" and \"four helix bundle\" motifs. Two H2A-H2B dimers then associate with H3-H4 tetramer to form complete nucleosome core. Structurally H3 has a histone fold domain, αN-helix and a long N-terminal tail with many important post-translational modification sites. The αN-helix organizes the terminal segment of core nucleosomal DNA."
 		},
 	"H4": {
-			"description":"H4 is one of the core histones. Two H4s and two H3s form H3-H4 tetramer via two  via \"hand shake\" motifs between H3 and H4 and a \"four helix bundle\" between two H3s. Two H2A-H2B dimers then associate with H3-H4 tetramer to form complete nucleosome core. H4 is the most conservatinve histone type and has least number of variants. Structurally H4 has a histone fold domain and a flexible N-terminal tail. H4 provides sites for H2B interaction via \"four-helix bundle\" and forms a small β-sheet with H2Aa."
+			"description":"H4 is one of the core histones. Two H4s and two H3s form H3-H4 tetramer via \"hand shake\" and \"four helix bundle\" motifs. Two H2A-H2B dimers then associate with H3-H4 tetramer to form complete nucleosome core. H4 is the most conservative histone type and has very few known variants. Structure of H4 has a histone fold domain and a flexible N-terminal tail. H4 provides sites for H2B interaction via \"four-helix bundle\" and forms a small β-sheet with H2Aa."
 			},
 	"H1": {
-			"description":"H1 is the linker histone. Associates with nucleosome core and linker DNA near the DNA entry-exit points. The resulting particle is called chromatosome. H1-histone is lysine rich, has long C-terminal tail and short N-terminal tail. The globular domain has three helices and a wing, thus termed \"winged helix\" motif."
+			"description":"H1 is the linker histone. Associates with the nucleosome core and linker DNA near the DNA entry-exit points. The resulting particle is called chromatosome. H1-histone is lysine rich, has long disordered C-terminal tail and a short N-terminal tail. The globular domain has three helices and a wing, so-called \"winged helix\" motif."
 		}
 }
