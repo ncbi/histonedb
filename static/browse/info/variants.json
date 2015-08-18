@@ -1,13 +1,15 @@
 {
 	"H2A": {
 		"canonicalH2A":{
-			"description":"The original variant.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
 		},
 		"H2A.Z": {
-			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the ranscription start site and in an enhancers. It has a larger acidic patch compared to the conventional H2.A, deletions and insertions in the histone core region.",
+			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the ranscription start site and in an enhancers. It has a larger acidic patch, an amino acid insertion in a1-helix and one
+deletion in the docking domain compared to canonical H2.A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional speci-
+ficity of variant nucleosomes.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names":[
 				{"name":"H2A.Z-1", "gene":1},
@@ -76,7 +78,7 @@
 	},
 	"H2B": {
 		"canonicalH2B":{
-			"description":"The original variant.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
@@ -121,13 +123,13 @@
 	},
 	"H3": {
 		"canonicalH3":{
-			"description":"The cannonical H3 variant.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
 		},
 		"cenH3":{
-			"description":"cenH3 are the H3 variant, found in centromeres. Monophyly of cenH3 proteins is uncertain.",
+			"description":"cenH3 is a centromere-specific histone variant, it is required for assembly of kinetochore proteins, mitotic progression and chromosome segregation. The N-terminal tail of CENP-A is highly divergent from other H3 variants.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
@@ -137,7 +139,7 @@
 			"publications":["22650316"]
 		},
 		"H3.Y": {
-			"description": "H3.Y is known to be involved in memory formation due to its presence in neurons in the human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch.",
+			"description": "H3.Y is involved in memory formation due to its presence in neurons in human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch.",
 			"taxonomic_span": "Primates",
 			"alternate_names": [
 				{"name":"H3.X", "gene":2}
@@ -145,7 +147,7 @@
 			"publications":["22650316"]
 		},
 		"H3.1": {
-			"description": "H3.1 is a more recent mammal-specific divergence from H3.2, which is the replication-coupled H3 variant found throughout animals",
+			"description": "H3.1 is a recent mammal-specific variant diverged from H3.2, which is the replication-coupled H3 variant found throughout animals",
 			"taxonomic_span": "Mammals",
 			"alternate_names": [
 				{"name":"H3v1"}
@@ -170,15 +172,15 @@
 	},
 	"H4": {
 		"canonicalH4":{
-			"description":"There is usually only one form of H4 fround in all nucleosomes.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail. No variants are recorded for this histone.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
 		}
 	},
 	"H1": {
-		"canonicalH2A":{
-			"description":"The original variant.",
+		"canonicalH1":{
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
