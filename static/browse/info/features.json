@@ -34,7 +34,7 @@ SGRGKQGGKTRAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIP
 			"format" : "
 AKSAPAPKKGSKKAVTKTQKKDGKKRRKTRKESYAIYVYKVLKQVHPDTGISSKAMSIMNSFVNDVFERIAGEASRLAHYNKRSTITSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSAK
 =============================a===1111111111111lllll222222222222222222222222222222LLLLL3333333333333CCCCCCCCCCCCCCCCCCCCC==
-=================================================bb=================================BB==DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD=========
+=================================================bb=================================BB====================================",
 		     "features":
 			 	{
 		        "C":{"type":"secondary","name":"alphaC","color":"#ffff66","description":"AlphaC-helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
@@ -59,7 +59,7 @@ AKSAPAPKKGSKKAVTKTQKKDGKKRRKTRKESYAIYVYKVLKQVHPDTGISSKAMSIMNSFVNDVFERIAGEASRLAHY
 ARTKQTARKSTGGKAPRKQLATKAARKSAPATGGVKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSSAVMALQEASEAYLVALFEDTNLCAIHAKRVTIMPKDIQLARRIRGERA
 ===========================================NNNNNNNNNNNNNN=====111111111111111lllllll222222222222222222222222222222LLLLL333333333333====
 ================================================m=============a===================bb=================================BB================
-==================================================================================A====================================================
+==================================================================================A====================================================",
 		     "features":
 			 	{
 		        "C":{"type":"secondary","name":"alphaN","color":"#ffff66","description":"AlphaN-helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
@@ -86,7 +86,7 @@ ARTKQTARKSTGGKAPRKQLATKAARKSAPATGGVKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKT
 SGRGKGGKGLGKGGAKRHRKVLRDNIQGITKPAIRRLARRGGVKRISGLIYEETRGVLKVFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG
 =======================eeeeee111111111111lllllll2222222222222222222222222222LLLLL333333333333=========
 ============================================bb====m=============a==============BB=====================
-============================================a=========================================================
+============================================a=========================================================",
 		     "features":
 			 	{
 		        "e":{"type":"secondary","name":"alpha1ext","color":"#ffff66","description":"Alpha1-extension helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
