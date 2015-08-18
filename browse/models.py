@@ -50,7 +50,7 @@ class OldStyleVariant(models.Model):
     def __unicode__(self):
         return "{} (now called {})".format(self.name, self.updated_variant.id)
 
-class TemplateSequence(models.model):
+class TemplateSequence(models.Model):
     variant  = models.CharField(max_length=255) #Not a foreign key; Maybe it is "General". It is just used to specify path
     taxonomy = models.ForeignKey(Taxonomy)
 
@@ -167,6 +167,7 @@ class Feature(models.Model):
     end         = models.IntegerField()
     name        = models.CharField(max_length=600)
     description = models.CharField(max_length=600)
+    color       = models.CharField(max_length=25)
 
 class Features(models.Model):
     sequence             = models.OneToOneField(Sequence, primary_key=True, related_name="features") 

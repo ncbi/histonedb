@@ -33,6 +33,12 @@ $("#id_variant").prop("readonly", true);
           $('[href="' + lastTab + '"]').tab('show');
       }
     }
+
+    $("a[data-tab-destination]").on('click', function() {
+        var tab = $(this).attr('data-tab-destination');
+        console.log(tab);
+        $('[href="#' + tab + '"]').tab('show');
+    });
   });
 
   {% with page_name="browse_variant_"|add:variant|rchar:"." %}
@@ -103,6 +109,22 @@ $("#id_variant").prop("readonly", true);
 
                     <h4 class="page-header">Features</h4>
 
+
+                    <div class="contianer">
+                    Below, you can explore the features of {{ variant}} from Homo sapiens and how it compares to the canonical. The names and descriptions of each feature can be found underneath. To explore variants from other species, please browse <a data-tab-destination="curated">our curated sequences</a>, <a data-tab-destination="sequences">autmatically extracted sequences</a>, or <a data-tab-destination="species">by taxonomy</a>. <br /><br />
+                    <div id="quick-msa-variant-summary"></div>
+                    <script>
+                      $(function() {
+                        createMSA("quick-msa-variant-summary", "{% url 'browse.views.get_aln_and_features' %}?id={{ human_sequence }}", "", 975, 75, false);
+                      });
+                    </script>
+                    {% for feature in features %}
+                      <div class="row">
+                        <div class="col-xs-1" style="background-color:{{ feature.2 }}; height=20px;">{{ feature.1 }}</div>
+                        <div class="col-xs-11">{{ feature.2 }}</div>
+                      </div>
+                    {% endfor %}
+                    </div>
 
                 </div>
               </div>

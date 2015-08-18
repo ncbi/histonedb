@@ -124,12 +124,37 @@ def browse_variant(request, histone_type, variant):
     red = Color("#fc8d62")
     color_range = map(str, red.range_to(green, 12))
 
-    scores = Sequence.objects.filter(variant__id=variant).filter(all_model_scores__used_for_classification=True).annotate(score=Max("all_model_scores__score")).aggregate(max=Max("score"), min=Min("score"))
+    scores = Sequence.objects.filter(
+            variant__id=variant,
+            all_model_scores__used_for_classification=True
+        ).annotate(
+            score=Max("all_model_scores__score")
+        ).aggregate(
+            max=Max("score"), 
+            min=Min("score")
+        )
+    features = [(f.name, f.description, f.color) for f in \
+        Feature.objects.filter( \
+            Q(template__variant=variant)|Q(template__variant="General{}".format(histone_type)\
+        ))]
+    human_sequences = Sequence.objects.filter(
+            variant__id=variant, 
+            taxonomy__name="homo sapiens",
+            all_model_scores__used_for_classification=True
+        ).annotate(
+            score=Max("all_model_scores__score")
+        ).order_by("score")
+    try:
+        human_sequence = human_sequences.filter(reviewed=True).first()
+    except:
+        human_sequence = human_sequences.first()
 
     data = {
         "hist_type": variant.hist_type.id,
         "variant": variant.id,
         "name": variant.id,
+        "features": features,
+        "human_sequence":human_sequence.id,
         "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.hist_type.id, variant.id)),
         "seed_url": reverse("browse.views.get_seed_aln_and_features", args=[variant.id]),
         "colors":color_range,
