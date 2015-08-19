@@ -2,10 +2,12 @@ import os
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from tools.L_shade_hist_aln import write_alignments
-from tools.hist_ss import get_gff_from_align
+from tools.hist_ss import get_gff_from_align, get_variant_features
 from Bio import SeqIO
 from Bio.Align import MultipleSeqAlignment
 from browse.models import Sequence
+from Bio.Align.AlignInfo import SummaryInfo
+
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
@@ -20,6 +22,9 @@ class Command(BaseCommand):
             help="Force the creation of PDFs, GFFs even if the files exist")
         
     def handle(self, *args, **options):
+        save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
         for variant, seed in self.get_seeds():
             #PDF currently contaminates the dir with many files.
             #if not os.path.exists("{}.pdf".format(seed[:-6])) or options["force"]:
@@ -30,7 +35,11 @@ class Command(BaseCommand):
                 #Write GFF
                 with open("{}.gff".format(seed[:-6]), "w") as gff:
                     msa = MultipleSeqAlignment(list(SeqIO.parse(seed, "fasta")))
-                    get_gff_from_align(msa, gff, save_dir=os.path.dirname(seed))
+                    a = SummaryInfo(msa)
+                    cons = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+                    features = get_variant_features(cons, save_dir=save_dir)
+                    print >> gff, features
+                    # get_gff_from_align(msa, gff, save_dir=os.path.dirname(seed))
 
             #Set reviewed to True
             not_found = {}
