@@ -61,6 +61,8 @@
   <table id="sequence_table_{{ page_name }}"></table>
 </div>
 
+<div class="container" id="full_msa-{{page_name}}"></div>
+
 <div class="modal fade" id="msa_modal_{{ page_name }}" tabindex="-1" role="dialog" aria-labelledby="seqs" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -320,8 +322,15 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           for (var i = 0; i < ids.length; i++) {
             params += "id="+ids[i]+"&"
           }
-          createMSA("msa_div_modal_{{ page_name }}", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse.views.get_aln_and_features' %}?download=true", 400, 0, true);
-          $('#msa_modal_{{ page_name }}').modal('show');
+          createMSA("full_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse.views.get_aln_and_features' %}?download=true", 975, 0, true); //msa_div_modal_{{ page_name }}
+          //$('#msa_modal_{{ page_name }}').modal('show');
+          $('html, body').animate({
+              scrollTop: $("#full_msa-{{page_name}}").offset().top
+            }, 300, function(){
+              // when done, add hash to url
+              // (default click behaviour)
+              window.location.hash = "#full_msa-{{page_name}}";
+            });
         });
 
         $download_fasta_{{ page_name }}.click(function() {

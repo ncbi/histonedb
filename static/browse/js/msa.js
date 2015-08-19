@@ -97,6 +97,16 @@ function createMSA(div_id, url, download_url, width, height, show_logo){
       $pdf_button.parent().removeClass("disabled");
       $fasta_button.parent().removeClass("disabled");
       $gff_button.parent().removeClass("disabled");
+
+      if(show_logo){
+        $('html, body').animate({
+              scrollTop: $("#"+div_id).offset().top
+            }, 300, function(){
+              // when done, add hash to url
+              // (default click behaviour)
+              window.location.hash = "#"+div_id;
+            });
+      }
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus);
