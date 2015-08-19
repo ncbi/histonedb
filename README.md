@@ -82,19 +82,20 @@ python manage.py buildtrees
 python manage.py buildsunburst
 ```
 
-7) Build MSA and GFF sequence features for variants
-
-```
-python manage.py buildseedinfo
-```
-8) Build Blast database for custom sequence analysis
+7) Build Blast database for custom sequence analysis
 
 ```
 python manage.py buildblastdb
 ```
-9) Build variantinfo
+8) Build variantinfo
 ```
 python manage.py buildvariantinfo
+```
+
+9) Build GFF sequence features for variants
+
+```
+python manage.py buildseedinfo
 ```
 ## Update ##
 If youe need to update or rebuild the database, e.g. if a new variant is discovered, you must rerun steps 4-8 adding the --force parameter after each command to make sure everything gets updated.
