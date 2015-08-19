@@ -8,7 +8,7 @@ function createMSA(div_id, url, download_url, width, height, show_logo){
   $gff_button.parent().addClass("disabled");
 
   var yourDiv = document.getElementById(div_id);
-  yourDiv.innerHTML = "<div id='load_msa'>Please wait while we construct the MSA...</div>";
+  yourDiv.innerHTML = "<div id='"+div_id+"load_msa'>Please wait while we construct the MSA...</div>";
 
   /* global yourDiv */
   var msa = require("msa");
@@ -92,7 +92,7 @@ function createMSA(div_id, url, download_url, width, height, show_logo){
         }
       }
       m.seqs.addFeatures(features);
-      $("#load_msa").html("");
+      $("#"+div_id+"load_msa").html("");
       m.render();
       $pdf_button.parent().removeClass("disabled");
       $fasta_button.parent().removeClass("disabled");
@@ -110,7 +110,6 @@ function createMSA(div_id, url, download_url, width, height, show_logo){
   });
 
   $fasta_button.click(function() {
-    console.log(download_url+"&format=fasta");
     if($(this).parent().hasClass(".disabled")){ return; }
     document.location.href = download_url+"&format=fasta";
   });
