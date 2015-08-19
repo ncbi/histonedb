@@ -21,6 +21,7 @@ djangophylocore/taxonomy_toc_ncbi
 static/browse/hmms/*
 static/browse/trees/
 static/browse/sunbursts/
+static/browse/blast/*
 *.gff
 static/browse/hmms/model_evaluation/*/*
 *.pdf

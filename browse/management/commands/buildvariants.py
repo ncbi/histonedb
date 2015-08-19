@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from browse.models import Histone, Variant, Sequence, Score, Features 
+from browse.models import Histone, Variant, Sequence, Score, Feature
 from tools.load_hmmsearch import load_hmm_results, add_score
 from tools.test_model import test_model
 import subprocess

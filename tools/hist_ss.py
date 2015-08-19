@@ -212,7 +212,7 @@ def get_hist_ss_in_aln(alignment, hist_type='Unknown', save_dir="", debug=True, 
     return hv,ss
 
 def get_gff_from_align(alignment, outfile, hist_type='Unknown', save_dir="", debug=True):
-    from browse.models import Sequence, Features
+    from browse.models import Sequence
     hv,ss,cons=get_hist_ss_in_aln(alignment, hist_type, save_dir=save_dir, debug=debug, save_censesus=True)
     seq = Sequence(id="Consensus", sequence=cons.tostring())
     features = Features.from_dict(seq, ss)
