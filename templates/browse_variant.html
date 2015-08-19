@@ -111,7 +111,7 @@ $("#id_variant").prop("readonly", true);
 
 
                     <div class="contianer">
-                    Below, you can explore the features of {{ variant}} from Homo sapiens and how it compares to the canonical. The names and descriptions of each feature can be found underneath. To explore variants from other species, please browse <a data-tab-destination="curated">our curated sequences</a>, <a data-tab-destination="sequences">automatically extracted sequences</a>, or <a data-tab-destination="species">by taxonomy</a>. <br /><br />
+                    Below, you can explore the features of {{ variant}} from Homo sapiens{% if "canonical" not in variant %} and how it compares to the canonical{% endif %}. The names and descriptions of each feature can be found underneath. To explore variants from other species, please browse <a data-tab-destination="curated">our curated sequences</a>, <a data-tab-destination="sequences">automatically extracted sequences</a>, or <a data-tab-destination="species">by taxonomy</a>. <br /><br />
                     <div id="quick-msa-variant-summary"></div>
                     <script>
                       $(function() {
