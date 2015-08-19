@@ -6,7 +6,7 @@
 			"feature1":"===============eeeeeee===111111111111llllllll2222222222222222222222222222LLLLL33333333333EEEEEEEE===============================",
 			"feature2":"=========================================bb=================================BB==DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD=========",
 			"feature3":"=========================================a==================================A======================qqq==========================",
-		    "features_info":{
+		    "feature_info":{
 		        "e":{"type":"secondary","name":"alpha1ext","color":"#ffff66","description":"Alpha1-extension helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "1":{"type":"secondary","name":"alpha1","description":"Alpha1-helix. First helix of the histone fold.","color":"#ff0000","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "l":{"type":"secondary","name":"loopL1","description":"L1 loop. Loop connecting first and second helices of the histone fold. Part of the L1L2 DNA bining site formed by H2A and H2B at SHL ±3.5.","color":"#cccccc","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
@@ -50,7 +50,7 @@
             "feature2":"================================================m=============a===================bb=================================BB================",
             "feature3":"==================================================================================A====================================================",
 		    "feature_info":{
-		        "C":{"type":"secondary","name":"alphaN","color":"#ffff66","description":"AlphaN-helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+		        "N":{"type":"secondary","name":"alphaN","color":"#ffff66","description":"AlphaN-helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "1":{"type":"secondary","name":"alpha1","color":"#ff0000","description":"Alpha1-helix. First helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop. Loop connecting first and second helices of the histone fold. Part of the L1L2 DNA bining site formed by H3 and H4 at SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "2":{"type":"secondary","name":"alpha2","color":"#ff0000","description":"Alpha2-helix. Second helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},

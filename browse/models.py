@@ -1,12 +1,14 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from django.conf import settings
 from django.db import models
 from djangophylocore.models import Taxonomy
 
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
+from Bio import SeqIO
 
 from collections import defaultdict
+import os
 
 class Histone(models.Model):
     id             = models.CharField(max_length=25, primary_key=True)
@@ -55,10 +57,13 @@ class TemplateSequence(models.Model):
     taxonomy = models.ForeignKey(Taxonomy)
 
     def __unicode__(self):
-        return "{}_{}".format(variant, taxonomy)
+        return "{}_{}".format(self.variant, self.taxonomy.name)
 
     def path(self):
         return os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "{}.fasta".format(str(self)))
+
+    def get_sequence(self):
+        return SeqIO.parse(self.path(), "fasta").next()
 
 
 class Sequence(models.Model):
@@ -121,8 +126,8 @@ class Sequence(models.Model):
         except:
             return desc
 
-    def to_dict(self, ref=False):
-        return {"name":self.description, "seq":self.sequence, "ref":ref}
+    def to_dict(self, id=False, ref=False):
+        return {"name":self.description if not id else self.id, "seq":self.sequence, "ref":ref}
 
     def to_biopython(self, ungap=False):
         seq = Seq(self.sequence)
@@ -204,12 +209,13 @@ extension\tffff66
             features =  self.all()
         for feature in features:
             try:
-                colorName = colors[feature.color]
+                colorName = colors[feature.color[1:]]
             except KeyError:
                 colorName = "color{}".format(len(colors))
-                colors[feature.color] = colorName
+                colors[feature.color[1:]] = colorName
             gff_features += feature.gff(sequence_label, colorName)
         gff_colors = "\n".join(["{}\t{}".format(name, color) for color, name in colors.iteritems()])
+
         return "{}\n{}".format(gff_colors, gff_features)
 
     def to_dict(self, features=None):
@@ -225,10 +231,11 @@ class Feature(models.Model):
     name        = models.CharField(max_length=600)
     description = models.CharField(max_length=600)
     color       = models.CharField(max_length=25)
+    objects     = FeatureManager()
 
     def __unicode__(self):
         """Returns Jalview GFF format"""
-        return self.gff(self.template)
+        return self.gff(str(self.template))
 
     def gff(self, sequence_label=None, featureType="{}"):
         tmp = ""
@@ -237,7 +244,7 @@ class Feature(models.Model):
             sequence_label = str(self.template)
             featureType = "color1"
 
-        tmp += "\t".join((self.name, id, "-1", self.start, self.end, featureType))
+        tmp += "\t".join((self.name, sequence_label, "-1", str(self.start), str(self.end), featureType))
         tmp += "\n"
         return tmp
 

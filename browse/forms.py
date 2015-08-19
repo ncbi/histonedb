@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from browse.models import Histone, Variant, Sequence, Features
+from browse.models import Histone, Variant, Sequence
 from browse.search import search_types
 
 class AdvancedFilterForm(ModelForm):
@@ -50,12 +50,6 @@ class AdvancedFilterForm(ModelForm):
 
         self.tabs["Advanced"] = [field for field in self.fields if field not in self.tabs["Basic"]]
 
-class FeatureForm(ModelForm):
-    class Meta:
-        model = Features
-        exclude = ('reviewed',)
-
-SEARCH_CHOICES = (("blastp", "Search HistoneDB (blastp)"), ("hmmer", "Classify your sequence(s) (hmmer)"))
 class AnalyzeFileForm(forms.Form):
     sequence = forms.CharField(widget=forms.Textarea)
     file  = forms.FileField()

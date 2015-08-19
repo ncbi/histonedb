@@ -138,8 +138,8 @@ def browse_variant(request, histone_type, variant):
         )
     features = [(f.name, f.description, f.color) for f in \
         Feature.objects.filter( \
-            Q(template__variant=variant)|Q(template__variant="General{}".format(histone_type)\
-        ))]
+                Q(template__variant=variant)|Q(template__variant="General{}".format(histone_type))\
+            ).order_by("start")]
     sequences = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
@@ -153,26 +153,17 @@ def browse_variant(request, histone_type, variant):
     if not human_sequence:
         human_sequence = sequences.first()
 
-    if True:
-        publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
-        handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
-        records = Medline.parse(handle)
-        # print records.next()
-        # publications = ['{}. "{}" <i>{}</i> {}. {} ({}): {}. <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">PubMed</a>'.format(
-        publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
-                "{}, {}, et al".format(*record["AU"][0:2]) if len(record["AU"])>2 else " and ".join(*record["AU"]),
-                record["TI"],
-                record["TA"],
-                re.search("\d\d\d\d",record["SO"]).group(0), #added by Alexey
-                # record["VI"],
-                # record["IS"],
-                # record["EDAT"],
-                # record["PG"],
-                record["PMID"],
-                record["PMID"], #added by Alexey
-            ) for record in records]
-    else:
-        publications = []
+    publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
+    handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
+    records = Medline.parse(handle)
+    publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
+            "{}, {}, et al".format(*record["AU"][0:2]) if len(record["AU"])>2 else " and ".join(*record["AU"]),
+            record["TI"],
+            record["TA"],
+            re.search("\d\d\d\d",record["SO"]).group(0),
+            record["PMID"],
+            record["PMID"],
+        ) for record in records]
 
     data = {
         "hist_type": variant.hist_type.id,
@@ -361,13 +352,18 @@ def get_all_sequences(request, ids=None):
         return JsonResponse(sequences, safe=False)
 
 def get_aln_and_features(request, ids=None):
-    from tools.hist_ss import templ, get_hist_ss_in_aln, get_hist_ss
+    from tools.hist_ss import get_variant_features
     from tools.L_shade_hist_aln import write_alignments
     import subprocess
     import StringIO
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
     from Bio.SeqRecord import SeqRecord
+    
+    save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+        os.chmod(save_dir,0o777)
 
     if ids is None and request.method == "GET" and "id" in request.GET:
         ids = request.GET.getlist("id")
@@ -397,12 +393,14 @@ def get_aln_and_features(request, ids=None):
             #Already aligned to core histone
             seq = sequences[0]
             hist_type = seq.variant.hist_type.id
+            variant = seq.variant.id
             #let's load the corresponding canonical
             try:
                 canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
             except:
-                canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(templ[hist_type]))
+                canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
             sequences = [canonical, seq]
+            sequence_label = seq.short_description
             
         else:
             seq = sequences[0]
@@ -411,8 +409,11 @@ def get_aln_and_features(request, ids=None):
                    [(hist, sequences.filter(variant__hist_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
                    key=lambda x:x[1]
                    )[0]
+                variant = max(sequences.values("variant").annotate(count=Count("id")).values_list("variant", "count"), key=lambda x:x[1])[0]
             except ValueError:
                 hist_type = "Unknown"
+                variant = "Unknown"
+            sequence_label = "Consensus"
         
         muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
         process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
@@ -424,7 +425,7 @@ def get_aln_and_features(request, ids=None):
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
         msa = MultipleSeqAlignment(sequences)
         a = SummaryInfo(msa)
-        cons = Sequence(id="Consensus", sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+        cons = Sequence(id=sequence_label, variant_id=variant, taxonomy_id=1, sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
 
         save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
         if not os.path.exists(save_dir):
@@ -432,25 +433,27 @@ def get_aln_and_features(request, ids=None):
 
         if not hist_type == "H1":
             #TODO: we need to test if gff annotation works correctly. MSA needs numbering with respect to MSA or individual seqs as TexShade???
-            hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
+            #hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
             # features = Features.from_dict(cons, ss)
             #Indeed the features are for MSA, we need just to use the name of last sequence:
-            features = Features.from_dict(seq, ss)
+            features = get_variant_features(cons, save_dir=save_dir)
+            #features = Features.from_dict(seq, ss)
         else:
             features = ""
         #A hack to avoid two canonical seqs
-        unique_sequences = [sequences[0]] if sequences[0].id==sequences[1].id else sequences
+        unique_sequences = [sequences[0]] if len(sequences) == 2 and sequences[0].id == sequences[1].id else sequences
         # doing the Sequence.short_description work
         #Note that the gffs are also generated with the short description not
         sequences = [{"name":Sequence.long_to_short_description(s.id), "seq":s.seq.tostring()} for s in unique_sequences]
         # sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
-        #Uncomment to add consesus as first line
-        # sequences.insert(0, cons.to_dict())
-
+        
+        if sequence_label == "Consensus":
+            sequences.insert(0, cons.to_dict(id=True))
+            
         request.session["calculated_msa_seqs"] = sequences
-        request.session["calculated_msa_features"] = features.to_dict() if features else {}
+        request.session["calculated_msa_features"] = features#.to_ict() if features else {}
 
-        result = {"seqs":sequences, "features":features.full_gff() if features else ""}
+        result = {"seqs":sequences, "features":features} #.full_gff() if features else ""}
         return JsonResponse(result, safe=False) 
     else:
         format = request.GET.get("format", "json")
@@ -459,22 +462,15 @@ def get_aln_and_features(request, ids=None):
 
         
         sequences = request.session.get("calculated_msa_seqs", [])
-        features_dict = request.session.get("calculated_msa_features", None)
-        features = Features.from_dict(Sequence("Consensus"), features_dict) if features_dict else None
+        features = request.session.get("calculated_msa_features", "")
+        #features = Features.from_dict(Sequence("Consensus"), features_dict) if features_dict else None
 
         if format == "fasta":
             for s in sequences:
                 print >> response, ">{}\n{}".format(s["name"], s["seq"])
         elif format == "gff":
-            response.write(features.full_gff() if features else "")
+            response.write(features) #.full_gff() if features else "")
         elif format == "pdf":
-            response.write("Sorry PDF Feature is still in development")
-            #return redirect("{}.pdf".format(seed_file))
-            save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
-            if not os.path.exists(save_dir):
-                os.makedirs(save_dir)
-                os.chmod(save_dir,0o777)
-
             aln = MultipleSeqAlignment([SeqRecord(Seq(s["seq"]), id=s["name"]) for s in sequences[1:]])
             result_pdf = write_alignments(
                 [aln], 
@@ -488,7 +484,7 @@ def get_aln_and_features(request, ids=None):
             os.remove(result_pdf)
         else:
             #Default format is json
-            result = {"seqs":sequences, "features":features.full_gff() if features else ""}
+            result = {"seqs":sequences, "features":features} #.full_gff() if features else ""}
             response.write(json.dumps(result))
 
         return response
