@@ -202,7 +202,7 @@ strand\t00ff00
 loop\tcccccc
 extension\tffff66
 """
-        assert isinstance(sequence_label, str), "Sequence label must be a string"
+        #assert isinstance(sequence_label, str) or , "Sequence label must be a string, not {}".format(str(type(sequence_label)))
         colors = {}
         gff_features = ""
         if features is None:
@@ -213,7 +213,7 @@ extension\tffff66
             except KeyError:
                 colorName = "color{}".format(len(colors))
                 colors[feature.color[1:]] = colorName
-            gff_features += feature.gff(sequence_label, colorName)
+            gff_features += feature.gff(str(sequence_label), colorName)
         gff_colors = "\n".join(["{}\t{}".format(name, color) for color, name in colors.iteritems()])
 
         return "{}\n{}".format(gff_colors, gff_features)

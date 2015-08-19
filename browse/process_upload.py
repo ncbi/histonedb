@@ -43,7 +43,7 @@ def process_upload(sequences, format, request):
     if not Alphabet._verify_alphabet(sequence.seq):
         raise InvalidFASTA("Sequence {} is not a protein.".format(seq.id))
 
-    result = [sequence.id]
+    result = [str(sequence.id)]
 
     classifications, ids, rows = upload_hmmer(sequence)
     result.append(classifications[0][1])
