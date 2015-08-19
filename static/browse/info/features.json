@@ -16,7 +16,7 @@
 		        "E":{"type":"secondary","name":"alpha3ext","description":"Alpha3-extension helix","color":"#ffff66","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "b":{"type":"secondary","name":"beta1","description":"short beta-sheet in the L1L2 DNA bining site.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "B":{"type":"secondary","name":"beta2","description":"short beta-sheet in the L1L2 DNA bining site.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-		        "q":{"type":"secondary","name":"beta2","description":"short beta-sheet between H2A and H4.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+		        "q":{"type":"secondary","name":"beta3","description":"short beta-sheet between H2A and H4.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "D":{"type":"secondary","name":"Docking domain","description":"Docking domain locks the H2A-H2B dimer on the H3-H4 tetramer surface.","color":"#990099","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "a":{"type":"residue","name":"mgArg1","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±3.5.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "A":{"type":"residue","name":"mgArg2","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±5.5.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}

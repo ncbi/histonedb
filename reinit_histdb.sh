@@ -26,6 +26,7 @@ VGSKEAKSPKKAAKSPKKA
 
 " > nr
 find static/browse/seeds -name "*.gff" | xargs rm
+find static/browse/seeds -name "*.pdf" | xargs rm
 
 python manage.py migrate
 python manage.py sqlclear browse | python manage.py dbshell
