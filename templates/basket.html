@@ -19,7 +19,6 @@
   });
   var extra_seq_params_basket = {};
   function reloadBasket(){
-    console.log("called");
     var ids = JSON.parse(localStorage.getItem('basket')) || [];
     if(ids.length > 0){
       extra_seq_params_basket["id_id"] = ids.join(", ");
@@ -27,7 +26,6 @@
       console.log(extra_seq_params_basket);
     }
     else{
-      console.log("empty")
       extra_seq_params_basket["id_id"] = "false";
       extra_seq_params_basket["id_id_search_type"] = "is";
     }

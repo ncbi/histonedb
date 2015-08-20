@@ -20,12 +20,12 @@
             {% endif %}
         </div>
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" id="show_advanced_filter_{{ page_name }}" {% if blast_results %}disabled="disabled"{% endif %}>
+            <button type="button" class="btn btn-default" id="show_advanced_filter_{{ page_name }}" {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}>
               <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Add filters
             </button>
         </div>
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" id="reset_filter_{{ page_name }}"  {% if blast_results %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear filters</button>
+            <button type="button" class="btn btn-default" id="reset_filter_{{ page_name }}"  {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear filters</button>
         </div>
         {% if not curated %}
         <div class="btn-group" role="group">
