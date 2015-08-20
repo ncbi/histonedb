@@ -2,7 +2,7 @@ import os
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from tools.L_shade_hist_aln import write_alignments
-from tools.hist_ss import get_gff_from_align, get_variant_features
+from tools.hist_ss import get_features_in_aln
 from Bio import SeqIO
 from Bio.Align import MultipleSeqAlignment
 from browse.models import Sequence
@@ -33,13 +33,11 @@ class Command(BaseCommand):
 
             if not os.path.exists("{}.gff".format(seed[:-6])) or options["force"]:
                 #Write GFF
+                print "writing gff"
                 with open("{}.gff".format(seed[:-6]), "w") as gff:
+                    print "   ", variant
                     msa = MultipleSeqAlignment(list(SeqIO.parse(seed, "fasta")))
-                    a = SummaryInfo(msa)
-                    cons = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
-                    features = get_variant_features(cons, save_dir=save_dir)
-                    print >> gff, features
-                    # get_gff_from_align(msa, gff, save_dir=os.path.dirname(seed))
+                    print >> gff, get_features_in_aln(msa, variant, save_dir=os.path.dirname(seed))
 
             #Set reviewed to True
             not_found = {}

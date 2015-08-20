@@ -26,7 +26,7 @@ from StringIO import StringIO
 
 #Django
 from django.conf import settings
-from browse.models import Feature
+from browse.models import Feature, Sequence
 
 #BioPython
 from Bio import AlignIO
@@ -48,7 +48,7 @@ from Bio.PDB.Polypeptide import PPBuilder
 
 Entrez.email = "HistoneDB_user@nih.gov"
 
-def get_variant_features(sequence, save_dir="", save_not_found=False):
+def get_variant_features(sequence, save_dir="", save_not_found=False, save_gff=True):
     """Get the features of a sequence based on its variant.
 
     Parameters:
@@ -74,7 +74,10 @@ def get_variant_features(sequence, save_dir="", save_not_found=False):
     variant_features = []
 
     for template_variant in [sequence.variant.id, "General{}".format(sequence.variant.hist_type.id)]:
-        features = Feature.objects.filter(template__variant=template_variant)
+        try:
+            features = Feature.objects.filter(template__variant=template_variant)
+        except:
+            continue
         #Find features with the same taxonomy
         tax_features = features.filter(template__taxonomy=sequence.taxonomy)
         if len(tax_features) == 0:
@@ -88,7 +91,9 @@ def get_variant_features(sequence, save_dir="", save_not_found=False):
             variant_features.append(updated_feature)
    
     os.remove(query_file)
-    return Feature.objects.gff(sequence.id, variant_features)
+    if save_gff:
+        return Feature.objects.gff(sequence.id, variant_features)
+    return variant_features
 
 def transfer_features_from_template_to_query(template_features, query_file, save_dir="", save_not_found=False):
     """Transfer features from template to query. Position are defined in the 
@@ -194,29 +199,13 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     #Cleanup
     os.remove(needle_results)
 
-def get_hist_ss_in_aln(alignment, hist_type='Unknown', save_dir="", debug=True, save_censesus=False):
-    """Returns sequence elements in histone alignment, all numbers assume first element in seq has number 0!!! Not like in PDB"""
-
+def get_features_in_aln(alignment, variant, save_dir="", save_gff=True):
     #Let's extract consensus
-    if(debug):
-        print alignment
     a=SummaryInfo(alignment)
     cons=a.dumb_consensus(threshold=0.1, ambiguous='X')
-    if(debug):
-        print "Consensus"
-        print cons
-    hv, ss = get_hist_ss(cons,hist_type,save_dir,True)
-
-    if save_censesus:
-        return hv,ss,cons
-    return hv,ss
-
-def get_gff_from_align(alignment, outfile, hist_type='Unknown', save_dir="", debug=True):
-    from browse.models import Sequence
-    hv,ss,cons=get_hist_ss_in_aln(alignment, hist_type, save_dir=save_dir, debug=debug, save_censesus=True)
-    seq = Sequence(id="Consensus", sequence=cons.tostring())
-    features = Features.from_dict(seq, ss)
-    print >> outfile, features.full_gff()
+    seq = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=cons.tostring())
+    updated_features = get_variant_features(seq, save_dir=save_dir, save_gff=save_gff)
+    print updated_features
 
 def get_core_lendiff(query_features, template_features):
     """Get the ratio of core length for query sequence versus template sequence

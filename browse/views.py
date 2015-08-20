@@ -431,15 +431,8 @@ def get_aln_and_features(request, ids=None):
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
 
-        if not hist_type == "H1":
-            #TODO: we need to test if gff annotation works correctly. MSA needs numbering with respect to MSA or individual seqs as TexShade???
-            #hv,ss = get_hist_ss_in_aln(msa, hist_type=hist_type, save_dir=save_dir, debug=False)
-            # features = Features.from_dict(cons, ss)
-            #Indeed the features are for MSA, we need just to use the name of last sequence:
-            features = get_variant_features(cons, save_dir=save_dir)
-            #features = Features.from_dict(seq, ss)
-        else:
-            features = ""
+        features = get_variant_features(cons, save_dir=save_dir)
+        
         #A hack to avoid two canonical seqs
         unique_sequences = [sequences[0]] if len(sequences) == 2 and sequences[0].id == sequences[1].id else sequences
         # doing the Sequence.short_description work

@@ -24,7 +24,7 @@ from Bio.Align import MultipleSeqAlignment
 from Bio import AlignIO
 
 #Custom libraries
-from hist_ss import get_hist_ss_in_aln
+from hist_ss import get_features_in_aln
 
 DEVNULL = open(os.devnull, 'wb')
 
@@ -101,29 +101,24 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
             print "wrote", aln_file.name
     
     res_per_line=len(align[0])
-
-    #Let's make some drawing
-    if secondary_structure:
-        hv,ss=get_hist_ss_in_aln(align,save_dir=save_dir)
-    else:
-        hv,ss="None",{}
     
-    #prepare feature section
+    #Let's make some drawing
     features = ""
-
-    for i in ss:
-        if(re.search('alpha',i)):
-            features += "\\feature{tttop}{consensus}{%d..%d}{helix}{%s}"%(ss[i][0]+1,ss[i][1]+1,i)
-        if(re.search('beta',i)):
-            features += "\\feature{tttop}{consensus}{%d..%d}{-->}{%s}"%(ss[i][0]+1,ss[i][1]+1,i)
-        if(re.search('loop',i)):
-            features += "\\feature{ttttop}{consensus}{%d..%d}{loop}{%s}"%(ss[i][0]+1,ss[i][1]+1,i)
-        if(re.search('domain',i)):
-            features += "\\feature{ttttop}{consensus}{%d..%d}{loop}{%s}"%(ss[i][0]+1,ss[i][1]+1,i)
-        if(re.search('tail',i)):
-            features += "\\feature{ttttop}{consensus}{%d..%d}{loop}{%s}"%(ss[i][0]+1,ss[i][1]+1,i)
-        if(re.search('mgarg',i)):
-            features += "\\frameblock{consensus}{%d..%d}{Red[1.5pt]}"%(ss[i][0]+1,ss[i][1]+1)
+    if secondary_structure:
+        #prepare feature section
+        for f in get_features_in_aln(align, filename, save_dir, save_gff=False):
+            if(re.search('alpha',i)):
+                features += "\\feature{tttop}{consensus}{%d..%d}{helix}{%s}"%(f.start+1,f.end+1,i)
+            if(re.search('beta',i)):
+                features += "\\feature{tttop}{consensus}{%d..%d}{-->}{%s}"%(f.start+1,f.end+1,i)
+            if(re.search('loop',i)):
+                features += "\\feature{ttttop}{consensus}{%d..%d}{loop}{%s}"%(f.start+1,f.end+1,i)
+            if(re.search('domain',i)):
+                features += "\\feature{ttttop}{consensus}{%d..%d}{loop}{%s}"%(f.start+1,f.end+1,i)
+            if(re.search('tail',i)):
+                features += "\\feature{ttttop}{consensus}{%d..%d}{loop}{%s}"%(f.start+1,f.end+1,i)
+            if(re.search('mgarg',i)):
+                features += "\\frameblock{consensus}{%d..%d}{Red[1.5pt]}"%(f.start+1,f.end+1)
 
     print >> tex, "    \\Huge{{{}}}".format(title.replace("_", "\_"))
 
@@ -132,7 +127,7 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
             tex, 
             os.path.join(save_dir, "{}_{}.fasta".format(filename, i)),
             res_per_line, 
-            "", #features,
+            features,
             shading_modes=shading_modes, 
             logo=logo,
             hideseqs=hideseqs,

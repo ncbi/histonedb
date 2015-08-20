@@ -42,6 +42,12 @@ class Command(BaseCommand):
             default="nr",
             help="Specify the database file, by default will use or download nr")
 
+        parser.add_argument(
+            "--adjust_thrshehold",
+            default=False,
+            action="store_true",
+            help="Adjust threshold")
+
 
     def handle(self, *args, **options):
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.

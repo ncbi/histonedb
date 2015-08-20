@@ -13,7 +13,6 @@ from django.db.models import Max
 from django.db.utils import IntegrityError
 
 #Custom librairies
-
 from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_gis
 
 def load_hmm_results(hmmerFile):
@@ -144,5 +143,3 @@ def add_score(seq, variant_model, hsp, best=False):
     used_for_classification = best,
     )
   score.save()
-
-
