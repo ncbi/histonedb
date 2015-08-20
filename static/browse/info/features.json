@@ -16,12 +16,38 @@
 		        "E":{"type":"secondary","name":"alpha3ext","description":"Alpha3-extension helix","color":"#ffff66","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "b":{"type":"secondary","name":"beta1","description":"short beta-sheet in the L1L2 DNA bining site.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "B":{"type":"secondary","name":"beta2","description":"short beta-sheet in the L1L2 DNA bining site.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-		        "q":{"type":"secondary","name":"beta2","description":"short beta-sheet between H2A and H4.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+		        "q":{"type":"secondary","name":"beta3","description":"short beta-sheet between H2A and H4.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "D":{"type":"secondary","name":"Docking domain","description":"Docking domain locks the H2A-H2B dimer on the H3-H4 tetramer surface.","color":"#990099","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "a":{"type":"residue","name":"mgArg1","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±3.5.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "A":{"type":"residue","name":"mgArg2","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±5.5.","color":"#00ff00","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
-		     	}
-		     }
+		    }
+		},
+		"H2A.X":{
+			"taxa":"root",
+			"sequence":"MSGRGKTGGKARAKAKSRSSRAGLQFPVGRVHRLLRKGHYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAIRNDEELNKLLGGVTIAQGGVLPNIQAVLLPKKTSATVGPKAPSGGKKATQASQEY",
+			"feature1":"===========================================================================================================================================XXXX",
+			"feature2":"===========================================================================================================================================p===",
+			"feature_info":{
+				"X":{"type":"motif", "name":"H2A.X motif", "description":"H2A.X has the SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals.", "color":"#00ff00", "source":"NP_002096.1"},
+				"p":{"type":"residue", "name":"p", "description":"The C-terminal serine can be phosphorylated in H2A.X-containing nucleosomes at the DNA double strand breaks.", "color":"#ff0000", "source":"NP_002096.1"}
+			}
+		},
+		"H2A.Z":{
+			"taxa":"root",
+			"sequence":"MAGGKAGKDSGKAKTKAVSRSQRAGLQFPVGRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKATIAGGGVIPHIHKSLIGKKGQQKTV",
+			"feature1":"=============================================================================================ZZZZZ==============================",
+			"feature_info":{
+				"Z":{"type":"motif", "name":"H2A.Z motif", "description":"The motif that defines H2A.Z", "color":"#00ff00", "source":"NP_002097.1"}
+			}
+		},
+		"macroH2A":{
+			"taxa":"root",
+			"sequence":"MSSRGGKKKTTKTTRSAKAGVIFPVGRMLRYIKKGHPKYRIGVGAPVYMAAVLEYLTAEILELAGNAARDNKKSRVTPRHILLAIANDEELNQLLKGVTIASGGVLPNIHPELLAKKRGSRGKLEAIITPPPAKKSKTTLPKKTSAKKPGAKKGVRKSKKKQGDVSKSASADSTTDGTPSDGFTVLSTKSLFLGQKLQVVKADIATIDSDAVVHPTNSELYSGGEVGNALEKKGGKEFVEAVVELKKKNGPLDIAGAAVSSGHGLPAKFVIHCNSPSWGSDKCEELLEKTVKNCLALADEKKIKSIAFPSIGSGRNGFPKQTAAQLILKAISSYFVSTMSSSIKTVYFVLFDSESIGIYVQEMAKLDSN",
+            "feature1":"=================================================================================================================================================================================MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM========",
+			"feature_info":{
+				"M":{"type":"motif", "name":"macro domain", "description":"macroH2A is named after its C-terminal macro domain, which can bind ADP-ribose", "color":"#00ff00", "source":"NP_001090612.1"}
+			}
+		}
 	},
 	"H2B":{
 		"GeneralH2B":{
@@ -40,6 +66,15 @@
 		        "B":{"type":"secondary","name":"beta2","color":"#00ff00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "a":{"type":"residue","name":"mgArg1","color":"#00ff00","description":"Minor groove arginine at the alpha1-alpha1 DNA bining site at SHL ±4.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
 		    }
+		},
+		"subH2B":{
+			"taxa":"root",
+			"sequence":"MAKPTFKRQCYIKRHLRPLYRKHSRCSSINLGHGNYSLYINRVLKEVVPNRGISSYSVDIMNILINDIFERIATEACQQMFLRKRCTLTPGDIQQAVHLLLPKKLATLAVTFGSKAVHRFIHS",
+			"feature1":"===111111111====================================================================2222222222222222222222222222===============",
+			"feature_info":{
+				"1":{"type":"motif", "name":"bp1", "description":"Bipartite nuclear loclization signal - left", "color":"#00ff00", "source":"NP_081340.1"},
+				"2":{"type":"motif", "name":"bp2", "description":"Bipartite nuclear loclization signal - right", "color":"#00ff00", "source":"NP_081340.1"}
+			}
 		}
 	},
 	"H3":{
@@ -62,6 +97,14 @@
 		        "A":{"type":"residue","name":"mgArg3","color":"#00ff00","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
 		        "m":{"type":"residue","name":"mgArg1","color":"#00ff00","description":"Minor groove arginine at the alphaN DNA bining site at SHL ±6.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
 		    }
+		},
+		"cenH3":{
+			"taxa":"root",
+			"sequence":"MPRHSRAKRAPRPSANNSKSPNDDDTAFRSPEPEDGTDYGLEFTTSQLTLQDNNRRSSTLRRDAGRRQPAARDSSTSGEEEDQENRYPTTRSPQTRRMTVQQESKTRAAGPVAAQNQTRRRKAANPMSRAKRMDREIRRLQHHPGTLIPKLPFSRLVREFIVKYSDDEPLRVTEGALLAMQESCEMYLTQRLADSYMLTKHRNRVTLEVRDMALMAYICDRGRQF",
+		    "feature1":"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc====================================================================================================",
+			"feature_info":{
+				"c":{"type":"motif", "name":"centromere identifier", "description":"Bind to other CEN_ proteins at this location", "color":"#00ff00", "source":"NP_523730.2"}
+			}
 		}
 	},
 	"H4":{
