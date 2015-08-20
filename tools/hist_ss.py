@@ -202,7 +202,6 @@ def transfer_features_from_template_to_query(template_features, query_file, save
 def get_features_in_aln(alignment, variant, save_dir="", save_gff=True):
     #Let's extract consensus
     a=SummaryInfo(alignment)
-    print variant
     cons=a.dumb_consensus(threshold=0.1, ambiguous='X')
     seq = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=cons.tostring())
     updated_features = get_variant_features(seq, save_dir=save_dir, save_gff=save_gff)
