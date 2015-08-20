@@ -205,7 +205,7 @@ def get_features_in_aln(alignment, variant, save_dir="", save_gff=True):
     cons=a.dumb_consensus(threshold=0.1, ambiguous='X')
     seq = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=cons.tostring())
     updated_features = get_variant_features(seq, save_dir=save_dir, save_gff=save_gff)
-    print updated_features
+    return updated_features
 
 def get_core_lendiff(query_features, template_features):
     """Get the ratio of core length for query sequence versus template sequence
