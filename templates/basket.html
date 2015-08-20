@@ -10,6 +10,12 @@
 <script type="text/javascript">
   $(function() {
     $('#basket_navbar_button').addClass('active');
+    $("#remove_all").click(function(){
+      localStorage.setItem('basket', JSON.stringify([]));
+      reloadBasket();
+      $(".badge-basket").html("0");
+      $('#sequence_table_basket').bootstrapTable('refresh');
+    })
   });
   var extra_seq_params_basket = {};
   function reloadBasket(){
@@ -35,6 +41,7 @@
   <div class="page-header">
 	  <h1><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Sequence basket</h1>
   </div>
-  {% include "sequences.html" with page_name="basket" formatNoMatches="No sequences in basket. To add sequences, use the browse or search pages and click 'Add to Basket' when you have selected your desired sequences." %}
+  To add sequences, use the browse or search pages and click 'Add to Basket' when you have selected your desired sequences." To remove sequences, select the sequences you want to remove and click 'Remove from Basket.' Alternatively, you can <a href="#" id="remove_all">Remove all sequences</a>.
+  {% include "sequences.html" with page_name="basket" formatNoMatches="No sequences in basket." %}
 </div>
 {% endblock %}
