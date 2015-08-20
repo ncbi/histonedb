@@ -6,6 +6,8 @@ from tools.hist_ss import get_features_in_aln
 from Bio import SeqIO
 from Bio.Align import MultipleSeqAlignment
 from browse.models import Sequence
+from Bio.Align.AlignInfo import SummaryInfo
+
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
@@ -20,6 +22,9 @@ class Command(BaseCommand):
             help="Force the creation of PDFs, GFFs even if the files exist")
         
     def handle(self, *args, **options):
+        save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
         for variant, seed in self.get_seeds():
             #PDF currently contaminates the dir with many files.
             #if not os.path.exists("{}.pdf".format(seed[:-6])) or options["force"]:

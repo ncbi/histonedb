@@ -88,7 +88,7 @@ class Command(BaseCommand):
 
                 try:
                     taxonomy = Taxonomy.objects.get(name=info.get("taxonomy", "root"))
-                except Taxononomy.DoesNotExist:
+                except Taxonomy.DoesNotExist:
                     taxonomy = Taxonomy.objects.get(name="root")
 
                 template, created = TemplateSequence.objects.get_or_create(taxonomy=taxonomy, variant=variant)

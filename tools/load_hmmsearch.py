@@ -143,5 +143,3 @@ def add_score(seq, variant_model, hsp, best=False):
     used_for_classification = best,
     )
   score.save()
-
-

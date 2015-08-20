@@ -119,8 +119,11 @@ replication and reprogramming; they may change their conformation, histone conte
         <div class="container text-center">Example: <font color="red">H2A</font>.<font color="blue">Z</font>.<font color="orange">1</font>.<font color="pink">s1</font></div>
       </div>
       <div role="tabpanel" class="tab-pane" id="classification">
-        We used HMMs!!!
-        variant_classification = max(filter(lambda score,threshold: score >= threshold), 
+        First, we created seed alignments for each variant. These were checked manually to make sure they had a wide taxonomic distribution and no large insertions in the core histone fold regions. These seed sequences were then used to train profile Hidden Markov Models, using HMMER 3.1b2 hmmbuild, creating one profile-HMM for each variant. Next, all of the variant models were combined into one file and pressed using HMMER 3.1b2 hmmpress.
+
+        Further we defined cutoffs scores for each variant based on 95% specificity. Positive training sets were defined as the seed for the given variant and negative examples we defined as a combination of all seeds except the given varaint \fig{H2AZ_cutoff). Iterating over thresholds from 0 to 1000, we calculated the specificty at each threshold, interpolating the curve to predict all speficifty values. We chose the cutoff score when the specifity was equal to 95%. Please see supplematary information for details about evaluting each varaint model.
+
+        Finally, we used the combined HMM to search all of the NCBI non-redundant (nr) database using HMMER 3.1b2. To classify each sequence, we took the maxium score from a varaint model that was also above the threshold for that variant. In other words, we iterated over the hmmsearch output from each variant, saving the sequence into the database and either classifying the sequence if the sequence has not been seen before if the score against the current variant model was greater than the threshold for the varaint or re-classifying the sequence if the sequence was already classified, the score was greater than the previous classified variant, and the score was greater than the threshold for the current variant. To see a workflow, please see \ref{classification}. If the sequence was not able to be classified, the sequence was stored with variant "Unknown".
       </div>
       <div role="tabpanel" class="tab-pane" id="faq">
           <div class="container">

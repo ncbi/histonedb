@@ -93,8 +93,7 @@ def get_variant_features(sequence, save_dir="", save_not_found=False, save_gff=T
     os.remove(query_file)
     if save_gff:
         return Feature.objects.gff(sequence.id, variant_features)
-    else:
-        return Feature.objects.to_dict(variant_features)
+    return variant_features
 
 def transfer_features_from_template_to_query(template_features, query_file, save_dir="", save_not_found=False):
     """Transfer features from template to query. Position are defined in the 
