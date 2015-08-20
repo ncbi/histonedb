@@ -121,7 +121,7 @@ $("#id_variant").prop("readonly", true);
                     {% for feature in features %}
                       <div class="row">
                         <div class="col-xs-2" style="height:25px;"><span class="center-block" style="background-color:{{ feature.2 }}; text-align: center; height:20px;">{{ feature.0 }}</span></div>
-                        <div class="col-xs-10">: {{ feature.1 }}</div>
+                        <div class="col-xs-10">{{ feature.1 }}</div>
                       </div>
                     {% endfor %}
                     </div>

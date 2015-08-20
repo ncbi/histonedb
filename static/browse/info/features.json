@@ -127,6 +127,21 @@
 		        "a":{"type":"residue","name":"mgArg2","color":"#00ff00","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
 		    }
 		}
+	},
+	"H1":{
+		"GeneralH1":{
+			"taxa":"root",
+			"sequence":"MTESLVLSPAPAKPKRVKASRRSASHPTYSEMIAAAIRAEKSRGGSSRQSIQKYIKSHYKVGHNADLQIKLSIRRLLAAGVLKQTKGVGASGSFRLAKSDKAKRSPGKKKKAVRRSTSPKKAARPRKARSPAKKPKATARKARKKSRASPKKAKKPKTVKAKSRKASKAKKVKRSKPRAKSGARKSPKKK",
+            "feature1":"===========================11111111111=======bb22222222222======33333333333333===BBBB=======cccc==============================================================================================",
+			"feature_info":{
+				"1":{"type":"secondary", "name":"alpha1", "color":"#ff0000","description":"Alpha1-helix. First helix of the helix-turn-helix domain found in all H1s", "source":"Obtained from PDB 1HST"},
+				"b":{"type":"secondary", "name":"beta1", "color":"#00ff00","description":"short beta-sheet found in the turn of the helix-turn-helix domain found in all H1s", "source":"Obtained from PDB 1HST"},
+				"2":{"type":"secondary", "name":"alpha2", "color":"#ff0000","description":"Alpha2-helix. Second helix of the helix-turn-helix domain found in all H1s", "source":"Obtained from PDB 1HST"},
+				"3":{"type":"secondary", "name":"alpha3", "color":"#ff0000","description":"Alpha3-helix.", "source":"Obtained from PDB 1HST"},
+				"B":{"type":"secondary", "name":"beta2", "color":"#00ff00","description":"Second short beta-sheet.", "source":"Obtained from PDB 1HST"},
+				"c":{"type":"secondary", "name":"beta3", "color":"#00ff00","description":"Third short beta-sheet.", "source":"Obtained from PDB 1HST"}
+			}
+		}
 	}
 }
 
