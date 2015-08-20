@@ -127,5 +127,6 @@ if __name__ == '__main__':
         msa=muscle_aln(seqrecs)
         print msa
         msa_r=refactor_title(msa,hist_var)
+        msa_r.sort()
         print msa_r
         AlignIO.write(msa_r,os.path.join("draft_seeds",hist_type,hist_var+".fasta"),'fasta')
