@@ -136,10 +136,17 @@ def browse_variant(request, histone_type, variant):
             max=Max("score"), 
             min=Min("score")
         )
-    features = [(f.name, f.description, f.color) for f in \
+    features_gen = [(f.name, f.description, f.color) for f in \
         Feature.objects.filter( \
-                Q(template__variant=variant)|Q(template__variant="General{}".format(histone_type))\
+                Q(template__variant="General{}".format(histone_type))\
             ).order_by("start")]
+    features_var = [(f.name, f.description, f.color) for f in \
+        Feature.objects.filter( \
+                Q(template__variant=variant)\
+            ).order_by("start")]
+
+
+
     sequences = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
@@ -169,7 +176,8 @@ def browse_variant(request, histone_type, variant):
         "hist_type": variant.hist_type.id,
         "variant": variant.id,
         "name": variant.id,
-        "features": features,
+        "features_gen": features_gen,
+        "features_var": features_var,
         "human_sequence":human_sequence.id,
         "publications":publications,
         "sunburst_url": static("browse/sunbursts/{}/{}.json".format(variant.hist_type.id, variant.id)),

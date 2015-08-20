@@ -118,7 +118,17 @@ $("#id_variant").prop("readonly", true);
                         createMSA("quick-msa-variant-summary", "{% url 'browse.views.get_aln_and_features' %}?id={{ human_sequence }}", "", 975, 75, false);
                       });
                     </script>
-                    {% for feature in features %}
+                    {% if features_var %}
+                    <h5 class="page-header">Variant features</h5>
+                    {% endif %}
+                    {% for feature in features_var %}
+                      <div class="row">
+                        <div class="col-xs-2" style="height:25px;"><span class="center-block" style="background-color:{{ feature.2 }}; text-align: center; height:20px;">{{ feature.0 }}</span></div>
+                        <div class="col-xs-10">{{ feature.1 }}</div>
+                      </div>
+                    {% endfor %}
+                    <h5 class="page-header">General histone type features</h5>
+                    {% for feature in features_gen %}
                       <div class="row">
                         <div class="col-xs-2" style="height:25px;"><span class="center-block" style="background-color:{{ feature.2 }}; text-align: center; height:20px;">{{ feature.0 }}</span></div>
                         <div class="col-xs-10">{{ feature.1 }}</div>
