@@ -164,15 +164,15 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     $(function () {
         function giFormatter(value, row, index){
           return [
-            '<a href="http://www.ncbi.nlm.nih.gov/protein/?term='+value+'">'+value+"</a>",
+            value,
             '<div class="button-group dropdown pull-right">',
             '<a href="#" class="dropdown-toggle rowlink" data-toggle="dropdown" aria-haspopup="true">',
             '<span class="caret"></span>',
             '<ul class="dropdown-menu" role="menu">',
             '<li><a href="#" id="gi_actions_view_entrez">View in Entrez</a></li>',
-            '<li><a href="#" id="gi_actions_view_fasta">View in FASTA</a></li>',
-            '<li class="nav-divider"></li>',
-            '<li><a href="#" id="gi_actions_basket">Add to Basket</a></li>',
+            //'<li><a href="#" id="gi_actions_view_fasta">View in FASTA</a></li>',
+            //'<li class="nav-divider"></li>',
+            //'<li><a href="#" id="gi_actions_basket">Add to Basket</a></li>',
             '</ul>',
             '</a>',
             '</div>'
