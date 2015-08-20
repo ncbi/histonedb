@@ -40,7 +40,7 @@ def read_gis(file):
     Reads a gis from file, one per line
     """
     with open(file,'r') as f:
-        gis = [line.rstrip() for line in f]
+        gis = [re.search('(\d+)',line).group(1) for line in f]
     return gis
 
 
@@ -96,20 +96,36 @@ def refactor_title(msa,variant):
     """
     msa_r=MultipleSeqAlignment([])
     for i in msa:
-        genus=re.search(r"\[(\S+)\s+\S+\]",i.description).group(1)
+        print i.description
+        genus=re.search(r"\[(\S+)\s+.+\S+\]",i.description).group(1)
         gi=re.search(r"gi\|(\d+)\|",i.id).group(1)
         i.id=genus+"|"+gi+"|"+variant
         i.description=genus+"_"+variant+"_"+gi
         msa_r.append(i)
     return msa_r
 
+def get_gis():
+        """
+        Goes through aux_tools/gis
+        """
+        for i, (root, _, files) in enumerate(os.walk("gis/")):
+            hist_type = os.path.basename(root)
+            for f in files:
+                if not f.endswith(".gis"): continue
+                yield f[:-4], hist_type, f
+
 
 if __name__ == '__main__':
-
-    gis=read_gis('canonicalH2A.gis')
-    seqrecs=get_prot_seqrec_by_gis(gis)
-    msa=muscle_aln(seqrecs)
-    print msa
-    msa_r=refactor_title(msa,'canonicalH2A')
-    print msa_r
-    AlignIO.write(msa_r,"H2A_aln.fasta",'fasta')
+    if not os.path.exists("draft_seeds"):
+        os.makedirs("draft_seeds")
+    for hist_var,hist_type,f in get_gis():
+        # print hist_var,hist_type,f
+        if not os.path.exists(os.path.join("draft_seeds",hist_type)):
+            os.makedirs(os.path.join("draft_seeds",hist_type))
+        gis=read_gis(os.path.join("gis",hist_type,f))
+        seqrecs=get_prot_seqrec_by_gis(gis)
+        msa=muscle_aln(seqrecs)
+        print msa
+        msa_r=refactor_title(msa,hist_var)
+        print msa_r
+        AlignIO.write(msa_r,os.path.join("draft_seeds",hist_type,hist_var+".fasta"),'fasta')
