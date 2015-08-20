@@ -4,7 +4,7 @@
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
-			"publications":["22650316"]
+			"publications":["22650316","25731851"]
 		},
 		"H2A.Z": {
 			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the ranscription start site and in an enhancers. It has a larger acidic patch, an amino acid insertion in a1-helix and one deletion in the docking domain compared to canonical H2.A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional specificity of variant nucleosomes.",
@@ -23,7 +23,8 @@
 				{"name":"D2", "taxonomy":"drosophila"},
 				{"name":"member Z"}
 			],
-			"publications":["22650316"]
+		  			"publications":["22650316","25731851"]
+
 		},
 		"H2A.X": {
 			"description":"H2A.X is involved in DNA damage response, chromatin remodeling and can be found in DNA double strand breaks, collapsed replication forks, and heterochromatin. It is the only non-monophyletic variant in H2A and has the motif SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals, and S is phosphorylated in H2A.X -containing nucleosomes at the DNA double strand breaks.",
@@ -31,7 +32,8 @@
 			"alternate_names": [
 				{"name":"member X"}
 			],
-			"publications":["22650316"]
+		  			"publications":["22650316","25731851"]
+
 		},
 		"macroH2A": {
 			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus.",
@@ -45,7 +47,8 @@
 				{"name":"macroH2A2.1", "gene":2, "splice":1},
 				{"name":"macroH2A2.2", "gene":2, "splice":2}
 			],
-			"publications":["22650316"]
+		  		  		  			"publications":["22650316","25731851"]
+
 		},
 		"H2A.L": {
 			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1 H2A.L has a shorter C-terminal tail and docking domain. ",
@@ -55,7 +58,8 @@
 				{"name":"H2AL1", "gene":1},
 				{"name":"H2AL2", "gene":2}
 			],
-			"publications":["22650316"]
+		  		  			"publications":["22650316","25731851"]
+
 		},
 		"H2A.B": {
 			"description": "H2A.B, also known as \"Barr body defficient\" varaint, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch.",
@@ -63,7 +67,8 @@
 			"alternate_names": [
 				{"name":"H2A.Bbd"}
 			],
-			"publications":["22650316"]
+		  		  			"publications":["22650316","25731851"]
+
 		},
 		"H2A.M": { 
 			"description":"H2A.M is a new variant that binds to huntington protein M. It is closely related to H2A.B and H2A.L",
@@ -71,7 +76,8 @@
 			"alternate_names": [
 				{"name":"Huntington protein M"}
 			],
-			"publications":["22650316"]
+		  		  			"publications":["22650316","25731851"]
+
 		}
 	},
 	"H2B": {

@@ -5,7 +5,7 @@
             "sequence":"SGRGKQGGKTRAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAVRNDEELNKLLGRVTIAQGGVLPNIQSVLLPKKTESSKSKSK",
             "feature1":"===============eeeeeee===111111111111llllllll2222222222222222222222222222LLLLL33333333333EEEEEEEE===============================",
             "feature2":"=========================================bb=================================BB==DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD=========",
-            "feature3":"=========================================a==================================A======================qqq==========================",
+            "feature3":"=========================================a==================p==p=======p====A============ppp=======qqq==========================",
             "feature_info":{
                 "e":{"type":"secondary","name":"alpha1ext","color":"#bbbb66","description":"Alpha1-extension helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "1":{"type":"secondary","name":"alpha1","color":"#bb0000","description":"Alpha1-helix. First helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
@@ -17,9 +17,11 @@
                 "b":{"type":"secondary","name":"beta1","color":"#00bb00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "B":{"type":"secondary","name":"beta2","color":"#00bb00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "q":{"type":"secondary","name":"beta3","color":"#00bb00","description":"short beta-sheet between H2A and H4.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "D":{"type":"secondary","name":"Docking domain","description":"Docking domain locks the H2A-H2B dimer on the H3-H4 tetramer surface.","color":"#990099","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "a":{"type":"residue","name":"mgArg1","color":"#00cc00","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "A":{"type":"residue","name":"mgArg2","color":"#00cc00","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
+                "D":{"type":"secondary","name":"Docking domain","color":"#aa00aa","description":"Docking domain locks the H2A-H2B dimer on the H3-H4 tetramer surface.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "a":{"type":"residue","name":"mgArg1","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "A":{"type":"residue","name":"mgArg2","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "p":{"type":"residue","name":"p","color":"#5555ff","description":"Acidic patch residues","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
+
             }
         },
         "H2A.X":{
@@ -32,12 +34,20 @@
                 "p":{"type":"residue", "name":"p", "description":"The C-terminal serine can be phosphorylated in H2A.X-containing nucleosomes at the DNA double strand breaks.", "color":"#ff0000", "source":"NP_002096.1"}
             }
         },
+        "H2A.B":{
+            "taxa":"root",
+            "sequence":"MPRRRRRRGSSGAGGRGRTCSRTVRAELSFSVSQVERSLREGHYAQRLSRTAPVYLAAVIEYLTAKVLELAGNEAQNSGERNITPLLLDMVVHNDRLLSTLFNTTTISQVAPGED",
+            "feature1":"==RRRRRR===========================================================================================================",
+            "feature_info":{
+                "R":{"type":"motif", "name":"ARG-run", "description":"Run of arginines characteristic of H2A.B at least in human.", "color":"#aaaaff", "source":"NP_002096.1"}
+            }
+        },
         "H2A.Z":{
             "taxa":"root",
             "sequence":"MAGGKAGKDSGKAKTKAVSRSQRAGLQFPVGRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKATIAGGGVIPHIHKSLIGKKGQQKTV",
-            "feature1":"=============================================================================================ZZZZZ==============================",
+            "feature1":"=================================================================================================Z==============================",
             "feature_info":{
-                "Z":{"type":"motif", "name":"H2A.Z motif", "description":"The motif that defines H2A.Z", "color":"#00ff00", "source":"NP_002097.1"}
+                "Z":{"type":"motif", "name":"X>D", "description":"Characteristic X>D substitution in many H2A.Z (excl. Trypanosoma), which enlarges acidic patch", "color":"#00ff00", "source":"NP_002097.1"}
             }
         },
         "macroH2A":{

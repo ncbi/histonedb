@@ -23,6 +23,7 @@ class Command(BaseCommand):
             help="Force the creation of PDFs, GFFs even if the files exist")
         
     def handle(self, *args, **options):
+        Publication.objects.all().delete()
         variant_info_path = os.path.join(self.info_directory, "variants.json")
 
         with open(variant_info_path) as variant_info_file:  
