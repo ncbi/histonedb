@@ -99,18 +99,23 @@ class Command(BaseCommand):
                         template.path(),
                         "fasta"
                     )
-                
+                used_features = {}
                 for positions in position_lines:
                     for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
                         group = list(group)
                         if not feature_name in [" ", "="]:
+                            name = info["feature_info"][feature_name]["name"]
                             feature = Feature(
-                                id          = "{}_{}".format(template, info["feature_info"][feature_name]["name"]),
+                                id          = "{}_{}{}".format(template, name, " "+str(used_features.get(name, ""))),
                                 template    = template,
                                 start       = int(group[0][0]),
                                 end         = int(group[-1][0]),
-                                name        = info["feature_info"][feature_name]["name"],
+                                name        = name,
                                 description = info["feature_info"][feature_name]["description"],
                                 color       = info["feature_info"][feature_name]["color"],
                             )
                             feature.save()
+                            try:
+                                used_features[name] += 1
+                            except KeyError:
+                                used_features[name] = 1
