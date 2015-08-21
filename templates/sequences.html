@@ -200,7 +200,8 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             '<a href="#" class="dropdown-toggle rowlink" data-toggle="dropdown" aria-haspopup="true">',
             '<span class="caret"></span>',
             '<ul class="dropdown-menu" role="menu">',
-            '<li><a href="#" id="taxonomy_actions_browse_variant">Browse variant within taxonomy</a></li>',
+            '<li><a href="#" id="taxonomy_actions_browse_variant">Browse '+row.variant+' within '+row.taxonomy+'</a></li>',
+            '<li><a href="#" id="taxonomy_actions_browse_type">Browse '+row.type+' variants within '+row.taxonomy+'</a></li>',
             '<li><a href="#" id="taxonomy_actions_browse_all">Browse all taxonomy</a></li>',
             '<li><a href="#" id="taxonomy_actions_browse_ncbi">View NCBI Taxonomy record</a></li>',
             '</ul>',
@@ -221,6 +222,9 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
         window.taxonomyEvents = {
           'click #taxonomy_actions_browse_variant': function (e, value, row, index) {
               document.location.href = "{% url 'browse.views.search' %}?id_variant="+row.variant+"&id_taxonomy="+row.taxid;
+          },
+          'click #taxonomy_actions_browse_type': function (e, value, row, index) {
+              document.location.href = "{% url 'browse.views.search' %}?id_type="+row.type+"&id_taxonomy="+row.taxid;
           },
           'click #taxonomy_actions_browse_all': function (e, value, row, index) {
               document.location.href = "{% url 'browse.views.search' %}?id_taxonomy="+row.taxid;

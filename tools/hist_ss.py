@@ -48,13 +48,15 @@ from Bio.PDB.Polypeptide import PPBuilder
 
 Entrez.email = "HistoneDB_user@nih.gov"
 
-def get_variant_features(sequence, save_dir="", save_not_found=False, save_gff=True):
+def get_variant_features(sequence, variants=None, save_dir="", save_not_found=False, save_gff=True):
     """Get the features of a sequence based on its variant.
 
     Parameters:
     -----------
     sequence : Sequence django model
         The seuqence to add get features for with identified variant
+    variants : List of Variant models
+        Anntate others variants. Optional.
     save_dir : str
         Path to save temp files.
     save_not_found : bool
@@ -71,24 +73,28 @@ def get_variant_features(sequence, save_dir="", save_not_found=False, save_gff=T
     SeqIO.write(test_record, query_file, 'fasta')
 
     #A list of updated Features for the query
-    variant_features = []
+    variant_features = set()
 
-    for template_variant in [sequence.variant.id, "General{}".format(sequence.variant.hist_type.id)]:
-        try:
-            features = Feature.objects.filter(template__variant=template_variant)
-        except:
-            continue
-        #Find features with the same taxonomy
-        tax_features = features.filter(template__taxonomy=sequence.taxonomy)
-        if len(tax_features) == 0:
-            #Find features with closest taxonomy => rank class
-            tax_features = features.filter(template__taxonomy__parent__parent__parent=sequence.taxonomy.parent.parent.parent)
-        if len(tax_features) == 0:
-            #Nothing, use unidentified which is the standard
-            tax_features = features.filter(template__taxonomy__name="undefined")
-        features = tax_features
-        for updated_feature in transfer_features_from_template_to_query(features, query_file, save_dir=save_dir, save_not_found=save_not_found):
-            variant_features.append(updated_feature)
+    if not variants:
+        variants = [sequence.variant]
+
+    for variant in variants:
+        for template_variant in [variant.id, "General{}".format(variant.hist_type.id)]:
+            try:
+                features = Feature.objects.filter(template__variant=template_variant)
+            except:
+                continue
+            #Find features with the same taxonomy
+            tax_features = features.filter(template__taxonomy=sequence.taxonomy)
+            if len(tax_features) == 0:
+                #Find features with closest taxonomy => rank class
+                tax_features = features.filter(template__taxonomy__parent__parent__parent=sequence.taxonomy.parent.parent.parent)
+            if len(tax_features) == 0:
+                #Nothing, use unidentified which is the standard
+                tax_features = features.filter(template__taxonomy__name="undefined")
+            features = tax_features
+            for updated_feature in transfer_features_from_template_to_query(features, query_file, save_dir=save_dir, save_not_found=save_not_found):
+                variant_features.add(updated_feature)
    
     os.remove(query_file)
     if save_gff:
@@ -181,19 +187,21 @@ def transfer_features_from_template_to_query(template_features, query_file, save
         if start_in_test_seq == -1 or end_in_test_seq == -1 or start_in_test_seq > end_in_test_seq:
             if save_not_found:
                 yield Feature(
-                    name = feature.name,
+                    id          = "{}_{}".format(os.path.splitext(query_file)[0], feature.name),
+                    name        = feature.name,
                     description = feature.description,
-                    start = -1,
-                    end = -1,
-                    color = feature.color,
+                    start       = -1,
+                    end         = -1,
+                    color       = feature.color,
                 )
         else:
             yield Feature(
-                name = feature.name,
+                id          = "{}_{}".format(os.path.splitext(query_file)[0], feature.name),
+                name        = feature.name,
                 description = feature.description,
-                start = start_in_test_seq,
-                end = end_in_test_seq,
-                color = feature.color,
+                start       = start_in_test_seq,
+                end         = end_in_test_seq,
+                color       = feature.color,
             )
 
     #Cleanup
