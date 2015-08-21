@@ -54,7 +54,7 @@ function make_scores_table(table_div, ids, width) {
   columns = [{field:'variant', title:''}];
   params = "?";
   for (var i = 0; i < ids.length; i++) {
-    columns.push({field:ids[i], title:ids[i], cellStyle:scoreCellStyle});
+    columns.push({field:ids[i], title:"GI: "+ids[i], cellStyle:scoreCellStyle});
     params += "id="+ids[i]+"&"
   }
   console.log("{% url 'browse.views.get_all_scores' %}"+params.substring(0, params.length-1));
