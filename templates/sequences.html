@@ -19,18 +19,12 @@
             <button type="button" class="btn btn-default" id="add_to_basket_{{ page_name }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Basket <span class="badge badge-basket"></span></button>
             {% endif %}
         </div>
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" id="show_advanced_filter_{{ page_name }}" {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}>
-              <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Add filters
-            </button>
-        </div>
-        <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" id="reset_filter_{{ page_name }}"  {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear filters</button>
-        </div>
         {% if not curated %}
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="false"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Expert <span class="caret"></span></button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="false"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Advanced <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
+                <li><a href="#" id="show_advanced_filter_{{ page_name }}" {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Add filters</a></li>
+                <li><a href="#" id="reset_filter_{{ page_name }}"  {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear filters</a></li>
                 <li><a href="#" id="scores_modal_button_{{ page_name }}">View against all profiles</a></li>
             </ul>
         </div>
