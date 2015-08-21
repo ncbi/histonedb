@@ -163,18 +163,22 @@ def browse_variant(request, histone_type, variant):
         human_sequence = sequences.filter(taxonomy__name="homo sapiens").first()
     if not human_sequence:
         human_sequence = sequences.first()
+    print human_sequence
 
-    publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
-    handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
-    records = Medline.parse(handle)
-    publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
+    try:
+        publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
+        handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
+        records = Medline.parse(handle)
+        publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
             "{}, {}, et al".format(*record["AU"][0:2]) if len(record["AU"])>2 else " and ".join(*record["AU"]),
             record["TI"],
             record["TA"],
             re.search("\d\d\d\d",record["SO"]).group(0),
             record["PMID"],
             record["PMID"],
-        ) for record in records]
+            ) for record in records]
+    except:
+        publications=map(lambda x: "PMID: "+str(x),variant.publication_set.values_list("id", flat=True))
 
     data = {
         "hist_type": variant.hist_type.id,
