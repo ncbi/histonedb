@@ -20,7 +20,7 @@
                 "D":{"type":"secondary","name":"Docking domain","color":"#aa00aa","description":"Docking domain locks the H2A-H2B dimer on the H3-H4 tetramer surface.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "a":{"type":"residue","name":"mgArg1","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "A":{"type":"residue","name":"mgArg2","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "p":{"type":"residue","name":"p","color":"#5555ff","description":"Acidic patch residues","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
+                "p":{"type":"residue","name":"p","color":"#55aaff","description":"Acidic patch residues","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
 
             }
         },
@@ -37,9 +37,11 @@
         "H2A.B":{
             "taxa":"root",
             "sequence":"MPRRRRRRGSSGAGGRGRTCSRTVRAELSFSVSQVERSLREGHYAQRLSRTAPVYLAAVIEYLTAKVLELAGNEAQNSGERNITPLLLDMVVHNDRLLSTLFNTTTISQVAPGED",
-            "feature1":"==RRRRRR===========================================================================================================",
+            "feature1":"==RRRRRR=========================================================c==========c==================cc==================",
             "feature_info":{
-                "R":{"type":"motif", "name":"ARG-run", "description":"Run of arginines characteristic of H2A.B at least in human.", "color":"#aaaaff", "source":"NP_002096.1"}
+                "R":{"type":"motif", "name":"ARG-run", "description":"Run of arginines characteristic of H2A.B at least in human.", "color":"#aaaaff", "source":"NP_002096.1"},
+                "c":{"type":"motif", "name":"->+", "description":"Loss of acidic patch residues.", "color":"#ffaaaa", "source":"NP_002096.1"}
+
             }
         },
         "H2A.Z":{
