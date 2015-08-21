@@ -105,6 +105,7 @@ class Command(BaseCommand):
                         group = list(group)
                         if not feature_name in [" ", "="]:
                             feature = Feature(
+                                id          = "{}_{}".format(template, info["feature_info"][feature_name]["name"]),
                                 template    = template,
                                 start       = int(group[0][0]),
                                 end         = int(group[-1][0]),

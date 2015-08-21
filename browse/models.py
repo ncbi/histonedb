@@ -225,6 +225,7 @@ extension\tffff66
         return {feature.name:(feature.start, feature.end) for feature in features}
 
 class Feature(models.Model):
+    id          = models.CharField(max_length=255, primary_key=True)
     template    = models.ForeignKey(TemplateSequence, null=True)
     start       = models.IntegerField()
     end         = models.IntegerField()
@@ -232,6 +233,9 @@ class Feature(models.Model):
     description = models.CharField(max_length=600)
     color       = models.CharField(max_length=25)
     objects     = FeatureManager()
+
+    class Meta:
+        ordering = ["start"]
 
     def __unicode__(self):
         """Returns Jalview GFF format"""
