@@ -16,6 +16,8 @@ from browse.search import HistoneSearch
 from browse.process_upload import process_upload, InvalidFASTA
 
 from colour import Color
+from  more_itertools import unique_everseen
+
 
 #Django libraires
 from browse.models import *
@@ -136,9 +138,21 @@ def browse_variant(request, histone_type, variant):
             max=Max("score"), 
             min=Min("score")
         )
-    features_gen = Feature.objects.filter(template__variant="General{}".format(histone_type)).values_list("name", "description", "color").distinct()
-    features_var = Feature.objects.filter(template__variant=variant).values_list("name", "description", "color").distinct()
-    
+    # features_gen = Feature.objects.filter(template__variant="General{}".format(histone_type)).values_list("name", "description", "color").distinct()
+    # features_var = Feature.objects.filter(template__variant=variant).values_list("name", "description", "color").distinct()
+
+    features_gen = [(f.name, f.description, f.color) for f in \
+       Feature.objects.filter( \
+                Q(template__variant="General{}".format(histone_type))\
+            ).order_by("start")]
+    features_var = [(f.name, f.description, f.color) for f in \
+        Feature.objects.filter( \
+                Q(template__variant=variant)\
+            ).order_by("start")]
+    #Get rid of duplicates
+    features_gen=list(unique_everseen(features_gen))
+    features_var=list(unique_everseen(features_var))
+
     sequences = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
