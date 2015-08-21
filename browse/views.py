@@ -16,7 +16,6 @@ from browse.search import HistoneSearch
 from browse.process_upload import process_upload, InvalidFASTA
 
 from colour import Color
-from  more_itertools import unique_everseen
 
 #Django libraires
 from browse.models import *
@@ -137,20 +136,9 @@ def browse_variant(request, histone_type, variant):
             max=Max("score"), 
             min=Min("score")
         )
-    features_gen = [(f.name, f.description, f.color) for f in \
-        Feature.objects.filter( \
-                Q(template__variant="General{}".format(histone_type))\
-            ).order_by("start")]
-    features_var = [(f.name, f.description, f.color) for f in \
-        Feature.objects.filter( \
-                Q(template__variant=variant)\
-            ).order_by("start")]
-    #Get rid of duplicates
-    features_gen=list(unique_everseen(features_gen))
-    features_var=list(unique_everseen(features_var))
-
-
-
+    features_gen = Feature.objects.filter(template__variant="General{}".format(histone_type)).values_list("name", "description", "color").distinct()
+    features_var = Feature.objects.filter(template__variant=variant).values_list("name", "description", "color").distinct()
+    
     sequences = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
@@ -163,18 +151,22 @@ def browse_variant(request, histone_type, variant):
         human_sequence = sequences.filter(taxonomy__name="homo sapiens").first()
     if not human_sequence:
         human_sequence = sequences.first()
+    print human_sequence
 
-    publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
-    handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
-    records = Medline.parse(handle)
-    publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
+    try:
+        publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
+        handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
+        records = Medline.parse(handle)
+        publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
             "{}, {}, et al".format(*record["AU"][0:2]) if len(record["AU"])>2 else " and ".join(*record["AU"]),
             record["TI"],
             record["TA"],
             re.search("\d\d\d\d",record["SO"]).group(0),
             record["PMID"],
             record["PMID"],
-        ) for record in records]
+            ) for record in records]
+    except:
+        publications=map(lambda x: "PMID: "+str(x),variant.publication_set.values_list("id", flat=True))
 
     data = {
         "hist_type": variant.hist_type.id,
@@ -405,7 +397,7 @@ def get_aln_and_features(request, ids=None):
             #Already aligned to core histone
             seq = sequences[0]
             hist_type = seq.variant.hist_type.id
-            variant = seq.variant.id
+            variants = [seq.variant]
             #let's load the corresponding canonical
             try:
                 canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
@@ -416,15 +408,7 @@ def get_aln_and_features(request, ids=None):
             
         else:
             seq = sequences[0]
-            try:
-                hist_type = max(
-                   [(hist, sequences.filter(variant__hist_type_id=hist).count()) for hist in ["H2A", "H2B", "H3", "H4", "H1"]],
-                   key=lambda x:x[1]
-                   )[0]
-                variant = max(sequences.values("variant").annotate(count=Count("id")).values_list("variant", "count"), key=lambda x:x[1])[0]
-            except ValueError:
-                hist_type = "Unknown"
-                variant = "Unknown"
+            variants = list(Variant.objects.filter(id__in=sequences.values_list("variant", flat=True).distinct()))
             sequence_label = "Consensus"
         
         muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
@@ -437,13 +421,13 @@ def get_aln_and_features(request, ids=None):
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
         msa = MultipleSeqAlignment(sequences)
         a = SummaryInfo(msa)
-        cons = Sequence(id=sequence_label, variant_id=variant, taxonomy_id=1, sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+        cons = Sequence(id=sequence_label, variant_id=variants[0].id, taxonomy_id=1, sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
 
         save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
 
-        features = get_variant_features(cons, save_dir=save_dir)
+        features = get_variant_features(cons, variants=variants, save_dir=save_dir)
         
         #A hack to avoid two canonical seqs
         unique_sequences = [sequences[0]] if len(sequences) == 2 and sequences[0].id == sequences[1].id else sequences
