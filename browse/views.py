@@ -137,9 +137,9 @@ def browse_variant(request, histone_type, variant):
             min=Min("score")
         )
     features_gen = [(f.name, f.description, f.color) for f in \
-        Feature.objects.filter(template__variant="General{}".format(histone_type)).order_by("start").unique()]
+        Feature.objects.filter(template__variant="General{}".format(histone_type)).order_by("start").distinct()]
     features_var = [(f.name, f.description, f.color) for f in \
-        Feature.objects.filter(template__variant=variant).order_by("start").unique()]
+        Feature.objects.filter(template__variant=variant).order_by("start").distinct()]
 
     sequences = Sequence.objects.filter(
             variant__id=variant,
