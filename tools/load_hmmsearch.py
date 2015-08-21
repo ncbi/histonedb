@@ -109,7 +109,7 @@ def load_hmm_results(hmmerFile):
           print seq
 
   #Delete 'unknown' records that were found by HMMsearch but did not pass threshold.?
-  #unknown_model.sequences.all().delete()
+  unknown_model.sequences.all().delete()
 
 def add_sequence(gi, variant_model, taxonomy, header, sequence):
   """Add sequence into the database, autfilling empty Parameters"""
