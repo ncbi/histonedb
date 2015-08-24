@@ -9,14 +9,14 @@
       </div>
       <div class="modal-body">
         Score shows how well a sequence was classified by a variant HMM. Each sequence has been classified as a variant (Green), but it may share similar functions to another variant (Blue). Please see the 'Help' page to learn about the classification alogorthm.<br /> <br /> 
-        <div class="btn-group">
-          <button type="button" class="btn btn-success" aria-expanded="false">Classified Variant</button>
+        Key: <div class="btn-group">
+          <button type="button" class="btn btn-success" aria-expanded="false" disabled="disbaled">Classified Variant</button>
         </div>
         <div class="btn-group">
-          <button type="button" class="btn btn-info" aria-expanded="false">Above Variant Threshold</button>
+          <button type="button" class="btn btn-info" aria-expanded="false" disabled="disbaled">Above Variant Threshold</button>
         </div>
         <div class="btn-group">
-          <button type="button" class="btn btn-default" aria-expanded="false">Not Significant</button>
+          <button type="button" class="btn btn-default" aria-expanded="false" disabled="disbaled">Not Significant</button>
         </div>
         <br /><br />
         <div id="scores_table_div_{{ page_name }}" class="top: 5px;"></div>

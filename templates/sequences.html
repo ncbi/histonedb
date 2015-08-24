@@ -25,7 +25,7 @@
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#" id="show_advanced_filter_{{ page_name }}" {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Add filters</a></li>
                 <li><a href="#" id="reset_filter_{{ page_name }}"  {% if blast_results or page_name == "basket" %}disabled="disabled"{% endif %}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear filters</a></li>
-                <li><a href="#" id="scores_modal_button_{{ page_name }}">View against all profiles</a></li>
+                <li><a href="#" id="scores_modal_button_{{ page_name }}">Score against all HMMs</a></li>
             </ul>
         </div>
         {% endif %}
