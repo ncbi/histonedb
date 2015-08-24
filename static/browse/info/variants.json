@@ -165,7 +165,7 @@
 			"publications":["22650316"]
 		},
 		"H3.3": {
-			"description": "H3.3 localizes cenH3 and is important for development, transcription, and chromosome segregation. Replication-independent ",
+			"description": "The major replication-independent or replacement H3, important for development, transcription, and chromosome segregation",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"soH3-1", "gene":1},
