@@ -148,7 +148,7 @@
 			"alternate_names": [
 				{"name":"H3.X", "gene":2}
 			],
-			"publications":["22650316"]
+			"publications":["22650316", "20819935"]
 		},
 		"H3.1": {
 			"description": "H3.1 is a recent mammal-specific variant diverged from H3.2, which is the replication-coupled H3 variant found throughout animals",
@@ -171,7 +171,7 @@
 				{"name":"soH3-1", "gene":1},
 				{"name":"soH3-2", "gene":2}
 			],
-			"publications":["22650316"]
+			"publications":["22650316", "20738881"]
 		} 
 	},
 	"H4": {
