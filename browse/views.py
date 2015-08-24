@@ -1,5 +1,6 @@
 import sys
 import json
+from  more_itertools import unique_everseen
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -123,9 +124,14 @@ def browse_variant(request, histone_type, variant):
             max=Max("score"), 
             min=Min("score")
         )
+
+#Distinct will not work here, because we order by "start", which is also included - see https://docs.djangoproject.com/en/dev/ref/models/querysets/#distinct
     features_gen = Feature.objects.filter(template__variant="General{}".format(histone_type)).values_list("name", "description", "color").distinct()
     features_var = Feature.objects.filter(template__variant=variant).values_list("name", "description", "color").distinct()
-    
+
+    features_gen=list(unique_everseen(features_gen))
+    features_var=list(unique_everseen(features_var))
+
     sequences = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
