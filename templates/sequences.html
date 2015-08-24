@@ -254,18 +254,17 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           url: "{% url 'browse.views.get_sequence_table_data' %}",
           sidePagination:"server",
           queryParams: function(params){
-            var current_query = {% autoescape off %}{{ current_query|jsonify }}{% endautoescape %};
-            {% if quick_msa %}
-            current_query["id_reviewed"] = true;
-            {% endif %}
             if (typeof extra_seq_params_{{ page_name }} == "undefined") {
               var extra_params = {};
             }
             else{
               var extra_params = extra_seq_params_{{ page_name }};
             }
-            console.log($.extend(params, current_query, extra_params));
-            var new_params = $.extend(params, current_query, extra_params);
+            {% if curated %}
+            extra_params["id_reviewed"] = true;
+            {% endif %}
+            console.log($.extend(params, extra_params));
+            var new_params = $.extend(params, extra_params);
             console.log("{{ page_name }}");
             console.log(new_params);
             return new_params;
