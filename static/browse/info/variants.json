@@ -151,7 +151,7 @@
 			"publications":["22650316", "20819935"]
 		},
 		"H3.1": {
-			"description": "H3.1 is a recent mammal-specific variant diverged from H3.2, which is the replication-coupled H3 variant found throughout animals",
+			"description": "H3.1 is a recent mammal-specific variant diverged from H3.2",
 			"taxonomic_span": "Mammals",
 			"alternate_names": [
 				{"name":"H3v1"}
