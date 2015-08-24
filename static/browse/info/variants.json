@@ -1,13 +1,13 @@
 {
 	"H2A": {
 		"canonicalH2A":{
-			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316","25731851"]
 		},
 		"H2A.Z": {
-			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the ranscription start site and in an enhancers. It has a larger acidic patch, an amino acid insertion in a1-helix and one deletion in the docking domain compared to canonical H2.A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional specificity of variant nucleosomes.",
+			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the transcription start site and in enhancers. It has a larger acidic patch, an amino acid insertion in a1-helix and one deletion in the docking domain compared to canonical H2.A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional specificity of variant nucleosomes",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names":[
 				{"name":"H2A.Z-1", "gene":1},
@@ -27,7 +27,7 @@
 
 		},
 		"H2A.X": {
-			"description":"H2A.X is involved in DNA damage response, chromatin remodeling and can be found in DNA double strand breaks, collapsed replication forks, and heterochromatin. It is the only non-monophyletic variant in H2A and has the motif SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals, and S is phosphorylated in H2A.X -containing nucleosomes at the DNA double strand breaks.",
+			"description":"H2A.X is involved in DNA damage response, chromatin remodeling and can be found in DNA double strand breaks, collapsed replication forks, and heterochromatin. It is the only non-monophyletic variant in H2A and has the motif SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals, and S is phosphorylated in H2A.X -containing nucleosomes at the DNA double strand breaks",
 			"taxonomic_span": "Eukaryotes except nematode",
 			"alternate_names": [
 				{"name":"member X"}
@@ -36,7 +36,7 @@
 
 		},
 		"macroH2A": {
-			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus.",
+			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus",
 			"taxonomic_span": "Mostly Vertebrate, but lost in several lineages including Caenorhabditis and Drosophila",
 			"alternate_names": [
 				{"name":"mH2A"},
@@ -51,7 +51,7 @@
 
 		},
 		"H2A.L": {
-			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1 H2A.L has a shorter C-terminal tail and docking domain. ",
+			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1 H2A.L has a shorter C-terminal tail and docking domain",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2AL"},
@@ -62,7 +62,7 @@
 
 		},
 		"H2A.B": {
-			"description": "H2A.B, also known as \"Barr body defficient\" varaint, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch.",
+			"description": "H2A.B, also known as \"Barr body defficient\" variant, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2A.Bbd"}
@@ -82,13 +82,13 @@
 	},
 	"H2B": {
 		"canonicalH2B":{
-			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
 		},
 		"subH2B": {
-			"description":"subH2B is involved in spermiogenesis and is found in subacrosomes of spermatozoa. It has a bipartite nuclear localization signal.",
+			"description":"subH2B is involved in spermiogenesis and is found in subacrosomes of spermatozoa. It has a bipartite nuclear localization signal",
 			"taxonomic_span":"Primates, rodents, marsupials, and bovids",
 			"alternate_names": [
 				{"name":"H2BL1"},
@@ -107,7 +107,7 @@
 			"publications":["22650316"]
 		},
 		"H2B.W": {
-			"description":"H2B.W is involved in spermiogenesis and telomere associated functions in sperm and is found in spermatogenic cells. It has an extended N-terminal tail.",
+			"description":"H2B.W is involved in spermiogenesis and telomere associated functions in sperm and is found in spermatogenic cells. It has an extended N-terminal tail",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2BFWT"},
@@ -127,13 +127,13 @@
 	},
 	"H3": {
 		"canonicalH3":{
-			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
 		},
 		"cenH3":{
-			"description":"cenH3 is a centromere-specific histone variant, it is required for assembly of kinetochore proteins, mitotic progression and chromosome segregation. The N-terminal tail of CENP-A is highly divergent from other H3 variants.",
+			"description":"cenH3 is a centromere-specific histone variant, it is required for assembly of kinetochore proteins, mitotic progression and chromosome segregation. The N-terminal tail of CENP-A is highly divergent from other H3 variants",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
@@ -143,7 +143,7 @@
 			"publications":["22650316"]
 		},
 		"H3.Y": {
-			"description": "H3.Y is involved in memory formation due to its presence in neurons in human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch.",
+			"description": "H3.Y is involved in memory formation due to its presence in neurons in human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch",
 			"taxonomic_span": "Primates",
 			"alternate_names": [
 				{"name":"H3.X", "gene":2}
@@ -176,7 +176,7 @@
 	},
 	"H4": {
 		"canonicalH4":{
-			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
+			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
 			"publications":["22650316"]
@@ -184,7 +184,7 @@
 	},
 	"H1": {
 		"H1.0":{
-			"description":"None provided.",
+			"description":"None provided",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"H1°"},
@@ -194,7 +194,7 @@
 			"publications":["22650316"]
 		},
 		"H1.6": {
-			"description":"None provided.",
+			"description":"None provided",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"H1t"}
@@ -210,7 +210,7 @@
 			"publications":["22650316"]
 		},
 		"H1.8": {
-			"description":"None provided.",
+			"description":"None provided",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"H1oo"}
@@ -218,7 +218,7 @@
 			"publications":["22650316"]
 		},
 		"H1.9": {
-			"description":"None provided.",
+			"description":"None provided",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"Hils1"}
@@ -226,7 +226,7 @@
 			"publications":["22650316"]
 		},
 		"H1.10": {
-			"description":"None provided.",
+			"description":"None provided",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"H1x"}
