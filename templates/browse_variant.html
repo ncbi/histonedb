@@ -3,9 +3,13 @@
 {% load browse_filters %}
 
 {% block set_filter_by_page %}
-$("#id_core_histone_drop_down a").not(":contains('{{ core_type }}')").parent().hide();
-$('#id_variant_drop_down a').not(":contains('{{ variant }}')").parent().hide();
-$("#id_variant").prop("readonly", true);
+$("#id_hist_type_label").hide();
+$("#id_hist_type_drop_down_button").hide();
+$('#id_variant_label').hide();
+$('#id_variant_drop_down_button').hide();
+$("#id_variant").hide();
+$("#id_variant_help").hide();
+$('#id_variant_search_type_drop_down_button').hide()
 {% endblock %}
 
 {% block includes %}
@@ -42,7 +46,8 @@ $("#id_variant").prop("readonly", true);
   });
 
   {% with page_name="browse_variant_"|add:variant|rchar:"." %}
-  var extra_seq_params_{{ page_name }} = {};
+  var extra_seq_params_browse_variant_{{ variant|rchar:"." }} = {% autoescape off %}{{ original_query|jsonify }}{% endautoescape %};
+  var extra_seq_params_browse_curated_variant_{{ variant|rchar:"."}} = $.extend(true, {}, extra_seq_params_browse_variant_{{ variant|rchar:"." }});
   {% endwith %}
 </script>
 {% endblock %}

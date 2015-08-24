@@ -24,13 +24,17 @@
     {% block includes %} {% endblock %}
 
     <script>
-      function open_advanced_filter(search_or_filter, table){
+      function open_advanced_filter(search_or_filter, table, parameters){
         if(search_or_filter == "search"){
           $("#advanced_filter_title").html("Advanced Search");
           $("#advanced_search_button").html("Search");
-          $("#id_core_histone_drop_down a").parent().show();
-          $('#id_variant_drop_down a').parent().show();
-          $("#id_variant").removeAttr("readonly");
+          $("#id_hist_type_label").css( "display", "block" );
+          $("#id_hist_type_drop_down_button").css( "display", "block" );
+          $('#id_variant_label').css( "display", "block" );
+          $('#id_variant_drop_down_button').css( "display", "block" );
+          $('#id_variant_search_type_drop_down_button').css( "display", "block" );
+          $("#id_variant").css( "display", "block" );
+          $("#id_variant_help").css( "display", "block" );
         }
         else if(search_or_filter == "filter"){
           $('#advanced_search_form').attr('action', '{{ request.url }}');
@@ -42,13 +46,22 @@
           {% endblock %}
         }
         $("#advanced_search_button").click(function(){
-            $("#advanced_search_form").submit();
-          });
+            $.each($('#advanced_search_form').serializeArray(), function(i, field) {
+              console.log(field.name+" = "+field.value);
+              if(field.value != ""){
+                parameters[field.name] = field.value;
+              }
+            });
+            console.log("FILTR");
+            console.log(parameters);
+            table.bootstrapTable("deleteCookie", "table-{{ page_name }}");
+            table.bootstrapTable('refresh');
+        });
         $("#advanced_filter").modal('show');
       }
       $(function () {
         $("#show_advanced_search").click(function() {
-          open_advanced_filter("search", false);
+          open_advanced_filter("search", false, {});
         });
 
         $(".badge-basket").html((JSON.parse(localStorage.getItem('basket')) || []).length);
@@ -138,7 +151,7 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-lg-2">
-                            <div class="pull-right">
+                            <div class="pull-right" id="{{ field.id_for_label }}_label">
                               {{ field.label_tag }}
                             </div>
                           </div>
@@ -148,17 +161,17 @@
                                 <input type="checkbox" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" {% if original_query|get:field.id_for_label  == "on" %} checked{% endif %} />
                               {% elif field|fieldtype != "ModelChoiceField" %}
                                 {% autoescape off %}
-                                  {{ field|get_search_type:current_query }}
+                                  {{ field|get_search_type:original_query }}
                                 {% endautoescape %}
                                 <input type="text" class="form-control" name="{{ field.id_for_label }}" id="{{ field.id_for_label }}" value="{{ original_query|get:field.id_for_label }}"/>
                               {% else %}
                                 {% autoescape off %}
-                                  {{ field|bootchoice_choice:current_query }}
+                                  {{ field|bootchoice_choice:original_query }}
                                 {% endautoescape %}
                               {% endif %}
                             </div>
                             {% if field.help_text %}
-                              <div class="help-text">{{ field.help_text }}</div>
+                              <div class="help-text" id="{{ field.id_for_label }}_help">{{ field.help_text }}</div>
                             {% endif %}
                           </div>
                         </div>

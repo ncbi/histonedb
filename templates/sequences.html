@@ -85,13 +85,9 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
 
 
     $reset_{{ page_name }}.click(function(){
-      {% if original_query|length == 0 %}
-      if(!confirm("No original query. Do you want to view all sequences? If not, use the Advanced Filter option.")) return;
-      {% else %}
-      if(!confirm("Do you want to clear all filters and return to original query?")) return;
-      {% endif %}
-
-      document.location.href = "{{ request.path }}";
+      extra_seq_params_{{ page_name }} = {% autoescape off %}{{ original_query|jsonify }}{% endautoescape %};
+      $('#sequence_table_{{ page_name }}').bootstrapTable("deleteCookie", "table-{{ page_name }}");
+      $('#sequence_table_{{ page_name }}').bootstrapTable('refresh');
     });
 
 
@@ -144,7 +140,6 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
       for(var i=basket.length-1; i>=0; i--){
         for (var j = 0; j < ids.length; j++) {
           if(ids[j] == basket[i]){
-            console.log
             basket.splice(i, 1);
           }
         }
@@ -215,10 +210,16 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
 
         window.taxonomyEvents = {
           'click #taxonomy_actions_browse_variant': function (e, value, row, index) {
-              document.location.href = "{% url 'browse.views.search' %}?id_variant="+row.variant+"&id_taxonomy="+row.taxid;
+              extra_seq_params_{{ page_name }}["id_variant"] = row.variant;
+              extra_seq_params_{{ page_name }}["id_taxonomy"] = row.taxid;
+              $('#sequence_table_{{ page_name }}').bootstrapTable("deleteCookie", "table-{{ page_name }}");
+              $('#sequence_table_{{ page_name }}').bootstrapTable('refresh');
           },
           'click #taxonomy_actions_browse_type': function (e, value, row, index) {
-              document.location.href = "{% url 'browse.views.search' %}?id_type="+row.type+"&id_taxonomy="+row.taxid;
+              extra_seq_params_{{ page_name }}["id_hist_type"] = row.type;
+              extra_seq_params_{{ page_name }}["id_taxonomy"] = row.taxid;
+              $('#sequence_table_{{ page_name }}').bootstrapTable("deleteCookie", "table-{{ page_name }}");
+              $('#sequence_table_{{ page_name }}').bootstrapTable('refresh');
           },
           'click #taxonomy_actions_browse_all': function (e, value, row, index) {
               document.location.href = "{% url 'browse.views.search' %}?id_taxonomy="+row.taxid;
@@ -264,7 +265,10 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
               var extra_params = extra_seq_params_{{ page_name }};
             }
             console.log($.extend(params, current_query, extra_params));
-            return $.extend(params, current_query, extra_params);
+            var new_params = $.extend(params, current_query, extra_params);
+            console.log("{{ page_name }}");
+            console.log(new_params);
+            return new_params;
           },
           {% endif %}
           columns: [
@@ -311,7 +315,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
         });
 
         $("#show_advanced_filter_{{ page_name }}").click( function (){
-          open_advanced_filter("filter", $table_{{ page_name }});
+          open_advanced_filter("filter", $table_{{ page_name }}, extra_seq_params_{{ page_name }});
         });
 
         $msa_modal_button_{{ page_name }}.click(function() {

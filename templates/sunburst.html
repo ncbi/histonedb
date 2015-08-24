@@ -223,9 +223,8 @@ $("#view_sequences_of_taxa_button").click(function() {
     $("#taxonomy_title").html(" - "+taxa);
   }
   $("#sequences_tab").tab("show");
-  $('#sequence_table_{{ page_name }}').bootstrapTable('refresh');
   $('#sequence_table_{{ page_name }}').bootstrapTable("deleteCookie", "table-{{ page_name }}");
-  //$('#sequence_table_{{ page_name }}').bootstrapTable('selectPage', "1");
+  $('#sequence_table_{{ page_name }}').bootstrapTable('refresh');
   
   console.log($("#sequences_tab"));
 });

@@ -100,20 +100,7 @@ def browse_variants(request, histone_type):
     }
 
     #Store sequences in session, accesed in get_sequence_table_data
-    original_query = {"id_hist_type":histone_type}
-    if request.method == "POST":
-        query = request.POST.copy()
-    else:
-        query = original_query
-
-    #Here we do the search
-    result = HistoneSearch(query)
-
-    data["original_query"] = original_query
-    if result.errors:
-        query = original_query
-        data["filter_errors"] = result.errors
-    data["current_query"] = query
+    data["original_query"] = {"id_hist_type":histone_type}
     
     return render(request, 'browse_variants.html', data)
 
@@ -187,37 +174,20 @@ def browse_variant(request, histone_type, variant):
         "filter_form": AdvancedFilterForm(),
     }
 
-    original_query = {"id_variant":variant.id}
-    if request.method == "POST":
-        query = request.POST.copy()
-    else:
-        query = original_query
-    result = HistoneSearch(query)
-
-    data["original_query"] = original_query
-    if result.errors:
-        query = original_query
-        data["filter_errors"] = result.errors
-    data["current_query"] = query
+    data["original_query"] = {"id_variant":variant.id}
 
     return render(request, 'browse_variant.html', data)
 
 def search(request):
     data = {"filter_form": AdvancedFilterForm()}
-    
+
     if request.method == "POST": 
         query = request.POST.copy()
     else:
         query = request.GET.copy()
-    result = HistoneSearch(
-        query,
-        navbar="search" in query.keys())
+    result = HistoneSearch(query, navbar="search" in query.keys())
 
-    if query.get("reset", True):
-        request.session["original_query"] = query
-
-    data["original_query"] = request.session.get("original_query", query)
-    data["current_query"] = query
+    data["original_query"] = query
 
     if len(result.errors) == 0:
         data["result"] = True
