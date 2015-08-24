@@ -33,7 +33,7 @@
       }
     }
   });
-  var extra_seq_params_search = {};
+  var extra_seq_params_search = {% autoescape off %}{{ original_query|jsonify }}{% endautoescape %};
 </script>
 {% endblock %}
 

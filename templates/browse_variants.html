@@ -3,8 +3,8 @@
 {% load browse_filters %}
 
 {% block set_filter_by_page %}
-$("#id_core_histone_drop_down a").not(":contains('{{ histone_type }}')").parent().hide();
-$('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hide();
+$("#id_hist_type_label").hide();
+$("#id_hist_type_drop_down_button").hide();
 {% endblock %}
 
 {% block includes %}
@@ -81,7 +81,8 @@ $('#id_variant_drop_down a').not(":contains('{{ histone_type }}')").parent().hid
   }
 
   {% with page_name="browse_variants_"|add:histone_type|rchar:"." %}
-  var extra_seq_params_{{ page_name }} = {};
+  var extra_seq_params_browse_variants_{{ histone_type }} = {% autoescape off %}{{ original_query|jsonify }}{% endautoescape %};
+  var extra_seq_params_browse_curated_variants_{{ histone_type }} = $.extend(true, {}, extra_seq_params_browse_variants_{{ histone_type }});
   {% endwith %}
 </script>
 {% endblock %}
