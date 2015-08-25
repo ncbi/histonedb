@@ -182,14 +182,26 @@ function isParentOf(p, c) {
 
 function colour(d) {
   if (d.children) {
-    // There is a maximum of two children!
-    var colours = d.children.map(colour),
-        a = d3.hsl(colours[0]),
-        b = d3.hsl(colours[1]);
-    // L*a*b* might be better here...
-    return d3.hsl((a.h + b.h) / 2, a.s * 1.2, a.l / 1.2);
+    // There is a maximum of two children! - fixed, there may be more
+    var colours = d.children.map(colour);
+    var len=colours.length;
+{#    console.log(len);#}
+{#    console.log(colours);#}
+    var h=0.0,s=0.0,l=0.0;
+
+    for (i = 0; i < len; i++) {
+    c=d3.hsl(colours[i]);
+    h=h+c.h; s=s+c.s; l=l+c.l;
+    console.log(h,s,l,len);
+
+    }
+
+{#    return d3.hsl((a.h + b.h) / 2, a.s * 1.2, a.l / 1.2);#}
+    return d3.hsl(h/len,s/len,l/len);
+
   }
-  return d.colour || "#fff";
+{#  console.log(d3.hsl(d.colour));#}
+  return d3.hsl(d.colour) || d3.hsl("#fff");
 }
 
 // Interpolate the scales!
