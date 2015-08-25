@@ -23,10 +23,14 @@ def taxids_from_gis(gis):
     """
     """
     for s in seq_from_gi(gis):
-        a=s.features[0].qualifiers['db_xref'][0]
-        id=re.search(':(\d+)',a).group(1)
-        print "Taxid ",id
-        yield id
+        for a in s.features[0].qualifiers['db_xref']:
+            text=re.search('(\S+):(\d+)',a).group(1)
+            id=re.search('(\S+):(\d+)',a).group(2)
+            if(text=="taxon"):
+                print "Taxid ",id
+                yield id
+            else:
+                continue
 
 already_exists = []
 
