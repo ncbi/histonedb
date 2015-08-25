@@ -151,7 +151,7 @@ def browse_variant(request, histone_type, variant):
         handle = Entrez.efetch(db="pubmed", id=publication_ids, rettype="medline", retmode="text")
         records = Medline.parse(handle)
         publications = ['{}. "{}" <i>{}</i>, {}. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={}">{}</a>'.format(
-            "{}, {}, et al".format(*record["AU"][0:2]) if len(record["AU"])>2 else " and ".join(*record["AU"]),
+            "{}, {}, et al".format(*record["AU"][0:2]) if len(record["AU"])>2 else " and ".join(record["AU"]) if len(record["AU"])==2 else record["AU"][0],
             record["TI"],
             record["TA"],
             re.search("\d\d\d\d",record["SO"]).group(0),

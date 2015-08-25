@@ -27,12 +27,12 @@
 
 		},
 		"H2A.X": {
-			"description":"H2A.X is involved in DNA damage response, chromatin remodeling and can be found in DNA double strand breaks, collapsed replication forks, and heterochromatin. It is the only non-monophyletic variant in H2A and has the motif SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals, and S is phosphorylated in H2A.X -containing nucleosomes at the DNA double strand breaks",
+			"description":"H2A.X most notably is involved in DNA damage response, marking the double strand DNA breaks with its phosphorylated form ɣ-H2A.X. It is also more broadly implicated in chromatin remodeling, found at collapsed replication forks and heterochromatin. It is the only non-monophyletic variant in H2A and has the charactristic SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue (usually Tyr in mammals), and S is phosphorylation site. Nematodes are the only known species that lack H2A.X. In yeast H2A.X function is fulfilled by conventional H2A, while in Drosophila melanogaster by H2A.Z.",
 			"taxonomic_span": "Eukaryotes except nematode",
 			"alternate_names": [
 				{"name":"member X"}
 			],
-		  			"publications":["22650316","25731851"]
+		  			"publications":["22650316","25731851","18095327","23301656"]
 
 		},
 		"macroH2A": {
@@ -51,32 +51,36 @@
 
 		},
 		"H2A.L": {
-			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1 H2A.L has a shorter C-terminal tail and docking domain",
+			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1. H2A.L has a shorter C-terminal tail and docking domain.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2AL"},
 				{"name":"H2AL1", "gene":1},
-				{"name":"H2AL2", "gene":2}
+				{"name":"H2AL2", "gene":2},
+			  	{"name":"H2A.Lap2"},
+			  	{"name":"H2A.Lap3"},
+			  	{"name":"H2A.Lap4"}
 			],
-		  		  			"publications":["22650316","25731851"]
+		    "publications":["22650316","25731851","19506029","17261847","18703863"]
 
 		},
 		"H2A.B": {
-			"description": "H2A.B, also known as \"Barr body defficient\" variant, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch",
+			"description": "H2A.B, also known as \"Barr body defficient\" variant, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch. It is possible that mouse homolog of H2A.B, also called H2A.Lap1, bears modified function with respect to human H2A.B. H2A.Lap1 has additional negative residue in acidic patch, which is thought to increase its propensity to compact nucleosomal arrays relative to human H2A.B",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
-				{"name":"H2A.Bbd"}
+				{"name":"H2A.Bbd"},
+			    {"name":"H2A.Lap1(mouse)"}
 			],
-		  "publications":["22650316","25731851","24853749","18329190","17726088"]
+		  "publications":["22650316","25731851","24853749","18329190","17726088","24213378"]
 
 		},
 		"H2A.M": { 
-			"description":"H2A.M is a new variant that binds to huntington protein M. It is closely related to H2A.B and H2A.L",
+			"description":"H2A.M is a putative variant closely related to H2A.B and H2A.L, but forming a distinct clade.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
-				{"name":"Huntington protein M"}
+				{"name":"Huntingtin-interacting protein M"}
 			],
-		  		  			"publications":["22650316","25731851"]
+		  		  			"publications":[]
 
 		}
 	},
