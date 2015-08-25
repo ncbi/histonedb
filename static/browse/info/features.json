@@ -20,7 +20,7 @@
                 "D":{"type":"secondary","name":"Docking domain","color":"#aa00aa","description":"Docking domain locks the H2A-H2B dimer on the H3-H4 tetramer surface.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "a":{"type":"residue","name":"mgArg1","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "A":{"type":"residue","name":"mgArg2","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "p":{"type":"residue","name":"aap","color":"#55aaff","description":"Acidic patch residues","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
+                "p":{"type":"residue","name":"ap","color":"#55aaff","description":"Acidic patch residues","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
 
             }
         },
