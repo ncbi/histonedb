@@ -314,7 +314,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
         });
 
         $("#show_advanced_filter_{{ page_name }}").click( function (){
-          open_advanced_filter("filter", $table_{{ page_name }}, extra_seq_params_{{ page_name }});
+          open_advanced_filter("filter", $('#sequence_table_{{ page_name }}'), extra_seq_params_{{ page_name }});
         });
 
         $msa_modal_button_{{ page_name }}.click(function() {
