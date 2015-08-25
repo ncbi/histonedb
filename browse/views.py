@@ -105,11 +105,16 @@ def browse_variants(request, histone_type):
     
     return render(request, 'browse_variants.html', data)
 
-def browse_variant(request, histone_type, variant):
+def browse_variant(request, histone_type, variant,gi):
+    #gi - is an optional argument - if specified - should open curated sequences page and activate this variant
     try:
         variant = Variant.objects.get(id=variant)
     except:
         return "404"
+
+    go_to_curated = True if gi else False
+    go_to_gi = gi if gi else 0
+
 
     green = Color("#66c2a5")
     red = Color("#fc8d62")
@@ -178,6 +183,8 @@ def browse_variant(request, histone_type, variant):
         "description": variant.description,
         "alternate_names": ", ".join(variant.old_names.values_list("name", flat=True)),
         "filter_form": AdvancedFilterForm(),
+        "go_to_curated":go_to_curated,
+        "go_to_gi":go_to_gi,
     }
 
     data["original_query"] = {"id_variant":variant.id}

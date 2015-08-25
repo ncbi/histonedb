@@ -220,7 +220,7 @@ class Command(BaseCommand):
                         desc = ET.Element("desc")
                         desc.text = "Variant {} from {} ({})".format(variant, genus, gi)
                         uri = ET.Element("uri")
-                        uri.text = "variant/{}/".format(variant)
+                        uri.text = "variant/{}/{}".format(variant,gi)
                         annotation.append(desc)
                         annotation.append(uri)
                         clade.append(annotation)

@@ -296,11 +296,18 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           formatNoMatches: function(){ return "{{ formatNoMatches }}"; },
           {% endif %}
           {% if quick_msa and curated %}
-          onLoadSuccess: function(data){
-            createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
-            $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
-          },
-
+              {% if go_to_curated %}
+                onLoadSuccess: function(data){
+                createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id={{ go_to_gi }}", "", 975, 75, false);
+            //TODO: How to activate and scroll to correct row???
+                $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
+                },
+                  {% else %}
+                onLoadSuccess: function(data){
+                createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
+                $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
+                },
+                  {% endif %}
           onClickCell:function(event, value, row, index){
           createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
           },
