@@ -40,7 +40,7 @@ def read_gis(file):
     Reads a gis from file, one per line
     """
     with open(file,'r') as f:
-        gis = [re.search('(\d+)',line).group(1) for line in f]
+        gis = [re.search('(\d+)',line).group(1) for line in f if (not line.startswith('#'))]
     return gis
 
 

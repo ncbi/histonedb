@@ -7,7 +7,7 @@
 			"publications":["22650316","25731851"]
 		},
 		"H2A.Z": {
-			"description":"H2A.Z is involved in Pol II recruitment, transcription regulation, DNA repair, and suppression of antisense RNA and can be found in nucleosomes at the transcription start site and in enhancers. It has a larger acidic patch, an amino acid insertion in a1-helix and one deletion in the docking domain compared to canonical H2.A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional specificity of variant nucleosomes",
+			"description":"H2A.Z containing nucleosomes often localize near transcription start and enhancer regions, they are thought to be involved in Pol II recruitment, transcription regulation, DNA repair, suppression of antisense RNA. H2A.Z nucleosomes have a larger acidic patch, an amino acid insertion in α1-helix and one deletion in the docking domain compared to canonical H2A. The L1-loop region exhibits four amino acids difference between H2A.Z and canonical H2A and is likely involved in conferring stability and functional specificity of variant nucleosomes via L1-L1 interactions.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names":[
 				{"name":"H2A.Z-1", "gene":1},
@@ -23,7 +23,7 @@
 				{"name":"D2", "taxonomy":"drosophila"},
 				{"name":"member Z"}
 			],
-		  			"publications":["22650316","25731851"]
+		  			"publications":["22650316","25731851","11101893","18275809","24311584","19193230","24969791","22467210","20003410","24768041","23301656","20197778"]
 
 		},
 		"H2A.X": {
@@ -36,8 +36,8 @@
 
 		},
 		"macroH2A": {
-			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus",
-			"taxonomic_span": "Mostly Vertebrate, but lost in several lineages including Caenorhabditis and Drosophila",
+			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus.",
+			"taxonomic_span": "Vertebrates",
 			"alternate_names": [
 				{"name":"mH2A"},
 				{"name":"macroH2A1", "gene":1},
@@ -47,7 +47,7 @@
 				{"name":"macroH2A2.1", "gene":2, "splice":1},
 				{"name":"macroH2A2.2", "gene":2, "splice":2}
 			],
-		  		  		  			"publications":["22650316","25731851"]
+		  		  		  			"publications":["22650316","25731851","16107708","20543561","16803903"]
 
 		},
 		"H2A.L": {
