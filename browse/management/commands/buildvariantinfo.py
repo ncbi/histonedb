@@ -52,7 +52,7 @@ class Command(BaseCommand):
                     except:
                         from django.db import connection
                         cursor = connection.cursor()
-                        cursor.execute("ALTER DATABASE histdb CHARACTER SET utf8 COLLATE utf8_general_ci")
+                        cursor.execute("ALTER TABLE browse_feature CONVERT TO CHARACTER SET utf8 COLLATE     utf8_general_ci;")
                         alt_variant.save()
 
                 for publication_id in info["publications"]:

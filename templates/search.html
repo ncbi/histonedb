@@ -19,7 +19,7 @@
         localStorage.setItem('lastTab', $(this).attr('href'));
         console.log($(e.target).attr("href"));
         if($(e.target).attr('href') == "#taxonomy"){
-          drawSunburst("{% url 'browse.views.get_sunburst_json' %}{% autoescape off %}{{ ""|add_parameters:current_query }}{% endautoescape %}");
+          drawSunburst("{% url 'browse.views.get_sunburst_json' %}?"+$.param(extra_seq_params_search));
           console.log("Called");
         }
     });
