@@ -84,6 +84,21 @@ class Command(BaseCommand):
         #Load the sequences and classify them based on thresholds
         self.load_from_db()
 
+        self.canonical2H2AX()
+
+    def canonical2H2AX(self):
+        """Fix an issue where the canonical variant takes over sequence from H2A.X. 
+        The H2A.X motif SQ[ED][YFL]$ is not strong enough, but is the correct variant.
+        """
+        for s in Sequence.objects.filter(variant="canonicalH2A", sequence__regex="SQ[ED][YFLI]$"):
+            old_score = s.all_model_scores.get(used_for_classifaction=True)
+            old_score.used_for_classifaction = False
+            old_score.save()
+            new_score, created = Score.objects.get_or_create(variant__id="H2A.X")
+            new_score.used_for_classifaction = True
+            new_score.regex = True
+            new_score.save()
+
     def create_histone_types(self):
         """Create basic histone types
         Check that these names are consistent with the folder names in static/browse/seeds/

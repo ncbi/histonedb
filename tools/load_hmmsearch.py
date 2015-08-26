@@ -108,7 +108,7 @@ def load_hmm_results(hmmerFile):
               continue
           print seq
 
-  #Delete 'unknown' records that were found by HMMsearch but did not pass threshold.?
+  #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
   unknown_model.sequences.all().delete()
   unknown_model.delete()
 
@@ -121,7 +121,7 @@ def add_sequence(gi, variant_model, taxonomy, header, sequence):
     splice   = None,
     taxonomy = taxonomy,
     header   = header,
-    sequence = str(sequence),
+    sequence = str(sequence).replace("-", ""),
     reviewed = False,
     )
   seq.save()
@@ -131,16 +131,17 @@ def add_score(seq, variant_model, hsp, best=False):
   """Add score for a given sequence"""
   score_num = Score.objects.count()+1
   score = Score(
-    id                     = score_num,
-    sequence               = seq,
-    variant                = variant_model,
-    score                  = hsp.bitscore,
-    evalue                 = hsp.evalue,
-    above_threshold        = hsp.bitscore >= variant_model.hmmthreshold,
-    hmmStart               = hsp.query_start,
-    hmmEnd                 = hsp.query_end,
-    seqStart               = hsp.hit_start,
-    seqEnd                 = hsp.hit_end,
+    id                      = score_num,
+    sequence                = seq,
+    variant                 = variant_model,
+    score                   = hsp.bitscore,
+    evalue                  = hsp.evalue,
+    above_threshold         = hsp.bitscore >= variant_model.hmmthreshold,
+    hmmStart                = hsp.query_start,
+    hmmEnd                  = hsp.query_end,
+    seqStart                = hsp.hit_start,
+    seqEnd                  = hsp.hit_end,
     used_for_classification = best,
+    regex                   = False,
     )
   score.save()

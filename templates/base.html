@@ -55,10 +55,8 @@
                 parameters[field.name] = field.value;
               }
             });
-            console.log("FILTR");
-            console.log(parameters);
-            table.bootstrapTable("deleteCookie", "table-{{ page_name }}");
             table.bootstrapTable('refresh');
+            table.bootstrapTable("selectPage", 0);
           });
         }
         

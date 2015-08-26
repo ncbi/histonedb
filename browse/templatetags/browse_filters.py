@@ -30,6 +30,13 @@ def listify(value):
     else:
         return [value]
 
+@register.filter('get_extracted')
+def get_extracted(page_name):
+    """Convert curated page name to canonical"""
+    if page_name.startswith("browse_curated_variant"):
+        return page_name.replace("_curated", "")
+    return page_name
+
 @register.filter('bootchoice_choice')
 def bootchoice_choice(field, default_values={}):
     #choice = str(field).replace("<select", "<select width=100% class=\"form-control\"")
