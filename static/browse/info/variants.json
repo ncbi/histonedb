@@ -78,9 +78,12 @@
 			"description":"H2A.M is a putative variant closely related to H2A.B and H2A.L, but forming a distinct clade.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
-				{"name":"Huntingtin-interacting protein M"}
+				{"name":"Huntingtin-interacting protein M"},
+				{"name":"HYPM"},
+				{"name":"CXorf27"},
+				{"name":"HIP17"}
 			],
-		  		  			"publications":[]
+		    "publications":["22025671", "9700202"]
 
 		}
 	},

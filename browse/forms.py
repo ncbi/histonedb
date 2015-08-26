@@ -2,9 +2,10 @@ from django import forms
 from django.forms import ModelForm
 from browse.models import Histone, Variant, Sequence
 from browse.search import search_types
+from autocomplete_light import ModelForm as AutoModelForm
 
 class AdvancedFilterForm(ModelForm):
-    core_histone = forms.ModelChoiceField(Histone.objects.all())
+    hist_type    = forms.ModelChoiceField(Histone.objects.all())
     taxonomy     = forms.CharField(max_length=50)
     sequence     = forms.CharField(max_length=50)
     score        = forms.FloatField()
@@ -12,21 +13,20 @@ class AdvancedFilterForm(ModelForm):
     refseq       = forms.BooleanField()
     unique       = forms.BooleanField()
 
-    tabs = {"Basic": ["core_histone", "variant", "taxonomy"]}
+    tabs = {"Basic": ["hist_type", "variant", "taxonomy"]}
     tabs_order = ["Basic", "Advanced"]
-
 
     class Meta:
         model = Sequence
-        fields = ["id", "core_histone", "variant", "taxonomy", "header", "sequence"] #"gene", "splice"], 
+        fields = ["id", "hist_type", "variant", "taxonomy", "header", "sequence"] #"gene", "splice"], 
         
 
     def __init__(self, *args, **kwargs):
         super(AdvancedFilterForm, self).__init__(*args, **kwargs)
         self.fields['id'].label = "GI"
         self.fields['id'].tab = "Advanced"
-        self.fields['core_histone'].label = "Histone"
-        self.fields['core_histone'].tab = "Basic"
+        self.fields['hist_type'].label = "Histone"
+        self.fields['hist_type'].tab = "Basic"
         self.fields['variant'].help_text = "Structurally distinct monophyletic clade of a histone family. Enter new or old variant names. Supports new dot (.) syntax."
         self.fields['variant'].tab = "Basic"
         self.fields['taxonomy'].help_text = "Supports all NCBI Taxonomy names and IDs"

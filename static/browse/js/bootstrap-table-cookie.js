@@ -46,6 +46,10 @@
             return;
         }
 
+        if ($.inArray(cookieName.toLowerCase(), that.options.cookiesEnabled) === -1) {
+            return;
+        }
+
         cookieName = that.options.cookieIdTable + '.' + cookieName;
         if (!cookieName || /^(?:expires|max\-age|path|domain|secure)$/i.test(cookieName)) {
             return false;
@@ -55,11 +59,17 @@
         return true;
     };
 
-    var getCookie = function (tableName, cookieName) {
-        cookieName = tableName + '.' + cookieName;
+    var getCookie = function (that, tableName, cookieName) {
         if (!cookieName) {
             return null;
         }
+
+        if ($.inArray(cookieName.toLowerCase(), that.options.cookiesEnabled) === -1) {
+            return null;
+        }
+
+        cookieName = tableName + '.' + cookieName;
+
         return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(cookieName).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
     };
 
@@ -80,7 +90,7 @@
     };
 
     var calculateExpiration = function(cookieExpire) {
-        var time = cookieExpire.replace(/[0-9]/, ''); //s,mi,h,d,m,y
+        var time = cookieExpire.replace(/[0-9]*/, ''); //s,mi,h,d,m,y
         cookieExpire = cookieExpire.replace(/[A-Za-z]/, ''); //number
 
         switch (time.toLowerCase()) {
@@ -117,6 +127,7 @@
         cookieDomain: null,
         cookieSecure: null,
         cookieIdTable: '',
+        cookiesEnabled: ['bs.table.sortOrder', 'bs.table.sortName', 'bs.table.pageNumber', 'bs.table.pageList', 'bs.table.columns', 'bs.table.searchText', 'bs.table.filterControl'],
         //internal variable
         filterControls: [],
         filterControlValuesLoaded: false
@@ -143,6 +154,10 @@
         this.options.filterControls = [];
         this.options.filterControlValuesLoaded = false;
 
+
+        this.options.cookiesEnabled = typeof this.options.cookiesEnabled === 'string' ?
+            this.options.cookiesEnabled.replace('[', '').replace(']', '').replace(/ /g, '').toLowerCase().split(',') : this.options.cookiesEnabled;
+
         if (this.options.filterControl) {
             var that = this;
             this.$el.on('column-search.bs.table', function (e, field, text) {
@@ -167,7 +182,7 @@
                 setTimeout(function () {
                     if (!that.options.filterControlValuesLoaded) {
                         that.options.filterControlValuesLoaded = true;
-                        var filterControl = JSON.parse(getCookie(that.options.cookieIdTable, cookieIds.filterControl));
+                        var filterControl = JSON.parse(getCookie(that, that.options.cookieIdTable, cookieIds.filterControl));
                         if (filterControl) {
                             var field = null,
                                 result = [],
@@ -208,12 +223,12 @@
             return;
         }
 
-        var sortOrderCookie = getCookie(this.options.cookieIdTable, cookieIds.sortOrder),
-            sortOrderNameCookie = getCookie(this.options.cookieIdTable, cookieIds.sortName),
-            pageNumberCookie = getCookie(this.options.cookieIdTable, cookieIds.pageNumber),
-            pageListCookie = getCookie(this.options.cookieIdTable, cookieIds.pageList),
-            columnsCookie = JSON.parse(getCookie(this.options.cookieIdTable, cookieIds.columns)),
-            searchTextCookie = getCookie(this.options.cookieIdTable, cookieIds.searchText);
+        var sortOrderCookie = getCookie(this, this.options.cookieIdTable, cookieIds.sortOrder),
+            sortOrderNameCookie = getCookie(this, this.options.cookieIdTable, cookieIds.sortName),
+            pageNumberCookie = getCookie(this, this.options.cookieIdTable, cookieIds.pageNumber),
+            pageListCookie = getCookie(this, this.options.cookieIdTable, cookieIds.pageList),
+            columnsCookie = JSON.parse(getCookie(this, this.options.cookieIdTable, cookieIds.columns)),
+            searchTextCookie = getCookie(this, this.options.cookieIdTable, cookieIds.searchText);
 
         //sortOrder
         this.options.sortOrder = sortOrderCookie ? sortOrderCookie : 'asc';
@@ -228,7 +243,7 @@
 
         if (columnsCookie) {
             $.each(this.columns, function (i, column) {
-                column.visible = columnsCookie.indexOf(column.field) !== -1;
+                column.visible = $.inArray(column.field, columnsCookie) !== -1;
             });
         }
     };
@@ -285,7 +300,7 @@
     
     BootstrapTable.prototype.selectPage = function (page) {
         _selectPage.apply(this, Array.prototype.slice.apply(arguments));
-        setCookie(this, idsStateSaveList.pageNumber, page);
+        setCookie(this, cookieIds.pageNumber, page);
     };
 
     BootstrapTable.prototype.onSearch = function () {

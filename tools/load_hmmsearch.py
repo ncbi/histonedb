@@ -108,7 +108,7 @@ def load_hmm_results(hmmerFile):
               continue
           print seq
 
-  #Delete 'unknown' records that were found by HMMsearch but did not pass threshold.?
+  #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
   unknown_model.sequences.all().delete()
   unknown_model.delete()
 
@@ -121,7 +121,7 @@ def add_sequence(gi, variant_model, taxonomy, header, sequence):
     splice   = None,
     taxonomy = taxonomy,
     header   = header,
-    sequence = str(sequence),
+    sequence = str(sequence).replace("-", ""),
     reviewed = False,
     )
   seq.save()

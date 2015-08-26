@@ -56,7 +56,7 @@ def tax_sub_search(value):
             #Convert homonym into real taxon
             taxon = taxon.get_scientific_names()[0]
         ids.add(taxon.id)
-        children = set(taxon.children.values_list("id", flat=True).filter(rank=2))
+        children = set(taxon.children.values_list("id", flat=True))
         ids |= children
 
     format_query.current_query = "taxonomy__in"
@@ -278,7 +278,7 @@ class HistoneSearch(object):
             return
 
         self.query_set = self.query_set.filter(**self.query)
-
+        
         if self.unique:
             unique_ids = self.query_set.values("sequence", "taxonomy").annotate(id=Max("id")).values_list("id", flat=True) #.annotate(num_unique=Sum("num_tax"))
             self.count = unique_ids.count()
