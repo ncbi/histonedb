@@ -27,7 +27,7 @@
 
 		},
 		"H2A.X": {
-			"description":"H2A.X most notably is involved in DNA damage response, marking the double strand DNA breaks with its phosphorylated form ɣ-H2A.X. It is also more broadly implicated in chromatin remodeling, found at collapsed replication forks and heterochromatin. It is the only non-monophyletic variant in H2A and has the charactristic SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue (usually Tyr in mammals), and S is phosphorylation site. Nematodes are the only known species that lack H2A.X. In yeast H2A.X function is fulfilled by conventional H2A, while in Drosophila melanogaster by H2A.Z.",
+			"description":"H2A.X most notably is involved in DNA damage response, marking the double strand DNA breaks with its phosphorylated form ɣ-H2A.X. It is also more broadly implicated in chromatin remodeling, found at collapsed replication forks and heterochromatin. It is the only non-monophyletic variant in H2A and has the charactristic SQE/DΦ motif at C-terminus (SQAY in Drosophila), where Φ-represents a hydrophobic residue (usually Tyr in mammals), and S is phosphorylation site. Nematodes are the only known species that lack H2A.X. In yeast H2A.X function is fulfilled by conventional H2A, while in Drosophila melanogaster by H2A.Z.",
 			"taxonomic_span": "Eukaryotes except nematode",
 			"alternate_names": [
 				{"name":"member X"}

@@ -49,7 +49,7 @@
             "sequence":"MAGGKAGKDSGKAKTKAVSRSQRAGLQFPVGRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKATIAGGGVIPHIHKSLIGKKGQQKTV",
             "feature1":"==========================================iii====================================================Z==dd==========================",
             "feature_info":{
-                "Z":{"type":"motif", "name":"X>D", "description":"Site of characteristic X>D substitution in many H2A.Z (excl. Trypanosoma), which enlarges acidic patch", "color":"#00ff00", "source":""},
+                "Z":{"type":"motif", "name":"X>D", "description":"Site of characteristic X>D substitution in many H2A.Z (excl. Trypanosoma), which enlarges acidic patch. Resulting DEELD motif is usually characteristic of H2A.Z.", "color":"#00ff00", "source":""},
                 "i":{"type":"motif", "name":"IN", "description":"Site of characteristic one amino acid insertion with respect to canonical H2A in L1-loop.", "color":"#ff0000", "source":""},
                 "d":{"type":"motif", "name":"DEL", "description":"Site of characteristic one amino acid deletion with respect to canonical H2A.", "color":"#aaffff", "source":""}
             }
