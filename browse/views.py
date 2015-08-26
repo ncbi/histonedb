@@ -105,16 +105,11 @@ def browse_variants(request, histone_type):
     
     return render(request, 'browse_variants.html', data)
 
-def browse_variant(request, histone_type, variant,gi):
-    #gi - is an optional argument - if specified - should open curated sequences page and activate this variant
+def browse_variant(request, histone_type, variant):
     try:
         variant = Variant.objects.get(id=variant)
     except:
         return "404"
-
-    go_to_curated = True if gi else False
-    go_to_gi = gi if gi else 0
-
 
     green = Color("#66c2a5")
     red = Color("#fc8d62")
@@ -183,8 +178,6 @@ def browse_variant(request, histone_type, variant,gi):
         "description": variant.description,
         "alternate_names": ", ".join(variant.old_names.values_list("name", flat=True)),
         "filter_form": AdvancedFilterForm(),
-        "go_to_curated":go_to_curated,
-        "go_to_gi":go_to_gi,
     }
 
     data["original_query"] = {"id_variant":variant.id}
@@ -309,6 +302,8 @@ def get_all_scores(request, ids=None):
                     rows[indices[score.variant.id]][id] = score.score
                     rows[indices[score.variant.id]]["data"]["above_threshold"][id] = score.score>=threshold
                     rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.used_for_classification
+                    if score.regex:
+                        rows[indices[score.variant.id]][id] += " (Has {} motif - classified from regex)".format(score.variant.id)
             
     return JsonResponse(rows, safe=False)
 
@@ -385,13 +380,7 @@ def get_aln_and_features(request, ids=None):
             try:
                 canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
             except:
-                try: #try H2A.X as a substitute for canonical
-                    if(str(seq.variant.hist_type)=='H2A'):
-                        canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
-                    else:
-                        raise
-                except: #default Xenopus
-                    canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
             sequences = [canonical, seq]
             sequence_label = seq.short_description
             
@@ -570,3 +559,4 @@ def get_sunburst_json(request, parameters=None):
         return JsonResponse(sunburst, safe=False)
     else:
         raise Http404("No taxonomy distribution sunburst for query") 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

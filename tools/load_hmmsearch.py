@@ -131,16 +131,17 @@ def add_score(seq, variant_model, hsp, best=False):
   """Add score for a given sequence"""
   score_num = Score.objects.count()+1
   score = Score(
-    id                     = score_num,
-    sequence               = seq,
-    variant                = variant_model,
-    score                  = hsp.bitscore,
-    evalue                 = hsp.evalue,
-    above_threshold        = hsp.bitscore >= variant_model.hmmthreshold,
-    hmmStart               = hsp.query_start,
-    hmmEnd                 = hsp.query_end,
-    seqStart               = hsp.hit_start,
-    seqEnd                 = hsp.hit_end,
+    id                      = score_num,
+    sequence                = seq,
+    variant                 = variant_model,
+    score                   = hsp.bitscore,
+    evalue                  = hsp.evalue,
+    above_threshold         = hsp.bitscore >= variant_model.hmmthreshold,
+    hmmStart                = hsp.query_start,
+    hmmEnd                  = hsp.query_end,
+    seqStart                = hsp.hit_start,
+    seqEnd                  = hsp.hit_end,
     used_for_classification = best,
+    regex                   = False,
     )
   score.save()
