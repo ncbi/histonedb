@@ -3,7 +3,7 @@
 		"canonicalH2A":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
-			"alternate_names": [],
+			"alternate_names": [{"name":"cnH2A"}],
 			"publications":["22650316","25731851"]
 		},
 		"H2A.Z": {

@@ -1,0 +1,22 @@
+#taken from original alignment
+398366187 - yeast, refseq close to pdb 1id3 - also canonical, but we call h2a.x
+159108895|H2A.X Giardia_H2A.X
+66814816|H2A.X Dictyostelium_H2A.X
+#61658009|H2A.X Alexandrium_H2A.X - this is dinoglagellate - should have no histones???
+118386111|H2A.X Tetrahymena_H2A.X
+15221875|H2A.X Arabidopsis_H2A.X.3
+115488866|H2A.X Oryza_H2A.X
+398366187|H2A.X Saccharomyces_H2A.X should be also canonical
+758974979|H2A.X Ustilago_H2A.X
+19115333|H2A.X Schizosaccharomyces_H2A.X - should be also canonical
+196012824|H2A.X Trichoplax_H2A.X
+126326560|H2A.X Monodelphis_H2A.X
+7106331|H2A.X Mus_H2A.X
+157817664|H2A.X Rattus_H2A.X
+4504253|H2A.X Homo_H2A.X
+119331192|H2A.X Bos_H2A.X
+41055102|H2A.X Danio_H2A.X
+66506394|H2A.X Apis_H2A.X
+66359884|H2A.X Cryptosporidium_H2A.X
+237831985|H2A.X Toxoplasma_H2A.X
+294943912|H2A.X Perkinsus_H2A.X.1
