@@ -6,7 +6,7 @@
 17562014 - C. elegans
 24585673 - Drosophila, refseq close to pdb 2ypo
 10645195 - human, refseq close to pdb 3afa
-398366187 - yeast, refseq close to pdb 1id3
+#398366187 - yeast, refseq close to pdb 1id3 - this is H2A.X now
 694915112 - Pan troglodytes
 302565564 - macaca mulatta
 675650858 - Callithrix jacchus
@@ -28,8 +28,8 @@
 758974979 - Ustilago maydis 521 - putative
 239897365 - Perkinsus marinus atcc 50983
 115488402 - Oryza sativa Japonica Group
-19115333 - Schizosaccharomyces pombe
-19075680 - Schizosaccharomyces pombe
+#19115333 - Schizosaccharomyces pombe - H2A.X now
+#19075680 - Schizosaccharomyces pombe - H2A.X now
 237831941 - Toxoplasma gondii me49
 66807867 - Dictyostelium discoideum ax4
 156225472 - Nematostella vectensis

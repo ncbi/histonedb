@@ -3,7 +3,7 @@
 		"canonicalH2A":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
-			"alternate_names": [],
+			"alternate_names": [{"name":"cnH2A"}],
 			"publications":["22650316","25731851"]
 		},
 		"H2A.Z": {
@@ -23,7 +23,7 @@
 				{"name":"D2", "taxonomy":"drosophila"},
 				{"name":"member Z"}
 			],
-		  			"publications":["22650316","25731851","11101893","18275809","24311584","19193230","24969791","22467210","20003410","24768041","23301656","20197778"]
+		  	"publications":["22650316","25731851","11101893","18275809","24311584","19193230","24969791","22467210","20003410","24768041","23301656","20197778"]
 
 		},
 		"H2A.X": {
@@ -32,7 +32,7 @@
 			"alternate_names": [
 				{"name":"member X"}
 			],
-		  			"publications":["22650316","25731851","18095327","23301656"]
+		  	"publications":["22650316","25731851","18095327","23301656"]
 
 		},
 		"macroH2A": {
@@ -47,7 +47,7 @@
 				{"name":"macroH2A2.1", "gene":2, "splice":1},
 				{"name":"macroH2A2.2", "gene":2, "splice":2}
 			],
-		  		  		  			"publications":["22650316","25731851","16107708","20543561","16803903"]
+		    "publications":["22650316","25731851","16107708","20543561","16803903"]
 
 		},
 		"H2A.L": {

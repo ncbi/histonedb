@@ -140,7 +140,7 @@ class Command(BaseCommand):
                     print "Adding", name
                     #uncomment following line to remove names
                     # name=''
-                    label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name.replace("canonical","c..l"), "labelStyle":"sectorHighlightText"})
+                    label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name.replace("canonical","cn"), "labelStyle":"sectorHighlightText"})
                     styles.append(background)
                     styles.append(label)
                 #Let's add default markgroup with no label
@@ -190,7 +190,7 @@ class Command(BaseCommand):
                         if(old_var==variant):
                             inrow_counter+=1
                         else:
-                            if(inrow_counter>1):
+                            if(inrow_counter>2):
                                 #retrospectively set the markup
                                 for c in clade_hist:
                                     chart = ET.Element("chart")
