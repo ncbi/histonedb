@@ -321,7 +321,6 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           onLoadSuccess: function(data){
             {% if go_to_curated %}
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id={{ go_to_gi }}", "", 975, 75, false);
-              $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
               var rownum=data.rows.map(function(x){return x.id}).indexOf("{{go_to_gi}}")
               $('#sequence_table_{{ page_name }}').bootstrapTable('scrollTo', rownum*35);
               $('#sequence_table_{{ page_name }} tr[data-index="'+rownum.toString()+'"').addClass('success');
