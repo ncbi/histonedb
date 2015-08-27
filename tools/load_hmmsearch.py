@@ -11,6 +11,7 @@ from browse.models import *
 from djangophylocore.models import Taxonomy
 from django.db.models import Max
 from django.db.utils import IntegrityError
+from django.conf import settings
 
 #Custom librairies
 from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_gis
@@ -24,6 +25,9 @@ def load_hmm_results(hmmerFile):
   hmmerFile : string
     Path to HMMer hmmsearch output file.
   """
+  #Path to id file, to extract full lenght GIs
+  ids = open(id_file, "w")
+
   #We need unknown Variant model - to assign to those that do not pass the threshold for analyzed models,
   #but are waiting if they will be pass threhold with other models.
   #at while searching
@@ -42,6 +46,9 @@ def load_hmm_results(hmmerFile):
     print "Loading variant:", variant_query.id
     variant_model = Variant.objects.get(id=variant_query.id)
     for hit in variant_query:
+      #Save original header to extract full sequence
+      print >> ids, hit.description
+
       #Below we are fetching a list of headers if there are multiple headers for identical sequences
       #Technically HUMMER might put the second and on gis in description column.
       #The format should be strictly the genbank format: gi|343434|fafsf gdgfdg gi|65656|534535 fdafaf
@@ -111,6 +118,8 @@ def load_hmm_results(hmmerFile):
   #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
   unknown_model.sequences.all().delete()
   unknown_model.delete()
+
+  ids.close()
 
 def add_sequence(gi, variant_model, taxonomy, header, sequence):
   """Add sequence into the database, autfilling empty Parameters"""

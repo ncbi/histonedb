@@ -27,6 +27,7 @@ class Command(BaseCommand):
     curated_all_fasta=os.path.join(hmm_directory, "curated_all.fasta")
     curated_search_results_file = os.path.join(hmm_directory, "curated_all_search_results.out")
     model_evaluation = os.path.join(hmm_directory, "model_evaluation")
+    ids_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.ids")
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -84,6 +85,7 @@ class Command(BaseCommand):
         #Load the sequences and classify them based on thresholds
         self.load_from_db()
 
+        self.extract_full_sequences()
         self.canonical2H2AX()
 
     def canonical2H2AX(self):
@@ -165,6 +167,29 @@ class Command(BaseCommand):
         print " ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
 
+    def extract_full_sequences(self, sequences):
+        """Create database to extract full length sequences"""
+        #1) Create and index of sequence file
+        subprocess.call(["esl-sfetch", "--index", sequences])
+
+        #2) Extract all ids 
+        process = subprocess.Popen(["esl-sfetch", "-f", sequences, self.ids_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        output, error = process.communicate()
+        seqFile = StringIO.StringIO()
+        seqFile.write(output)
+        seqFile.seek(0)
+
+        #3) Update sequences with full length NR sequences -- is there a faster way?
+        for record in SeqIO.parse(seqs_file, "fasta"):
+            headers = record.description.split(" >")
+            for header in headers:
+                gi = header.split("|")[1]
+                try:
+                    seq = Sequence.objects.get(id=gi)
+                    seq.sequence = str(record.seq)
+                    seq.save()
+                except Sequence.DoesNotExist:
+                    pass
 
     def get_scores_for_curated_via_hmm(self):
         """
@@ -194,7 +219,7 @@ class Command(BaseCommand):
     def load_from_db(self,reset=True):
         """Load data into the histone database"""
         print >> self.stdout, "Loading data into HistoneDB..."
-        load_hmm_results(self.db_search_results_file)
+        load_hmm_results(self.db_search_results_file, self.ids_file)
 
     def load_curated(self):
         """
