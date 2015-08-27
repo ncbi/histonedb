@@ -286,7 +286,7 @@ def get_all_scores(request, ids=None):
     indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
     rows = [{} for _ in xrange(len(variants))]
     for i, (variant, threshold) in enumerate(variants):
-        rows[i]["variant"] = variant #"{} (T:{})".format(variant, threshold)
+        rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
         for id in ids:
             rows[i][id] = "n/a"
         rows[i]["data"] = {}
@@ -309,9 +309,11 @@ def get_all_scores(request, ids=None):
                     rows[indices[score.variant.id]][id] = score.score
                     rows[indices[score.variant.id]]["data"]["above_threshold"][id] = score.score>=threshold
                     rows[indices[score.variant.id]]["data"]["this_classified"][id] = score.used_for_classification
-                    if score.regex:
-                        rows[indices[score.variant.id]][id] += " (Has {} motif - classified from regex)".format(score.variant.id)
-
+                    try:
+                        if score.regex:
+                            rows[indices[score.variant.id]][id] += " (Has {} motif - classified from regex)".format(score.variant.id)
+                    except:
+                        pass
             
     return JsonResponse(rows, safe=False)
 

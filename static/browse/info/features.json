@@ -8,18 +8,18 @@
             "feature3":"=========================================a==================p==p=======p====A============ppp=======qqq==========================",
             "feature_info":{
                 "e":{"type":"secondary","name":"alpha1ext","color":"#bbbb66","description":"Alpha1-extension helix.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "1":{"type":"secondary","name":"alpha1","color":"#bb0000","description":"Alpha1-helix. First helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop. Loop connecting first and second helices of the histone fold. Part of the L1L2 DNA bining site formed by H2A and H2B at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "2":{"type":"secondary","name":"alpha2","color":"#bb0000","description":"Alpha2-helix. Second helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop. Loop connecting second and third helices of the histone fold. Part of the L1L2 DNA bining site formed by H2A and H2B at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "3":{"type":"secondary","name":"alpha3","color":"#bb0000","description":"Alpha3-helix. Third helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "1":{"type":"secondary","name":"alpha1","color":"#bb0000","description":"Alpha1-helix, first helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop, connecting first and second helices of histone fold. Part of L1L2 DNA bining site formed by H2A and H2B at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "2":{"type":"secondary","name":"alpha2","color":"#bb0000","description":"Alpha2-helix, second helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop, connecting second and third helices of histone fold. Part of L1L2 DNA bining site formed by H2A and H2B at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "3":{"type":"secondary","name":"alpha3","color":"#bb0000","description":"Alpha3-helix, third helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
                 "E":{"type":"secondary","name":"alpha3ext","color":"#bbbb66","description":"Alpha3-extension helix.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "b":{"type":"secondary","name":"beta1","color":"#00bb00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "B":{"type":"secondary","name":"beta2","color":"#00bb00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "q":{"type":"secondary","name":"beta3","color":"#00bb00","description":"short beta-sheet between H2A and H4.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "D":{"type":"secondary","name":"Docking domain","color":"#aa00aa","description":"Docking domain locks the H2A-H2B dimer on the H3-H4 tetramer surface.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "a":{"type":"residue","name":"mgArg1","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
-                "A":{"type":"residue","name":"mgArg2","color":"#00cc00","description":"Position of minor groove arginine at the L1L2 DNA bining site at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "b":{"type":"secondary","name":"beta1","color":"#00bb00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "B":{"type":"secondary","name":"beta2","color":"#00bb00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "q":{"type":"secondary","name":"beta3","color":"#00bb00","description":"Beta-strand between H2A and H4.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "D":{"type":"secondary","name":"Docking domain","color":"#aa00aa","description":"Docking domain locking H2A-H2B dimer on H3-H4 tetramer surface.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "a":{"type":"residue","name":"R1","color":"#00cc00","description":"Minor groove arginine at L1L2 DNA bining site, SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
+                "A":{"type":"residue","name":"R2","color":"#00cc00","description":"Minor groove arginine at L1L2 DNA bining site, SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},
                 "p":{"type":"residue","name":"ap","color":"#55aaff","description":"Acidic patch residues.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
 
             }
@@ -30,8 +30,8 @@
             "feature1":"===========================================================================================================================================XXXX",
             "feature2":"===========================================================================================================================================p===",
             "feature_info":{
-                "X":{"type":"motif", "name":"H2A.X-motif", "description":"H2A.X has the SQE/DΦ motif at C-terminus, where Φ-represents a hydrophobic residue, usually Tyr in mammals.", "color":"#00ff00", "source":"NP_002096.1"},
-                "p":{"type":"residue", "name":"p", "description":"The C-terminal serine can be phosphorylated in H2A.X-containing nucleosomes at the DNA double strand breaks.", "color":"#ff0000", "source":"NP_002096.1"}
+                "X":{"type":"motif", "name":"H2A.X-motif", "description":"SQE/DΦ motif at C-terminus; Φ-hydrophobic residues, usually Tyr in mammals.", "color":"#00ff00", "source":"NP_002096.1"},
+                "p":{"type":"residue", "name":"p", "description":"C-terminal serine can be phosphorylated in H2A.X-containing nucleosomes at sites of DNA double strand breaks.", "color":"#ff0000", "source":"NP_002096.1"}
             }
         },
         "H2A.B":{
@@ -39,8 +39,8 @@
             "sequence":"MPRRRRRRGSSGAGGRGRTCSRTVRAELSFSVSQVERSLREGHYAQRLSRTAPVYLAAVIEYLTAKVLELAGNEAQNSGERNITPLLLDMVVHNDRLLSTLFNTTTISQVAPGED",
             "feature1":"==RRRRRR=========================================================c==========c==================cc==================",
             "feature_info":{
-                "R":{"type":"motif", "name":"ARG-run", "description":"Run of arginines characteristic of H2A.B at least in human.", "color":"#aaaaff", "source":"NP_002096.1"},
-                "c":{"type":"motif", "name":"->+", "description":"Loss of acidic patch residues.", "color":"#ffaaaa", "source":"NP_002096.1"}
+                "R":{"type":"motif", "name":"RRR", "description":"Stretch of arginines characteristic of H2A.B, at least in human.", "color":"#aaaaff", "source":"NP_002096.1"},
+                "c":{"type":"motif", "name":"ap-", "description":"Loss of acidic patch residues.", "color":"#ffaaaa", "source":"NP_002096.1"}
 
             }
         },
@@ -49,9 +49,9 @@
             "sequence":"MAGGKAGKDSGKAKTKAVSRSQRAGLQFPVGRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDSLIKATIAGGGVIPHIHKSLIGKKGQQKTV",
             "feature1":"==========================================iii====================================================Z==dd==========================",
             "feature_info":{
-                "Z":{"type":"motif", "name":"X>D", "description":"Site of characteristic X>D substitution in many H2A.Z (excl. Trypanosoma), which enlarges acidic patch. DEELD motif is usually characteristic of H2A.Z.", "color":"#00ff00", "source":""},
-                "i":{"type":"motif", "name":"IN", "description":"Site of characteristic one amino acid insertion with respect to canonical H2A in L1-loop.", "color":"#ff0000", "source":""},
-                "d":{"type":"motif", "name":"DEL", "description":"Site of characteristic one amino acid deletion with respect to canonical H2A.", "color":"#aaffff", "source":""}
+                "Z":{"type":"motif", "name":">D", "description":"Characteristic substitution into Asp for many H2A.Z (excl. Trypanosoma), which increases acidic patch.", "color":"#00ff00", "source":""},
+                "i":{"type":"motif", "name":"in", "description":"Characteristic one amino acid insertion with respect to canonical H2A in L1-loop.", "color":"#ff0000", "source":""},
+                "d":{"type":"motif", "name":"del", "description":"Characteristic one amino acid deletion with respect to canonical H2A.", "color":"#aaffff", "source":""}
             }
         },
         "macroH2A":{
@@ -59,8 +59,8 @@
             "sequence":"MSSRGGKKKTTKTTRSAKAGVIFPVGRMLRYIKKGHPKYRIGVGAPVYMAAVLEYLTAEILELAGNAARDNKKSRVTPRHILLAIANDEELNQLLKGVTIASGGVLPNIHPELLAKKRGSRGKLEAIITPPPAKKSKTTLPKKTSAKKPGAKKGVRKSKKKQGDVSKSASADSTTDGTPSDGFTVLSTKSLFLGQKLQVVKADIATIDSDAVVHPTNSELYSGGEVGNALEKKGGKEFVEAVVELKKKNGPLDIAGAAVSSGHGLPAKFVIHCNSPSWGSDKCEELLEKTVKNCLALADEKKIKSIAFPSIGSGRNGFPKQTAAQLILKAISSYFVSTMSSSIKTVYFVLFDSESIGIYVQEMAKLDSN",
             "feature1":"===========================================================================================================================LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
             "feature_info":{
-                "L":{"type":"motif", "name":"linker domain", "description":"Linker domain.", "color":"#aaffff", "source":"Chakravarty 2005 - structure - Figure 1."},
-                "M":{"type":"motif", "name":"macro domain", "description":"Non-histone macro domain, which can bind ADP-ribose.", "color":"#00ff00", "source":"Chakravarty 2005 - structure - Figure 1."}
+                "L":{"type":"motif", "name":"Linker domain", "description":"Linker domain.", "color":"#aaffff", "source":"Chakravarty 2005 - structure - Figure 1."},
+                "M":{"type":"motif", "name":"Macro domain", "description":"Macro domain, which can bind ADP-ribose.", "color":"#00ff00", "source":"Chakravarty 2005 - structure - Figure 1."}
             }
         }
     },
@@ -72,14 +72,14 @@
             "feature2":"=================================================bb=================================BB====================================",
             "feature_info":{
                 "C":{"type":"secondary","name":"alphaC","color":"#ffff66","description":"AlphaC-helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "1":{"type":"secondary","name":"alpha1","color":"#ff0000","description":"Alpha1-helix. First helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop. Loop connecting first and second helices of the histone fold. Part of the L1L2 DNA bining site formed by H2A and H2B at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "2":{"type":"secondary","name":"alpha2","color":"#ff0000","description":"Alpha2-helix. Second helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop. Loop connecting second and third helices of the histone fold. Part of the L1L2 DNA bining site formed by H2A and H2B at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "3":{"type":"secondary","name":"alpha3","color":"#ff0000","description":"Alpha3-helix. Third helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "b":{"type":"secondary","name":"beta1","color":"#00ff00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "B":{"type":"secondary","name":"beta2","color":"#00ff00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "a":{"type":"residue","name":"mgArg1","color":"#00ff00","description":"Minor groove arginine at the alpha1-alpha1 DNA bining site at SHL ±4.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
+                "1":{"type":"secondary","name":"alpha1","color":"#ff0000","description":"Alpha1-helix, first helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop, connecting first and second helices of histone fold. Part of L1L2 DNA bining site formed by H2A and H2B at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "2":{"type":"secondary","name":"alpha2","color":"#ff0000","description":"Alpha2-helix, second helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop, connecting second and third helices of histone fold. Part of L1L2 DNA bining site formed by H2A and H2B at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "3":{"type":"secondary","name":"alpha3","color":"#ff0000","description":"Alpha3-helix, third helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "b":{"type":"secondary","name":"beta1","color":"#00ff00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "B":{"type":"secondary","name":"beta2","color":"#00ff00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "a":{"type":"residue","name":"mgArg1","color":"#00ff00","description":"Minor groove arginine at alpha1-alpha1 DNA bining site, SHL ±4.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
             }
         },
         "subH2B":{
@@ -110,17 +110,17 @@
             "feature4":"=ppp====ppp==p==pp====p===pp=======p====p==============p=======p==============p===================================p==p===p=============",
             "feature_info":{
                 "N":{"type":"secondary","name":"alphaN","color":"#ffff66","description":"AlphaN-helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "1":{"type":"secondary","name":"alpha1","color":"#ff0000","description":"Alpha1-helix. First helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop. Loop connecting first and second helices of the histone fold. Part of the L1L2 DNA bining site formed by H3 and H4 at SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "2":{"type":"secondary","name":"alpha2","color":"#ff0000","description":"Alpha2-helix. Second helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop. Loop connecting second and third helices of the histone fold. Part of the L1L2 DNA bining site formed by H3 and H4 at SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "3":{"type":"secondary","name":"alpha3","color":"#ff0000","description":"Alpha3-helix. Third helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "b":{"type":"secondary","name":"beta1","color":"#00ff00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "B":{"type":"secondary","name":"beta2","color":"#00ff00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "a":{"type":"residue", "name":"mgArg2","color":"#00ff00","description":"Minor groove arginine at the alpha1-alpha1 DNA bining site at SHL ±1.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "A":{"type":"residue", "name":"mgArg3","color":"#00ff00","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "m":{"type":"residue", "name":"mgArg1","color":"#00ff00","description":"Minor groove arginine at the alphaN DNA bining site at SHL ±6.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "p":{"type":"residue", "name":"PTM", "color":"#FF9900", "description":"Post-translation modification site", "source":"10.1083/jcb.201002043"}
+                "1":{"type":"secondary","name":"alpha1","color":"#ff0000","description":"Alpha1-helix, first helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop connecting first and second helices of histone fold. Part of the L1L2 DNA bining site formed by H3 and H4 at SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "2":{"type":"secondary","name":"alpha2","color":"#ff0000","description":"Alpha2-helix, second helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop connecting second and third helices of histone fold. Part of L1L2 DNA bining site formed by H3 and H4 at SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "3":{"type":"secondary","name":"alpha3","color":"#ff0000","description":"Alpha3-helix, third helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "b":{"type":"secondary","name":"beta1","color":"#00ff00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "B":{"type":"secondary","name":"beta2","color":"#00ff00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "a":{"type":"residue", "name":"R2","color":"#00ff00","description":"Minor groove arginine at alpha1-alpha1 DNA bining site, SHL ±1.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "A":{"type":"residue", "name":"R3","color":"#00ff00","description":"Minor groove arginine at L1L2 DNA bining site, SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "m":{"type":"residue", "name":"R1","color":"#00ff00","description":"Minor groove arginine at the alphaN DNA bining site, SHL ±6.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "p":{"type":"residue", "name":"m", "color":"#FF9900", "description":"Post-translation modification site", "source":"10.1083/jcb.201002043"}
             }
         },
         "cenH3":{
@@ -128,7 +128,7 @@
             "sequence":"MPRHSRAKRAPRPSANNSKSPNDDDTAFRSPEPEDGTDYGLEFTTSQLTLQDNNRRSSTLRRDAGRRQPAARDSSTSGEEEDQENRYPTTRSPQTRRMTVQQESKTRAAGPVAAQNQTRRRKAANPMSRAKRMDREIRRLQHHPGTLIPKLPFSRLVREFIVKYSDDEPLRVTEGALLAMQESCEMYLTQRLADSYMLTKHRNRVTLEVRDMALMAYICDRGRQF",
             "feature1":"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc====================================================================================================",
             "feature_info":{
-                "c":{"type":"motif", "name":"centromere identifier", "description":"Bind to other CENP proteins at this location", "color":"#00ff00", "source":"NP_523730.2"}
+                "c":{"type":"motif", "name":"Centromere identifier", "description":"Binding site to CENP proteins", "color":"#00ff00", "source":"NP_523730.2"}
             }
         },
         "H3.3":{
@@ -136,7 +136,7 @@
             "sequence":"MARTKQTALKSTGGKAPRKQLATKAARKSAPSTGGVKKPHRYRPGTVALREIRRYQKSTELLIRKLPFQRLVREIAQDFKTDLRFQSAAIGALQEASEAYLVGLFEDTNLCAIHAKRVTIMPKDIQLARRIRGERA",
             "feature1":"===============================p========================================================================================================",
             "feature_info":{
-                "p":{"type":"residue", "name":"H3.3-mod", "color":"#FF9900", "description":"H3.3-specific modification site", "source":"10.1083/jcb.201002043"}
+                "p":{"type":"residue", "name":"m", "color":"#FF9900", "description":"H3.3-specific modification site", "source":"10.1083/jcb.201002043"}
             }
         },
         "H3.Y":{
@@ -144,7 +144,7 @@
             "sequence":"ARTKQTARKATAWQAPRKPLATKAARKRASPTGGIKKPHRYKPGTLALREIRKYQKSTQLLLRKLPFQRLVREIAQAISPDLRFQSAAIGALQEASEAYLVQLFEDTNLCAIHARRVTIMPRDMQLARRLRGEGAGEPTLLGNLAL",
             "feature1":"========YYYYYYYYYYYY==============================================================================================================================",           
             "feature_info":{
-                "Y":{"type":"motif", "name":"H3.Y-motif", "description":"This motif sets H3.Y from H3.3", "color":"#00ff00", "source":"10.1083/jcb.201002043"}
+                "Y":{"type":"motif", "name":"Y-motif", "description":"This motif distinguishes H3.Y from H3.3", "color":"#00ff00", "source":"10.1083/jcb.201002043"}
             }
         }
     },
@@ -157,15 +157,15 @@
             "feature3":"============================================a=========================================================",
             "feature_info":{
                 "e":{"type":"secondary","name":"alpha1ext","color":"#ffff66","description":"Alpha1-extension helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "1":{"type":"secondary","name":"alpha1","color":"#ff0000","description":"Alpha1-helix. First helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop. Loop connecting first and second helices of the histone fold. Part of the L1L2 DNA bining site formed by H3 and H4 at SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "2":{"type":"secondary","name":"alpha2","color":"#ff0000","description":"Alpha2-helix. Second helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop. Loop connecting second and third helices of the histone fold. Part of the L1L2 DNA bining site formed by H3 and H4 at SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "3":{"type":"secondary","name":"alpha3","color":"#ff0000","description":"Alpha3-helix. Third helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "b":{"type":"secondary","name":"beta1","color":"#00ff00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "B":{"type":"secondary","name":"beta2","color":"#00ff00","description":"short beta-sheet in the L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "q":{"type":"secondary","name":"beta3","color":"#00ff00","description":"short beta-sheet between H4 and H2A docking domain.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "a":{"type":"residue","name":"mgArg2","color":"#00ff00","description":"Minor groove arginine at the L1L2 DNA bining site at SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
+                "1":{"type":"secondary","name":"alpha1","color":"#ff0000","description":"Alpha1-helix, first helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop connecting first and second helices of histone fold. Part of L1L2 DNA bining site formed by H3 and H4 at SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "2":{"type":"secondary","name":"alpha2","color":"#ff0000","description":"Alpha2-helix, second helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop connecting second and third helices of histone fold. Part of L1L2 DNA bining site formed by H3 and H4 at SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "3":{"type":"secondary","name":"alpha3","color":"#ff0000","description":"Alpha3-helix, third helix of histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "b":{"type":"secondary","name":"beta1","color":"#00ff00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "B":{"type":"secondary","name":"beta2","color":"#00ff00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "q":{"type":"secondary","name":"beta3","color":"#00ff00","description":"Beta-strand between H4 and H2A docking domain.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "a":{"type":"residue","name":"R2","color":"#00ff00","description":"Minor groove arginine at L1L2 DNA bining site, SHL ±0.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
             }
         }
     },
@@ -175,12 +175,12 @@
             "sequence":"MTESLVLSPAPAKPKRVKASRRSASHPTYSEMIAAAIRAEKSRGGSSRQSIQKYIKSHYKVGHNADLQIKLSIRRLLAAGVLKQTKGVGASGSFRLAKSDKAKRSPGKKKKAVRRSTSPKKAARPRKARSPAKKPKATARKARKKSRASPKKAKKPKTVKAKSRKASKAKKVKRSKPRAKSGARKSPKKK",
             "feature1":"===========================11111111111=======bb22222222222======33333333333333===BBBB=======cccc==============================================================================================",
             "feature_info":{
-                "1":{"type":"secondary", "name":"alpha1", "color":"#ff0000","description":"Alpha1-helix. First helix of the helix-turn-helix domain found in all H1s", "source":"Obtained from PDB 1HST"},
-                "b":{"type":"secondary", "name":"beta1", "color":"#00ff00","description":"short beta-sheet found in the turn of the helix-turn-helix domain found in all H1s", "source":"Obtained from PDB 1HST"},
-                "2":{"type":"secondary", "name":"alpha2", "color":"#ff0000","description":"Alpha2-helix. Second helix of the helix-turn-helix domain found in all H1s", "source":"Obtained from PDB 1HST"},
+                "1":{"type":"secondary", "name":"alpha1", "color":"#ff0000","description":"Alpha1-helix, first helix of winged helix-turn-helix domain.", "source":"Obtained from PDB 1HST"},
+                "b":{"type":"secondary", "name":"beta1", "color":"#00ff00","description":"Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
+                "2":{"type":"secondary", "name":"alpha2", "color":"#ff0000","description":"Alpha2-helix, second helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
                 "3":{"type":"secondary", "name":"alpha3", "color":"#ff0000","description":"Alpha3-helix.", "source":"Obtained from PDB 1HST"},
-                "B":{"type":"secondary", "name":"beta2", "color":"#00ff00","description":"Second short beta-sheet.", "source":"Obtained from PDB 1HST"},
-                "c":{"type":"secondary", "name":"beta3", "color":"#00ff00","description":"Third short beta-sheet.", "source":"Obtained from PDB 1HST"}
+                "B":{"type":"secondary", "name":"beta2", "color":"#00ff00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"},
+                "c":{"type":"secondary", "name":"beta3", "color":"#00ff00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"}
             }
         }
     }
