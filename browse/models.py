@@ -162,7 +162,7 @@ class Score(models.Model):
     seqStart                = models.IntegerField()
     seqEnd                  = models.IntegerField()
     used_for_classification = models.BooleanField()
-    regex                   = model.BooleanField()
+    regex                   = models.BooleanField()
 
     def __unicode__(self):
         return "<{} variant={}; score={}; above_threshold={}; used_for_classification={} >".format(self.sequence.id, self.variant.id, self.score, self.above_threshold, self.used_for_classification)

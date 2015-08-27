@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from browse.models import Histone, Variant, Sequence
 from browse.search import search_types
-from autocomplete_light import ModelForm as AutoModelForm
+# from autocomplete_light import ModelForm as AutoModelForm
 
 class AdvancedFilterForm(ModelForm):
     hist_type    = forms.ModelChoiceField(Histone.objects.all())
