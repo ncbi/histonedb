@@ -65,7 +65,8 @@
     {% include "scores.html" with hmmer_results=result.3 ids=result.0|listify page_name="analyze_scores"%}
     <script type="text/javascript">
       $(function() {
-        createMSA("quick_msa-analyze_sequences", "{% url 'browse.views.get_aln_and_features' %}?upload=true", "", 975, 75, false);
+        createMSA("quick_msa-analyze_sequences", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id={{ result.5 }}", "", 975, 75, false);
+        $('#sequence_table_analyze_sequences tr[data-index="0"]').addClass('success');
       });
     </script>
   {% endif %}

@@ -51,12 +51,13 @@ def process_upload(sequences, format, request):
     result.append(secondary_classification if secondary_classification != "Unknown" else None)
     result.append(rows)
     result.append(upload_blastp(sequence)[0])
+    result.append(result[-1][0]["id"])
 
     request.session["uploaded_sequences"] = [{
         "id":sequence.id,
         "variant":classifications[0][1],
         "sequence":str(sequence.seq),
-        "taxonomy":result[-1][0]["taxonomy"]
+        "taxonomy":result[-2][0]["taxonomy"]
     }]
 
     return result

@@ -369,18 +369,29 @@ def get_aln_and_features(request, ids=None):
     elif request.GET.get("download", False) == "true":
         download = True
         upload = False
-    elif request.GET.get("upload", False) == "true":
-        sequences = request.session.get("uploaded_sequences", [])
-        sequences = [Sequence(
-            id=s["id"], 
-            variant=Variant.objects.get(id=s["variant"]),
-            sequence=s["sequence"],
-            taxonomy=Taxonomy.objects.get(name=s["taxonomy"])) for s in sequences]
-        upload = True
-        download = False
     else:
         #Returning 'false' stops Bootstrap table
         return "false"
+
+    if request.GET.get("upload", False) == "true":
+        uploaded_sequence = request.session.get("uploaded_sequences", [])
+        if len(uploaded_sequence) > 0:
+            try:
+                variant = Variant.objects.get(id=uploaded_sequence[0]["variant"])
+            except:
+                if len(sequences) > 0:
+                    variant = sequences[0].variant
+                else:
+                    return "false"
+
+            uploaded_sequence = Sequence(
+                id=uploaded_sequence[0]["id"], 
+                variant=variant,
+                sequence=uploaded_sequence[0]["sequence"],
+                taxonomy=Taxonomy.objects.get(name=uploaded_sequence[0]["taxonomy"]))
+            upload = True
+            download = False
+    
 
     if not download:
         if len(sequences) == 0:
@@ -390,19 +401,22 @@ def get_aln_and_features(request, ids=None):
             seq = sequences[0]
             hist_type = seq.variant.hist_type.id
             variants = [seq.variant]
-            if hist_type != "H1":
-                #let's load the corresponding canonical
-                try:
-                    canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
-                except:
-                    try: #try H2A.X as a substitute for canonical
-                        if(str(seq.variant.hist_type)=='H2A'):
-                            canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
-                        else:
-                            raise
-                    except: #default Xenopus
-                        canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
-                sequences = [canonical, seq]
+            if hist_type != "H1" or (hist_type == "H1" and upload):
+                if upload:
+                    sequences = [uploaded_sequence, seq]
+                else:
+                    #let's load the corresponding canonical
+                    try:
+                        canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
+                    except:
+                        try: #try H2A.X as a substitute for canonical
+                            if(str(seq.variant.hist_type)=='H2A'):
+                                canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
+                            else:
+                                raise
+                        except: #default Xenopus
+                            canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                    sequences = [canonical, seq]
             else:
                 sequences = [seq]
             sequence_label = seq.short_description
@@ -429,7 +443,7 @@ def get_aln_and_features(request, ids=None):
             os.makedirs(save_dir)
 
         features = get_variant_features(cons, variants=variants, save_dir=save_dir)
-        
+
         #A hack to avoid two canonical seqs
         unique_sequences = [sequences[0]] if len(sequences) == 2 and sequences[0].id == sequences[1].id else sequences
         # doing the Sequence.short_description work

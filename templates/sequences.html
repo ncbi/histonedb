@@ -317,21 +317,30 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% if formatNoMatches %}
           formatNoMatches: function(){ return "{{ formatNoMatches }}"; },
           {% endif %}
-          {% if quick_msa and curated %}
+          {% if curated or analyze %}
+          {% if quick_msa %}
           onLoadSuccess: function(data){
             {% if go_to_curated %}
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id={{ go_to_gi }}", "", 975, 75, false);
               var rownum=data.rows.map(function(x){return x.id}).indexOf("{{go_to_gi}}")
               $('#sequence_table_{{ page_name }}').bootstrapTable('scrollTo', rownum*35);
               $('#sequence_table_{{ page_name }} tr[data-index="'+rownum.toString()+'"').addClass('success');
+            {% elif analyze %}
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id="+data.rows[0].id, "", 975, 75, false);
+              $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
             {% else %}
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
               $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
             {% endif %}
           },
           onClickCell:function(event, value, row, index){
-          createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
+            {% if analyze %}
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id="+row.id, "", 975, 75, false);
+            {% else %}
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
+            {% endif %}
           },
+          {% endif %}
           {% endif %}
         });
 
@@ -379,11 +388,13 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
         open_advanced_filter("filter", $table_{{ page_name }});
         {% endif %}
 
-        {% if quick_msa and curated %}
-        {# Row coloring upon click#}
-        $('#sequence_table_{{ page_name }}').on('click-row.bs.table', function (e, row, $element) {
-        $('.success').removeClass('success');
-        $($element).addClass('success');});
+        {% if curated or analyze %}
+          {% if quick_msa %}
+            {# Row coloring upon click#}
+            $('#sequence_table_{{ page_name }}').on('click-row.bs.table', function (e, row, $element) {
+            $('.success').removeClass('success');
+            $($element).addClass('success');});
+          {% endif %}
         {% endif %}
 
     });
