@@ -2,6 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'^projects/HistoneDB2\.0/$', views.browse_types),
     url(r'^$', views.browse_types),
     url(r'^browse/$', views.browse_types),
 

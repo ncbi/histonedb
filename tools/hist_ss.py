@@ -127,7 +127,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     template = template_features.first().template
     template_file = template.path()
     needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
-    cmd = os.path.join(os.path.dirname(sys.executable), "EMBOSS-6.6.0", "emboss", "needle")
+    cmd = os.path.join(os.path.dirname(sys.executable), "needle")
 
     if not os.path.isfile(cmd):
         cmd = "needle"
