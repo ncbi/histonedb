@@ -233,22 +233,26 @@ def analyze(request):
         "current_query":{}
     }
     if request.method == "POST":
-        if request.POST.get("sequence"):
+        if request.FILES.get("file"):
+            format="file"
+            sequence = request.FILES["file"]
+        elif request.POST.get("sequence"):
             format = "text"
             sequence = request.POST["sequence"]
-        elif request.POST.get("file"):
-            format="file"
-            sequence = request.POST["file"]
+        else:
+            sequence = None
+            data["error"] = "Unable to read sequence."
 
-        try:
-            data["result"] = process_upload(sequence, format, request)
-        except InvalidFASTA as e:
-            data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
-            data["analyze_form"] = AnalyzeFileForm()
+        if sequence:
+            try:
+                data["result"] = process_upload(sequence, format, request)
+            except InvalidFASTA as e:
+                data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
+                data["analyze_form"] = AnalyzeFileForm()
 
         data["search_type"] = type
     else:
-        data["analyze_form"] = AnalyzeFileForm()
+        data["analyze_form"] = AnalyzeFileForm(initial={"sequence":">gi|121989|sp|P08985.2|H2AV_DROME RecName: Full=Histone H2A.v; AltName: Full=H2A.F/Z; Short=H2A.Z\nMAGGKAGKDSGKAKAKAVSRSARAGLQFPVGRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELA\nGNASKDLKVKRITPRHLQLAIRGDEELDSLIKATIAGGGVIPHIHKSLIGKKEETVQDPQRKGNVILSQAY"})
 
     return render(request, 'analyze.html', data)
 
@@ -386,18 +390,21 @@ def get_aln_and_features(request, ids=None):
             seq = sequences[0]
             hist_type = seq.variant.hist_type.id
             variants = [seq.variant]
-            #let's load the corresponding canonical
-            try:
-                canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
-            except:
-                try: #try H2A.X as a substitute for canonical
-                    if(str(seq.variant.hist_type)=='H2A'):
-                        canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
-                    else:
-                        raise
-                except: #default Xenopus
-                    canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
-            sequences = [canonical, seq]
+            if hist_type != "H1":
+                #let's load the corresponding canonical
+                try:
+                    canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
+                except:
+                    try: #try H2A.X as a substitute for canonical
+                        if(str(seq.variant.hist_type)=='H2A'):
+                            canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
+                        else:
+                            raise
+                    except: #default Xenopus
+                        canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                sequences = [canonical, seq]
+            else:
+                sequences = [seq]
             sequence_label = seq.short_description
             
         else:

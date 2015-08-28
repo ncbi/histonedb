@@ -26,10 +26,11 @@
 	  {% endif %}
   </div>
   {% if not result %}
+    Please paste in, or upload a file, containing a single histone protein sequence in FASTA format. If more sequences are inputted they will be ignored. As an example, you can analyze an H2A.Z sequence from Drosophila: <br /><br />
     {% if error %}
     <div class="alert alert-danger" role="alert">{{ error }}</div>
     {% endif %}
-    <form role="search" action="{% url 'browse.views.analyze' %}" id="advanced_search_form" method="POST">
+    <form role="search" action="{% url 'browse.views.analyze' %}" id="analyze_form" enctype="multipart/form-data" method="POST">
       {% csrf_token %}
       {% for field in analyze_form %}
         <div class="form-group">
@@ -41,13 +42,7 @@
             </div>
             <div class="col-lg-10">
               <div class="input-group">
-                {% if field|fieldtype == "ChoiceField" %}
-                  {% autoescape off %}
-                    {{ field|simple_choice }}
-                  {% endautoescape %}
-                {% else %}
-                  {{ field}}
-                {% endif %}
+                {{ field }}
               </div>
               {% if field.help_text %}
                 <span class="help-text">{{ field.help_text }}</span>
@@ -56,8 +51,7 @@
           </div>
       </div>
       {% endfor %}
-    <button type="submit" class="btn btn-primary">Upload</button>
-    <button class="btn-info" id="example_button">Example H2A.Z from Drosophila</button>
+      <button class="btn btn-primary" type="submit">Upload</button>
     </form>
   {% elif result %}
     <div class="alert alert-success" role="alert">Most likely: {{result.1}}</div>
