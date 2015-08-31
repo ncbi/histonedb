@@ -173,14 +173,15 @@
         "GeneralH1":{
             "taxa":"root",
             "sequence":"MTESLVLSPAPAKPKRVKASRRSASHPTYSEMIAAAIRAEKSRGGSSRQSIQKYIKSHYKVGHNADLQIKLSIRRLLAAGVLKQTKGVGASGSFRLAKSDKAKRSPGKKKKAVRRSTSPKKAARPRKARSPAKKPKATARKARKKSRASPKKAKKPKTVKAKSRKASKAKKVKRSKPRAKSGARKSPKKK",
-            "feature1":"===========================11111111111=======bb22222222222======33333333333333===BBBB=======cccc==============================================================================================",
+            "feature1":"===========================11111111111=======bb22222222222======33333333333333===BBBB=======cccc=kkkkkkkkkkkk=================================================================================",
             "feature_info":{
                 "1":{"type":"secondary", "name":"alpha1", "color":"#ff0000","description":"Alpha1-helix, first helix of winged helix-turn-helix domain.", "source":"Obtained from PDB 1HST"},
                 "b":{"type":"secondary", "name":"beta1", "color":"#00ff00","description":"Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
                 "2":{"type":"secondary", "name":"alpha2", "color":"#ff0000","description":"Alpha2-helix, second helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
                 "3":{"type":"secondary", "name":"alpha3", "color":"#ff0000","description":"Alpha3-helix.", "source":"Obtained from PDB 1HST"},
                 "B":{"type":"secondary", "name":"beta2", "color":"#00ff00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"},
-                "c":{"type":"secondary", "name":"beta3", "color":"#00ff00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"}
+                "c":{"type":"secondary", "name":"beta3", "color":"#00ff00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"},
+                "k":{"type":"motif", "name":"AKP helix", "color":"#cccccc","description":"Positively charged carboxy-terminal domain involved in specific protein-protein and protein-DNA interactions, possibly plays role in suppressing core histone tail domain acetylation in chromatin fiber.", source:"CDD"}
             }
         }
     }
