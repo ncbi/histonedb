@@ -96,7 +96,7 @@ def refactor_title(msa,variant):
     """
     msa_r=MultipleSeqAlignment([])
     for i in msa:
-        print i.description
+        # print i.description
         genus=re.search(r"\[(\S+)\s+.+\S+\]",i.description).group(1)
         gi=re.search(r"gi\|(\d+)\|",i.id).group(1)
         i.id=genus+"|"+gi+"|"+variant
@@ -104,11 +104,25 @@ def refactor_title(msa,variant):
         msa_r.append(i)
     return msa_r
 
-def get_gis():
+def refactor_title_allmsa(msa):
+    """
+    refactors titles of sequence in format needed for histoneDB seeds
+    """
+    msa_r=MultipleSeqAlignment([])
+    for i in msa:
+        print i.description
+        # genus=re.search(r"\[(\S+)\s+.+\S+\]",i.description).group(1)
+        text=re.search(r"(\S+)\|(\d+)\|(\S+)",i.id)
+        i.id=text.group(3)+"|"+text.group(1)+"|"+text.group(2)
+        # i.description=genus+"_"+variant+"_"+gi
+        msa_r.append(i)
+    return msa_r
+
+def get_gis(pref=''):
         """
         Goes through aux_tools/gis
         """
-        for i, (root, _, files) in enumerate(os.walk("gis/")):
+        for i, (root, _, files) in enumerate(os.walk("gis/"+pref)):
             hist_type = os.path.basename(root)
             for f in files:
                 if not f.endswith(".gis"): continue
@@ -130,3 +144,20 @@ if __name__ == '__main__':
         msa_r.sort()
         print msa_r
         AlignIO.write(msa_r,os.path.join("draft_seeds",hist_type,hist_var+".fasta"),'fasta')
+    #combines MSA
+    for hist_type in ['H2A','H2B']:
+        seqrecs=[]
+        for hist_var,hist_type,f in get_gis(hist_type):
+            seqrecs+=list(SeqIO.parse("draft_seeds/"+hist_type+"/"+hist_var+".fasta", "fasta"))
+        ungseqrecs={}
+        for s in seqrecs:
+            ungseqrecs[s.id]=SeqRecord(id=s.id,description=s.description,seq=s.seq.ungap("-"))
+        # print ungseqrecs
+        msa=muscle_aln(ungseqrecs)
+        msa_r=refactor_title_allmsa(msa)
+
+        msa_r.sort()
+        AlignIO.write(msa_r,os.path.join("draft_seeds",hist_type+".fasta"),'fasta')
+
+
+
