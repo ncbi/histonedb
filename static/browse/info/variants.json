@@ -64,6 +64,16 @@
 		    "publications":["22650316","25731851","19506029","17261847","18703863"]
 
 		},
+	  "H2A.W": {
+			"description": "H2A.W is a plant spesific variant, that has SPKK motifs at the N-terminus.",
+			"taxonomic_span":"Plants",
+			"alternate_names": [
+ 				{"name":"H2A with SPKK motifs"}
+
+			],
+		    "publications":["22650316","2023250"]
+
+		},
 		"H2A.B": {
 			"description": "H2A.B, also known as \"Barr body defficient\" variant, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch. It is possible that mouse homolog of H2A.B, also called H2A.Lap1, bears modified function with respect to human H2A.B. H2A.Lap1 has additional negative residue in acidic patch, which is thought to increase its propensity to compact nucleosomal arrays relative to human H2A.B",
 			"taxonomic_span":"Mammals",
