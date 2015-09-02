@@ -57,7 +57,7 @@
         "H2A.W":{
             "taxa":"root",
             "sequence":"MDATGTGAGGKAKKGAAGRKAGGPRKKSVTRSVKAGLQFPVGRIGRYLKKGRYAQRVGSGAPVYLAAVLEYLAAEVLELAGNAAKDNKKTRIVPRHVLLAIRNDEELGKLLTGVTIAHGGVLPNINPVLLPKKTAEKASSGGSKEAKSPKKAAKSPKKA",
-            "feature1":"==========================================================================================================================================================ssss=",
+            "feature1":"===================================================================================================================================================ssss===ssss=",
             "feature_info":{
                 "s":{"type":"motif", "name":"SPKK-motif", "description":"SPKK-motif is characteristic of H2A.W.", "color":"#00ff00", "source":""}
             }
