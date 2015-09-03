@@ -140,7 +140,7 @@
 			"publications":["22650316"]
 		},
 		"cenH3":{
-			"description":"cenH3 is a centromere-specific histone variant, it is required for assembly of kinetochore proteins, mitotic progression and chromosome segregation. The N-terminal tail of CENP-A is highly divergent from other H3 variants",
+			"description":"cenH3 is a centromere-specific histone variant, which replaces canonical H3 in centromeric nucleosomes. It is required for kinetochore formation, mitotic progression and chromosome segregation. cenH3 has an extended L1-loop and its N-terminal tail is very different from other H3 variants",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
@@ -172,7 +172,7 @@
 			"publications":["22650316"]
 		},
 		"H3.3": {
-			"description": "The major replication-independent or replacement H3, important for development, transcription, and chromosome segregation",
+			"description": "The major replication-independent or replacement H3, important for development, transcription, and chromosome segregation. It typically differs from the canonical H3 by only a few amino acids that are necessary for replication-independent assembly. ",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"soH3-1", "gene":1},
