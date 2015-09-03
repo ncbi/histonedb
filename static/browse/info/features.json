@@ -102,7 +102,7 @@
         "H2B.W":{
             "taxa":"root",
             "sequence":"MLRTEVPRLPRSTTAIVWSCHLMATASAMAGPSSETTSEEQLITQEPKEANSTTSQKQSKQRKRGRHGPRRCHSNCRGDSFATYFRRVLKQVHQGLSLSREAVSVMDSLVHDILDRIATEAGHLARSTKRQTITAWETRMAVRLLLPGQMGKLAESEGTKAVLRTSLYAIQQQRK",
-            "feature1":"nnnnnnnnnnnnnnnnnnnnnnnnnnn====================================================================================================================================================",          
+            "feature1":"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn=====================================================================================================================================",
             "feature_info":{
                 "n":{"type":"extension", "name":"extN", "description":"Extended N-terminal tail.", "color":"#00ff00", "source":"NP_001002916.3"}
             }

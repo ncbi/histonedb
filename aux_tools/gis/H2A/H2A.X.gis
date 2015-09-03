@@ -1,5 +1,5 @@
 #taken from original alignment
-398366187 - yeast, refseq close to pdb 1id3 - also canonical, but we call h2a.x
+398366187 - yeast, refseq close to pdb 1id3 - also canonical, but we call h2a.x Saccharomyces_H2A.X should be also canonical
 159108895|H2A.X Giardia_H2A.X
 66814816|H2A.X Dictyostelium_H2A.X
 #61658009|H2A.X Alexandrium_H2A.X - this is dinoglagellate - should have no histones???
@@ -7,7 +7,6 @@
 310870 - H2A.X Tetrahymena from PMID 17242195
 #15221875|H2A.X Arabidopsis_H2A.X.3
 115488866|H2A.X Oryza_H2A.X
-398366187|H2A.X Saccharomyces_H2A.X should be also canonical
 758974979|H2A.X Ustilago_H2A.X
 19115333|H2A.X Schizosaccharomyces_H2A.X - should be also canonical
 196012824|H2A.X Trichoplax_H2A.X

@@ -32,7 +32,7 @@ from Bio.Align.AlignInfo import SummaryInfo
 from Bio.Emboss.Applications import NeedleCommandline
 
 
-Entrez.email = "alexey.shaytan@nih.gov"
+Entrez.email = "shaytanak@gmail.com"
 
 
 def read_gis(file):
@@ -52,27 +52,48 @@ def get_prot_seqrec_by_gis(gi_list):
 
     print("Downloading FASTA SeqRecords by GIs from NCBI")
     num=len(gi_list)
-    fasta_seqrec=dict()
-    for i in range(int(num/1000)+1):
-        while True:
-            try:
-                print("Fetching %d th thousands from %d"%(i,num))
-                strn = ",".join(gi_list[i*1000:(i+1)*1000])
-                request=Entrez.epost(db="protein",id=strn)
-                result=Entrez.read(request)
-                webEnv=result["WebEnv"]
-                queryKey=result["QueryKey"]
-                handle=Entrez.efetch(db="protein",rettype='fasta',retmode='text',webenv=webEnv, query_key=queryKey)
-                for r in SeqIO.parse(handle,'fasta'):
-                    fasta_seqrec[r.id.split('|')[1]]=r
-            except:
-                    continue
+    while True:
+        fasta_seqrec=dict()
+        try:
+            print("Fetching %d seqs"%(num))
+            strn = ",".join(gi_list)
+            request=Entrez.epost(db="protein",id=strn)
+            result=Entrez.read(request)
+            webEnv=result["WebEnv"]
+            queryKey=result["QueryKey"]
+            handle=Entrez.efetch(db="protein",rettype='fasta',retmode='text',webenv=webEnv, query_key=queryKey)
+            for r in SeqIO.parse(handle,'fasta'):
+                fasta_seqrec[r.id.split('|')[1]]=r
+        except:
+            continue
+        if(len(fasta_seqrec)==num):
             break
+        else:
+            print "Mismatch:", num," ", len(fasta_seqrec)
     print("FASTA Records downloaded:")
     print(len(fasta_seqrec))
     return(fasta_seqrec)
 
 
+def get_genus_by_gi(gi):
+    org=0
+    while True:
+        try:
+            print("Fetching gi %s genus"%str(gi))
+            strn = str(gi)
+            # request=Entrez.epost(db="protein",id=strn)
+            # result=Entrez.read(request)
+            # webEnv=result["WebEnv"]
+            # queryKey=result["QueryKey"]
+            # handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',webenv=webEnv, query_key=queryKey)
+            handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',id=strn)
+            for r in SeqIO.parse(handle,'gb'):
+                org=r.annotations["organism"]
+        except:
+            continue
+        if(org):
+            break
+    return org.split()[0]
 
 
 def muscle_aln(seqreclist):
@@ -97,8 +118,12 @@ def refactor_title(msa,variant):
     msa_r=MultipleSeqAlignment([])
     for i in msa:
         # print i.description
-        genus=re.search(r"\[(\S+)\s+.+\S+\]",i.description).group(1)
         gi=re.search(r"gi\|(\d+)\|",i.id).group(1)
+        try:
+            genus=re.search(r"\[(\S+)\s+.+\S+\]",i.description).group(1)
+        except:
+            genus=get_genus_by_gi(gi)
+
         i.id=genus+"|"+gi+"|"+variant
         i.description=genus+"_"+variant+"_"+gi
         msa_r.append(i)
@@ -130,10 +155,12 @@ def get_gis(pref=''):
 
 
 if __name__ == '__main__':
+    # print get_genus_by_gi(223590216)
+    # exit()
     if not os.path.exists("draft_seeds"):
         os.makedirs("draft_seeds")
     for hist_var,hist_type,f in get_gis():
-        # print hist_var,hist_type,f
+        print "##########Starting",hist_var,hist_type,f
         if not os.path.exists(os.path.join("draft_seeds",hist_type)):
             os.makedirs(os.path.join("draft_seeds",hist_type))
         gis=read_gis(os.path.join("gis",hist_type,f))

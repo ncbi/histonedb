@@ -38,10 +38,10 @@
 156227602 - Nematostella , hope this is canonical
 #673921668 - Zea mays - this later can be named H2A.W with SPKK motifs
 731349093 - Beta vulgaris - added to get more plants
-226504426 - Zea mays HTA106 from Paul Talbert
+#194708692 - Zea mays HTA106 from Paul Talbert, this is not refseq very similar to HTA114
 212723398 - Zea mays HTA111 from Paul Talbert
 226504426 - Zea mays HTA114 from Paul Talbert
-212723398 - Zea mays HTA115 from Paul Talbert
+#194700332 - Zea mays HTA115 from Paul Talbert, this is not refseq very similar to HTA111
 310872 - Tetrahymena thermophila from PMID 17242195
 #118386111 - Tetrahymena thermophila sb210 - H2A.X or H2A.Z only found in nr
 #66357734 - Cryptosporidium parvum iowa ii - either H2A.Z or H2A.X no canonical found

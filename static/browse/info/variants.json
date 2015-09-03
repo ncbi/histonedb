@@ -75,13 +75,22 @@
 
 		},
 		"H2A.B": {
-			"description": "H2A.B, also known as \"Barr body defficient\" variant, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch. It is possible that mouse homolog of H2A.B, also called H2A.Lap1, bears modified function with respect to human H2A.B. H2A.Lap1 has additional negative residue in acidic patch, which is thought to increase its propensity to compact nucleosomal arrays relative to human H2A.B",
+			"description": "H2A.B, also known as \"Barr body defficient\" variant, is involved in gene upregulation, splicing and spermiogenesis; it is found in active genes at transcription start sites in testis. H2A.B is a rapildy evolving variant which is closely related to H2A.L and H2A.M. It is arginine rich, has a shortened C-terminal tail and docking domain and a smaller acidic patch. It is possible that mouse homolog of H2A.B, also called H2A.Lap1, bears modified function with respect to human H2A.B. H2A.Lap1 has additional negative residue in acidic patch, which is thought to increase its propensity to compact nucleosomal arrays relative to human H2A.B.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"H2A.Bbd"},
 			    {"name":"H2A.Lap1(mouse)"}
 			],
 		  "publications":["22650316","25731851","24853749","18329190","17726088","24213378"]
+
+		},
+	  	"TS_H2A.1": {
+			"description": "TS H2A.1 is a mammalian testis-specific variant. It can preferentially dimerize with  TS H2B.1. So far characterized only in mouse, but a similar gene in human is available. The gene is located  at the end of the largest histone gene cluster.",
+			"taxonomic_span":"Mammals",
+			"alternate_names": [
+				{"name":"TH2A"}
+			],
+		  "publications":["22650316","25731851","24506885"]
 
 		},
 		"H2A.M": { 
@@ -99,26 +108,26 @@
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [],
-			"publications":["22650316"]
+			"publications":["22650316","25731851"]
 		},
 		"subH2B": {
-			"description":"subH2B is involved in spermiogenesis and is found in subacrosomes of spermatozoa. It has a bipartite nuclear localization signal",
+			"description":"subH2B is involved in spermiogenesis and is found in subacrosomes of spermatozoa. It has a bipartite nuclear localization signal. This variant is present outside of nucleus in acrosomal space of spermatozoa, extent of its involvement in nucleosome formation is unclear",
 			"taxonomic_span":"Primates, rodents, marsupials, and bovids",
 			"alternate_names": [
 				{"name":"H2BL1"},
-				{"name":"SubH2Bv"}
+				{"name":"subH2Bv"}
 			],
-			"publications":["22650316"]
+			"publications":["22650316","25731851","11892742","22156475"]
 		},
-		"H2B.1": {
-			"description":"H2B.1 is a testis-specific variant that forms subnucleosomal particles in spermatids. It can dimerize with H2A.L.1 and H2A.L.2",
+		"TS_H2B.1": {
+			"description":"TS H2B.1 is a mammalian testis-specific variant that forms subnucleosomal particles in spermatids. It can preferentially dimerize with H2A.L and TS H2A.1. The gene is located  at the end of the largest histone gene cluster.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"TH2B"},
-				{"name":"TS H2B.1"},
+				{"name":"H2B.1"},
 				{"name":"hTSH2B", "taxonomy":"rodentia"}
 			],
-			"publications":["22650316"]
+			"publications":["22650316","12408966","24506885","25252820","15709765","23884607","25731851"]
 		},
 		"H2B.W": {
 			"description":"H2B.W is involved in spermiogenesis and telomere associated functions in sperm and is found in spermatogenic cells. It has an extended N-terminal tail",
@@ -128,10 +137,18 @@
 				{"name":"member W"},
 				{"name":"type W-T"}
 			],
-			"publications":["22650316"]
+			"publications":["22650316","25731851","19583817","16449661","16449661"]
+		},
+	  	"sperm_H2B": {
+			"description":"Putative histone variant class containing sperm, early and cleavage H2B histones from sea and sand urchins.",
+			"taxonomic_span":"Echinacea",
+			"alternate_names": [
+
+			],
+			"publications":["22650316","710402"]
 		},
 		"H2B.Z": {
-			"description":"H2B.Z in an apicomplexan specific variant that is known to interact with H2A.Z",
+			"description":"H2B.Z in an apicomplexan specific variant that is known to interact with H2A.Z.",
 			"taxonomic_span":"Apicomplexa",
 			"alternate_names": [
 				{"name":"H2Bv"}
