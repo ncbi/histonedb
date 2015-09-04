@@ -5,11 +5,15 @@ Entrez.email = "eli.draizen@nih.gov"
 from djangophylocore.models import Taxonomy
 
 def seq_from_gi(gis):
-    post_results = Entrez.read(Entrez.epost("protein", id=",".join(gis)))
-    webenv = post_results["WebEnv"]
-    query_key = post_results["QueryKey"]
-    handle = Entrez.efetch(db="protein", rettype="gb",retmode="text", webenv=webenv, query_key=query_key)
-    for s in SeqIO.parse(handle, "gb"):
+    while True:
+        post_results = Entrez.read(Entrez.epost("protein", id=",".join(gis)))
+        webenv = post_results["WebEnv"]
+        query_key = post_results["QueryKey"]
+        handle = Entrez.efetch(db="protein", rettype="gb",retmode="text", webenv=webenv, query_key=query_key)
+        data=list(SeqIO.parse(handle, "gb"))
+        if(len(gis)==len(data)):
+            break
+    for s in data:
         yield s
 
 def taxonomy_from_gis(gis):
