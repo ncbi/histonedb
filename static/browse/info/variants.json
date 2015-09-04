@@ -23,7 +23,7 @@
 				{"name":"D2", "taxonomy":"drosophila"},
 				{"name":"member Z"}
 			],
-		  			"publications":["22650316","25731851","11101893","18275809","24311584","19193230","24969791","22467210","20003410","24768041","23301656","20197778"]
+		  	"publications":["22650316","25731851","11101893","18275809","24311584","19193230","24969791","22467210","20003410","24768041","23301656","20197778"]
 
 		},
 		"H2A.X": {
@@ -32,7 +32,7 @@
 			"alternate_names": [
 				{"name":"member X"}
 			],
-		  			"publications":["22650316","25731851","18095327","23301656"]
+		  	"publications":["22650316","25731851","18095327","23301656"]
 
 		},
 		"macroH2A": {
@@ -47,7 +47,7 @@
 				{"name":"macroH2A2.1", "gene":2, "splice":1},
 				{"name":"macroH2A2.2", "gene":2, "splice":2}
 			],
-		  		  		  			"publications":["22650316","25731851","16107708","20543561","16803903"]
+		    "publications":["22650316","25731851","16107708","20543561","16803903"]
 
 		},
 		"H2A.L": {
@@ -97,9 +97,12 @@
 			"description":"H2A.M is a putative variant closely related to H2A.B and H2A.L, but forming a distinct clade.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
-				{"name":"Huntingtin-interacting protein M"}
+				{"name":"Huntingtin-interacting protein M"},
+				{"name":"HYPM"},
+				{"name":"CXorf27"},
+				{"name":"HIP17"}
 			],
-		  		  			"publications":[]
+		    "publications":["22025671", "9700202"]
 
 		}
 	},
@@ -164,7 +167,7 @@
 			"publications":["22650316"]
 		},
 		"cenH3":{
-			"description":"cenH3 is a centromere-specific histone variant, it is required for assembly of kinetochore proteins, mitotic progression and chromosome segregation. The N-terminal tail of CENP-A is highly divergent from other H3 variants.",
+			"description":"cenH3 is a centromere-specific histone variant, which replaces canonical H3 in centromeric nucleosomes. It is required for kinetochore formation, mitotic progression and chromosome segregation. cenH3 has an extended L1-loop and its N-terminal tail is very different from other H3 variants. cenH3s have an extended L1-loop and usually replace Phe84 in canonical H3 with Trp, and Thr 107 with Ala, Cys, or Ser. cenH3s typically have only about 50-60% amino acid identity to canonical H3 in the histone fold domain and no conservation of the N-terminal.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
@@ -173,7 +176,7 @@
 			  	{"name":"cid"}
 
 			],
-			"publications":["22650316","19766562","25956076","23324462"]
+			"publications":["22650316","19766562","25956076","23324462","21743476"]
 		},
 		"H3.Y": {
 			"description": "H3.Y is involved in memory formation due to its presence in neurons in human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch",
@@ -184,7 +187,7 @@
 			"publications":["22650316", "20819935"]
 		},
 		"H3.3": {
-			"description": "The major replication-independent or replacement H3, important for development, transcription, and chromosome segregation",
+			"description": "The major replication-independent or replacement H3, important for development, transcription, and chromosome segregation. It typically differs from the canonical H3 by only a few amino acids that are necessary for replication-independent assembly. ",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"soH3-1", "gene":1},
@@ -218,6 +221,16 @@
 		}
 	},
 	"H1": {
+	  "generalH1":{
+			"description":"H1 has only species specific variants. In current version of HistoneDB all H1 are presented as generalH1 class, except for several interesting species specific variants.",
+			"taxonomic_span": "Eukaryotes",
+			"alternate_names": [
+				{"name":"H1°"},
+				{"name":"H5", "taxonomy":"aves"},
+				{"name":"H1δ"}
+			],
+			"publications":["22650316"]
+		},
 		"H1.0":{
 			"description":"None provided",
 			"taxonomic_span": "Eukaryotes",

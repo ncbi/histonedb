@@ -93,12 +93,12 @@ class Command(BaseCommand):
                     taxonomy = Taxonomy.objects.get(name="root")
 
                 template, created = TemplateSequence.objects.get_or_create(taxonomy=taxonomy, variant=variant)
-                if not os.path.isfile(template.path()):
-                    SeqIO.write(
+                # if not os.path.isfile(template.path()): #we need to rewrite it!!!
+                SeqIO.write(
                         SeqRecord(Seq(sequence), id=str(template)),
                         template.path(),
                         "fasta"
-                    )
+                )
                 used_features = {}
                 for positions in position_lines:
                     for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
