@@ -164,14 +164,16 @@
 			"publications":["22650316"]
 		},
 		"cenH3":{
-			"description":"cenH3 is a centromere-specific histone variant, it is required for assembly of kinetochore proteins, mitotic progression and chromosome segregation. The N-terminal tail of CENP-A is highly divergent from other H3 variants",
+			"description":"cenH3 is a centromere-specific histone variant, it is required for assembly of kinetochore proteins, mitotic progression and chromosome segregation. The N-terminal tail of CENP-A is highly divergent from other H3 variants.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
 				{"name":"Cse4p"},
-				{"name":"Cse4"}
+				{"name":"Cse4"},
+			  	{"name":"cid"}
+
 			],
-			"publications":["22650316"]
+			"publications":["22650316","19766562","25956076","23324462"]
 		},
 		"H3.Y": {
 			"description": "H3.Y is involved in memory formation due to its presence in neurons in human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch",
@@ -181,20 +183,6 @@
 			],
 			"publications":["22650316", "20819935"]
 		},
-		"H3.1": {
-			"description": "H3.1 is a recent mammal-specific variant diverged from H3.2",
-			"taxonomic_span": "Mammals",
-			"alternate_names": [
-				{"name":"H3v1"}
-			],
-			"publications":["22650316"]
-		},
-		"H3.2": {
-			"description": "Replication-coupled H3 variant found throughout animals",
-			"taxonomic_span": "Metazoa",
-			"alternate_names": [],
-			"publications":["22650316"]
-		},
 		"H3.3": {
 			"description": "The major replication-independent or replacement H3, important for development, transcription, and chromosome segregation",
 			"taxonomic_span": "Eukaryotes",
@@ -202,8 +190,24 @@
 				{"name":"soH3-1", "gene":1},
 				{"name":"soH3-2", "gene":2}
 			],
-			"publications":["22650316", "20738881"]
-		} 
+			"publications":["22650316", "20738881","19412883","24229707"]
+		},
+	  "TS_H3.4": {
+			"description": "Testis spesific mamal H3 variant.",
+			"taxonomic_span": "mammals",
+			"alternate_names": [
+			  {"name":"H3.1t"}
+
+			],
+			"publications":["22650316","8986613"]
+		},
+	    "H3.5": {
+			"description": "A hominid specific variant expressed in seminiferous tubules of human testis.",
+			"taxonomic_span": "Hominids",
+			"alternate_names": [
+			],
+			"publications":["21274551"]
+		}
 	},
 	"H4": {
 		"canonicalH4":{
