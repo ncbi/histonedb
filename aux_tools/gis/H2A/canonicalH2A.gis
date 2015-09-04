@@ -1,6 +1,9 @@
 72391222 - Trypanosoma
 147898582 - Xenopus, refseq close to pdb 1kx5
-15239697 - arabidopsis
+15223708 - arabidopsis HTA10 - from Paul Talbert
+15232330  - arabidopsis HTA13 - from Paul Talbert
+334186954  - arabidopsis HTA2 - from Paul Talbert
+15239697  - arabidopsis HTA1 - from Paul Talbert
 30061393 - Mus musculus
 118405202 - Gallus, refseq close to pdb 1eqz
 17562014 - C. elegans
@@ -33,8 +36,13 @@
 237831941 - Toxoplasma gondii me49
 66807867 - Dictyostelium discoideum ax4
 156227602 - Nematostella , hope this is canonical
-673921668 - Zea mays - this later can be named H2A.W with SPKK motifs
+#673921668 - Zea mays - this later can be named H2A.W with SPKK motifs
 731349093 - Beta vulgaris - added to get more plants
+#194708692 - Zea mays HTA106 from Paul Talbert, this is not refseq very similar to HTA114
+212723398 - Zea mays HTA111 from Paul Talbert
+226504426 - Zea mays HTA114 from Paul Talbert
+#194700332 - Zea mays HTA115 from Paul Talbert, this is not refseq very similar to HTA111
+310872 - Tetrahymena thermophila from PMID 17242195
 #118386111 - Tetrahymena thermophila sb210 - H2A.X or H2A.Z only found in nr
 #66357734 - Cryptosporidium parvum iowa ii - either H2A.Z or H2A.X no canonical found
 # next - Giardia lamblia ATCC 50803 -all have SQDL motif
