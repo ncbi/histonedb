@@ -160,7 +160,7 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
         values["ACC"].append(float(TP+TN)/(len(positives)+len(negatives)))
         
     specificity_curve_inverse = interp1d(values[measure], thresholds)
-    saveThreshold = specificity_curve_inverse(0.95)
+    saveThreshold = specificity_curve_inverse(measure_threshold) #modified by Alexey 0.95 => measure_threshold
                 
     return saveThreshold, thresholds, values
 

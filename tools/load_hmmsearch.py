@@ -5,7 +5,7 @@ from collections import defaultdict
 from Bio import SearchIO
 from Bio import SeqIO
 from Bio.Seq import Seq
-
+from Bio import Entrez
 #Django libraires
 from browse.models import *
 from djangophylocore.models import Taxonomy
@@ -16,7 +16,7 @@ from django.conf import settings
 #Custom librairies
 from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_gis
 
-def load_hmm_results(hmmerFile):
+def load_hmm_results(hmmerFile,id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
 
@@ -154,3 +154,37 @@ def add_score(seq, variant_model, hsp, best=False):
     regex                   = False,
     )
   score.save()
+
+
+def get_many_prot_seqrec_by_gis(gi_list):
+    """
+    Download a dictionary of fasta SeqsRec from NCBI given a list of GIs.
+    """
+
+    print("Downloading FASTA SeqRecords by GIs from NCBI")
+    num=len(gi_list)
+    fasta_seqrec=dict()
+
+    for i in range(int(num/1000)+1):
+      print("Fetching %d th thousands from %d"%(i,num))
+
+      while True:
+        try:
+            strn = ",".join(map(str,gi_list)[i*1000:(i+1)*1000])
+            request=Entrez.epost(db="protein",id=strn)
+            result=Entrez.read(request)
+            webEnv=result["WebEnv"]
+            queryKey=result["QueryKey"]
+            handle=Entrez.efetch(db="protein",rettype='fasta',retmode='text',webenv=webEnv, query_key=queryKey)
+            for r in SeqIO.parse(handle,'fasta'):
+                fasta_seqrec[r.id.split('|')[1]]=r
+        except:
+            continue
+        if((len(fasta_seqrec)==(i+1)*1000) or (len(fasta_seqrec)==num)):
+            break
+        else:
+            print "Mismatch:", num," ", len(fasta_seqrec)
+    print("FASTA Records downloaded:")
+    print(len(fasta_seqrec))
+    return(fasta_seqrec)
+
