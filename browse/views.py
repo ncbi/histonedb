@@ -383,7 +383,10 @@ def get_aln_and_features(request, ids=None):
             variants = [seq.variant]
             #let's load the corresponding canonical
             try:
-                canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
+                if(str(seq.variant.hist_type)=="H1"):
+                    canonical=Sequence.objects.filter(variant_id='generic'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
+                else:
+                    canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
             except:
                 try: #try H2A.X as a substitute for canonical
                     if(str(seq.variant.hist_type)=='H2A'):
@@ -391,7 +394,10 @@ def get_aln_and_features(request, ids=None):
                     else:
                         raise
                 except: #default Xenopus
-                    canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                    if(str(seq.variant.hist_type)=="H1"):
+                        canonical = Sequence(id="0000|xenopus|generic{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                    else:
+                        canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
             sequences = [canonical, seq]
             sequence_label = seq.short_description
             

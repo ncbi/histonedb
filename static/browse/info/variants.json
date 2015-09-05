@@ -221,15 +221,15 @@
 		}
 	},
 	"H1": {
-	  "generalH1":{
-			"description":"H1 has only species specific variants. In current version of HistoneDB all H1 are presented as generalH1 class, except for several interesting species specific variants.",
+	  "genericH1":{
+			"description":"H1 has mainly species specific variants. In current version of HistoneDB all H1 are presented as genericH1 class, except for several interesting species specific variants which are provided as separate classes.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 			],
 			"publications":["22650316","23945933"]
 		},
 		"H1.0":{
-			"description":"A replication independent linker histone found in animals expressed in terminally differentiated cells.",
+			"description":"H1.0 is a replication independent linker histone found in animals expressed in terminally differentiated cells. Has a common monophyletic origin that can be traced back before the differentiation between protostomes and deuterostomes, very early in metazoan evolution.",
 			"taxonomic_span": "Metazoa",
 			"alternate_names": [
 				{"name":"H1°"},
@@ -237,43 +237,43 @@
 				{"name":"H1δ"},
 			  	{"name":"RI H1"}
 			],
-			"publications":["22650316","23945933","7066298"]
+			"publications":["22650316","23945933","7066298","2898141"]
 		},
-		"H1.6": {
-			"description":"None provided",
-			"taxonomic_span": "Eukaryotes",
+		"TS_H1.6": {
+			"description":"Sequences collected here belong to (TS) H1.6 - a testis specific variant of H1 common in mammals.",
+			"taxonomic_span": "Mammals",
 			"alternate_names": [
 				{"name":"H1t"}
 			],
 			"publications":["22650316"]
 		},
-		"H1.7": {
-			"description":"None provided.",
-			"taxonomic_span": "Eukaryotes",
+		"TS_H1.7": {
+			"description":"Sequences collected here belong to (TS) H1.7 - a testis specific variant of H1 common in mammals.",
+			"taxonomic_span": "Mammals",
 			"alternate_names": [
 				{"name":"H1T2"}
 			],
 			"publications":["22650316"]
 		},
-		"H1.8": {
-			"description":"None provided",
-			"taxonomic_span": "Eukaryotes",
+		"OO_H1.8": {
+			"description":"Sequences collected here belong to (OO) H1.8 - an oocyte specific variant of H1 common in mammals.",
+			"taxonomic_span": "Mammals",
 			"alternate_names": [
 				{"name":"H1oo"}
 			],
 			"publications":["22650316"]
 		},
-		"H1.9": {
-			"description":"None provided",
-			"taxonomic_span": "Eukaryotes",
+		"TS_H1.9": {
+			"description":"Sequences collected here belong to (TS) H1.8 - a testis specific variant of H1 common in mammals.",
+			"taxonomic_span": "Mammals",
 			"alternate_names": [
 				{"name":"Hils1"}
 			],
 			"publications":["22650316"]
 		},
 		"H1.10": {
-			"description":"None provided",
-			"taxonomic_span": "Eukaryotes",
+			"description":"Sequences collected here belong to H1.10 here - a vertebrate specific H1 variant.",
+			"taxonomic_span": "Vertebrates",
 			"alternate_names": [
 				{"name":"H1x"}
 			],

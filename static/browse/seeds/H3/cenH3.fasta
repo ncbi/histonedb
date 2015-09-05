@@ -1,64 +1,55 @@
 >Arabidopsis|18378832|cenH3 Arabidopsis_cenH3_18378832
 ------------------------------------------------------------
-------------------------------------------------------------
------------MARTKHRVTRSQPR----------------NQTDAAGASSSQAAGPTTT
-PTRRGGEGGDNTQQTNPTTSP---------------------------------------
--------------ATGTRRGAKRSRQAMPRGS----------------------------
----------------------------------QKKSYRYRPGTVAL-------KEIRHF
+-----------------------------------MARTKHRVTRSQPRNQTDAAGASSS
+Q--------AAGPTTTPT------------------------------------------
+------------------------------------RRGGEGGDNTQQTNPTTSPATGTR
+RGA-----------KRSRQAMPRG------------------------------------
+--------------------------------SQKKSYRYRPGTVAL-------KEIRHF
 QKQTNLLIPAASFIREVRSITHMLAPP-QINRWTAEALVALQEAAEDYLVGLFSDSMLCA
 IHARRVTLMRKDFELARRLGGKGRPW------------
 >Cyanidioschyzon|544210412|cenH3 Cyanidioschyzon_cenH3_544210412
 ------------------------------------------------------------
--------------------------------------MVRVFGNPVGGAHQYRQTQALNR
-DESLREQLQRTTVAEQDENIEPEPE----------------R--SSPDEAQSRLKSLLGS
-VARSSSLLGRRVAGPPGSSLS---------------------------------------
--------------NLAETRLLTEEAANRPTGAGRSERVSAGRAEPLPPGPTTATTNADAN
+---MVRVFGNPVGGAHQYRQTQALNRDESLREQLQRTTVAEQDENIEPEPERSSPDEAQS
+RLKSLLGSVARSSSLLGR------------------------------------------
+------------------------------------RVAGPPGSSLSNLAETRLLTEEAA
+NRP-------TGAGRSERVSAGRAEPLPP-------------------GPTTATTNADAN
 TVQRGLSVASAFPPRAPLQAAGFTVARRTTRSGVQRKHRFRPGSRAI-------MEIRKF
 QRSTELLLRRLPFARLVREICERLFGS-SAFRWQASALEALQTAAEDYLIHLFEDSNLCA
 IHARRVTIMPRDIALARRIRGYHSDPHGYL--------
 >Drosophila|22024004|cenH3 Drosophila_cenH3_22024004
 ------------------------------------------------------------
----------------------------------------------------MPRHSRAKR
-APRPSANNSKSPNDDDTAFRSPEPEDGTDYGLEFTTSQLTLQDNNRRSSTLRRDAGRRQP
-AARDSSTSGEEEDQENRYPTT---------------------------------------
--------------RSPQTRRMTVQQESKTRAAGPVA------------------------
----------------------------------AQNQTRRRKAANPMSRAKRMDREIRRL
+-----------------MPRHSRAKRAPRPSANNSKSPNDDDTAFRSPEPEDGTDYGLEF
+TTSQLTLQDNNRRSSTLR------------------------------------------
+------------------------------------RDAGRRQPAARDSSTSGEEEDQEN
+RYP------------TTRSPQTRRMTVQQ-------------------ESKTRAAGPV--
+--------------------------------AAQNQTRRRKAANPMSRAKRMDREIRRL
 QHHPGTLIPKLPFSRLVREFIVKYSDD-EPLRVTEGALLAMQESCEMYLTQRLADSYMLT
 KHRNRVTLEVRDMALMAYICDRGRQF------------
 >Guillardia|13794280|cenH3 Guillardia_cenH3_13794280
 ------------------------------------------------------------
 ------------------------------------------------------------
-----------------------------------------------------MMK-----
 ------------------------------------------------------------
+---------------------------------------MMKKQNL--------------
 ------------------------------------------------------------
----------------------------------KQNLKRFKKSSNSL-------VDIRKF
+-------------------------------------KRFKKSSNSL-------VDIRKF
 QKSTDLLIHRLPFARLVKEISLKYH---HSLNWQQVAVEALQFASEDYIIGLLQDANLAA
 IHAKRVTVMPKDLKLAKIIRGEH---------------
->Homo|109637779|cenH3 Homo_cenH3_109637779
-------------------------------------------------------------
-------------------------------------------------------------
---------------------------------------------MGPRRRSRKPEAPRRR
-SPSPTPTPGPSRRGPSLGAS----------------------------------------
-------------------------------------------------------------
----------------------------------SHQHSRRRQG--WL-------KEIRKL
-QKSTHLLIRKLPFSRL---------------------------AAEAFLVHLFEDAYLLT
-LHAGRVTLFPKDVQLARRIRGLEEGLG-----------
 >Homo|4502775|cenH3 Homo_cenH3_4502775
 ------------------------------------------------------------
+-----------------------------------------MGPRRRSRKPEAPR-----
+---------RRSPSPTPT------------------------------------------
+------------------------------------PGPSRRGPSLGA------------
 ------------------------------------------------------------
---------------------------------------------MGPRRRSRKPEAPRRR
-SPSPTPTPGPSRRGPSLGAS----------------------------------------
-------------------------------------------------------------
----------------------------------SHQHSRRRQG--WL-------KEIRKL
+--------------------------------SSHQHSRRRQG--WL-------KEIRKL
 QKSTHLLIRKLPFSRLAREICVKFTRG-VDFNWQAQALLALQEAAEAFLVHLFEDAYLLT
 LHAGRVTLFPKDVQLARRIRGLEEGLG-----------
 >Mus|6680920|cenH3 Mus_cenH3_6680920
 ------------------------------------------------------------
+-----------------------------------------MGPRRKPQTP---------
+----------RRRPSSPA------------------------------------------
+------------------------------------PGPSRQSSSV--------------
 ------------------------------------------------------------
---------------------------------------------MGPR---RKPQTPRRR
-PSS--PAPGPSRQSSSVG------------------------------------------
-------------------------------------------------------------
----------------------------------SQTLRR-RQKFMWL-------KEIKTL
+---------------------------------GSQTLRRRQKFMWL-------KEIKTL
 QKSTDLLFRKKPFSMVVREICEKFSRG-VDFWWQAQALLALQEAAEAFLIHLFEDAYLLS
 LHAGRVTLFPKDIQLTRRIRGFEGGLP-----------
 >Perkinsus|294874934|cenH3 Perkinsus_cenH3_294874934
@@ -72,38 +63,38 @@ QEITDPLIEKRCFQALARSLSREVE---ASMRWQPQSLVALQEASESFIVGMLEASQLLA
 VHGRRITLMEKDVKMWTRLAAMFGSTTFMDQEKQVGGT
 >Phytophthora|695416328|cenH3 Phytophthora_cenH3_695416328
 ------------------------------------------------------------
--------------------------------------------------MASPRPPALPA
-SDASSSSVTDSGTDDSTPPNSPQPQ----------------RSPSPPFAATRGPAAARAP
-PAAPSSVSSASTPSPPPNLPA---------------------------------------
--------------RRPSVAPVGRQAAIHATPTAPRRKRKATPPRRRPSSPASAT------
----------------------------------QTVKKRRKPGEAAL-------REIRLL
+---------------MASPRPPALPASDASSSSVTDSGTDDSTPPNSPQPQRSPSPPFAA
+T---RGPAAARAPPAAPS------------------------------------------
+------------------------------------SVSSASTPSPPPNLPARRPSVAPV
+GRQAAIHATPTAPRRKRKATPPRRRPSSP-------------------ASA---------
+--------------------------------TQTVKKRRKPGEAAL-------REIRLL
 QRSTKLLLRKLPFARVVREIQTEFTG--VGYRWQAEALLALQEAAETYLVRTFEDAY---
 ------------------VGG-----------------
 >Plasmodium|124513424|cenH3 Plasmodium_cenH3_124513424
 ------------------------------------------------------------
-------------------------------------------------------------
----------------MVRTKKNIPN----------------HNPLNAFNRDKSFKTNKTL
-PNRTVHHGISSKTTNINRPSV---------------------------------------
--------------NRGGINEVAQKNLHRTN------------------------------
----------------------------------IRKPHRYRPGVLAL-------KEIRAY
+-----------------------------------MVRTKKNIPNHNPLNAFNRDKSFKT
+N--------KTLPNRTVH------------------------------------------
+------------------------------------HGISSKTTNINRPSVNRGGINEVA
+QKN-------------LHRT----------------------------------------
+--------------------------------NIRKPHRYRPGVLAL-------KEIRAY
 QASTQLLIPKIPFVRVVKEITRLFELPDEQFRYTPEALLALQTASEAYLVSLFEDAYLCS
 LHANRVTLMPKDIHLARRIRGRD---------------
 >Saccharomyces|486066|cenH3 Saccharomyces_cenH3_486066
 ------------------------------------------------------------
-------------------------------------------------------------
-----------------METEVPAPV----------------R--THSYALDRYVRQKRRE
-KQRKQSL-----------------------------------------------------
+------------------------------------------METEVPAPVRTHSYALDR
+Y-------------VRQK------------------------------------------
+------------------------------------RREKQRKQSL--------------
 ------------------------------------------------------------
 ---------------------------------KRVEKKYTPSELAL-------YEIRKY
 QRSTDLLISKIPFARLVKEVTDEFTTKDQDLRWQSMAIMALQEASEAYLVGLLEHTNLLA
 LHAKRITIMKKDMQLARRIRGQFI--------------
 >Tetrahymena|118356028|cenH3 Tetrahymena_cenH3_118356028
 ------------------------------------------------------------
-------------------------------------------------------------
-----------------MARKAYQPK----------------RRSNSNQNQQRSDSLKKNK
-QDNLRSKSAGNQQGNEKNKKD---------------------------------------
--------------IQDQRNKASTKKKRESSGEKYESAR----------------------
----------------------------------DKVIRRFRPGDNAL-------KQLRQY
+-----------------------------------MARKAYQPKRRSNSNQNQQRSDSLK
+K--------NKQDNLRSK------------------------------------------
+------------------------------------SAGNQQGNEKNKKDIQDQRNKAST
+KKK--------------RESSGEKYESA--------------------------------
+--------------------------------RDKVIRRFRPGDNAL-------KQLRQY
 NQTPSLLIRKLPFQRLIREISTRMTEE-DSLRWTSFALVLLQTVVEDYMVSFFEDANACA
 LHAKRVTLMSKDLALAARIRGQKNVTGIFIPTKK----
 >Thalassiosira|223995905|cenH3 Thalassiosira_cenH3_223995905

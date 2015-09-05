@@ -79,5 +79,5 @@ class Command(BaseCommand):
                 if not seed.endswith(".fasta"): continue
                 variant = os.path.basename(seed)[:-6]
                 if i == 0:
-                    variant = "canonical{}".format(variant)
+                    variant = "canonical{}".format(variant) if variant != "H1" else "generic{}".format(variant)
                 yield variant, os.path.join(root, seed)
