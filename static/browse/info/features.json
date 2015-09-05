@@ -95,8 +95,8 @@
             "sequence":"MAKPTFKRQCYIKRHLRPLYRKHSRCSSINLGHGNYSLYINRVLKEVVPNRGISSYSVDIMNILINDIFERIATEACQQMFLRKRCTLTPGDIQQAVHLLLPKKLATLAVTFGSKAVHRFIHS",
             "feature1":"===111111111====================================================================2222222222222222222222222222===============",
             "feature_info":{
-                "1":{"type":"motif", "name":"bp1", "description":"Bipartite nuclear loclization signal - left", "color":"#00ff00", "source":"NP_081340.1"},
-                "2":{"type":"motif", "name":"bp2", "description":"Bipartite nuclear loclization signal - right", "color":"#00ff00", "source":"NP_081340.1"}
+                "1":{"type":"motif", "name":"bp1", "description":"Predicted bipartite nuclear loclization signal - left", "color":"#00ff00", "source":"NP_081340.1"},
+                "2":{"type":"motif", "name":"bp2", "description":"Predicted bipartite nuclear loclization signal - right", "color":"#00ff00", "source":"NP_081340.1"}
             }
         },
         "H2B.W":{
@@ -126,15 +126,17 @@
                 "B":{"type":"secondary","name":"beta2","color":"#00bb00","description":"Beta-strand in L1L2 DNA bining site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "a":{"type":"residue", "name":"R2","color":"#00bb00","description":"Minor groove arginine at alpha1-alpha1 DNA bining site, SHL ±1.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "A":{"type":"residue", "name":"R3","color":"#00bb00","description":"Minor groove arginine at L1L2 DNA bining site, SHL ±2.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "m":{"type":"residue", "name":"R1","color":"#00bb00","description":"Minor groove arginine at the alphaN DNA bining site, SHL ±6.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "m":{"type":"residue", "name":"R1","color":"#00bb00","description":"Minor groove arginine at the alphaN DNA bining site, SHL ±6.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
             }
         },
         "cenH3":{
             "taxa":"root",
-            "sequence":"MPRHSRAKRAPRPSANNSKSPNDDDTAFRSPEPEDGTDYGLEFTTSQLTLQDNNRRSSTLRRDAGRRQPAARDSSTSGEEEDQENRYPTTRSPQTRRMTVQQESKTRAAGPVAAQNQTRRRKAANPMSRAKRMDREIRRLQHHPGTLIPKLPFSRLVREFIVKYSDDEPLRVTEGALLAMQESCEMYLTQRLADSYMLTKHRNRVTLEVRDMALMAYICDRGRQF",
-            "feature1":"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc====================================================================================================",
+            "sequence":"MGPRRRSRKPEAPRRRSPSPTPTPGPSRRGPSLGASSHQHSRRRQGWLKEIRKLQKSTHLLIRKLPFSRLAREICVKFTRGVDFNWQAQALLALQEAAEAFLVHLFEDAYLLTLHAGRVTLFPKDVQLARRIRGLEEGLG",
+            "feature1":"===============================================================================ee====s======================q===============================",
             "feature_info":{
-                "c":{"type":"motif", "name":"Centromere identifier", "description":"Binding site to CENP proteins", "color":"#00ff00", "source":"NP_523730.2"}
+                "e":{"type":"motif", "name":"ext", "description":"L1-loop extension.", "color":"#00ff00", "source":""},
+                "s":{"type":"motif", "name":"F>W", "description":"Characteristic Phe > Tyr substitution.", "color":"#ff0000", "source":""},
+                "q":{"type":"motif", "name":"T>X", "description":"Characteristic Thr > Ala, Cys, or Ser substitution.", "color":"#ff0000", "source":""}
             }
         },
         "H3.3":{
@@ -181,13 +183,13 @@
             "sequence":"MTESLVLSPAPAKPKRVKASRRSASHPTYSEMIAAAIRAEKSRGGSSRQSIQKYIKSHYKVGHNADLQIKLSIRRLLAAGVLKQTKGVGASGSFRLAKSDKAKRSPGKKKKAVRRSTSPKKAARPRKARSPAKKPKATARKARKKSRASPKKAKKPKTVKAKSRKASKAKKVKRSKPRAKSGARKSPKKK",
             "feature1":"===========================11111111111=======bb22222222222======33333333333333===BBBB=======cccc=kkkkkkkkkkkk=================================================================================",
             "feature_info":{
-                "1":{"type":"secondary", "name":"alpha1", "color":"#ff0000","description":"Alpha1-helix, first helix of winged helix-turn-helix domain.", "source":"Obtained from PDB 1HST"},
-                "b":{"type":"secondary", "name":"beta1", "color":"#00ff00","description":"Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
-                "2":{"type":"secondary", "name":"alpha2", "color":"#ff0000","description":"Alpha2-helix, second helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
-                "3":{"type":"secondary", "name":"alpha3", "color":"#ff0000","description":"Alpha3-helix.", "source":"Obtained from PDB 1HST"},
-                "B":{"type":"secondary", "name":"beta2", "color":"#00ff00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"},
-                "c":{"type":"secondary", "name":"beta3", "color":"#00ff00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"},
-                "k":{"type":"motif", "name":"AKP helix", "color":"#cccccc","description":"Positively charged carboxy-terminal domain involved in specific protein-protein and protein-DNA interactions, possibly plays role in suppressing core histone tail domain acetylation in chromatin fiber.", source:"CDD"}
+                "1":{"type":"secondary", "name":"alpha1", "color":"#bb0000","description":"Alpha1-helix, first helix of winged helix-turn-helix domain.", "source":"Obtained from PDB 1HST"},
+                "b":{"type":"secondary", "name":"beta1", "color":"#00bb00","description":"Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
+                "2":{"type":"secondary", "name":"alpha2", "color":"#bb0000","description":"Alpha2-helix, second helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
+                "3":{"type":"secondary", "name":"alpha3", "color":"#bb0000","description":"Alpha3-helix.", "source":"Obtained from PDB 1HST"},
+                "B":{"type":"secondary", "name":"beta2", "color":"#00bb00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"},
+                "c":{"type":"secondary", "name":"beta3", "color":"#00bb00","description":"Beta-strand of short beta-sheet of C-terminal region.", "source":"Obtained from PDB 1HST"},
+                "k":{"type":"motif", "name":"AKP helix", "color":"#cccccc","description":"Positively charged carboxy-terminal domain involved in specific protein-protein and protein-DNA interactions, possibly plays role in suppressing core histone tail domain acetylation in chromatin fiber.", "source":"CDD"}
             }
         }
     }

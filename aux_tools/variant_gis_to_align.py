@@ -172,7 +172,7 @@ if __name__ == '__main__':
         print msa_r
         AlignIO.write(msa_r,os.path.join("draft_seeds",hist_type,hist_var+".fasta"),'fasta')
     #combines MSA
-    for hist_type in ['H2A','H2B']:
+    for hist_type in ['H2A','H2B','H3','H4','H1']:
         seqrecs=[]
         for hist_var,hist_type,f in get_gis(hist_type):
             seqrecs+=list(SeqIO.parse("draft_seeds/"+hist_type+"/"+hist_var+".fasta", "fasta"))

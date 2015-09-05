@@ -135,12 +135,13 @@ def transfer_features_from_template_to_query(template_features, query_file, save
         cmd=cmd,
         asequence=template_file, 
         bsequence=query_file, 
-        gapopen=20, 
+        gapopen=10,
         gapextend=1, 
         outfile=needle_results)
     stdout, stderr = needle_cline()
 
     align = AlignIO.read(needle_results, "emboss")
+    print align.format("fasta")
     core_histone = align[0]
     query = align[1]
     
