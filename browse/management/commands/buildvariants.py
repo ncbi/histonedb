@@ -55,6 +55,8 @@ class Command(BaseCommand):
         self.db_file=options['db_file']
         if self.db_file == "nr":
             self.get_nr()
+        if self.db_file == "swissprot":
+            self.get_swissprot()
 
         if options["force"]:
             #Clean the DB, removing all sequence/variants/etc
@@ -126,6 +128,15 @@ class Command(BaseCommand):
             with open("nr.gz", "w") as nrgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
             subprocess.call(["gunzip", "nr.gz"])
+
+    def get_swissprot(self):
+        """Download nr if not present"""
+        if not os.path.isfile(self.db_file):
+            print >> self.stdout, "Downloading swissprot..."
+            with open("swissprot.gz", "w") as swissprotgz:
+                subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/swissprot.gz"], stdout=swissprotgz)
+            subprocess.call(["gunzip", "swissprot.gz"])
+
 
     def build_hmms_from_seeds(self):
         """Build HMMs from seed histone sequences,

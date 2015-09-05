@@ -5,6 +5,8 @@ static/browse/hmms/combined_variants.hmm.h3p
 HistoneDB/NCBI_database_info.py
 *.pyc
 nr
+swissprot
+refseq
 static/browse/hmms/combined_cores.hmm.out
 static/browse/hmms/combined_variants.hmm.out
 static/browse/blast/HistoneDB_sequences.fa*
