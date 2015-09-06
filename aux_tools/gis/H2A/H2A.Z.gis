@@ -8,16 +8,23 @@
 294944037|H2A.Z Perkinsus_H2A.Z.1
 294944035|H2A.Z Perkinsus_H2A.Z.2
 429240082|H2A.Z Schizosaccharomyces_H2A.Z
-229596389|H2A.Z Tetrahymena_H2A.Z
+#229596389|H2A.Z Tetrahymena_H2A.Z
+10823 - H2A.Z Tetrahymena from PMID 17242195
 237844891|H2A.Z Toxoplasma_H2A.Z
 66357734|H2A.Z Cryptosporidium_H2A.Z
 17738227|H2A.Z Drosophila_H2Av_NP_524519
 196003262|H2A.Z Trichoplax_H2A.Z
 6912616|H2A.Z Homo_H2A.Z.2
-71897327|H2A.Z Gallus_H2A.Z.2 - this is the old one 121988
+121988|H2A.Z Gallus_H2A.Z.2 - might be identical to H2A.Z.1
 24111226|H2A.Z Danio_H2A.Z.2
 112807244|H2A.Z Danio_H2A.Z.1
 4504255|H2A.Z Homo_H2A.Z.1
 71897327|H2A.Z Gallus_H2A.Z.1
-15224957|H2A.Z Arabidopsis_H2A.Z.8
 115455263|H2A.Z Oryza_H2A.Z
+15224957  - arabidopsis HTA8.Z - from Paul Talbert
+15232536  - arabidopsis HTA11.Z - from Paul Talbert
+15219078  - arabidopsis HTA9.Z - from Paul Talbert
+15236314  - arabidopsis HTA4.Z - from Paul Talbert
+219362481 - Zea mays HTA101 from Paul Talbert
+226532207 - Zea mays HTA109 from Paul Talbert
+#219362481 - Zea mays HTA113 from Paul Talbert, similar to HTA101

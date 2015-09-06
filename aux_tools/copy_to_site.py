@@ -36,11 +36,11 @@ from Bio.Emboss.Applications import NeedleCommandline
 Entrez.email = "alexey.shaytan@nih.gov"
 
 
-def get_draft_seeds():
+def get_seeds(pref='draft_seeds'):
         """
-        Goes through aux_tools/gis
+        Goes through aux_tools/draft_seeds
         """
-        for i, (root, _, files) in enumerate(os.walk("draft_seeds/")):
+        for i, (root, _, files) in enumerate(os.walk(pref)):
             hist_type = os.path.basename(root)
             for f in files:
                 if not f.endswith(".fasta"): continue
@@ -48,9 +48,18 @@ def get_draft_seeds():
 
 
 if __name__ == '__main__':
-    for root,f in get_draft_seeds():
+    for root,f in get_seeds():
         # print hist_var,hist_type,f
         seedpath=os.path.join("../static/browse/",root,f).replace("draft_","")
+        print "Copying ",os.path.join(root,f)," to ",seedpath
+
+        if not os.path.exists(seedpath):
+            print "seed "+f+" does not exist"
+        os.system("cp "+os.path.join(root,f)+" "+seedpath)
+
+    for root,f in get_seeds('manual_seeds'):
+        # print hist_var,hist_type,f
+        seedpath=os.path.join("../static/browse/",root,f).replace("manual_","")
         print "Copying ",os.path.join(root,f)," to ",seedpath
 
         if not os.path.exists(seedpath):

@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from browse.models import Histone, Variant, Sequence, Score, Feature
-from tools.load_hmmsearch import load_hmm_results, add_score
+from tools.load_hmmsearch import load_hmm_results, add_score, get_many_prot_seqrec_by_gis
 from tools.test_model import test_model
 import subprocess
 import os, sys
@@ -57,6 +57,8 @@ class Command(BaseCommand):
         self.db_file=options['db_file']
         if self.db_file == "nr":
             self.get_nr()
+        if self.db_file == "swissprot":
+            self.get_swissprot()
 
         if options["force"]:
             #Clean the DB, removing all sequence/variants/etc
@@ -86,22 +88,25 @@ class Command(BaseCommand):
 
         #Load the sequences and classify them based on thresholds
         self.load_from_db()
+        self.extract_full_sequences_from_ncbi()
 
-        self.extract_full_sequences()
+        # self.extract_full_sequences()
         self.canonical2H2AX()
 
     def canonical2H2AX(self):
         """Fix an issue where the canonical variant takes over sequence from H2A.X. 
         The H2A.X motif SQ[ED][YFL]$ is not strong enough, but is the correct variant.
         """
-        for s in Sequence.objects.filter(variant="canonicalH2A",reviewed=False, sequence__regex="SQ[ED][YFLI]$"):
-            old_score = s.all_model_scores.get(used_for_classifaction=True)
-            old_score.used_for_classifaction = False
+        for s in Sequence.objects.filter(variant="canonicalH2A",reviewed=False, sequence__regex="SQ[ED][YFLIA]$"):
+            old_score = s.all_model_scores.get(used_for_classification=True)
+            old_score.used_for_classification = False
             old_score.save()
-            new_score, created = Score.objects.get_or_create(variant__id="H2A.X")
-            new_score.used_for_classifaction = True
+            new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+            new_score.used_for_classification = True
             new_score.regex = True
+            s.variant_id="H2A.X"
             new_score.save()
+            s.save()
 
     def create_histone_types(self):
         """Create basic histone types
@@ -125,6 +130,15 @@ class Command(BaseCommand):
             with open("nr.gz", "w") as nrgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
             subprocess.call(["gunzip", "nr.gz"])
+
+    def get_swissprot(self):
+        """Download nr if not present"""
+        if not os.path.isfile(self.db_file):
+            print >> self.stdout, "Downloading swissprot..."
+            with open("swissprot.gz", "w") as swissprotgz:
+                subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/swissprot.gz"], stdout=swissprotgz)
+            subprocess.call(["gunzip", "swissprot.gz"])
+
 
     def build_hmms_from_seeds(self):
         """Build HMMs from seed histone sequences,
@@ -332,7 +346,7 @@ class Command(BaseCommand):
             self.search(hmms_db=hmm_file, out=negative_examples_out, sequences=negative_examples_file, E=500)
 
             #Here we are doing ROC curve analysis and returning parameters
-            specificity = 0.95 #0.9 if "canonical" in variant_name else 0.98 #Hack to make canoical have a lower threshold and ther variants higher threshold
+            specificity = 0.8 if "canonical" in variant_name else 0.9 #Hack to make canoical have a lower threshold and ther variants higher threshold
             parameters = test_model(variant_name, output_dir, positive_examples_out, negative_examples_out, measure_threshold=specificity)
 
             #Let's put the parameter data to the database,
@@ -344,3 +358,23 @@ class Command(BaseCommand):
             variant_model.hmmthreshold = parameters["threshold"]
             variant_model.aucroc = parameters["roc_auc"]
             variant_model.save()
+
+    def extract_full_sequences_from_ncbi(self):
+        """Exract full seq by direct call to NCBI servers"""
+
+        gis=Sequence.objects.filter(reviewed=False).values_list('id', flat=True)
+        fasta_dict=get_many_prot_seqrec_by_gis(gis)
+
+        #3) Update sequences with full length NR sequences -- is there a faster way?
+        for gi,record in fasta_dict.iteritems():
+            headers = record.description.split(" >")
+            for header in headers:
+                gi = header.split("|")[1]
+                print gi
+                try:
+                    seq = Sequence.objects.get(id=gi)
+                    seq.sequence = str(record.seq)
+                    seq.save()
+                except Sequence.DoesNotExist:
+                    pass
+

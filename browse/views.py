@@ -401,24 +401,27 @@ def get_aln_and_features(request, ids=None):
             seq = sequences[0]
             hist_type = seq.variant.hist_type.id
             variants = [seq.variant]
-            if hist_type != "H1" or (hist_type == "H1" and upload):
-                if upload:
-                    sequences = [uploaded_sequence, seq]
-                else:
-                    #let's load the corresponding canonical
-                    try:
-                        canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
-                    except:
-                        try: #try H2A.X as a substitute for canonical
-                            if(str(seq.variant.hist_type)=='H2A'):
-                                canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
-                            else:
-                                raise
-                        except: #default Xenopus
-                            canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
-                    sequences = [canonical, seq]
+            if upload:
+                sequences = [uploaded_sequence, seq]
             else:
-                sequences = [seq]
+                #let's load the corresponding canonical
+                try:
+                    if(str(seq.variant.hist_type)=="H1"):
+                        canonical=Sequence.objects.filter(variant_id='generic'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
+                    else:
+                        canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
+                except:
+                    try: #try H2A.X as a substitute for canonical
+                        if(str(seq.variant.hist_type)=='H2A'):
+                            canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
+                        else:
+                            raise
+                    except: #default Xenopus
+                        if(str(seq.variant.hist_type)=="H1"):
+                            canonical = Sequence(id="0000|xenopus|generic{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                        else:
+                            canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                sequences = [canonical, seq]
             sequence_label = seq.short_description
             
         else:

@@ -45,9 +45,9 @@ class Command(BaseCommand):
             for num_seq, s in enumerate(SeqIO.parse(seed, "fasta")):
                 fields = s.id.split("|")
                 try:
-                    #Core seed gi is first index, but we want to ignore them
-                    #This part is tricky, in seed alignmnets of variants fist argument is taxonomy name, second gi.
-                    #but in cores (canonicals???) - gi is first.
+                    #Historically type seed gi was first index, but now we are changing it to last for better view
+                    #In seed alignmnets of variants fist argument is taxonomy name, second gi.
+                    #so we just try everything
                     id = int(fields[0])
                     continue
                 except ValueError:
@@ -56,9 +56,12 @@ class Command(BaseCommand):
                         id = int(fields[1])
                     except ValueError:
                         try:
-                            not_found[seed[:-6]].append(s.id)
-                        except KeyError:
-                            not_found[seed[:-6]] = [s.id]
+                            id=int(fields[2])
+                        except ValueError:
+                            try:
+                                not_found[seed[:-6]].append(s.id)
+                            except KeyError:
+                                not_found[seed[:-6]] = [s.id]
                 try:
                     s = Sequence.objects.get(id=str(id), variant__id=variant)
                     s.reviewed = True
@@ -76,5 +79,5 @@ class Command(BaseCommand):
                 if not seed.endswith(".fasta"): continue
                 variant = os.path.basename(seed)[:-6]
                 if i == 0:
-                    variant = "canonical{}".format(variant)
+                    variant = "canonical{}".format(variant) if variant != "H1" else "generic{}".format(variant)
                 yield variant, os.path.join(root, seed)

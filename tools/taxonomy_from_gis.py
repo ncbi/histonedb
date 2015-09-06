@@ -6,18 +6,17 @@ from djangophylocore.models import Taxonomy
 from browse.models import Sequence
 from itertools import ifilter
 
-def seq_from_gi(gis, attempts=5):
-    attempt = 0
-    while attempt < attempts:
-        try:
-    	    post_results = Entrez.read(Entrez.epost("protein", id=",".join(gis)))
-            webenv = post_results["WebEnv"]
-            query_key = post_results["QueryKey"]
-            handle = Entrez.efetch(db="protein", rettype="gb",retmode="text", webenv=webenv, query_key=query_key)
-            for s in SeqIO.parse(handle, "gb"):
-                yield s
-        except:
-            attempts += 1
+def seq_from_gi(gis):
+    while True:
+        post_results = Entrez.read(Entrez.epost("protein", id=",".join(gis)))
+        webenv = post_results["WebEnv"]
+        query_key = post_results["QueryKey"]
+        handle = Entrez.efetch(db="protein", rettype="gb",retmode="text", webenv=webenv, query_key=query_key)
+        data=list(SeqIO.parse(handle, "gb"))
+        if(len(gis)==len(data)):
+            break
+    for s in data:
+        yield s
 
 def taxonomy_from_gis(gis):
     """

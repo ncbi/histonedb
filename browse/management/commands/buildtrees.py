@@ -133,7 +133,7 @@ class Command(BaseCommand):
                         #Remove descriptor
                         start, name = variant[:variant.find(hist_type)], variant[variant.find(hist_type):]
                         if len(start) > 3 and start != "canonical":
-                            start = start[0]
+                            start = start[0:3]
                         name = start+name
                     else:
                         name = variant
