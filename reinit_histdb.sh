@@ -28,9 +28,13 @@ VGSKEAKSPKKAAKSPKKA
 find static/browse/seeds -name "*.gff" | xargs rm
 find static/browse/seeds -name "*.pdf" | xargs rm
 
-python manage.py migrate
-python manage.py sqlclear browse | python manage.py dbshell
-python manage.py sqlclear djangophylocore | python manage.py dbshell
+python manage.py flush << EOF
+yes
+EOF
+
+#python manage.py migrate
+#python manage.py sqlclear browse | python manage.py dbshell
+#python manage.py sqlclear djangophylocore | python manage.py dbshell
 python manage.py migrate
 
 

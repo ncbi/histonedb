@@ -107,11 +107,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 WSGI_APPLICATION = 'HistoneDB.wsgi.application'
 
 # Database
-
+try:
+    db_type=NCBI_database_info["db_type"]
+except:
+    db_type='mysql'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.'+db_type, # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': NCBI_database_info["name"],
         'USER': NCBI_database_info["user"],
         'PASSWORD': NCBI_database_info["password"],
