@@ -18,6 +18,7 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
 - [EMBOSS](http://emboss.sourceforge.net)
 - [MUSCLE](http://www.drive5.com/muscle/)
 - [ClustalW2](http://www.clustal.org/clustal2/)
+All executables must be present in the bin dir of virual environment!
 
 ## Setup ##
 
