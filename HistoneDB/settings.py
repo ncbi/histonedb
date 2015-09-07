@@ -156,3 +156,8 @@ STATICFILES_DIRS = [
 
 if "FORCE_SCRIPT_NAME" in NCBI_database_info:
     FORCE_SCRIPT_NAME = NCBI_database_info["FORCE_SCRIPT_NAME"]
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
