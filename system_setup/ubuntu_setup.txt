@@ -7,6 +7,7 @@ sudo apt-get install libpq-dev
 sudo apt-get install python-dev
 sudo apt-get install muscle
 sudo apt-get install clustalw
+sudo apt-get install emboss
 #rename as clustalw2
 sudo apt-get install hmmer
 sudo apt-get install ncbi-blast+
@@ -16,6 +17,9 @@ sudo apt-get install ncbi-blast+
 #setup DATABASE_URL in .profile and database, don't forget to 
 #ALTER DATABASE DB_NAME CHARACTER SET utf8 COLLATE utf8_general_ci
 pip install -r HistoneDB/system_setup/requirements_webserver.txt #or requirements_full.txt it DB regeneration will be done on server
+export GUNICORN=1
 sudo -E ../env/bin/gunicorn -b :80 HistoneDB.wsgi
+export GUNICORN=0
+./manage.py runserver 0.0.0.0:8000
 
 
