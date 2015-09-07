@@ -161,3 +161,5 @@ if "FORCE_SCRIPT_NAME" in NCBI_database_info:
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
