@@ -1,3 +1,13 @@
 #Enable multiverse /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get install git
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install libpq-dev
+sudo apt-get install python-dev
+#git clone ...
+#source env/bin/activate
+#setup DATABASE_URL in .profile
+pip install -r HistoneDB/system_setup/requirements_webserver.txt #or requirements_full.txt it DB regeneration will be done on server
+sudo ../env/bin/gunicorn -b :80 HistoneDB.wsgi
+
+
