@@ -1,0 +1,3 @@
+#Enable multiverse /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install git
