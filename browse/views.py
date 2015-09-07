@@ -430,6 +430,7 @@ def get_aln_and_features(request, ids=None):
             sequence_label = "Consensus"
         
         muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
+        print muscle
         process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         sequences = "\n".join([s.format() for s in sequences])
         aln, error = process.communicate(sequences)
