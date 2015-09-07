@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 
+GUNICORN=True
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Set the MySQL dtabase information
@@ -127,7 +129,8 @@ DATABASES = {
 DATABASE_ENGINE="mysql" #this is for djangophylocore
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config() # this is for heroku
+if(dj_database_url.config()):
+    DATABASES['default'] =  dj_database_url.config() # this is for heroku
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -150,16 +153,17 @@ STATIC_URL = NCBI_database_info["STATIC_URL"]
 
 STATIC_ROOT_AUX = os.path.join(BASE_DIR, "static")
 
-# STATICFILES_DIRS = [
-   # os.path.join(BASE_DIR, "static"),
-# ]
+if(not GUNICORN):
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+     ]
 
 if "FORCE_SCRIPT_NAME" in NCBI_database_info:
     FORCE_SCRIPT_NAME = NCBI_database_info["FORCE_SCRIPT_NAME"]
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+if(GUNICORN):
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 

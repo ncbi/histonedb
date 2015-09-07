@@ -13,7 +13,9 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "HistoneDB.settings")
 
-from whitenoise.django import DjangoWhiteNoise
+GUNICORN=True
 
 application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
+if(GUNICORN):
+	from whitenoise.django import DjangoWhiteNoise
+	application = DjangoWhiteNoise(application)
