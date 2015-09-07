@@ -150,9 +150,9 @@ STATIC_URL = NCBI_database_info["STATIC_URL"]
 
 STATIC_ROOT_AUX = os.path.join(BASE_DIR, "static")
 
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, "static"),
-]
+# STATICFILES_DIRS = [
+   # os.path.join(BASE_DIR, "static"),
+# ]
 
 if "FORCE_SCRIPT_NAME" in NCBI_database_info:
     FORCE_SCRIPT_NAME = NCBI_database_info["FORCE_SCRIPT_NAME"]
