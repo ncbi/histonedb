@@ -13,7 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "HistoneDB.settings")
 
-GUNICORN=os.getenv('GUNICORN', 0)
+GUNICORN = True if (os.getenv('GUNICORN', "0") == "1") else False
 
 application = get_wsgi_application()
 if(GUNICORN):
