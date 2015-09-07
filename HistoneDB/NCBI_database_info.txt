@@ -4,7 +4,7 @@
 # a hidden directory
 # db_type is  'postgresql_psycopg2', 'mysql', 'sqlite3'
 #mysql by default
-db_type = postgresql_psycopg2
+#db_type = postgresql_psycopg2
 name = DB_NAME
 user = DB_USER
 password = DB_PASS
