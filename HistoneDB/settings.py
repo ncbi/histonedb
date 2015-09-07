@@ -131,7 +131,6 @@ DATABASE_ENGINE="mysql" #this is for djangophylocore
 # Parse database configuration from $DATABASE_URL
 if(dj_database_url.config()):
     DATABASES['default'] =  dj_database_url.config() # this is for cloud setup
-    print DATABASES['default']
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
