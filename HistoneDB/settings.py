@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -123,7 +124,10 @@ DATABASES = {
     }
 }
 
-DATABASE_ENGINE="mysql"
+DATABASE_ENGINE="mysql" #this is for djangophylocore
+
+# Parse database configuration from $DATABASE_URL
+DATABASES['default'] =  dj_database_url.config() # this is for heroku
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
