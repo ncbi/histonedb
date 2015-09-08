@@ -1,1 +1,0 @@
-web: gunicorn HistoneDB.wsgi --log-file -
