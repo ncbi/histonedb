@@ -16,6 +16,7 @@ sudo apt-get install ncbi-blast+
 #source env/bin/activate
 #setup DATABASE_URL in .profile and database, don't forget to 
 #ALTER DATABASE DB_NAME CHARACTER SET utf8 COLLATE utf8_general_ci
+#if tables are in bad charset: SET FOREIGN_KEY_CHECKS=0; ALTER TABLE browse_oldstylevariant CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; SET FOREIGN_KEY_CHECKS=1;
 pip install -r HistoneDB/system_setup/requirements_webserver.txt #or requirements_full.txt it DB regeneration will be done on server
 export GUNICORN=1
 sudo -E ../env/bin/gunicorn -b :80 HistoneDB.wsgi
