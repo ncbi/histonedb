@@ -34,8 +34,8 @@ class Command(NoArgsCommand):
                 cmd = """mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
                   settings.DATABASES["default"]["HOST"], settings.DATABASES["default"]["USER"], settings.DATABASES["default"]["PASSWORD"], db_name, map_dumps[name],  name )
             elif db_engine.endswith('psycopg2'):
-                cmd = """psql -h %s -d %s -c "ALTER TABLE djangophylocore_%s DISABLE TRIGGER ALL; COPY djangophylocore_%s FROM '%s' WITH DELIMITER AS '|'; ALTER TABLE djangophylocore_%s ENABLE TRIGGER ALL; " """ % (
-                  settings.DATABASES["default"]["HOST"], db_name, name, name, map_dumps[name], name)
+                cmd = """psql -h %s -U %s -d %s -c "ALTER TABLE djangophylocore_%s DISABLE TRIGGER ALL; COPY djangophylocore_%s FROM '%s' WITH DELIMITER AS '|'; ALTER TABLE djangophylocore_%s ENABLE TRIGGER ALL; " """ % (
+                  settings.DATABASES["default"]["HOST"],settings.DATABASES["default"]["USER"], db_name, name, name, map_dumps[name], name)
             if verbose:
                 print cmd
             os.system( cmd )

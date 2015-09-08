@@ -1,0 +1,26 @@
+#Enable multiverse /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install git
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install mysql-client
+sudo apt-get install libpq-dev
+sudo apt-get install python-dev
+sudo apt-get install muscle
+sudo apt-get install clustalw
+sudo apt-get install emboss
+#rename as clustalw2
+sudo apt-get install hmmer
+sudo apt-get install ncbi-blast+
+#ln -s clustalw2 and muscle in env/bin
+#git clone ...
+#source env/bin/activate
+#setup DATABASE_URL in .profile and database, don't forget to 
+#ALTER DATABASE DB_NAME CHARACTER SET utf8 COLLATE utf8_general_ci
+#if tables are in bad charset: SET FOREIGN_KEY_CHECKS=0; ALTER TABLE browse_oldstylevariant CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; SET FOREIGN_KEY_CHECKS=1;
+pip install -r HistoneDB/system_setup/requirements_webserver.txt #or requirements_full.txt it DB regeneration will be done on server
+export GUNICORN=1
+sudo -E ../env/bin/gunicorn -b :80 HistoneDB.wsgi
+export GUNICORN=0
+./manage.py runserver 0.0.0.0:8000
+
+
