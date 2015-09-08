@@ -1,3 +1,4 @@
+#Web server setup - no database regeneration
 #Enable multiverse /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get install git
@@ -22,5 +23,17 @@ export GUNICORN=1
 sudo -E ../env/bin/gunicorn -b :80 HistoneDB.wsgi
 export GUNICORN=0
 ./manage.py runserver 0.0.0.0:8000
+
+
+#For full setup add
+sudo apt-get install libpng-dev
+sudo apt-get install libfreetype6
+sudo apt-get install libfreetype6-dev
+sudo apt-get install pkg-config
+sudo apt-get install libblas-dev
+sudo apt-get install liblapack-dev
+sudo apt-get install gfortran
+
+pip install -r HistoneDB/system_setup/requirements_full.txt
 
 
