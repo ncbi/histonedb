@@ -15,7 +15,8 @@ import os
 import dj_database_url
 
 GUNICORN = True if (os.getenv('GUNICORN', "0") == "1") else False
-print GUNICORN
+if(GUNICORN):
+    print "GUNICORN setup enabled"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Set the MySQL dtabase information
