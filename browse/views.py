@@ -414,6 +414,8 @@ def get_aln_and_features(request, ids=None):
                     try: #try H2A.X as a substitute for canonical
                         if(str(seq.variant.hist_type)=='H2A'):
                             canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
+                        elif(str(seq.variant.id)=='ScH1'):
+                            canonical=seq
                         else:
                             raise
                     except: #default Xenopus
