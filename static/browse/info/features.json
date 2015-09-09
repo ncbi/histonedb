@@ -181,7 +181,7 @@
         "GeneralH1":{
             "taxa":"root",
             "sequence":"MTESLVLSPAPAKPKRVKASRRSASHPTYSEMIAAAIRAEKSRGGSSRQSIQKYIKSHYKVGHNADLQIKLSIRRLLAAGVLKQTKGVGASGSFRLAKSDKAKRSPGKKKKAVRRSTSPKKAARPRKARSPAKKPKATARKARKKSRASPKKAKKPKTVKAKSRKASKAKKVKRSKPRAKSGARKSPKKK",
-            "feature1":"=============================1111111111======bb2222222222=======333333333333333==BBBBBB====cccc=-kkkkkkkkkkkk=================================================================================",
+            "feature1":"=============================1111111111======bb2222222222=======333333333333333==BBBBBB====cccc==kkkkkkkkkkkk=================================================================================",
             "feature_info":{
                 "1":{"type":"secondary", "name":"alpha1", "color":"#bb0000","description":"Alpha1-helix, first helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
                 "b":{"type":"secondary", "name":"beta1", "color":"#00bb00","description":"Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
@@ -193,7 +193,7 @@
             }
         },
         "ScH1":{
-            "taxa":"root",
+            "taxa":"Saccharomyces",
             "sequence":"MAPKKSTTKTTSKGKKPATSKGKEKSTSKAAIKKTTAKKEEASSKSYRELIIEGLTALKERKGSSRPALKKFIKENYPIVGSASNFDLYFNNAIKKGVEAGDFEQPKGPAGAVKLAKKKSPEVKKEKEVSPKPKQAATSVSATASKAKAASTKLAPKKVVKKKSPTVTAKKASSPSSLTYKEMILKSMPQLNDGKGSSRIVLKKYVKDTFSSKLKTSSNFDYLFNSAIKKCVENGELVQPKGPSGIIKLNKKKVKLST",
             "feature1":"====================================================================================================================================================================================1111111111======bb2222222222===========333333333333333==BBBBB===cccc==========",
             "feature_info":{

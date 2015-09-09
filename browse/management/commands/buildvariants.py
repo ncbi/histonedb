@@ -227,8 +227,12 @@ class Command(BaseCommand):
             for hit in variant_query:
                 gi = hit.id.split("|")[1]
                 seq = Sequence.objects.get(id=gi)
-                best_hsp = max(hit, key=lambda hsp: hsp.bitscore)
-                add_score(seq, variant_model, best_hsp, seq.variant==variant_model)
+                # print hit
+                try: #sometimes we get this :    [No individual domains that satisfy reporting thresholds (although complete target did)]
+                    best_hsp = max(hit, key=lambda hsp: hsp.bitscore)
+                    add_score(seq, variant_model, best_hsp, seq.variant==variant_model)
+                except:
+                    pass
 
     def load_from_db(self,reset=True):
         """Load data into the histone database"""
