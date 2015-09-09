@@ -300,7 +300,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
 {#            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},#}
             {field:"taxonomy", sortable:true, title:"Taxonomy", clickToSelect:false, events:taxonomyEvents, formatter:taxonomyFormatter},
             {% if not quick_msa %}
-            {field:"header", sortable:true, width:50, title:"Current GenBank Description", rowspan:1, clickToSelect:false},
+            {field:"header", sortable:true, width:50, title:"Description", rowspan:1, clickToSelect:false},
             {field:"score", sortable:true, title:"Score", clickToSelect:false},
             {field:"evalue", sortable:true, title:"E-value", clickToSelect:false},
             {% endif %}
