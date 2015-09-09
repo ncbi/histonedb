@@ -148,7 +148,7 @@ def browse_variant(request, histone_type, variant,gi):
     if not human_sequence:
         human_sequence = sequences.filter(taxonomy__name="homo sapiens").first()
     if not human_sequence:
-        human_sequence = sequences.first()
+        human_sequence = sequences.first(reviewed=True)
     print human_sequence
 
     try:
