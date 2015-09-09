@@ -346,7 +346,9 @@ class Command(BaseCommand):
             self.search(hmms_db=hmm_file, out=negative_examples_out, sequences=negative_examples_file, E=500)
 
             #Here we are doing ROC curve analysis and returning parameters
-            specificity = 0.8 if "canonical" in variant_name else 0.9 #Hack to make canoical have a lower threshold and ther variants higher threshold
+            specificity = 0.8 if ("canonical" in variant_name) else 0.9 #Hack to make canoical have a lower threshold and ther variants higher threshold
+            specificity = 0.05 if ("generic" in variant_name)  else specificity #Hack to make canoical have a lower threshold and ther variants higher threshold
+
             parameters = test_model(variant_name, output_dir, positive_examples_out, negative_examples_out, measure_threshold=specificity)
 
             #Let's put the parameter data to the database,
