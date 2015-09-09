@@ -181,7 +181,7 @@
         "GeneralH1":{
             "taxa":"root",
             "sequence":"MTESLVLSPAPAKPKRVKASRRSASHPTYSEMIAAAIRAEKSRGGSSRQSIQKYIKSHYKVGHNADLQIKLSIRRLLAAGVLKQTKGVGASGSFRLAKSDKAKRSPGKKKKAVRRSTSPKKAARPRKARSPAKKPKATARKARKKSRASPKKAKKPKTVKAKSRKASKAKKVKRSKPRAKSGARKSPKKK",
-            "feature1":"===========================11111111111=======bb22222222222======33333333333333===BBBB=======cccc=kkkkkkkkkkkk=================================================================================",
+            "feature1":"=============================1111111111======bb2222222222=======333333333333333==BBBBBB====cccc=-kkkkkkkkkkkk=================================================================================",
             "feature_info":{
                 "1":{"type":"secondary", "name":"alpha1", "color":"#bb0000","description":"Alpha1-helix, first helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
                 "b":{"type":"secondary", "name":"beta1", "color":"#00bb00","description":"Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
@@ -195,15 +195,14 @@
         "ScH1":{
             "taxa":"root",
             "sequence":"MAPKKSTTKTTSKGKKPATSKGKEKSTSKAAIKKTTAKKEEASSKSYRELIIEGLTALKERKGSSRPALKKFIKENYPIVGSASNFDLYFNNAIKKGVEAGDFEQPKGPAGAVKLAKKKSPEVKKEKEVSPKPKQAATSVSATASKAKAASTKLAPKKVVKKKSPTVTAKKASSPSSLTYKEMILKSMPQLNDGKGSSRIVLKKYVKDTFSSKLKTSSNFDYLFNSAIKKCVENGELVQPKGPSGIIKLNKKKVKLST",
-            "feature1":"===============================================1111111111======bb2222222222==========333333333333333==BBBBB===cccc==kkkkkkkkkkkk====================================================1111111111======bb2222222222===========333333333333333==BBBBB===cccc==========",
+            "feature1":"====================================================================================================================================================================================1111111111======bb2222222222===========333333333333333==BBBBB===cccc==========",
             "feature_info":{
-                "1":{"type":"secondary", "name":"alpha1", "color":"#bb0000","description":"Alpha1-helix, first helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
-                "b":{"type":"secondary", "name":"beta1", "color":"#00bb00","description":"Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
-                "2":{"type":"secondary", "name":"alpha2", "color":"#bb0000","description":"Alpha2-helix, second helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
-                "3":{"type":"secondary", "name":"alpha3", "color":"#bb0000","description":"Alpha3-helix", "source":"Obtained from PDB 1HST"},
-                "B":{"type":"secondary", "name":"beta2", "color":"#00bb00","description":"Beta-strand of short beta-sheet of C-terminal region", "source":"Obtained from PDB 1HST"},
-                "c":{"type":"secondary", "name":"beta3", "color":"#00bb00","description":"Beta-strand of short beta-sheet of C-terminal region", "source":"Obtained from PDB 1HST"},
-                "k":{"type":"motif", "name":"AKP helix", "color":"#cccccc","description":"Positively charged carboxy-terminal domain involved in specific protein-protein and protein-DNA interactions, possibly plays roles in suppressing core histone tail domain acetylation in chromatin fiber.", "source":"CDD"}
+                "1":{"type":"secondary", "name":"2alpha1", "color":"#bb0000","description":"Second domain: Alpha1-helix, first helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
+                "b":{"type":"secondary", "name":"2beta1", "color":"#00bb00","description":"Second domain: Beta-strand between two helices", "source":"Obtained from PDB 1HST"},
+                "2":{"type":"secondary", "name":"2alpha2", "color":"#bb0000","description":"Second domain: Alpha2-helix, second helix of winged helix-turn-helix domain", "source":"Obtained from PDB 1HST"},
+                "3":{"type":"secondary", "name":"2alpha3", "color":"#bb0000","description":"Second domain: Alpha3-helix", "source":"Obtained from PDB 1HST"},
+                "B":{"type":"secondary", "name":"2beta2", "color":"#00bb00","description":"Second domain: Beta-strand of short beta-sheet of C-terminal region", "source":"Obtained from PDB 1HST"},
+                "c":{"type":"secondary", "name":"2beta3", "color":"#00bb00","description":"Second domain: Beta-strand of short beta-sheet of C-terminal region", "source":"Obtained from PDB 1HST"}
             }
         }
     }
