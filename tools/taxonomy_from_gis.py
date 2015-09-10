@@ -6,13 +6,16 @@ from djangophylocore.models import Taxonomy
 
 def seq_from_gi(gis):
     while True:
-        post_results = Entrez.read(Entrez.epost("protein", id=",".join(gis)))
-        webenv = post_results["WebEnv"]
-        query_key = post_results["QueryKey"]
-        handle = Entrez.efetch(db="protein", rettype="gb",retmode="text", webenv=webenv, query_key=query_key)
-        data=list(SeqIO.parse(handle, "gb"))
-        if(len(gis)==len(data)):
-            break
+        try:
+            post_results = Entrez.read(Entrez.epost("protein", id=",".join(gis)))
+            webenv = post_results["WebEnv"]
+            query_key = post_results["QueryKey"]
+            handle = Entrez.efetch(db="protein", rettype="gb",retmode="text", webenv=webenv, query_key=query_key)
+            data=list(SeqIO.parse(handle, "gb"))
+            if(len(gis)==len(data)):
+                break
+        except:
+            continue
     for s in data:
         yield s
 
