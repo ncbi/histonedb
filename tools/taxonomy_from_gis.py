@@ -38,7 +38,8 @@ def taxids_from_gis(gis):
 
 already_exists = []
 
-def taxonomy_from_header(header, gi=None, species_re=None):
+def taxonomy_from_header(header_init, gi=None, species_re=None):
+  header=header_init.replace("_"," ")
   if species_re is None:
     species_re = re.compile(r'\[(.*?)\]')
   match = species_re.findall(header)
