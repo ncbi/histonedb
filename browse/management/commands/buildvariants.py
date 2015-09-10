@@ -264,7 +264,7 @@ class Command(BaseCommand):
                 gi = s.id.split("|")[1]
                 if gi.startswith("NOGI"):
                     print "NO GI detected ", s.id
-                    taxid= easytax  onomy_from_header(s.id).id
+                    taxid= easytaxonomy_from_header(s.id).id
                 else:
                     #trick to make taxid retrieval faster
                     # taxonomy = taxonomy_from_header("", gi=gi)
