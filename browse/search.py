@@ -417,7 +417,7 @@ class HistoneSearch(object):
             pass
 
         try:
-            variant = OldStyleVariant.objects.get(name=search_text).updated_variant
+            variant = OldStyleVariant.objects.get(name__icontains=search_text.replace(" ", "_")).updated_variant
             
             if self.navbar:
                 self.redirect = redirect(variant)

@@ -3,6 +3,8 @@ from Bio import Entrez, SeqIO
 # *Always* tell NCBI who you are
 Entrez.email = "eli.draizen@nih.gov"
 from djangophylocore.models import Taxonomy
+from browse.models import Sequence
+from itertools import ifilter
 
 def seq_from_gi(gis):
     while True:
@@ -97,3 +99,14 @@ same as previous but different regex rule and no gi
   """
   return taxonomy_from_header(header, species_re=easyspecies_re)
 
+def update_taxonomy_for_gis(gis):
+  for taxid,gi in zip(taxids_from_gis(gis),gis):
+    seq=Sequence.objects.get(pk=gi)
+    seq.taxonomy_id=taxid
+    seq.save()
+
+def get_tax_for_gi_taxdump(gis):
+  with open("gi_taxid_prot.dmp") as gi2taxid:
+    for line in ifilter(lambda l: l.split()[0] in gis, gi2taxid):
+      yield list(reversed(line.strip().split())) #Line is (gi, taxid)
+  

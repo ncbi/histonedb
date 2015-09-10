@@ -6,7 +6,8 @@ from tools.test_model import test_model
 import subprocess
 import os, sys
 import re
-from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxids_from_gis
+import StringIO
+from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxids_from_gis, update_taxonomy_for_gis
 
 from Bio import SearchIO
 from Bio import SeqIO
@@ -28,6 +29,7 @@ class Command(BaseCommand):
     curated_search_results_file = os.path.join(hmm_directory, "curated_all_search_results.out")
     model_evaluation = os.path.join(hmm_directory, "model_evaluation")
     ids_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.ids")
+    full_length_seqs_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fasta")
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -181,25 +183,29 @@ class Command(BaseCommand):
         print " ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
 
-    def extract_full_sequences(self, sequences):
+    def extract_full_sequences(self, sequences=None):
         """Create database to extract full length sequences"""
+
+        if sequences is None:
+            sequences = self.db_file
+
         #1) Create and index of sequence file
+        print "Indexing sequence database {}...".format(sequences)
         subprocess.call(["esl-sfetch", "--index", sequences])
 
         #2) Extract all ids 
-        process = subprocess.Popen(["esl-sfetch", "-f", sequences, self.ids_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-        output, error = process.communicate()
-        seqFile = StringIO.StringIO()
-        seqFile.write(output)
-        seqFile.seek(0)
+        print "Extracting full length sequences..."
+        subprocess.call(["esl-sfetch", "-o", self.full_length_seqs_file, "-f", sequences, self.ids_file])
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        for record in SeqIO.parse(seqs_file, "fasta"):
+        print "Updating records with full length sequences..."
+        for record in SeqIO.parse(self.full_length_seqs_file, "fasta"):
             headers = record.description.split(" >")
             for header in headers:
                 gi = header.split("|")[1]
                 try:
                     seq = Sequence.objects.get(id=gi)
+                    print "Updating sequence:", seq.description
                     seq.sequence = str(record.seq)
                     seq.save()
                 except Sequence.DoesNotExist:
@@ -277,11 +283,9 @@ class Command(BaseCommand):
                     reviewed = True,
                 )
                 seq.save()
+
         #Now let's lookup taxid for those having GIs via NCBI.
-        for taxid,gi in zip(taxids_from_gis(gis),gis):
-            seq=Sequence.objects.get(pk=gi)
-            seq.taxonomy_id=taxid
-            seq.save()
+        update_taxonomy_for_gis(gis)
 
     def get_seeds(self):
         """

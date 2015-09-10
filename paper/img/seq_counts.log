@@ -1,0 +1,191 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.20)  31 AUG 2015 23:36
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**seq_counts.tex
+(./seq_counts.tex
+LaTeX2e <2015/01/01> patch level 2
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+
+(/export/home/web/public/data/projects/HistoneDB2.0/env/local/texlive/2015/texm
+f-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+
+(/export/home/web/public/data/projects/HistoneDB2.0/env/local/texlive/2015/texm
+f-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/export/home/web/public/data/projects/HistoneDB2.0/env/local/texlive/2015/texm
+f-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen103
+\lightrulewidth=\dimen104
+\cmidrulewidth=\dimen105
+\belowrulesep=\dimen106
+\belowbottomsep=\dimen107
+\aboverulesep=\dimen108
+\abovetopsep=\dimen109
+\cmidrulesep=\dimen110
+\cmidrulekern=\dimen111
+\defaultaddspace=\dimen112
+\@cmidla=\count87
+\@cmidlb=\count88
+\@aboverulesep=\dimen113
+\@belowrulesep=\dimen114
+\@thisruleclass=\count89
+\@lastruleclass=\count90
+\@thisrulewidth=\dimen115
+)
+
+LaTeX Warning: Unused global option(s):
+    [a4].
+
+(./seq_counts.aux)
+\openout1 = `seq_counts.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 7.
+
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.11 ...mically extracted set: 1416\end{tabular} &
+                                                   0 & Eukaryotes \\
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.18 ...mically extracted set: 1661\end{tabular} &
+                                                   0 & Eukaryotes \\
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.24 ...mically extracted set: 2651\end{tabular} &
+                                                   0 & Eukaryotes \\
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.32 ...mically extracted set: 7414\end{tabular} &
+                                                   0 & Eukaryotes \\
+? 
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.34 ...mically extracted set: 1447\end{tabular} &
+                                                   0 & Eukaryotes \\
+? 
+! Misplaced \noalign.
+<recently read> \noalign 
+                         
+l.41         \bottomrule
+                        
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.42       \end
+               {tabular}
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.42       \end
+               {tabular}
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.42       \end
+               {tabular}
+? 
+! Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.42       \end
+               {tabular}
+? 
+! Missing { inserted.
+<inserted text> 
+                {
+l.42       \end
+               {tabular}
+? 
+! Misplaced \crcr.
+\endtabular ->\crcr 
+                    \egroup \egroup $\egroup 
+l.42       \end{tabular}
+                        
+? 
+! Extra }, or forgotten $.
+\endtabular ->\crcr \egroup 
+                            \egroup $\egroup 
+l.42       \end{tabular}
+                        
+? 
+! Extra }, or forgotten $.
+\endtabular ->\crcr \egroup \egroup 
+                                    $\egroup 
+l.42       \end{tabular}
+                        
+? 
+
+Overfull \hbox (297.87709pt too wide) in paragraph at lines 7--43
+ [] 
+ []
+
+
+LaTeX Warning: Float too large for page by 149.3986pt on input line 44.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[1{/export/home/web/public/data/projects/HistoneDB2.0/env/local/texlive/2015/te
+xmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./seq_counts.aux) ) 
+Here is how much of TeX's memory you used:
+ 269 strings out of 493093
+ 3506 string characters out of 6114033
+ 62225 words of memory out of 5000000
+ 3832 multiletter control sequences out of 15000+600000
+ 3948 words of font info for 15 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 23i,13n,19p,180b,288s stack positions out of 5000i,500n,10000p,200000b,80000s
+</export/home/
+web/public/data/projects/HistoneDB2.0/env/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx10.pfb></export/home/web/public/data/projects/Histo
+neDB2.0/env/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
+pfb>
+Output written on seq_counts.pdf (1 page, 33591 bytes).
+PDF statistics:
+ 16 PDF objects out of 1000 (max. 8388607)
+ 10 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

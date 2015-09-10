@@ -29,7 +29,7 @@
 </div>
 
 <script type="text/javascript">
-function scoreCellStyle(value, row, index) {
+function scoreCellStyle_{{ page_name }}(value, row, index) {
   id = "";
   for (var key in row){
     if(row[key] == value){
@@ -48,16 +48,15 @@ function scoreCellStyle(value, row, index) {
   }
 }
 
-function make_scores_table(table_div, ids, width) {
+function make_scores_table_{{ page_name }}(table_div, ids, width) {
   table_div.empty();
   table_div.append("<table id='scores_table_{{ page_name }}' style='width:"+width+";overflow: auto;'></table>");
   columns = [{field:'variant', title:''}];
   params = "?";
   for (var i = 0; i < ids.length; i++) {
-    columns.push({field:ids[i], title:"GI: "+ids[i], cellStyle:scoreCellStyle});
+    columns.push({field:ids[i], title:"GI: "+ids[i], cellStyle:scoreCellStyle_{{ page_name }}});
     params += "id="+ids[i]+"&"
   }
-  console.log("{% url 'browse.views.get_all_scores' %}"+params.substring(0, params.length-1));
   $('#scores_table_{{ page_name }}').bootstrapTable({
       {% if hmmer_results %}
       data: {% autoescape off %}{{ hmmer_results|jsonify }}{% endautoescape %},
@@ -70,6 +69,6 @@ function make_scores_table(table_div, ids, width) {
 
 {% if hmmer_results and ids %}
 $ids = {% autoescape off %}{{ ids|jsonify }}{% endautoescape %};
-make_scores_table($("#scores_table_div_{{ page_name }}"), $ids, "100%");
+make_scores_table_{{ page_name }}($("#scores_table_div_{{ page_name }}"), $ids, "100%");
 {% endif %}
 </script>

@@ -124,7 +124,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
     {% if not curated %}
     $scores_modal_button_{{ page_name }}.click(function() {
       ids = getSelectedIDs{{ page_name }}();
-      make_scores_table($('#scores_table_div_{{ page_name }}'), ids, "418px");
+      make_scores_table_{{ page_name }}($('#scores_table_div_{{ page_name }}'), ids, "418px");
       $('#scores_modal_{{ page_name }}').modal('show');
     });
     {% endif %}

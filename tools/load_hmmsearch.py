@@ -14,9 +14,9 @@ from django.db.utils import IntegrityError
 from django.conf import settings
 
 #Custom librairies
-from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_gis
+from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_gis, update_taxonomy_for_gis
 
-def load_hmm_results(hmmerFile,id_file):
+def load_hmm_results(hmmerFile, id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
 
@@ -24,8 +24,9 @@ def load_hmm_results(hmmerFile,id_file):
   ___________
   hmmerFile : string
     Path to HMMer hmmsearch output file.
+  id_file : str
+    Path to id file, to extract full lenght GIs
   """
-  #Path to id file, to extract full lenght GIs
   ids = open(id_file, "w")
 
   #We need unknown Variant model - to assign to those that do not pass the threshold for analyzed models,
@@ -47,7 +48,7 @@ def load_hmm_results(hmmerFile,id_file):
     variant_model = Variant.objects.get(id=variant_query.id)
     for hit in variant_query:
       #Save original header to extract full sequence
-      print >> ids, hit.description
+      print >> ids, hit.id
 
       #Below we are fetching a list of headers if there are multiple headers for identical sequences
       #Technically HUMMER might put the second and on gis in description column.
@@ -115,6 +116,9 @@ def load_hmm_results(hmmerFile,id_file):
               continue
           print seq
 
+  #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
+  update_taxonomy_for_gis(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
+
   #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
   unknown_model.sequences.all().delete()
   unknown_model.delete()
@@ -130,7 +134,7 @@ def add_sequence(gi, variant_model, taxonomy, header, sequence):
     splice   = None,
     taxonomy = taxonomy,
     header   = header,
-    sequence = str(sequence).replace("-", ""),
+    sequence = str(sequence).replace("-", "").upper(),
     reviewed = False,
     )
   seq.save()
