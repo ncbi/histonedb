@@ -1,0 +1,45 @@
+\documentclass[10pt,a4]{article}
+% better looking tables with `\toprule`,`\midrule`,`\bottomrule`:
+\usepackage{booktabs}
+\begin{document}
+  \begin{table}[h!]
+    \begin{center}
+      \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Variant} & \textbf{Num Sequences} & \textbf{Num Features} & \textbf{Taxonomic Span} \\
+        H1 & & &
+        H1.0 & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 1416\end{tabular} & 0 & Eukaryotes \\
+        H1.10 & \begin{tabular}{@{}c@{}}Curated set: 6 \\Automically extracted set: 151\end{tabular} & 0 & Eukaryotes \\
+        H1.6 & \begin{tabular}{@{}c@{}}Curated set: 8 \\Automically extracted set: 1378\end{tabular} & 0 & Eukaryotes \\
+        H1.7 & \begin{tabular}{@{}c@{}}Curated set: 2 \\Automically extracted set: 123\end{tabular} & 0 & Eukaryotes \\
+        H1.8 & \begin{tabular}{@{}c@{}}Curated set: 2 \\Automically extracted set: 85\end{tabular} & 0 & Eukaryotes \\
+        H1.9 & \begin{tabular}{@{}c@{}}Curated set: 4 \\Automically extracted set: 93\end{tabular} & 0 & Eukaryotes \\
+        H2B & & &
+        canonicalH2B & \begin{tabular}{@{}c@{}}Curated set: 6 \\Automically extracted set: 1661\end{tabular} & 0 & Eukaryotes \\
+        H2B.1 & \begin{tabular}{@{}c@{}}Curated set: 5 \\Automically extracted set: 2278\end{tabular} & 0 & Mammals \\
+        H2B.W & \begin{tabular}{@{}c@{}}Curated set: 6 \\Automically extracted set: 246\end{tabular} & 0 & Mammals \\
+        H2B.Z & \begin{tabular}{@{}c@{}}Curated set: 3 \\Automically extracted set: 679\end{tabular} & 0 & Apicomplexa \\
+        subH2B & \begin{tabular}{@{}c@{}}Curated set: 11 \\Automically extracted set: 88\end{tabular} & 0 & Primates, rodents, marsupials, and bovids \\
+        H2A & & &
+        canonicalH2A & \begin{tabular}{@{}c@{}}Curated set: 29 \\Automically extracted set: 2651\end{tabular} & 0 & Eukaryotes \\
+        H2A.B & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 137\end{tabular} & 0 & Mammals \\
+        H2A.L & \begin{tabular}{@{}c@{}}Curated set: 17 \\Automically extracted set: 200\end{tabular} & 0 & Mammals \\
+        H2A.M & \begin{tabular}{@{}c@{}}Curated set: 12 \\Automically extracted set: 82\end{tabular} & 0 & Mammals \\
+        H2A.X & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 59\end{tabular} & 0 & Eukaryotes except nematode \\
+        H2A.Z & \begin{tabular}{@{}c@{}}Curated set: 21 \\Automically extracted set: 2670\end{tabular} & 0 & Eukaryotes \\
+        macroH2A & \begin{tabular}{@{}c@{}}Curated set: 12 \\Automically extracted set: 1648\end{tabular} & 0 & Vertebrates \\
+        H4 & & &
+        canonicalH4 & \begin{tabular}{@{}c@{}}Curated set: 7 \\Automically extracted set: 7414\end{tabular} & 0 & Eukaryotes \\
+        H3 & & &
+        canonicalH3 & \begin{tabular}{@{}c@{}}Curated set: 4 \\Automically extracted set: 1447\end{tabular} & 0 & Eukaryotes \\
+        cenH3 & \begin{tabular}{@{}c@{}}Curated set: 9 \\Automically extracted set: 320\end{tabular} & 0 & Eukaryotes \\
+        H3.1 & \begin{tabular}{@{}c@{}}Curated set: 11 \\Automically extracted set: 521\end{tabular} & 0 & Mammals \\
+        H3.2 & \begin{tabular}{@{}c@{}}Curated set: 4 \\Automically extracted set: 497\end{tabular} & 0 & Metazoa \\
+        H3.3 & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 980\end{tabular} & 0 & Eukaryotes \\
+        H3.Y & \begin{tabular}{@{}c@{}}Curated set: 8 \\Automically extracted set: 94\end{tabular} & 0 & Primates \\
+        Unknown & & &
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{table}
+\end{document}

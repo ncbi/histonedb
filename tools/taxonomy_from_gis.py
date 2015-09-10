@@ -96,7 +96,7 @@ same as previous but different regex rule and no gi
   return taxonomy_from_header(header, species_re=easyspecies_re)
 
 def update_taxonomy_for_gis(gis):
-  for taxid,gi in get_tax_for_gi_taxdump(gis):# zip(taxids_from_gis(gis),gis):
+  for taxid,gi in zip(taxids_from_gis(gis),gis):
     seq=Sequence.objects.get(pk=gi)
     seq.taxonomy_id=taxid
     seq.save()

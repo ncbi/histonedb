@@ -2,11 +2,7 @@
 #and specific computer settings. Chnages values here or, if you need 
 #the information to kept sectret use the "file = path", to load from
 # a hidden directory
-name = DB_NAME
-user = DB_USER
-password = DB_PASS
-host = localhost
-port = 3306
-SECRET_KEY = DJANGO_SECRET_KEY
-STATIC_URL = /static/
+file = /web/public/data/projects/HistoneDB2.0/NCBI_database_info.txt
+STATIC_URL = /projects/HistoneDB2.0/HistoneDB/static/
+FORCE_SCRIPT_NAME = /projects/HistoneDB2.0/index.fcgi/
 DEBUG = True
