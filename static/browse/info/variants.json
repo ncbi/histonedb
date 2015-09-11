@@ -52,7 +52,7 @@
 		},
 		"H2A.L": {
 			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1. H2A.L has a shorter C-terminal tail and docking domain.",
-			"taxonomic_span":"Mammals",
+			"taxonomic_span":"Certain mammals",
 			"alternate_names": [
 				{"name":"H2AL"},
 				{"name":"H2AL1", "gene":1},
