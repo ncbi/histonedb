@@ -374,6 +374,11 @@ class HistoneSearch(object):
         """Search from simple text box in brand or sequence filter.
         """
         # print "SEarching!!!"
+
+        #For speed
+        if(len(search_text)<2):
+            return
+
         #Search all fields
         try:
             #If search is just a single digit, try to match id
@@ -418,15 +423,15 @@ class HistoneSearch(object):
             pass
 
         try:
-            variant = OldStyleVariant.objects.get(name__icontains=search_text.replace(" ", "_")).updated_variant
-            
+            # variant = OldStyleVariant.objects.get(name__icontains=search_text.replace(" ", "_")).updated_variant #Changed by Alexey
+            variant = OldStyleVariant.objects.filter(name__icontains=search_text.replace(" ", "_"))[0].updated_variant
             if self.navbar:
                 self.redirect = redirect(variant)
             else:
                 self.query.format("variant_id", "is", variant.id, str)
             return
-        except OldStyleVariant.DoesNotExist: #   changed by Alexey 9/11/2015
-        # except:
+        # except OldStyleVariant.DoesNotExist: #   changed by Alexey 9/11/2015
+        except:
             pass
 
         try:
@@ -437,9 +442,6 @@ class HistoneSearch(object):
                 return
         except Taxonomy.DoesNotExist:
             pass
-
-        # return #this is to not go into expensive search
-
 
         try:
             taxon = Taxonomy.objects.get(name=search_text)
@@ -452,7 +454,7 @@ class HistoneSearch(object):
                 return
         except Taxonomy.DoesNotExist:
             pass
-            
+
         headers = Sequence.objects.filter(header__icontains=search_text)
 
         if headers.count() > 0:
