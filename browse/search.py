@@ -373,6 +373,7 @@ class HistoneSearch(object):
     def simple_search(self, search_text):
         """Search from simple text box in brand or sequence filter.
         """
+        # print "SEarching!!!"
         #Search all fields
         try:
             #If search is just a single digit, try to match id

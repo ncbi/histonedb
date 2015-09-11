@@ -329,8 +329,10 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id="+data.rows[0].id, "", 975, 75, false);
               $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
             {% else %}
+                if(data.rows.length>0){
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
               $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
+                }
             {% endif %}
           },
           onClickCell:function(event, value, row, index){
