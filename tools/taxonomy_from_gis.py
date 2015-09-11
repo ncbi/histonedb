@@ -34,15 +34,15 @@ def taxids_from_gis(gis):
     for s in seq_from_gi(gis):
         try:
             for a in s.features[0].qualifiers['db_xref']:
-                text=re.search('(\S+):(\d+)',a).group(1)
-                id=re.search('(\S+):(\d+)',a).group(2)
+                text=re.search('(\S+):(\S+)',a).group(1)
+                id=re.search('(\S+):(\S+)',a).group(2)
                 if(text=="taxon"):
-                    print "Taxid ",id
+                    print "Fetched taxid from NCBI ",id
                     yield id
                 else:
                     continue
         except:
-            print "!!!!!!Unable to get TAXID for",s
+            print "!!!!!!Unable to get TAXID for \n",s, " setting it to 1"
             yield 1 #unable to identify
 
 already_exists = []
@@ -55,7 +55,7 @@ def taxonomy_from_header(header_init, gi=None, species_re=None):
   if match:
     organism = match[-1]
   elif gi:
-    print "No match for {}: {}, searh NCBI".format(gi, header)
+    print "No taxonomy match for {}: {}, get it from NCBI".format(gi, header)
     for i in xrange(10):
       try:
         organism = taxonomy_from_gis([gi]).next()

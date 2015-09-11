@@ -367,7 +367,7 @@ class Command(BaseCommand):
 
     def extract_full_sequences_from_ncbi(self):
         """Exract full seq by direct call to NCBI servers"""
-
+        print "Getting full sequences of automatically annotated proteins from NCBI===="
         gis=Sequence.objects.filter(reviewed=False).values_list('id', flat=True)
         fasta_dict=get_many_prot_seqrec_by_gis(gis)
 
@@ -376,7 +376,7 @@ class Command(BaseCommand):
             headers = record.description.split(" >")
             for header in headers:
                 gi = header.split("|")[1]
-                print gi
+                # print gi
                 try:
                     seq = Sequence.objects.get(id=gi)
                     seq.sequence = str(record.seq)

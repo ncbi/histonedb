@@ -78,7 +78,7 @@ def load_hmm_results(hmmerFile, id_file):
                 best_score_2.used_for_classification=False
                 best_score_2.save()
                 seq.save()
-                print "UPDATED VARIANT"
+                # print "UPDATED VARIANT"
                 add_score(seq, variant_model, hsp, best=True)
               else:
                 #A strange thing, bitscore is bigger, but threshold is not passed.
