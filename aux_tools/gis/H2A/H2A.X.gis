@@ -1,5 +1,4 @@
 #taken from original alignment
-398366187 - yeast, refseq close to pdb 1id3 - also canonical, but we call h2a.x Saccharomyces_H2A.X should be also canonical
 159108895|H2A.X Giardia_H2A.X
 66814816|H2A.X Dictyostelium_H2A.X
 #61658009|H2A.X Alexandrium_H2A.X - this is dinoglagellate - should have no histones???
@@ -24,3 +23,5 @@
 15223948  - arabidopsis HTA5.X - from Paul Talbert
 670405864 - Zea mays HTA107 from Paul Talbert
 670444449 - Zea mays HTA112 from Paul Talbert
+398366187 - yeast HTA1, yeast, refseq close to pdb 1id3 - also canonical, but we call h2a.x Saccharomyces_H2A.X should be also canonical
+6319470 - yeast HTA2
