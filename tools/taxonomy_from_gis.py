@@ -32,14 +32,18 @@ def taxids_from_gis(gis):
     """
     """
     for s in seq_from_gi(gis):
-        for a in s.features[0].qualifiers['db_xref']:
-            text=re.search('(\S+):(\d+)',a).group(1)
-            id=re.search('(\S+):(\d+)',a).group(2)
-            if(text=="taxon"):
-                print "Taxid ",id
-                yield id
-            else:
-                continue
+        try:
+            for a in s.features[0].qualifiers['db_xref']:
+                text=re.search('(\S+):(\d+)',a).group(1)
+                id=re.search('(\S+):(\d+)',a).group(2)
+                if(text=="taxon"):
+                    print "Taxid ",id
+                    yield id
+                else:
+                    continue
+        except:
+            print "!!!!!!Unable to get TAXID for",s
+            yield 1 #unable to identify
 
 already_exists = []
 
