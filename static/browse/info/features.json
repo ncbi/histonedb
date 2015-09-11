@@ -50,8 +50,8 @@
             "feature1":"==========================================iii====================================================Z==dd==========================",
             "feature_info":{
                 "Z":{"type":"motif", "name":">D", "description":"Characteristic substitution into Asp for many H2A.Z (excl. Trypanosoma), which increases the size of acidic patch.", "color":"#00ff00", "source":""},
-                "i":{"type":"motif", "name":"in", "description":"Characteristic one amino acid insertion with respect to canonical H2A in L1-loop", "color":"#ff0000", "source":""},
-                "d":{"type":"motif", "name":"del", "description":"Characteristic one amino acid deletion with respect to canonical H2A", "color":"#aaffff", "source":""}
+                "i":{"type":"motif", "name":"in", "description":"Approximate site of characteristic one amino acid insertion with respect to canonical H2A in L1-loop", "color":"#ff0000", "source":""},
+                "d":{"type":"motif", "name":"del", "description":"Site of characteristic one amino acid deletion with respect to canonical H2A", "color":"#aaffff", "source":""}
             }
         },
         "H2A.W":{
