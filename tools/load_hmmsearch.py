@@ -114,7 +114,7 @@ def load_hmm_results(hmmerFile, id_file):
               global already_exists
               already_exists.append(gi)
               continue
-          print seq
+          # print seq
 
   #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
   update_taxonomy_for_gis(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))

@@ -424,7 +424,8 @@ class HistoneSearch(object):
             else:
                 self.query.format("variant_id", "is", variant.id, str)
             return
-        except OldStyleVariant.DoesNotExist:
+        except OldStyleVariant.DoesNotExist: #   changed by Alexey 9/11/2015
+        # except:
             pass
 
         try:
@@ -435,6 +436,9 @@ class HistoneSearch(object):
                 return
         except Taxonomy.DoesNotExist:
             pass
+
+        # return #this is to not go into expensive search
+
 
         try:
             taxon = Taxonomy.objects.get(name=search_text)
