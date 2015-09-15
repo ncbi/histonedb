@@ -422,15 +422,20 @@ def get_aln_and_features(request, ids=None):
                     try: #try H2A.X as a substitute for canonical
                         if(str(seq.variant.hist_type)=='H2A'):
                             canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
+                        elif(str(seq.variant.hist_type)=='H3'): #Try H3.3
+                            canonical=Sequence.objects.filter(variant_id='H3.3',reviewed=True,taxonomy=seq.taxonomy)[0]
                         elif(str(seq.variant.id)=='ScH1'):
                             canonical=seq
                         else:
                             raise
-                    except: #default Xenopus
-                        if(str(seq.variant.hist_type)=="H1"):
-                            canonical = Sequence(id="0000|xenopus|generic{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
-                        else:
-                            canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+
+                    except:
+                        canonical=seq #we here default not to show the sequence by simply suppling itslef - only one line will be displayed
+                        #default Xenopus
+                        # if(str(seq.variant.hist_type)=="H1"):
+                        #     canonical = Sequence(id="0000|xenopus|generic{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
+                        # else:
+                        #     canonical = Sequence(id="0000|xenopus|canonical{}".format(hist_type), sequence=str(TemplateSequence.objects.get(variant="General{}".format(hist_type)).get_sequence().seq))
                 sequences = [canonical, seq]
             sequence_label = seq.short_description
             
