@@ -222,6 +222,7 @@ class HistoneSearch(object):
         self.count = 0
         self.sort = {}
         self.parameters = parameters
+        # print parameters
         self.unique = self.parameters.get("id_unique", False) in ["on", "true"]
         
         #The initial query set that is refined later by create_queryset
@@ -285,13 +286,19 @@ class HistoneSearch(object):
         else:
             self.count =  self.query_set.count()
 
+
+
     def sort_query_set(self, unique=False):
         """Sort the query set and paginate results.
         """
         sort_by = self.sort["sort"]
         sort_order = "-" if self.sort["order"] == "desc" else ""
         sort_key = "{}{}".format(sort_order, sort_by)
-        self.query_set = self.query_set.order_by(sort_key)
+        if(sort_key=='evalue' and self.parameters.get('id_reviewed',0)): #the default case of curated seuqnce view
+            #we sort by taxonomy instead
+            self.query_set = self.query_set.order_by("taxonomy")
+        else:
+            self.query_set = self.query_set.order_by(sort_key)
 
     def paginate(self, sequences=None):
         """Split results into chunks/pages defined by sort_options"""

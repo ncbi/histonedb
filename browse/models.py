@@ -76,6 +76,9 @@ class Sequence(models.Model):
     sequence = models.TextField()
     reviewed = models.BooleanField() 
 
+    # class Meta:
+    #     ordering=['taxonomy__name']
+
     def __eq__(self, other):
         if isinstance(other, Sequence):
             return (self.id == other.id)
