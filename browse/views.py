@@ -113,14 +113,14 @@ def browse_variant(request, histone_type, variant,gi):
         return "404"
 
     go_to_curated = True if gi else False
+    print gi, "!!!!!!!"
     go_to_gi = gi if gi else 0
-
-#Here we want always by default go to human
+    highlight_human=False
+#Here we want always by default highlight human
     if(not go_to_curated):
         try:
-            go_to_gi=Sequence.objects.filter(variant=variant,taxonomy__id__in=["9606","10090"]).first().gi
-            print "!!!!!",go_to_gi
-            go_to_curated=True
+            go_to_gi=Sequence.objects.filter(variant=variant,taxonomy__id__in=["9606","10090"]).order_by('taxonomy').first().gi
+            highlight_human=True
         except:
             pass
 
@@ -193,6 +193,7 @@ def browse_variant(request, histone_type, variant,gi):
         "filter_form": AdvancedFilterForm(),
         "go_to_curated":go_to_curated,
         "go_to_gi":go_to_gi,
+        "highlight_human":highlight_human,
     }
 
     data["original_query"] = {"id_variant":variant.id}
