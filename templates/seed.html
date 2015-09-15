@@ -3,8 +3,8 @@
 <div class={% if "modal" in msa_id %}"modal-body"{% else %}"container"{% endif %} style="margin-top:5px;{% if "modal" in msa_id %}overflow-y:auto;{% endif %}">
 	<div class="row">
 		<div class="col-xs-10">
-			Features characteristic for a given histone type are shown under the consensus sequence. Keys: red - 80% identical, blue - 50% identical columns. X-denotes ambigous positions in consensus sequence.
-		</div>
+			Features characteristic for a given histone type are shown under the consensus sequence.</div>
+
 		<div class="col-xs-2">
 			<div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
 				<div class="btn-group">
@@ -25,6 +25,8 @@
 	<div class="row" style="margin-top:5px; {% if msa_id == "modal" %}overflow: auto;{% endif %}">
 		<div class="col-xs-12">
 			{% if "modal" not in msa_id %}<div id="container">{% endif %}
+                <div class="container" style="text-align:center">Keys: red - 80% identical, blue - 50% identical columns. X-denotes ambigous positions in consensus sequence.</div>
+
 			<div id='msa_div_{{ msa_id }}'></div>
 			{% if "modal" not in msa_id %}</div>{% endif %}
 		</div>
