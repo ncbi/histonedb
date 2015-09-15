@@ -135,8 +135,8 @@
             "feature1":"===============================================================================ee====s======================q===============================",
             "feature_info":{
                 "e":{"type":"motif", "name":"ext", "description":"L1-loop extension", "color":"#00ff00", "source":""},
-                "s":{"type":"motif", "name":"F>W", "description":"Characteristic Phe > Tyr substitution", "color":"#ff0000", "source":""},
-                "q":{"type":"motif", "name":"T>X", "description":"Characteristic Thr > Ala, Cys, or Ser substitution", "color":"#ff0000", "source":""}
+                "s":{"type":"motif", "name":"F>W", "description":"Site of characteristic Phe > Tyr substitution (canonical > variant).", "color":"#ff0000", "source":""},
+                "q":{"type":"motif", "name":"T>X", "description":"Site of characteristic Thr > Ala, Cys, or Ser substitution (canonical > variant).", "color":"#ff0000", "source":""}
             }
         },
         "H3.3":{
