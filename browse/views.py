@@ -117,12 +117,12 @@ def browse_variant(request, histone_type, variant,gi):
 
 #Here we want always by default go to human
     if(not go_to_curated):
-        # try:
+        try:
             go_to_gi=Sequence.objects.filter(variant=variant,taxonomy__id="9606").first().gi
             print "!!!!!",go_to_gi
             go_to_curated=True
-        # except:
-        #     pass
+        except:
+            pass
 
     green = Color("#66c2a5")
     red = Color("#fc8d62")
