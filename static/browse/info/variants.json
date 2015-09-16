@@ -3,7 +3,9 @@
 		"canonicalH2A":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
-			"alternate_names": [],
+			"alternate_names": [
+			  				{"name":"caH2A"}
+			],
 			"publications":["22650316","25731851"]
 		},
 		"H2A.Z": {
@@ -110,7 +112,10 @@
 		"canonicalH2B":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
-			"alternate_names": [],
+			"alternate_names": [
+ 				{"name":"caH2B"}
+
+			],
 			"publications":["22650316","25731851"]
 		},
 		"subH2B": {
@@ -164,7 +169,10 @@
 		"canonicalH3":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
-			"alternate_names": [],
+			"alternate_names": [
+ 				{"name":"caH3"}
+
+			],
 			"publications":["22650316"]
 		},
 		"cenH3":{
@@ -217,7 +225,10 @@
 		"canonicalH4":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
-			"alternate_names": [],
+			"alternate_names": [
+ 				{"name":"caH4"}
+
+			],
 			"publications":["22650316"]
 		}
 	},
@@ -226,6 +237,8 @@
 			"description":"H1 has mainly species specific variants. In current version of HistoneDB all H1 are presented as genericH1 class, except for several interesting species specific variants which are provided as separate classes.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
+ 				{"name":"genH1"}
+
 			],
 			"publications":["22650316","23945933","10973918","11149891","26212454"]
 		},
