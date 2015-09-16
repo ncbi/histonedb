@@ -84,10 +84,10 @@
                 "l":{"type":"secondary","name":"loopL1","color":"#cccccc","description":"L1 loop, connecting first and second helices of histone fold. Part of the L1L2 DNA binding site formed by H2A and H2B at SHL ±5.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "2":{"type":"secondary","name":"alpha2","color":"#bb0000","description":"Alpha2-helix, second helix of histone fold","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "L":{"type":"secondary","name":"loopL2","color":"#cccccc","description":"L2 loop, connecting second and third helices of the histone fold. Part of the L1L2 DNA binding site formed by H2A and H2B at SHL ±3.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "3":{"type":"secondary","name":"alpha3","color":"#bb0000","description":"Alpha3-helix, third helix of the histone fold.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "3":{"type":"secondary","name":"alpha3","color":"#bb0000","description":"Alpha3-helix, third helix of the histone fold","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
                 "b":{"type":"secondary","name":"beta1","color":"#00bb00","description":"Beta-strand in the L1L2 DNA binding site","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "B":{"type":"secondary","name":"beta2","color":"#00bb00","description":"Beta-strand in the L1L2 DNA binding site.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
-                "a":{"type":"residue","name":"mgArg1","color":"#00bb00","description":"Minor groove arginine at alpha1-alpha1 DNA binding site at SHL ±4.5","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
+                "B":{"type":"secondary","name":"beta2","color":"#00bb00","description":"Beta-strand in the L1L2 DNA binding site","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"},
+                "a":{"type":"residue","name":"R1","color":"#00bb00","description":"Minor groove arginine at alpha1-alpha1 DNA binding site at SHL ±4.5.","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone"}
             }
         },
         "subH2B":{
