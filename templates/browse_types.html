@@ -20,22 +20,22 @@
 <div class="container-fluid img-responsive">
   <div class="row">
     <div class="col-xs-4">
-      <a href="{% url 'browse.views.browse_variants' 'H2A' %}">
-        <div class="row">
-          <div class="col-xs-1 col-md-offset-9"><h2>H2A</h2></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <img class="img-responsive pull-right" src="{% static 'browse/img/H2A.png' %}" width="35%" />
-          </div>
-        </div>
-      </a>
       <a href="{% url 'browse.views.browse_variants' 'H3' %}">
         <div class="row">
           <div class="col-xs-1 col-md-offset-9"><h2>H3</h2></div>
         </div>
         <div class="row">
-          <div class="col-xs-12"><img class="img-responsive pull-right" src="{% static 'browse/img/H3.png' %}" width="35%" /></div>
+          <div class="col-xs-12">
+            <img class="img-responsive pull-right" src="{% static 'browse/img/H3_front.png' %}" width="35%" />
+          </div>
+        </div>
+      </a>
+      <a href="{% url 'browse.views.browse_variants' 'H2A' %}">
+        <div class="row">
+          <div class="col-xs-1 col-md-offset-9"><h2>H2A</h2></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12"><img class="img-responsive pull-right" src="{% static 'browse/img/H2A_front.png' %}" width="35%" /></div>
         </div>
       </a>
     </div>
@@ -52,23 +52,23 @@
     </div>
     <div class="col-xs-4">
       <div class="row">
-        <a href="{% url 'browse.views.browse_variants' 'H2B' %}">
-          <div class="row">
-            <div class="col-xs-1 col-md-offset-2"><h2>H2B</h2></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <img class="img-responsive pull-left" src="{% static 'browse/img/H2B.png' %}" width="35%" />
-            </div>
-          </div>
-        </a>
         <a href="{% url 'browse.views.browse_variants' 'H4' %}">
           <div class="row">
             <div class="col-xs-1 col-md-offset-2"><h2>H4</h2></div>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <img class="img-responsive pull-left" src="{% static 'browse/img/H4.png' %}" width="35%" />
+              <img class="img-responsive pull-left" src="{% static 'browse/img/H4_front.png' %}" width="35%" />
+            </div>
+          </div>
+        </a>
+        <a href="{% url 'browse.views.browse_variants' 'H2B' %}">
+          <div class="row">
+            <div class="col-xs-1 col-md-offset-2"><h2>H2B</h2></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <img class="img-responsive pull-left" src="{% static 'browse/img/H2B_front.png' %}" width="35%" />
             </div>
           </div>
         </a>
