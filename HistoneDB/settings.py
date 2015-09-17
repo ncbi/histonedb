@@ -42,6 +42,7 @@ load_settings()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = NCBI_database_info["SECRET_KEY"]
+SESSION_COOKIE_HTTPONLY = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("NCBI_database_info_DEBUG", "True") == "True"
