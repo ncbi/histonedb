@@ -1,6 +1,7 @@
 from browse.search import search_types, allowable_fields
 import json
 from django import template
+import re
 register = template.Library()
 
 @register.filter('get')
@@ -131,6 +132,10 @@ def get_pull_down(names, id, reset="menu", default_name=""):
 
 @register.filter('jsonify')
 def jsonify(object):
+    #XSS protection added by Alexey 9/17/2015
+    for key,value in object.iteritems():
+        if(re.search(r'[\\<>"]',key) or re.search(r'[\\<>"]',value)):
+            return " "
     return json.dumps(object)
 
 @register.filter('bootstrapify')
