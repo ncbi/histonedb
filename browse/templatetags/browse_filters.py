@@ -134,7 +134,7 @@ def get_pull_down(names, id, reset="menu", default_name=""):
 def jsonify(object):
     #XSS protection added by Alexey 9/17/2015
     for key,value in object.iteritems():
-        if(re.search(r'[\\<>"]',key) or re.search(r'[\\<>"]',value)):
+        if(re.search(r'[\\<>"/]',key) or re.search(r'[\\<>"/]',value)):
             return " "
     return json.dumps(object)
 
