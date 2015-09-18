@@ -106,6 +106,14 @@
             "feature_info":{
                 "n":{"type":"extension", "name":"extN", "description":"Extended N-terminal tail", "color":"#00ff00", "source":"NP_001002916.3"}
             }
+        },
+        "sperm_H2B":{
+            "taxa":"Echinacea",
+            "sequence":"MPRSPAKTSPRKGSPRKGSPSRKASPKRGGKGAKRAGKGGRRRRVVKRRRRRRESYGIYIYKVLKQVHPDTGISSRAMSVMNSFVNDVFERIAGEASRLTSANRRSTVSSREIQTAVRLLLPGELAKHAVSEGTKAVTKYTTSR",
+            "feature1":"====rrrrrrrrrrrrrrrrrrrr========================================================================================================================",
+            "feature_info":{
+                "r":{"type":"extension", "name":"pent", "description":"Repeated pentapeptide PAKTS on N-terminus.", "color":"#00ff00", "source":"PMID 710402"}
+            }
         }
     },
     "H3":{
