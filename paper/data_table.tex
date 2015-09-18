@@ -2,12 +2,14 @@
     \usepackage[landscape]{geometry}
 % better looking tables with `\toprule`,`\midrule`,`\bottomrule`:
 \usepackage{booktabs}
+\pagenumbering{gobble}
 \begin{document}
 \begin{table}[h!]
 \begin{center}
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Variant} & \textbf{Curated Sequences} & \textbf{Auto Sequences} & \textbf{Num Features} & \textbf{Taxonomic Span} \\
+ & \multicolumn{2}{c}{\textbf{Number of Sequences} } &  & \\
+\textbf{Variant}&\textbf{Curated} &\textbf{Automatic} &\textbf{Number of Features} &  \textbf{Taxonomic Span} \\
 \toprule 
         canonicalH3 & 15 &2069  & 11 & Eukaryotes \\
         cenH3 & 12 &418  & 14 & Eukaryotes \\
@@ -32,7 +34,7 @@
         H2B.W & 6 &245  & 10 & Mammals \\
         H2B.Z & 3 &212  & 9 & Apicomplexa \\
         sperm H2B & 6 &97  & 9 & Echinacea(?) \\
-        subH2B & 11 &86  & 11 & Primates, rodents, marsupials, and bovids \\
+        subH2B & 11 &86  & 11 & Primates, rodents, marsupials, bovids \\
         TS H2B.1 & 5 &456  & 9 & Mammals \\
 \toprule 
         genericH1 & 13 &4341  & 7 & Eukaryotes \\
