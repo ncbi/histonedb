@@ -27,3 +27,5 @@ def make_table_1():
   \end{table}
 \end{document}"""
 	print table
+
+make_table_1()
