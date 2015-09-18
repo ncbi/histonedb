@@ -1,66 +1,51 @@
-[?1034hPython 2.7.9 (default, Mar 30 2015, 11:26:35) 
-Type "copyright", "credits" or "license" for more information.
-
-IPython 3.1.0 -- An enhanced Interactive Python.
-?         -> Introduction and overview of IPython's features.
-%quickref -> Quick reference.
-help      -> Python's own help system.
-object?   -> Details about 'object', use 'object??' for extra details.
-
-[0;32mIn [[1;32m1[0;32m]: [0m
-[0;32mIn [[1;32m2[0;32m]: [0m
-[0;32mIn [[1;32m3[0;32m]: [0m
-[0;32mIn [[1;32m3[0;32m]: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m[0;32m   ...: [0m
-[0;32mIn [[1;32m4[0;32m]: [0m\documentclass[10pt,a4]{article}
+\documentclass[a4paper,landscape]{article}
+    \usepackage[landscape]{geometry}
 % better looking tables with `\toprule`,`\midrule`,`\bottomrule`:
 \usepackage{booktabs}
 \begin{document}
-  \begin{table}[h!]
-    \begin{center}
-      \begin{tabular}{lcccc}
-        \toprule
-        \textbf{Variant} & \textbf{Num Sequences} & \textbf{Num Features} & \textbf{Taxonomic Span} \\
-        H3 & & & 
-        canonicalH3 & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 2069\end{tabular} & 0 & Eukaryotes \\
-        cenH3 & \begin{tabular}{@{}c@{}}Curated set: 12 \\Automically extracted set: 418\end{tabular} & 0 & Eukaryotes \\
-        H3.3 & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 549\end{tabular} & 0 & Eukaryotes \\
-        H3.5 & \begin{tabular}{@{}c@{}}Curated set: 6 \\Automically extracted set: 1246\end{tabular} & 0 & Hominids \\
-        H3.Y & \begin{tabular}{@{}c@{}}Curated set: 8 \\Automically extracted set: 78\end{tabular} & 0 & Primates \\
-        TS_H3.4 & \begin{tabular}{@{}c@{}}Curated set: 8 \\Automically extracted set: 2146\end{tabular} & 0 & mammals \\
-        H4 & & & 
-        canonicalH4 & \begin{tabular}{@{}c@{}}Curated set: 14 \\Automically extracted set: 4327\end{tabular} & 0 & Eukaryotes \\
-        H2A & & & 
-        canonicalH2A & \begin{tabular}{@{}c@{}}Curated set: 23 \\Automically extracted set: 4081\end{tabular} & 0 & Eukaryotes \\
-        H2A.B & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 139\end{tabular} & 0 & Mammals \\
-        H2A.L & \begin{tabular}{@{}c@{}}Curated set: 17 \\Automically extracted set: 186\end{tabular} & 0 & Certain mammals \\
-        H2A.M & \begin{tabular}{@{}c@{}}Curated set: 11 \\Automically extracted set: 95\end{tabular} & 0 & Mammals \\
-        H2A.W & \begin{tabular}{@{}c@{}}Curated set: 12 \\Automically extracted set: 869\end{tabular} & 0 & Plants \\
-        H2A.X & \begin{tabular}{@{}c@{}}Curated set: 22 \\Automically extracted set: 1149\end{tabular} & 0 & Eukaryotes except nematode \\
-        H2A.Z & \begin{tabular}{@{}c@{}}Curated set: 26 \\Automically extracted set: 2605\end{tabular} & 0 & Eukaryotes \\
-        macroH2A & \begin{tabular}{@{}c@{}}Curated set: 10 \\Automically extracted set: 1216\end{tabular} & 0 & Vertebrates \\
-        TS_H2A.1 & \begin{tabular}{@{}c@{}}Curated set: 15 \\Automically extracted set: 859\end{tabular} & 0 & Mammals \\
-        H2B & & & 
-        canonicalH2B & \begin{tabular}{@{}c@{}}Curated set: 26 \\Automically extracted set: 6528\end{tabular} & 0 & Eukaryotes \\
-        H2B.W & \begin{tabular}{@{}c@{}}Curated set: 6 \\Automically extracted set: 245\end{tabular} & 0 & Mammals \\
-        H2B.Z & \begin{tabular}{@{}c@{}}Curated set: 3 \\Automically extracted set: 212\end{tabular} & 0 & Apicomplexa \\
-        sperm_H2B & \begin{tabular}{@{}c@{}}Curated set: 6 \\Automically extracted set: 97\end{tabular} & 0 & Echinacea(?) \\
-        subH2B & \begin{tabular}{@{}c@{}}Curated set: 11 \\Automically extracted set: 86\end{tabular} & 0 & Primates, rodents, marsupials, and bovids \\
-        TS_H2B.1 & \begin{tabular}{@{}c@{}}Curated set: 5 \\Automically extracted set: 456\end{tabular} & 0 & Mammals \\
-        H1 & & & 
-        genericH1 & \begin{tabular}{@{}c@{}}Curated set: 13 \\Automically extracted set: 4341\end{tabular} & 0 & Eukaryotes \\
-        H1.0 & \begin{tabular}{@{}c@{}}Curated set: 16 \\Automically extracted set: 602\end{tabular} & 0 & Metazoa \\
-        H1.10 & \begin{tabular}{@{}c@{}}Curated set: 6 \\Automically extracted set: 146\end{tabular} & 0 & Vertebrates \\
-        OO_H1.8 & \begin{tabular}{@{}c@{}}Curated set: 2 \\Automically extracted set: 250\end{tabular} & 0 & Mammals \\
-        ScH1 & \begin{tabular}{@{}c@{}}Curated set: 2 \\Automically extracted set: 443\end{tabular} & 0 & Saccharomyces(?) \\
-        TS_H1.6 & \begin{tabular}{@{}c@{}}Curated set: 13 \\Automically extracted set: 493\end{tabular} & 0 & Mammals \\
-        TS_H1.7 & \begin{tabular}{@{}c@{}}Curated set: 2 \\Automically extracted set: 144\end{tabular} & 0 & Mammals \\
-        TS_H1.9 & \begin{tabular}{@{}c@{}}Curated set: 4 \\Automically extracted set: 101\end{tabular} & 0 & Mammals \\
-        Unknown & & & 
-        \bottomrule
-      \end{tabular}
-    \end{center}
-  \end{table}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Variant} & \textbf{Curated Sequences} & \textbf{Auto Sequences} & \textbf{Num Features} & \textbf{Taxonomic Span} \\
+\toprule 
+\toprule 
+        genericH1 & 18 &18  & 7 & Eukaryotes \\
+        H1.0 & 16 &16  & 7 & Metazoa \\
+        H1.10 & 6 &6  & 7 & Vertebrates \\
+        OO H1.8 & 2 &2  & 7 & Mammals \\
+        ScH1 & 2 &2  & 13 & Saccharomyces(?) \\
+        TS H1.6 & 8 &8  & 7 & Mammals \\
+        TS H1.7 & 2 &2  & 7 & Mammals \\
+        TS H1.9 & 4 &4  & 7 & Mammals \\
+\toprule 
+        canonicalH2B & 27 &27  & 9 & Eukaryotes \\
+        H2B.W & 6 &6  & 10 & Mammals \\
+        H2B.Z & 3 &3  & 9 & Apicomplexa \\
+        sperm H2B & 6 &6  & 9 & Echinacea(?) \\
+        subH2B & 11 &11  & 11 & Primates, rodents, marsupials, and bovids \\
+        TS H2B.1 & 4 &4  & 9 & Mammals \\
+\toprule 
+        canonicalH2A & 37 &37  & 17 & Eukaryotes \\
+        H2A.B & 15 &15  & 21 & Mammals \\
+        H2A.L & 17 &17  & 17 & Certain mammals \\
+        H2A.M & 11 &11  & 17 & Mammals \\
+        H2A.W & 10 &11  & 19 & Plants \\
+        H2A.X & 23 &24  & 19 & Eukaryotes except nematode \\
+        H2A.Z & 26 &27  & 20 & Eukaryotes \\
+        macroH2A & 10 &10  & 19 & Vertebrates \\
+        TS H2A.1 & 2 &2  & 17 & Mammals \\
+\toprule 
+        canonicalH4 & 14 &14  & 10 & Eukaryotes \\
+\toprule 
+        canonicalH3 & 23 &23  & 11 & Eukaryotes \\
+        cenH3 & 12 &12  & 14 & Eukaryotes \\
+        H3.3 & 15 &15  & 12 & Eukaryotes \\
+        H3.5 & 2 &2  & 11 & Hominids \\
+        H3.Y & 8 &8  & 12 & Primates \\
+        TS H3.4 & 2 &3  & 11 & mammals \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
 \end{document}
-
-[0;32mIn [[1;32m5[0;32m]: [0m
-Do you really want to exit ([y]/n)? 
