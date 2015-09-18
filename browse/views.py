@@ -415,7 +415,9 @@ def get_aln_and_features(request, ids=None):
             else:
                 #let's load the corresponding canonical
                 try:
-                    if(str(seq.variant.hist_type)=="H1"):
+                    if(("canonical" in str(seq.variant)) or ("generic" in str(seq.variant))):
+                        canonical=seq
+                    elif(str(seq.variant.hist_type)=="H1"):
                         canonical=Sequence.objects.filter(variant_id='generic'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
                     else:
                         canonical=Sequence.objects.filter(variant_id='canonical'+str(seq.variant.hist_type),reviewed=True,taxonomy=seq.taxonomy)[0]
