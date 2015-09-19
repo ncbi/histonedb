@@ -148,7 +148,7 @@ $("#id_hist_type_drop_down_button").hide();
                            href="{% url 'browse.views.browse_variant' histone_type variant ''%}">
                           <span class="badge variant-count-badge" style="background-color:{{ color }};" title="# of sequences in curated set: {{ num_curated }}
 # of sequences in total set: {{ num_all }}">{{ num_curated }} / {{ num_all }}</span>
-                          <b>{{ variant }}</b> <br />
+                          <b>{{ variant|undspace }}</b> <br />
                               <small>Alternate names: {% if alternate_names or alternate_names != "" %}{{ alternate_names }}{% else %}<i>None</i>{% endif %}</small><br />
                               <small>Taxonomic span: {{ tax_span }}</small>
                         </a>

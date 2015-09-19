@@ -138,6 +138,11 @@ def jsonify(object):
             return " "
     return json.dumps(object)
 
+@register.filter('undspace')
+def undspace(str):
+    return str.replace('_',' ')
+
+
 @register.filter('bootstrapify')
 def bootstrapify(field):
     field_types = {"CharField":"text", "IntegerField":"int", "ModelForm":None}
