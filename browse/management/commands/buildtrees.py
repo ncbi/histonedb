@@ -140,7 +140,7 @@ class Command(BaseCommand):
                     print "Adding", name
                     #uncomment following line to remove names
                     # name=''
-                    label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name.replace("canonical","ca"), "labelStyle":"sectorHighlightText"})
+                    label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name.replace("canonical","ca").replace("_"," "), "labelStyle":"sectorHighlightText"})
                     styles.append(background)
                     styles.append(label)
                 #Let's add default markgroup with no label
