@@ -281,7 +281,7 @@
 			"publications":["22650316"]
 		},
 		"TS_H1.9": {
-			"description":"Sequences collected here belong to (TS) H1.8 - a testis specific variant of H1 common in mammals.",
+			"description":"Sequences collected here belong to (TS) H1.9 - a testis specific variant of H1 common in mammals.",
 			"taxonomic_span": "Mammals",
 			"alternate_names": [
 				{"name":"Hils1"}
