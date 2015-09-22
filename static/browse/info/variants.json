@@ -1,10 +1,10 @@
 {
 	"H2A": {
-		"canonicalH2A":{
+		"canonical_H2A":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
-			  				{"name":"caH2A"}
+			  				{"name":"ca H2A"}
 			],
 			"publications":["22650316","25731851"]
 		},
@@ -53,7 +53,7 @@
 
 		},
 		"H2A.L": {
-			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with TS H2B.1. H2A.L has a shorter C-terminal tail and docking domain.",
+			"description": "H2A.L is involved in pericentric chromatin organization in spermatids and spermiogenesis. It is a rapildy evolving variant and can form subnucleosmal particles with H2B.1. H2A.L has a shorter C-terminal tail and docking domain.",
 			"taxonomic_span":"Certain mammals",
 			"alternate_names": [
 				{"name":"H2AL"},
@@ -86,13 +86,15 @@
 		  "publications":["22650316","25731851","24853749","18329190","17726088","24213378"]
 
 		},
-	  	"TS_H2A.1": {
-			"description": "TS H2A.1 is a mammalian testis-specific variant. It can preferentially dimerize with  TS H2B.1. So far characterized only in mouse, but a similar gene in human is available. The gene is located  at the end of the largest histone gene cluster.",
+	  	"H2A.1": {
+			"description": "H2A.1 is a mammalian testis, oocyte and zygote specific variant. It can preferentially dimerize with  H2B.1. So far characterized only in mouse, but a similar gene in human is available. The gene is located  at the end of the largest histone gene cluster.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
-				{"name":"TH2A"}
+				{"name":"TH2A"},
+			    {"name":"TS H2A.1"}
+
 			],
-		  "publications":["22650316","25731851","24506885"]
+		  "publications":["22650316","25731851","24506885","26188507"]
 
 		},
 		"H2A.M": { 
@@ -109,11 +111,11 @@
 		}
 	},
 	"H2B": {
-		"canonicalH2B":{
+		"canonical_H2B":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
- 				{"name":"caH2B"}
+ 				{"name":"ca H2B"}
 
 			],
 			"publications":["22650316","25731851"]
@@ -127,15 +129,16 @@
 			],
 			"publications":["22650316","25731851","11892742","22156475"]
 		},
-		"TS_H2B.1": {
-			"description":"TS H2B.1 is a mammalian testis-specific variant that forms subnucleosomal particles in spermatids. It can preferentially dimerize with H2A.L and TS H2A.1. The gene is located  at the end of the largest histone gene cluster.",
+		"H2B.1": {
+			"description":"H2B.1 is a mammalian testis, oocyte and zygote specific variant that forms subnucleosomal particles in spermatids. It can preferentially dimerize with H2A.L and H2A.1. The gene is located  at the end of the largest histone gene cluster.",
 			"taxonomic_span":"Mammals",
 			"alternate_names": [
 				{"name":"TH2B"},
 				{"name":"H2B.1"},
+			  {"name":"TS H2B.1"},
 				{"name":"hTSH2B", "taxonomy":"rodentia"}
 			],
-			"publications":["22650316","12408966","24506885","25252820","15709765","23884607","25731851"]
+			"publications":["22650316","12408966","24506885","25252820","15709765","23884607","25731851","26188507"]
 		},
 		"H2B.W": {
 			"description":"H2B.W is involved in spermiogenesis and telomere associated functions in sperm and is found in spermatogenic cells. It has an extended N-terminal tail",
@@ -148,7 +151,7 @@
 			"publications":["22650316","25731851","19583817","16449661","16449661"]
 		},
 	  	"sperm_H2B": {
-			"description":"Putative histone variant class containing sperm, early and cleavage H2B histones from sea and sand urchins.",
+			"description":"Putative histone variant class containing sperm H2B histones from sea and sand urchins.",
 			"taxonomic_span":"Echinacea(?)",
 			"alternate_names": [
 				{"name":"early H2B"},
@@ -166,11 +169,11 @@
 		}
 	},
 	"H3": {
-		"canonicalH3":{
+		"canonical_H3":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
- 				{"name":"caH3"}
+ 				{"name":"ca H3"}
 
 			],
 			"publications":["22650316"]
@@ -222,22 +225,22 @@
 		}
 	},
 	"H4": {
-		"canonicalH4":{
+		"canonical_H4":{
 			"description":"Canonical histones are replication-dependent while histone variants are replication-independent, constitutively expressed during cell cycle. Genes encoding canonical histones are typically located within multigene clusters and use specific type of regulation at the RNA level with a stem loop structure instead of polyA tail",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
- 				{"name":"caH4"}
+ 				{"name":"ca H4"}
 
 			],
 			"publications":["22650316"]
 		}
 	},
 	"H1": {
-	  "genericH1":{
+	  "generic_H1":{
 			"description":"H1 has mainly species specific variants. In current version of HistoneDB all H1 are presented as genericH1 class, except for several interesting species specific variants which are provided as separate classes.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
- 				{"name":"genH1"}
+ 				{"name":"gen H1"}
 
 			],
 			"publications":["22650316","23945933","10973918","11149891","26212454"]
