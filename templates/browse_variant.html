@@ -70,7 +70,7 @@ $('#id_variant_search_type_drop_down_button').hide()
             <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
             <a href="{% url 'browse.views.browse_variants' hist_type %}">{{hist_type}}</a> /
             {% if "canonical" in variant %}
-            {{ variant }}<span id="taxonomy_title"></span>
+            {{ variant|undspace }}<span id="taxonomy_title"></span>
             {%  else %}
             Variant: {{ variant|undspace }}<span id="taxonomy_title"></span>
             {%  endif %}

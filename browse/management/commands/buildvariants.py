@@ -97,7 +97,7 @@ class Command(BaseCommand):
         """Fix an issue where the canonical variant takes over sequence from H2A.X. 
         The H2A.X motif SQ[ED][YFL]$ is not strong enough, but is the correct variant.
         """
-        for s in Sequence.objects.filter(variant="canonicalH2A",reviewed=False, sequence__regex="SQ[ED][YFLIA]$"):
+        for s in Sequence.objects.filter(variant="canonical_H2A",reviewed=False, sequence__regex="SQ[ED][YFLIA]$"):
             old_score = s.all_model_scores.get(used_for_classification=True)
             old_score.used_for_classification = False
             old_score.save()

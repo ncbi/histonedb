@@ -37,7 +37,7 @@ original_thresholds = {
         "H2A.L":145, 
         "H2A.M":80, 
         "macroH2A":270, 
-        "canonicalH2A":265
+        "canonical_H2A":265
     }
 }
 
