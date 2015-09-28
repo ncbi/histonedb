@@ -54,7 +54,7 @@
       <button class="btn btn-primary" type="submit">Upload</button>
     </form>
   {% elif result %}
-    <div class="alert alert-success" role="alert">Most likely: {{result.1}}</div>
+    <div class="alert alert-success" role="alert">Classification via HMM-profile scores: {{result.1}}</div>
     {% if result.2 %}
       <div class="alert alert-info" role="alert">Second best (Or may share characteristcs with): {{result.2}}</div>
     {% endif %}
