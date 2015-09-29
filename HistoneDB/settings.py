@@ -47,12 +47,11 @@ SESSION_COOKIE_HTTPONLY = True
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = os.environ.get("NCBI_database_info_DEBUG", "True") == "True"
 DEBUG = False
-
 if not DEBUG:
     #X_FRAME_OPTIONS = "DENY"
     #CSRF_COOKIE_HTTPONLY = True
-    # CSRF_COOKIE_SECURE = True
-    # SESSION_COOKIE_SECURE = True
+    #CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
     #SECURE_SSL_REDIRECT = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
