@@ -57,3 +57,4 @@ class AnalyzeFileForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(AnalyzeFileForm, self).__init__(*args, **kwargs)
         self.fields['sequence'].help_text = "Input one protein sequence in FASTA format."
+        self.fields['file'].label = "Or, upload file"
