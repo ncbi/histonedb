@@ -1,0 +1,49 @@
+10645195 - human, refseq close to pdb 3afa
+72391222 - Trypanosoma
+147898582 - Xenopus, refseq close to pdb 1kx5
+15223708 - arabidopsis HTA10 - from Paul Talbert
+15232330  - arabidopsis HTA13 - from Paul Talbert
+334186954  - arabidopsis HTA2 - from Paul Talbert
+15239697  - arabidopsis HTA1 - from Paul Talbert
+30061393 - Mus musculus
+118405202 - Gallus, refseq close to pdb 1eqz
+17562014 - C. elegans
+24585673 - Drosophila, refseq close to pdb 2pyo
+#398366187 - yeast, refseq close to pdb 1id3 - this is H2A.X now
+694915112 - Pan troglodytes
+302565564 - macaca mulatta
+675650858 - Callithrix jacchus
+441622123 - Nomascus leucogenys
+752439274 - Ailuropoda melanoleuca
+344307320 - Loxodonta africana
+335291892 - Sus scrofa
+329663492 - bos taurus
+625285905 - Cricetulus griseus
+512971505 - Heterocephalus glaber
+612000617 - Monodelphis domestica
+688617969 - Danio rerio
+110764935 - Apis mellifera
+545554572 - Canis lupus familiaris
+655885615 - Oryctolagus cuniculus
+348586313 - Guinea pig Cavia porcellus
+75832135 - Rattus norvegicus
+#190581229 - Trichoplax adhaerens - hope this is canonical - turned to be H2A.X - no canonical found
+758974979 - Ustilago maydis 521 - putative
+239897365 - Perkinsus marinus atcc 50983
+115488402 - Oryza sativa Japonica Group
+#19115333 - Schizosaccharomyces pombe - H2A.X now
+#19075680 - Schizosaccharomyces pombe - H2A.X now
+237831941 - Toxoplasma gondii me49
+66807867 - Dictyostelium discoideum ax4
+156227602 - Nematostella , hope this is canonical
+#673921668 - Zea mays - this later can be named H2A.W with SPKK motifs
+731349093 - Beta vulgaris - added to get more plants
+#194708692 - Zea mays HTA106 from Paul Talbert, this is not refseq very similar to HTA114
+212723398 - Zea mays HTA111 from Paul Talbert
+226504426 - Zea mays HTA114 from Paul Talbert
+#194700332 - Zea mays HTA115 from Paul Talbert, this is not refseq very similar to HTA111
+310872 - Tetrahymena thermophila from PMID 17242195
+#118386111 - Tetrahymena thermophila sb210 - H2A.X or H2A.Z only found in nr
+#66357734 - Cryptosporidium parvum iowa ii - either H2A.Z or H2A.X no canonical found
+# next - Giardia lamblia ATCC 50803 -all have SQDL motif
+215500063 - Ixodes scapularis
