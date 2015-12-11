@@ -7,7 +7,8 @@ urlpatterns = [
     url(r'^browse/$', views.browse_types),
 
     url(r'^type/([a-zA-Z0-9]+)/$', views.browse_variants),
-    url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/(\d*)$', views.browse_variant),
+    url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/$', views.browse_variant),
+    url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/(\d*)$', views.browse_variant_with_highlighted_sequence),
 
     url(r'^search/$', views.search),
     url(r'^analyze/$', views.analyze),

@@ -105,19 +105,32 @@ def browse_variants(request, histone_type):
     
     return render(request, 'browse_variants.html', data)
 
-def browse_variant(request, histone_type, variant,gi):
-    #gi - is an optional argument - if specified - should open curated sequences page and activate this variant
+def browse_variant_with_highlighted_sequence(request, histone_type, variant, gi):
+    return browse_variant(request, histone_type, variant, gi)
+
+def browse_variant(request, histone_type, variant, gi=None):
+    """"Dispaly the browse variant page
+
+    Parameters
+    ----------
+    request : Django request
+    histone_type : {"H2A", "H2B", "H3", "H4", "H1"}
+    variant : str
+        Name of variant
+    gi : str or int
+        GI to select to show it curated sequence browser. Optional. If specified, should open curated sequences page and activate this variant.
+    """
     try:
         variant = Variant.objects.get(id=variant)
     except:
         return "404"
 
-    go_to_curated = True if gi else False
+    go_to_curated = gi is not None
     print gi, "!!!!!!!"
-    go_to_gi = gi if gi else 0
+    go_to_gi = gi if gi is not None else 0
     highlight_human=False
 #Here we want always by default highlight human
-    if(not go_to_curated):
+    if not go_to_curated:
         try:
             go_to_gi=Sequence.objects.filter(variant=variant,taxonomy__id__in=["9606","10090"]).order_by('taxonomy').first().gi
             highlight_human=True
