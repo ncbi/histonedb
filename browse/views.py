@@ -120,6 +120,7 @@ def browse_variant(request, histone_type, variant, gi=None):
     gi : str or int
         GI to select to show it curated sequence browser. Optional. If specified, should open curated sequences page and activate this variant.
     """
+    variant = variant.replace("_", "") if "canonical" in variant else variant
     try:
         variant = Variant.objects.get(id=variant)
     except:
@@ -140,7 +141,7 @@ def browse_variant(request, histone_type, variant, gi=None):
     green = Color("#66c2a5")
     red = Color("#fc8d62")
     color_range = map(str, red.range_to(green, 12))
-
+    
     scores = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
@@ -482,7 +483,7 @@ def get_aln_and_features(request, ids=None):
         unique_sequences = [sequences[0]] if len(sequences) == 2 and sequences[0].id == sequences[1].id else sequences
         # doing the Sequence.short_description work
         #Note that the gffs are also generated with the short description not
-        sequences = [{"name":Sequence.long_to_short_description(s.id), "seq":s.seq.tostring()} for s in unique_sequences]
+        sequences = [{"name":"QUERY" if "QUERY" in s.id else Sequence.long_to_short_description(s.id), "seq":s.seq.tostring()} for s in unique_sequences]
         # sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
         
         if sequence_label == "Consensus":
@@ -559,7 +560,7 @@ def get_seed_aln_and_features(request, seed):
     except Histone.DoesNotExist:
         try:
             variant = Variant.objects.get(id=seed)
-            seed_file = os.path.join(seed_file, variant.hist_type.id, "{}".format(variant.id))
+            seed_file = os.path.join(seed_file, variant.hist_type.id, "{}".format(variant.id.replace("canonical", "canonical_")))
         except Variant.DoesNotExist:
             return HttpResponseNotFound('<h1>No histone variant with name {}</h1>'.format(seed))
 

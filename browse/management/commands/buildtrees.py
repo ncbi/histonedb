@@ -179,6 +179,7 @@ class Command(BaseCommand):
                             continue
 
                         if "canonical" in partial_variant:
+                            partial_variant = partial_variant.replace("_", "")
                             print genus, gi, partial_variant
 
                         for variant in variants:

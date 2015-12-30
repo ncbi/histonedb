@@ -312,6 +312,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             {field:"evalue", sortable:true, title:"E-value", clickToSelect:false},
             {% endif %}
             {% if blast_results %}
+            {field:"header", sortable:true, width:50, title:"Description", rowspan:1, clickToSelect:false},
             {field:"search_e", sortable:true, clickToSelect:false, title:"BLAST E-value"},
             {% endif %}
           ],

@@ -54,7 +54,7 @@ def process_upload(sequences, format, request):
     result.append(result[-1][0]["id"])
 
     request.session["uploaded_sequences"] = [{
-        "id":sequence.id,
+        "id":"QUERY", #sequence.id,
         "variant":classifications[0][1],
         "sequence":str(sequence.seq),
         "taxonomy":result[-2][0]["taxonomy"]

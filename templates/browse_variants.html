@@ -145,7 +145,7 @@ $("#id_hist_type_drop_down_button").hide();
                     <div class="list-group" style="height:100%;">
                       {% for variant, num_curated, num_all, alternate_names, tax_span, color in variants %}
                         <a class="list-group-item"
-                           href="{% url 'browse.views.browse_variant' histone_type variant ''%}">
+                           href="{% url 'browse.views.browse_variant' histone_type variant %}">
                           <span class="badge variant-count-badge" style="background-color:{{ color }};" title="# of sequences in curated set: {{ num_curated }}
 # of sequences in total set: {{ num_all }}">{{ num_curated }} / {{ num_all }}</span>
                           <b>{{ variant|undspace }}</b> <br />
