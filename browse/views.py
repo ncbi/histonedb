@@ -120,7 +120,8 @@ def browse_variant(request, histone_type, variant, gi=None):
     gi : str or int
         GI to select to show it curated sequence browser. Optional. If specified, should open curated sequences page and activate this variant.
     """
-    variant = variant.replace("_", "") if "canonical" in variant else variant
+    # variant = variant.replace("_", "") if "canonical" in variant else variant
+    #the previous line currenly breaks the code. ALEXEY, 12/30/15
     try:
         variant = Variant.objects.get(id=variant)
     except:
@@ -560,7 +561,9 @@ def get_seed_aln_and_features(request, seed):
     except Histone.DoesNotExist:
         try:
             variant = Variant.objects.get(id=seed)
-            seed_file = os.path.join(seed_file, variant.hist_type.id, "{}".format(variant.id.replace("canonical", "canonical_")))
+            seed_file = os.path.join(seed_file, variant.hist_type.id, "{}".format(variant.id))
+            # the default names for canonical are with underscores, so we do not need to convert back. ALEXEY, 30/12/15
+            # seed_file = os.path.join(seed_file, variant.hist_type.id, "{}".format(variant.id.replace("canonical", "canonical_")))
         except Variant.DoesNotExist:
             return HttpResponseNotFound('<h1>No histone variant with name {}</h1>'.format(seed))
 
