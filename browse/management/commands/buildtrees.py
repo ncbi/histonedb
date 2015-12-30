@@ -179,7 +179,9 @@ class Command(BaseCommand):
                             continue
 
                         if "canonical" in partial_variant:
-                            partial_variant = partial_variant.replace("_", "")
+                            # partial_variant = partial_variant.replace("_", "")
+                            # if we uncomment this line the SVG of the tree is screwed up, Alexey, 12/30/15
+                            print "Partial variant"
                             print genus, gi, partial_variant
 
                         for variant in variants:
