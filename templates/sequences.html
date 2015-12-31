@@ -47,8 +47,8 @@
   {% else %}
   <h4 class="page-header">Quick MSA - Align single sequence to canonical</h4>
   {% endif %}
-  <div style="height: 100px;">
-  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence).</div>
+  <div style="height: 110px;">
+  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see summary tabs of corresponding variants.</div>
 
 
   <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING<br><br><br><br><br><br></div>
@@ -57,7 +57,7 @@
 {#  <h4 class="page-header" style="margin-bottom: 0px; margin-top: 10px"> List of sequences </h4>#}
   <table id="sequence_table_{{ page_name }}"></table>
 </div>
-<div class="container" id="keys_{{ page_name }}" style="display:none; text-align:center">Keys: red - 80% identical, blue - 50% identical columns. X-denotes ambigous positions in consensus sequence.</div>
+<div class="container" id="keys_{{ page_name }}" style="display:none; text-align:center">Keys: red - 80% identical, blue - 50% identical columns. X-ambigous positions in consensus sequence.  For feature legends see summary tabs of the corresponding variant pages.</div>
 
 <div class="container" id="full_msa-{{page_name}}" ></div>
 
