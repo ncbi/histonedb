@@ -304,18 +304,18 @@ module.exports = SelectionManager = Collection.extend({
   initialize: function(data, opts) {
     if (opts != null) {
       this.g = opts.g;
-      this.listenTo(this.g, "residue:click", function(e) {
-        return this._handleE(e.evt, new sel.possel({
-          xStart: e.rowPos,
-          xEnd: e.rowPos,
-          seqId: e.seqId
-        }));
-      });
-      this.listenTo(this.g, "row:click", function(e) {
-        return this._handleE(e.evt, new sel.rowsel({
-          seqId: e.seqId
-        }));
-      });
+      //this.listenTo(this.g, "residue:click", function(e) {
+      //  return this._handleE(e.evt, new sel.possel({
+      //    xStart: e.rowPos,
+      //    xEnd: e.rowPos,
+      //    seqId: e.seqId
+      //  }));
+      //});
+      //this.listenTo(this.g, "row:click", function(e) {
+      //  return this._handleE(e.evt, new sel.rowsel({
+      //    seqId: e.seqId
+      //  }));
+      //}); //ALEXEY
       return this.listenTo(this.g, "column:click", function(e) {
         return this._handleE(e.evt, new sel.columnsel({
           xStart: e.rowPos,
@@ -3793,7 +3793,7 @@ module.exports = boneView.extend({
   },
   render: function() {
     this.el.setAttribute('height', this.g.zoomer.get("alignmentHeight") + "px");
-    this.el.setAttribute('width', this.g.zoomer.getAlignmentWidth() + "px");
+    this.el.setAttribute('width', this.g.zoomer.getAlignmentWidth() +"px");
     this.g.zoomer._checkScrolling(this._checkScrolling([this.g.zoomer.get('_alignmentScrollLeft'), this.g.zoomer.get('_alignmentScrollTop')]), {
       header: "canvasseq"
     });
@@ -4883,9 +4883,10 @@ module.exports = boneView.extend({
     this.el.style.display = "inline-block";
     this.el.style.verticalAlign = "top";
     this.el.style.overflowY = "auto";
-    this.el.style.overflowX = "hidden";
+    this.el.style.overflowX = "auto"; //change hidden->auto to enable scrolling of labels, ALEXEY
     this.el.style.fontSize = (this.g.zoomer.get('labelFontsize')) + "px";
     this.el.style.lineHeight = "" + (this.g.zoomer.get("labelLineHeight"));
+    this.el.style.width="160px"; //ALEXEY
     this._setHeight();
     return this;
   },
@@ -4913,7 +4914,7 @@ module.exports = boneView.extend({
     this.listenTo(this.g.zoomer, "change:rowHeight", function() {
       return this.el.style.height = this.g.zoomer.get("rowHeight") + "px";
     });
-    return this.listenTo(this.g.selcol, "change reset add", this.setSelection);
+    return true;//this.listenTo(this.g.selcol, "change reset add", this.setSelection); //ALEXEY
   },
   draw: function() {
     var meta;
@@ -4940,18 +4941,18 @@ module.exports = boneView.extend({
     this.renderSubviews();
     this.el.setAttribute("class", "biojs_msa_labelrow");
     this.el.style.height = this.g.zoomer.get("rowHeight") * (this.model.attributes.height || 1) + "px";
-    this.setSelection();
+    //this.setSelection(); //ALEXEY
     return this;
-  },
-  setSelection: function() {
-    var sel;
-    sel = this.g.selcol.getSelForRow(this.model.id);
-    if (sel.length > 0) {
-      return this.el.style.fontWeight = "bold";
-    } else {
-      return this.el.style.fontWeight = "normal";
-    }
-  }
+  }//, //We don not need this at all, the graphics becomes slow after the click ALEXEY
+ // setSelection: function() {
+ //   var sel;
+//    sel = this.g.selcol.getSelForRow(this.model.id);
+//    if (sel.length > 0) {
+//      return this.el.style.fontWeight = "normal"; //bold->normal, don't know why we need to switch to bold on click, ALEXEY
+//    } else {
+//      return this.el.style.fontWeight = "normal";
+//    }
+ // }
 });
 
 },{"./LabelView":58,"./MetaView":59,"backbone-childs":60}],58:[function(require,module,exports){
@@ -5011,7 +5012,7 @@ LabelView = view.extend({
     }
     if (this.g.vis.get("labelPartition")) {
       part = document.createElement("span");
-      part.style.width = this.g.zoomer.get("labelPartLength") + "px";
+      part.style.width =  this.g.zoomer.get("labelPartLength") + "px";
       part.textContent = this.model.get("partition");
       part.style.display = "inline-block";
       this.el.appendChild(id);
@@ -5028,6 +5029,7 @@ LabelView = view.extend({
     }
     this.el.style.overflow = scroll;
     this.el.style.fontSize = (this.g.zoomer.get('labelFontsize')) + "px";
+    this.el.style.width="auto"; //ALEXEY
     return this;
   },
   _onclick: function(evt) {
@@ -5080,7 +5082,7 @@ module.exports = MetaView = view.extend({
     return this.listenTo(this.g.zoomer, "change:metaWidth", this.render);
   },
   events: {
-    click: "_onclick",
+    //click: "_onclick", //ALEXEY
     mousein: "_onmousein",
     mouseout: "_onmouseout"
   },
@@ -5140,13 +5142,13 @@ module.exports = MetaView = view.extend({
       }
     }
   },
-  _onclick: function(evt) {
-    return this.g.trigger("meta:click", {
-      seqId: this.model.get("id", {
-        evt: evt
-      })
-    });
-  },
+ // _onclick: function(evt) { //ALEXEY
+ //   return this.g.trigger("meta:click", {
+ //     seqId: this.model.get("id", {
+ //       evt: evt
+ //     })
+  //  });
+ // },
   _onmousein: function(evt) {
     return this.g.trigger("meta:mousein", {
       seqId: this.model.get("id", {
@@ -6377,13 +6379,13 @@ module.exports = require('./backbone-events-standalone');
   }
 })(function () {
   "use strict";
-  
+
   // mini-underscore
   var _ = {
     has: function (obj, key) {
       return Object.prototype.hasOwnProperty.call(obj, key);
     },
-  
+
     extend: function(obj) {
       for (var i=1; i<arguments.length; ++i) {
         var source = arguments[i];
@@ -6765,7 +6767,7 @@ module.exports = GenericReader = (function() {
 
   // provide a convenient shortcut to inherit
   GenericReader.extend = function(obj, statics){
-    return extend(GenericReader, obj, statics); 
+    return extend(GenericReader, obj, statics);
   };
   // Mixin utility
   GenericReader.mixin = function(proto) {
@@ -8152,7 +8154,7 @@ function createXHR(options, callback) {
 
         return body
     }
-    
+
     var failureResponse = {
                 body: undefined,
                 headers: {},
@@ -8161,7 +8163,7 @@ function createXHR(options, callback) {
                 url: uri,
                 rawRequest: xhr
             }
-    
+
     function errorFunc(evt) {
         clearTimeout(timeoutTimer)
         if(!(evt instanceof Error)){
@@ -8174,11 +8176,11 @@ function createXHR(options, callback) {
     // will load the data & process the response in a special response object
     function loadFunc() {
         clearTimeout(timeoutTimer)
-        
+
         var status = (xhr.status === 1223 ? 204 : xhr.status)
         var response = failureResponse
         var err = null
-        
+
         if (status !== 0){
             response = {
                 body: getBody(),
@@ -8195,9 +8197,9 @@ function createXHR(options, callback) {
             err = new Error("Internal XMLHttpRequest Error")
         }
         callback(err, response, response.body)
-        
+
     }
-    
+
     if (typeof options === "string") {
         options = { uri: options }
     }
@@ -8271,8 +8273,8 @@ function createXHR(options, callback) {
     if ("responseType" in options) {
         xhr.responseType = options.responseType
     }
-    
-    if ("beforeSend" in options && 
+
+    if ("beforeSend" in options &&
         typeof options.beforeSend === "function"
     ) {
         options.beforeSend(xhr)
@@ -8338,7 +8340,7 @@ function forEach(list, iterator, context) {
     if (arguments.length < 3) {
         context = this
     }
-    
+
     if (toString.call(list) === '[object Array]')
         forEachArray(list, iterator, context)
     else if (typeof list === 'string')
@@ -8695,7 +8697,7 @@ jalview.readHeader = function(lines) {
     var columns = line.split(/\t/);
     var firstCell = columns[0].trim();
     if (firstCell === "GFF") {
-      // this symbolizes the end 
+      // this symbolizes the end
       break;
     } else if (columns.length === 2) {
       if (firstCell === "startgroup") {
@@ -8899,7 +8901,7 @@ module.exports = {
         context.fillText('ins. len.', 46, 296);
       }
     }
-}; 
+};
 
 },{}],110:[function(require,module,exports){
 var canv_support = null;
@@ -9108,7 +9110,7 @@ module.exports = view.extend({
     this.previous_zoom = 0;
 
     if(this.data.max_height == undefined){
-      this.data.max_height = this.calcMaxHeight(this.data.heightArr); 
+      this.data.max_height = this.calcMaxHeight(this.data.heightArr);
     }
 
     // only show insert when we actually have the data
@@ -9214,7 +9216,7 @@ module.exports = view.extend({
   },
 
   render: function(){
-    render.call(this); 
+    render.call(this);
     return this;
   },
 
@@ -9424,7 +9426,7 @@ module.exports = view.extend({
     this.scrollme.scroller.scrollTo(new_left - half_view, 0, animate);
   },
   calcMaxHeight: function(columns){
-    // loops over all columns and return the max height seen 
+    // loops over all columns and return the max height seen
     return columns.reduce(function(m,c){
       var col = 0;
       for(var k in c){
@@ -10529,7 +10531,7 @@ var saveAs = saveAs
 // with an attribute `content` that corresponds to the window
 
 amdDefine = window.define;
-if( typeof amdDefine === "undefined" && (typeof window.almond !== "undefined" 
+if( typeof amdDefine === "undefined" && (typeof window.almond !== "undefined"
     && "define" in window.almond )){
   amdDefine = window.almond.define;
 }
@@ -11772,7 +11774,7 @@ module.exports = MenuBuilder = view.extend({
         style = _ref[key];
         li.style[key] = style;
       }
-      li.addEventListener("click", node.callback);
+      //li.addEventListener("click", node.callback); ALEXEY
       this.trigger("new:node", li);
       menuUl.appendChild(li);
     }
@@ -11786,16 +11788,16 @@ module.exports = MenuBuilder = view.extend({
 
     // HACK to be able to hide the submenu
     // listens globally for click events
-    jbone(displayedButton).on("click", (function(_this) {
-      return function(e) {
-        _this._showMenu(e, menu, displayedButton);
-        return window.setTimeout(function() {
-          return jbone(document.body).one("click", function(e) {
-            return menu.style.display = "none";
-          });
-        }, 5);
-      };
-    })(this));
+    //jbone(displayedButton).on("click", (function(_this) {
+    //  return function(e) {
+    //    _this._showMenu(e, menu, displayedButton);
+    //    return window.setTimeout(function() {
+    //      return jbone(document.body).one("click", function(e) {
+    //        return menu.style.display = "none";
+    //      });
+    //    }, 5);
+    //  };
+    //})(this)); //ALEXEY
 
     frag = document.createDocumentFragment();
     frag.appendChild(menu);
