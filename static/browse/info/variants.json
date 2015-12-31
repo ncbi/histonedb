@@ -179,7 +179,7 @@
 			"publications":["22650316"]
 		},
 		"cenH3":{
-			"description":"cenH3 is a centromere-specific histone variant, which replaces canonical H3 in centromeric nucleosomes. It is required for kinetochore formation, mitotic progression and chromosome segregation. cenH3 has an extended L1-loop and its N-terminal tail is very different from other H3 variants. cenH3s have an extended L1-loop and usually replace Phe84 in canonical H3 with Trp, and Thr 107 with Ala, Cys, or Ser. cenH3s typically have only about 50-60% amino acid identity to canonical H3 in the histone fold domain and no conservation of the N-terminal.",
+			"description":"cenH3 is a centromere-specific histone variant, which replaces canonical H3 in centromeric nucleosomes. It is required for kinetochore formation, mitotic progression and chromosome segregation. cenH3 has an extended L1-loop and its N-terminal tail is very different from other H3 variants. cenH3s have an extended L1-loop and usually replace Phe84 in canonical H3 with Trp, and Thr 107 with Ala, Cys, or Ser. cenH3s ususally lack a conserved glutamine in the alpha1 helix of the histone fold. cenH3s typically have only about 50-60% amino acid identity to canonical H3 in the histone fold domain and no conservation of the N-terminus.",
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
@@ -188,7 +188,7 @@
 			  	{"name":"cid"}
 
 			],
-			"publications":["22650316","19766562","25956076","23324462","21743476"]
+			"publications":["22650316","19766562","25956076","23324462","21743476","14583738"]
 		},
 		"H3.Y": {
 			"description": "H3.Y is involved in memory formation due to its presence in neurons in human hippocampus. One splice isoform has an extended C-terminal alpha tail that may interacts with the H2A.Z acidic patch",
