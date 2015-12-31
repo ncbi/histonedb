@@ -38,7 +38,7 @@
 
 		},
 		"macroH2A": {
-			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus.",
+			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus. Its taxonomic span was thought to be restricted to vertebrates, but this is currently disputed.",
 			"taxonomic_span": "Vertebrates",
 			"alternate_names": [
 				{"name":"mH2A"},
@@ -97,9 +97,9 @@
 		  "publications":["22650316","25731851","24506885","26188507"]
 
 		},
-		"H2A.M": { 
-			"description":"H2A.M is a putative variant closely related to H2A.B and H2A.L, but forming a distinct clade.",
-			"taxonomic_span":"Mammals",
+		"H2A.P": {
+			"description":"H2A.P is a putative variant closely related to H2A.B and H2A.L, but forming a distinct clade. It is likely restricted to placental mammals.",
+			"taxonomic_span":"Placentalia",
 			"alternate_names": [
 				{"name":"Huntingtin-interacting protein M"},
 				{"name":"HYPM"},
