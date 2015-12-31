@@ -271,7 +271,9 @@ def analyze(request):
             try:
                 data["result"] = process_upload(sequence, format, request)
             except InvalidFASTA as e:
-                data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
+                # data["error"] = "{}: {}".format(e.__class__.__name__, e.message)
+                data["error"] = "{}".format(e.message)
+
                 data["analyze_form"] = AnalyzeFileForm()
 
         data["search_type"] = type
