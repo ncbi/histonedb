@@ -41,7 +41,7 @@ def process_upload(sequences, format, request):
         raise InvalidFASTA("No sequences parsed.")
 
     if not Alphabet._verify_alphabet(sequence.seq):
-        raise InvalidFASTA("Sequence {} is not a protein.".format(seq.id))
+        raise InvalidFASTA("Sequence {} is not a protein.".format(sequence.id))
 
     result = [str(sequence.id)]
 

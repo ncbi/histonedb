@@ -203,9 +203,10 @@
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"soH3-1", "gene":1},
-				{"name":"soH3-2", "gene":2}
+				{"name":"soH3-2", "gene":2},
+			  	{"name":"hv2", "gene":1},
 			],
-			"publications":["22650316", "20738881","19412883","24229707"]
+			"publications":["22650316", "20738881","19412883","24229707","14583738"]
 		},
 	  "TS_H3.4": {
 			"description": "Testis spesific mamal H3 variant.",
