@@ -69,7 +69,7 @@ var div = d3.select("#vis");
 
 div.append("div")
     .attr("id", "intro")
-    .text("Click on a taxa to zoom in, or on the center to go up a level. 'Reset' will take you back to the whole tree. The score represents the average HMMER score of sequences from a given taxa against the variant HMM. Scores are calcuated for rank 'order,' the leaves of this tree, and it's parents scores/colors are extropolated by averaging the colors of its children.");
+    .text("The taxonomic distribution of Automatically Extracted Sequences for this variant is shown. Click on a taxa to zoom in, or on the center to go up a level. 'Reset' will take you back to the whole tree. The score represents the average HMMER score of sequences from a given taxa against the variant HMM. Scores are calcuated for rank 'order,' the leaves of this tree, and it's parents scores/colors are extropolated by averaging the colors of its children.");
 
 var vis = div.append("svg")
     .attr("width", width + padding * 2)
