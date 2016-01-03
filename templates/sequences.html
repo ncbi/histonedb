@@ -39,20 +39,36 @@
   Alternatively, tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search or filters to find particular entries.</div>
 {#  <h4 class="page-header" style="margin-bottom: 0px; margin-top: 10px">Sequence preview and annotation<small> - select sequence in table to update.</small></h4>#}
   {#  Click on a row in table to change the displayed sequnce variant.#}
-
-  {% elif analyze %}
-  <div class="page-header" style="margin-bottom: 0px; margin-top: 10px"> Table lists similar sequences from the HistoneDB database containing curated and automatically extracted histone sequences;  e-values are obtained by BLAST. Sequence preview compares query sequence with the canonical of the same or closely related species.
-
-  You can tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search to find particular entries. Filters are not working yet on this page.</div>
-  {% else %}
-  <h4 class="page-header">Quick MSA - Align single sequence to canonical</h4>
-  {% endif %}
   <div style="height: 110px;">
-  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see summary tabs of corresponding variants.</div>
+  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see summary tab.</div>
 
 
   <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING<br><br><br><br><br><br></div>
   </div>
+
+  {% elif analyze %}
+  <div class="page-header" style="margin-bottom: 0px; margin-top: 10px"> Table lists similar sequences from the HistoneDB database containing curated and automatically extracted histone sequences;  e-values are obtained by BLAST. Sequence preview compares query sequence with the one highlighted in table (click on row to change).
+
+  You can tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search to find particular entries.</div>
+
+  <div style="height: 110px;">
+  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see <a href="{% url 'browse.views.browse_variant' 'ALL' result.1 %}" target="_blank">info page of corresponding variant</a>.</div>
+
+
+  <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING<br><br><br><br><br><br></div>
+  </div>
+
+  {% else %}
+  <h4 class="page-header">Quick MSA - Align single sequence to canonical</h4>
+
+
+  <div style="height: 110px;">
+  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see variant summary page.</div>
+
+
+  <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING<br><br><br><br><br><br></div>
+  </div>
+  {% endif %}
   {% endif %}
 {#  <h4 class="page-header" style="margin-bottom: 0px; margin-top: 10px"> List of sequences </h4>#}
   <table id="sequence_table_{{ page_name }}"></table>

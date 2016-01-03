@@ -39,7 +39,7 @@
 		},
 		"macroH2A": {
 			"description":"macroH2A is involved in X-inactivation and transcriptional regulation; can be found in inactivated X chromosome, gene promoters, and heterochromatin. It contains a ∼30 kDa additional globular macrodomain attached to C-terminus. Its taxonomic span was thought to be restricted to vertebrates, but this is currently disputed.",
-			"taxonomic_span": "Vertebrates",
+			"taxonomic_span": "Vertebrates(?)",
 			"alternate_names": [
 				{"name":"mH2A"},
 				{"name":"macroH2A1", "gene":1},

@@ -127,6 +127,11 @@ def browse_variant(request, histone_type, variant, gi=None):
     except:
         return "404"
 
+    #This is a hack to open a page with features from Analyze your seqs page, where we do not know the type
+    # Then we say type is ALL , ALEXEY
+    if histone_type=='ALL':
+        histone_type=Variant.objects.get(id=variant).hist_type
+
     go_to_curated = gi is not None
     print gi, "!!!!!!!"
     go_to_gi = gi if gi is not None else 0
