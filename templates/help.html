@@ -15,32 +15,75 @@ $(function() {
     <div class="col-xs-2">
       <ul class="nav nav-pills nav-stacked">
         <li role="presentation" class="active"><a href="#background" aria-controls="background" role="tab" data-toggle="tab">Background</a></li>
-        <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
         <li role="presentation"><a href="#nomenclature" aria-controls="nomencalture" role="tab" data-toggle="tab">Nomenclature</a></li>
         <li role="presentation"><a href="#classification" aria-controls="classification" role="tab" data-toggle="tab">Classification</a></li>
         <li role="presentation"><a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a></li>
         <li role="presentation"><a href="#cite" aria-controls="cite" role="tab" data-toggle="tab">How To Cite</a></li>
+        <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
+
       </ul><br />
-      <div class="center-block">
-        <a class="github-button" href="https://github.com/edraizen/HistoneDB" data-style="mega" data-count-href="/edraizen/HistoneDB/watchers" data-count-api="/repos/edraizen/HistoneDB#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch edraizen/HistoneDB on GitHub" style="width:100%;">Watch</a><br />
-        <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue  </a>
-      </div>
+{#      <div class="center-block">#}
+{#        <a class="github-button" href="https://github.com/edraizen/HistoneDB" data-style="mega" data-count-href="/edraizen/HistoneDB/watchers" data-count-api="/repos/edraizen/HistoneDB#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch edraizen/HistoneDB on GitHub" style="width:100%;">Watch</a><br />#}
+{#        <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue  </a>#}
+{#      </div>#}
     </div>
     <div class="col-xs-10">
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="background">
-          <h2 id="background">Background</h2>
-          Nucleosomes represent the basic unit of chromatin packing and wrap 145–147 bpof DNA in a 1.7 left-handed super helical turns around
-a histone octamer composed of four types of core histones (H3,
-H4, H2A, H2B — two copies of each). Nucleosomes are located at certain distances from each other along the DNA molecule and a linker histone H1 interacts with the linker DNA to form higher order chromatin structures. Nucleosomes are key players in epigenetic regulation of transcription,
-replication and reprogramming; they may change their conformation, histone content, employ a set of different histone variants and become post-translationally modified upon certain conditions.
+          <h2 id="background">Background information</h2>
+            <h3 id="background">Nucleosome structure</h3>
+          Nucleosomes are the basic units of chromatin compaction. Nucleosome core particle (NCP) wraps around 147 bp of DNA in ~1.7 left-handed super helical turns around
+an octamer of four types of core hisotnes (H3,
+H4, H2A and H2B — two copies of each) [1,2]. NCPs are further connected by linker DNA strands and a linker histone H1 further interacts with the NCPs and linker DNA to facilitate formation of higher order chromatin structures.
+            Nucleosomes play key roles in epigenetic regulation of transcription,
+replication, DNA repair and cell reprogramming.<br><br>
+          <div class="row">
+          <div class="col-xs-6">
+            <img  src="{% static 'browse/img/assembly.png' %}" width="100%" />
+          </div>
+          <div class="col-xs-6">
+                    <video controls="controls" loop autoplay width="400px" height="300px" poster="{% static 'browse/video/poster.jpg' %}">
+                    <source src="{% static 'browse/video/mdnucl.mp4' %}" type="video/mp4">
+                    <source src="{% static 'browse/video/mdnucl.webm' %}" type="video/webm">
+                    </video>
+          </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-6">Nucleosome organization diagram (adapted from [3-4]).</div>
+
+              <div class="col-xs-6">Dynamic representation of the nucleosome [4].</div>
+          </div>
+             <h3 id="background">Histone variants</h3>
+            Most eukaryotes have histone isoforms
+            for some or all of the histone families (H2A, H2B, H3, H4, H1) [5].
+            Classification of histone isoforms is a daunting task. They are usually subdivided into ‘canonical’ replication-dependent histones that are expressed during the S-phase of cell cycle and replication-independent histone ‘variants’,
+            constitutively expressed during cell cycle. In animals, genes encoding canonical histones are typically clustered along the chromosome, lack introns, and employ a specific type of regulation at the RNA level with a stem loop structure at the 3’ end instead of polyA tail.
+            On the other hand, genes encoding histone variants are usually not clustered, have introns, and their mRNAs are regulated with polyA tails similar to the mRNAs of most genes.
+            In plants, canonical histone genes lack introns, but are not clustered and the mRNAs are polyadenylated. Remarkably, more complex multicellular organisms typically have a higher number of histone variants providing a variety of different functions.
+            Recent data are accumulating about the roles of diverse histone variants highlighting the functional links between variants and the delicate regulation of organism development.
+
+    <h3 id="background">References</h3>
+
+            <ol>
+
+                        <li>Kornberg RD. "Chromatin structure: a repeating unit of histones and DNA." <i>Science</i>, 1974. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=4825889">4825889</a></li>
+
+                        <li>Luger K, Mader AW, et al. "Crystal structure of the nucleosome core particle at 2.8 A resolution." <i>Nature</i>, 1997. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=9305837">9305837</a></li>
+
+                        <li>Shaytan AK, Landsman D, et al. "Nucleosome adaptability conferred by sequence and structural variations in histone H2A-H2B dimers." <i>Curr Opin Struct Biol</i>, 2015. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=25731851">25731851</a></li>
+
+                        <li>Shaytan AK, Armeev GA, et al. "Coupling between histone conformations and DNA geometry in nucleosomes on a microsecond timescale: atomistic insights into nucleosome functions." <i>J Mol. Biol.</i>, 2015. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=26699921">26699921</a></li>
+
+                        <li>Talbert PB, Ahmad K, et al. "A unified phylogeny-based nomenclature for histone variants." <i>Epigenetics Chromatin</i>, 2012. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=22650316">22650316</a></li>
+            </ol>
+
         </div>
         <div role="tabpanel" class="tab-pane" id="contact">
           <h2 id="contact">Contact</h2>
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
-                <!-- Place this tag where you want the button to render. -->
+                  <!-- Place this tag where you want the button to render. -->
                 <!-- Place this tag where you want the button to render. -->
 {#                <a class="github-button" href="https://github.com/edraizen/HistoneDB" data-style="mega" data-count-href="/edraizen/HistoneDB/watchers" data-count-api="/repos/edraizen/HistoneDB#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch edraizen/HistoneDB on GitHub">Watch</a>#}
 {#                <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>#}
@@ -95,7 +138,7 @@ replication and reprogramming; they may change their conformation, histone conte
       </div>
       <div role="tabpanel" class="tab-pane" id="nomenclature">
         <h2 id="nomencalture">Nomenclature</h2>
-        Histone variants need to be .. <br /><br />
+        This database of histone variant follows the new nomenclature introduced in ref. [1], which may be summarized in the following form: <br /><br />
         [desc] [prefix]<font color="red">TYPE</font>.<font color="blue">VARIANT</font>.<font color="orange">GENE</font>.<font color="pink">sSPLICE</font> <br />
         <ol>
           <li><font color="red">TYPE</font> = Core histone name (H2A, H2B, H3, H4, H1)</li>
@@ -116,9 +159,23 @@ replication and reprogramming; they may change their conformation, histone conte
           <li>Periods (Phylogenetic branch points)</li>
           <li>Spaces (Separate description from variant description)</li>
         </ul>
-        <div class="container text-center">Example: <font color="red">H2A</font>.<font color="blue">Z</font>.<font color="orange">1</font>.<font color="pink">s1</font></div>
+          <div class="row">
+               <div class="col-md-8">
+        Example: <font color="red">H2A</font>.<font color="blue">Z</font>.<font color="orange">1</font>.<font color="pink">s1</font>
+</div>
+               </div>
+          <h3 id="background">References</h3>
+
+            <ol>
+
+                        <li>Talbert PB, Ahmad K, et al. "A unified phylogeny-based nomenclature for histone variants." <i>Epigenetics Chromatin</i>, 2012. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=22650316">22650316</a></li>
+            </ol>
+
       </div>
       <div role="tabpanel" class="tab-pane" id="classification">
+           <h2 id="nomencalture">Classification</h2>
+          The automatic classification algorithms employed in the current database is described below. <br><br>
+
        Curated alignments of histone variants were used to train Hidden Markov Models, utilizing HMMER 3.1b2,
           to create one HMM for each variant. These models were used as a part of automatic extraction and annotation
           pipeline. Namely, all sequences from the nr protein database have been classified by the HMM models
@@ -139,7 +196,7 @@ replication and reprogramming; they may change their conformation, histone conte
           pattern matching, since this variant is characterized by the presence of ‘SQ(E/D)Φ’ motif as described
           above. Any sequence that was classified as canonical H2A by HMMER-based algorithm was reclassified as
           H2A.X if it had this motif at its C-terminus. The described above classification algorithm can be also
-          applied to classify any sequence of interest.
+          applied to classify any sequence of interest via "Analyze Your Sequence" tab.
         </div>
       <div role="tabpanel" class="tab-pane" id="faq">
           <div class="container">
@@ -149,15 +206,18 @@ replication and reprogramming; they may change their conformation, histone conte
             <div class="row">
               <h3>Who do I report bugs to?</h3>
             </div>
-            <div class="row">
-              Please add an issue to github with the bug tag! <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>
-            </div>
-            <div class="row">
-              <h3>Can you add XXXX feature?</h3>
-            </div>
-            <div class="row">
-              Please add an issue to gihub with the enhancement tag! <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>
-            </div>
+              <div class="row">
+                Please, send your question and comments to <a href="mailto:histonedb-help@ncbi.nlm.nih.gov">histonedb-help@ncbi.nlm.nih.gov</a>.
+{#           </div>
+{#            <div class="row">#}
+{#              Please add an issue to github with the bug tag! <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#              <h3>Can you add XXXX feature?</h3>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#              Please add an issue to gihub with the enhancement tag! <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>#}
+{#            </div>#}
             <div class="row">
               <h3>How can I download all sequences?</h3>
             </div>
@@ -168,11 +228,14 @@ replication and reprogramming; they may change their conformation, histone conte
       </div>
 
       <div role="tabpanel" class="tab-pane" id="cite">
-        Eli J. Draizen, Alexey K. Shaytan, Leonardo Marino-Ramirez, Paul B. Talbert, David Landsman, Anna R. Panchenko. "The HistoneDB 2.0: a phylogeny-based resource for all histone proteins and their variants." <i>Database</i>. In Preparation.
+          <h2 id="contact">How to cite</h2>
+          Please cite the database as:<br>
+
+        E.J. Draizen, A.K. Shaytan, L. Marino-Ramirez, P.B. Talbert, D. Landsman, A.R. Panchenko. "HistoneDB 2.0 - with Variants: an integrated resource to explore histones and histone variants." <i>Database</i>. In Preparation.
       </div>
     </div>
   </div>
 </div>
 <!-- Place this tag right after the last button or just before your close body tag. -->
-<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+{#<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>#}
 {% endblock %}
