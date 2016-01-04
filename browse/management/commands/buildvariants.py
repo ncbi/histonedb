@@ -78,9 +78,10 @@ class Command(BaseCommand):
             #Determine HMMER thresholds params used to decide if sequence is a variant ot not. If sequence is above 
             self.estimate_thresholds()
 
+            #We will try to move it after loading from DB, since laoding from DB overrides curated, ALEXEY
             #Load our curated sets taken from seed alignments into the database an run classification algorithm
-            self.load_curated()
-            self.get_scores_for_curated_via_hmm()
+            # self.load_curated()
+            # self.get_scores_for_curated_via_hmm()
 
         if options["force"] or not os.path.isfile(self.db_search_results_file):
             #Search inputted seuqence database using our variantt models
@@ -92,6 +93,10 @@ class Command(BaseCommand):
 
         # self.extract_full_sequences()
         self.canonical2H2AX()
+
+        #Finally let's load curated, this will override if some of them were loaded from DB search.
+        self.load_curated()
+        self.get_scores_for_curated_via_hmm()
 
     def canonical2H2AX(self):
         """Fix an issue where the canonical variant takes over sequence from H2A.X. 
