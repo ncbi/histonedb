@@ -65,6 +65,8 @@ def load_hmm_results(hmmerFile, id_file):
           #Sequence already exists. Compare bit scores, if loaded bit score is
           #greater than current, reassign variant and update scores. Else, append score
             seq=seqs.first()
+            if(seq.reviewed==True):
+              break #we do not want to alter a reviewed sequence!
             # print "Already in database", seq
             best_scores = seq.all_model_scores.filter(used_for_classification=True)
             if len(best_scores)>0:
