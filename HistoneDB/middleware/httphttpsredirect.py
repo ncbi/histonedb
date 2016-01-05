@@ -3,7 +3,7 @@ import os
 class redirect(object):
     # Check if client IP is allowed
     def process_request(self, request):
-        if os.getenv('HTTP_X_FORWARDED_PROTO',0):
+        if os.getenv('HTTP_X_FORWARDED_PROTO',0) or request.META.get('HTTP_X_FORWARDED_PROTO',0):
             return None
         else:
             newpath=request.build_absolute_uri().replace('http','https')
