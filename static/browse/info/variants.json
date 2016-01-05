@@ -210,7 +210,7 @@
 		},
 	  "TS_H3.4": {
 			"description": "Testis spesific mamal H3 variant.",
-			"taxonomic_span": "mammals",
+			"taxonomic_span": "Mammals",
 			"alternate_names": [
 			  {"name":"H3.1t"}
 
