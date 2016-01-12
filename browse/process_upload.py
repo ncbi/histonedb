@@ -89,23 +89,25 @@ def upload_blastp(sequences):
                 sequence = Sequence.objects.filter(
                         (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=True)) | \
                         (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=False)) \
-                    & Q(reviewed=True)).annotate( #Added by ALEXEY to get only curated sequences. Indeed this is very wastful since we blast against all seqs.
+                    ).annotate(
                         num_scores=Count("all_model_scores"), 
                         score=Max("all_model_scores__score"),
                         evalue=Min("all_model_scores__evalue")
                     ).get(id=gi)
                 search_evalue = hsp.expect
-                result.append({
-                    "id":str(sequence.id), 
-                    "variant":str(sequence.variant_id), 
-                    "gene":str(sequence.gene) if sequence.gene else "-", 
-                    "splice":str(sequence.splice) if sequence.splice else "-", 
-                    "taxonomy":str(sequence.taxonomy.name.capitalize()), 
-                    "score":str(sequence.score), 
-                    "evalue":str(sequence.evalue), 
-                    "header":str(sequence.header), 
-                    "search_e":str(search_evalue),
-                })
+                #We will now append only if the sequences is a cureated one(!) This is inefficient and should be redone (since we blast the whole database anyway)
+                if(sequence.reviewed==True):
+                    result.append({
+                        "id":str(sequence.id),
+                        "variant":str(sequence.variant_id),
+                        "gene":str(sequence.gene) if sequence.gene else "-",
+                        "splice":str(sequence.splice) if sequence.splice else "-",
+                        "taxonomy":str(sequence.taxonomy.name.capitalize()),
+                        "score":str(sequence.score),
+                        "evalue":str(sequence.evalue),
+                        "header":str(sequence.header),
+                        "search_e":str(search_evalue),
+                    })
         if not result:
             raise InvalidFASTA("No blast hits for {}.".format(blast_record.query))
         results.append(result)
