@@ -17,7 +17,7 @@ $(function() {
         <li role="presentation" class="active"><a href="#background" aria-controls="background" role="tab" data-toggle="tab">Background</a></li>
         <li role="presentation"><a href="#nomenclature" aria-controls="nomencalture" role="tab" data-toggle="tab">Nomenclature</a></li>
         <li role="presentation"><a href="#classification" aria-controls="classification" role="tab" data-toggle="tab">Classification</a></li>
-        <li role="presentation"><a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a></li>
+        <li role="presentation"><a href="#download" aria-controls="download" role="tab" data-toggle="tab">Download</a></li>
         <li role="presentation"><a href="#cite" aria-controls="cite" role="tab" data-toggle="tab">How To Cite</a></li>
         <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
 
@@ -42,7 +42,7 @@ replication, DNA repair and cell reprogramming.<br><br>
             <img  src="{% static 'browse/img/assembly.png' %}" width="100%" />
           </div>
           <div class="col-xs-6">
-                    <video controls="controls" loop autoplay width="400px" height="300px" poster="{% static 'browse/video/poster.jpg' %}">
+                    <video controls="controls"  width="400px" height="300px" poster="{% static 'browse/video/poster.jpg' %}">
                     <source src="{% static 'browse/video/mdnucl.mp4' %}" type="video/mp4">
                     <source src="{% static 'browse/video/mdnucl.webm' %}" type="video/webm">
                     </video>
@@ -51,7 +51,7 @@ replication, DNA repair and cell reprogramming.<br><br>
           <div class="row">
               <div class="col-xs-6">Nucleosome organization diagram (adapted from [3-4]).</div>
 
-              <div class="col-xs-6">Dynamic representation of the nucleosome [4].</div>
+              <div class="col-xs-6">Dynamic representation of the nucleosome with linker DNA [4].</div>
           </div>
              <h3 id="background">Histone variants</h3>
             Most eukaryotes have histone isoforms
@@ -139,29 +139,21 @@ replication, DNA repair and cell reprogramming.<br><br>
       <div role="tabpanel" class="tab-pane" id="nomenclature">
         <h2 id="nomencalture">Nomenclature</h2>
         This database of histone variant follows the new nomenclature introduced in ref. [1], which may be summarized in the following form: <br /><br />
-        [desc] [prefix]<font color="red">TYPE</font>.<font color="blue">VARIANT</font>.<font color="orange">GENE</font>.<font color="pink">sSPLICE</font> <br />
+        [prefix]<font color="red">TYPE</font>.<font color="blue">VARIANT</font><br />
         <ol>
-          <li><font color="red">TYPE</font> = Core histone name (H2A, H2B, H3, H4, H1)</li>
+          <li><font color="red">TYPE</font> = Histone type name (H2A, H2B, H3, H4, H1)</li>
           <li><font color="blue">VARIANT</font>:
             <ul>
-              <li>Letter: "Structurally distinct monophyletic clade of a histone family", exception is H2A.X</li>
-              <li>Number: Species-specific variant, not defined by phylogeny but clear orthology</li>
+              <li>Letter: used to denote a structurally distinct monophyletic clade of a histone family (exception is H2A.X).</li>
+              <li>Number: used to denote a species-specific variant, not defined by phylogeny but clear orthology.</li>
             </ul>
           </li>
-          <li><font color="orange">GENE</font> = Gene number, or more specially phylogenetic branch point order (Optional if unknown)</li>
-          <li><font color="pink">SPLICE</font> = Splice isoform index, or paralogous sequences, preceded by ‘s’ character (Optional if unknown)</li>
         </ol>
-        prefix = Structurally distinct clade of core histone (<b>macro</b>H2A, <b>sub</b>H2B, <b>cen</b>H3)<br />
-        desc = Specify features about variant (location, species)<br />
-        Note:<br />
-        <ul>
-          <li>Capitalization</li>
-          <li>Periods (Phylogenetic branch points)</li>
-          <li>Spaces (Separate description from variant description)</li>
-        </ul>
+        prefix = used to denote a structurally distinct clade of core histones (e.g.: <b>macro</b>H2A, <b>sub</b>H2B, <b>cen</b>H3).<br />
+
           <div class="row">
                <div class="col-md-8">
-        Example: <font color="red">H2A</font>.<font color="blue">Z</font>.<font color="orange">1</font>.<font color="pink">s1</font>
+        Example: <font color="red">H2A</font>.<font color="blue">Z</font>
 </div>
                </div>
           <h3 id="background">References</h3>
@@ -209,32 +201,17 @@ replication, DNA repair and cell reprogramming.<br><br>
             </ol>
 
         </div>
-      <div role="tabpanel" class="tab-pane" id="faq">
+      <div role="tabpanel" class="tab-pane" id="download">
           <div class="container">
             <div class="row">
-              <h2>FAQ</h2>
+              <h2>Download</h2>
             </div>
-            <div class="row">
-              <h3>Who do I report bugs to?</h3>
-            </div>
-              <div class="row">
-                Please, send your question and comments to <a href="mailto:histonedb-help@ncbi.nlm.nih.gov">histonedb-help@ncbi.nlm.nih.gov</a>.
-           </div>
-{#            <div class="row">#}
-{#              Please add an issue to github with the bug tag! <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>#}
-{#            </div>#}
-{#            <div class="row">#}
-{#              <h3>Can you add XXXX feature?</h3>#}
-{#            </div>#}
-{#            <div class="row">#}
-{#              Please add an issue to gihub with the enhancement tag! <a class="github-button" href="https://github.com/edraizen/HistoneDB/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/edraizen/HistoneDB#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue edraizen/HistoneDB on GitHub">Issue</a>#}
-{#            </div>#}
             <div class="row">
               <h3>How can I download all sequences?</h3>
             </div>
             <div class="row">
-              List of all classified sequences referenced by GIs can be downloaded <a href="{% static 'browse/dumps/seqs.txt' %}">here.</a><br>
-              List of all scores for the classified sequences can be downloaded <a href="{% static 'browse/dumps/scores.txt' %}">here.</a><br>
+              List of all histone sequences referenced by GIs can be downloaded <a href="{% static 'browse/dumps/seqs.txt' %}">here.</a><br>
+              List of all HMM scores for the sequences against matching HMM models can be downloaded <a href="{% static 'browse/dumps/scores.txt' %}">here.</a><br>
             </div>
           </div>
       </div>
