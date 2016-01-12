@@ -1,7 +1,7 @@
 # HistoneDB
 A database for all histone proteins in NR organized by their known non-allelic protein isoforms, called variants. This resource can be used to understand how changes in histone variants affect structure, complex formation, and nucleosome function. For more information, please read our [paper](manuscript/paper.md) (citation below).
 
-The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/histonedb/
+The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/HistoneDB2.0/
 
 ## Requirements ##
 
