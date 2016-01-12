@@ -183,11 +183,11 @@
 			"taxonomic_span": "Eukaryotes",
 			"alternate_names": [
 				{"name":"CENP-A"},
-				{"name":"Cse4p"},
 				{"name":"Cse4"},
 				{"name":"HCP-3"},
-				{"name":"SpCenpA"},
 				{"name":"CNP1"},
+			  	{"name":"HTR12"},
+			  	{"name":"CNA1"},
 			  	{"name":"cid"}
 
 			],

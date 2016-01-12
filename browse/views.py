@@ -321,7 +321,7 @@ def get_all_scores(request, ids=None):
     indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
     rows = [{} for _ in xrange(len(variants))]
     for i, (variant, threshold) in enumerate(variants):
-        rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
+        rows[i]["variant"] = "{} (T:{})".format(variant, round(threshold,1))
         for id in ids:
             rows[i][id] = "n/a"
         rows[i]["data"] = {}

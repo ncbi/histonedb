@@ -89,7 +89,7 @@ def upload_blastp(sequences):
                 sequence = Sequence.objects.filter(
                         (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=True)) | \
                         (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=False)) \
-                    ).annotate(
+                    & Q(reviewed=True)).annotate( #Added by ALEXEY to get only curated sequences. Indeed this is very wastful since we blast against all seqs.
                         num_scores=Count("all_model_scores"), 
                         score=Max("all_model_scores__score"),
                         evalue=Min("all_model_scores__evalue")
@@ -127,7 +127,7 @@ def upload_hmmer(sequences, evalue=10):
     temp_seq_path = os.path.join(save_dir, "{}.fasta".format(uuid.uuid4()))
     with open(temp_seq_path, "w") as seqs:
         for s in sequences:
-            SeqIO.write(s, seqs, "fasta");
+            SeqIO.write(s, seqs, "fasta")
 
     db = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms", "combined_hmm.hmm")
     hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
@@ -142,7 +142,7 @@ def upload_hmmer(sequences, evalue=10):
     classifications = {s.id:"Unknown" for s in sequences}
     secondary_classifications = {s.id:"Unknown" for s in sequences}
     for i, (variant, threshold) in enumerate(variants):
-        rows[i]["variant"] = "{} (T:{})".format(variant, threshold)
+        rows[i]["variant"] = "{} (T:{})".format(variant, round(threshold,1))
         for id in ids:
             rows[i][id] = "n/a"
         rows[i]["data"] = {}
@@ -156,7 +156,7 @@ def upload_hmmer(sequences, evalue=10):
     hmmerFile.seek(0)
     for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
         variant = variant_query.id
-
+        print variant
         try:
             variant_model = Variant.objects.get(id=variant)
         except Variant.DoesNotExist:
@@ -165,15 +165,16 @@ def upload_hmmer(sequences, evalue=10):
         for hit in variant_query:
             for hsp in hit:
                 if hsp.bitscore>=variant_model.hmmthreshold:
-                    if (classifications[hit.id] == "Unknown" or \
-                      float(hsp.bitscore) >= rows[indices[classifications[hit.id]]][hit.id]):
+                    if (classifications[hit.id] == "Unknown" or float(hsp.bitscore) >= rows[indices[classifications[hit.id]]][hit.id]):
                         if i==1 and not (classifications[hit.id] == "Unknown" in classifications[hit.id]):
                             #Skip canoninical score if already classfied as a variant
                             continue
 
                         if not classifications[hit.id] == "Unknown":
-                            secondary_classifications[hit.id] = rows[indices[classifications[hit.id]]]["variant"]
-                            
+                            # secondary_classifications[hit.id] = rows[indices[classifications[hit.id]]]["variant"]
+                            #I think this line might have been wrong, ALEXEY
+                            secondary_classifications[hit.id] = classifications[hit.id]
+
                         classifications[hit.id] = variant
 
 
@@ -196,5 +197,4 @@ def upload_hmmer(sequences, evalue=10):
 
     #Cleanup
     os.remove(temp_seq_path)
-    
     return classifications, ids, rows

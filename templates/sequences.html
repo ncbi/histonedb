@@ -47,7 +47,7 @@
   </div>
 
   {% elif analyze %}
-  <div class="page-header" style="margin-bottom: 0px; margin-top: 10px"> Table lists similar sequences from the HistoneDB database containing curated and automatically extracted histone sequences;  e-values are obtained by BLAST. Sequence preview compares query sequence with the one highlighted in table (click on row to change).
+  <div class="page-header" style="margin-bottom: 0px; margin-top: 10px"> Table lists similar sequences from the curated set of HistoneDB database;  e-values are obtained by BLAST. Sequence preview compares query sequence with the one highlighted in table (click on row to change).
 
   You can tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search to find particular entries.</div>
 
@@ -322,7 +322,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           columns: [
             {field:"state", checkbox:true},
             {field:"id", sortable:true, title:"GI", clickToSelect:false, events:giEvents, formatter:giFormatter},
-            {field:"variant", sortable:true, title:"Variant", clickToSelect:false, events:variantEvents{% if not curated %}, formatter:variantFormatter{% endif %}},
+            {field:"variant", sortable:true, title:{% if curated or blast_results%}"Variant"{% else %}"Predicted variant"{% endif %}, clickToSelect:false, events:variantEvents{% if not curated %}, formatter:variantFormatter{% endif %}},
 {#            {field:"gene", sortable:true, title:"Gene", clickToSelect:false},#}
 {#            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},#}
             {field:"taxonomy", sortable:true, title:"Taxonomy", clickToSelect:false, events:taxonomyEvents, formatter:taxonomyFormatter},
