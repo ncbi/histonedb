@@ -758,7 +758,7 @@ module.exports = Zoomer = Model.extend({
     this.model.each(function(seq) {
       return height += seq.attributes.height || 1;
     });
-    return height * this.get("rowHeight");
+    return this.get("rowHeight")/2 + height * this.get("rowHeight");
   },
   getMaxAlignmentWidth: function() {
     return this.model.getMaxLength() * this.get("columnWidth");
