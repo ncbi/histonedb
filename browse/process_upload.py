@@ -95,7 +95,8 @@ def upload_blastp(sequences):
                         evalue=Min("all_model_scores__evalue")
                     ).get(id=gi)
                 search_evalue = hsp.expect
-                #We will now append only if the sequences is a cureated one(!) This is inefficient and should be redone (since we blast the whole database anyway)
+                #We will now append only if the sequences is a cureated one(!)
+                # Indeed now it is not needed since the blastdb has only reviewed seqs. but lets keep it for now.
                 if(sequence.reviewed==True):
                     result.append({
                         "id":str(sequence.id),
