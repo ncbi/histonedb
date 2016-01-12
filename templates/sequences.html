@@ -2,9 +2,11 @@
 
 <div id="sequence_toolbar_{{ page_name }}">
     <div class="btn-group" role="group" aria-label="...">
+    {% if not page_name == "analyze_sequences" %}
         <div class="btn-group" role="group" aria-label="...">
             <button type="button" class="btn btn-default" id="msa_modal_button_{{ page_name }}"><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span> View <abbr title="Multiple Sequence Alignment">MSA</abbr></button>
         </div>
+    {% endif %}
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expander="false"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
