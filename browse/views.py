@@ -284,8 +284,9 @@ def analyze(request):
         data["search_type"] = type
     else:
         data["analyze_form"] = AnalyzeFileForm(initial={"sequence":">gi|121989|sp|P08985.2|H2AV_DROME RecName: Full=Histone H2A.v; AltName: Full=H2A.F/Z; Short=H2A.Z\nMAGGKAGKDSGKAKAKAVSRSARAGLQFPVGRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELA\nGNASKDLKVKRITPRHLQLAIRGDEELDSLIKATIAGGGVIPHIHKSLIGKKEETVQDPQRKGNVILSQAY"})
-
+    # print data.get('result',0)
     return render(request, 'analyze.html', data)
+
 
 def get_sequence_table_data(request):
     """Downloads the previous search and converts into json required by Bootstrap table

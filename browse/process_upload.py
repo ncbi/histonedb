@@ -52,12 +52,13 @@ def process_upload(sequences, format, request):
     result.append(rows)
     result.append(upload_blastp(sequence)[0])
     result.append(result[-1][0]["id"])
+    result.append(result[-2][0]["variant"])
 
     request.session["uploaded_sequences"] = [{
         "id":"QUERY", #sequence.id,
         "variant":classifications[0][1],
         "sequence":str(sequence.seq),
-        "taxonomy":result[-2][0]["taxonomy"]
+        "taxonomy":result[-3][0]["taxonomy"]
     }]
 
     return result
@@ -159,7 +160,7 @@ def upload_hmmer(sequences, evalue=10):
     hmmerFile.seek(0)
     for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
         variant = variant_query.id
-        print variant
+        # print variant
         try:
             variant_model = Variant.objects.get(id=variant)
         except Variant.DoesNotExist:

@@ -54,7 +54,7 @@
   You can tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search to find particular entries.</div>
 
   <div style="height: 110px;">
-  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see <a href="{% url 'browse.views.browse_variant' 'ALL' result.1 %}" target="_blank">info page of the corresponding variant</a>.</div>
+  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see <a id="info_page_link" href="{% url 'browse.views.browse_variant' 'ALL' result.6 %}" target="_blank">info page of the corresponding variant</a>.</div>
 
 
   <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING<br><br><br><br><br><br></div>
@@ -350,14 +350,17 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% if curated or analyze %}
           {% if quick_msa %}
           onLoadSuccess: function(data){
+
             {% if go_to_curated or highlight_human %}
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id={{ go_to_gi }}", "", 975, 75, false);
               var rownum=data.rows.map(function(x){return x.id}).indexOf("{{go_to_gi}}")
               $('#sequence_table_{{ page_name }}').bootstrapTable('scrollTo', rownum*35);
               $('#sequence_table_{{ page_name }} tr[data-index="'+rownum.toString()+'"]').addClass('success');
+
             {% elif analyze %}
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id="+data.rows[0].id, "", 975, 75, false);
               $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
+
             {% else %}
                 if(data.rows.length>0){
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
@@ -368,6 +371,8 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           onClickCell:function(event, value, row, index){
             {% if analyze %}
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id="+row.id, "", 975, 75, false);
+              $("#info_page_link").attr("href","{% url 'browse.views.browse_variant' 'ALL' 'VVV'%}".replace("VVV",row.variant));
+
             {% else %}
               createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
             {% endif %}
