@@ -450,7 +450,7 @@ def get_aln_and_features(request, ids=None):
                             canonical=Sequence.objects.filter(variant_id='H2A.X',reviewed=True,taxonomy=seq.taxonomy)[0]
                         elif(str(seq.variant.hist_type)=='H3'): #Try H3.3
                             canonical=Sequence.objects.filter(variant_id='H3.3',reviewed=True,taxonomy=seq.taxonomy)[0]
-                        elif(str(seq.variant.id)=='ScH1'):
+                        elif(str(seq.variant.id)=='scH1'):
                             canonical=seq
                         else:
                             raise
