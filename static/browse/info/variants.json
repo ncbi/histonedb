@@ -152,7 +152,7 @@
 		},
 	  	"sperm_H2B": {
 			"description":"Putative histone variant class containing sperm H2B histones from sea and sand urchins.",
-			"taxonomic_span":"Echinacea(?)",
+			"taxonomic_span":"Echinoidea(?)",
 			"alternate_names": [
 				{"name":"early H2B"},
 			    {"name":"cleavage H2B"}
@@ -300,7 +300,7 @@
 			],
 			"publications":["22650316"]
 		},
-	   "ScH1": {
+	   "scH1": {
 			"description":"A special variant of H1 found in Saccharomyces and probably other yeast species that has two globular domains. Saccharomyces cerevisiae has only one gene that encodes H1 histone (HHO1).",
 			"taxonomic_span": "Saccharomyces(?)",
 			"alternate_names": [
