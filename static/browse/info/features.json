@@ -201,7 +201,7 @@
                 "k":{"type":"motif", "name":"AKP helix", "color":"#cccccc","description":"Positively charged carboxy-terminal domain involved in specific protein-protein and protein-DNA interactions, possibly plays roles in suppressing core histone tail domain acetylation in chromatin fiber.", "source":"CDD"}
             }
         },
-        "ScH1":{
+        "scH1":{
             "taxa":"Saccharomyces",
             "sequence":"MAPKKSTTKTTSKGKKPATSKGKEKSTSKAAIKKTTAKKEEASSKSYRELIIEGLTALKERKGSSRPALKKFIKENYPIVGSASNFDLYFNNAIKKGVEAGDFEQPKGPAGAVKLAKKKSPEVKKEKEVSPKPKQAATSVSATASKAKAASTKLAPKKVVKKKSPTVTAKKASSPSSLTYKEMILKSMPQLNDGKGSSRIVLKKYVKDTFSSKLKTSSNFDYLFNSAIKKCVENGELVQPKGPSGIIKLNKKKVKLST",
             "feature1":"====================================================================================================================================================================================1111111111======bb2222222222===========333333333333333==BBBBB===cccc==========",
