@@ -1,0 +1,11 @@
+color1	cccccc
+color0	bb0000
+color2	00bb00
+alpha3	Consensus	-1	153	166	color0
+alpha1	Consensus	-1	117	123	color0
+AKP helix	Consensus	-1	186	193	color1
+alpha2	Consensus	-1	132	145	color0
+beta1	Consensus	-1	130	131	color2
+beta3	Consensus	-1	180	183	color2
+beta2	Consensus	-1	169	175	color2
+

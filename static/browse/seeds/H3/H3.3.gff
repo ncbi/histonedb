@@ -1,0 +1,18 @@
+color0	cccccc
+color4	FF9900
+color1	bbbb66
+color2	bb0000
+color3	00bb00
+loopL1	Consensus	-1	80	86	color0
+alphaN	Consensus	-1	46	59	color1
+alpha1	Consensus	-1	65	79	color2
+R2	Consensus	-1	65	65	color3
+R3	Consensus	-1	85	85	color3
+alpha3	Consensus	-1	123	134	color2
+m	Consensus	-1	31	31	color4
+beta2	Consensus	-1	121	122	color3
+R1	Consensus	-1	51	51	color3
+alpha2	Consensus	-1	87	117	color2
+loopL2	Consensus	-1	118	122	color0
+beta1	Consensus	-1	85	86	color3
+

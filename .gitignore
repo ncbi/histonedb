@@ -24,8 +24,6 @@ static/browse/hmms/*
 static/browse/trees/
 static/browse/sunbursts/
 static/browse/blast/*
-*.gff
-static/browse/hmms/model_evaluation/*/*
 *.pdf
 rh.sh
 HistoneDB/NCBI_database_info.txt

@@ -1,0 +1,14 @@
+color1	cccccc
+color0	00bb00
+color2	bb0000
+color3	bbbb66
+beta2	Consensus	-1	177	178	color0
+R1	Consensus	-1	113	113	color0
+loopL1	Consensus	-1	135	139	color1
+alpha1	Consensus	-1	122	134	color2
+alpha3	Consensus	-1	179	191	color2
+loopL2	Consensus	-1	174	178	color1
+alphaC	Consensus	-1	192	212	color3
+alpha2	Consensus	-1	140	173	color2
+beta1	Consensus	-1	138	139	color0
+

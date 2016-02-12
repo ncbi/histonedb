@@ -1,0 +1,28 @@
+color7	bb0000
+color2	aa00aa
+color6	00bb00
+color4	00ff00
+color0	55aaff
+color1	cccccc
+color3	bbbb66
+color5	00cc00
+ap	Consensus	-1	76	76	color0
+loopL1	Consensus	-1	53	60	color1
+Docking domain	Consensus	-1	96	134	color2
+alpha3ext	Consensus	-1	105	112	color3
+SPKK-motif	Consensus	-1	149	152	color4
+R1	Consensus	-1	57	57	color5
+ap	Consensus	-1	105	107	color0
+beta2	Consensus	-1	92	93	color6
+loopL2	Consensus	-1	89	93	color1
+beta1	Consensus	-1	57	58	color6
+beta3	Consensus	-1	115	117	color6
+alpha3	Consensus	-1	94	104	color7
+alpha2	Consensus	-1	61	88	color7
+SPKK-motif	Consensus	-1	158	161	color4
+ap	Consensus	-1	87	87	color0
+alpha1ext	Consensus	-1	31	37	color3
+ap	Consensus	-1	79	79	color0
+R2	Consensus	-1	92	92	color5
+alpha1	Consensus	-1	41	52	color7
+

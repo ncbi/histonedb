@@ -1,0 +1,29 @@
+color6	bb0000
+color8	aa00aa
+color3	00ff00
+color1	ff0000
+color7	00bb00
+color2	55aaff
+color0	cccccc
+color5	bbbb66
+color4	00cc00
+loopL2	Consensus	-1	93	97	color0
+p	Consensus	-1	160	160	color1
+ap	Consensus	-1	80	80	color2
+H2A.X-motif	Consensus	-1	160	163	color3
+loopL1	Consensus	-1	57	64	color0
+ap	Consensus	-1	109	111	color2
+ap	Consensus	-1	91	91	color2
+R1	Consensus	-1	61	61	color4
+alpha3ext	Consensus	-1	109	116	color5
+alpha1	Consensus	-1	45	56	color6
+beta3	Consensus	-1	119	121	color7
+beta1	Consensus	-1	61	62	color7
+alpha1ext	Consensus	-1	35	41	color5
+R2	Consensus	-1	96	96	color4
+ap	Consensus	-1	83	83	color2
+alpha2	Consensus	-1	65	92	color6
+beta2	Consensus	-1	96	97	color7
+Docking domain	Consensus	-1	100	138	color8
+alpha3	Consensus	-1	98	108	color6
+

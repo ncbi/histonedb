@@ -1,0 +1,25 @@
+color1	00bb00
+color2	aa00aa
+color3	bb0000
+color6	55aaff
+color0	cccccc
+color4	bbbb66
+color5	00cc00
+loopL2	Consensus	-1	172	177	color0
+loopL1	Consensus	-1	130	138	color0
+beta1	Consensus	-1	135	136	color1
+Docking domain	Consensus	-1	180	228	color2
+alpha3	Consensus	-1	178	188	color3
+alpha1	Consensus	-1	118	129	color3
+beta3	Consensus	-1	200	202	color1
+beta2	Consensus	-1	176	177	color1
+alpha3ext	Consensus	-1	189	196	color4
+alpha2	Consensus	-1	139	171	color3
+R1	Consensus	-1	135	135	color5
+ap	Consensus	-1	189	191	color6
+ap	Consensus	-1	154	154	color6
+R2	Consensus	-1	176	176	color5
+ap	Consensus	-1	157	157	color6
+alpha1ext	Consensus	-1	108	114	color4
+ap	Consensus	-1	170	170	color6
+
