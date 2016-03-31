@@ -60,8 +60,7 @@
 				{"name":"H2AL1", "gene":1},
 				{"name":"H2AL2", "gene":2},
 			  	{"name":"H2A.Lap2"},
-			  	{"name":"H2A.Lap3"},
-			  	{"name":"H2A.Lap4"}
+			  	{"name":"H2A.Lap3"}
 			],
 		    "publications":["22650316","25731851","19506029","17261847","18703863"]
 
@@ -104,7 +103,8 @@
 				{"name":"Huntingtin-interacting protein M"},
 				{"name":"HYPM"},
 				{"name":"CXorf27"},
-				{"name":"HIP17"}
+				{"name":"HIP17"},
+				{"name":"H2A.Lap4"}
 			],
 		    "publications":["22025671", "9700202"]
 
