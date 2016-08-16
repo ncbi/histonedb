@@ -274,13 +274,13 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
               document.location.href = "{% url 'browse.views.search' %}?id_taxonomy="+row.taxid;
           },
           'click #taxonomy_actions_browse_ncbi': function (e, value, row, index) {
-              document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock";
+              document.location.href = "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock";
           }
         }
 
         window.giEvents = {
           'click #gi_actions_view_entrez': function (e, value, row, index) {
-              document.location.href = "http://www.ncbi.nlm.nih.gov/protein/?term="+row.id;
+              document.location.href = "https://www.ncbi.nlm.nih.gov/protein/?term="+row.id;
           },
           'click #gi_actions_view_fasta': function (e, value, row, index) {
               document.location.href = "{% url 'browse.views.get_all_sequences' %}?id="+row.id;
@@ -415,7 +415,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
 
         $entrez_{{ page_name }}.click(function () {
             ids = getSelectedIDs{{ page_name }}();
-            url = "http://www.ncbi.nlm.nih.gov/protein/?term=";
+            url = "https://www.ncbi.nlm.nih.gov/protein/?term=";
             for (var i = 0; i < ids.length; i++) {
               url += ids[i]+"[uid]+OR+"
             }

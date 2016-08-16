@@ -222,7 +222,7 @@ module.exports = Package = Model.extend({
     if (this.g.config.get("debug")) {
       url = this.development[pkg];
     } else {
-      url = "http://wzrd.in/bundle/" + pkg + "@latest";
+      url = "https://wzrd.in/bundle/" + pkg + "@latest";
     }
     return url;
   }
@@ -1462,7 +1462,7 @@ module.exports = ImportMenu = MenuBuilder.extend({
     this.addNode("URL", (function(_this) {
       return function(e) {
         var url;
-        url = prompt("URL " + filetypes, "http://rostlab.org/~goldberg/clustalw2-I20140818-215249-0556-53699878-pg.clustalw");
+        url = prompt("URL " + filetypes, "https://rostlab.org/~goldberg/clustalw2-I20140818-215249-0556-53699878-pg.clustalw");
         if (url.length > 5) {
           return _this.msa.u.file.importURL(url, function() {});
         }
@@ -2432,11 +2432,11 @@ module.exports = Exporter = {
       url = document.URL.substr(0, document.URL.lastIndexOf('/')) + "/" + url;
     }
     if (url.indexOf("http") < 0) {
-      host = "http://" + window.location.hostname;
+      host = "https://" + window.location.hostname;
       url = host + url;
     }
     url = encodeURIComponent(url);
-    jalviewUrl = "http://www.jalview.org/services/launchApp?open=" + url;
+    jalviewUrl = "https://www.jalview.org/services/launchApp?open=" + url;
     jalviewUrl += "&colour=" + colorscheme;
     return window.open(jalviewUrl, '_blank');
   },
@@ -2444,7 +2444,7 @@ module.exports = Exporter = {
     var text, url;
     text = Fasta.write(that.seqs.toJSON());
     text = encodeURIComponent(text);
-    url = that.u.proxy.corsURL("http://sprunge.biojs.net");
+    url = that.u.proxy.corsURL("https://sprunge.biojs.net");
     return xhr({
       method: "POST",
       body: "sprunge=" + text,
@@ -2461,7 +2461,7 @@ module.exports = Exporter = {
   shareLink: function(that, cb) {
     var fCB, msaURL, url;
     url = that.g.config.get("importURL");
-    msaURL = "http://msa.biojs.net/app/?seq=";
+    msaURL = "https://msa.biojs.net/app/?seq=";
     fCB = function(link) {
       var fURL;
       fURL = msaURL + link;
@@ -2746,7 +2746,7 @@ proxyFun = {
       return url;
     }
     url = url.replace("www\.", "");
-    url = url.replace("http://", "");
+    url = url.replace("https://", "");
     url = this.g.config.get('importProxy') + url;
     return url;
   }
@@ -12460,15 +12460,15 @@ var strToDict = function(str, sep, toJoin) {
 
 var identDB = {
   "sp": {
-    link: "http://www.uniprot.org/%s",
+    link: "https://www.uniprot.org/%s",
     name: "Uniprot"
   },
   "tr": {
-    link: "http://www.uniprot.org/%s",
+    link: "https://www.uniprot.org/%s",
     name: "Trembl"
   },
   "gb": {
-    link: "http://www.ncbi.nlm.nih.gov/nuccore/%s",
+    link: "https://www.ncbi.nlm.nih.gov/nuccore/%s",
     name: "Genbank"
   },
   "pdb": {
