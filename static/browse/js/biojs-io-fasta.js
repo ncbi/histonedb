@@ -1875,7 +1875,7 @@ var identDB = {
     name: "Trembl"
   },
   "gb": {
-    link: "http://www.ncbi.nlm.nih.gov/nuccore/%s",
+    link: "https://www.ncbi.nlm.nih.gov/nuccore/%s",
     name: "Genbank"
   },
   "pdb": {
