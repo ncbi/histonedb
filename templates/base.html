@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- <meta http-equiv="refresh" content="1"> -->
-    <title>Histone Database 2.0</title>
+    <title>Histone Variants Database 2.0</title>
 
     <link href="{% static 'browse/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'browse/css/starter-template.css' %}" rel="stylesheet">
@@ -71,6 +71,9 @@
         $(".badge-basket").html((JSON.parse(localStorage.getItem('basket')) || []).length);
       });
     </script>
+{% if GOOGLE_ANALYTICS_PROPERTY_ID %}
+{% include "ga.html" %}
+{% endif %}
   </head>
 
   <body>
