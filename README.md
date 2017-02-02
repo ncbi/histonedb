@@ -6,18 +6,19 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/HistoneDB2.
 ## Requirements ##
 
 - Python 2.7
-- Flup 1.0.2, if using fastcgi
-- Django 1.8, django-debug_toolbar, django-filter, django-filters(?)
-- django-extensions 1.5.3
-- MySQL-python 1.2.5
-- BioPython 1.65
-- colour 0.1.1
-- pyparsing, matplotlib, seaborn, sklearn, networkx, more_itertools
+- Required python packages are specified in requirements.txt (use "pip install -r requirements.txt"). They include:
+--Flup 1.0.2, if using fastcgi
+-- Django 1.8, django-debug_toolbar, django-filter, django-filters(?)
+-- django-extensions 1.5.3
+-- MySQL-python 1.2.5
+-- BioPython 1.65
+-- colour 0.1.1
+-- pyparsing, matplotlib, seaborn, sklearn, networkx, more_itertools
 - [HMMER 3.1b2](http://hmmer.janelia.org)
 - [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
-- [EMBOSS](http://emboss.sourceforge.net)
-- [MUSCLE](http://www.drive5.com/muscle/)
-- [ClustalW2](http://www.clustal.org/clustal2/)
+- [EMBOSS](http://emboss.sourceforge.net) v6.5.7
+- [MUSCLE](http://www.drive5.com/muscle/) v3.8.31
+- [ClustalW2](http://www.clustal.org/clustal2/) v2.1
 All executables must be present in the bin dir of virual environment.
 
 ## Setup ##
