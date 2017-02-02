@@ -15,7 +15,7 @@ The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/HistoneDB2.
 -- colour 0.1.1
 -- pyparsing, matplotlib, seaborn, sklearn, networkx, more_itertools
 - [HMMER 3.1b2](http://hmmer.janelia.org)
-- [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+- [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) v 2.2.26
 - [EMBOSS](http://emboss.sourceforge.net) v6.5.7
 - [MUSCLE](http://www.drive5.com/muscle/) v3.8.31
 - [ClustalW2](http://www.clustal.org/clustal2/) v2.1
