@@ -395,7 +395,7 @@ def get_aln_and_features(request, ids=None):
 
     if ids is None and request.method == "GET" and "id" in request.GET:
         ids = request.GET.getlist("id")
-        sequences = Sequence.objects.filter(id__in=ids[:50])
+        sequences = Sequence.objects.filter(id__in=ids)
         download = False
         upload = False
     elif request.GET.get("download", False) == "true":
