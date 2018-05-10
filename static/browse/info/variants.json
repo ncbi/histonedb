@@ -67,7 +67,7 @@
 
 		},
 	  "H2A.W": {
-			"description": "H2A.W is a plant specific variant, that has SPKK motifs at the N-terminus, which have putative minor-groove-binding activity.",
+			"description": "H2A.W is a plant specific variant, that has SPKK motifs at the C-terminus, which have putative minor-groove-binding activity.",
 			"taxonomic_span":"Plants",
 			"alternate_names": [
  				{"name":"H2A with SPKK motifs"}
