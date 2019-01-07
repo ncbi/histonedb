@@ -1,7 +1,7 @@
 gunicorn==19.3.0
 dj-database-url==0.3.0
 whitenoise==2.0.3
-Django==1.8.3
+Django>=1.8.19
 MySQL-python==1.2.5
 biopython==1.65
 colour==0.1.1
