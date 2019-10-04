@@ -1,0 +1,26 @@
+sudo apt-get update
+sudo apt-get install git
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install mysql-client
+sudo apt-get install libpq-dev
+sudo apt-get install python-dev
+sudo apt-get install muscle
+sudo apt-get install clustalw
+sudo apt-get install emboss
+#rename as clustalw2
+sudo apt-get install hmmer
+sudo apt-get install ncbi-blast+
+
+sudo apt-get install libpng-dev
+sudo apt-get install libfreetype6
+sudo apt-get install libfreetype6-dev
+sudo apt-get install pkg-config
+sudo apt-get install libblas-dev
+sudo apt-get install liblapack-dev
+sudo apt-get install gfortran
+
+sudo apt-get update
+sudo apt install apache2
+sudo apt-get install mysql-server
+sudo systemctl restart mysql
+
