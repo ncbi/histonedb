@@ -275,7 +275,7 @@ class Command(BaseCommand):
             seed_aln_file = os.path.join(self.seed_directory, hist_type, seed)
             for s in SeqIO.parse(seed_aln_file, "fasta"):
                 s.seq = s.seq.ungap("-")
-                gi = s.id.split("|")[1]
+                gi = s.id.split("|")[1] # WE NEED TO START GI TO ACCESSION TRANSITION HERE
                 if gi.startswith("NOGI"):
                     logging.info("NO GI detected ", s.id)
                     taxid= easytaxonomy_from_header(s.id).id
