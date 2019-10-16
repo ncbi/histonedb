@@ -124,7 +124,8 @@ DATABASES = {
         'USER': NCBI_database_info["user"],
         'PASSWORD': NCBI_database_info["password"],
         'HOST': NCBI_database_info["host"],
-        'PORT':NCBI_database_info["port"]
+        'PORT':NCBI_database_info["port"],
+        'CONN_MAX_AGE': 3600
     }
 }
 

@@ -1,18 +1,16 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from browse.models import Histone, Variant, Sequence, Score, Feature
-from tools.load_hmmsearch import load_hmm_results, add_score, get_many_prot_seqrec_by_accession
+from tools.load_hmmsearch_with_gis import load_hmm_results, add_score, get_many_prot_seqrec_by_gis
 from tools.test_model import test_model
 import subprocess
 import os, sys
 import re
 import StringIO
-from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, fetch_taxids, update_taxonomy
+from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxids_from_gis, update_taxonomy_for_gis
 
 from Bio import SearchIO
 from Bio import SeqIO
-
-import logging
 
 #This command is the main one in creating the histone database system from seed alignments
 #and by using HMMs constructed based on these alignment to classify the bigger database.
@@ -22,8 +20,8 @@ import logging
 
 class Command(BaseCommand):
     help = 'Build HistoneDB by first loading the seed sequences and then parsing the database file'
-    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds_accession")
-    hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms_accession")
+    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
+    hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
     combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
     pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
     db_search_results_file = os.path.join(hmm_directory, "db_search_results.out")
@@ -32,12 +30,6 @@ class Command(BaseCommand):
     model_evaluation = os.path.join(hmm_directory, "model_evaluation")
     ids_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.ids")
     full_length_seqs_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fasta")
-
-    # Logging info
-    logging.basicConfig(filename='log_buildvariants.log',
-                        format='%(asctime)s %(levelname)-8s %(message)s',
-                        level=logging.INFO,
-                        datefmt='%Y-%m-%d %H:%M:%S')
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -61,7 +53,6 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
         self.db_file=options['db_file']
         if self.db_file == "nr":
@@ -126,18 +117,17 @@ class Command(BaseCommand):
             obj,created = Histone.objects.get_or_create(id=i,taxonomic_span="Eukaryotes",\
                       description="Core histone")
         if created:
-            logging.info("Histone {} type was created in database.".format(obj))
+            print "Histone ", obj," type was created in database."
 
         obj,created = Histone.objects.get_or_create(id="H1",taxonomic_span="Eukaryotes",\
                       description="Linker histone")
         if created:
-            logging.info("Histone {} type was created in database.".format(obj))
+            print "Histone ", obj," type was created in database."
 
     def get_nr(self):
         """Download nr if not present"""
         if not os.path.isfile(self.db_file):
-            logging.info("Downloading nr...")
-            # print >> self.stdout, "Downloading nr..."
+            print >> self.stdout, "Downloading nr..."
             with open("nr.gz", "w") as nrgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
             subprocess.call(["gunzip", "nr.gz"])
@@ -145,8 +135,7 @@ class Command(BaseCommand):
     def get_swissprot(self):
         """Download nr if not present"""
         if not os.path.isfile(self.db_file):
-            logging.info("Downloading swissprot...")
-            # print >> self.stdout, "Downloading swissprot..."
+            print >> self.stdout, "Downloading swissprot..."
             with open("swissprot.gz", "w") as swissprotgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/swissprot.gz"], stdout=swissprotgz)
             subprocess.call(["gunzip", "swissprot.gz"])
@@ -158,8 +147,7 @@ class Command(BaseCommand):
         static/browse/hmms/
         to individual dirs as well as combining to pne file combined_hmm_file
         """
-        logging.info("Building HMMs...")
-        # print >> self.stdout, "Building HMMs..."
+        print >> self.stdout, "Building HMMs..."
         
         with open(self.combined_hmm_file, "w") as combined_hmm:
             for hist_type, seed in self.get_seeds():
@@ -170,13 +158,10 @@ class Command(BaseCommand):
                 hmm_file = os.path.join(hmm_dir, "{}.hmm".format(seed[:-6]))
                 self.build_hmm(seed[:-6], hmm_file, os.path.join(self.seed_directory, hist_type, seed))
                 with open(hmm_file) as hmm:
-                    # print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
-                    # print(hmm.read().rstrip())
-                    # print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
                     print >> combined_hmm, hmm.read().rstrip()
 
     def build_hmm(self, name, db, seqs):
-        logging.info(' '.join(["hmmbuild", "-n", name, db, seqs]))
+        print ["hmmbuild", "-n", name, db, seqs]
         subprocess.call(["hmmbuild", "-n", name, db, seqs])
 
     def press_hmms(self):
@@ -184,8 +169,7 @@ class Command(BaseCommand):
 
     def press(self, combined_hmm):
         """Press the HMMs into a single HMM file, overwriting if present"""
-        logging.info("Pressing HMMs...")
-        # print >> self.stdout, "Pressing HMMs..."
+        print >> self.stdout, "Pressing HMMs..."
         subprocess.call(["hmmpress", "-f", combined_hmm])
 
     def search_in_db(self):
@@ -193,12 +177,11 @@ class Command(BaseCommand):
 
     def search(self, hmms_db, out, sequences=None, E=10):
         """Use HMMs to search the nr database"""
-        logging.info("Searching HMMs...")
-        # print >> self.stdout, "Searching HMMs..."
+        print >> self.stdout, "Searching HMMs..."
 
         if sequences is None:
             sequences = self.db_file
-        logging.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences]))
+        print " ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
 
     def extract_full_sequences(self, sequences=None):
@@ -208,22 +191,22 @@ class Command(BaseCommand):
             sequences = self.db_file
 
         #1) Create and index of sequence file
-        logging.info("Indexing sequence database {}...".format(sequences))
+        print "Indexing sequence database {}...".format(sequences)
         subprocess.call(["esl-sfetch", "--index", sequences])
 
-        #2) Extract all ids
-        logging.info("Extracting full length sequences...")
+        #2) Extract all ids 
+        print "Extracting full length sequences..."
         subprocess.call(["esl-sfetch", "-o", self.full_length_seqs_file, "-f", sequences, self.ids_file])
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        logging.info("Updating records with full length sequences...")
+        print "Updating records with full length sequences..."
         for record in SeqIO.parse(self.full_length_seqs_file, "fasta"):
             headers = record.description.split(" >")
             for header in headers:
                 gi = header.split("|")[1]
                 try:
                     seq = Sequence.objects.get(id=gi)
-                    logging.info("Updating sequence: {}".format(seq.description))
+                    print "Updating sequence:", seq.description
                     seq.sequence = str(record.seq)
                     seq.save()
                 except Sequence.DoesNotExist:
@@ -246,11 +229,11 @@ class Command(BaseCommand):
         ##We need to parse this results file;
         ##we take here a snippet from load_hmmsearch.py, and tune it to work for our curated seq header format
         for variant_query in SearchIO.parse(self.curated_search_results_file, "hmmer3-text"):
-            logging.info("Loading hmmsearch for variant: {}".format(variant_query.id))
+            print "Loading hmmsearch for variant:", variant_query.id
             variant_model=Variant.objects.get(id=variant_query.id)
             for hit in variant_query:
-                accession = hit.id.split("|")[1]
-                seq = Sequence.objects.get(id=accession)
+                gi = hit.id.split("|")[1]
+                seq = Sequence.objects.get(id=gi)
                 # print hit
                 try: #sometimes we get this :    [No individual domains that satisfy reporting thresholds (although complete target did)]
                     best_hsp = max(hit, key=lambda hsp: hsp.bitscore)
@@ -260,8 +243,7 @@ class Command(BaseCommand):
 
     def load_from_db(self,reset=True):
         """Load data into the histone database"""
-        logging.info("Loading data into HistoneDB...")
-        # print >> self.stdout, "Loading data into HistoneDB..."
+        print >> self.stdout, "Loading data into HistoneDB..."
         load_hmm_results(self.db_search_results_file, self.ids_file)
 
     def load_curated(self):
@@ -273,26 +255,26 @@ class Command(BaseCommand):
         >Ixodes|241122402|macroH2A Ixodes_macroH2A
         we accept only this patterns to extract GIs
         """
-        accessions=[]
+        gis=[]
         for hist_type, seed in self.get_seeds():
             variant_name = seed[:-6]
-            logging.info(' '.join([variant_name,"==========="]))
+            print variant_name,"==========="
             seed_aln_file = os.path.join(self.seed_directory, hist_type, seed)
             for s in SeqIO.parse(seed_aln_file, "fasta"):
                 s.seq = s.seq.ungap("-")
-                accession = s.id.split("|")[1] # WE NEED TO START GI TO ACCESSION TRANSITION HERE
-                if accession.startswith("NOGI"):
-                    logging.info("NO GI detected {}".format(s.id))
+                gi = s.id.split("|")[1]
+                if gi.startswith("NOGI"):
+                    print "NO GI detected ", s.id
                     taxid= easytaxonomy_from_header(s.id).id
                 else:
                     #trick to make taxid retrieval faster
                     # taxonomy = taxonomy_from_header("", gi=gi)
                     taxid=1
-                    accessions.append(accession)
-                logging.info("Loading {}".format(s.id))
+                    gis.append(gi)
+                print "Loading ", s.id
                 
                 seq = Sequence(
-                    id       = accession,
+                    id       = gi,
                     variant_id  = variant_name,
                     gene     = None,
                     splice   = None,
@@ -303,16 +285,16 @@ class Command(BaseCommand):
                 )
                 seq.save()
 
-        # Now let's lookup taxid for those having ACCESSIONs via NCBI.
-        update_taxonomy(accessions)
+        # Now let's lookup taxid for those having GIs via NCBI.
+        update_taxonomy_for_gis(gis)
 
     def get_seeds(self):
         """
-        Goes through static/browse/seeds_accession directories and returns histone type names and fasta file name of variant (without path).
+        Goes through static/browse/seeds directories and returns histone type names and fasta file name of variant (without path).
         """
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             hist_type = os.path.basename(root)
-            if hist_type=="seeds_accession": #means we are in top dir, we skip,
+            if hist_type=="seeds": #means we are in top dir, we skip,
             # combinded alignmnents for hist types are their, but we do not use them in database constuction,
             #only in visualization on website
                 continue
@@ -378,37 +360,28 @@ class Command(BaseCommand):
             #We can set hist_type directly by ID, which is hist_type_pos in this case - because it is the primary key in Histone class.
             variant_model, create = Variant.objects.get_or_create(id=variant_name,hist_type_id=hist_type_pos) #,hist_type_id=hist_type_pos)
             if create:
-                logging.info("Created {} variant model in database".format(variant_model))
-            logging.info("Updating thresholds for {}".format(variant_model))
+                print "Created ",variant_model," variant model in database"
+            print "Updating thresholds for ", variant_model
             variant_model.hmmthreshold = parameters["threshold"]
             variant_model.aucroc = parameters["roc_auc"]
             variant_model.save()
 
     def extract_full_sequences_from_ncbi(self):
         """Exract full seq by direct call to NCBI servers"""
-        logging.info("Getting full sequences of automatically annotated proteins from NCBI====")
-        accessions=Sequence.objects.filter(reviewed=False).values_list('id', flat=True)
-        fasta_dict=get_many_prot_seqrec_by_accession(accessions)
+        print "Getting full sequences of automatically annotated proteins from NCBI===="
+        gis=Sequence.objects.filter(reviewed=False).values_list('id', flat=True)
+        fasta_dict=get_many_prot_seqrec_by_gis(gis)
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        for accession,record in fasta_dict.iteritems():
-            # logging.info('::DEBUG::buildvariants:: record:\n{}\n'.format(record))
-            # headers = record.description.split(" >")
-            # for header in headers:
-            #     accession = header.split(" ", 1)[0]
-            #     # logging.info('::DEBUG::buildvariants:: accession: {}'.format(accession))
-            #     try:
-            #         seq = Sequence.objects.get(id=accession)
-            #         seq.sequence = str(record.seq)
-            #         seq.save()
-            #     except Sequence.DoesNotExist:
-            #         logging.error('Sequence with accession {} does not exist in DB.'.format(accession))
-            #         pass
-            try:
-                seq = Sequence.objects.get(id=accession)
-                seq.sequence = str(record.seq)
-                seq.save()
-            except Sequence.DoesNotExist:
-                logging.error('Sequence with accession {} does not exist in DB.'.format(accession))
-                pass
+        for gi,record in fasta_dict.iteritems():
+            headers = record.description.split(" >")
+            for header in headers:
+                gi = header.split("|")[1]
+                # print gi
+                try:
+                    seq = Sequence.objects.get(id=gi)
+                    seq.sequence = str(record.seq)
+                    seq.save()
+                except Sequence.DoesNotExist:
+                    pass
 

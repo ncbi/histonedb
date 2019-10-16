@@ -1,7 +1,6 @@
 import re
 from collections import defaultdict
 import sys
-import logging
 
 #BioPython
 from Bio import SearchIO
@@ -16,7 +15,7 @@ from django.db.utils import IntegrityError
 from django.conf import settings
 
 #Custom librairies
-from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_accessions, update_taxonomy
+from tools.taxonomy_from_gis import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_gis, update_taxonomy_for_gis
 
 def load_hmm_results(hmmerFile, id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
@@ -29,7 +28,6 @@ def load_hmm_results(hmmerFile, id_file):
   id_file : str
     Path to id file, to extract full lenght GIs
   """
-  # print('ARGS {}; {}'.format(hmmerFile, id_file))
   ids = open(id_file, "w")
 
   #We need unknown Variant model - to assign to those that do not pass the threshold for analyzed models,
@@ -47,7 +45,7 @@ def load_hmm_results(hmmerFile, id_file):
     unknown_model.save()
 
   for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
-    logging.info("Loading variant: {}".format(variant_query.id))
+    print "Loading variant:", variant_query.id
     variant_model = Variant.objects.get(id=variant_query.id)
     for hit in variant_query:
       #Save original header to extract full sequence
@@ -56,15 +54,14 @@ def load_hmm_results(hmmerFile, id_file):
       #Below we are fetching a list of headers if there are multiple headers for identical sequences
       #Technically HUMMER might put the second and on gis in description column.
       #The format should be strictly the genbank format: gi|343434|fafsf gdgfdg gi|65656|534535 fdafaf
-      # print("{}-----{}".format(hit.id, hit.description))
-      headers = "{} {}".format(hit.id, hit.description).split('\x01')
+      headers = "{}{}".format(hit.id, hit.description).split("gi|")[1:]
 
       ###Iterate through headers of identical sequences.
       for header in headers:
-        accession = header.split(" ")[0]
+        gi = header.split("|")[0]
         ##Iterate through high scoring fragments.
         for i, hsp in enumerate(hit):
-          seqs = Sequence.objects.filter(id=accession)
+          seqs = Sequence.objects.filter(id=gi)
           if len(seqs)>0:
           #Sequence already exists. Compare bit scores, if loaded bit score is
           #greater than current, reassign variant and update scores. Else, append score
@@ -100,26 +97,30 @@ def load_hmm_results(hmmerFile, id_file):
                 add_score(seq, variant_model, hsp, best=False)
           else:
             ##A new sequence is found.
-            taxonomy = taxonomy_from_header(header, accession)
+            try:
+                int(gi)
+            except ValueError:
+                continue
+            taxonomy = taxonomy_from_header(header, gi)
             sequence = Seq(str(hsp.hit.seq))
             best = hsp.bitscore >= variant_model.hmmthreshold
             try:
               seq = add_sequence(
-                accession,
+                gi,  
                 variant_model if best else unknown_model, 
                 taxonomy, 
                 header, 
                 sequence)
               add_score(seq, variant_model, hsp, best=best)
             except IntegrityError as e:
-              logging.error("Error adding sequence {}".format(seq))
+              print "Error adding sequence {}".format(seq)
               global already_exists
-              already_exists.append(accession)
+              already_exists.append(gi)
               continue
           # print seq
 
   #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
-  update_taxonomy(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
+  update_taxonomy_for_gis(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
 
   #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
   unknown_model.sequences.all().delete()
@@ -162,38 +163,42 @@ def add_score(seq, variant_model, hsp, best=False):
   score.save()
 
 
-def get_many_prot_seqrec_by_accession(accession_list):
+def get_many_prot_seqrec_by_gis(gi_list):
     """
-    Download a dictionary of fasta SeqsRec from NCBI given a list of ACCESSIONs.
+    Download a dictionary of fasta SeqsRec from NCBI given a list of GIs.
     """
 
-    logging.info("Downloading FASTA SeqRecords by ACCESSIONs from NCBI")
-    num=len(accession_list)
+    print("Downloading FASTA SeqRecords by GIs from NCBI")
+    num=len(gi_list)
     fasta_seqrec=dict()
 
     for i in range(int(num/1000)+1):
-      logging.info("Fetching %d th thousands from %d"%(i,num))
+      print("Fetching %d th thousands from %d"%(i,num))
 
-      for j in range(10):
+      while True:
         try:
-            strn = ",".join(map(str,accession_list)[i*1000:(i+1)*1000])
+            strn = ",".join(map(str,gi_list)[i*1000:(i+1)*1000])
             request=Entrez.epost(db="protein",id=strn)
             result=Entrez.read(request)
             webEnv=result["WebEnv"]
             queryKey=result["QueryKey"]
-            handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',webenv=webEnv, query_key=queryKey)
-            for r in SeqIO.parse(handle,'gb'):
-                # logging.info('::DEBUG::load_hmmsearch:: r')
-                # logging.info('{}\n'.format(r))
-                # fasta_seqrec[r.id.split('|')[1]]=r
-                fasta_seqrec[r.id]=r
+            handle=Entrez.efetch(db="protein",rettype='fasta',retmode='text',webenv=webEnv, query_key=queryKey)
+            for r in SeqIO.parse(handle,'fasta'):
+                print '-------------------------------------------'
+                print r
+                print r.id
+                print r.id.split('|')
+                print len(r.id.split('|'))
+                print '-------------------------------------------'
+                fasta_seqrec[r.id.split('|')[1]]=r
         except:
-            logging.warning("Unexpected error: {}".format(sys.exc_info()[0]))
+            print "Unexpected error:", sys.exc_info()[0]
             continue
         if((len(fasta_seqrec)==(i+1)*1000) or (len(fasta_seqrec)==num)):
             break
         else:
-            logging.info("Mismatch: {} {}".format(num, len(fasta_seqrec)))
-    logging.info("FASTA Records downloaded: {}".format(len(fasta_seqrec)))
+            print "Mismatch:", num," ", len(fasta_seqrec)
+    print("FASTA Records downloaded:")
+    print(len(fasta_seqrec))
     return(fasta_seqrec)
 

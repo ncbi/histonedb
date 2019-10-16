@@ -8,6 +8,7 @@ from Bio.Alphabet import IUPAC
 
 seed_directory = "../static/browse/seeds"
 seed_acc_dir = "../static/browse/seeds_accession"
+small_dataset_file = '../yeast.aa'
 Entrez.email = "l.singh@intbio.org"
 
 
@@ -46,7 +47,7 @@ def update_seq_rec_from_file(seed_aln_file):
             print '-------------------------------------------'
         yield s
 
-def main():
+def gi2acc_for_seeds():
     for hist_type, seed in get_seeds():
         variant_name = seed[:-6]
         print(variant_name, "===========")
@@ -60,5 +61,36 @@ def main():
         with open("{}/{}.fasta".format(hist_type_dir, variant_name), "w") as output_handle:
             SeqIO.write(sequences, output_handle, "fasta")
 
+# to trash? not full method
+def nogi_test(seed_aln_file):
+    for s in SeqIO.parse(seed_aln_file, "fasta"):
+        gi = s.id.split("|")[1]
+        if gi.startswith("NOGI"):
+            print("NO GI detected {}".format(s.id))
+        else:
+            print('-----------------------------------------------------')
+            print('GI {}'.format(gi))
+            request = Entrez.epost(db="protein", id=str(gi))
+            result = Entrez.read(request)
+            webEnv = result["WebEnv"]
+            queryKey = result["QueryKey"]
+            handle = Entrez.efetch(db="protein", rettype='gb', retmode='text', webenv=webEnv, query_key=queryKey)
+            for r in SeqIO.parse(handle, 'gb'):
+                print r.id
+                s.id = s.id.replace(str(gi), str(r.id), 1)
+                s.description = s.description.split(' ')[1]
+                print('new s.id: {}'.format(s.id))
+            print '-------------------------------------------'
 
-main()
+def gi2acc_for_small_dataset():
+    sequences = update_seq_rec_from_file(small_dataset_file)
+    with open("{}_with_accession.fasta".format(small_dataset_file), "w") as output_handle:
+        SeqIO.write(sequences, output_handle, "fasta")
+
+gi2acc_for_small_dataset()
+
+# a = 'P0CU89.1 RecName: Full=Secreted RxLR effector protein PITG_15718; Flags: PrecursorP0CU90.1 RecName: Full=Secreted RxLR effector protein PITG_21681; Flags: Precursor'
+# a_split = a.split('\x01')
+# print(a_split)
+# for asp in a_split:
+#     print asp.split(' ')[0]
