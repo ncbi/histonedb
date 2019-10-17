@@ -10,6 +10,7 @@ from itertools import ifilter
 import sys
 import logging
 
+log = logging.getLogger(__name__)
 
 def fetch_seq(accessions):
     if len(accessions) == 0:
@@ -27,7 +28,7 @@ def fetch_seq(accessions):
                 if (len(accessions) == len(data)):
                     break
             except:
-                logging.error("Unexpected error: {}".format(sys.exc_info()[0]))
+                log.error("Unexpected error: {}".format(sys.exc_info()[0]))
                 # continue
     for s in data:
         yield s
@@ -37,7 +38,7 @@ def taxonomy_from_accessions(accessions):
     """
     """
     for s in fetch_seq(accessions):
-        logging.info(s.annotations["organism"])
+        log.info(s.annotations["organism"])
         yield s.annotations["organism"]
 
 
@@ -50,12 +51,12 @@ def fetch_taxids(accessions):
                 text = re.search('(\S+):(\S+)', a).group(1)
                 id = re.search('(\S+):(\S+)', a).group(2)
                 if (text == "taxon"):
-                    logging.info("Fetched taxid from NCBI {}".format(id))
+                    log.info("Fetched taxid from NCBI {}".format(id))
                     yield id
                 else:
                     continue
         except:
-            logging.error("!!!!!!Unable to get TAXID for \n {} setting it to 1".format(s))
+            log.error("!!!!!!Unable to get TAXID for \n {} setting it to 1".format(s))
             yield 1  # unable to identify
 
 
@@ -72,7 +73,7 @@ def taxonomy_from_header(header_init, accession=None, species_re=None):
     if match:
         organism = match[-1]
     elif accession:
-        logging.info("No taxonomy match for {}: {}, get it from NCBI".format(accession, header))
+        log.info("No taxonomy match for {}: {}, get it from NCBI".format(accession, header))
         for i in xrange(10):
             try:
                 organism = taxonomy_from_accessions([accession]).next()
@@ -96,7 +97,7 @@ def taxonomy_from_header(header_init, accession=None, species_re=None):
             if genus.type_name != "scientific name":
                 genus = genus.get_scientific_names()[0]
         except:
-            logging.info(header)
+            log.info(header)
             return Taxonomy.objects.get(name="unidentified")
 
         # Maybe the var is wrong

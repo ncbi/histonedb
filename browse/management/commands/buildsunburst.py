@@ -34,6 +34,9 @@ class Command(BaseCommand):
             help="Build a sunburst of the enitre NCBI Taxonomy databse.")
         
     def handle(self, *args, **options):
+        self.log.info('=======================================================')
+        self.log.info('===               buildsunburst START               ===')
+        self.log.info('=======================================================')
         path = os.path.join("static", "browse", "sunbursts_accession")
         if options["all_taxonomy"]:
             sb = self.build_sunburst(all_taxonomy=True)

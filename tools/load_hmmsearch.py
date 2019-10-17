@@ -18,6 +18,8 @@ from django.conf import settings
 #Custom librairies
 from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_accessions, update_taxonomy
 
+log = logging.getLogger(__name__)
+
 def load_hmm_results(hmmerFile, id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
@@ -47,7 +49,7 @@ def load_hmm_results(hmmerFile, id_file):
     unknown_model.save()
 
   for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
-    logging.info("Loading variant: {}".format(variant_query.id))
+    log.info("Loading variant: {}".format(variant_query.id))
     variant_model = Variant.objects.get(id=variant_query.id)
     for hit in variant_query:
       #Save original header to extract full sequence
@@ -112,7 +114,7 @@ def load_hmm_results(hmmerFile, id_file):
                 sequence)
               add_score(seq, variant_model, hsp, best=best)
             except IntegrityError as e:
-              logging.error("Error adding sequence {}".format(seq))
+              log.error("Error adding sequence {}".format(seq))
               global already_exists
               already_exists.append(accession)
               continue
@@ -167,12 +169,12 @@ def get_many_prot_seqrec_by_accession(accession_list):
     Download a dictionary of fasta SeqsRec from NCBI given a list of ACCESSIONs.
     """
 
-    logging.info("Downloading FASTA SeqRecords by ACCESSIONs from NCBI")
+    log.info("Downloading FASTA SeqRecords by ACCESSIONs from NCBI")
     num=len(accession_list)
     fasta_seqrec=dict()
 
     for i in range(int(num/1000)+1):
-      logging.info("Fetching %d th thousands from %d"%(i,num))
+      log.info("Fetching %d th thousands from %d"%(i,num))
 
       for j in range(10):
         try:
@@ -183,17 +185,17 @@ def get_many_prot_seqrec_by_accession(accession_list):
             queryKey=result["QueryKey"]
             handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',webenv=webEnv, query_key=queryKey)
             for r in SeqIO.parse(handle,'gb'):
-                # logging.info('::DEBUG::load_hmmsearch:: r')
-                # logging.info('{}\n'.format(r))
+                # log.info('::DEBUG::load_hmmsearch:: r')
+                # log.info('{}\n'.format(r))
                 # fasta_seqrec[r.id.split('|')[1]]=r
                 fasta_seqrec[r.id]=r
         except:
-            logging.warning("Unexpected error: {}".format(sys.exc_info()[0]))
+            log.warning("Unexpected error: {}".format(sys.exc_info()[0]))
             continue
         if((len(fasta_seqrec)==(i+1)*1000) or (len(fasta_seqrec)==num)):
             break
         else:
-            logging.info("Mismatch: {} {}".format(num, len(fasta_seqrec)))
-    logging.info("FASTA Records downloaded: {}".format(len(fasta_seqrec)))
+            log.info("Mismatch: {} {}".format(num, len(fasta_seqrec)))
+    log.info("FASTA Records downloaded: {}".format(len(fasta_seqrec)))
     return(fasta_seqrec)
 

@@ -61,6 +61,9 @@ class Command(BaseCommand):
             help="Force the recreation of the varaint trees. If True and an phyloxml file is not present, the program will re-build each tree and add jsPhyloSVG features")
 
     def handle(self, *args, **options):
+        self.log.info('=======================================================')
+        self.log.info('===                 buildtrees START                ===')
+        self.log.info('=======================================================')
         self.make_trees(force=options["force"])
         self.add_features()
 
