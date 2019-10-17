@@ -5,6 +5,7 @@ import os
 from itertools import cycle
 import StringIO
 import subprocess
+import logging
 
 from Bio import SeqIO
 from Bio import Phylo
@@ -41,8 +42,16 @@ colors = [
 
 class Command(BaseCommand):
     help = 'Building data for variant trees using ClustalW2'
-    seed_directory = os.path.join("static", "browse", "seeds")
-    trees_path = os.path.join("static", "browse", "trees")
+    seed_directory = os.path.join("static", "browse", "seeds_accession")
+    trees_path = os.path.join("static", "browse", "trees_accession")
+
+    # Logging info
+    logging.basicConfig(filename='log_buildtrees.log',
+                        format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
+                        level=logging.INFO,
+                        datefmt='%Y-%m-%d %H:%M:%S')
+    log = logging.getLogger(__name__)
+
     def add_arguments(self, parser):
         parser.add_argument(
             "-f", 
@@ -73,7 +82,7 @@ class Command(BaseCommand):
             if i==0: #skip base path
                 continue
             hist_type = os.path.basename(root)
-            print "Creating tree for", hist_type
+            self.log.info("Creating tree for {}".format(hist_type))
 
             final_tree_name = os.path.join(self.trees_path, "{}_no_features.xml".format(hist_type))
             if not force and os.path.isfile(final_tree_name):
@@ -95,13 +104,13 @@ class Command(BaseCommand):
             #Create trees and convert them to phyloxml
             tree = os.path.join(self.trees_path, "{}_aligned.ph".format(hist_type))
             subprocess.call(["muscle", "-in", combined_seed_file, '-out', combined_seed_aligned])
-            print " ".join(["clustalw2", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree'])
-            subprocess.call(["clustalw2", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree'])
+            self.log.info(" ".join(["clustalw", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree']))
+            subprocess.call(["clustalw", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree'])
             Phylo.convert(tree, 'newick', final_tree_name, 'phyloxml')
     
     def add_features(self):
         for hist_type in ["H2A", "H2B", "H3", "H1", "H4"]:
-            print hist_type
+            self.log.info(hist_type)
             tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(hist_type))
             tree = ET.parse(tree_path)
             parent_map = {c: p for p in tree.getiterator() for c in p}
@@ -137,7 +146,7 @@ class Command(BaseCommand):
                         name = start+name
                     else:
                         name = variant
-                    print "Adding", name
+                    self.log.info("Adding {}".format(name))
                     #uncomment following line to remove names
                     # name=''
                     label = ET.Element("markgroup{}".format(variant.replace(".","")), attrib={"fill":"#000", "stroke":"#000", "opacity":"0.7", "label":name.replace("canonical","ca").replace("_"," "), "labelStyle":"sectorHighlightText"})
@@ -164,13 +173,13 @@ class Command(BaseCommand):
                 clade_hist=[]
                 for clade in phylogeny.iter("{http://www.phyloxml.org}clade"):
                     name = clade.find("{http://www.phyloxml.org}name")
-                    print "CLADE", clade
+                    self.log.info("CLADE {}".format(clade))
                     try:
-                        print name.text
+                        self.log.info(name.text)
                     except:
                         pass
                     if name is not None:
-                        print name.text
+                        self.log.info(name.text)
                     
                         try:
                             genus, gi, partial_variant = name.text.split("|")
@@ -181,8 +190,8 @@ class Command(BaseCommand):
                         if "canonical" in partial_variant:
                             # partial_variant = partial_variant.replace("_", "")
                             # if we uncomment this line the SVG of the tree is screwed up, Alexey, 12/30/15
-                            print "Partial variant"
-                            print genus, gi, partial_variant
+                            self.log.info("Partial variant")
+                            self.log.info(" ".join([genus, gi, partial_variant]))
 
                         for variant in variants:
                             if variant in partial_variant:

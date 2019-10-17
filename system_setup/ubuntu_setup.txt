@@ -9,6 +9,7 @@ sudo apt-get install python-dev
 sudo apt-get install muscle
 sudo apt-get install clustalw
 sudo apt-get install emboss
+sudo apt install rename
 #rename as clustalw2
 sudo apt-get install hmmer
 sudo apt-get install ncbi-blast+
