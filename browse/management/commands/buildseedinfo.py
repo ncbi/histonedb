@@ -12,7 +12,7 @@ from Bio.Align.AlignInfo import SummaryInfo
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
-    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds_accession")
+    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
 
     # Logging info
     logging.basicConfig(filename='log_buildseedinfo.log',

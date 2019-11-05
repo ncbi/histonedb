@@ -54,7 +54,7 @@ function make_scores_table_{{ page_name }}(table_div, ids, width) {
   columns = [{field:'variant', title:''}];
   params = "?";
   for (var i = 0; i < ids.length; i++) {
-    columns.push({field:ids[i], title:"GI: "+ids[i], cellStyle:scoreCellStyle_{{ page_name }}});
+    columns.push({field:ids[i], title:"ACCESSION: "+ids[i], cellStyle:scoreCellStyle_{{ page_name }}});
     params += "id="+ids[i]+"&"
   }
   $('#scores_table_{{ page_name }}').bootstrapTable({

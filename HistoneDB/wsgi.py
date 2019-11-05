@@ -7,7 +7,17 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 """
 
-import os
+import os, sys
+
+# sys.path.append('/home/l_singh/.local/lib/python2.7/site-packages')
+# output = ''
+# output += 'sys.version = %s\n' % repr(sys.version)
+# output += 'sys.prefix = %s\n' % repr(sys.prefix)
+# output += 'sys.path = %s' % repr(sys.path)
+# print output
+#
+# import django
+# import json
 
 from django.core.wsgi import get_wsgi_application
 

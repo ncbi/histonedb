@@ -37,7 +37,7 @@ class Command(BaseCommand):
         self.log.info('=======================================================')
         self.log.info('===               buildsunburst START               ===')
         self.log.info('=======================================================')
-        path = os.path.join("static", "browse", "sunbursts_accession")
+        path = os.path.join("static", "browse", "sunbursts")
         if options["all_taxonomy"]:
             sb = self.build_sunburst(all_taxonomy=True)
             with open(os.path.join(path, "all_taxa.json"), "w") as all_taxa:

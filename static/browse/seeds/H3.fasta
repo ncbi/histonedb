@@ -1,4 +1,4 @@
->H3.3|Arabidopsis|15236103 Arabidopsis|15236103|H3.3 Arabidopsis_H3.3_15236103
+>H3.3|Arabidopsis|NP_195713.1 Arabidopsis|NP_195713.1|H3.3 Arabidopsis_H3.3_15236103
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -9,7 +9,7 @@
 L-------REIRKYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSHAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.3|Candida|68484797 Candida|68484797|H3.3 Candida_H3.3_68484797
+>H3.3|Candida|XP_713710.1 Candida|XP_713710.1|H3.3 Candida_H3.3_68484797
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -20,7 +20,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRFQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAIGA
 LQEAVEAYLV-GLFEDTNLCAIHAKRVTIQKKDMQLARRL--RG-ERS------------
 --
->H3.3|Cryptococcus|58260270 Cryptococcus|58260270|H3.3 Cryptococcus_H3.3_58260270
+>H3.3|Cryptococcus|XP_567545.1 Cryptococcus|XP_567545.1|H3.3 Cryptococcus_H3.3_58260270
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -31,7 +31,7 @@ LQEAVEAYLV-GLFEDTNLCAIHAKRVTIQKKDMQLARRL--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAIGA
 LQEASEAYLV-SLFEDTNLAAIHAKRVTIQPKDLQLARRL--RG-ERS------------
 --
->H3.3|Debaryomyces|50408553 Debaryomyces|50408553|H3.3 Debaryomyces_H3.3_50408553
+>H3.3|Debaryomyces|XP_456791.1 Debaryomyces|XP_456791.1|H3.3 Debaryomyces_H3.3_50408553
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -42,7 +42,7 @@ LQEASEAYLV-SLFEDTNLAAIHAKRVTIQPKDLQLARRL--RG-ERS------------
 L-------REIRRFQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAIGA
 LQESVEAYLV-SLFEDTNLCAIHAKRVTIQKKDIQLARRL--RG-ERS------------
 --
->H3.3|Drosophila|17530867 Drosophila|17530867|H3.3 Drosophila_H3.3_17530867
+>H3.3|Drosophila|NP_511095.1 Drosophila|NP_511095.1|H3.3 Drosophila_H3.3_17530867
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -53,7 +53,7 @@ LQESVEAYLV-SLFEDTNLCAIHAKRVTIQKKDIQLARRL--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSAAIGA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.3|Griffithsia|32401039 Griffithsia|32401039|H3.3 Griffithsia_H3.3_32401039
+>H3.3|Griffithsia|AAP80725.1 Griffithsia|AAP80725.1|H3.3 Griffithsia_H3.3_32401039
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -64,7 +64,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRKFQKSTDLLIRKLPFQRLVREIAQD---F------KSDLRFQSSAVLA
 LQEAAEAYLRGGLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.3|Homo|51859376 Homo|51859376|H3.3 Homo_H3.3_51859376
+>H3.3|Homo|AAH81561.1 Homo|AAH81561.1|H3.3 Homo_H3.3_51859376
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -75,7 +75,7 @@ LQEAAEAYLRGGLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSAAIGA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.3|Mus|6680159 Mus|6680159|H3.3 Mus_H3.3_6680159
+>H3.3|Mus|NP_032236.1 Mus|NP_032236.1|H3.3 Mus_H3.3_6680159
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -86,7 +86,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSAAIGA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.3|Phytophthora|301090188 Phytophthora|301090188|H3.3 Phytophthora_H3.3_301090188
+>H3.3|Phytophthora|XP_002895320.1 Phytophthora|XP_002895320.1|H3.3 Phytophthora_H3.3_301090188
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -97,7 +97,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRKYQKSTDLLIRKLPFQRLVREIAQD---Y------KTDLRFQSTAILA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERT------------
 --
->H3.3|Plasmodium|82594554 Plasmodium|82594554|H3.3 Plasmodium_H3.3_82594554
+>H3.3|Plasmodium|XP_725474.1 Plasmodium|XP_725474.1|H3.3 Plasmodium_H3.3_82594554
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -108,7 +108,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERT------------
 L-------REIRKFQKSTDLLIRKLPFQRLVREIAQE---Y------KTDLRFQSQAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 --
->H3.3|Rattus|16758888 Rattus|16758888|H3.3 Rattus_H3.3_16758888
+>H3.3|Rattus|NP_446437.1 Rattus|NP_446437.1|H3.3 Rattus_H3.3_16758888
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -119,7 +119,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSAAIGA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.3|Saccharomyces|6319482 Saccharomyces|6319482|H3.3 Saccharomyces_H3.3_6319482
+>H3.3|Saccharomyces|NP_009564.1 Saccharomyces|NP_009564.1|H3.3 Saccharomyces_H3.3_6319482
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -130,7 +130,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRFQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAIGA
 LQESVEAYLV-SLFEDTNLAAIHAKRVTIQKKDIKLARRL--RG-ERS------------
 --
->H3.3|Schizosaccharomyces|122076 Schizosaccharomyces|122076|H3.3 Schizosaccharomyces_H3.3_122076
+>H3.3|Schizosaccharomyces|P10651.2 Schizosaccharomyces|P10651.2|H3.3 Schizosaccharomyces_H3.3_122076
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -141,7 +141,7 @@ LQESVEAYLV-SLFEDTNLAAIHAKRVTIQKKDIKLARRL--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAIGA
 LQEAVEAYLV-SLFEDTNLCAIHGKRVTIQPKDMQLARRL--RG-ERS------------
 --
->H3.3|Tetrahymena|118350232 Tetrahymena|118350232|H3.3 Tetrahymena_H3.3_118350232
+>H3.3|Tetrahymena|XP_001008397.1 Tetrahymena|XP_001008397.1|H3.3 Tetrahymena_H3.3_118350232
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -152,7 +152,7 @@ LQEAVEAYLV-SLFEDTNLCAIHGKRVTIQPKDMQLARRL--RG-ERS------------
 L-------REIRKYQKTTDLLIRKLPFQRLVRDIAME---M------KSDIRFQSQAILA
 LQEAAEAYLV-GLFEDTNLCAIHARRVTIMTKDLHLARRI--RG-ERF------------
 --
->H3.3|Thalassiosira|224009486 Thalassiosira|224009486|H3.3 Thalassiosira_H3.3_224009486
+>H3.3|Thalassiosira|XP_002293701.1 Thalassiosira|XP_002293701.1|H3.3 Thalassiosira_H3.3_224009486
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -163,7 +163,7 @@ LQEAAEAYLV-GLFEDTNLCAIHARRVTIMTKDLHLARRI--RG-ERF------------
 L-------REIRKYQKSTDLLIRKAPFQRLVREIAQD---F------KTDLRFQSTAVLA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.3|Toxoplasma|22476750 Toxoplasma|22476750|H3.3 Toxoplasma_H3.3_22476750
+>H3.3|Toxoplasma|AAM95790.1 Toxoplasma|AAM95790.1|H3.3 Toxoplasma_H3.3_22476750
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -174,7 +174,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRKFQKSTDLLIRKLPFQRLVREIAQD---F------KTDLRFQSQAILA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 --
->H3.3|Trichoderma|589115521 Trichoderma|589115521|H3.3 Trichoderma_H3.3_589115521
+>H3.3|Trichoderma|XP_006969783.1 Trichoderma|XP_006969783.1|H3.3 Trichoderma_H3.3_589115521
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -185,7 +185,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KSDLRFQSSAIGA
 LQESVESYLV-SLFEDTNLCAIHAKRVTIQSKDIQLARRL--RG-ERN------------
 --
->H3.5|Homo|188528667 Homo|188528667|H3.5 Homo_H3.5_188528667
+>H3.5|Homo|NP_001013721.2 Homo|NP_001013721.2|H3.5 Homo_H3.5_188528667
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -196,7 +196,7 @@ LQESVESYLV-SLFEDTNLCAIHAKRVTIQSKDIQLARRL--RG-ERN------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------NTDLRFQSAAVGA
 LQEASEAYLV-GLLEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->H3.5|Pan|410046862 Pan|410046862|H3.5 Pan_H3.5_410046862
+>H3.5|Pan|XP_003954426.1 Pan|XP_003954426.1|H3.5 Pan_H3.5_410046862
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -207,7 +207,7 @@ LQEASEAYLV-GLLEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------NTDLRFQSAAVGA
 LQEASEAYLV-GLLEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->TS_H3.4|Homo|4504299 Homo|4504299|TS_H3.4 Homo_TS_H3.4_4504299
+>TS_H3.4|Homo|NP_003484.1 Homo|NP_003484.1|TS_H3.4 Homo_TS_H3.4_4504299
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -218,7 +218,7 @@ LQEASEAYLV-GLLEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLMREIAQD---F------KTDLRFQSSAVMA
 LQEACESYLV-GLFEDTNLCVIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->TS_H3.4|Pan|397466137 Pan|397466137|TS_H3.4 Pan_TS_H3.4_397466137
+>TS_H3.4|Pan|XP_003804825.1 Pan|XP_003804825.1|TS_H3.4 Pan_TS_H3.4_397466137
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -229,7 +229,7 @@ LQEACESYLV-GLFEDTNLCVIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLMREIAQD---F------KTDLRFQSSAVMA
 LQEACESYLV-GLFEDTNLCVIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Arabidopsis|15232146 Arabidopsis|15232146|canonical_H3 Arabidopsis_canonical_H3_15232146
+>canonical_H3|Arabidopsis|NP_189372.1 Arabidopsis|NP_189372.1|canonical_H3 Arabidopsis_canonical_H3_15232146
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -240,7 +240,7 @@ LQEACESYLV-GLFEDTNLCVIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRKYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVAA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Arabidopsis|15236103 Arabidopsis|15236103|canonical_H3 Arabidopsis_canonical_H3_15236103
+>canonical_H3|Arabidopsis|NP_195713.1 Arabidopsis|NP_195713.1|canonical_H3 Arabidopsis_canonical_H3_15236103
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -251,7 +251,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRKYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSHAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Caenorhabditis|17567723 Caenorhabditis|17567723|canonical_H3 Caenorhabditis_canonical_H3_17567723
+>canonical_H3|Caenorhabditis|NP_509344.1 Caenorhabditis|NP_509344.1|canonical_H3 Caenorhabditis_canonical_H3_17567723
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -262,7 +262,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSAAIGA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Candida|68472183 Candida|68472183|canonical_H3 Candida_canonical_H3_68472183
+>canonical_H3|Candida|XP_719887.1 Candida|XP_719887.1|canonical_H3 Candida_canonical_H3_68472183
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -273,7 +273,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRFQKSTELLIRKLPFQRLVREIAQD---F------KSDLRFQSSAIGA
 LQEAVEAYLV-GLFEDTNLCAIHAKRVTIQKKDMQLARRL--RG-ERS------------
 --
->canonical_H3|Cyanidioschyzon|544214341 Cyanidioschyzon|544214341|canonical_H3 Cyanidioschyzon_canonical_H3_544214341
+>canonical_H3|Cyanidioschyzon|XP_005537317.1 Cyanidioschyzon|XP_005537317.1|canonical_H3 Cyanidioschyzon_canonical_H3_544214341
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -284,7 +284,7 @@ LQEAVEAYLV-GLFEDTNLCAIHAKRVTIQKKDMQLARRL--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVLA
 LQEAAEAYLV-NLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Debaryomyces|50423783 Debaryomyces|50423783|canonical_H3 Debaryomyces_canonical_H3_50423783
+>canonical_H3|Debaryomyces|XP_460476.1 Debaryomyces|XP_460476.1|canonical_H3 Debaryomyces_canonical_H3_50423783
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -295,7 +295,7 @@ LQEAAEAYLV-NLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRFQKSTELLIRKLPFQRLVREIAQD---F------KSDLRFQSSAIGA
 LQEAVEAYLV-SLFEDTNLCAIHAKRVTIQKKDIQLARRL--RG-ERS------------
 --
->canonical_H3|Drosophila|78706960 Drosophila|78706960|canonical_H3 Drosophila_canonical_H3_78706960
+>canonical_H3|Drosophila|NP_001027285.1 Drosophila|NP_001027285.1|canonical_H3 Drosophila_canonical_H3_78706960
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -306,7 +306,7 @@ LQEAVEAYLV-SLFEDTNLCAIHAKRVTIQKKDIQLARRL--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Drosophila|8070 Drosophila|8070|canonical_H3 Drosophila_canonical_H3_8070
+>canonical_H3|Drosophila|CAA32434.1 Drosophila|CAA32434.1|canonical_H3 Drosophila_canonical_H3_8070
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -317,7 +317,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEASEAYLV-GLFEDTNLCAIHAKRITIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Gallus|527498246 Gallus|527498246|canonical_H3 Gallus_canonical_H3_527498246
+>canonical_H3|Gallus|NP_001268409.1 Gallus|NP_001268409.1|canonical_H3 Gallus_canonical_H3_527498246
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -328,7 +328,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRITIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Griffithsia|73919915 Griffithsia|73919915|canonical_H3 Griffithsia_canonical_H3_73919915
+>canonical_H3|Griffithsia|Q7XYZ0.3 Griffithsia|Q7XYZ0.3|canonical_H3 Griffithsia_canonical_H3_73919915
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -339,7 +339,7 @@ LQEASEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRFQKSTELLVRKLPFQRLVREIAQD---F------KSDLRFQSSAVLA
 LQEAAEAYMV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERT------------
 --
->canonical_H3|Guillardia|162606012 Guillardia|162606012|canonical_H3 Guillardia_canonical_H3_162606012
+>canonical_H3|Guillardia|XP_001713521.1 Guillardia|XP_001713521.1|canonical_H3 Guillardia_canonical_H3_162606012
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -350,7 +350,7 @@ LQEAAEAYMV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERT------------
 L-------REIRKYQKSTNLLIRKLPFQRLVRELAQD---Y------KSDLRFQNSAVLA
 LQEASESYLV-NLFEDTNLCAIHAKRVTIMPKDIYLARRI--RG-EMIF-----------
 --
->canonical_H3|Homo|4504281 Homo|4504281|canonical_H3 Homo_canonical_H3_4504281
+>canonical_H3|Homo|NP_003520.1 Homo|NP_003520.1|canonical_H3 Homo_canonical_H3_4504281
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -361,7 +361,7 @@ LQEASESYLV-NLFEDTNLCAIHAKRVTIMPKDIYLARRI--RG-EMIF-----------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Macaca|302565464 Macaca|302565464|canonical_H3 Macaca_canonical_H3_302565464
+>canonical_H3|Macaca|NP_001180643.1 Macaca|NP_001180643.1|canonical_H3 Macaca_canonical_H3_302565464
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -372,7 +372,7 @@ LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Mus|21489955 Mus|21489955|canonical_H3 Mus_canonical_H3_21489955
+>canonical_H3|Mus|NP_659539.1 Mus|NP_659539.1|canonical_H3 Mus_canonical_H3_21489955
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -383,7 +383,7 @@ LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Neurospora|85077297 Neurospora|85077297|canonical_H3 Neurospora_canonical_H3_85077297
+>canonical_H3|Neurospora|XP_956003.1 Neurospora|XP_956003.1|canonical_H3 Neurospora_canonical_H3_85077297
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -394,7 +394,7 @@ LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KSDLRFQSSAIGA
 LQESVESYLV-SLFEDTNLCAIHAKRVTIQSKDIQLARRL--RG-ERN------------
 --
->canonical_H3|Oryza|115441249 Oryza|115441249|canonical_H3 Oryza_canonical_H3_115441249
+>canonical_H3|Oryza|NP_001044904.1 Oryza|NP_001044904.1|canonical_H3 Oryza_canonical_H3_115441249
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -405,7 +405,7 @@ LQESVESYLV-SLFEDTNLCAIHAKRVTIQSKDIQLARRL--RG-ERN------------
 L-------REIRKYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVAA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Oryza|115453351 Oryza|115453351|canonical_H3 Oryza_canonical_H3_115453351
+>canonical_H3|Oryza|NP_001050276.1 Oryza|NP_001050276.1|canonical_H3 Oryza_canonical_H3_115453351
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -416,7 +416,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRKYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSHAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Pan|114605759 Pan|114605759|canonical_H3 Pan_canonical_H3_114605759
+>canonical_H3|Pan|XP_527254.2 Pan|XP_527254.2|canonical_H3 Pan_canonical_H3_114605759
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -427,7 +427,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Perkinsus|294956322 Perkinsus|294956322|canonical_H3 Perkinsus_canonical_H3_294956322
+>canonical_H3|Perkinsus|XP_002788889.1 Perkinsus|XP_002788889.1|canonical_H3 Perkinsus_canonical_H3_294956322
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -438,7 +438,7 @@ LQEACEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRRYQKSTDLLIRKLPFQRLVREVAQD---F------KTDLRFQSSAVMA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDMQLARRI--RG-ERS------------
 --
->canonical_H3|Phytophthora|301115049 Phytophthora|301115049|canonical_H3 Phytophthora_canonical_H3_301115049
+>canonical_H3|Phytophthora|XP_002999294.1 Phytophthora|XP_002999294.1|canonical_H3 Phytophthora_canonical_H3_301115049
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -449,7 +449,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDMQLARRI--RG-ERS------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQGSAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 --
->canonical_H3|Plasmodium|82541094 Plasmodium|82541094|canonical_H3 Plasmodium_canonical_H3_82541094
+>canonical_H3|Plasmodium|XP_724814.1 Plasmodium|XP_724814.1|canonical_H3 Plasmodium_canonical_H3_82541094
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -460,7 +460,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 L-------REIRRYQKSTDLLIRKLPFQRLVREIAQD---Y------KTDLRFQSSAVMA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 --
->canonical_H3|Plasmodium|86171194 Plasmodium|86171194|canonical_H3 Plasmodium_canonical_H3_86171194
+>canonical_H3|Plasmodium|XP_966164.1 Plasmodium|XP_966164.1|canonical_H3 Plasmodium_canonical_H3_86171194
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -471,7 +471,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 L-------REIRKFQKSTDLLIRKLPFQRLVREIAQE---Y------KTDLRFQSQAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 --
->canonical_H3|Saccharomyces|6319482 Saccharomyces|6319482|canonical_H3 Saccharomyces_canonical_H3_6319482
+>canonical_H3|Saccharomyces|NP_009564.1 Saccharomyces|NP_009564.1|canonical_H3 Saccharomyces_canonical_H3_6319482
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -482,7 +482,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 L-------REIRRFQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAIGA
 LQESVEAYLV-SLFEDTNLAAIHAKRVTIQKKDIKLARRL--RG-ERS------------
 --
->canonical_H3|Selaginella|302792052 Selaginella|302792052|canonical_H3 Selaginella_canonical_H3_302792052
+>canonical_H3|Selaginella|XP_002977792.1 Selaginella|XP_002977792.1|canonical_H3 Selaginella_canonical_H3_302792052
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -493,7 +493,7 @@ LQESVEAYLV-SLFEDTNLAAIHAKRVTIQKKDIKLARRL--RG-ERS------------
 L-------REIRKYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSHAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->canonical_H3|Tetrahymena|229595561 Tetrahymena|229595561|canonical_H3 Tetrahymena_canonical_H3_229595561
+>canonical_H3|Tetrahymena|XP_001016594.3 Tetrahymena|XP_001016594.3|canonical_H3 Tetrahymena_canonical_H3_229595561
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -504,7 +504,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERA------------
 L-------REIRKYQKSTDLLIRKLPFQRLVRDIAHE---F------KAELRFQSSAVLA
 LQEAAEAYLV-GLFEDTNLCAIHARRVTIMTKDMQLARRI--RG-ERF------------
 --
->canonical_H3|Thalassiosira|223998042 Thalassiosira|223998042|canonical_H3 Thalassiosira_canonical_H3_223998042
+>canonical_H3|Thalassiosira|XP_002288694.1 Thalassiosira|XP_002288694.1|canonical_H3 Thalassiosira_canonical_H3_223998042
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -515,7 +515,7 @@ LQEAAEAYLV-GLFEDTNLCAIHARRVTIMTKDMQLARRI--RG-ERF------------
 L-------REIRRYQKSTDLLIRKLPFQRLVREIAQD---F------KSDLRFQGSAVLA
 LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 --
->canonical_H3|Trypanosoma|115504299 Trypanosoma|115504299|canonical_H3 Trypanosoma_canonical_H3_115504299
+>canonical_H3|Trypanosoma|XP_001218942.1 Trypanosoma|XP_001218942.1|canonical_H3 Trypanosoma_canonical_H3_115504299
 ------------------------------------------------------------
 ------------------------------------MSR---------------------
 ------------------------------------------------------------
@@ -526,7 +526,7 @@ LQEAAEAYLV-GLFEDTNLCAIHAKRVTIMPKDIQLARRI--RG-ERS------------
 L-------REIRQFQRSTDLLLQKAPFQRLVREVSGA---Q------KEGLRFQSSAILA
 AQEATESYIV-SLLADTNRACIHSGRVTIQPKDIHLALCL--RG-ERA------------
 --
->canonical_H3|Xenopus|148234575 Xenopus|148234575|canonical_H3 Xenopus_canonical_H3_148234575
+>canonical_H3|Xenopus|NP_001091119.1 Xenopus|NP_001091119.1|canonical_H3 Xenopus_canonical_H3_148234575
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------------------------
@@ -537,7 +537,7 @@ AQEATESYIV-SLLADTNRACIHSGRVTIQPKDIHLALCL--RG-ERA------------
 L-------REIRRYQKSTELLIRKLPFQRLVREIAQD---F------KTDLRFQSSAVMA
 LQEASEAYLV-GLFEDTNLCGIHAKRVTIMPKDIQLARRI--RG-ERA------------
 --
->cenH3|Arabidopsis|18378832 Arabidopsis|18378832|cenH3 Arabidopsis_cenH3_18378832
+>cenH3|Arabidopsis|NP_563627.1 Arabidopsis|NP_563627.1|cenH3 Arabidopsis_cenH3_18378832
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ------------------------------------------TKHRVTRSQPRNQTDAAG
@@ -548,7 +548,7 @@ ASSSQAAGPTTTPTRRGGEG---GDNTQQ-------------------------------
 L-------KEIRHFQKQTNLLIPAASFIREVRSITHM---L----APPQINRWTAEALVA
 LQEAAEDYLV-GLFSDSMLCAIHARRVTLMRKDFELARRL--GG-KGRPW----------
 --
->cenH3|Caenorhabditis|17553736 Caenorhabditis|17553736|cenH3 Caenorhabditis_cenH3_17553736
+>cenH3|Caenorhabditis|NP_499128.1 Caenorhabditis|NP_499128.1|cenH3 Caenorhabditis_cenH3_17553736
 MADDTPIIEEIAEQNESVTRIMQRLKHDMQRVTSVPGFNTSAAGVNDLIDILNQYKKELE
 DDAANDYTEAHIHKIRLVTGKRNQYVLKLKQAEDEYHAR---------------------
 ------------------------------------------------------------
@@ -559,7 +559,7 @@ PSNPDRGN-----RTGPS--SS--------------DRVRMRAGRNRVTKTRRYRPGQKA
 L-------EEIRKYQKTEDLLIQKAPFARLVREIMQTSTPF------GADCRIRSDAISA
 LQEAAEAFLV-EMFEGSSLISTHAKRVTLMTTDIQLYRRL--CL-RHL------------
 --
->cenH3|Cyanidioschyzon|544210412 Cyanidioschyzon|544210412|cenH3 Cyanidioschyzon_cenH3_544210412
+>cenH3|Cyanidioschyzon|XP_005535607.1 Cyanidioschyzon|XP_005535607.1|cenH3 Cyanidioschyzon_cenH3_544210412
 ------------------------------------------------------------
 ------------------------------------MVRVFGNPVGGAHQYRQTQALNRD
 ESLREQLQRTTVAEQDENIEPEPERSSPDEAQSRLKSLLGSVARSSSLLGRRVAGPPGSS
@@ -570,7 +570,7 @@ LSNLAETRLLTEEAANRPTGA--G------------------------------------
 I-------MEIRKFQRSTELLLRRLPFARLVREICER---L----FGSSAFRWQASALEA
 LQTAAEDYLI-HLFEDSNLCAIHARRVTIMPRDIALARRI--RG-YHSDPHGYL------
 --
->cenH3|Drosophila|22024004 Drosophila|22024004|cenH3 Drosophila_cenH3_22024004
+>cenH3|Drosophila|NP_523730.2 Drosophila|NP_523730.2|cenH3 Drosophila_cenH3_22024004
 ------------------------------------------------------------
 ---------------------------------MPRHSR---------------------
 ------------------------------------------------------------
@@ -581,7 +581,7 @@ TTRSPQTRRMTVQQESKTRAAG------------PVAAQ----------NQTRRRKAANP
 MSRAKRMDREIRRLQHHPGTLIPKLPFSRLVREFIVK---Y----SDDEPLRVTEGALLA
 MQESCEMYLT-QRLADSYMLTKHRNRVTLEVRDMALMAYICDRG-RQF------------
 --
->cenH3|Guillardia|13794280 Guillardia|13794280|cenH3 Guillardia_cenH3_13794280
+>cenH3|Guillardia|AAK39657.1 Guillardia|AAK39657.1|cenH3 Guillardia_cenH3_13794280
 ------------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
@@ -592,7 +592,7 @@ MQESCEMYLT-QRLADSYMLTKHRNRVTLEVRDMALMAYICDRG-RQF------------
 L-------VDIRKFQKSTDLLIHRLPFARLVKEISLK---Y------HHSLNWQQVAVEA
 LQFASEDYII-GLLQDANLAAIHAKRVTVMPKDLKLAKII--RG-EH-------------
 --
->cenH3|Homo|4502775 Homo|4502775|cenH3 Homo_cenH3_4502775
+>cenH3|Homo|NP_001800.1 Homo|NP_001800.1|cenH3 Homo_cenH3_4502775
 ------------------------------------------------------------
 ------------------------------------MG----------------------
 ------------------------------------------------------------
@@ -603,7 +603,7 @@ LQFASEDYII-GLLQDANLAAIHAKRVTVMPKDLKLAKII--RG-EH-------------
 L-------KEIRKLQKSTHLLIRKLPFSRLAREICVK---F----TRGVDFNWQAQALLA
 LQEAAEAFLV-HLFEDAYLLTLHAGRVTLFPKDVQLARRI--RG-LEEGLG---------
 --
->cenH3|Mus|6680920 Mus|6680920|cenH3 Mus_cenH3_6680920
+>cenH3|Mus|NP_031707.1 Mus|NP_031707.1|cenH3 Mus_cenH3_6680920
 ------------------------------------------------------------
 ----------------------------------MGPRR---------------------
 ------------------------------------------------------------
@@ -614,7 +614,7 @@ LQEAAEAFLV-HLFEDAYLLTLHAGRVTLFPKDVQLARRI--RG-LEEGLG---------
 L-------KEIKTLQKSTDLLFRKKPFSMVVREICEK---F----SRGVDFWWQAQALLA
 LQEAAEAFLI-HLFEDAYLLSLHAGRVTLFPKDIQLTRRI--RG-FEGGLP---------
 --
->cenH3|Perkinsus|294874934 Perkinsus|294874934|cenH3 Perkinsus_cenH3_294874934
+>cenH3|Perkinsus|XP_002767160.1 Perkinsus|XP_002767160.1|cenH3 Perkinsus_cenH3_294874934
 ------MVGVENLGVGFDELLTRGGCGVRDDAVEIAFRGVEGLEDVLKDYMVRNKDGKIL
 SVARPVDAEHSEELLGLAAAIGRSYGSLICAAAHNGGVRLPVGKGDDDGDSNNSSDEEAD
 SGCGGAAEGDEAGDVGAGAGDVGDGAGDGAAEGDGAGDAGNGAGDVGDVGDGAGDGAAEG
@@ -625,7 +625,7 @@ DGEGSVDSSGNGGDSEPSLEVSREGSENRPKLLPPVEGRTSSSAAA--------------
 L-------REIRRHQEITDPLIEKRCFQALARSLSRE---V------EASMRWQPQSLVA
 LQEASESFIV-GMLEASQLLAVHGRRITLMEKDVKMWTRL--AA-MFGSTTFMDQEKQVG
 GT
->cenH3|Phytophthora|695416328 Phytophthora|695416328|cenH3 Phytophthora_cenH3_695416328
+>cenH3|Phytophthora|XP_009526809.1 Phytophthora|XP_009526809.1|cenH3 Phytophthora_cenH3_695416328
 ------------------------------------------------------------
 ------------------------------------MAS----------PRPPALPASDA
 SSSSVTDSGTDDSTPPNSPQPQRSPSPPFAATRGPAAARAPPAAPSSVSSASTPSPPPNL
@@ -636,7 +636,7 @@ PARRPSVAPVGRQAAIHATP----------------------------------------
 L-------REIRLLQRSTKLLLRKLPFARVVREIQTE---F-----TGVGYRWQAEALLA
 LQEAAETYLV-RTFEDAYV-----------------------GG----------------
 --
->cenH3|Plasmodium|124513424 Plasmodium|124513424|cenH3 Plasmodium_cenH3_124513424
+>cenH3|Plasmodium|XP_001350068.1 Plasmodium|XP_001350068.1|cenH3 Plasmodium_cenH3_124513424
 ------------------------------------------------------------
 ------------------------------------MVR---------------------
 --------------------------------------------------------TKKN
@@ -647,7 +647,7 @@ IPNHNPLNAFNRDKSFKTNKTLPN------------------------------------
 L-------KEIRAYQASTQLLIPKIPFVRVVKEITRL---FE---LPDEQFRYTPEALLA
 LQTASEAYLV-SLFEDAYLCSLHANRVTLMPKDIHLARRI--RG--RD------------
 --
->cenH3|Saccharomyces|27808712 Saccharomyces|27808712|cenH3 Saccharomyces_cenH3_27808712
+>cenH3|Saccharomyces|NP_012875.2 Saccharomyces|NP_012875.2|cenH3 Saccharomyces_cenH3_27808712
 ------------------------------------------------------------
 ------------------------------------MSS---------------------
 -----------------------------KQQWVSSAIQSDSSGRSLSNVNRLAGDQQSI
@@ -658,7 +658,7 @@ EMETEVPAP---------------------------------------------------
 L-------YEIRKYQRSTDLLISKIPFARLVKEVTDE---FT---TKDQDLRWQSMAIMA
 LQEASEAYLV-GLLEHTNLLALHAKRITIMKKDMQLARRI--RG-QFI------------
 --
->cenH3|Schizosaccharomyces|19113265 Schizosaccharomyces|19113265|cenH3 Schizosaccharomyces_cenH3_19113265
+>cenH3|Schizosaccharomyces|NP_596473.1 Schizosaccharomyces|NP_596473.1|cenH3 Schizosaccharomyces_cenH3_19113265
 ------------------------------------------------------------
 --------------------------------------M---------------------
 ------------------------------------------------------------
@@ -669,7 +669,7 @@ LQEASEAYLV-GLLEHTNLLALHAKRITIMKKDMQLARRI--RG-QFI------------
 L-------REIRKYQRSTDLLIQRLPFSRIVREISSE---FVANFSTDVGLRWQSTALQC
 LQEAAEAFLV-HLFEDTNLCAIHAKRVTIMQRDMQLARRI--RG-A--------------
 --
->cenH3|Tetrahymena|118356028 Tetrahymena|118356028|cenH3 Tetrahymena_cenH3_118356028
+>cenH3|Tetrahymena|XP_001011273.1 Tetrahymena|XP_001011273.1|cenH3 Tetrahymena_cenH3_118356028
 ------------------------------------------------------------
 ------------------------------------MAR---------------------
 ---------------------------------------------KAYQPKRRSNSNQNQ
@@ -680,7 +680,7 @@ QRSDSLKKNKQDNLRSKSAGNQQGNEKNKKDI----------------------------
 L-------KQLRQYNQTPSLLIRKLPFQRLIREISTR---M----TEEDSLRWTSFALVL
 LQTVVEDYMV-SFFEDANACALHAKRVTLMSKDLALAARI--RG-QKNVTGIFIPTKK--
 --
->cenH3|Thalassiosira|223995905 Thalassiosira|223995905|cenH3 Thalassiosira_cenH3_223995905
+>cenH3|Thalassiosira|XP_002287626.1 Thalassiosira|XP_002287626.1|cenH3 Thalassiosira_cenH3_223995905
 ------------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------

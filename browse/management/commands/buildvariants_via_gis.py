@@ -15,12 +15,12 @@ from Bio import SeqIO
 #This command is the main one in creating the histone database system from seed alignments
 #and by using HMMs constructed based on these alignment to classify the bigger database.
 #see handle() for the workflow description.
-#INPUT NEEDED: static/browse/seeds
+#INPUT NEEDED: static/browse/seeds_gis
 #db_file (nr) in the main directory - the database of raw sequences.
 
 class Command(BaseCommand):
     help = 'Build HistoneDB by first loading the seed sequences and then parsing the database file'
-    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
+    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds_gis")
     hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
     combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
     pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
@@ -111,7 +111,7 @@ class Command(BaseCommand):
 
     def create_histone_types(self):
         """Create basic histone types
-        Check that these names are consistent with the folder names in static/browse/seeds/
+        Check that these names are consistent with the folder names in static/browse/seeds_gis/
         """
         for i in ['H3','H4','H2A','H2B']:
             obj,created = Histone.objects.get_or_create(id=i,taxonomic_span="Eukaryotes",\
@@ -248,7 +248,7 @@ class Command(BaseCommand):
 
     def load_curated(self):
         """
-        Extracts sequences from seed alignments in static/browse/seeds
+        Extracts sequences from seed alignments in static/browse/seeds_gis
         Loads them into the database with flag reviewed=True (which means curated)
         An important fact:
         the seqs in seeds, should have a special header currently:
@@ -290,11 +290,11 @@ class Command(BaseCommand):
 
     def get_seeds(self):
         """
-        Goes through static/browse/seeds directories and returns histone type names and fasta file name of variant (without path).
+        Goes through static/browse/seeds_gis directories and returns histone type names and fasta file name of variant (without path).
         """
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             hist_type = os.path.basename(root)
-            if hist_type=="seeds": #means we are in top dir, we skip,
+            if hist_type=="seeds_gis": #means we are in top dir, we skip,
             # combinded alignmnents for hist types are their, but we do not use them in database constuction,
             #only in visualization on website
                 continue

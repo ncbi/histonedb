@@ -15,7 +15,8 @@ python manage.py migrate
 python manage.py buildncbi -f
 python manage.py loadtaxonomy -f
 python manage.py buildtaxonomytoc -f
-python manage.py buildvariants -f --db nr_small
+python manage.py buildvariants -f
+#python manage.py buildvariants -f --db nr_small
 python manage.py buildtrees -f
 python manage.py buildsunburst -f
 python manage.py buildblastdb -f

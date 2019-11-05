@@ -14,6 +14,15 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 
+# import sys
+# output = ''
+# output += 'sys.version = %s\n' % repr(sys.version)
+# output += 'sys.prefix = %s\n' % repr(sys.prefix)
+# output += 'sys.path = %s' % repr(sys.path)
+# print '------------------------------'
+# print output
+# import mod_wsgi
+
 GUNICORN = True if (os.getenv('GUNICORN', "0") == "1") else False
 if(GUNICORN):
     print "GUNICORN setup enabled"
@@ -72,6 +81,7 @@ INSTALLED_APPS = (
     'browse',
     'djangophylocore',
     'django_extensions',
+    # 'mod_wsgi.server',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -168,4 +178,5 @@ if "FORCE_SCRIPT_NAME" in NCBI_database_info:
 if(GUNICORN):
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 

@@ -22,8 +22,8 @@ import logging
 
 class Command(BaseCommand):
     help = 'Build HistoneDB by first loading the seed sequences and then parsing the database file'
-    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds_accession")
-    hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms_accession")
+    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
+    hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
     combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
     pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
     db_search_results_file = os.path.join(hmm_directory, "db_search_results.out")
@@ -312,11 +312,11 @@ class Command(BaseCommand):
 
     def get_seeds(self):
         """
-        Goes through static/browse/seeds_accession directories and returns histone type names and fasta file name of variant (without path).
+        Goes through static/browse/seeds directories and returns histone type names and fasta file name of variant (without path).
         """
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             hist_type = os.path.basename(root)
-            if hist_type=="seeds_accession": #means we are in top dir, we skip,
+            if hist_type=="seeds": #means we are in top dir, we skip,
             # combinded alignmnents for hist types are their, but we do not use them in database constuction,
             #only in visualization on website
                 continue

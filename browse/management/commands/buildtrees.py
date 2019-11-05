@@ -42,8 +42,8 @@ colors = [
 
 class Command(BaseCommand):
     help = 'Building data for variant trees using ClustalW2'
-    seed_directory = os.path.join("static", "browse", "seeds_accession")
-    trees_path = os.path.join("static", "browse", "trees_accession")
+    seed_directory = os.path.join("static", "browse", "seeds")
+    trees_path = os.path.join("static", "browse", "trees")
 
     # Logging info
     logging.basicConfig(filename='log_buildtrees.log',
