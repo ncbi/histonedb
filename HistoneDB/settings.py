@@ -81,7 +81,8 @@ INSTALLED_APPS = (
     'browse',
     'djangophylocore',
     'django_extensions',
-    # 'mod_wsgi.server',
+    'mod_wsgi.server',
+    'analytics'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -156,6 +157,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+GOOGLE_ANALYTICS_ID = NCBI_database_info["GOOGLE_ANALYTICS_ID"]
 
 
 # Static files (CSS, JavaScript, Images)
