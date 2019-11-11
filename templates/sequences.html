@@ -323,7 +323,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           {% endif %}
           columns: [
             {field:"state", checkbox:true},
-            {field:"id", sortable:true, title:"GI", clickToSelect:false, events:giEvents, formatter:giFormatter},
+            {field:"id", sortable:true, title:"ACCESSION", clickToSelect:false, events:giEvents, formatter:giFormatter},
             {field:"variant", sortable:true, title:{% if curated or blast_results%}"Variant"{% else %}"Predicted variant"{% endif %}, clickToSelect:false, events:variantEvents{% if not curated %}, formatter:variantFormatter{% endif %}},
 {#            {field:"gene", sortable:true, title:"Gene", clickToSelect:false},#}
 {#            {field:"splice", sortable:true, title:"Splice", clickToSelect:false},#}

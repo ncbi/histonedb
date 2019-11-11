@@ -7,6 +7,7 @@ from Bio import SeqIO
 import os
 import sys
 import subprocess
+import logging
 
 class Command(BaseCommand):
     help = 'Build the blast database used to analyze custom sequences.'

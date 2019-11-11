@@ -18,6 +18,7 @@ import sys
 import uuid
 import cPickle as pickle
 from StringIO import StringIO
+import logging
 
 #Required libraires
 #import pylab
@@ -46,7 +47,10 @@ from Bio.SeqRecord import SeqRecord
 from Bio.PDB.PDBParser import PDBParser
 from Bio.PDB.Polypeptide import PPBuilder
 
-Entrez.email = "HistoneDB_user@nih.gov"
+Entrez.email = "l.singh@intbio.org"
+
+# Logging info
+log = logging.getLogger(__name__)
 
 def get_variant_features(sequence, variants=None, save_dir="", save_not_found=False, save_gff=True):
     """Get the features of a sequence based on its variant.
@@ -212,7 +216,7 @@ def get_features_in_aln(alignment, variant, save_dir="", save_gff=True):
     #Let's extract consensus
     a=SummaryInfo(alignment)
     cons=a.dumb_consensus(threshold=0.1, ambiguous='X')
-    seq = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=cons.tostring())
+    seq = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=str(cons))
     updated_features = get_variant_features(seq, save_dir=save_dir, save_gff=save_gff)
     return updated_features
 
@@ -235,7 +239,7 @@ def get_core_lendiff(query_features, template_features):
     len_t_core=max([ f.end for f in template_features ])-min([ f.start for f in template_features ])
     len_core=max([ f.end for f in query_features ])-min([ f.end for f in query_features ])
     if(debug):
-        print "Template core length ", len_t_core
-        print "Testseq core length ", len_core
+        log.info("Template core length {}".format(len_t_core))
+        log.info("Testseq core length {}".format(len_core))
     ratio=float(len_core)/float(len_t_core)
     return ratio

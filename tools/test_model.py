@@ -10,6 +10,7 @@ matplotlib.use('Agg')
 import argparse
 import json
 import os
+import logging
 
 #BioPython
 from Bio import SearchIO
@@ -63,7 +64,7 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC",
     A dictionary with containg the AUCROC and Threshold. An image is also saved
     with the ROC and score histograms. 
     """
-    print model_name
+    logging.info(model_name)
     postive_scores = get_model_scores(postive_file)
     negative_scores = get_model_scores(negative_file)
     all_scores = postive_scores+negative_scores

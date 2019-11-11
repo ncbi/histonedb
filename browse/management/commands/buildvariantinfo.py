@@ -1,4 +1,5 @@
 import os
+import logging
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from browse.models import Variant, OldStyleVariant, Histone, Publication, TemplateSequence, Feature
@@ -14,6 +15,13 @@ class Command(BaseCommand):
     help = 'Reset sequence features'
     info_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "info")
 
+    # Logging info
+    logging.basicConfig(filename='log_buildvariantinfo.log',
+                        format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
+                        level=logging.INFO,
+                        datefmt='%Y-%m-%d %H:%M:%S')
+    log = logging.getLogger(__name__)
+
     def add_arguments(self, parser):
          parser.add_argument(
             "-f", 
@@ -23,6 +31,9 @@ class Command(BaseCommand):
             help="Force the creation of PDFs, GFFs even if the files exist")
         
     def handle(self, *args, **options):
+        self.log.info('=======================================================')
+        self.log.info('===             buildvariantinfo START              ===')
+        self.log.info('=======================================================')
         Publication.objects.all().delete()
         variant_info_path = os.path.join(self.info_directory, "variants.json")
 
@@ -31,15 +42,17 @@ class Command(BaseCommand):
 
         for hist_type_name, variants in variant_info.iteritems():
             for variant_name, info in variants.iteritems():
-                print variant_name
+                self.log.info(variant_name)
                 variant = Variant.objects.get(id=variant_name)
                 variant.description = info["description"]
                 variant.taxonomic_span = info["taxonomic_span"]
                 variant.save()
 
                 for alternate_name in info["alternate_names"]:
-                    tax_name = alternate_name.get("taxonomy", "eukaryotes")
-                    print tax_name
+                    tax_name = alternate_name.get("taxonomy", "eukaryota")
+                    self.log.info(tax_name)
+                    # tax_eu = Taxonomy.objects.get(name='eucaryotes')
+                    # print('===================== {}'.format(tax_eu))
                     alt_variant = OldStyleVariant(
                         updated_variant = variant,
                         name            = alternate_name["name"],
@@ -76,10 +89,10 @@ class Command(BaseCommand):
         
         Feature.objects.all().delete()
         for type_name, variants in feature_info.iteritems():
-            print "Making features for", type_name
+            self.log.info("Making features for {}".format(type_name))
             hist_type = Histone.objects.get(id=type_name)
             for variant, info in variants.iteritems():
-                print "    Making features for", variant_name
+                self.log.info("Making features for {}".format(variant_name))
                 if variant_name.startswith("General"):
                     variant = "General{}".format(hist_type)
 

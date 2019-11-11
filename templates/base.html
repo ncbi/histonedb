@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load browse_filters %}
+{% load analytics_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +24,7 @@
     <script src="{% static 'browse/js/bootstrap-table-cookie.js' %}"></script>
 
     {% block includes %} {% endblock %}
+    {% google_analytics settings.GOOGLE_ANALYTICS_ID %}
 
     <script>
       function open_advanced_filter(search_or_filter, table, parameters){

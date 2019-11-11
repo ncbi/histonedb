@@ -3,3 +3,7 @@
 #pip install Django==1.8.19
 pip install -r system_setup/requirements_webserver.txt
 pip install -r system_setup/requirements_full.txt
+#for conda use
+#conda config --append channels conda-forge
+#conda install --file system_setup/requirements_webserver.txt
+#conda install --file system_setup/requirements_full.txt

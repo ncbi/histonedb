@@ -1,4 +1,4 @@
->H2A.1|Homo|25092737 Homo|25092737|H2A.1 Homo_H2A.1_25092737
+>H2A.1|Homo|NP_734466.1 Homo|NP_734466.1|H2A.1 Homo_H2A.1_25092737
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KSKSRSSRAGLQFPV
 GRIHRLLRKGNYAE-RIGAGAPVYLAAVLEYLTAEILELAGN-----ASRDNK-KTRIIP
@@ -8,7 +8,7 @@ RHLQLAIRNDEELNKLLG-GVTIAQG---G-VLPNIQAV-----LLPKKTESHHHK---A
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.1|Mus|28316756 Mus|28316756|H2A.1 Mus_H2A.1_28316756
+>H2A.1|Mus|NP_783589.1 Mus|NP_783589.1|H2A.1 Mus_H2A.1_28316756
 ------------------------------------------------------------
 -------MSGP---------TKRGGKARAKV----------------KSRSSRAGLQFPV
 GRVHRLLRQGNYAQ-RIGAGAPVYLAAVLEYLTAEVLELAGN-----AARDNK-KTRITP
@@ -18,7 +18,7 @@ K-----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Ailuropoda|752439251 Ailuropoda|752439251|H2A.B Ailuropoda_H2A.B_752439251
+>H2A.B|Ailuropoda|XP_011215272.1 Ailuropoda|XP_011215272.1|H2A.B Ailuropoda_H2A.B_752439251
 ------------------------------------------------------------
 -------MPGD------RSRRGS-SSGQRRT----------------RSRTARAELSFSV
 SHVERLLREGHYAQ-RLGSSAPVFLAAVIQYLTAKVLELAGN-----EAQNSG-GRRITP
@@ -28,7 +28,7 @@ QLVDMAVHNHALLSGFFG-TTTISQ------VAPAWN-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Bos|115495331 Bos|115495331|H2A.B Bos_H2A.B_115495331
+>H2A.B|Bos|NP_001069373.1 Bos|NP_001069373.1|H2A.B Bos_H2A.B_115495331
 ------------------------------------------------------------
 -------MPKK---------RGHQRSSGIRS------------------RTAQSELSFSV
 SHMEHLLRKGHYAQ-RLSSSAPVFLAAVIQDLTSKVLELAGN-----EAQKNG-EKRITP
@@ -38,7 +38,7 @@ KLVDMAIHNNALLSSIFG-MTTISL------VAPGPH-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Callithrix|296237715 Callithrix|296237715|H2A.B Callithrix_H2A.B_296237715
+>H2A.B|Callithrix|XP_002763866.1 Callithrix|XP_002763866.1|H2A.B Callithrix_H2A.B_296237715
 ------------------------------------------------------------
 -------MSER------RSRRGS-SAAGRRG--------------HTRSRTARAELIFSV
 SKMERGLWEGHYAQ-RLSDNAPVYLAAVIQYLTAKILELAAK-----EADNRG-ERIITP
@@ -48,7 +48,7 @@ RLLDMAVHNDGLLSTLFH-AITISQV---G---PGPN-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Cricetulus|354504491 Cricetulus|354504491|H2A.B Cricetulus_H2A.B_354504491
+>H2A.B|Cricetulus|XP_003514308.1 Cricetulus|XP_003514308.1|H2A.B Cricetulus_H2A.B_354504491
 ------------------------------------------------------------
 -------MPRT---------RQSSRRGSSSR----------------RSRTDRAELTFSV
 SLVEHHLRESGHAR-RLSETVPILVTAILEFLTRRLLELASN-----EAQRLGAQRLITP
@@ -58,7 +58,7 @@ EILDLTIYNNALLSEMFQ-FTTISQT---A---P---AG-------PRRRRRQI------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Cricetulus|354506888 Cricetulus|354506888|H2A.B Cricetulus_H2A.B_354506888
+>H2A.B|Cricetulus|XP_003515491.1 Cricetulus|XP_003515491.1|H2A.B Cricetulus_H2A.B_354506888
 ------------------------------------------------------------
 -------MPRT---------RQSSLRGSSSR----------------RSRTDRAELTFSV
 SLVEHHLRESGHAP-RLSETVPILLTAILEFLTRRLLELASN-----EAQRLGAQRLITP
@@ -68,7 +68,7 @@ EILDLTVYNNTLLSQLLQ-FTTISQT---A-------PA-------GRRRRRRQT-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Heterocephalus|351702986 Heterocephalus|351702986|H2A.B Heterocephalus_H2A.B_351702986
+>H2A.B|Heterocephalus|EHB05905.1 Heterocephalus|EHB05905.1|H2A.B Heterocephalus_H2A.B_351702986
 ------------------------------------------------------------
 -------MPRQ-------------ALALTNE----------------RPPQGRAEPIFSV
 SQVERALCDGRYAQ-RLSCSASVFLAATLQFLSATVLELADR-----EARYRS-RRRITR
@@ -78,7 +78,7 @@ ELLDVATLKDALLCTLLG-TTTISR-------------------VAPARP----------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Homo|63029935 Homo|63029935|H2A.B Homo_H2A.B_63029935
+>H2A.B|Homo|NP_542451.1 Homo|NP_542451.1|H2A.B Homo_H2A.B_63029935
 ------------------------------------------------------------
 -------MPRR-----RRRRGSSGAGGRGRT----------------CSRTVRAELSFSV
 SQVERSLREGHYAQ-RLSRTAPVYLAAVIEYLTAKVLELAGN-----EAQNSG-ERNITP
@@ -88,7 +88,7 @@ LLLDMVVHNDRLLSTLFN-TTTISQ------VAPGED-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Homo|63029941 Homo|63029941|H2A.B Homo_H2A.B_63029941
+>H2A.B|Homo|NP_001017990.1 Homo|NP_001017990.1|H2A.B Homo_H2A.B_63029941
 ------------------------------------------------------------
 -------MPRR-----RRRRGSSGAGGRGRT----------------CSRTVRAELSFSV
 SQVERSLREGHYAQ-RLSRTAPVYLAAVIEYLTAKVPELAGN-----EAQNSG-ERNITP
@@ -98,7 +98,7 @@ LLLDMVVHNDRLLSTLFN-TTTISQV---A---PGED-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Loxodonta|344306151 Loxodonta|344306151|H2A.B Loxodonta_H2A.B_344306151
+>H2A.B|Loxodonta|XP_003421752.1 Loxodonta|XP_003421752.1|H2A.B Loxodonta_H2A.B_344306151
 ------------------------------------------------------------
 -------MAGK------RSRRGG-GGGGGGG---GGGGGGGGSSRRQRRTRSRTELIFSA
 SHVAHLLREGHYAQ-RLSSSAPVFLAAILKCLTAKILELAGN-----EAQNSG-RRLVTP
@@ -108,7 +108,7 @@ ELVDMAVHNNALLSGFFL-TTTISQV---A----------------PAR-----------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Macaca|302564935 Macaca|302564935|H2A.B Macaca_H2A.B_302564935
+>H2A.B|Macaca|NP_001180843.1 Macaca|NP_001180843.1|H2A.B Macaca_H2A.B_302564935
 ------------------------------------------------------------
 -------MSER----RSHRRSSR-AGGRGRT----------------RSRTVRAELSFSV
 SQVERGLREGHYAQ-RLSPTAPVYLAAVIEYLTAKVLELAGN-----EAQNNG-ERNITP
@@ -118,7 +118,7 @@ LLLDMAVHNNRLLSTLFD-TTTISQV---A---PGGD-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Mus|528078357 Mus|528078357|H2A.B Mus_H2A.B_528078357
+>H2A.B|Mus|NP_001268459.1 Mus|NP_001268459.1|H2A.B Mus_H2A.B_528078357
 ------------------------------------------------------------
 -------MPRN------TENCLQRSSGHRQH----------------HSRTSRGELIFAV
 SLVEQHLREVSRAR-RLSDMVPVSLVAILEFLTSRLLELAGN-----EAQRRGTQRLITP
@@ -128,7 +128,7 @@ QPLDLEVYSSMELSDVFQ-FITISQ------VAPAHR-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Mus|528078359 Mus|528078359|H2A.B Mus_H2A.B_528078359
+>H2A.B|Mus|NP_001268460.1 Mus|NP_001268460.1|H2A.B Mus_H2A.B_528078359
 ------------------------------------------------------------
 -------MPRN------RENCLRESSGRRHR----------------RSRTSRAELIFAV
 SLVEQHLREVSRAR-RLSDTVPIFLAAILESLTRRLLELAGN-----EAQRRGTERRITP
@@ -138,7 +138,7 @@ ELLDLAVYSNMELSDVFQ-FITISQV---A----------------PAHR----------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Nomascus|332266419 Nomascus|332266419|H2A.B Nomascus_H2A.B_332266419
+>H2A.B|Nomascus|XP_003282204.1 Nomascus|XP_003282204.1|H2A.B Nomascus_H2A.B_332266419
 ------------------------------------------------------------
 -------MPRR------RSHRGS-SGAGGRG--------------RTCSRTVRAELSFSV
 SQVERGLREGHYAQ-RLSRTAPVYLAAVIEYLTAKVLELAGN-----EAQNNG-ERNITP
@@ -148,7 +148,7 @@ LLLDMVVHNNRLLSTLFH-TTTISRV---A---PGGD-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Pan|114690754 Pan|114690754|H2A.B Pan_H2A.B_114690754
+>H2A.B|Pan|XP_001145032.1 Pan|XP_001145032.1|H2A.B Pan_H2A.B_114690754
 ------------------------------------------------------------
 -------MPRR------RRHRGS-SGAGGRG--------------RTCSRTVRAELSFSV
 SQVERSLREGQYAQ-RLSRTAPVYLAAVIEYLTAKVLELAGN-----EAQNSG-ARNITP
@@ -158,7 +158,7 @@ LLLDMVVHNDRLLSTLFN-TTTISQV---A---PGED-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.B|Sus|311277259 Sus|311277259|H2A.B Sus_H2A.B_311277259
+>H2A.B|Sus|XP_003135571.1 Sus|XP_003135571.1|H2A.B Sus_H2A.B_311277259
 ------------------------------------------------------------
 -------MPGK-------RSRRKSPGRQGRT----------------CARTTRAGLSASV
 SHMERLLREGPYAQ-CLSSSARVFLAATIEYLTARVLELAGD-----EAQIVG-RRCITP
@@ -168,7 +168,7 @@ ELVAMAVHNNALLSAFFG-TLAISQV---A----------------PTQE----------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Ailuropoda|301783589 Ailuropoda|301783589|H2A.L Ailuropoda_H2A.L_301783589
+>H2A.L|Ailuropoda|XP_002927211.1 Ailuropoda|XP_002927211.1|H2A.L Ailuropoda_H2A.L_301783589
 ------------------------------------------------------------
 -------MSGR---------RSPWHSHQHKR--------------HGLSRSMRAELQFPV
 SRVDRLLREGCYAQ-RLSSSTPVFLTGVLEYLTANILELAGQ-----EARNHH-KMRITP
@@ -178,7 +178,7 @@ EHVQRALVNNQHLSCLFE-DITSLPA--KG--APRLRKC---------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Bos|118151026 Bos|118151026|H2A.L Bos_H2A.L_118151026
+>H2A.L|Bos|NP_001071426.1 Bos|NP_001071426.1|H2A.L Bos_H2A.L_118151026
 ------------------------------------------------------------
 ------MSPGR-------HLWNC-RRSRRRS----------------LSRSTRAELQFPV
 SRVDRLLREGQFAN-RLSSATPVFLTGILEYLIANILDLAGK-----EACTNH-RVRISP
@@ -188,7 +188,7 @@ EHVQTALVNNENLRCLFQ-PGAFSQP---A-ASPPAPEN---------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Bos|119923405 Bos|119923405|H2A.L Bos_H2A.L_119923405
+>H2A.L|Bos|XP_875023.2 Bos|XP_875023.2|H2A.L Bos_H2A.L_119923405
 ------------------------------------------------------------
 -------MSPR---------RHLWNCRRSRR--------------HSLSRSTRAELQFPV
 SRVDRLLREGQGAY-RLSSATPVFLTAVLEYLIANILDLAGK-----EACTNH-RVRISP
@@ -198,7 +198,7 @@ EHVQTALINNENLRRLFQ-PGAFSQP---T-ASPHLPEN---------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Canis|57112025 Canis|57112025|H2A.L Canis_H2A.L_57112025
+>H2A.L|Canis|XP_548938.1 Canis|XP_548938.1|H2A.L Canis_H2A.L_57112025
 ------------------------------------------------------------
 -------MSGE---------RGPGHSRRPRR--------------HGLSRSRRAELQFPV
 SRVDRLLREGHYAH-RLSSSTPVFLAGILEYLTSNILELAGQ-----EARNSH-KMRITP
@@ -208,7 +208,7 @@ EHLQKALGNNQYLSQLFE-ENTYSQG--DG--MVQARKW-----SGPGTGADSRI-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Canis|57112039 Canis|57112039|H2A.L Canis_H2A.L_57112039
+>H2A.L|Canis|XP_548947.1 Canis|XP_548947.1|H2A.L Canis_H2A.L_57112039
 ------------------------------------------------------------
 -------MSGE---------RGPGHSRRPRR--------------HGLSRSRRAELQFPV
 SRVDRLLREGCYAH-RLSSSTPVFLTGILEYLTSNILELVGQ-----EACNSH-KMRITP
@@ -218,7 +218,7 @@ EHMQKALGNNQYLSQLFE-ENTYSQG---D-GMVQARKW-----SGPGTGADSRI-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Cavia|348567212 Cavia|348567212|H2A.L Cavia_H2A.L_348567212
+>H2A.L|Cavia|XP_003469395.1 Cavia|XP_003469395.1|H2A.L Cavia_H2A.L_348567212
 ------------------------------------------------------------
 -------MAAK---------KCKGISSKPRK--------------HPVSRSTRAQLQFPV
 SRVERYLRENGYL--RLSACTPVFLAGILEYLTASALHLAAR-----VAHRRH-KKRISP
@@ -228,7 +228,7 @@ EHLARALEKSEQLRQVFG-DSTKALL---D--------E-----IIQAKKK---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Cavia|348567220 Cavia|348567220|H2A.L Cavia_H2A.L_348567220
+>H2A.L|Cavia|XP_003469399.1 Cavia|XP_003469399.1|H2A.L Cavia_H2A.L_348567220
 ------------------------------------------------------------
 -------MDGK--------KSNE-KSSQLRK--------------HPVSCSRRAELQLPV
 SRMERYLRENSYAP-HLPFSTPVFLEGVLEYLTASILDLARK-----EARGKR-KKHILP
@@ -238,7 +238,7 @@ QHLETAAENNQQLGLRFG----------------DSRKS-----MLDEMTQNKKK-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Cricetulus|354492135 Cricetulus|354492135|H2A.L Cricetulus_H2A.L_354492135
+>H2A.L|Cricetulus|XP_003508207.1 Cricetulus|XP_003508207.1|H2A.L Cricetulus_H2A.L_354492135
 ------------------------------------------------------------
 -------MEEK---------------KRKET----------------ISRITRGQLQFSL
 DRIERFFRDGNFSQ-RLSASAPVFLAGVLEFLTSNILDLAGR-----EAHANG-TRLITP
@@ -248,7 +248,7 @@ EHVTQVVQNNDQLREVFK-----------EHEDPVVSET-----PEPEKN----------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Heterocephalus|351701334 Heterocephalus|351701334|H2A.L Heterocephalus_H2A.L_351701334
+>H2A.L|Heterocephalus|EHB04253.1 Heterocephalus|EHB04253.1|H2A.L Heterocephalus_H2A.L_351701334
 ------------------------------------------------------------
 -------MAGK--------KRRQ-NSSKPRK--------------QAVSRSTRAELQFPV
 SRVEHYLREGGYAH-RLASSTPVFLAGVLEYLRANILDLAGK-----EAQGKR-KKCITP
@@ -258,7 +258,7 @@ QNTHR-------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Heterocephalus|351707644 Heterocephalus|351707644|H2A.L Heterocephalus_H2A.L_351707644
+>H2A.L|Heterocephalus|EHB10563.1 Heterocephalus|EHB10563.1|H2A.L Heterocephalus_H2A.L_351707644
 ------------------------------------------------------------
 -------MAGK---------KRRQNSSKPRK--------------QAVSRSTRAELQFPV
 SRVEHYLREGGYAH-RLGSSTPVFLAGVLKYLRANILDLAGK-----EAQGKR-KKCIAP
@@ -268,7 +268,7 @@ QHLETAMENNQHLRPLFQ------DG-------PKS--------LLDETSQPKKK-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Heterocephalus|351714308 Heterocephalus|351714308|H2A.L Heterocephalus_H2A.L_351714308
+>H2A.L|Heterocephalus|EHB17227.1 Heterocephalus|EHB17227.1|H2A.L Heterocephalus_H2A.L_351714308
 MDIHRQRPNQSPVDTNDITKPRLSQRQLLTSEKHRETSGWAQALLFGEAQARREIKLGQL
 KPNTASIMAGK---------KRRQNSSKPRK--------------QAVSRSTRAELQFPV
 SRVERYLREGGYAQ-RLGSSTPVFLAGVLEYLTANILDLAGK-----EAEGNC-KKRITP
@@ -278,7 +278,7 @@ QHLETVMENNQQLRALFQ-----------G-----DTKS-----LLDETSQLKKKC----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Mus|13386112 Mus|13386112|H2A.L Mus_H2A.L_13386112
+>H2A.L|Mus|NP_080903.1 Mus|NP_080903.1|H2A.L Mus_H2A.L_13386112
 ------------------------------------------------------------
 ------MARKR-------------QRRRRRK----------------VTRSQRAELQFPV
 SRVDRFLREGNYSR-RLSSSAPVFLAGVLEYLTSNILELAGE-----VAHTTG-RKRIAP
@@ -288,7 +288,7 @@ EHVCRVVQNNEQLHQLFK------QG---G------TSV-----FEPPEPDDN-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Mus|13386420 Mus|13386420|H2A.L Mus_H2A.L_13386420
+>H2A.L|Mus|NP_083864.1 Mus|NP_083864.1|H2A.L Mus_H2A.L_13386420
 ------------------------------------------------------------
 -------MAKK------------MQRRRRQK----------------RTRSQRGEL--PL
 SLVDRFLREEFHSS-RLSSSALSFLTSVLEYLTSNILELAGE-----VAHTTG-RKRVTP
@@ -298,7 +298,7 @@ EDVRLVVQNNEQLRQLFK------PG---G-TSVNEDDN---------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Oryctolagus|291407300 Oryctolagus|291407300|H2A.L Oryctolagus_H2A.L_291407300
+>H2A.L|Oryctolagus|XP_002720052.1 Oryctolagus|XP_002720052.1|H2A.L Oryctolagus_H2A.L_291407300
 ------------------------------------------------------------
 -------MRGK--------KPSK-KAGKRRK--------------PNVSRSTRAELQFPV
 SRVDRHLHHDRYAQ-RLSSSTPVFLAGVLEYLTSNILELAGE-----EAHKNS-RVRITP
@@ -308,7 +308,7 @@ EHMRKAIESSEHLRDLLE-----------EDPKPRDEDV-----AQPEEKE---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Oryctolagus|291407314 Oryctolagus|291407314|H2A.L Oryctolagus_H2A.L_291407314
+>H2A.L|Oryctolagus|XP_002719866.1 Oryctolagus|XP_002719866.1|H2A.L Oryctolagus_H2A.L_291407314
 ------------------------------------------------------------
 -------MRGK--------KPSK-KAGKRRK---PN-----------VSRSTRAELQFPV
 SRVDRHLHHDRYAQ-RLSSSTPVFLAGVLEYLTSNILELAGE-----EAHKNS-RIRITP
@@ -318,7 +318,7 @@ EHMRKAIESSEHLRDLLE-----------EDPKPRDEDV-----AQPEEKE---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Sus|350595614 Sus|350595614|H2A.L Sus_H2A.L_350595614
+>H2A.L|Sus|XP_003360303.2 Sus|XP_003360303.2|H2A.L Sus_H2A.L_350595614
 ------------------------------------------------------------
 -------MSRK---------RNLPQCNRRKK--------------HALSRSSRAELQFPV
 SRVDRYLREGRYAQ-RLSSQAPVFLAGVLEYLTANILELAAS-----EARSNN-KMRIAP
@@ -328,7 +328,7 @@ EHVQRAASHNQTLSSLFQ-ASSVSRG-----AEEGAEEP------LPEAGR---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.L|Sus|350595620 Sus|350595620|H2A.L Sus_H2A.L_350595620
+>H2A.L|Sus|XP_003484147.1 Sus|XP_003484147.1|H2A.L Sus_H2A.L_350595620
 ------------------------------------------------------------
 -------MSRK---------RNLPQCSHRKK--------------HALSCSSRAELQFPM
 SSLDCVLPEGQYAQ-RLSSYTPVFLAGVLEHLMAHILELAAR-----EARSSR-KVRITP
@@ -338,7 +338,7 @@ EHVQRALNNNETLSRLFQ-ASSVSRGAEEGAEEPGAEEP------LPEAGQ---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Ailuropoda|301755368 Ailuropoda|301755368|H2A.P Ailuropoda_H2A.P_301755368
+>H2A.P|Ailuropoda|XP_002913536.1 Ailuropoda|XP_002913536.1|H2A.P Ailuropoda_H2A.P_301755368
 ------------------------------------------------------------
 -------MSGK-----------KSHESSYQT----------------QAHLITTELQVPV
 SYVDRLLQENQYNH-PLSSSTTDFLLTMLDYLTDYILDVVGT-----EANNSN--MPTAP
@@ -348,7 +348,7 @@ QDVERAVDSSGEPYHRSK-DTAFTLF---D--------------EMPGSRRNG-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Canis|545557820 Canis|545557820|H2A.P Canis_H2A.P_545557820
+>H2A.P|Canis|XP_005641297.1 Canis|XP_005641297.1|H2A.P Canis_H2A.P_545557820
 ------------------------------------------------------------
 ----MEPNPAN------IMSGNKNHESSNQT----------------QAHLVTTELQFPV
 SYVDRLLQEDQRTH-CLSSTSTEFLLAMLDSLTDYILERVGT-----EANNNN--MQTAP
@@ -358,7 +358,7 @@ QDVERAVGSNREPQQCLK-DTAFTLF---D--------------EMPRSRRNG-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Cricetulus|354492127 Cricetulus|354492127|H2A.P Cricetulus_H2A.P_354492127
+>H2A.P|Cricetulus|XP_003508203.1 Cricetulus|XP_003508203.1|H2A.P Cricetulus_H2A.P_354492127
 ------------------------------------------------------------
 -------MSGK-------KNQGKSCSDNKKM----------------EDPSSKPEVQIPV
 NYVYHLLQEEQYTP-CLGSTTSDFLLAMLDYITDYILEVVGS-----EANINS--QQDIP
@@ -368,7 +368,7 @@ QDRERQGDNDHDHSHAFK-NAPFSLF---D-EMPG-----------PRRNG---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Heterocephalus|351707643 Heterocephalus|351707643|H2A.P Heterocephalus_H2A.P_351707643
+>H2A.P|Heterocephalus|EHB10562.1 Heterocephalus|EHB10562.1|H2A.P Heterocephalus_H2A.P_351707643
 ------------------------------------------------------------
 ------MMCEQ------KSQYGS-YKDNNQQ----------------EDPASRPEQQLPV
 SDIYCILHEE-YNP-YF-SSTSDLLLAMLESLTDYILTLVGS-----EGNNVG--MPTNP
@@ -378,7 +378,7 @@ QDGEREMDNNHEHPPIIP-DVSFSFS---D--------------EMPGSRKKG-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Homo|150456434 Homo|150456434|H2A.P Homo_H2A.P_150456434
+>H2A.P|Homo|NP_036406.1 Homo|NP_036406.1|H2A.P Homo_H2A.P_150456434
 ------------------------------------------------------------
 -------MSEK--------KNCKNSSTNNNQ----------------TQDPSRNELQVPR
 SFVDRVVQDERDVQ-SQSSSTINTLLTLLDCLADYIMERVGL-----EASNNG-SMRNTS
@@ -388,7 +388,7 @@ QDREREVDNNREPHSAES-DVTRFLF---D--------------EMPKSRKND-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Homo|3329433 Homo|3329433|H2A.P Homo_H2A.P_3329433
+>H2A.P|Homo|AAC26851.1 Homo|AAC26851.1|H2A.P Homo_H2A.P_3329433
 ------------------------------------------------------------
 EPNPANIMSEK--------KNCKNSSTNNNQ----------------TQDPSRNELQVPR
 SFVDRVVQDERDVQ-SQSSSTINTLLTLLDCLADYIMERVGL-----EASNNG-SMRNTS
@@ -398,7 +398,7 @@ QDREREVDNNREPHSAES-DVTRFLF---D--------------EMPKSRKND-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Macaca|355704714 Macaca|355704714|H2A.P Macaca_H2A.P_355704714
+>H2A.P|Macaca|EHH30639.1 Macaca|EHH30639.1|H2A.P Macaca_H2A.P_355704714
 ------------------------------------------------------------
 -------MSEK--------NNRKNSSANNNQ----------------IQDRSRNELRVPM
 SFVDRVVQDEQDAQ-SQSSSTINILLTLLDCLADYIMEQVGL-----EAINNG-RMRNTS
@@ -408,7 +408,7 @@ QDGEREGDNHHEPHRTES-DGTRFVF---D--------------EMPKSGKND-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Mus|13385600 Mus|13385600|H2A.P Mus_H2A.P_13385600
+>H2A.P|Mus|NP_080372.1 Mus|NP_080372.1|H2A.P Mus_H2A.P_13385600
 ------------------------------------------------------------
 -------MSEK-------KSQEKPCSDNNQI----------------EDPSSRPEVQVPV
 NYVYRILQEEQYTP-CIGSTTSDFLLAMLDYLTDYILEVVGS-----EANINN--QQNIS
@@ -418,7 +418,7 @@ QDRERQRDNDREPSRGFK-NAPFSLF---D-EMPG-----------PRRNG---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Pan|332860554 Pan|332860554|H2A.P Pan_H2A.P_332860554
+>H2A.P|Pan|XP_003317470.1 Pan|XP_003317470.1|H2A.P Pan_H2A.P_332860554
 ------------------------------------------------------------
 -------MSEK--------KNCKNSSTNNNQ----------------TQDPSRNELQVPM
 SFVDRVVQDERDVQ-SQSSSTINTLLTLLDCLADYIMERVGL-----EASNNG-SMRNTS
@@ -428,7 +428,7 @@ QDREREVDNNREPHSAES-DVTRFLF---D--------------EMPKSRKND-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Rattus|197386154 Rattus|197386154|H2A.P Rattus_H2A.P_197386154
+>H2A.P|Rattus|NP_001128070.1 Rattus|NP_001128070.1|H2A.P Rattus_H2A.P_197386154
 ------------------------------------------------------------
 -------MSGK-------KSQEKACSDNKQT----------------EDPSSRPEVQVPV
 NYVYRLLQEEQYTP-CLGSTTSDFLLAMLDYLTDYILEVVGS-----EANINS--QQNIS
@@ -438,7 +438,7 @@ QDRERQRENDREPPQAFK-NAPFSLF---D-EMPG-----------PRRNG---------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.P|Sus|311276123 Sus|311276123|H2A.P Sus_H2A.P_311276123
+>H2A.P|Sus|XP_003135058.1 Sus|XP_003135058.1|H2A.P Sus_H2A.P_311276123
 ------------------------------------------------------------
 -------MSGK-----------QSPEGSYEA----------------PTHLTTTEPQVPV
 SFVDHLLQEDQYVH-TLSSSTTHFLFSVLEYLTDYILDLVDT-----KA-NTG-RMQMTP
@@ -448,7 +448,7 @@ QDVERAVDSNAEPHRQVK-DTAFALF---D--------------EMPGSRRNG-------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Arabidopsis|15238549 Arabidopsis|15238549|H2A.W Arabidopsis_H2A.W_15238549
+>H2A.W|Arabidopsis|NP_200795.1 Arabidopsis|NP_200795.1|H2A.W Arabidopsis_H2A.W_15238549
 ------------------------------------------------------------
 -----MESTGK----VKKAFGGRKPPGAPKT--------------KSVSKSMKAGLQFPV
 GRITRFLKKGRYAQ-RLGGGAPVYMAAVLEYLAAEVLELAGN-----AARDNK-KSRIIP
@@ -458,7 +458,7 @@ RHLLLAIRNDEELGKLLS-GVTIAHG---G-VLPNINSV-----LLPKKSATKPA-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Arabidopsis|15241016 Arabidopsis|15241016|H2A.W Arabidopsis_H2A.W_15241016
+>H2A.W|Arabidopsis|NP_198119.1 Arabidopsis|NP_198119.1|H2A.W Arabidopsis_H2A.W_15241016
 ------------------------------------------------------------
 ------MESSQATTKPTRGAGGRKGGDRKKS----------------VSKSVKAGLQFPV
 GRIARYLKKGRYAL-RYGSGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KNRINP
@@ -468,7 +468,7 @@ RHLCLAIRNDEELGRLLH-GVTIASG---G-VLPNINPV-----LLPKKSTASSS-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Zea|162458988 Zea|162458988|H2A.W Zea_H2A.W_162458988
+>H2A.W|Zea|NP_001105357.1 Zea|NP_001105357.1|H2A.W Zea_H2A.W_162458988
 ------------------------------------------------------------
 MDSTGTGAGGK----GKKGAAGRKVGGPRKK---------------SVSRSVKAGLQFPV
 GRIGRYLKKGRYAQ-XVGTGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIIP
@@ -478,7 +478,7 @@ G----------------SKEAKSPKK--AAKSPKKA------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Zea|226492688 Zea|226492688|H2A.W Zea_H2A.W_226492688
+>H2A.W|Zea|NP_001141182.1 Zea|NP_001141182.1|H2A.W Zea_H2A.W_226492688
 ------------------------------------------------------------
 --MDVSGAGGK----AKKGAAGRKAGGPTKK---------------SVSRSSRAGLQFPV
 SRVGRYLKKGRYAQ-RVGTGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIIP
@@ -488,7 +488,7 @@ RHVLLAIRNDEELGKLLA-GVTIAHG---G-VLPNIHTV-----LLPKKVAEKAA-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Zea|308080088 Zea|308080088|H2A.W Zea_H2A.W_308080088
+>H2A.W|Zea|NP_001183510.1 Zea|NP_001183510.1|H2A.W Zea_H2A.W_308080088
 ------------------------------------------------------------
 MDASAAGAGGK----AKKGAAGRKAGGPRKK---------------SVTRSVKAGLQFPV
 GRIGRYLKKGRYAQ-RVGTGAPVYLAAVLEYLAAEVLELAGN-----AAKDNK-KTRIIP
@@ -498,7 +498,7 @@ RHVLLAIRNDEELGKLLS-GVTIAHG---G-VLPNINPV-----LLPKKTAEKAA-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Zea|308080448 Zea|308080448|H2A.W Zea_H2A.W_308080448
+>H2A.W|Zea|NP_001183143.1 Zea|NP_001183143.1|H2A.W Zea_H2A.W_308080448
 ------------------------------------------------------------
 --MDASGAGSK----AKKGAAGRKAGGPRKK---------------SVSRSVKAGLQFPV
 GRIGRYLKKGRYAQ-RVGTGAPVYLAAVLEYLAAEVLELAGN-----AAKDNK-KTRIVP
@@ -508,7 +508,7 @@ G----------------SKESKSPKK--AAKSPKKAAKSPKKA-----------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Zea|308081862 Zea|308081862|H2A.W Zea_H2A.W_308081862
+>H2A.W|Zea|NP_001183439.1 Zea|NP_001183439.1|H2A.W Zea_H2A.W_308081862
 ------------------------------------------------------------
 MDASGAGSKGK------KGAAGR-KAGGPRK---KS-----------VTRSVKAGLQFPV
 GRIGRYLKKGRYAQ-RVGTGAPVYLAAVLEYLAAEVLELAGN-----AAKDNK-KTRIIP
@@ -518,7 +518,7 @@ G----------------SKEPKSPKK--GAKSPKKA------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Zea|620597319 Zea|620597319|H2A.W Zea_H2A.W_620597319
+>H2A.W|Zea|NP_001278724.1 Zea|NP_001278724.1|H2A.W Zea_H2A.W_620597319
 ------------------------------------------------------------
 -----MDAGAK---VVKKAAAGRRGGGGPKK--------------KPVSRSVKAGLQFPV
 GRIGRYLKQGRYSQ-RVGTGAPVYLAAVLEYLAAELLELAGN-----AARDNK-KNRIIP
@@ -528,7 +528,7 @@ G-----------------KEKKSPKKAAAAKSPKKVAAS---------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.W|Zea|659928085 Zea|659928085|H2A.W Zea_H2A.W_659928085
+>H2A.W|Zea|NP_001281214.1 Zea|NP_001281214.1|H2A.W Zea_H2A.W_659928085
 ------------------------------------------------------------
 MDATGTGAGGK----AKKGAAGR-KAGGPRK---KS-----------VTRSVKAGLQFPV
 GRIGRYLKKGRYAQ-RVGSGAPVYLAAVLEYLAAEVLELAGN-----AAKDNK-KTRIVP
@@ -538,7 +538,7 @@ G----------------SKEAKSPKK--AAKSPKKA------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Apis|66506394 Apis|66506394|H2A.X Apis_H2A.X_66506394
+>H2A.X|Apis|XP_624700.1 Apis|XP_624700.1|H2A.X Apis_H2A.X_66506394
 ------------------------------------------------------------
 -------MSGR----------GKGGKAKGKA----------------KTRSSRAGLQFPV
 GRIHRLLRKGNYAE-RVGAGAPVYLAAVMEYLAAEVLELAGN-----AARDNK-KTRIIP
@@ -548,7 +548,7 @@ RHLQLAIRNDEELNKLLS-GVTIAQG---G-VLPNIQAV-----LLPKKTGTGGSG----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Arabidopsis|15221875 Arabidopsis|15221875|H2A.X Arabidopsis_H2A.X_15221875
+>H2A.X|Arabidopsis|NP_175868.1 Arabidopsis|NP_175868.1|H2A.X Arabidopsis_H2A.X_15221875
 ------------------------------------------------------------
 ----MSSGAGS-----GTTKGGRGKPKATKS----------------VSRSSKAGLQFPV
 GRIARFLKAGKYAE-RVGAGAPVYLSAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -558,7 +558,7 @@ SQEF--------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Arabidopsis|15223948 Arabidopsis|15223948|H2A.X Arabidopsis_H2A.X_15223948
+>H2A.X|Arabidopsis|NP_172363.1 Arabidopsis|NP_172363.1|H2A.X Arabidopsis_H2A.X_15223948
 ------------------------------------------------------------
 ----MSTGAGS-----GTTKGGRGKPKATKS----------------VSRSSKAGLQFPV
 GRIARFLKSGKYAE-RVGAGAPVYLSAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -568,7 +568,7 @@ SQEF--------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Bos|119331192 Bos|119331192|H2A.X Bos_H2A.X_119331192
+>H2A.X|Bos|NP_001073248.1 Bos|NP_001073248.1|H2A.X Bos_H2A.X_119331192
 ------------------------------------------------------------
 -------MSGR----------GK-TGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGHYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -578,7 +578,7 @@ A----------------PAGG--KKATQASQEY---------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Cryptosporidium|66359884 Cryptosporidium|66359884|H2A.X Cryptosporidium_H2A.X_66359884
+>H2A.X|Cryptosporidium|XP_627120.1 Cryptosporidium|XP_627120.1|H2A.X Cryptosporidium_H2A.X_66359884
 ------------------------------------------------------------
 -------MSGK-----VTSSGGRGGGKKTTR--------------KTMSNSAKAGLQFPV
 GRVARYLKKGRYAK-RIGAAAPVYLAAVLEYLCAELLELAGN-----AARDAK-KTRITP
@@ -588,7 +588,7 @@ RQIQLAVRNDEELSKFLG-NVTIASG---G-VLPNIPTV-----LLPKKSKSKQGN----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Danio|41055102 Danio|41055102|H2A.X Danio_H2A.X_41055102
+>H2A.X|Danio|NP_957367.1 Danio|NP_957367.1|H2A.X Danio_H2A.X_41055102
 ------------------------------------------------------------
 -------MSGR----------GK-TGGKARA---KA-----------KTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -598,7 +598,7 @@ G----------------KSG---KKGSSQSQEY---------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Dictyostelium|66814816 Dictyostelium|66814816|H2A.X Dictyostelium_H2A.X_66814816
+>H2A.X|Dictyostelium|XP_641587.1 Dictyostelium|XP_641587.1|H2A.X Dictyostelium_H2A.X_66814816
 ----------------------------------------------------------MS
 ETKPASSKPAAAAKPKKVIPRVS-RTGEPKS---KP-----------ESRSARAGITFPV
 SRVDRLLREGRFAP-RVESTAPVYLAAVLEYLVFEILELAHN-----TCSISK-KTRITP
@@ -608,7 +608,7 @@ IY----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Giardia|159108895 Giardia|159108895|H2A.X Giardia_H2A.X_159108895
+>H2A.X|Giardia|XP_001704715.1 Giardia|XP_001704715.1|H2A.X Giardia_H2A.X_159108895
 ------------------------------------------------------------
 -------MSTK------------PVKDNSKM----------------KSRSARAGISFPI
 GRIHRHLREGRYAE-RISSDAPVYLAAVLENVVAEVFREACN------HRDKKSQKRIVP
@@ -618,7 +618,7 @@ NHILTALRKDKELATIFA-NVTIREG---G-VARSAKEG-----REGKGSHRSQDL----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Homo|4504253 Homo|4504253|H2A.X Homo_H2A.X_4504253
+>H2A.X|Homo|NP_002096.1 Homo|NP_002096.1|H2A.X Homo_H2A.X_4504253
 ------------------------------------------------------------
 -------MSGR----------GK-TGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGHYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -628,7 +628,7 @@ A----------------PSGG--KKATQASQEY---------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Monodelphis|126326560 Monodelphis|126326560|H2A.X Monodelphis_H2A.X_126326560
+>H2A.X|Monodelphis|XP_001370540.1 Monodelphis|XP_001370540.1|H2A.X Monodelphis_H2A.X_126326560
 ------------------------------------------------------------
 -------MSGR----------GK-TGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGHYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -638,7 +638,7 @@ A----------------PGSGGSKKSTQASQEY---------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Mus|7106331 Mus|7106331|H2A.X Mus_H2A.X_7106331
+>H2A.X|Mus|NP_034566.1 Mus|NP_034566.1|H2A.X Mus_H2A.X_7106331
 ------------------------------------------------------------
 -------MSGR----------GK-TGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGHYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -648,7 +648,7 @@ RHLQLAIRNDEELNKLLG-GVTIAQG---G-VLPNIQAV-----LLPKKSSATVGP----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Oryza|115488866 Oryza|115488866|H2A.X Oryza_H2A.X_115488866
+>H2A.X|Oryza|NP_001066920.1 Oryza|NP_001066920.1|H2A.X Oryza_H2A.X_115488866
 ------------------------------------------------------------
 ----MSSAGGG---------GGRGKSKGSKS----------------VSRSSKAGLQFPV
 GRIARYLKAGKYAE-RVGAGAPVYLSAVLEYLAAEVLELAGN-----AARDNK-KNRIVP
@@ -658,7 +658,7 @@ SQEF--------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Perkinsus|294943912 Perkinsus|294943912|H2A.X Perkinsus_H2A.X_294943912
+>H2A.X|Perkinsus|XP_002784006.1 Perkinsus|XP_002784006.1|H2A.X Perkinsus_H2A.X_294943912
 ------------------------------------------------------------
 -------MSGK-------GKGGRGKAGKKSG-------------SGAKSRSAKAGLQFPV
 GRIARYLKKGRYAK-RVGSGAPVYLAAVLEYLVAEILELAGN-----AARDHK-KTRIIP
@@ -668,7 +668,7 @@ A----------------SQEI---------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Rattus|157817664 Rattus|157817664|H2A.X Rattus_H2A.X_157817664
+>H2A.X|Rattus|NP_001102761.1 Rattus|NP_001102761.1|H2A.X Rattus_H2A.X_157817664
 ------------------------------------------------------------
 -------MSGR----------GK-TGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGHYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -678,7 +678,7 @@ A----------------PAGG--KKASQASQEY---------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Saccharomyces|398366187 Saccharomyces|398366187|H2A.X Saccharomyces_H2A.X_398366187
+>H2A.X|Saccharomyces|NP_010511.3 Saccharomyces|NP_010511.3|H2A.X Saccharomyces_H2A.X_398366187
 ------------------------------------------------------------
 ------MSGGK---------GGK--AGSAAK--------------ASQSRSAKAGLTFPV
 GRVHRLLRRGNYAQ-RIGSGAPVYLTAVLEYLAAEILELAGN-----AARDNK-KTRIIP
@@ -688,7 +688,7 @@ Q----------------EL-----------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Saccharomyces|6319470 Saccharomyces|6319470|H2A.X Saccharomyces_H2A.X_6319470
+>H2A.X|Saccharomyces|NP_009552.1 Saccharomyces|NP_009552.1|H2A.X Saccharomyces_H2A.X_6319470
 ------------------------------------------------------------
 ------MSGGK---------GGK-AGSAAKA--------------S-QSRSAKAGLTFPV
 GRVHRLLRRGNYAQ-RIGSGAPVYLTAVLEYLAAEILELAGN-----AARDNK-KTRIIP
@@ -698,7 +698,7 @@ Q----------------EL-----------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Schizosaccharomyces|19115333 Schizosaccharomyces|19115333|H2A.X Schizosaccharomyces_H2A.X_19115333
+>H2A.X|Schizosaccharomyces|NP_594421.1 Schizosaccharomyces|NP_594421.1|H2A.X Schizosaccharomyces_H2A.X_19115333
 ------------------------------------------------------------
 ------MSGGK--------SGGK-AAVAKSA----------------QSRSAKAGLAFPV
 GRVHRLLRKGNYAQ-RVGAGAPVYLAAVLEYLAAEILELAGN-----AARDNK-KTRIIP
@@ -708,7 +708,7 @@ E----------------L------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Tetrahymena|310870 Tetrahymena|310870|H2A.X Tetrahymena_H2A.X_310870
+>H2A.X|Tetrahymena|AAC37291.1 Tetrahymena|AAC37291.1|H2A.X Tetrahymena_H2A.X_310870
 ------------------------------------------------------------
 -----MSTTGK---------GGK-AKGKTAS-------------SKQVSRSARAGLQFPV
 GRISRFLKHGRYSE-RVGTGAPVYLAAVLEYLAAEVLELAGN-----AAKDNK-KTRIVP
@@ -718,7 +718,7 @@ Q----------------ASQDL--------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Toxoplasma|237831985 Toxoplasma|237831985|H2A.X Toxoplasma_H2A.X_237831985
+>H2A.X|Toxoplasma|XP_002365290.1 Toxoplasma|XP_002365290.1|H2A.X Toxoplasma_H2A.X_237831985
 ------------------------------------------------------------
 -------MSAK-------GAGGRKKTSSGKK----------------VSRSAKAGLQFPV
 SRIGRYLKKGRYAK-RVGVGAPVYLAAVLEYLCAEILELAGN-----AARDHK-KTRIIP
@@ -728,7 +728,7 @@ V----------------SQEF---------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Trichoplax|196012824 Trichoplax|196012824|H2A.X Trichoplax_H2A.X_196012824
+>H2A.X|Trichoplax|XP_002116274.1 Trichoplax|XP_002116274.1|H2A.X Trichoplax_H2A.X_196012824
 ------------------------------------------------------------
 -------MSGR----------GKGGKARNKA----------------KSRSTRAGLQFPV
 GRVHRMLRKGNYAE-RVGAGAPVYLAAVMEYLAAEILELAGN-----AARDNK-KQRIVP
@@ -738,7 +738,7 @@ K-----------------------KGSSQSQEY---------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Ustilago|758974979 Ustilago|758974979|H2A.X Ustilago_H2A.X_758974979
+>H2A.X|Ustilago|XP_011387544.1 Ustilago|XP_011387544.1|H2A.X Ustilago_H2A.X_758974979
 ------------------------------------------------------------
 -----MSSGGK--------SGGKAGDASSKA----------------QSRSAKAGLQFPV
 GRIHRLLRKGNYAQ-RVGAGAPVYLAAVLEYLAAEILELAGN-----AARDNK-KSRIIP
@@ -748,7 +748,7 @@ G----------------SQDI---------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Zea|670405864 Zea|670405864|H2A.X Zea_H2A.X_670405864
+>H2A.X|Zea|XP_008644553.1 Zea|XP_008644553.1|H2A.X Zea_H2A.X_670405864
 ------------------------------------------------------------
 -----MSSTGG---------GGRGKAKPATK---------------SVSRSSKAGLQFPV
 GRIARYLKAGKYAE-RVGAGAPVYLSAVLEYLAAEVLELAGN-----AARDNK-KNRIVP
@@ -758,7 +758,7 @@ QEF---------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.X|Zea|670444449 Zea|670444449|H2A.X Zea_H2A.X_670444449
+>H2A.X|Zea|XP_008662624.1 Zea|XP_008662624.1|H2A.X Zea_H2A.X_670444449
 ------------------------------------------------------------
 -------MSSG---------GGR-GKPKGSK---------------ALSRSTKAGLQFPV
 GRIARYLKAGKYAE-RVGGGAPVYLSAVLEYLAAEVLELAGN-----AARDNK-KNRIVP
@@ -768,7 +768,7 @@ I----------------GSASQEF------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Arabidopsis|15219078 Arabidopsis|15219078|H2A.Z Arabidopsis_H2A.Z_15219078
+>H2A.Z|Arabidopsis|NP_175683.1 Arabidopsis|NP_175683.1|H2A.Z Arabidopsis_H2A.Z_15219078
 ------------------------------------------------------------
 -------MSGK---GAKGLIMGKPSGSDKDKDKKKP-----------ITRSSRAGLQFPV
 GRVHRLLKTRSTAHGRVGATAAVYTAAILEYLTAEVLELAGN-----ASKDLK-VKRISP
@@ -778,7 +778,7 @@ RHLQLAIRGDEELDTLIK--GTIAGG---G-VIPHIHKS-----LINKSAKE--------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Arabidopsis|15224957 Arabidopsis|15224957|H2A.Z Arabidopsis_H2A.Z_15224957
+>H2A.Z|Arabidopsis|NP_181415.1 Arabidopsis|NP_181415.1|H2A.Z Arabidopsis_H2A.Z_15224957
 ------------------------------------------------------------
 ----MAGKGGK--GLLAAKTTAA-AANKDSV-KKKS-----------ISRSSRAGIQFPV
 GRIHRQLKQRVSAHGRVGATAAVYTASILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -788,7 +788,7 @@ RHLQLAIRGDEELDTLIK--GTIAGG---G-VIPHIHKS-----LVNKVTKD--------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Arabidopsis|15232536 Arabidopsis|15232536|H2A.Z Arabidopsis_H2A.Z_15232536
+>H2A.Z|Arabidopsis|NP_191019.1 Arabidopsis|NP_191019.1|H2A.Z Arabidopsis_H2A.Z_15232536
 ------------------------------------------------------------
 ----MAGKGGKGLVAAKTMAANKDKDKDKKK---------------PISRSARAGIQFPV
 GRIHRQLKTRVSAHGRVGATAAVYTASILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -798,7 +798,7 @@ RHLQLAIRGDEELDTLIK--GTIAGG---G-VIPHIHKS-----LINKTTKE--------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Arabidopsis|15236314 Arabidopsis|15236314|H2A.Z Arabidopsis_H2A.Z_15236314
+>H2A.Z|Arabidopsis|NP_193093.1 Arabidopsis|NP_193093.1|H2A.Z Arabidopsis_H2A.Z_15236314
 ------------------------------------------------------------
 -----MVCNTN---------ILKDVSTKISA-------------FENVRMIMVEGEMFQV
 ARIHKQLKNRVSAHSSVGATDVVYMTSILEYLTTEVLQLAEN-----TSKDLK-VKRITP
@@ -808,7 +808,7 @@ RHLQLAIRGDEELDTLIK--GTIIGG---S-VIPHIH-----------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Cryptosporidium|66357734 Cryptosporidium|66357734|H2A.Z Cryptosporidium_H2A.Z_66357734
+>H2A.Z|Cryptosporidium|XP_626045.1 Cryptosporidium|XP_626045.1|H2A.Z Cryptosporidium_H2A.Z_66357734
 ------------------------------------------------------------
 --MDGATSSGKIGGKVGGKVGGKGKAGSGKGSKKQP-----------TSRAARAGLQFPV
 GRIQRMLKHRIPGDCRVGSTASVYAAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -818,7 +818,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIEKSLMGKALIGKKGKKGNMSP---
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Danio|112807244 Danio|112807244|H2A.Z Danio_H2A.Z_112807244
+>H2A.Z|Danio|NP_001036788.1 Danio|NP_001036788.1|H2A.Z Danio_H2A.Z_112807244
 ------------------------------------------------------------
 ------MAGGK---------AGK-DSGKAKT--------------KAVSRSQRAGLQFPV
 GRIHRHLKTRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -828,7 +828,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGQQKTV-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Danio|24111226 Danio|24111226|H2A.Z Danio_H2A.Z_24111226
+>H2A.Z|Danio|NP_705930.1 Danio|NP_705930.1|H2A.Z Danio_H2A.Z_24111226
 ------------------------------------------------------------
 ------MAGGK---------AGK-DSGKAKA--------------KAVSRSQRAGLQFPV
 GRIHRHLKTRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -838,7 +838,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGQQKTA-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Dictyostelium|66807867 Dictyostelium|66807867|H2A.Z Dictyostelium_H2A.Z_66807867
+>H2A.Z|Dictyostelium|XP_637656.1 Dictyostelium|XP_637656.1|H2A.Z Dictyostelium_H2A.Z_66807867
 ------------------------------------------------------------
 -------MTES-------ETTSKKVNKRVKP----------------VPKSTKAGLIFPV
 GRIHRMLKNKVPLK-RVSILSSVYLAAILEYLASEVLELTISQVSIQSKEYHN-VRRISP
@@ -848,7 +848,7 @@ SI----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Drosophila|17738227 Drosophila|17738227|H2A.Z Drosophila_H2A.Z_17738227
+>H2A.Z|Drosophila|NP_524519.1 Drosophila|NP_524519.1|H2A.Z Drosophila_H2A.Z_17738227
 ------------------------------------------------------------
 ------MAGGK---------AGK-DSGKAKA--------------KAVSRSARAGLQFPV
 GRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -858,7 +858,7 @@ NVILSQAY----------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Gallus|121988 Gallus|121988|H2A.Z Gallus_H2A.Z_121988
+>H2A.Z|Gallus|P02272.2 Gallus|P02272.2|H2A.Z Gallus_H2A.Z_121988
 ------------------------------------------------------------
 ------MAGGK---------AGK-DSGKAKA--------------KAVSRSQRAGLQFPV
 GRIHRHLKTRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -868,7 +868,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGQQKTA-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Gallus|71897327 Gallus|71897327|H2A.Z Gallus_H2A.Z_71897327
+>H2A.Z|Gallus|NP_001026545.1 Gallus|NP_001026545.1|H2A.Z Gallus_H2A.Z_71897327
 ------------------------------------------------------------
 ------MAGGK---------AGK-DSGKTKT--------------KAVSRSQRAGLQFPV
 GRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -878,7 +878,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGQQKTV-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Homo|4504255 Homo|4504255|H2A.Z Homo_H2A.Z_4504255
+>H2A.Z|Homo|NP_002097.1 Homo|NP_002097.1|H2A.Z Homo_H2A.Z_4504255
 ------------------------------------------------------------
 ------MAGGK---------AGK-DSGKAKT--------------KAVSRSQRAGLQFPV
 GRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -888,7 +888,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGQQKTV-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Homo|6912616 Homo|6912616|H2A.Z Homo_H2A.Z_6912616
+>H2A.Z|Homo|NP_036544.1 Homo|NP_036544.1|H2A.Z Homo_H2A.Z_6912616
 ------------------------------------------------------------
 ------MAGGK---------AGK-DSGKAKA--------------KAVSRSQRAGLQFPV
 GRIHRHLKTRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -898,7 +898,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGQQKTA-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Nematostella|156225472 Nematostella|156225472|H2A.Z Nematostella_H2A.Z_156225472
+>H2A.Z|Nematostella|EDO46289.1 Nematostella|EDO46289.1|H2A.Z Nematostella_H2A.Z_156225472
 ------------------------------------------------------------
 ------MAGGK---------AGKDSKAKAKA----------------VSRSARAGLQFPV
 GRIHRHLKNRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -908,7 +908,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGANKPT-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Oryza|115455263 Oryza|115455263|H2A.Z Oryza_H2A.Z_115455263
+>H2A.Z|Oryza|NP_001051232.1 Oryza|NP_001051232.1|H2A.Z Oryza_H2A.Z_115455263
 ------------------------------------------------------------
 ----MAGKGGKGLLAAKTTAAKS-AEKDKGK---KA----------PVSRSSRAGLQFPV
 GRIHRQLKQRTQANGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -918,7 +918,7 @@ RHLQLAIRGDEELDTLIK--GTIAGG---G-VIPHIHKS-----LINKSSKE--------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Perkinsus|294899805 Perkinsus|294899805|H2A.Z Perkinsus_H2A.Z_294899805
+>H2A.Z|Perkinsus|XP_002776752.1 Perkinsus|XP_002776752.1|H2A.Z Perkinsus_H2A.Z_294899805
 ------------------------------------------------MSTRKQTDVSLP
 VPVVTQLAGGK-GIKGAGLQGGK-GGKGGKGAKVHGGKGKIGGKGSSITRSARAGLQFPV
 GRVRRYLKDRATANCRVGSTAAVYTAAILEYLTAEVLELAGN-----AAKDQK-VKRITP
@@ -928,7 +928,7 @@ RHLHLAIRGDDELDVLIR--ATIAGG---G-VVPYIHQS-----LTVKTPYHKKKRVM--
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Perkinsus|294944035 Perkinsus|294944035|H2A.Z Perkinsus_H2A.Z_294944035
+>H2A.Z|Perkinsus|XP_002784054.1 Perkinsus|XP_002784054.1|H2A.Z Perkinsus_H2A.Z_294944035
 ------------------------------------------------MSDLKKTDINKS
 VPVVTQLAGGK-GIKGAGLQGGK-GGKGGKGAKVHGGKGKMGGKGASMTRSARAGLQFPV
 GRVRRYLKDRATANCRVGSTAAVYTAAILEYLTAEVLELAGN-----AAKDQK-VKRITP
@@ -938,7 +938,7 @@ RHLHLAIRGDDELDVLIR--ATIAGG---G-VVPYIHQS-----LTAKAPYHKKKRVM--
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Perkinsus|294944037 Perkinsus|294944037|H2A.Z Perkinsus_H2A.Z_294944037
+>H2A.Z|Perkinsus|XP_002784055.1 Perkinsus|XP_002784055.1|H2A.Z Perkinsus_H2A.Z_294944037
 -----------------------------MSDLKKTDINKSVPVVTQLGRLLDVASLSTP
 SSSLFCLAGGK-GIKGAGLQGGK-GGKGGKGAKVHGGKGKIGGKGTSMTRSARAGLQFPV
 GRVRRYLKDRATANCRVGSTAAVYTAAILEYLTAEVLELAGN-----AAKDQK-VKRITP
@@ -948,7 +948,7 @@ RHLHLAIRGDDELDVLIR--ATIAGG---G-VVPYIHQS-----LTAKAPYHKKKRVM--
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Saccharomyces|6324562 Saccharomyces|6324562|H2A.Z Saccharomyces_H2A.Z_6324562
+>H2A.Z|Saccharomyces|NP_014631.1 Saccharomyces|NP_014631.1|H2A.Z Saccharomyces_H2A.Z_6324562
 ------------------------------------------------------------
 -------MSGK-------AHGGKGKSGAKDSGSLRS-----------QSSSARAGLQFPV
 GRIKRYLKRHATGRTRVGSKAAIYLTAVLEYLTAEVLELAGN-----AAKDLK-VKRITP
@@ -958,7 +958,7 @@ RHLQLAIRGDDELDSLIR--ATIASG---G-VLPHINKA-----LLLKVEKKGSKK----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Schizosaccharomyces|429240082 Schizosaccharomyces|429240082|H2A.Z Schizosaccharomyces_H2A.Z_429240082
+>H2A.Z|Schizosaccharomyces|NP_595630.3 Schizosaccharomyces|NP_595630.3|H2A.Z Schizosaccharomyces_H2A.Z_429240082
 ------------------------------------------------------------
 -----MSGGGK-----GKHVGGKGGSKIGER--------------GQMSHSARAGLQFPV
 GRVRRFLKAKTQNNMRVGAKSAVYSAAVLEYLTAEVLELAGN-----AAKDLK-VKRITP
@@ -968,7 +968,7 @@ RHLQLAIRGDEELDTLIR--ATIAGG---G-VLPHINKQ-----LLIRTKEKYPEEEEII
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Tetrahymena|10823 Tetrahymena|10823|H2A.Z Tetrahymena_H2A.Z_10823
+>H2A.Z|Tetrahymena|CAA33554.1 Tetrahymena|CAA33554.1|H2A.Z Tetrahymena_H2A.Z_10823
 ------------------------------------------------------------
 ------MAGGKGGKGGKGGKGGKVGGAKNKK--------------TPQSRSYKAGLQFPV
 GRIHRFLKGRVSAKNRVGATAAVYAAAILEYLTAEVLELAGN-----ASKDFK-VRRITP
@@ -978,7 +978,7 @@ EPR---------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Toxoplasma|237844891 Toxoplasma|237844891|H2A.Z Toxoplasma_H2A.Z_237844891
+>H2A.Z|Toxoplasma|XP_002371743.1 Toxoplasma|XP_002371743.1|H2A.Z Toxoplasma_H2A.Z_237844891
 ------------------------------------------------------------
 -MDGAGKVGGKVGGKVGGKVGGMGKGGKGKS-------GSGKGKKAPLSRAARAGLQFPV
 GRVHRMLKSRISSEGRVGSTAAVYASAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -988,7 +988,7 @@ RHLQLAIRGDEELDTLIK--ATIAGG---G-VIPHIHKS-----LMTKGPSTQPMKKAKK
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Trichoplax|196003262 Trichoplax|196003262|H2A.Z Trichoplax_H2A.Z_196003262
+>H2A.Z|Trichoplax|XP_002111498.1 Trichoplax|XP_002111498.1|H2A.Z Trichoplax_H2A.Z_196003262
 ------------------------------------------------------------
 ------MAGGK---------AGKDSKTKAKA----------------VSRSARAGLQFPV
 GRIHRHLKNRTTSHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -998,7 +998,7 @@ RHLQLAIRGDEELDSLIK--ATIAGG---G-VIPHIHKS-----LIGKKGANKPN-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Trypanosoma|72391930 Trypanosoma|72391930|H2A.Z Trypanosoma_H2A.Z_72391930
+>H2A.Z|Trypanosoma|XP_846259.1 Trypanosoma|XP_846259.1|H2A.Z Trypanosoma_H2A.Z_72391930
 ---------------------------MSLTGDDAVPQAPLVGGVAMSPEQASALTGGKL
 GGKAVGPAHGKGKGKGKGKRGGK-TGGKAGR---RD----------KMTRAARADLNFPV
 GRIHSRLKDGLNRKQRCGASAAIYCAALLEYLTSEVIELAGA-----AAKAQK-TERIKP
@@ -1008,7 +1008,7 @@ RHLLLAIRGDEELNQIVN--ATIARG---G-VVPFVHKS-----LEKKIIKKSKRGS---
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Zea|219362481 Zea|219362481|H2A.Z Zea_H2A.Z_219362481
+>H2A.Z|Zea|NP_001136523.1 Zea|NP_001136523.1|H2A.Z Zea_H2A.Z_219362481
 ------------------------------------------------------------
 ----MAGKGGKGLLAAKTTAAKSAEKDKGKK--------------APISRSSRAGLQFPV
 GRIHRQLKQRTQANGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -1018,7 +1018,7 @@ RHLQLAIRGDEELDTLIK--GTIAGG---G-VIPHIHKS-----LINKSSKE--------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->H2A.Z|Zea|226532207 Zea|226532207|H2A.Z Zea_H2A.Z_226532207
+>H2A.Z|Zea|NP_001141633.1 Zea|NP_001141633.1|H2A.Z Zea_H2A.Z_226532207
 ------------------------------------------------------------
 ----MAGKGGKGLLAAKTTAAKSTDKDKDRK-------------KAPVSRSSRAGLQFPV
 GRIHRQLKSRASAHGRVGATAAVYSAAILEYLTAEVLELAGN-----ASKDLK-VKRITP
@@ -1028,7 +1028,7 @@ RHLQLAIRGDEELDTLIK--GTIAGG---G-VIPHIHKS-----LINKTAKE--------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Ailuropoda|752439274 Ailuropoda|752439274|canonical_H2A Ailuropoda_canonical_H2A_752439274
+>canonical_H2A|Ailuropoda|XP_011215280.1 Ailuropoda|XP_011215280.1|canonical_H2A Ailuropoda_canonical_H2A_752439274
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1038,7 +1038,7 @@ RHLQLAIRNDEELNKLLG-RVTIAQG---G-VLPNIQAV-----LLPKKTESHHKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Apis|110764935 Apis|110764935|canonical_H2A Apis_canonical_H2A_110764935
+>canonical_H2A|Apis|XP_001119899.1 Apis|XP_001119899.1|canonical_H2A Apis_canonical_H2A_110764935
 ------------------------------------------------------------
 -------MSGR----------GKGGKAKAKA----------------KSRSNRAGLQFPV
 GRIHRLLRKGNYAE-RVGAGAPVYLAAVMEYLAAEVLELAGN-----AARDNK-KTRIIP
@@ -1048,7 +1048,7 @@ RHLQLAIRNDEELNKLLS-GVTIAQG---G-VLPNIQAV-----LLPKKTEKKA------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Arabidopsis|15223708 Arabidopsis|15223708|canonical_H2A Arabidopsis_canonical_H2A_15223708
+>canonical_H2A|Arabidopsis|NP_175517.1 Arabidopsis|NP_175517.1|canonical_H2A Arabidopsis_canonical_H2A_15223708
 ------------------------------------------------------------
 -------MAGR----------GKTLGSGSAK--------------KATTRSSKAGLQFPV
 GRIARFLKKGKYAE-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -1058,7 +1058,7 @@ RHIQLAVRNDEELSKLLG-DVTIANG---G-VMPNIHNL-----LLPKKTGASKPS---A
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Arabidopsis|15232330 Arabidopsis|15232330|canonical_H2A Arabidopsis_canonical_H2A_15232330
+>canonical_H2A|Arabidopsis|NP_188703.1 Arabidopsis|NP_188703.1|canonical_H2A Arabidopsis_canonical_H2A_15232330
 ------------------------------------------------------------
 -------MAGR----------GKTLGSGVAK--------------KSTSRSSKAGLQFPV
 GRIARFLKNGKYAT-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -1068,7 +1068,7 @@ RHIQLAVRNDEELSKLLG-DVTIANG---G-VMPNIHSL-----LLPKKAGASKPS---A
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Arabidopsis|15239697 Arabidopsis|15239697|canonical_H2A Arabidopsis_canonical_H2A_15239697
+>canonical_H2A|Arabidopsis|NP_200275.1 Arabidopsis|NP_200275.1|canonical_H2A Arabidopsis_canonical_H2A_15239697
 ------------------------------------------------------------
 -------MAGR---------GKTLGSGGAKK---------------ATSRSSKAGLQFPV
 GRIARFLKAGKYAE-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -1078,7 +1078,7 @@ RHIQLAVRNDEELSKLLG-DVTIANG---G-VMPNIHNL-----LLPKKAGASKPQED--
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Arabidopsis|334186954 Arabidopsis|334186954|canonical_H2A Arabidopsis_canonical_H2A_334186954
+>canonical_H2A|Arabidopsis|NP_001190852.1 Arabidopsis|NP_001190852.1|canonical_H2A Arabidopsis_canonical_H2A_334186954
 ------------------------------------------------------------
 -------MAGR----------GKQLGSGAAK--------------KSTSRSSKAGLQFPV
 GRIARFLKAGKYAE-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -1088,7 +1088,7 @@ RHIQLAVRNDEELSKLLG-DVTIANG---G-VMPNIHNL-----LLPKKAGSSKPT---E
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Beta|731349093 Beta|731349093|canonical_H2A Beta_canonical_H2A_731349093
+>canonical_H2A|Beta|XP_010685819.1 Beta|XP_010685819.1|canonical_H2A Beta_canonical_H2A_731349093
 ------------------------------------------------------------
 ---MDSTAGGK----AKKGAGGR-KGGGPKK--------------KPVSRSVKAGLQFPV
 GRIGRYLKKGRYAQ-RVGTGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KNRIIP
@@ -1098,7 +1098,7 @@ RHVLLAVRNDDELGKLLS-GVTIAHG---G-VLPNINPV-----LLPKKAGGDKA-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Bos|329663492 Bos|329663492|canonical_H2A Bos_canonical_H2A_329663492
+>canonical_H2A|Bos|NP_001192525.1 Bos|NP_001192525.1|canonical_H2A Bos_canonical_H2A_329663492
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1108,7 +1108,7 @@ RHLQLAIRNDEELNKLLG-RVTIAQG---G-VLPNIQAV-----LLPKKTESHHKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Caenorhabditis|17562014 Caenorhabditis|17562014|canonical_H2A Caenorhabditis_canonical_H2A_17562014
+>canonical_H2A|Caenorhabditis|NP_505463.1 Caenorhabditis|NP_505463.1|canonical_H2A Caenorhabditis_canonical_H2A_17562014
 ------------------------------------------------------------
 -------MSGR-------GKGGK-AKTGGKA----------------KSRSSRAGLQFPV
 GRLHRILRKGNYAQ-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIAP
@@ -1118,7 +1118,7 @@ RHLQLAVRNDEELNKLLA-GVTIAQG---G-VLPNIQAV-----LLPKKTAGDKE-----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Callithrix|675650858 Callithrix|675650858|canonical_H2A Callithrix_canonical_H2A_675650858
+>canonical_H2A|Callithrix|XP_008992112.1 Callithrix|XP_008992112.1|canonical_H2A Callithrix_canonical_H2A_675650858
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKVRA--------------KAKSRSSRAGLQFPV
 GRIHRLLRKGKYAD-RIGAGAPVYLAAVLEYLTAEILELAGN-----ASRDNK-KTRIIP
@@ -1128,7 +1128,7 @@ RHLQLAIRNDEELNKLLG-GVTIAQG---G-VLPNIQAV-----LLPKKTESHHHK---S
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Canis|545554572 Canis|545554572|canonical_H2A Canis_canonical_H2A_545554572
+>canonical_H2A|Canis|XP_005640150.1 Canis|XP_005640150.1|canonical_H2A Canis_canonical_H2A_545554572
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1138,7 +1138,7 @@ RHLQLAIRNDEELNKLLG-RVTIAQG---G-VLPNIQAV-----LLPKKTESHHKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Cavia|348586313 Cavia|348586313|canonical_H2A Cavia_canonical_H2A_348586313
+>canonical_H2A|Cavia|XP_003478913.1 Cavia|XP_003478913.1|canonical_H2A Cavia_canonical_H2A_348586313
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYMAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1148,7 +1148,7 @@ GK----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Cricetulus|625285905 Cricetulus|625285905|canonical_H2A Cricetulus_canonical_H2A_625285905
+>canonical_H2A|Cricetulus|XP_007634672.1 Cricetulus|XP_007634672.1|canonical_H2A Cricetulus_canonical_H2A_625285905
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYSE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1158,7 +1158,7 @@ GK----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Danio|688617969 Danio|688617969|canonical_H2A Danio_canonical_H2A_688617969
+>canonical_H2A|Danio|XP_009296490.1 Danio|XP_009296490.1|canonical_H2A Danio_canonical_H2A_688617969
 ------------------------------------------------------------
 -------MSGR----------GK-TGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1168,7 +1168,7 @@ RHLQLAVRNDEELNKLLG-GVTIAQG---G-VLPNIQAV-----LLPKKTEKAAKGK---
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Dictyostelium|66807867 Dictyostelium|66807867|canonical_H2A Dictyostelium_canonical_H2A_66807867
+>canonical_H2A|Dictyostelium|XP_637656.1 Dictyostelium|XP_637656.1|canonical_H2A Dictyostelium_canonical_H2A_66807867
 ------------------------------------------------------------
 -------MTES-------ETTSKKVNKRVKP----------------VPKSTKAGLIFPV
 GRIHRMLKNKVPLK-RVSILSSVYLAAILEYLASEVLELTISQVSIQSKEYHN-VRRISP
@@ -1178,7 +1178,7 @@ SI----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Drosophila|24585673 Drosophila|24585673|canonical_H2A Drosophila_canonical_H2A_24585673
+>canonical_H2A|Drosophila|NP_724343.1 Drosophila|NP_724343.1|canonical_H2A Drosophila_canonical_H2A_24585673
 ------------------------------------------------------------
 -------MSGR----------GK-GGKVKGK---------------AKSRSNRAGLQFPV
 GRIHRLLRKGNYAE-RVGAGAPVYLAAVMEYLAAEVLELAGN-----AARDNK-KTRIIP
@@ -1188,7 +1188,7 @@ RHLQLAIRNDEELNKLLS-GVTIAQG---G-VLPNIQAV-----LLPKKTEKKA------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Gallus|118405202 Gallus|118405202|canonical_H2A Gallus_canonical_H2A_118405202
+>canonical_H2A|Gallus|NP_001072943.1 Gallus|NP_001072943.1|canonical_H2A Gallus_canonical_H2A_118405202
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1198,7 +1198,7 @@ RHLQLAIRNDEELNKLLG-KVTIAQG---G-VLPNIQAV-----LLPKKTDSHKAKAK--
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Heterocephalus|512971505 Heterocephalus|512971505|canonical_H2A Heterocephalus_canonical_H2A_512971505
+>canonical_H2A|Heterocephalus|XP_004847876.1 Heterocephalus|XP_004847876.1|canonical_H2A Heterocephalus_canonical_H2A_512971505
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1208,7 +1208,7 @@ RHLQLAIRNDEELNKLLG-KVTIAQG---G-VLPNIQAV-----LLPKKTESHHKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Homo|10645195 Homo|10645195|canonical_H2A Homo_canonical_H2A_10645195
+>canonical_H2A|Homo|NP_066390.1 Homo|NP_066390.1|canonical_H2A Homo_canonical_H2A_10645195
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYSE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1218,7 +1218,7 @@ GK----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Ixodes|215500063 Ixodes|215500063|canonical_H2A Ixodes_canonical_H2A_215500063
+>canonical_H2A|Ixodes|EEC09557.1 Ixodes|EEC09557.1|canonical_H2A Ixodes_canonical_H2A_215500063
 ------------------------------------------------------------
 -------MSGR----------GKGGKVKGKS----------------KTRSSRAGLQFPV
 GRIHRLLRKGNYAE-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIIP
@@ -1228,7 +1228,7 @@ RHLQLAIRNDEELNKLLS-GVTIAQG---G-VLPNIQAV-----LLPKKTEKKS------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Loxodonta|344307320 Loxodonta|344307320|canonical_H2A Loxodonta_canonical_H2A_344307320
+>canonical_H2A|Loxodonta|XP_003422330.1 Loxodonta|XP_003422330.1|canonical_H2A Loxodonta_canonical_H2A_344307320
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1238,7 +1238,7 @@ GK----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Macaca|302565564 Macaca|302565564|canonical_H2A Macaca_canonical_H2A_302565564
+>canonical_H2A|Macaca|NP_001180653.1 Macaca|NP_001180653.1|canonical_H2A Macaca_canonical_H2A_302565564
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYSE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1248,7 +1248,7 @@ GK----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Monodelphis|612000617 Monodelphis|612000617|canonical_H2A Monodelphis_canonical_H2A_612000617
+>canonical_H2A|Monodelphis|XP_007485414.1 Monodelphis|XP_007485414.1|canonical_H2A Monodelphis_canonical_H2A_612000617
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYMAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1258,7 +1258,7 @@ RHLQLAIRNDEELNKLLG-KVTIAQG---G-VLPNIQAV-----LLPKKTESHHKT----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Mus|30061393 Mus|30061393|canonical_H2A Mus_canonical_H2A_30061393
+>canonical_H2A|Mus|NP_835489.1 Mus|NP_835489.1|canonical_H2A Mus_canonical_H2A_30061393
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYSE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1268,7 +1268,7 @@ GK----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Nematostella|156227602 Nematostella|156227602|canonical_H2A Nematostella_canonical_H2A_156227602
+>canonical_H2A|Nematostella|EDO48405.1 Nematostella|EDO48405.1|canonical_H2A Nematostella_canonical_H2A_156227602
 ------------------------------------------------------------
 -------MSGR----------GKGKAKGTKS----------------KTRSSRAGLQFPV
 GRIHRHLRKGNYAE-RVGAGAPVYMAAVLEYLSAEILELAGN-----AARDNK-KTRIIP
@@ -1278,7 +1278,7 @@ RHLQLAVRNDEELNRLLH-GVTIAQG---G-VLPNIQAV-----LLPKKTEKKAKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Nomascus|441622123 Nomascus|441622123|canonical_H2A Nomascus_canonical_H2A_441622123
+>canonical_H2A|Nomascus|XP_004088806.1 Nomascus|XP_004088806.1|canonical_H2A Nomascus_canonical_H2A_441622123
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKSRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1288,7 +1288,7 @@ RHLQLAIRNDEELNKLLG-RVTIAQG---G-VLPNIQAV-----LLPKKTESHHKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Oryctolagus|655885615 Oryctolagus|655885615|canonical_H2A Oryctolagus_canonical_H2A_655885615
+>canonical_H2A|Oryctolagus|XP_008246690.1 Oryctolagus|XP_008246690.1|canonical_H2A Oryctolagus_canonical_H2A_655885615
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1298,7 +1298,7 @@ RHLQLAIRNDEELNKLLG-KVTIAQG---G-VLPNIQAV-----LLPKKTESHHKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Oryza|115488402 Oryza|115488402|canonical_H2A Oryza_canonical_H2A_115488402
+>canonical_H2A|Oryza|NP_001066688.1 Oryza|NP_001066688.1|canonical_H2A Oryza_canonical_H2A_115488402
 ------------------------------------------------------------
 -------MAGR----------GKAIGAGAAK--------------KATSRSSKAGLQFPV
 GRIARFLKAGKYAE-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -1308,7 +1308,7 @@ A----------------DDDDN--------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Pan|694915112 Pan|694915112|canonical_H2A Pan_canonical_H2A_694915112
+>canonical_H2A|Pan|XP_009448979.1 Pan|XP_009448979.1|canonical_H2A Pan_canonical_H2A_694915112
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1318,7 +1318,7 @@ GKA---------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Perkinsus|239897365 Perkinsus|239897365|canonical_H2A Perkinsus_canonical_H2A_239897365
+>canonical_H2A|Perkinsus|EER16127.1 Perkinsus|EER16127.1|canonical_H2A Perkinsus_canonical_H2A_239897365
 ------------------------------------------------------------
 -------MSGK-------GKGAVLEGMHKDK----------------KTRSAKAGLQFPV
 GRIARYMKHGRYAK-RVGAGAPVYLAAVLEYLVAEILELAGN-----AARDHK-KTRINP
@@ -1328,7 +1328,7 @@ RHIQLAVRNDDELNEFLS-NVTIASG---G-VLPNIHTS-----LLPKKSTKKSME----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Rattus|75832135 Rattus|75832135|canonical_H2A Rattus_canonical_H2A_75832135
+>canonical_H2A|Rattus|NP_068612.2 Rattus|NP_068612.2|canonical_H2A Rattus_canonical_H2A_75832135
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA---KA-----------KSRSSRAGLQFPV
 GRVHRLLRKGNYSE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1338,7 +1338,7 @@ RHLQLAIRNDEELNKLLG-RVTIAQG---G-VLPNIQAV-----LLPKKTESHHKAKGK-
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Sus|335291892 Sus|335291892|canonical_H2A Sus_canonical_H2A_335291892
+>canonical_H2A|Sus|XP_003356618.1 Sus|XP_003356618.1|canonical_H2A Sus_canonical_H2A_335291892
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKARA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1348,7 +1348,7 @@ RHLQLAIRNDEELNKLLG-KVTIAQG---G-VLPNIQAV-----LLPKKTESHHKA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Tetrahymena|310872 Tetrahymena|310872|canonical_H2A Tetrahymena_canonical_H2A_310872
+>canonical_H2A|Tetrahymena|AAC37292.1 Tetrahymena|AAC37292.1|canonical_H2A Tetrahymena_canonical_H2A_310872
 ------------------------------------------------------------
 -----MSTTGK---------GGKAKGKTASS--------------KQVSRSARAGLQFPV
 GRISRFLKNGRYSE-RIGTGAPVYLAAVLEYLAAEVLELAGN-----AAKDNK-KTRIVP
@@ -1358,7 +1358,7 @@ H-----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Toxoplasma|237831941 Toxoplasma|237831941|canonical_H2A Toxoplasma_canonical_H2A_237831941
+>canonical_H2A|Toxoplasma|XP_002365268.1 Toxoplasma|XP_002365268.1|canonical_H2A Toxoplasma_canonical_H2A_237831941
 ------------------------------------------------------------
 -------MSAK-------GKGGR-AKKSGKS----------------SSKSAKAGLQFPV
 GRIGRYLKKGRYAK-RVGAGAPVYMAAVLEYLCAEILELAGN-----AARDHK-KTRIIP
@@ -1368,7 +1368,7 @@ RHIQLAVRNDEELSKFLG-GVTIASG---G-VMPNVHSV-----LLPKKSKGKKSQ----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Trypanosoma|72391222 Trypanosoma|72391222|canonical_H2A Trypanosoma_canonical_H2A_72391222
+>canonical_H2A|Trypanosoma|XP_845905.1 Trypanosoma|XP_845905.1|canonical_H2A Trypanosoma_canonical_H2A_72391222
 ------------------------------------------------------------
 -------MATP-----------KQAVKKASK--------------GGSSRSVKAGLIFPV
 GRVGTLLRRGQYAR-RIGASGAVYMAAVLEYLTAELLELSVK----AAAQQTKKTKRLTP
@@ -1378,7 +1378,7 @@ V-----------------------------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Ustilago|758974979 Ustilago|758974979|canonical_H2A Ustilago_canonical_H2A_758974979
+>canonical_H2A|Ustilago|XP_011387544.1 Ustilago|XP_011387544.1|canonical_H2A Ustilago_canonical_H2A_758974979
 ------------------------------------------------------------
 -----MSSGGK--------SGGKAGDASSKA----------------QSRSAKAGLQFPV
 GRIHRLLRKGNYAQ-RVGAGAPVYLAAVLEYLAAEILELAGN-----AARDNK-KSRIIP
@@ -1388,7 +1388,7 @@ G----------------SQDI---------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Xenopus|147898582 Xenopus|147898582|canonical_H2A Xenopus_canonical_H2A_147898582
+>canonical_H2A|Xenopus|NP_001087948.1 Xenopus|NP_001087948.1|canonical_H2A Xenopus_canonical_H2A_147898582
 ------------------------------------------------------------
 -------MSGR----------GK-QGGKTRA--------------KAKTRSSRAGLQFPV
 GRVHRLLRKGNYAE-RVGAGAPVYLAAVLEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1398,7 +1398,7 @@ RHLQLAVRNDEELNKLLG-RVTIAQG---G-VLPNIQSV-----LLPKKTESSKSA----
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Zea|212723398 Zea|212723398|canonical_H2A Zea_canonical_H2A_212723398
+>canonical_H2A|Zea|NP_001132837.1 Zea|NP_001132837.1|canonical_H2A Zea_canonical_H2A_212723398
 ------------------------------------------------------------
 -------MAGR----------GKAIGSGAAK--------------KATSRSSKAGLQFPV
 GRIARFLKAGKYAE-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -1408,7 +1408,7 @@ A----------------AGDED--------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->canonical_H2A|Zea|226504426 Zea|226504426|canonical_H2A Zea_canonical_H2A_226504426
+>canonical_H2A|Zea|NP_001141988.1 Zea|NP_001141988.1|canonical_H2A Zea_canonical_H2A_226504426
 ------------------------------------------------------------
 -------MAGR----------GKAIGAGAAK--------------KATSRSSKAGLQFPV
 GRIARFLKAGKYAE-RVGAGAPVYLAAVLEYLAAEVLELAGN-----AARDNK-KTRIVP
@@ -1418,7 +1418,7 @@ V----------------DDDDN--------------------------------------
 ------------------------------------------------------------
 ------------------------------------------------------------
 ----------
->macroH2A|Danio|70887615 Danio|70887615|macroH2A Danio_macroH2A_70887615
+>macroH2A|Danio|NP_001020673.1 Danio|NP_001020673.1|macroH2A Danio_macroH2A_70887615
 ------------------------------------------------------------
 -------MSAR---------GGK---KKITK----------------LSRSARAGVIFPV
 GRMMRYLRTGTHKY-RIGMGAPVYMAAVIEYLAAEILELAGN-----AARDNK-KGRITP
@@ -1428,7 +1428,7 @@ LSAKSLFLGQKLSLTESEISKIGTIKVEGIINPTNAEIDLKEGIGNALEKTGGKDFLETV
 KELRKSQGPLEVASVAVSQANGMAARFIIHCHVPQWG--SDKCEDQLEKTVKNCLSAAEE
 KKLKSVAFPSLPAGRNGFPKQTAAQLILKAISNHFVSATTSSLKNIYFVLFDSESIGIYL
 QEMAKMDAK-
->macroH2A|Gallus|3395780 Gallus|3395780|macroH2A Gallus_macroH2A_3395780
+>macroH2A|Gallus|AAC28846.1 Gallus|AAC28846.1|macroH2A Gallus_macroH2A_3395780
 ------------------------------------------------------------
 -------MSSR---------GGK---KKSTK----------------TSRSAKAGVIFPV
 GRMLRYIKKGHPKY-RIGVGAPVYMAAVLEYLTAEILELAGN-----AARDNK-KGRVTP
@@ -1438,7 +1438,7 @@ LSTKSLFLGQKLQVVQADIATIDS---DAVVHPTNSDFYTGGEVGSTLEKKGGKEFVEAV
 IELRKKNGPLDIAGAVVSAGHGLPAKFVIHCNSPGWG--SDKCEELLEKTVKNCLALADE
 KKLKSIAFPSIGSGRNGFPKQTAAQLILKAISSYFVSTMSSSIKTVYFVLFDSESIGIYV
 QEMAKLDAN-
->macroH2A|Gallus|45384360 Gallus|45384360|macroH2A Gallus_macroH2A_45384360
+>macroH2A|Gallus|NP_990338.1 Gallus|NP_990338.1|macroH2A Gallus_macroH2A_45384360
 ------------------------------------------------------------
 -------MSSR---------GGK---KKSTK----------------TSRSAKAGVIFPV
 GRMLRYIKKGHPKY-RIGVGAPVYMAAVLEYLTAEILELAGN-----AARDNK-KGRVTP
@@ -1448,7 +1448,7 @@ LSTKSLFLGQKLNLIHSEISNLAGFEVEAIINPTNADIDLKDDLGSTLEKKGGKEFVEAV
 IELRKKNGPLDIAGAVVSAGHGLPAKFVIHCNSPGWG--SDKCEELLEKTVKNCLALADE
 KKLKSIAFPSIGSGRNGFPKQTAAQLILKAISSYFVSTMSSSIKTVYFVLFDSESIGIYV
 QEMAKLDAN-
->macroH2A|Gallus|472824980 Gallus|472824980|macroH2A Gallus_macroH2A_472824980
+>macroH2A|Gallus|NP_001264267.1 Gallus|NP_001264267.1|macroH2A Gallus_macroH2A_472824980
 ------------------------------------------------------------
 -------MSGR---------SGK---KKMSK----------------LSRSSRAGVIFPV
 GRMMRYLKKGTYKY-RIGVGAPVYMAAVIEYLAAEILELAGN-----AARDNK-KGRIAP
@@ -1458,7 +1458,7 @@ LSSKSLVPGQKLSLTQSDISHIGSMKVEGIVHPTTAEIDLKEEIGKALEKAGGKEFLETV
 KELRKSQGPLEVAEAALTQSSGLAAKFVIHCHIPQWG--SDKCEEQLEETIKNCLTAAED
 KKLKSVAFPPFPSGRNCFPKQTAAQVTLRAISTHFDGTSSSSLKNIYFLLFDSESIGIYV
 QEMAKLDTK-
->macroH2A|Homo|530380257 Homo|530380257|macroH2A Homo_macroH2A_530380257
+>macroH2A|Homo|XP_005272189.1 Homo|XP_005272189.1|macroH2A Homo_macroH2A_530380257
 ------------------------------------------------------------
 -------MSSR---------GGK---KKSTK----------------TSRSAKAGVIFPV
 GRMLRYIKKGHPKY-RIGVGAPVYMAAVLEYLTAEILELAGN-----AARDNK-KGRVTP
@@ -1468,7 +1468,7 @@ LSTKSLFLGQKLQVVQADIASI---DSDAVVHPTNTDFYIGGEVGNTLEKKGGKEFVEAV
 LELRKKNGPLEVAGAAVSAGHGLPAKFVIHCNSPVWG--ADKCEELLEKTVKNCLALADD
 KKLKSIAFPSIGSGRNGFPKQTAAQLILKAISSYFVSTMSSSIKTVYFVLFDSESIGIYV
 QEMAKLDAN-
->macroH2A|Homo|8923920 Homo|8923920|macroH2A Homo_macroH2A_8923920
+>macroH2A|Homo|NP_061119.1 Homo|NP_061119.1|macroH2A Homo_macroH2A_8923920
 ------------------------------------------------------------
 -------MSGR---------SGK---KKMSK----------------LSRSARAGVIFPV
 GRLMRYLKKGTFKY-RISVGAPVYMAAVIEYLAAEILELAGN-----AARDNK-KARIAP
@@ -1478,7 +1478,7 @@ LSSKSLVLGQKLSLTQSDISHIGSMRVEGIVHPTTAEIDLKEDIGKALEKAGGKEFLETV
 KELRKSQGPLEVAEAAVSQSSGLAAKFVIHCHIPQWG--SDKCEEQLEETIKNCLSAAED
 KKLKSVAFPPFPSGRNCFPKQTAAQVTLKAISAHFDDSSASSLKNVYFLLFDSESIGIYV
 QEMAKLDAK-
->macroH2A|Homo|93141018 Homo|93141018|macroH2A Homo_macroH2A_93141018
+>macroH2A|Homo|NP_613258.2 Homo|NP_613258.2|macroH2A Homo_macroH2A_93141018
 ------------------------------------------------------------
 -------MSSR---------GGK---KKSTK----------------TSRSAKAGVIFPV
 GRMLRYIKKGHPKY-RIGVGAPVYMAAVLEYLTAEILELAGN-----AARDNK-KGRVTP
@@ -1488,7 +1488,7 @@ LSTKSLFLGQKLNLIHSEISNLAGFEVEAIINPTNADIDLKDDLGNTLEKKGGKEFVEAV
 LELRKKNGPLEVAGAAVSAGHGLPAKFVIHCNSPVWG--ADKCEELLEKTVKNCLALADD
 KKLKSIAFPSIGSGRNGFPKQTAAQLILKAISSYFVSTMSSSIKTVYFVLFDSESIGIYV
 QEMAKLDAN-
->macroH2A|Ixodes|241122402 Ixodes|241122402|macroH2A Ixodes_macroH2A_241122402
+>macroH2A|Ixodes|XP_002403551.1 Ixodes|XP_002403551.1|macroH2A Ixodes_macroH2A_241122402
 ------------------------------------------------------------
 -------MSAR---------GGK---KRAKV----------------VSKSTKAGVLFPV
 GRMRRYLKKGTHHF-RIGAGAPVYMAAVIEYLSGEAISCQDS-----SPRDPL-LSALTK
@@ -1498,7 +1498,7 @@ TLVKHKTGLSLSVQLTVIQGDMASVTADAAIHPTNASLSLSGEVGQVLEKAGGKEFVQEV
 KDLFSAHGPLESAGAVICPGHQFPAKFVIHCNVPSGS------SEPLEKCVRNCLALADE
 KNIRVLAVPPLATHSVASQKQQAAQTILKAISNYFVNVMSSSLKQIYFVLSDMESIGIYT
 SELAKLDS--
->macroH2A|Nematostella|156396795 Nematostella|156396795|macroH2A Nematostella_macroH2A_156396795
+>macroH2A|Nematostella|XP_001637578.1 Nematostella|XP_001637578.1|macroH2A Nematostella_macroH2A_156396795
 ------------------------------------------------------------
 -------MSAR---------GGK-AAKRAKA----------------VSRSAKAGLQFPV
 SRVHRYLRKCTHHY-RISAAAPVYQAAVMEYLTAEILELAGN-----AARDNK-KTRIIP
@@ -1508,7 +1508,7 @@ LSEKTLFLGQKLTVVQGDIAAIDA---DAVVLPTNAKFKLEGEVGEALKKAGGKEFKDEI
 KKLSEDNGDLALLDAAICDGHNFPAAYVISLHSPVYSEDSTTASDDLEKAVKNVLTIADE
 KNLKILAIPSIGTGSNKYPKDLAAQVTLKAISNYFVSAMASSLKQIYFVLSDPENIGMYT
 MELARLDS--
->macroH2A|Trichoplax|196003430 Trichoplax|196003430|macroH2A Trichoplax_macroH2A_196003430
+>macroH2A|Trichoplax|XP_002111582.1 Trichoplax|XP_002111582.1|macroH2A Trichoplax_macroH2A_196003430
 ------------------------------------------------------------
 -------MSGR---------GGK---ARKKP----------------SSRSARAGLQFPV
 GRMHRRLKSSTHHL-RIGSGAPVYLAACIEYLTAEILELAGN-----AARDNK-KLRIIP

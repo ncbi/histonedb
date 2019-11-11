@@ -480,7 +480,7 @@ def get_aln_and_features(request, ids=None):
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
         msa = MultipleSeqAlignment(sequences)
         a = SummaryInfo(msa)
-        cons = Sequence(id=sequence_label, variant_id=variants[0].id, taxonomy_id=1, sequence=a.dumb_consensus(threshold=0.1, ambiguous='X').tostring())
+        cons = Sequence(id=sequence_label, variant_id=variants[0].id, taxonomy_id=1, sequence=str(a.dumb_consensus(threshold=0.1, ambiguous='X')))
 
         save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
         if not os.path.exists(save_dir):
@@ -492,8 +492,8 @@ def get_aln_and_features(request, ids=None):
         unique_sequences = [sequences[0]] if len(sequences) == 2 and sequences[0].id == sequences[1].id else sequences
         # doing the Sequence.short_description work
         #Note that the gffs are also generated with the short description not
-        sequences = [{"name":"QUERY" if "QUERY" in s.id else Sequence.long_to_short_description(s.id), "seq":s.seq.tostring()} for s in unique_sequences]
-        # sequences = [{"name":s.id, "seq":s.seq.tostring()} for s in sequences]
+        sequences = [{"name":"QUERY" if "QUERY" in s.id else Sequence.long_to_short_description(s.id), "seq":str(s.seq)} for s in unique_sequences]
+        # sequences = [{"name":s.id, "seq":str(s.seq)} for s in sequences]
         
         if sequence_label == "Consensus":
             sequences.insert(0, cons.to_dict(id=True))
@@ -620,7 +620,7 @@ def get_seed_aln_and_features(request, seed):
             response.write(pdf.read())
     else:
         #Default format is json
-        sequences = [{"name":seq.id, "seq":seq.seq.tostring()} for seq in limited_seqs()]
+        sequences = [{"name":seq.id, "seq":str(seq.seq)} for seq in limited_seqs()]
         result = {"seqs":sequences, "features":features}
         response.write(json.dumps(result))
 

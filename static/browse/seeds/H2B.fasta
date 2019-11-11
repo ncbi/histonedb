@@ -1,289 +1,289 @@
->H2B.1|Canis|545554624 Canis|545554624|H2B.1 Canis_H2B.1_545554624
+>H2B.1|Canis|XP_005640164.1 Canis|XP_005640164.1|H2B.1 Canis_H2B.1_545554624
 -------------------------------------------------MPELTSKGTT-
 --ISKK-----G-FKRAVA----------KTQKK-EGK----------KRRRCRK--E--
 -SYSIYIYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->H2B.1|Homo|24586679 Homo|24586679|H2B.1 Homo_H2B.1_24586679
+>H2B.1|Homo|NP_733759.1 Homo|NP_733759.1|H2B.1 Homo_H2B.1_24586679
 -------------------------------------------------MPEVSSKGAT-
 --ISKK-----G-FKKAVV----------KTQKK-EGK----------KRKRTRK--E--
 -SYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIASEASRLAHY----SKRSTIS
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->H2B.1|Mus|28316750 Mus|28316750|H2B.1 Mus_H2B.1_28316750
+>H2B.1|Mus|NP_783594.1 Mus|NP_783594.1|H2B.1 Mus_H2B.1_28316750
 -------------------------------------------------MPEVAVKGAT-
 --ISKK-----G-FKKAVT----------KTQKK-EGR----------KRKRCRK--E--
 -SYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIASEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->H2B.1|Rattus|12025524 Rattus|12025524|H2B.1 Rattus_H2B.1_12025524
+>H2B.1|Rattus|NP_072169.1 Rattus|NP_072169.1|H2B.1 Rattus_H2B.1_12025524
 -------------------------------------------------MPEVSAKGTT-
 --ISKK-----G-FKKAVT----------KTQKK-EGR----------KRKRCRE--E--
 -SYSIYIYKVLKQVHPDTGISSKAMSIMNSFVTDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->H2B.W|Ailuropoda|301781100 Ailuropoda|301781100|H2B.W Ailuropoda_H2B.W_301781100
+>H2B.W|Ailuropoda|XP_002925981.1 Ailuropoda|XP_002925981.1|H2B.W Ailuropoda_H2B.W_301781100
 -------------------------------------------------MAEPGCETSS-
 --EESL-----GTEEPSAA--------NPKSPKQKQKQPRRQ------CRRRCRRCPN--
 -SFATYFPRVLKQVHEGLSLSKKAVSVMDSFLKDIFEHIADEAAHLARSTKGSNKHSTIN
 SREIQTAVRLLLPGEIGKHTVSKATKAVIRFQRCE--------------
->H2B.W|Bos|296470943 Bos|296470943|H2B.W Bos_H2B.W_296470943
+>H2B.W|Bos|DAA13058.1 Bos|DAA13058.1|H2B.W Bos_H2B.W_296470943
 -------MGIGGSILSETSSDSYEEDVITKETGISEIEPSEKEMAKVETSKPDPYDAEPI
 KVETSKPDPYDAEPKKAETSKPDPYDAEPKKAKQKTAKGRR-------RRRHCHH--DSF
 SSFATYFPRVLRQIHKGMSLSHDSVNILDSFVKDTFERIAEEAGRLAGD----NKRRTIT
 TEDIEAAVRLLLPGKLGKYAVLKATKSLITYRTCK--------------
->H2B.W|Canis|545560116 Canis|545560116|H2B.W Canis_H2B.W_545560116
+>H2B.W|Canis|XP_548517.2 Canis|XP_548517.2|H2B.W Canis_H2B.W_545560116
 MIPGKPEEGKGSSEGPICDTEVACDVRKCSDYKGASAPQQPPLSVLLSCWEGEPHMAEPG
 CETSSEECLGTKEPREAEP----------ETPKRKKPRRQ--------CHRRCRR--SRS
 DSFAIYFPRVLKQVDEGLSLSQKAVSIMDSFVKDIFERIADEASRLARS----TKRSTIT
 SREIQTAVRLLLPGEIGKYAVSEATKALMRNQVGALEKQVKNVLSLGCG
->H2B.W|Homo|223590216 Homo|223590216|H2B.W Homo_H2B.W_223590216
+>H2B.W|Homo|Q7Z2G1.2 Homo|Q7Z2G1.2|H2B.W Homo_H2B.W_223590216
 ---------------------------MLRTEVPRLPRSTTAIVWSCHLMATASAMAGPS
 SETTSEEQLITQEPKEANS-----TTSQKQSKQRKRGRHGPRR-----CHSNCRG--D--
 -SFATYFRRVLKQVHQGLSLSREAVSVMDSLVHDILDRIATEAGRLARS----TKRQTIT
 AWETRMAVRLLLPGQMGKLAESEGTKAVLRTSLYAIQQQRK--------
->H2B.W|Macaca|302564969 Macaca|302564969|H2B.W Macaca_H2B.W_302564969
+>H2B.W|Macaca|NP_001180847.1 Macaca|NP_001180847.1|H2B.W Macaca_H2B.W_302564969
 ---------------------------MLRTQVPPLLRSTTAIVWSCRVMAAASAMAEPS
 SETTSEEQLITQEPKEANSTMAQKQSKQRKRGRRGPCR----------CHANCRG--D--
 -SFATYFRRVLKQVHQGLSLSREAVSVMDSLVHDILDRIATEAGRLARS----TKRQTIT
 AWETRIAVRLLLPGEMGKLAESEGTKAVLRTSLYAVQQQRK--------
->H2B.W|Oryctolagus|291407712 Oryctolagus|291407712|H2B.W Oryctolagus_H2B.W_291407712
+>H2B.W|Oryctolagus|XP_002720211.1 Oryctolagus|XP_002720211.1|H2B.W Oryctolagus_H2B.W_291407712
 -------------------------------------------------MAEPASHVASE
 ENLSLE-------PKTTAS----------STPKEKQPR----------RRRRRRQ--GHN
 YSFASYFPKVLKHVHKGLSLSKEAKGVMDSIVRDVFERIAHEAASLVRY----SKHSTLT
 SRDVQSAVRLLLPGQLHKHADVEGTKALLKFITHP--------------
->H2B.Z|Plasmodium|124511826 Plasmodium|124511826|H2B.Z Plasmodium_H2B.Z_124511826
+>H2B.Z|Plasmodium|XP_001349046.1 Plasmodium|XP_001349046.1|H2B.Z Plasmodium_H2B.Z_124511826
 ------------------------------------------------MSGKGPAQKSQ-
 --AAKK-----------------------TAGKTLGPR----------HKRKRRT--E--
 -SFSLYIFKVLKQVHPETGVTKKSMNIMNSFINDIFDRLVTEATRLIRY----NKKRTLS
 SREIQTAVRLLLPGELSKHAVSEGTKAVTKYTTSAA-------------
->H2B.Z|Plasmodium|68073549 Plasmodium|68073549|H2B.Z Plasmodium_H2B.Z_68073549
+>H2B.Z|Plasmodium|XP_678689.1 Plasmodium|XP_678689.1|H2B.Z Plasmodium_H2B.Z_68073549
 ------------------------------------------------MSGKGPAQKSQ-
 --AAKK-----------------------TAGKTLGPR----------HKRKRRT--E--
 -SFSLYIFKVLKQVHPETGVTKKSMNIMNSFINDIFDRLVTEATRLIRY----NKKRTLS
 SREIQTAVRLLLPGELSKHAVSEGTKAVTKYTTSGA-------------
->H2B.Z|Toxoplasma|237840885 Toxoplasma|237840885|H2B.Z Toxoplasma_H2B.Z_237840885
+>H2B.Z|Toxoplasma|XP_002369740.1 Toxoplasma|XP_002369740.1|H2B.Z Toxoplasma_H2B.Z_237840885
 ------------------------------------------------MSGKGPAQKSQ-
 --AAKK-----------------------TAGKSLGPR----------YRRRKRT--E--
 -SFALYIYKVLKQVHPETGVSKKSMSIMNSFINDIFDRLADEAVRLIRY----NKKRTLS
 SREIQTAVRLLLPGELSKHAVSEGTKAVTKYTTSGA-------------
->canonical_H2B|Ailuropoda|752441783 Ailuropoda|752441783|canonical_H2B Ailuropoda_canonical_H2B_752441783
+>canonical_H2B|Ailuropoda|XP_011216221.1 Ailuropoda|XP_011216221.1|canonical_H2B Ailuropoda_canonical_H2B_752441783
 -------------------------------------------------MPD-PAKSAP-
 --APKK-----G-SKKAVT----------KVQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Arabidopsis|75170197 Arabidopsis|75170197|canonical_H2B Arabidopsis_canonical_H2B_75170197
+>canonical_H2B|Arabidopsis|Q9FFC0.3 Arabidopsis|Q9FFC0.3|canonical_H2B Arabidopsis_canonical_H2B_75170197
 ----------------------------------------------MAKADKKPAEKKPA
 EKTPAAEPAAAA-EKKPKA--------GKKLPKEPAGAGDK-------KKKRSKKNVE--
 -TYKIYIFKVLKQVHPDIGISSKAMGIMNSFINDIFEKLAGESSKLARY----NKKPTIT
 SREIQTAVRLVLPGELAKHAVSEGTKAVTKFTSS---------------
->canonical_H2B|Arabidopsis|75180188 Arabidopsis|75180188|canonical_H2B Arabidopsis_canonical_H2B_75180188
+>canonical_H2B|Arabidopsis|Q9LQQ4.3 Arabidopsis|Q9LQQ4.3|canonical_H2B Arabidopsis_canonical_H2B_75180188
 -------------------------------------------------MAP-RAEKKP-
 --AEKK-----TAAERPVEENKAAEKAPAEKKPK-AGKKLPPKEAGDKKKKRSKKNVE--
 -TYKIYIFKVLKQVHPDIGISSKAMGIMNSFINDIFEKLAQESSKLARY----NKKPTIT
 SREIQTAVRLVLPGELAKHAVSEGTKAVTKFTSS---------------
->canonical_H2B|Arabidopsis|75181188 Arabidopsis|75181188|canonical_H2B Arabidopsis_canonical_H2B_75181188
+>canonical_H2B|Arabidopsis|Q9LZ45.3 Arabidopsis|Q9LZ45.3|canonical_H2B Arabidopsis_canonical_H2B_75181188
 ---------------------------------------------MAPKAEKKPAEKAP-
 --APKA-------EKKIAK----------EGGTSEIVK----------KKKKTKKSTE--
 -TYKIYIFKVLKQVHPDIGISGKAMGIMNSFINDIFEKLAQESSRLARY----NKKPTIT
 SREIQTAVRLVLPGELAKHAVSEGTKAVTKFTSS---------------
->canonical_H2B|Arabidopsis|75181341 Arabidopsis|75181341|canonical_H2B Arabidopsis_canonical_H2B_75181341
+>canonical_H2B|Arabidopsis|Q9LZT0.3 Arabidopsis|Q9LZT0.3|canonical_H2B Arabidopsis_canonical_H2B_75181341
 ---------------------------------------------MAPKAEKKPAEKKP-
 --VEEK-----SKAEKAPA----------EKKPKAGKKLPKEAGAGGDKKKKMKK--KSV
 ETYKIYIFKVLKQVHPDIGISSKAMGIMNSFINDIFEKLASESSKLARY----NKKPTIT
 SREIQTAVRLVLPGELAKHAVSEGTKAVTKFTSS---------------
->canonical_H2B|Bos|82697375 Bos|82697375|canonical_H2B Bos_canonical_H2B_82697375
+>canonical_H2B|Bos|NP_001032546.1 Bos|NP_001032546.1|canonical_H2B Bos_canonical_H2B_82697375
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Caenorhabditis|17558794 Caenorhabditis|17558794|canonical_H2B Caenorhabditis_canonical_H2B_17558794
+>canonical_H2B|Caenorhabditis|NP_505464.1 Caenorhabditis|NP_505464.1|canonical_H2B Caenorhabditis_canonical_H2B_17558794
 -----------------------------------------------------MAPPKP-
 --SAKG-----A-KKAAKT----------VSKPK-DGK----------KRKHARK--E--
 -SYSVYIYRVLKQVHPDTGVSSKAMSIMNSFVNDVFERIASEASRLAHY----NKRSTIS
 SREIQTAVRLILPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Canis|545554624 Canis|545554624|canonical_H2B Canis_canonical_H2B_545554624
+>canonical_H2B|Canis|XP_005640164.1 Canis|XP_005640164.1|canonical_H2B Canis_canonical_H2B_545554624
 -------------------------------------------------MPELTSKGTT-
 --ISKK-----G-FKRAVA----------KTQKK-EGK----------KRRRCRK--E--
 -SYSIYIYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Cavia|884911570 Cavia|884911570|canonical_H2B Cavia_canonical_H2B_884911570
+>canonical_H2B|Cavia|XP_013006892.1 Cavia|XP_013006892.1|canonical_H2B Cavia_canonical_H2B_884911570
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Cricetulus|625285907 Cricetulus|625285907|canonical_H2B Cricetulus_canonical_H2B_625285907
+>canonical_H2B|Cricetulus|XP_007634673.1 Cricetulus|XP_007634673.1|canonical_H2B Cricetulus_canonical_H2B_625285907
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSAK--------------
->canonical_H2B|Drosophila|24585671 Drosophila|24585671|canonical_H2B Drosophila_canonical_H2B_24585671
+>canonical_H2B|Drosophila|NP_724342.1 Drosophila|NP_724342.1|canonical_H2B Drosophila_canonical_H2B_24585671
 -------------------------------------------------MPP-KTSGKA-
 --AKKA-----GKAQKNIT----------KTDKK---------------KKRKRK--E--
 -SYAIYIYKVLKQVHPDTGISSKAMSIMNSFVNDIFERIAAEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Equus|545217094 Equus|545217094|canonical_H2B Equus_canonical_H2B_545217094
+>canonical_H2B|Equus|XP_005610255.1 Equus|XP_005610255.1|canonical_H2B Equus_canonical_H2B_545217094
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSIYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Gallus|119331174 Gallus|119331174|canonical_H2B Gallus_canonical_H2B_119331174
+>canonical_H2B|Gallus|NP_001073188.1 Gallus|NP_001073188.1|canonical_H2B Gallus_canonical_H2B_119331174
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KTQKK-GDK----------KRKKSRK--E--
 -SYSIYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Heterocephalus|861442736 Heterocephalus|861442736|canonical_H2B Heterocephalus_canonical_H2B_861442736
+>canonical_H2B|Heterocephalus|XP_012928647.1 Heterocephalus|XP_012928647.1|canonical_H2B Heterocephalus_canonical_H2B_861442736
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Homo|20336754 Homo|20336754|canonical_H2B Homo_canonical_H2B_20336754
+>canonical_H2B|Homo|NP_066402.2 Homo|NP_066402.2|canonical_H2B Homo_canonical_H2B_20336754
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSIYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSAK--------------
->canonical_H2B|Loxodonta|344307322 Loxodonta|344307322|canonical_H2B Loxodonta_canonical_H2B_344307322
+>canonical_H2B|Loxodonta|XP_003422331.1 Loxodonta|XP_003422331.1|canonical_H2B Loxodonta_canonical_H2B_344307322
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSIYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSAK--------------
->canonical_H2B|Macaca|795655520 Macaca|795655520|canonical_H2B Macaca_canonical_H2B_795655520
+>canonical_H2B|Macaca|XP_011741102.1 Macaca|XP_011741102.1|canonical_H2B Macaca_canonical_H2B_795655520
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Monodelphis|612000632 Monodelphis|612000632|canonical_H2B Monodelphis_canonical_H2B_612000632
+>canonical_H2B|Monodelphis|XP_007485418.1 Monodelphis|XP_007485418.1|canonical_H2B Monodelphis_canonical_H2B_612000632
 -------------------------------------------------MPE-PGKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIASEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Mus|28316760 Mus|28316760|canonical_H2B Mus_canonical_H2B_28316760
+>canonical_H2B|Mus|NP_783595.1 Mus|NP_783595.1|canonical_H2B Mus_canonical_H2B_28316760
 -------------------------------------------------MPE-PSKSAP-
 --APKK-----G-SKKAIS----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIASEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Oryctolagus|655885637 Oryctolagus|655885637|canonical_H2B Oryctolagus_canonical_H2B_655885637
+>canonical_H2B|Oryctolagus|XP_008246696.1 Oryctolagus|XP_008246696.1|canonical_H2B Oryctolagus_canonical_H2B_655885637
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Psammechinus|161386 Psammechinus|161386|canonical_H2B Psammechinus_canonical_H2B_161386
+>canonical_H2B|Psammechinus|AAA30025.1 Psammechinus|AAA30025.1|canonical_H2B Psammechinus_canonical_H2B_161386
 -----------------------------------------------------MAPTAQ-
 --VAKK-----G-SKKAVK----------APRPS-GGK----------KRNRKRK--E--
 -SYGIYIYKVLKQVHPDTGISSRAMIIMNSFVNDIFERIAGESSRLAQY----NKKSTIS
 SREIQTAVRLILPGELAKHAVSEGTKAVTKYTTSK--------------
->canonical_H2B|Rattus|12025526 Rattus|12025526|canonical_H2B Rattus_canonical_H2B_12025526
+>canonical_H2B|Rattus|NP_072173.1 Rattus|NP_072173.1|canonical_H2B Rattus_canonical_H2B_12025526
 -------------------------------------------------MPE-PAKSRP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------ERKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGE-RRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Saccharomyces|398366183 Saccharomyces|398366183|canonical_H2B Saccharomyces_canonical_H2B_398366183
+>canonical_H2B|Saccharomyces|NP_010510.3 Saccharomyces|NP_010510.3|canonical_H2B Saccharomyces_canonical_H2B_398366183
 -------------------------------------------------MSA-KAEKKP-
 --ASKA-----PAEKKPAA---------KKTSTSTDGK----------KRSKARK--E--
 -TYSSYIYKVLKQTHPDTGISQKSMSILNSFVNDIFERIATEASKLAAY----NKKSTIS
 AREIQTAVRLILPGELAKHAVSEGTRAVTKYSSSTQA------------
->canonical_H2B|Saccharomyces|6319471 Saccharomyces|6319471|canonical_H2B Saccharomyces_canonical_H2B_6319471
+>canonical_H2B|Saccharomyces|NP_009553.1 Saccharomyces|NP_009553.1|canonical_H2B Saccharomyces_canonical_H2B_6319471
 -------------------------------------------------MSS-AAEKKP-
 --ASKA-----PAEKKPAA---------KKTSTSVDGK----------KRSKVRK--E--
 -TYSSYIYKVLKQTHPDTGISQKSMSILNSFVNDIFERIATEASKLAAY----NKKSTIS
 AREIQTAVRLILPGELAKHAVSEGTRAVTKYSSSTQA------------
->canonical_H2B|Strongylocentrotus|62909990 Strongylocentrotus|62909990|canonical_H2B Strongylocentrotus_canonical_H2B_62909990
+>canonical_H2B|Strongylocentrotus|NP_999710.2 Strongylocentrotus|NP_999710.2|canonical_H2B Strongylocentrotus_canonical_H2B_62909990
 -----------------------------------------------------MAPTAQ-
 --VAKK-----G-SKKAVK----------GTKTAXGGK----------KRNRKRK--E--
 -SYGIYIYKVLKQVHPDTGISSRAMVIMNSXVBDIFERIAGESSRLAQY----NKKXTXS
 SREIQTAVRLILPGELAKHAVSEGTKAVTKYTTSK--------------
->canonical_H2B|Sus|545837877 Sus|545837877|canonical_H2B Sus_canonical_H2B_545837877
+>canonical_H2B|Sus|XP_005665716.1 Sus|XP_005665716.1|canonical_H2B Sus_canonical_H2B_545837877
 -------------------------------------------------MPD-PAKSAP-
 --APKK-----G-SKKAVT----------KAQKK-DGK----------KRKRSRK--E--
 -SYSVYVYKVLKQVHPDTGISSKAMGIMNSFVNDIFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSSK--------------
->canonical_H2B|Toxoplasma|237840885 Toxoplasma|237840885|canonical_H2B Toxoplasma_canonical_H2B_237840885
+>canonical_H2B|Toxoplasma|XP_002369740.1 Toxoplasma|XP_002369740.1|canonical_H2B Toxoplasma_canonical_H2B_237840885
 ------------------------------------------------MSGKGPAQKSQ-
 --AAKK-----------------------TAGKSLGPR----------YRRRKRT--E--
 -SFALYIYKVLKQVHPETGVSKKSMSIMNSFINDIFDRLADEAVRLIRY----NKKRTLS
 SREIQTAVRLLLPGELSKHAVSEGTKAVTKYTTSGA-------------
->canonical_H2B|Trypanosoma|71748422 Trypanosoma|71748422|canonical_H2B Trypanosoma_canonical_H2B_71748422
+>canonical_H2B|Trypanosoma|XP_823266.1 Trypanosoma|XP_823266.1|canonical_H2B Trypanosoma_canonical_H2B_71748422
 -------------------------------------------------MA--TPKSTP-
 --AKTR-----------------------KEAKK--------------TRRQRKR-----
 -TWNVYVSRSLRSINSQMSMTSRTMKIVNSFVNDLFERIAAEAATIVRV----NRKRTLG
 ARELQTAVRLVLPADLAKHAMAEGTKAVSHASS----------------
->canonical_H2B|Xenopus|148222089 Xenopus|148222089|canonical_H2B Xenopus_canonical_H2B_148222089
+>canonical_H2B|Xenopus|NP_001086753.1 Xenopus|NP_001086753.1|canonical_H2B Xenopus_canonical_H2B_148222089
 -------------------------------------------------MPE-PAKSAP-
 --APKK-----G-SKKAVT----------KTQKK-DGK----------KRRKSRK--E--
 -SYAIYVYKVLKQVHPDTGISSKAMSIMNSFVNDVFERIAGEASRLAHY----NKRSTIT
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTSAK--------------
->sperm_H2B|Parechinus|108885304 Parechinus|108885304|sperm_H2B Parechinus_sperm_H2B_108885304
+>sperm_H2B|Parechinus|P02291.2 Parechinus|P02291.2|sperm_H2B Parechinus_sperm_H2B_108885304
 -------------------------------------------------MPRSPAKTSPR
 KGSPRK-----GSPSRKAS-----PKRGGKGAKR-AGKGGRRRRVV--KRRRRRR--E--
 -SYGIYIYKVLKQVHPDTGISSRAMSVMNSFVNDVFERIAGEASRLTSA----NRRSTVS
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTTSR--------------
->sperm_H2B|Psammechinus|108860775 Psammechinus|108860775|sperm_H2B Psammechinus_sperm_H2B_108860775
+>sperm_H2B|Psammechinus|Q27750.3 Psammechinus|Q27750.3|sperm_H2B Psammechinus_sperm_H2B_108860775
 -------------------------------------------------MPKSPSKSSPR
 KGSPRK-----GSPRKGSP------KRGGKGAKR-AGKGGRRNVV---KRRRRRR--E--
 -SYGIYIYKVLKQVHPDTGISSRGMSVMNSFVNDVFERIAGEASRLTSA----NRRSTIS
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTTARR-------------
->sperm_H2B|Psammechinus|74767039 Psammechinus|74767039|sperm_H2B Psammechinus_sperm_H2B_74767039
+>sperm_H2B|Psammechinus|Q27749.3 Psammechinus|Q27749.3|sperm_H2B Psammechinus_sperm_H2B_74767039
 -----------------------------------------------MPSQKSPTKRSPT
 KRSPQK----GGKGAKRGG----------KAGKRRRGVAV--------KRRRRRR--E--
 -SYGIYIYKVLKQVHPDTGISSRAMSVMNSFVNDVFERIASEAGRLTTY----NRRNTVS
 SREVQTAVRLLLPGELAKHAVSEGTKAVTKYTTSR--------------
->sperm_H2B|Strongylocentrotus|47551059 Strongylocentrotus|47551059|sperm_H2B Strongylocentrotus_sperm_H2B_47551059
+>sperm_H2B|Strongylocentrotus|NP_999706.1 Strongylocentrotus|NP_999706.1|sperm_H2B Strongylocentrotus_sperm_H2B_47551059
 -----------------------------------------------MPSQRSPTKRSPT
 KRSPQKGAGKGGKGSKRGG----------KARRR-GGAAV--------RRRRRRR--E--
 -SYGIYIYKVLKQVHPDTGISSRGMSIMNSFVNDVFERVAAEASRLTKY----NRRSTVS
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTTSR--------------
->sperm_H2B|Strongylocentrotus|47551083 Strongylocentrotus|47551083|sperm_H2B Strongylocentrotus_sperm_H2B_47551083
+>sperm_H2B|Strongylocentrotus|NP_999721.1 Strongylocentrotus|NP_999721.1|sperm_H2B Strongylocentrotus_sperm_H2B_47551083
 -------------------------------------------------MPRSPSKTSPR
 KGSPRR-----GSPSRKAS-----PKRGGKGAKR-AGKGGRRRNVV--RRRRRRR--E--
 -SYGIYIYKVLKQVHPDTGISSRGMSVMNSFVNDIFGRIAGEASRLTRA----NRRSTIS
 SREIQTAVRLLLPGELAKHAVSEGTKAVTKYTTSR--------------
->subH2B|Ailuropoda|301771932 Ailuropoda|301771932|subH2B Ailuropoda_subH2B_301771932
+>subH2B|Ailuropoda|XP_002921383.1 Ailuropoda|XP_002921383.1|subH2B Ailuropoda_subH2B_301771932
 -------------------------------------------------MARSITKKNK-
 --RSRG-------HRSPIS------------KKK-SHS----------STDFGRR-----
 -NYSLYINRVLKEVVPQRSISSRTLDVMNTLIKDIFERISVEARSLMCF----RNRCTLT
 PEDIQKAVYLLLPGKLAKYAVAFGSEAVQRYVQS---------------
->subH2B|Bos|45429973 Bos|45429973|subH2B Bos_subH2B_45429973
+>subH2B|Bos|NP_991343.1 Bos|NP_991343.1|subH2B Bos_subH2B_45429973
 -------------------------------------------------MARNVTKRNK-
 --RCRG-------HQKAIY------------KKK-SHS----------SSESGLR-----
 -NYSLYINRVLKEVVPQKGISSRTIDIINTMINDMFERISTEACNLMYY----RKRCTLT
 PEDIEKAVYLLLPEKLAKYAVAFGKEAVQRYVRS---------------
->subH2B|Cavia|348552306 Cavia|348552306|subH2B Cavia_subH2B_348552306
+>subH2B|Cavia|XP_003461969.1 Cavia|XP_003461969.1|subH2B Cavia_subH2B_348552306
 -------------------------------------------------MVKSVIKPRR-
 --YFRG-------RRTSIS------------SKK-SCL----------SSNSGYR-----
 -NYSLYVSRVLKEVVPERAISSCTVNIMNTLIDDIFERISEEAHHLMCS----QKRCTLT
 PKDIQKAVYLLLPRKLAKYAVAFGDGAVDRYVHS---------------
->subH2B|Cricetulus|354507874 Cricetulus|354507874|subH2B Cricetulus_subH2B_354507874
+>subH2B|Cricetulus|XP_003515979.1 Cricetulus|XP_003515979.1|subH2B Cricetulus_subH2B_354507874
 -------------------------------------------------MAKSIIKRYQ-
 --FVKR-------RQRRAF----------RKRYS--------------SINFGQR-----
 -NYSLYISRVLKEVVPMRGLSSNTVDIMNTLINDLFERIATEACQLMYF----RKRCTLT
 LEDIQKAVYLLVPKKLAKSAVTFGSKAVHRFIHS---------------
->subH2B|Equus|149727070 Equus|149727070|subH2B Equus_subH2B_149727070
+>subH2B|Equus|XP_001504072.1 Equus|XP_001504072.1|subH2B Equus_subH2B_149727070
 -------------------------------------------------MARASTKKSR-
 --CSRR-------RQSPAS------------RKK-SHA----------STYRGHR-----
 -NYSLYINRVLKEVVPQRGISARTLDTMNILINNIFERISTEACSMMYF----RNRCTLT
 PQDVQKAVYSLFPGKLAKYAVAFGSEAVQRYLHS---------------
->subH2B|Heterocephalus|512843645 Heterocephalus|512843645|subH2B Heterocephalus_subH2B_512843645
+>subH2B|Heterocephalus|XP_004885290.1 Heterocephalus|XP_004885290.1|subH2B Heterocephalus_subH2B_512843645
 -------------------------------------------------MVRSIIKQYG-
 --YSRR-------HLTPTY------------RKK-SYL----------STSFGHR-----
 -NYSLYISRVLKEVAPQRHISSRTLDMMNALINNIFERIATEAHHLMCS----RNRCTLA
 PEDIQRAVYLLLPGKLAKYAMAFGDEAVHRYVHS---------------
->subH2B|Loxodonta|344272356 Loxodonta|344272356|subH2B Loxodonta_subH2B_344272356
+>subH2B|Loxodonta|XP_003407998.1 Loxodonta|XP_003407998.1|subH2B Loxodonta_subH2B_344272356
 -------------------------------------------------MARSIIKKYR-
 --YSNG-------HLSSIS------------IKK-LHS----------STNFGHR-----
 -NYSLYVNRVLKEVVPQRGISSRTLDVMNTLINNIFKCIATEACNLMYF----RNRCTLT
 PEDIQRAVYVRLPGKLAKHAVAFGSEAVNRYVHS---------------
->subH2B|Macaca|109077646 Macaca|109077646|subH2B Macaca_subH2B_109077646
+>subH2B|Macaca|XP_001095287.1 Macaca|XP_001095287.1|subH2B Macaca_subH2B_109077646
 -------------------------------------------------MARSSTKKHK-
 --YSKR-------HQSPTS------------RKK-AHS----------SIDFVHG-----
 -NYSFFVNKVLKEVVSHRGTSSRTLDLMNTLINNFFQHISMKAYRLMYF----RNRCTLT
 PEDILKAAYLLLPQKTANYAVAFGSEVFRRYVHS---------------
->subH2B|Monodelphis|126320607 Monodelphis|126320607|subH2B Monodelphis_subH2B_126320607
+>subH2B|Monodelphis|XP_001366286.1 Monodelphis|XP_001366286.1|subH2B Monodelphis_subH2B_126320607
 -------------------------------------------------MTK-AVRSNE-
 -------------SQKLTT----------NQEKKKKKK----------KKLLLSR-----
 -NYSLYTHRVLKEVIPNQGLTYKTTEIMNSMINNILERIAEEAGNLLCY----KRHLTLG
 HQDIQMAVYRLLPDELAKHAVAFGTRAVTTYNDSK--------------
->subH2B|Mus|254588081 Mus|254588081|subH2B Mus_subH2B_254588081
+>subH2B|Mus|NP_081340.1 Mus|NP_081340.1|subH2B Mus_subH2B_254588081
 -------------------------------------------------MAKPTFKRQC-
 --YIKR-------HLRPLY------------RKHSRCS----------SINLGHG-----
 -NYSLYINRVLKEVVPNRGISSYSVDIMNILINDIFERIATEACQQMFL----RKRCTLT
 PGDIQQAVHLLLPKKLATLAVTFGSKAVHRFIHS---------------
->subH2B|Sus|311273883 Sus|311273883|subH2B Sus_subH2B_311273883
+>subH2B|Sus|XP_003134084.1 Sus|XP_003134084.1|subH2B Sus_subH2B_311273883
 -------------------------------------------------MARYITKKNR-
 --CSRG-------HRHPNS------------RKK-TCS----------STECGRR-----
 -NYSLYVNRVLKEVVPQSGISSRTLDMMNTVINDIFERISMEASNLMYF----RNRCTLT

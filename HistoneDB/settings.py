@@ -14,6 +14,15 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 
+# import sys
+# output = ''
+# output += 'sys.version = %s\n' % repr(sys.version)
+# output += 'sys.prefix = %s\n' % repr(sys.prefix)
+# output += 'sys.path = %s' % repr(sys.path)
+# print '------------------------------'
+# print output
+# import mod_wsgi
+
 GUNICORN = True if (os.getenv('GUNICORN', "0") == "1") else False
 if(GUNICORN):
     print "GUNICORN setup enabled"
@@ -72,6 +81,8 @@ INSTALLED_APPS = (
     'browse',
     'djangophylocore',
     'django_extensions',
+    'mod_wsgi.server',
+    'analytics'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -124,7 +135,8 @@ DATABASES = {
         'USER': NCBI_database_info["user"],
         'PASSWORD': NCBI_database_info["password"],
         'HOST': NCBI_database_info["host"],
-        'PORT':NCBI_database_info["port"]
+        'PORT':NCBI_database_info["port"],
+        'CONN_MAX_AGE': 3600
     }
 }
 
@@ -145,6 +157,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+GOOGLE_ANALYTICS_ID = NCBI_database_info["GOOGLE_ANALYTICS_ID"]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -167,4 +181,5 @@ if "FORCE_SCRIPT_NAME" in NCBI_database_info:
 if(GUNICORN):
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 

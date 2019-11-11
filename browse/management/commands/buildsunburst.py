@@ -8,9 +8,17 @@ import json
 from colour import Color
 from django.db.models import Max, Min, Count, Avg
 from math import floor
+import logging
 
 class Command(BaseCommand):
     help = 'Build the sunburst json files for each core histone and its variants'
+
+    # Logging info
+    logging.basicConfig(filename='log_buildsunburst.log',
+                        format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
+                        level=logging.INFO,
+                        datefmt='%Y-%m-%d %H:%M:%S')
+    log = logging.getLogger(__name__)
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -26,6 +34,9 @@ class Command(BaseCommand):
             help="Build a sunburst of the enitre NCBI Taxonomy databse.")
         
     def handle(self, *args, **options):
+        self.log.info('=======================================================')
+        self.log.info('===               buildsunburst START               ===')
+        self.log.info('=======================================================')
         path = os.path.join("static", "browse", "sunbursts")
         if options["all_taxonomy"]:
             sb = self.build_sunburst(all_taxonomy=True)
@@ -33,14 +44,14 @@ class Command(BaseCommand):
                 all_taxa.write(sb)
 
         for hist_type in Histone.objects.exclude(id="Unknown"):
-            print "Saving", hist_type.id
+            self.log.info("Saving {}".format(hist_type.id))
 
             vpath = os.path.join(path, hist_type.id)
             if not os.path.exists(vpath):
                 os.makedirs(vpath)
 
             for variant in Variant.objects.filter(hist_type=hist_type):
-                print "  Saving", variant.id
+                self.log.info("Saving {}".format(variant.id))
                 sb = self.build_sunburst(variant=variant)
                 with open(os.path.join(vpath, "{}.json".format(variant.id)), "w") as variant_burst:
                     variant_burst.write(sb)

@@ -1,4 +1,4 @@
->H1.0|Bos|115496898 Bos|115496898|H1.0 Bos_H1.0_115496898
+>H1.0|Bos|NP_001069955.1 Bos|NP_001069955.1|H1.0 Bos_H1.0_115496898
 -----------------------------------MTENST-STPAA-------------
 --------K-----------------------------------PKRAKA--------SK
 KSTDHP---------KYSDMIVAAIQAEKNRAGSSRQSIQKYIKSH---Y-KVGENA---
@@ -9,7 +9,7 @@ KT--------------KKEVKKVATPKKAAK---PKKAA--SKAP---------------
 ------------------------PAATPKKT----------KKPKTV-------KAKPV
 KASKP-------------------KKTKPVK-------------------PKAKS--SA-
 -------KRTGKK-----------------K-------------------
->H1.0|Cairina|122111 Cairina|122111|H1.0 Cairina_H1.0_122111
+>H1.0|Cairina|P06513.2 Cairina|P06513.2|H1.0 Cairina_H1.0_122111
 ------------------------------------MTDSPIPAPAPAA-----------
 --------K-----------------------------------PKRAKA--------PR
 KPASHP---------SYSEMIVAAIRAEKSRGGSSRQSIQKYVKSH---Y-KVGQHA---
@@ -20,7 +20,7 @@ KKK-------------KKAARRSTSPRKAAR---PRKA----RSP---------------
 ------------------------SRASPKKA----------KKPKTV-------KAKSL
 KTSKV-------------------KKAKRSK-------------------PRAKS--GA-
 -------RKSPKK-----------------K-------------------
->H1.0|Esox|742177175 Esox|742177175|H1.0 Esox_H1.0_742177175
+>H1.0|Esox|XP_010887142.1 Esox|XP_010887142.1|H1.0 Esox_H1.0_742177175
 -----------------------------------MAETVAAPAPK--------------
 --------------------------------------------AKKAKA--------PK
 KPASHP---------KYSDMIKAAVQADKSRGGASRQSVQKYIKSH---Y-KVGDNA---
@@ -31,7 +31,7 @@ P--------VVKA---KKSPVKAAKPKKVAK---PKKVV---KSP-A-------------
 ------------------------VAPKPKKV----------VK-KVK-------AAKPA
 KAVKP-------------------KKAKAAK-------------------PKPKA--AA-
 -------KKAAKK-----------------K-------------------
->H1.0|Gallus|113206128 Gallus|113206128|H1.0 Gallus_H1.0_113206128
+>H1.0|Gallus|NP_001038138.1 Gallus|NP_001038138.1|H1.0 Gallus_H1.0_113206128
 ----------------------------------MTESLVLSPAPAK-------------
 --------------------------------------------PKRVKA--------SR
 RSASHP---------TYSEMIAAAIRAEKSRGGSSRQSIQKYIKSH---Y-KVGHNA---
@@ -42,7 +42,7 @@ DLQ-IKLSIRRLLAAGVLKQT--K-GVGASGSFRLAK--------SD----KAKRSPGKK
 ------------------------SRASPKKA----------KKPKTV-------KAKSR
 KASKA-------------------KKVKRSK-------------------PRAKS--GA-
 -------RKSPKK-----------------K-------------------
->H1.0|Homo|4885371 Homo|4885371|H1.0 Homo_H1.0_4885371
+>H1.0|Homo|NP_005309.1 Homo|NP_005309.1|H1.0 Homo_H1.0_4885371
 -----------------------------------MTENST-SAPAA-------------
 --------K-----------------------------------PKRAKA--------SK
 KSTDHP---------KYSDMIVAAIQAEKNRAGSSRQSIQKYIKSH---Y-KVGENA---
@@ -53,7 +53,7 @@ KT--------------KKEIKKVATPKKASK---PKKAA--SKAP---------------
 ------------------------LAATPKKA----------KKPKTV-------KAKPV
 KASKP-------------------KKAKPVK-------------------PKAKS--SA-
 -------KRAGKK-----------------K-------------------
->H1.0|Mus|31560697 Mus|31560697|H1.0 Mus_H1.0_31560697
+>H1.0|Mus|NP_032223.2 Mus|NP_032223.2|H1.0 Mus_H1.0_31560697
 -----------------------------------MTENST-SAPAA-------------
 --------K-----------------------------------PKRAKA--------SK
 KSTDHP---------KYSDMIVAAIQAEKNRAGSSRQSIQKYIKSH---Y-KVGENA---
@@ -64,7 +64,7 @@ KT--------------KKEVKKVATPKKAAK---PKKAA--SKAP---------------
 ------------------------PAATPKKA----------KKPKVV-------KVKPV
 KASKP-------------------KKAKTVK-------------------PKAKS--SA-
 -------KRASKK-----------------K-------------------
->H1.0|Pongo|197098626 Pongo|197098626|H1.0 Pongo_H1.0_197098626
+>H1.0|Pongo|NP_001127680.1 Pongo|NP_001127680.1|H1.0 Pongo_H1.0_197098626
 -----------------------------------MTENST-SAPAA-------------
 --------K-----------------------------------PKRAKA--------SK
 KSTDHP---------KYSDMVVAAIQAEKNRAGSSRQSIQKYIKSH---Y-KVGENA---
@@ -75,7 +75,7 @@ KT--------------KKEIKKVATPKKASK---PKKAA--SKAP---------------
 ------------------------LAATPKKA----------KKPKTV-------KAKPV
 KASKP-------------------KKAKPVK-------------------PKAKS--SA-
 -------KRAGKK-----------------K-------------------
->H1.0|Rattus|6981004 Rattus|6981004|H1.0 Rattus_H1.0_6981004
+>H1.0|Rattus|NP_036710.1 Rattus|NP_036710.1|H1.0 Rattus_H1.0_6981004
 -----------------------------------MTENST-STPAA-------------
 --------K-----------------------------------PKRAKA--------AK
 KSTDHP---------KYSDMIVAAIQAEKNRAGSSRQSIQKYIKSH---Y-KVGENA---
@@ -86,7 +86,7 @@ KT--------------KKEVKKVATPKKAAK---PKKAA--SKAP---------------
 ------------------------PAATPKKA----------KKPKIV-------KVKPV
 KASKP-------------------KKAKPVK-------------------PKAKS--SA-
 -------KRASKK-----------------K-------------------
->H1.0|Salmo|197632441 Salmo|197632441|H1.0 Salmo_H1.0_197632441
+>H1.0|Salmo|ACH70944.1 Salmo|ACH70944.1|H1.0 Salmo_H1.0_197632441
 -----------------------------------MAETAAAPAPK--------------
 --------------------------------------------AKKAKA--------PK
 KPASHP---------KYSDMIKAAVHADKSRGGASRQSVQKYIKSH---Y-KVGDNA---
@@ -97,7 +97,7 @@ A--------VVKA---KKSPVKSAKPKKVAK---PKKVA---KSP-A-------------
 ------------------------AAPKPKKV----------AK-KTK-------VAKPA
 KATKP-------------------KKAKAAK-------------------PKPKA--AA-
 -------KKAAKK-----------------K-------------------
->H1.0|Salmo|221219746 Salmo|221219746|H1.0 Salmo_H1.0_221219746
+>H1.0|Salmo|ACM08534.1 Salmo|ACM08534.1|H1.0 Salmo_H1.0_221219746
 ------------------------------------------------------------
 ------------------------------------------------------------
 -------------------MIKAAVHADKSRGGASRQSVQKYIKSH---Y-KVGDNA---
@@ -108,7 +108,7 @@ A--------VVKA---KKSPVKSAKPKKVAK---PKKVA---KSP-A-------------
 ------------------------AAPKPKKV----------VK-KTK-------VAKPA
 KATKP-------------------KKAKAAK-------------------PKPKA--AA-
 -------KKAAKK-----------------K-------------------
->H1.0|Salmo|221221998 Salmo|221221998|H1.0 Salmo_H1.0_221221998
+>H1.0|Salmo|ACM09660.1 Salmo|ACM09660.1|H1.0 Salmo_H1.0_221221998
 ------------------------------------------------------------
 ------------------------------------------------------------
 -------------------MIKAAVHADKSRGGASRQSVQKYIKSH---Y-KVGDNA---
@@ -119,7 +119,7 @@ A--------VVKA---KKSPVKSAKPKKVAK---PKKVA---KSP-A-------------
 ------------------------AAPKPKKV----------AK-KTK-------VAKPA
 KATKP-------------------KKAKAAK-------------------PKPKA--AA-
 -------KKAAKK-----------------K-------------------
->H1.0|Strongylocentrotus|47551095 Strongylocentrotus|47551095|H1.0 Strongylocentrotus_H1.0_47551095
+>H1.0|Strongylocentrotus|NP_999722.1 Strongylocentrotus|NP_999722.1|H1.0 Strongylocentrotus_H1.0_47551095
 ---------------------------------MADTDAAP-AAPAPSTPK---------
 --------K-----------------------------------AAKKKASK------PK
 TPASHP---------KYSDMIASALESLKEKKGSSRQAILKYVKAN---F-TVGDNA---
@@ -130,7 +130,7 @@ NVH-IKQALKRGVTSGQLRHV--K-GSGASGSFLLAE--------KT-------------
 ------------------------PAKKPAAK----------KKVAKP-------AAKKA
 AKPVA-------------------KKATPKK-------------------KVVKK--AA-
 -------KGKGKK-----------------K-------------------
->H1.0|Taeniopygia|449481975 Taeniopygia|449481975|H1.0 Taeniopygia_H1.0_449481975
+>H1.0|Taeniopygia|XP_004175972.1 Taeniopygia|XP_004175972.1|H1.0 Taeniopygia_H1.0_449481975
 ------------------------------------MTRLPSMCKASSSLM--------S
 CVHLCAFPP-----------------------------------PKRARS--------AR
 RPAAHP---------AYSDMVTAAVRADKSRGGASRQSIQKYVKSN---Y-KVGQNA---
@@ -141,7 +141,7 @@ R---------------KKAARRSTSPRKTAR---SRKA----RSP---------------
 ------------------------KSRSPKKA----------KKPKTV-------KAKSL
 KASKP-------------------KKARRSK-------------------SRAKS--GA-
 -------RKSPKK-----------------K-------------------
->H1.0|Thalassiosira|220970504 Thalassiosira|220970504|H1.0 Thalassiosira_H1.0_220970504
+>H1.0|Thalassiosira|EED88841.1 Thalassiosira|EED88841.1|H1.0 Thalassiosira_H1.0_220970504
 ------------------------------------------------------------
 ------------------------------------------------------------
 -----M---------SYKAGIAKAITELKDRTGSSSIAIKKHMQANL--P-ADKKWM---
@@ -152,7 +152,7 @@ NAT-FLKALKDMVASGELVKT--K------ASYKLSA--------VA-------------
 ---------------------------KAAPK----------KKTATK-------KAATA
 KKPAA-------------------KKATTAK-------------------KST-------
 -------TKKTAK-----------------K-------------------
->H1.0|Xenopus|47498062 Xenopus|47498062|H1.0 Xenopus_H1.0_47498062
+>H1.0|Xenopus|NP_998836.1 Xenopus|NP_998836.1|H1.0 Xenopus_H1.0_47498062
 -----------------------------------MTENSA-AAPAG-------------
 --------K-----------------------------------PKRSKA--------SK
 KATDHP---------KYSDMILAAVQAEKSRSGSSRQSIQKYIKNH---Y-KVGENA---
@@ -163,7 +163,7 @@ P---------------KKEIKKAASPKKAAK---PKKAA---KSP-A-------------
 ------------------------PAPSPKKA----------KKTKTV-------KAKPV
 RASRV-------------------KKAKPSK-------------------PKAKA--SP-
 -------KKSGRK-----------------K-------------------
->H1.10|Caligus|225709312 Caligus|225709312|H1.10 Caligus_H1.10_225709312
+>H1.10|Caligus|ACO10502.1 Caligus|ACO10502.1|H1.10 Caligus_H1.10_225709312
 ----------------------------------MVKSEVEVTINAEEAPV---------
 ----ASSLK-----------------------------------PAKKKK--------NK
 KKKNKP--------GKYSVLVLDAVKKLNERSGSSLVKIYNEAKKAS--W-FDEQNG---
@@ -174,7 +174,7 @@ QSKPAKNTTKTAK---ASTTKKATVVKAKSS---PKKAP---------------------
 ------------------------KVSAAQKN----------KKPKKA-------SKPPA
 KSPRK-------------------------------------------------------
 ------------------------------K-------------------
->H1.10|Homo|5174449 Homo|5174449|H1.10 Homo_H1.10_5174449
+>H1.10|Homo|NP_006017.1 Homo|NP_006017.1|H1.10 Homo_H1.10_5174449
 ----------------------------------MSVELEE-ALPVTTAEG--------M
 AKKVTKAGG-----------------------------------SAALSPSK---KRKNS
 KKKNQP--------GKYSQLVVETIRRLGERNGSSLAKIYTEAKKVP--W-FDQQNG---
@@ -185,7 +185,7 @@ GAPAAATAPAPTA---HKAKKAAPGAAGSRR---ADKKPARGQKPEQ-------------
 ------------------------AAAGGKKV----------KKAAKP-------SVPKV
 PKGRK-------------------------------------------------------
 --------------------------------------------------
->H1.10|Oncorhynchus|225703540 Oncorhynchus|225703540|H1.10 Oncorhynchus_H1.10_225703540
+>H1.10|Oncorhynchus|ACO07616.1 Oncorhynchus|ACO07616.1|H1.10 Oncorhynchus_H1.10_225703540
 -----------------------------MVKSEVDVTINAEEAPVASGPK---------
 --------------------------------------------PAKKKK--------KK
 KKKNKP--------GKYSVLVLDAVKKLNERSGSSLVKIYNEAKKAS--W-FDEQNG---
@@ -196,7 +196,7 @@ QSKPAKTTTKTAKA--STTKKATVKPKAKSS---PKKAP---------------------
 ------------------------KVIAAQKN----------KKPKKA-------SKPPA
 KSPRK-------------------------------------------------------
 ------------------------------K-------------------
->H1.10|Osmerus|225708114 Osmerus|225708114|H1.10 Osmerus_H1.10_225708114
+>H1.10|Osmerus|ACO09903.1 Osmerus|ACO09903.1|H1.10 Osmerus_H1.10_225708114
 ----------------------------------MASDTEV--VPAAEAPVAAKSKKR-T
 ATKPKPKAK-----------------------------------PATVATSS---AKKKK
 RKGKGP--------GKYSVLVVDAIKQLGERNGSSLAKIYNKAREAI--W-FDQQHG---
@@ -207,7 +207,7 @@ KAVKTKAPAKKAKAAIKTKAKPKASPKKKST---PKKKP---------------------
 ------------------------ATPVKSKK----------PKPKKA-------SKPAA
 KSPRK-------------------------------------------------------
 ------------------------------K-------------------
->H1.10|Salmo|221221588 Salmo|221221588|H1.10 Salmo_H1.10_221221588
+>H1.10|Salmo|ACM09455.1 Salmo|ACM09455.1|H1.10 Salmo_H1.10_221221588
 ----------------------------------MVKSEVEVTINAEEAPV---------
 ----ASSLK-----------------------------------PAKKKK--------NK
 KKKNKP--------GKYSVLVLDAVKKLNERSGSSLVKIYNEAKKAS--W-FDEQNG---
@@ -218,7 +218,7 @@ QSKPAKNTTKTAK---ASTTKKATVVKAKSS---PKKAP---------------------
 ------------------------KVSAAQKN----------KKPKKA-------SKPPA
 KSPRK-------------------------------------------------------
 ------------------------------K-------------------
->H1.10|Xenopus|147898445 Xenopus|147898445|H1.10 Xenopus_H1.10_147898445
+>H1.10|Xenopus|NP_001080265.1 Xenopus|NP_001080265.1|H1.10 Xenopus_H1.10_147898445
 -------------------------------MALELEENLHSTEEEDEEEE-----EEEE
 GDEMRSRST-----------------------------------RNKGGAASSSGNKKKK
 KKKNQP--------GRYSQLVVDTIRKLGERNGSSLAKIYSEAKKVS--W-FDQQNG---
@@ -229,7 +229,7 @@ KPSSSSSNKKQQQ---QGPSSSPSKSHKKAK---PKAKA---------------------
 ------------------------SAAKGKKM----------KKGAKP-------SVRKA
 PKSK-----------------------------------------------------KA-
 --------------------------------------------------
->OO_H1.8|Homo|24475863 Homo|24475863|OO_H1.8 Homo_OO_H1.8_24475863
+>OO_H1.8|Homo|NP_722575.1 Homo|NP_722575.1|OO_H1.8 Homo_OO_H1.8_24475863
 ---------------------------------MAPGSVTSDISPSSTSTA--------G
 SSRSPESEK-----------------------------------PGPSHGGV---PPGGP
 SHSSLP---VGRRHPPVLRMVLEALQAGEQRRGTSVAAIKLYILHK---YPTVDVLR---
@@ -240,7 +240,7 @@ APRRAGEAKGKGP---KKPSEAKEDPPNVGK---VKKAAKRPAKVQK-------------
 ----------------------EARKVPPKPD----------KAMRAPSSAGGLSRKAKA
 KGSRSSQGD--AEAYRKTKAESKSSKPTASKVKNGAASPTKKKVVAKAKAPKAGQ--GPN
 TKAAAPAKGSGSKVVPAHLSRKTEAPKGPRKAGLPIKASSSKVSSQRAEA
->OO_H1.8|Mus|19923865 Mus|19923865|OO_H1.8 Mus_OO_H1.8_19923865
+>OO_H1.8|Mus|NP_612184.1 Mus|NP_612184.1|OO_H1.8 Mus_OO_H1.8_19923865
 ------------------------------MAPGSVSSVSSSSFPSRDTSP---------
 --SGSCGLP-----------------------------------GADKPGPS---CRRIQ
 AGQRNP---------TMLHMVLEALKAREARQGTSVVAIKVYIQHK---YPTVDTTR---
@@ -251,7 +251,7 @@ AAGAKETGSKKSGLLKKDQVGKATMEKGQKRRAYPCKAATLEMAPKK-------------
 ------------------------ANAHGKTK----------GEKSKPLASKVQNSVASL
 AKRKMADMAHTVTVVQGAETVQETKVPTPSQDIGHKVQPI----------PRVRKAKTP-
 -------ENTQA--------------------------------------
->TS_H1.6|Canis|545554579 Canis|545554579|TS_H1.6 Canis_TS_H1.6_545554579
+>TS_H1.6|Canis|XP_005640152.1 Canis|XP_005640152.1|TS_H1.6 Canis_TS_H1.6_545554579
 -----------------------------------MSETVPAVAAGTALAS---------
 -MENPSAKK-----------------------------------RGRKPGGI------PE
 AAPKAP-------GLSVSKLIMEALSVSQERAGMSLAALKKALAAAG--Y-DVEKN----
@@ -262,7 +262,7 @@ V--------KRPP---STKTKRLVLSRDSKS---PKAA----KTN-K-------------
 ------------------------AK-GAKDK----------QPRKSP-------GKAPT
 GKPKA-------------------AKPRLNQ-------------------QKV----NP-
 -------RKAVSK-----------------K-------------------
->TS_H1.6|Equus|379643033 Equus|379643033|TS_H1.6 Equus_TS_H1.6_379643033
+>TS_H1.6|Equus|NP_001243880.1 Equus|NP_001243880.1|TS_H1.6 Equus_TS_H1.6_379643033
 -----------------------------------MSETAP-AAPAEPVLS---------
 SMEKPPAKK-----------------------------------RGKKPVGL----TGGS
 RKVPGS---------SVSKLITEALSVSQERAGMSLAALKKALAAAG--Y-DVEKN----
@@ -273,7 +273,7 @@ V--------KKGA---SANAKKLVLPKGSKS---PKSA----KTN-K-------------
 ------------------------SK-GAKGK----------QQLKSP-------GKGRT
 GKPKT-------------------GKPKLTQ-------------------QRT----NP-
 -------RKTASK-----------------K-------------------
->TS_H1.6|Homo|20544168 Homo|20544168|TS_H1.6 Homo_TS_H1.6_20544168
+>TS_H1.6|Homo|NP_005314.2 Homo|NP_005314.2|TS_H1.6 Homo_TS_H1.6_20544168
 -----------------------------------MSETVPAASASAGVAA---------
 -MEKLPTKK-----------------------------------RGRKPAGL----ISAS
 RKVPNL---------SVSKLITEALSVSQERVGMSLVALKKALAAAG--Y-DVEKN----
@@ -284,7 +284,7 @@ A--------KKSV---SAKTKKLVLSRDSKS---PKTA----KTN-K-------------
 ------------------------AK-GAKGK----------QQQKSP-------VKARA
 SKSKL-------------------TQ----H-------------------HEV----NV-
 -------RKATSK-----------------K-------------------
->TS_H1.6|Macaca|124053434 Macaca|124053434|TS_H1.6 Macaca_TS_H1.6_124053434
+>TS_H1.6|Macaca|NP_001074230.1 Macaca|NP_001074230.1|TS_H1.6 Macaca_TS_H1.6_124053434
 -----------------------------------MSETVP-AASAGAVPA---------
 VMEKPLTKK-----------------------------------RGKKPAGL---TSASR
 KAPNL----------SVSKLITEALSVSQERVGMSLAALKKALAAAG--Y-DVEKN----
@@ -295,7 +295,7 @@ A--------NKSA---SAKTKKLVLSRDSKS---PKTA----KTN-K-------------
 ------------------------AK-GAKGK----------QQQKSP-------VKARA
 TKPKL-------------------TQ----H-------------------HKA----NI-
 -------RKATSR-----------------K-------------------
->TS_H1.6|Mus|112807207 Mus|112807207|TS_H1.6 Mus_TS_H1.6_112807207
+>TS_H1.6|Mus|NP_034507.2 Mus|NP_034507.2|TS_H1.6 Mus_TS_H1.6_112807207
 -----------------------------------MSETAP-AASSTLVPA--------P
 VEEKPSSKR-----------------------------------RGKKPG------LAPA
 RKPRGF---------SVSKLIPEALSTSQERAGMSLAALKKALAAAG--Y-DVEKN----
@@ -306,7 +306,7 @@ G--------KKSA---SAKAKKMGLPRASRS---PKSS----KTK-A-------------
 ------------------------TK-GAKGV----------QQRKSP-------AKARA
 ANPNS-------------------GKAKMVM-------------------QKT----DL-
 -------RKAAGR-----------------K-------------------
->TS_H1.6|Rattus|6981006 Rattus|6981006|TS_H1.6 Rattus_TS_H1.6_6981006
+>TS_H1.6|Rattus|NP_036711.1 Rattus|NP_036711.1|TS_H1.6 Rattus_TS_H1.6_6981006
 -----------------------------------MSETAP-AASSTLVPA---------
 PVEKPATKR-----------------------------------RGKKPGMA------TA
 RKPRGF---------SVSKLIPEALSMSQERAGMSLAALKKALAAAG--Y-DVEKN----
@@ -317,7 +317,7 @@ G--------KKSA---SAKAKKLGLSRASRS---PKSS----KTK-V-------------
 ------------------------TK-GAKGL----------QQRKSP-------AKARA
 TNSNS-------------------GKSKMVM-------------------QKT----DL-
 -------RKAAGR-----------------K-------------------
->TS_H1.6|Salmo|221221722 Salmo|221221722|TS_H1.6 Salmo_TS_H1.6_221221722
+>TS_H1.6|Salmo|ACM09522.1 Salmo|ACM09522.1|TS_H1.6 Salmo_TS_H1.6_221221722
 ---------------------------------MSGVIAIPLATPATT------------
 --------------------------------------------PKKR----------SK
 PKKTGP---------TVSDRILKVVSASSGRSGVSLAALKKSLAASG--Y-DVVKN----
@@ -328,7 +328,7 @@ K---------------NKVKKVGAKKVRRAS---PKKAAGAKKSPKK-------------
 -------------------------AKRPAAA----------KKPKSP-------RKTKR
 RVAKS---------------------------------------------TRA-------
 -------KTAPKK-----------------K-------------------
->TS_H1.6|Xenopus|147901299 Xenopus|147901299|TS_H1.6 Xenopus_TS_H1.6_147901299
+>TS_H1.6|Xenopus|NP_001087957.1 Xenopus|NP_001087957.1|TS_H1.6 Xenopus_TS_H1.6_147901299
 --------------------------------MAATTESAPVAPPAEPAAA---------
 --KKTKKQQ-----------------------------------PKKVAGGA------KA
 KKPSGP---------SASELIVKAVSASKERSGVSLAALKKALAAGG--Y-DVDKN----
@@ -339,7 +339,7 @@ K-KKPAAPKAKKP---AAGAKKAPKSPKKPK---KVSAA--AKSP-K-------------
 ------------------------PK-AVKAK----------KVAKSP-------AK-KA
 TKPKTAK---------------SPAKAKVAK-------------------PKA-A--KA-
 -------KKPAPK-----------------K-------------------
->TS_H1.7|Homo|32401437 Homo|32401437|TS_H1.7 Homo_TS_H1.7_32401437
+>TS_H1.7|Homo|NP_861453.1 Homo|NP_861453.1|TS_H1.7 Homo_TS_H1.7_32401437
 -------------------------------MEQALTGEAQSRWPRRGGSG--------A
 MAEAPGPSG-----------------------------------ESRGHSAT---QLPAE
 KTVGGPSRGCSSSVLRVSQLVLQAISTHK---GLTLAALKKELRNAG--Y-EVRRKS---
@@ -350,7 +350,7 @@ RQEEGTRAPWRTP-AAPRSSRRRRQPLRKAA---RKAREVWRRNARA-------------
 ----------------------AKEEAGATAA----------DEGRGQ-------AVKED
 TTPRSGK-----------------DKRRSSK-------------------PREEK-QEP-
 -------KKPAQRTIQ----------------------------------
->TS_H1.7|Mus|257196238 Mus|257196238|TS_H1.7 Mus_TS_H1.7_257196238
+>TS_H1.7|Mus|NP_081580.2 Mus|NP_081580.2|TS_H1.7 Mus_TS_H1.7_257196238
 -----------------------------------MAEAVQPSGESQGAEL--------T
 IQIQQPAER-----------------------------------ALRTPA--------KR
 GTQSVL---------RVSQLLLRAIAGHQ---HLTLDALKKELGNAG--Y-EVRRE----
@@ -361,7 +361,7 @@ SKARSRARSRAKDLVRSKAREQAQAREQARAR--AREQAHARARTQDWVRAKAQEFVSAK
 EQQYVRAKEQERAKAREQVRIGARDEARIKAK----------DYNRVR-------PTKED
 TSPRPAE-----------------EKSSNSK-------------------LREEKGQEP-
 -------ERPVKQTIQKPALDNAPSIQGKACTKSFTKSGQPGDTESP---
->TS_H1.9|Homo|38372285 Homo|38372285|TS_H1.9 Homo_TS_H1.9_38372285
+>TS_H1.9|Homo|P60008.1 Homo|P60008.1|TS_H1.9 Homo_TS_H1.9_38372285
 MLHASTIWHLRSTPPRRKQWGHCDPHRILVASEVTTEITSPTPAPRAQVCG--------G
 QPWVTVLDPLSGHTGREAERHFATVSISAVELKYCHGWRPAGQRVPSKTATG---QRTCA
 KPCQKP---------STSKVILRAVADKGTCKYVSLATLKKAVSTTG--Y-DMARN----
@@ -372,7 +372,7 @@ AYH-FKRVLKGLVD------------KGSAGSFTLGK-----------------------
 ------------------------SLLGSKQG----------HKRLIK-------GVRRV
 AKCHC-------------------------------------------------------
 ------------------------------N-------------------
->TS_H1.9|Mus|9055232 Mus|9055232|TS_H1.9 Mus_TS_H1.9_9055232
+>TS_H1.9|Mus|NP_061262.1 Mus|NP_061262.1|TS_H1.9 Mus_TS_H1.9_9055232
 -----------------------------------MAQMVAGDQDAGTLWV---------
 --------------------------------------------PSQSESQT--ESDIST
 QSLRKP---------TMSYVILKTLADKRVHNCVSLATLKKAVSITG--Y-NMTHN----
@@ -383,7 +383,7 @@ TWR-FKRVLQNLLDKGMIMHV--TCCKGASGSLCLCK-----------------------
 ------------------------LLLSSKKK----------NDQLFK-------GVRRV
 AKG---------------------------------------------------------
 -------NRHCHY-------------------------------------
->TS_H1.9|Peromyscus|207081162 Peromyscus|207081162|TS_H1.9 Peromyscus_TS_H1.9_207081162
+>TS_H1.9|Peromyscus|ACI22865.1 Peromyscus|ACI22865.1|TS_H1.9 Peromyscus_TS_H1.9_207081162
 -------------------------------MQRDTLLVSPSAAPNSAVAV---------
 DQDASTSDD-----------------------------------PSKSETGP----YTCP
 QTMRKP---------SMSKVILRAVTDKGLHRRVSLAALKKAVSTTG--Y-NMAHN----
@@ -394,7 +394,7 @@ SWR-FKRVVKNLVKKGMLKQV--T-GKGASGSFRLGK-----------------------
 ------------------------RRSGPRQS----------LLGSGR-------SLKGL
 F-----------------------------------------------------------
 --------------------------------------------------
->TS_H1.9|Rattus|157818369 Rattus|157818369|TS_H1.9 Rattus_TS_H1.9_157818369
+>TS_H1.9|Rattus|NP_001103035.1 Rattus|NP_001103035.1|TS_H1.9 Rattus_TS_H1.9_157818369
 -----------------------------------MSLVSPSPDSNAVMAG--------D
 QDASTSQVP-----------------------------------SQSESKIG---PNVAT
 QTLRKP---------TMSKVILRTVADKGVHSRVSLAALKKAVSITG--Y-NMAQN----
@@ -405,7 +405,7 @@ TWR-FKRVLQNLVKKGMLKQV--T-GKGASGSFRLGK-----------------------
 ------------------------SLLGSKKS----------NNRLFK-------GVRRV
 AKGRR-------------------------------------------------------
 ------------------------------H-------------------
->generic_H1|Arabidopsis|15222199 Arabidopsis|15222199|generic_H1 Arabidopsis_generic_H1_15222199
+>generic_H1|Arabidopsis|NP_172161.1 Arabidopsis|NP_172161.1|generic_H1 Arabidopsis_generic_H1_15222199
 ------------------------MSEVEIENAATIEGNTAADAPVTDAAVEKKPAAKGR
 KTKNVKEVK-----------------------------------EKKTVAAA----PKKR
 TVSSHP---------TYEEMIKDAIVTLKERTGSSQYAIQKFIEEKR--K-ELPPT----
@@ -416,7 +416,7 @@ AAAEKSAPAKKKP---ATVAVTKAKRKVAAA---SKAKK--TIAVKP-------------
 ----------------------KRKAVDAKPK----------AKARPA-------KAAKT
 AKVTSPA--KKAVAATKKVATVATKKKTPVK-------------------KVVKP--KT-
 --VKSPAKRASSR-V---------------KK------------------
->generic_H1|Bos|741971516 Bos|741971516|generic_H1 Bos_generic_H1_741971516
+>generic_H1|Bos|XP_010816821.1 Bos|XP_010816821.1|generic_H1 Bos_generic_H1_741971516
 -----------------------------------MSEVAL-PAPAASTSP---------
 --EKPSAGK-----------------------------------KAKKPAKA---AAAAK
 KKPAGP---------SVSELIVQAVSSSKERSGVSLAALKKALAAAG--Y-DVEKN----
@@ -427,7 +427,7 @@ A---TKVATKTKV---TSASKKPKKASGAAA---AKKSV---KTP-K-------------
 ------------------------PK-AVKPK----------KVAKSP-------AKAKA
 VKPKG-------------------AKVKVTK-------------------PKTAA--KP-
 -------KKAAPK-----------------KK------------------
->generic_H1|Caenorhabditis|54035964 Caenorhabditis|54035964|generic_H1 Caenorhabditis_generic_H1_54035964
+>generic_H1|Caenorhabditis|O17536.3 Caenorhabditis|O17536.3|generic_H1 Caenorhabditis_generic_H1_54035964
 -------------------------------MSDVAVAADTTETPAAPTKA-------SK
 ATKASKATK-----------------------------------ASKATKAKTTKVPMVK
 ADAAHP---------PFINMVTEAISSIKDRKGPSRAAILKYITTK---Y-TLGDQANKI
@@ -438,7 +438,7 @@ AAKKDATGEKKAT---TTVAKKAATGEKKATTTVAKKAATGEKKATTT------------
 ------------------------VKKVKSPK----------KIAKSP-------VNKVT
 KSPVKKI-----------------AKSSSMKAA-----------------PKKAAAKPA-
 -------KKAPAAAPEA---------------------------------
->generic_H1|Drosophila|28571712 Drosophila|28571712|generic_H1 Drosophila_generic_H1_28571712
+>generic_H1|Drosophila|NP_650383.2 Drosophila|NP_650383.2|generic_H1 Drosophila_generic_H1_28571712
 --------------------MKLKPVERNDGSDDESEEEMPNDHPESEDSNMGEEEELPE
 EDEEEMEED------------EEEDRQDGDEVETDNLGADRNPYPTPPPDDG---SKLVP
 PDSDNPKSMVPKPKGTLISLALMAIGKLASRSGSSVQAIMTYLKDNGQEW-KDPKK----
@@ -449,7 +449,7 @@ K-QKEKEKKAKVE---KVLKEKIQKKEAKAKMKEKKASK--EKSSKP-------------
 ----------------------KAASSAAAQAMLETSQTAIPEAGKKP-------AKTKV
 KLQADSS--EAGKTKKSRKSIGTLAQPKAAR-------------------PKVKA--VK-
 --KLVAGKGASTPDLSIMEAQATSTPQGATKAKRKRKV------------
->generic_H1|Drosophila|72151622 Drosophila|72151622|generic_H1 Drosophila_generic_H1_72151622
+>generic_H1|Drosophila|AAZ66580.1 Drosophila|AAZ66580.1|generic_H1 Drosophila_generic_H1_72151622
 ---------------------------------MSDSAVATSASPVAAPPA--------T
 VEKKVVQKK-----------------------------------ASGSAGTK---AKKAS
 ATPSHP---------PTQQMVDASIKNLKERGGSSLLAIKKYITAT---Y-KCDAQK---
@@ -460,7 +460,7 @@ SKVLSAEKKVQSK---KVASKKIGVSSKKTA---VGAAD--KKPKAK-------------
 ----------------------DAKKTGIIKS----------KPAATK-------AKVTA
 AKPKAVV-----------------AKASKAK-------------------PAVSA--KP-
 -------KKTVKKASVSATAKKPKAKTTAAKK------------------
->generic_H1|Gallus|50729210 Gallus|50729210|generic_H1 Gallus_generic_H1_50729210
+>generic_H1|Gallus|XP_425456.1 Gallus|XP_425456.1|generic_H1 Gallus_generic_H1_50729210
 -----------------------------------MSETAPVAAPAVSAPG---------
 --AKAAAKK-----------------------------------PKKAAGGA------KA
 RKPAGP---------SVTELITKAVSASKERKGLSLAALKKALAAGG--Y-DVEKN----
@@ -471,7 +471,7 @@ A-------TKKKP---AAKPKKPAAKKPAAAAKKPKKAAAVKKSP-K-------------
 ------------------------ATKAGRPK----------KTAKSP-------AKAKA
 VKPKA-------------------AKSKAAK-------------------PKAAK--AK-
 -------KAATKK-----------------K-------------------
->generic_H1|Homo|4885373 Homo|4885373|generic_H1 Homo_generic_H1_4885373
+>generic_H1|Homo|NP_005316.1 Homo|NP_005316.1|generic_H1 Homo_generic_H1_4885373
 -----------------------------------MSETVP-PAPAASAAP---------
 --EKPLAGK-----------------------------------KAKKPAKA---AAASK
 KKPAGP---------SVSELIVQAASSSKERGGVSLAALKKALAAAG--Y-DVEKN----
@@ -482,7 +482,7 @@ A---SKVATKTKA---TGASKKLKKATG--A---SKKSV---KTP-K-------------
 ------------------------PK-TVKPK----------KVAKSP-------AKAKA
 VKPKA-------------------AKARVTK-------------------PKT-A--KP-
 -------KKAAPK-----------------KK------------------
->generic_H1|Homo|4885375 Homo|4885375|generic_H1 Homo_generic_H1_4885375
+>generic_H1|Homo|NP_005310.1 Homo|NP_005310.1|generic_H1 Homo_generic_H1_4885375
 -----------------------------------MSETAP-AAPAAAPPA---------
 --EKAPVKK-----------------------------------KAAKKAGG------TP
 RKASGP---------PVSELITKAVAASKERSGVSLAALKKALAAAG--Y-DVEKN----
@@ -493,7 +493,7 @@ V-KKAGGTKPKKP---VGAAKKPKKAAGGAT---PKKSA--KKTP-K-------------
 ------------------------AK-VAKPK----------KAAKSA-------A----
 ---KA-------------------VKPKAAK-------------------PKV-V--KP-
 -------KKAAPK-----------------KK------------------
->generic_H1|Homo|4885377 Homo|4885377|generic_H1 Homo_generic_H1_4885377
+>generic_H1|Homo|NP_005311.1 Homo|NP_005311.1|generic_H1 Homo_generic_H1_4885377
 -----------------------------------MSETAP-LAPTIPAPA---------
 --EKTPVKK-----------------------------------KAKKAGAT-----AGK
 RKASGP---------PVSELITKAVAASKERSGVSLAALKKALAAAG--Y-DVEKN----
@@ -504,7 +504,7 @@ A-KKAGAAKPRKP---AGAAKKPKKVAGAAT---PKKSI--KKTP-K-------------
 ------------------------VK-TPQPK----------KAAKSP-------AKAKA
 PKPKA-------------------AKPKSGK-------------------PKV-T--KA-
 -------KKAAPK-----------------KK------------------
->generic_H1|Homo|4885379 Homo|4885379|generic_H1 Homo_generic_H1_4885379
+>generic_H1|Homo|NP_005312.1 Homo|NP_005312.1|generic_H1 Homo_generic_H1_4885379
 -----------------------------------MSETAP-AAPAAPAPA---------
 --EKTPVKK-----------------------------------KARKSAGA------AK
 RKASGP---------PVSELITKAVAASKERSGVSLAALKKALAAAG--Y-DVEKN----
@@ -515,7 +515,7 @@ A-KKAGAAKAKKP---AGAAKKPKKATGAAT---PKKSA--KKTP-K-------------
 ------------------------AK-AAKPK----------KAPKSP-------AKAKA
 VKPKA-------------------AKPKTAK-------------------PKA-A--KP-
 -------KKAAAK-----------------KK------------------
->generic_H1|Homo|4885381 Homo|4885381|generic_H1 Homo_generic_H1_4885381
+>generic_H1|Homo|NP_005313.1 Homo|NP_005313.1|generic_H1 Homo_generic_H1_4885381
 -----------------------------------MSETAP-AETATPAPV---------
 --EKSPAKK-----------------------------------KATKKAAG---AGAAK
 RKATGP---------PVSELITKAVAASKERNGLSLAALKKALAAGG--Y-DVEKN----
@@ -526,7 +526,7 @@ A-KKAGAAKAKKP---AGAT--PKKAKKAAG---AKKAV--KKTP-K-------------
 ------------------------AKAAAKPK----------KATKSP-------AKPKA
 VKPKA-------------------AKPKAAK-------------------PKA-A--KP-
 --KAAKAKKAAAK-----------------KK------------------
->generic_H1|Mus|21426823 Mus|21426823|generic_H1 Mus_generic_H1_21426823
+>generic_H1|Mus|NP_085112.1 Mus|NP_085112.1|generic_H1 Mus_generic_H1_21426823
 -----------------------------------MSETAP-VAQAASTAT---------
 --EKPAAAK-----------------------------------KTKKPAKA----AAPR
 KKPAGP---------SVSELIVQAVSSSKERSGVSLAALKKSLAAAG--Y-DVEKN----
@@ -537,7 +537,7 @@ T---TKVSVKAKA---SGAAKKPKKTAG-AA---AKKTV---KTP-K-------------
 ------------------------PK-VVKAK----------KVAKSP-------AKAKA
 VKPKA-------------------SKAKVTK-------------------PKTPA--KP-
 -------KKAAPK-----------------KK------------------
->generic_H1|Mus|9845257 Mus|9845257|generic_H1 Mus_generic_H1_9845257
+>generic_H1|Mus|NP_056601.1 Mus|NP_056601.1|generic_H1 Mus_generic_H1_9845257
 -----------------------------------MSEAAP-AAPAAAPPA---------
 --EKAPAKK-----------------------------------KAAKKPAG------VR
 RKASGP---------PVSELITKAVAASKERSGVSLAALKKALAAAG--Y-DVEKN----
@@ -548,7 +548,7 @@ A-KKAGAAKAKKP---AGAAKKPKKATGAAT---PKKAA--KKTP-K-------------
 ----------------------------AKVT----------KPKKVK-------SASKA
 VKPKA-------------------AKPKVAK--------------------------AK-
 -------KVAAKK-----------------K-------------------
->generic_H1|Rattus|18959218 Rattus|18959218|generic_H1 Rattus_generic_H1_18959218
+>generic_H1|Rattus|NP_579819.1 Rattus|NP_579819.1|generic_H1 Rattus_generic_H1_18959218
 -----------------------------------MSETAP-AAPAAPAPA---------
 --EKTPIKK-----------------------------------KARKAAGG------AK
 RKASGP---------PVSELITKAVAASKERSGVSLAALKKALAAAG--Y-DVEKN----
@@ -559,7 +559,7 @@ A-KKAGAAKAKKP---AGAAKKPKKATGTAT---PKKST--KKTP-K-------------
 ------------------------AK-ATKAK----------KAPKSP-------AKARA
 VKPKA-------------------AKPKTSK-------------------PKA-A--KP-
 -------KKTAAK-----------------KK------------------
->generic_H1|Strongylocentrotus|47551077 Strongylocentrotus|47551077|generic_H1 Strongylocentrotus_generic_H1_47551077
+>generic_H1|Strongylocentrotus|NP_999714.1 Strongylocentrotus|NP_999714.1|generic_H1 Strongylocentrotus_generic_H1_47551077
 -----------------------------------MAEKNS-------------------
 ---------------------------------------------SKKVT--------TK
 KPAAHP---------PAAEMVATAITELKDRNGSSLQAIKKYIATN---F-DVQMDR---
@@ -570,7 +570,7 @@ EKAKLLAQREKAK---EKGCSEEGETAEGSR---PKKVK---AAP-K-------------
 ----------------------APKKPAAKKS----------TPKKTP-------KKAAA
 KKPKT------------------------AK-------------------PKKPA--XK-
 -------KAAKSK-------------------------------------
->generic_H1|Strongylocentrotus|47551091 Strongylocentrotus|47551091|generic_H1 Strongylocentrotus_generic_H1_47551091
+>generic_H1|Strongylocentrotus|NP_999720.1 Strongylocentrotus|NP_999720.1|generic_H1 Strongylocentrotus_generic_H1_47551091
 -----------------------------------MSAAKPKVAKK--------------
 ----------------------------------------------------------AR
 VAPAHP---------PSSQMVVAAVTALKERGGSSTQAIKKYIAAN---Y-TVDMTK---
@@ -581,7 +581,7 @@ KKAKLAAKKKEQR---EKKALKTKARKEKVA---AKKAA--KKAT-K-------------
 ----------------------PAAKKAKKPA----------KKVAKP-------AKKAA
 AKPAK-------------------KAAKPAK-------------------KAAKP--AK-
 -------KAAKPA-----------------KK------------------
->generic_H1|Xenopus|147903543 Xenopus|147903543|generic_H1 Xenopus_generic_H1_147903543
+>generic_H1|Xenopus|NP_001081535.1 Xenopus|NP_001081535.1|generic_H1 Xenopus_generic_H1_147903543
 -----------------------------------MAPKKAVAAPEGGNKE--------N
 AAVKGSSKV-----------------------------------KVKRKSIK------LV
 KTQSHP---------PTLSMVVEVLKKNTERKGTSVQAIRTRILSAH--P-TVDPLR---
@@ -592,7 +592,7 @@ ETQKKAPKKEKKA---KTEKEPKGEKTKAVAKKAKEDSD--EKPKVA-------------
 ----------------------KEAKEVDKAN----------KEVKEV-------DKAPA
 KKPKAKT--EAAKAEGGG-------KAKKEP-------------------PKAKA--KD-
 -------VKAQKDSTDEGAPVKAGKKGKKVTN------------------
->generic_H1|Zea|121950 Zea|121950|generic_H1 Zea_generic_H1_121950
+>generic_H1|Zea|P23444.2 Zea|P23444.2|generic_H1 Zea_generic_H1_121950
 ----------------------------------MATDVTETPAPLVDAAP--------E
 APADAPAAP------------------------------AADANAAKAKKAT---APKKR
 ASPTHL---------PYAEMVSEAITSLKERTGSSSYAIAKFVEDKH--KAKLPPN----
@@ -603,7 +603,7 @@ KTGAKKPKAAAKPKAKTPAKAKPATKPKPAA---KPKAVVKPKTPAK-------------
 ------------------------AKPKPLAK----------KAGRAK-------AAKTS
 AKDTP-------------------GKKAPAKKAA----------------PSKKAATPV-
 -------RKAPSR-----------------KAKK----------------
->scH1|Saccharomyces|6325130 Saccharomyces|6325130|scH1 Saccharomyces_scH1_6325130
+>scH1|Saccharomyces|NP_015198.1 Saccharomyces|NP_015198.1|scH1 Saccharomyces_scH1_6325130
 ---------------------------------MAPKKSTTKTTSKGKKPA---------
 -TSKGKEKS-----------------------------------TSKAAIKK---TTAKK
 EEASSK---------SYRELIIEGLTALKERKGSSRPALKKFIKEN---Y-PIVGSASNF
@@ -614,7 +614,7 @@ PKQAATSVSATASK--AKAASTKLAPKKVVK---KKSPTVTAK-----------------
 ------------------------LNDGKGSS----------RIVLKK-------YVKDT
 FSSKLKTSSNFDYLFNSAIKKCV-ENGELVQ-------------------PKGPS--GI-
 -------IKLNKK-----------------KVKLST--------------
->scH1|Saccharomyces|748455219 Saccharomyces|748455219|scH1 Saccharomyces_scH1_748455219
+>scH1|Saccharomyces|XP_011105792.1 Saccharomyces|XP_011105792.1|scH1 Saccharomyces_scH1_748455219
 -------------------------------MAPKKTSTKTTTTNKGKKPV-------TS
 KGKDKPVIK-----------------------------------TAVKKNAA------KK
 EEPSSK---------SYKELIVEGLAALKERKGSSRPALKKFIKEN---Y-PLVGSTSNF
