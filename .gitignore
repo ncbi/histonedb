@@ -29,3 +29,5 @@ static/browse/hmms/model_evaluation/*/*
 *.pdf
 rh.sh
 HistoneDB/NCBI_database_info.txt
+HistoneDB/NCBI_database_info_temp.txt
+
