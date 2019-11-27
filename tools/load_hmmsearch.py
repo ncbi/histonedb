@@ -13,6 +13,7 @@ from browse.models import *
 from djangophylocore.models import Taxonomy
 from django.db.models import Max
 from django.db.utils import IntegrityError
+from django.db import close_old_connections
 from django.conf import settings
 
 #Custom librairies
@@ -33,6 +34,7 @@ def load_hmm_results(hmmerFile, id_file):
   """
   # print('ARGS {}; {}'.format(hmmerFile, id_file))
   ids = open(id_file, "w")
+  #close_old_connections()
 
   #We need unknown Variant model - to assign to those that do not pass the threshold for analyzed models,
   #but are waiting if they will be pass threhold with other models.
@@ -63,7 +65,8 @@ def load_hmm_results(hmmerFile, id_file):
 
       ###Iterate through headers of identical sequences.
       for header in headers:
-        accession = header.split(" ")[0]
+        # to distinct accession from description and if accession is like pir||S24178 get S24178
+        accession = header.split(" ")[0].split('||')[-1]
         ##Iterate through high scoring fragments.
         for i, hsp in enumerate(hit):
           seqs = Sequence.objects.filter(id=accession)
@@ -106,6 +109,7 @@ def load_hmm_results(hmmerFile, id_file):
             sequence = Seq(str(hsp.hit.seq))
             best = hsp.bitscore >= variant_model.hmmthreshold
             try:
+              # print 'HEADER {}'.format(header)
               seq = add_sequence(
                 accession,
                 variant_model if best else unknown_model, 
@@ -129,15 +133,15 @@ def load_hmm_results(hmmerFile, id_file):
 
   ids.close()
 
-def add_sequence(gi, variant_model, taxonomy, header, sequence):
+def add_sequence(accession, variant_model, taxonomy, header, sequence):
   """Add sequence into the database, autfilling empty Parameters"""
   seq = Sequence(
-    id       = gi,
+    id       = accession,
     variant  = variant_model,
     gene     = None,
     splice   = None,
     taxonomy = taxonomy,
-    header   = header,
+    header   = header[:250],
     sequence = str(sequence).replace("-", "").upper(),
     reviewed = False,
     )
