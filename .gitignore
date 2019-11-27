@@ -6,6 +6,8 @@ HistoneDB/NCBI_database_info.py
 *.pyc
 nr
 swissprot
+yeast.aa
+nr_small
 refseq
 static/browse/hmms/combined_cores.hmm.out
 static/browse/hmms/combined_variants.hmm.out

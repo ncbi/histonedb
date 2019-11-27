@@ -81,7 +81,7 @@ INSTALLED_APPS = (
     'browse',
     'djangophylocore',
     'django_extensions',
-    'mod_wsgi.server',
+    # 'mod_wsgi.server',
     'analytics'
 )
 
@@ -136,7 +136,8 @@ DATABASES = {
         'PASSWORD': NCBI_database_info["password"],
         'HOST': NCBI_database_info["host"],
         'PORT':NCBI_database_info["port"],
-        'CONN_MAX_AGE': 3600
+        'CONN_MAX_AGE': 3600,
+        'SSL_DISABLED': True
     }
 }
 
