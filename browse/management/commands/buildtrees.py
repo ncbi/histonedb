@@ -66,6 +66,9 @@ class Command(BaseCommand):
         self.log.info('=======================================================')
         self.make_trees(force=options["force"])
         self.add_features()
+        self.log.info('=======================================================')
+        self.log.info('===        buildtrees SUCCESSFULLY finished         ===')
+        self.log.info('=======================================================')
 
     def get_variants(self, core_type=None):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):

@@ -132,3 +132,7 @@ class Command(BaseCommand):
                                 used_features[name] += 1
                             except KeyError:
                                 used_features[name] = 1
+
+        self.log.info('=======================================================')
+        self.log.info('===     buildvariantinfo SUCCESSFULLY finished      ===')
+        self.log.info('=======================================================')

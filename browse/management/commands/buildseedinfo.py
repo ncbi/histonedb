@@ -85,6 +85,10 @@ class Command(BaseCommand):
                         not_found[variant] = [id]
             self.log.warning(not_found)
 
+        self.log.info('=======================================================')
+        self.log.info('===       buildseedinfo SUCCESSFULLY finished       ===')
+        self.log.info('=======================================================')
+
     def get_seeds(self):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             for seed in files: 

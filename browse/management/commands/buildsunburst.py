@@ -56,6 +56,10 @@ class Command(BaseCommand):
                 with open(os.path.join(vpath, "{}.json".format(variant.id)), "w") as variant_burst:
                     variant_burst.write(sb)
 
+        self.log.info('=======================================================')
+        self.log.info('===       buildsunburst SUCCESSFULLY finished       ===')
+        self.log.info('=======================================================')
+
     def build_sunburst(self, **filter):
         """Build the sunburst
         """

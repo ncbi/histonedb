@@ -107,6 +107,10 @@ class Command(BaseCommand):
         # self.extract_full_sequences()
         self.canonical2H2AX()
 
+        self.log.info('=======================================================')
+        self.log.info('===       buildvariants SUCCESSFULLY finished       ===')
+        self.log.info('=======================================================')
+
     def canonical2H2AX(self):
         """Fix an issue where the canonical variant takes over sequence from H2A.X. 
         The H2A.X motif SQ[ED][YFL]$ is not strong enough, but is the correct variant.
