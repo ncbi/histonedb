@@ -11,7 +11,7 @@ gunicorn>=19.5.0
 matplotlib
 mock
 more-itertools
-networkx
+networkx=2.1=py27_0
 nose
 numpy
 pandas
