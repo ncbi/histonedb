@@ -1,6 +1,6 @@
 # Requirements setup for HistoneDB 
 
-To fully and correctly run the project, some system configurations and dependencies are important. To setup Ubuntu machine system, python packages and MySQL database follow steps below:
+To fully and correctly run the project, some system configurations and dependencies are important. To setup Ubuntu machine system, python packages and MySQL database follow the steps below:
 
 1) Create a virtualenv (for correct setup, please, do not use anaconda) in your working directory and activate it
 ```
