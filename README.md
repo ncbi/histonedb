@@ -123,7 +123,7 @@ You have several options to run the Django server. The easiest way is to run it 
 python manage.py runserver 8080
 ```
 
-For deployment, you can use any system as you prefer, but we recomend using modwsgi described in our [configuration instructions](system_setup/CONFIGURATION.md)
+For deployment, you can use any system as you prefer, but we recomend using modwsgi with configuration described in our [configuration instructions](system_setup/CONFIGURATION.md)
 
 ## Cite ##
 
