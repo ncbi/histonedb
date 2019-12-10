@@ -68,7 +68,7 @@ WARNING: This will download the entire NCBI taxonomy database and load into the 
 ```
 python manage.py buildvariants
 ```
-WARNING: This will by default download the entire nr database and classify all sequences in the nr. If you want to build the HistoneDB using a smaller database of proteins in FASTA format using the NR formatted header (">gi|UNIQUE_GI|anything description [TAXONOMY_NAME]"), run the following command:
+WARNING: This will by default download the entire nr database and classify all sequences in the nr. If you want to build the HistoneDB using a smaller database of proteins in FASTA format using the NR formatted header (">UNIQUE_ACCESSION|anything description [TAXONOMY_NAME]"), run the following command:
 
 ```
 python manage.py buildvariants --db small_database.fasta
