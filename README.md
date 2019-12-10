@@ -1,7 +1,7 @@
 # HistoneDB
 A database for all histone proteins in NR organized by their known non-allelic protein isoforms, called variants. This resource can be used to understand how changes in histone variants affect structure, complex formation, and nucleosome function. For more information, please read our [paper](manuscript/paper.md) (citation below).
 
-The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/HistoneDB2.0/
+The database can be accessed at https://histonedb.bioeng.ru
 
 ## Requirements ##
 
@@ -23,7 +23,9 @@ All executables must be present in the bin dir of virual environment.
 
 ## Setup ##
 
-If you want to test the server on your own machine, you must make sure have all of the dependencies listed above and follow these steps.
+If you want to test the server on your own machine, you must make sure have all of the dependencies listed above, or if you have Ubuntu 18.04 and greater you can pass the instrustions from [requirements](system_setup/REQUIREMENTS.md).
+
+Then follow these steps:
 
 1) Create MySQL database, and store the login information in the file  HistoneDB/NCBI_databse_info.txt, which is formatted in the following way (key = value):
 ```
@@ -121,7 +123,7 @@ You have several options to run the Django server. The easiest way is to run it 
 python manage.py runserver 8080
 ```
 
-For deployment, we use FastCGI on the NCBI webservers. While this will be deprecated in the next version of Django, it is what NCBI allows. For more info, please read https://docs.djangoproject.com/en/1.8/howto/deployment/fastcgi/
+For deployment, you can use any system as you prefer, but we recomend using modwsgi described in our [configuration instructions](system_setup/CONFIGURATION.md)
 
 ## Cite ##
 
