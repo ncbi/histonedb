@@ -12,9 +12,9 @@ source histdb_py27/bin/activate
 ```
 sh system_setup/full_setup.sh
 ```
-This command will install all system dependencies (system_setup/sys_requirements_setup.txt). Then there will be installed all python dependencies in activated virtualenv (system_setup/py_requirements_setup.txt). The step includes installing mysql-client.
+This command will install all system dependencies (see ```system_setup/sys_requirements_setup.txt```). Then there will be installed all python dependencies in activated virtualenv (see ```system_setup/py_requirements_setup.txt```). The step includes installing mysql-client.
 
-3) Create new MySQL user and database. Change file system_setup/db_setup_query.sql by replacing db_name, db_user and password
+3) Create new MySQL user and database. Change file ```system_setup/db_setup_query.sql``` by replacing db_name, db_user and password
 ```
 CREATE DATABASE IF NOT EXISTS db_name;
 CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'password';
