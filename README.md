@@ -7,13 +7,14 @@ The database can be accessed at https://histonedb.bioeng.ru
 
 - Python 2.7
 - Required python packages are specified in requirements.txt (use "pip install -r requirements.txt"). They include:
---Flup 1.0.2, if using fastcgi
--- Django 1.8, django-debug_toolbar, django-filter, django-filters(?)
--- django-extensions 1.5.3
--- MySQL-python 1.2.5
--- BioPython 1.65
--- colour 0.1.1
--- pyparsing, matplotlib, seaborn, sklearn, networkx, more_itertools
+  - Flup 1.0.2, if using fastcgi
+  - Django 1.8.19, django-debug_toolbar, django-filter, django-filters 0.2.1
+  - django-extensions 1.5.3
+  - MySQL-python 1.2.5
+  - BioPython 1.74
+  - colour 0.1.5
+  - pyparsing, matplotlib, seaborn, sklearn, networkx, more_itertools, numpy, pandas, scipy
+  - psycopg2 2.7
 - [HMMER 3.1b2](http://hmmer.janelia.org)
 - [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) v 2.2.26
 - [EMBOSS](http://emboss.sourceforge.net) v6.5.7
