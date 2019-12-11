@@ -1,6 +1,6 @@
 # Apache and modwsgi configuration with Django
 
-**Note**: amache2 and libapache2-mod-wsgi with dependencies are installed by system_setup/full_setup.sh
+**Note**: apache2 and libapache2-mod-wsgi with dependencies are installed by system_setup/full_setup.sh
 
 For deployment we recomend to use modwsgi.
 
