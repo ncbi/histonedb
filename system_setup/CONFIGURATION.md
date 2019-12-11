@@ -1,6 +1,6 @@
 # Apache and modwsgi configuration with Django
 
-**Note**: apache2 and libapache2-mod-wsgi with dependencies are installed by system_setup/full_setup.sh
+**Note**: apache2 2.4.29 and libapache2-mod-wsgi with dependencies are installed by ```system_setup/full_setup.sh```
 
 For deployment we recomend to use modwsgi.
 
@@ -25,8 +25,6 @@ And add the script given below to the file
     </Directory>
 
     <Directory /path/to/project/histonedb/static>
-    #Order allow,deny
-    #Allow from all
     Require all granted
     </Directory>
 ```
