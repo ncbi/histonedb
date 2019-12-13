@@ -6,7 +6,7 @@ The database can be accessed at https://histonedb.bioeng.ru
 ## Requirements ##
 
 - Python 2.7
-- Required python packages are specified in requirements.txt (use ```pip install -r requirements.txt```). They include:
+- Required python packages are specified in ```requirements.txt``` (use ```pip install -r requirements_full.txt```). They include:
   - Django 1.8.19, django-debug_toolbar, django-filter, django-filters 0.2.1
   - django-extensions 1.5.3
   - MySQL-python 1.2.5
@@ -27,7 +27,7 @@ If you want to test the server on your own machine, you must make sure have all 
 
 Then follow these steps:
 
-1) Create MySQL database, and store the login information in the file  HistoneDB/NCBI_databse_info.txt, which is formatted in the following way (key = value):
+1) Create MySQL database, and store the login information in the file ```HistoneDB/NCBI_databse_info.txt```, which is formatted in the following way (key = value):
 ```
 name = DB_NAME
 user = DB_USER
