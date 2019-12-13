@@ -1,19 +1,19 @@
 # HistoneDB
 A database for all histone proteins in NR organized by their known non-allelic protein isoforms, called variants. This resource can be used to understand how changes in histone variants affect structure, complex formation, and nucleosome function. For more information, please read our [paper](manuscript/paper.md) (citation below).
 
-The database can be accessed at http://www.ncbi.nlm.nih.gov/projects/HistoneDB2.0/
+The database can be accessed at https://histonedb.bioeng.ru
 
 ## Requirements ##
 
 - Python 2.7
-- Required python packages are specified in requirements.txt (use "pip install -r requirements.txt"). They include:
---Flup 1.0.2, if using fastcgi
--- Django 1.8, django-debug_toolbar, django-filter, django-filters(?)
--- django-extensions 1.5.3
--- MySQL-python 1.2.5
--- BioPython 1.65
--- colour 0.1.1
--- pyparsing, matplotlib, seaborn, sklearn, networkx, more_itertools
+- Required python packages are specified in requirements.txt (use ```pip install -r requirements.txt```). They include:
+  - Django 1.8.19, django-debug_toolbar, django-filter, django-filters 0.2.1
+  - django-extensions 1.5.3
+  - MySQL-python 1.2.5
+  - BioPython 1.74
+  - colour 0.1.5
+  - pyparsing, matplotlib, seaborn, sklearn, networkx, more_itertools, numpy, pandas, scipy
+  - psycopg2 2.7
 - [HMMER 3.1b2](http://hmmer.janelia.org)
 - [BLAST+](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) v 2.2.26
 - [EMBOSS](http://emboss.sourceforge.net) v6.5.7
@@ -23,7 +23,9 @@ All executables must be present in the bin dir of virual environment.
 
 ## Setup ##
 
-If you want to test the server on your own machine, you must make sure have all of the dependencies listed above and follow these steps.
+If you want to test the server on your own machine, you must make sure have all of the dependencies listed above, or if you have Ubuntu 18.04 and greater you can pass the instrustions from [requirements](system_setup/REQUIREMENTS.md).
+
+Then follow these steps:
 
 1) Create MySQL database, and store the login information in the file  HistoneDB/NCBI_databse_info.txt, which is formatted in the following way (key = value):
 ```
@@ -66,7 +68,7 @@ WARNING: This will download the entire NCBI taxonomy database and load into the 
 ```
 python manage.py buildvariants
 ```
-WARNING: This will by default download the entire nr database and classify all sequences in the nr. If you want to build the HistoneDB using a smaller database of proteins in FASTA format using the NR formatted header (">gi|UNIQUE_GI|anything description [TAXONOMY_NAME]"), run the following command:
+WARNING: This will by default download the entire nr database and classify all sequences in the nr. If you want to build the HistoneDB using a smaller database of proteins in FASTA format using the NR formatted header (">UNIQUE_ACCESSION|anything description [TAXONOMY_NAME]"), run the following command:
 
 ```
 python manage.py buildvariants --db small_database.fasta
@@ -121,7 +123,7 @@ You have several options to run the Django server. The easiest way is to run it 
 python manage.py runserver 8080
 ```
 
-For deployment, we use FastCGI on the NCBI webservers. While this will be deprecated in the next version of Django, it is what NCBI allows. For more info, please read https://docs.djangoproject.com/en/1.8/howto/deployment/fastcgi/
+For deployment, you can use any system as you prefer, but we recomend using modwsgi with configuration described in our [configuration instructions](system_setup/CONFIGURATION.md).
 
 ## Cite ##
 
