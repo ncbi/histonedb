@@ -6,7 +6,7 @@ The database can be accessed at https://histonedb.bioeng.ru
 ## Requirements ##
 
 - Python 2.7
-- Required python packages are specified in requirements.txt (use "pip install -r requirements.txt"). They include:
+- Required python packages are specified in requirements.txt (use ```pip install -r requirements.txt```). They include:
   - Django 1.8.19, django-debug_toolbar, django-filter, django-filters 0.2.1
   - django-extensions 1.5.3
   - MySQL-python 1.2.5
