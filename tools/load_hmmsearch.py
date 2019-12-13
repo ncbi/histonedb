@@ -66,7 +66,9 @@ def load_hmm_results(hmmerFile, id_file):
       ###Iterate through headers of identical sequences.
       for header in headers:
         # to distinct accession from description and if accession is like pir||S24178 get S24178
-        accession = header.split(" ")[0].split('||')[-1]
+        accession = header.split(" ")[0]
+        # no answer from Entrez with accession S24178 yet, so will try to regulate true accession later
+        # accession = header.split(" ")[0].split('||')[-1]
         ##Iterate through high scoring fragments.
         for i, hsp in enumerate(hit):
           seqs = Sequence.objects.filter(id=accession)

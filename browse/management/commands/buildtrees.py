@@ -46,7 +46,7 @@ class Command(BaseCommand):
     trees_path = os.path.join("static", "browse", "trees")
 
     # Logging info
-    logging.basicConfig(filename='log_buildtrees.log',
+    logging.basicConfig(filename='log/buildtrees.log',
                         format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
                         level=logging.INFO,
                         datefmt='%Y-%m-%d %H:%M:%S')

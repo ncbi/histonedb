@@ -18,13 +18,12 @@ def fetch_seq(accessions):
     else:
         for i in range(10):
             try:
-                # print gis
                 post_results = Entrez.read(Entrez.epost("protein", id=",".join(accessions)))
+                # post_results = Entrez.read(Entrez.epost("protein", id=",".join(['HSURH2'])))
                 webenv = post_results["WebEnv"]
                 query_key = post_results["QueryKey"]
                 handle = Entrez.efetch(db="protein", rettype="gb", retmode="text", webenv=webenv, query_key=query_key)
                 data = list(SeqIO.parse(handle, "gb"))
-                # print(data)
                 if (len(accessions) == len(data)):
                     break
             except:

@@ -15,7 +15,7 @@ class Command(BaseCommand):
     seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
 
     # Logging info
-    logging.basicConfig(filename='log_buildseedinfo.log',
+    logging.basicConfig(filename='log/buildseedinfo.log',
                         format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
                         level=logging.INFO,
                         datefmt='%Y-%m-%d %H:%M:%S')
