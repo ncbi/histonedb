@@ -1,3 +1,5 @@
+# Create an configure MySQL database for HistoneDB 
+
 Create MySQL database. Change file ```system_setup/db_setup_query.sql``` by replacing db_name, db_user and password
 ```
 CREATE DATABASE IF NOT EXISTS db_name;
