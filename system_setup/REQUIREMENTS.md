@@ -12,5 +12,5 @@ source histdb_py27/bin/activate
 ```
 sh system_setup/full_setup.sh
 ```
-This command will install all system dependencies (see ```system_setup/sys_requirements_setup.txt```) and all python dependencies in activated virtualenv (see ```system_setup/py_requirements_setup.txt```). ***Note***: the step includes installing mysql-client.
+This command will install all system dependencies (see ```system_setup/sys_requirements_setup.txt```) and all python dependencies in activated virtualenv (see ```system_setup/py_requirements_setup.txt```). ***Note***: the step includes installing mysql-client (without password).
 
