@@ -28,3 +28,9 @@ And add the script given below to the file
     Require all granted
     </Directory>
 ```
+
+Then, run the script to restart apache2:
+```
+sudo a2enconf mod-wsgi
+sudo systemctl restart apache2
+```
