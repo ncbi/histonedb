@@ -6,7 +6,7 @@ For deployment we recomend to use modwsgi.
 
 To configure Apache and modwsgi with Django go to the modwsgi.conf
 ```
-sudo nano /etc/apache2/conf-available/mod-wsgi.conf
+sudo nano /etc/apache2/conf-available/wsgi.conf
 ```
 
 And add the script given below to the file
