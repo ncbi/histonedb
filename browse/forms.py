@@ -23,7 +23,7 @@ class AdvancedFilterForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AdvancedFilterForm, self).__init__(*args, **kwargs)
-        self.fields['id'].label = "GI"
+        self.fields['id'].label = "Accession"
         self.fields['id'].tab = "Advanced"
         self.fields['hist_type'].label = "Histone"
         self.fields['hist_type'].tab = "Basic"
