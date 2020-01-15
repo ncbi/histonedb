@@ -14,7 +14,7 @@ class Command(BaseCommand):
     help = 'Build the sunburst json files for each core histone and its variants'
 
     # Logging info
-    logging.basicConfig(filename='log_buildsunburst.log',
+    logging.basicConfig(filename='log/buildsunburst.log',
                         format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
                         level=logging.INFO,
                         datefmt='%Y-%m-%d %H:%M:%S')

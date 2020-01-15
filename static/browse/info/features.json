@@ -4,7 +4,7 @@
             "taxa":"root",
             "sequence":"SGRGKQGGKTRAKAKTRSSRAGLQFPVGRVHRLLRKGNYAERVGAGAPVYLAAVLEYLTAEILELAGNAARDNKKTRIIPRHLQLAVRNDEELNKLLGRVTIAQGGVLPNIQSVLLPKKTESSKSKSK",
             "feature1":"===============eeeeeee===111111111111llllllll2222222222222222222222222222LLLLL33333333333EEEEEEEE===============================",
-            "feature2":"=========================================bb=================================BB==DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD=========",
+            "feature2":"=========================================bb=================================BB=DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD=========",
             "feature3":"=========================================a==================p==p=======p====A============ppp=======qqq==========================",
             "feature_info":{
                 "e":{"type":"secondary","name":"alpha1ext","color":"#bbbb66","description":"Alpha1-extension helix","source":"Obtained from PDB 1kx5, symmetrized over two copies of the histone."},

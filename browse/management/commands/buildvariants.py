@@ -34,7 +34,7 @@ class Command(BaseCommand):
     full_length_seqs_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fasta")
 
     # Logging info
-    logging.basicConfig(filename='log_buildvariants.log',
+    logging.basicConfig(filename='log/buildvariants.log',
                         format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
                         level=logging.INFO,
                         datefmt='%Y-%m-%d %H:%M:%S')

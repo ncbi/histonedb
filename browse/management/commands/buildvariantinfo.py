@@ -16,7 +16,7 @@ class Command(BaseCommand):
     info_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "info")
 
     # Logging info
-    logging.basicConfig(filename='log_buildvariantinfo.log',
+    logging.basicConfig(filename='log/buildvariantinfo.log',
                         format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
                         level=logging.INFO,
                         datefmt='%Y-%m-%d %H:%M:%S')
