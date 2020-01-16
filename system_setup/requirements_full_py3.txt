@@ -10,7 +10,7 @@ django-filter==0.10.0
 django-filters
 django-google-analytics-id
 gunicorn>=19.5.0
-matplotlib==1.4.3
+matplotlib
 mock
 more-itertools
 #MySQL-python
@@ -32,4 +32,6 @@ sklearn
 sqlparse
 #whitenoise
 # ERROR: Package 'whitenoise' requires a different Python: 2.7.0 not in '>=3.5, <4'
-wsgiref
+#wsgiref
+# SyntaxError: Missing parentheses in call to 'print'. Did you mean print("Setuptools version",version,"or greater has been installed.")?
+# ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
