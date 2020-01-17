@@ -9,14 +9,14 @@ echo "Reinitializing HistDB from scratch"
 #python manage.py migrate
 #python manage.py sqlclear browse | python manage.py dbshell
 #python manage.py sqlclear djangophylocore | python manage.py dbshell
-#python manage.py migrate #закоментировала временно
+python manage.py migrate
 
 
-#python manage.py buildncbi #закоментировала временно
-#python manage.py loadtaxonomy #закоментировала временно
-#python manage.py buildtaxonomytoc #закоментировала временно
+python manage.py buildncbi
+python manage.py loadtaxonomy
+python manage.py buildtaxonomytoc
 python manage.py buildvariants -f
-#python manage.py buildvariants -f --db nr_small
+python manage.py buildvariants -f --db nr_small
 python manage.py buildtrees -f
 python manage.py buildsunburst -f
 python manage.py buildblastdb -f

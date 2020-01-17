@@ -126,9 +126,15 @@ def easytaxonomy_from_header(header):
 
 def update_taxonomy(accessions):
     for taxid, accession in zip(fetch_taxids(accessions), accessions):
-        seq = Sequence.objects.get(pk=accession)
-        seq.taxonomy_id = taxid
-        seq.save()
+        try:
+            seq = Sequence.objects.get(pk=accession)
+            seq.taxonomy_id = taxid
+            seq.save()
+        except:
+            log.error("Unable to update TAXID {} for accession {}".format(taxid, accession))
+            log.error('Error massege: {}'.format(sys.exc_info()[0]))
+            pass
+            # raise
 
 
 def get_tax_for_gi_taxdump(gis):

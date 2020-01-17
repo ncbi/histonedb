@@ -90,6 +90,12 @@ def build_sunburst(sequences):
     taxa = list(sequences.values_list("taxonomy__parent__parent__parent", flat=True).distinct())
     allow_ranks = ["kingdom", "phylum", "order"]
     tree = TaxonomyReference().get_filtered_reference_graph(taxa, allow_ranks=allow_ranks)
-    nx.set_node_attributes(tree, "colour", {n:get_color_for_taxa(Taxonomy.objects.get(name=n)) for n,d in tree.out_degree_iter() if d==0})
+    color_dict = {}
+    # for n, d in tree.out_degree_iter():
+    #     if d == 0:
+    #         tax_obj = Taxonomy.objects.get(name=n)
+    #         color_dict[n] = get_color_for_taxa(tax_obj)
+    color_dict = {n:get_color_for_taxa(Taxonomy.objects.get(name=n)) for n,d in tree.out_degree_iter() if d==0}
+    nx.set_node_attributes(tree, "colour", color_dict)
     
     return json_graph.tree_data(tree, "root", attrs={'children': 'children', 'id': 'name'})

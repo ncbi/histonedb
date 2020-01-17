@@ -288,6 +288,9 @@ class TaxonomyReference( object ):
         Take a taxa list, search in reference all parents names and
         return a networkx.DiGraph tree.
         """
+        from django.db import connection
+        connection.close()
+
         import networkx as NX
         from itertools import imap
         from multiprocessing import Pool
@@ -300,7 +303,7 @@ class TaxonomyReference( object ):
         num_chunks = len(node_chunks)
         
         for edges in p.imap_unordered(add_to_graph, zip(node_chunks, [allow_ranks]*num_chunks),  num_chunks):
-            tree.add_edges_from(edges)        
+            tree.add_edges_from(edges)
             
         return tree
 
