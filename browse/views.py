@@ -105,10 +105,10 @@ def browse_variants(request, histone_type):
     
     return render(request, 'browse_variants.html', data)
 
-def browse_variant_with_highlighted_sequence(request, histone_type, variant, gi):
-    return browse_variant(request, histone_type, variant, gi)
+def browse_variant_with_highlighted_sequence(request, histone_type, variant, accession):
+    return browse_variant(request, histone_type, variant, accession)
 
-def browse_variant(request, histone_type, variant, gi=None):
+def browse_variant(request, histone_type, variant, accession=None):
     """"Dispaly the browse variant page
 
     Parameters
@@ -117,8 +117,8 @@ def browse_variant(request, histone_type, variant, gi=None):
     histone_type : {"H2A", "H2B", "H3", "H4", "H1"}
     variant : str
         Name of variant
-    gi : str or int
-        GI to select to show it curated sequence browser. Optional. If specified, should open curated sequences page and activate this variant.
+    accession : str or int
+        ACCESSION to select to show it curated sequence browser. Optional. If specified, should open curated sequences page and activate this variant.
     """
     # variant = variant.replace("_", "") if "canonical" in variant else variant
     #the previous line currenly breaks the code. ALEXEY, 12/30/15
@@ -132,14 +132,14 @@ def browse_variant(request, histone_type, variant, gi=None):
     if histone_type=='ALL':
         histone_type=Variant.objects.get(id=variant).hist_type
 
-    go_to_curated = gi is not None
-    print gi, "!!!!!!!"
-    go_to_gi = gi if gi is not None else 0
+    go_to_curated = accession is not None
+    print accession, "!!!!!!!"
+    go_to_accession = accession if accession is not None else 0
     highlight_human=False
 #Here we want always by default highlight human
     if not go_to_curated:
         try:
-            go_to_gi=Sequence.objects.filter(variant=variant,taxonomy__id__in=["9606","10090"]).order_by('taxonomy').first().gi
+            go_to_accession=Sequence.objects.filter(variant=variant,taxonomy__id__in=["9606","10090"]).order_by('taxonomy').first().id
             highlight_human=True
         except:
             pass
@@ -212,7 +212,7 @@ def browse_variant(request, histone_type, variant, gi=None):
         "alternate_names": ", ".join(variant.old_names.values_list("name", flat=True)),
         "filter_form": AdvancedFilterForm(),
         "go_to_curated":go_to_curated,
-        "go_to_gi":go_to_gi,
+        "go_to_accession":go_to_accession,
         "highlight_human":highlight_human,
     }
 
@@ -283,7 +283,7 @@ def analyze(request):
 
         data["search_type"] = type
     else:
-        data["analyze_form"] = AnalyzeFileForm(initial={"sequence":">gi|121989|sp|P08985.2|H2AV_DROME RecName: Full=Histone H2A.v; AltName: Full=H2A.F/Z; Short=H2A.Z\nMAGGKAGKDSGKAKAKAVSRSARAGLQFPVGRIHRHLKSRTTSHGRVGATAAVYSAAILEYLTAEVLELA\nGNASKDLKVKRITPRHLQLAIRGDEELDSLIKATIAGGGVIPHIHKSLIGKKEETVQDPQRKGNVILSQAY"})
+        data["analyze_form"] = AnalyzeFileForm(initial={"sequence":">Arabidopsis|NP_181415.1|H2A.Z Arabidopsis_H2A.Z_15224957\nMAGKGGKGLLAAKTTAA\nAANKDSVKKKSISRSSRAGIQFPVGRIHRQLKQRVSAHGRVGATAAVYTASI\nLEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDTLIKGTIAGGGVI\nPHIHKSLVNKVTKD"})
     # print data.get('result',0)
     return render(request, 'analyze.html', data)
 
