@@ -31,6 +31,6 @@ And add the script given below to the file
 
 Then, run the script to restart apache2:
 ```
-sudo a2enconf mod-wsgi
+sudo a2enmod wsgi
 sudo systemctl restart apache2
 ```

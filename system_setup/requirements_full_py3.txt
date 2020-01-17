@@ -1,0 +1,37 @@
+# requirements_webserver + more
+biopython
+colour
+decorator
+dj-database-url
+Django
+django-debug-toolbar
+django-extensions
+django-filter
+django-filters
+django-google-analytics-id
+gunicorn
+matplotlib
+mock
+more-itertools
+#MySQL-python
+mysqlclient
+networkx
+nose
+numpy
+pandas
+pbr
+psycopg2
+pyparsing
+python-dateutil
+pytz
+scikit-learn
+scipy
+seaborn
+six
+sklearn
+sqlparse
+#whitenoise
+# ERROR: Package 'whitenoise' requires a different Python: 2.7.0 not in '>=3.5, <4'
+#wsgiref
+# SyntaxError: Missing parentheses in call to 'print'. Did you mean print("Setuptools version",version,"or greater has been installed.")?
+# ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.

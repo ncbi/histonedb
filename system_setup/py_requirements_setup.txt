@@ -1,5 +1,6 @@
 # Python requirements
 pip install --no-cache-dir -r system_setup/requirements_full.txt
+#pip install --no-cache-dir -r system_setup/requirements_full_py3.txt
 
 #for conda on linux use
 #conda config --add channels conda-forge

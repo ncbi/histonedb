@@ -29,5 +29,6 @@ seaborn==0.6.0
 six
 sklearn
 sqlparse
-whitenoise
+#whitenoise
+# ERROR: Package 'whitenoise' requires a different Python: 2.7.0 not in '>=3.5, <4'
 wsgiref
