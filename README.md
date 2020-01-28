@@ -27,7 +27,7 @@ If you want to test the server on your own machine, you must make sure have all 
 
 Then follow these steps:
 
-1) Create MySQL database (see [database configuratons](system_setup/DB_CONFIGURATION.md)), and store the login information in the file ```HistoneDB/NCBI_databse_info.txt```, which is formatted in the following way (key = value):
+1) Create MySQL database (see [database configurations](system_setup/DB_CONFIGURATION.md)), and store the login information in the file ```HistoneDB/NCBI_databse_info.txt```, which is formatted in the following way (key = value):
 ```
 name = DB_NAME
 user = DB_USER
