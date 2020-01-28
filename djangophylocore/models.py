@@ -36,7 +36,7 @@ def add_to_graph(parameters):
 	
     edges = set() 
     for taxon in taxa_list:
-	taxon = Taxonomy.objects.get(pk=taxon)         
+        taxon = Taxonomy.objects.get(pk=taxon)
         parents = taxon.parents
         
         if allow_ranks:
