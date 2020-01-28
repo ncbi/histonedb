@@ -33,3 +33,4 @@ rh.sh
 HistoneDB/NCBI_database_info.txt
 HistoneDB/NCBI_database_info_temp.txt
 *.log
+seqs_dev.txt
