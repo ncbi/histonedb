@@ -6,7 +6,11 @@ sh system_setup/full_setup.sh
 ```
 This command do: 
 
-1) Install all system dependencies (see ```system_setup/sys_requirements_setup.txt```) and configure MySQL server
+1) Install all system dependencies (see ```system_setup/sys_requirements_setup.txt```) and configure MySQL server, including timeout for mysql session:
+```
+sudo sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
+```
 
 2) Create and activate virtualenv:
 
