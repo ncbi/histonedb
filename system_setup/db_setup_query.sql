@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS histonedb;
-CREATE USER 'histonedb_user'@'localhost' IDENTIFIED BY '468725';
-GRANT ALL PRIVILEGES ON histonedb . * TO 'histonedb_user'@'localhost';
-ALTER DATABASE histonedb CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS db;
+CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'pwd';
+GRANT ALL PRIVILEGES ON histonedb . * TO 'db_user'@'localhost';
+ALTER DATABASE db CHARACTER SET utf8 COLLATE utf8_general_ci;
