@@ -2,11 +2,11 @@
 
 HistoneDB can be run simple from file ```run.sh```. This script contains some steps:
 
-1) Install full list of server dependencies by the script ```system_setup/full_setup.sh```. See [requirements](system_setup/REQUIREMENTS.md).
+1) Install full list of server dependencies by the script ```system_setup/full_setup.sh```. See [requirements](REQUIREMENTS.md).
 
-2) Apache2 and WSGI configuration. More info described in [configuration instructions](system_setup/CONFIGURATION.md).
+2) Apache2 and WSGI configuration. More info described in [configuration instructions](CONFIGURATION.md).
 
-3) Database creation (see [database configurations](system_setup/DB_CONFIGURATION.md)).
+3) Database creation (see [database configurations](DB_CONFIGURATION.md)).
 
 4) Project setup.
 
