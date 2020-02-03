@@ -30,6 +30,7 @@ RUN cp -f wsgi.conf /etc/apache2/mods-available && rm wsgi.conf
 RUN sudo a2enconf mod-wsgi && sudo service apache2 restart
 
 #COPY histonedb .
+VOLUME db_volume
 
 EXPOSE 8000
 
