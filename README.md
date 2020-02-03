@@ -65,7 +65,7 @@ sh run.sh
 sh reinit_histdb_local.sh
 ```
 
-For more information about server setup and database intitializaition including how to update, rebuild and add new variants you can read [HistoneDB setup instructions](SERVER_SETUP.md).
+For more information about server setup and database intitializaition including how to update, rebuild and add new variants you can read [HistoneDB setup instructions](system_setup/SERVER_SETUP.md).
 
 ## Cite ##
 
