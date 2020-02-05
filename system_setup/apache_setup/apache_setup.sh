@@ -5,3 +5,6 @@ parentdir="$(dirname "$parentdir")"
 sed -i 's#MY_PROJECT_DIRECTORY#'$parentdir'#g' wsgi.conf
 
 sudo cp -f wsgi.conf /etc/apache2/mods-available
+
+sudo a2enconf wsgi
+sudo service apache2 restart
