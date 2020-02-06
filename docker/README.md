@@ -43,3 +43,7 @@
 6. Remove all containers
 
 ``` sudo docker rm $(sudo docker ps -a -q) ```
+
+7. Remove last container
+
+``` sudo docker rm $(sudo docker ps -l -q) ```
