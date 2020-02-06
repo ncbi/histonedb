@@ -14,6 +14,10 @@
 
 ``` sudo docker rmi <imageID> ```
 
+4. Remove all images
+
+``` sudo docker rmi $(sudo docker images -a -q) ```
+
 ## Run docker
 
 1. Run docker image
@@ -32,6 +36,10 @@
 
 ``` sudo docker exec <containerID> bash ```
 
-5. Remove image
+5. Remove container
 
 ``` sudo docker rm <containerID> ```
+
+6. Remove all containers
+
+``` sudo docker rm $(sudo docker ps -a -q) ```
