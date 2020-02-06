@@ -55,15 +55,9 @@ Finally, make sure the database has the correct charset:
 ALTER DATABASE DB_NAME CHARACTER SET utf8 COLLATE utf8_general_ci
 ```
 
-4) Run the file ```run.sh```:
-```
-sh run.sh
-```
+4) To start project run ```sh run.sh```
 
-5) For reinitialization of DB you can run ```reinit_histdb_local.sh```:
-```
-sh reinit_histdb_local.sh
-```
+5) For reinitialization of DB you can run ```sh reinit_histdb_local.sh```
 
 For more information about server setup and database intitializaition including how to update, rebuild and add new variants you can read [HistoneDB setup instructions](system_setup/SERVER_SETUP.md).
 
