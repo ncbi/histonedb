@@ -37,8 +37,9 @@ RUN service apache2 restart
 #COPY histonedb .
 #VOLUME db_volume
 
-EXPOSE 8000
+#EXPOSE 8000
 
 # histonedb/docker/
-COPY entrypoint_test.sh entrypoint_test.sh
-ENTRYPOINT ["/entrypoint_test.sh"]
+#COPY entrypoint.sh entrypoint.sh
+#ENTRYPOINT ["bash", "entrypoint.sh"]
+#ENTRYPOINT ["ls; sleep 10s"]

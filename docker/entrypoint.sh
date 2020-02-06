@@ -40,4 +40,10 @@ if ! $without_setup ; then
 
   fi
 
+else
+
+  echo "Project started without initialization."
+
 fi
+
+#sleep 10s
