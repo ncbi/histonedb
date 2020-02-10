@@ -34,7 +34,7 @@
 
 4. Connect to running container in interactive mode
 
-``` sudo docker exec <containerID> bash ```
+``` sudo docker exec -it <containerID> bash ```
 
 5. Remove container
 
