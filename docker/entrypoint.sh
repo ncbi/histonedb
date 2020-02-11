@@ -46,4 +46,6 @@ else
 
 fi
 
+apachectl -D FOREGROUND
+
 #sleep 10s

@@ -3,10 +3,6 @@ FROM ubuntu:18.04
 LABEL "repository"="https://github.com/intbio/histonedb"
 LABEL maintainer="l.singh@intbio.org"
 
-#COPY histonedb/system_setup/py_requirements_setup.txt /app/py_requirements_setup.txt
-#COPY histonedb/system_setup/db_setup_query.sql /app/db_setup_query.sql
-#COPY wsgi.conf /app/wsgi.conf
-
 # System setup
 RUN apt-get clean && apt-get update
 RUN apt-get install -y git libmysqlclient-dev mysql-client libpq-dev python-dev muscle clustalw emboss hmmer ncbi-blast+ libpng-dev libfreetype6 libfreetype6-dev pkg-config libblas-dev liblapack-dev gfortran
@@ -40,6 +36,7 @@ RUN service apache2 restart
 #EXPOSE 8000
 
 # histonedb/docker/
-#COPY entrypoint.sh entrypoint.sh
-#ENTRYPOINT ["bash", "entrypoint.sh"]
+COPY entrypoint.sh entrypoint.sh
+ENTRYPOINT ["bash", "entrypoint.sh"]
+#CMD ["bash", "entrypoint.sh"]
 #ENTRYPOINT ["ls; sleep 10s"]
