@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#echo "Errorlog /dev/stderr" >> /etc/apache2/apache2.conf
+
 easy_setup=false
 without_setup=false
 
@@ -12,6 +14,8 @@ case "$1" in
 esac
 shift
 done
+
+/usr/bin/mysqld_safe
 
 if ! $without_setup ; then
 
@@ -46,6 +50,9 @@ else
 
 fi
 
-apachectl -D FOREGROUND
+#/usr/bin/mysqld_safe
+apachectl -DFOREGROUND
 
-#sleep 10s
+#service mysql restart
+#a2enconf wsgi
+#service apache2 restart
