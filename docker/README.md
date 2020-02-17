@@ -22,11 +22,11 @@
 
 1. Run docker image
 
-``` sudo docker container run -it --name histonedb_docker -v /home/l_singh/docker_app_test/hist_docker_test:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 ```
+``` sudo docker container run -it --name histonedb_docker -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 ```
 
-``` sudo docker container run -it --name histonedb_docker -v /home/l_singh/docker_app_test/hist_docker_test:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup```
+``` sudo docker container run -it --name histonedb_docker -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup```
 
-``` sudo docker container run -it -p 8080:80 -v /home/l_singh/docker_app_test/hist_docker_test:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
+``` sudo docker container run -it -p 8080:80 -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
 
 2. List docker containers
 
