@@ -16,19 +16,20 @@ shift
 done
 
 /usr/bin/mysqld_safe
+#service mysql restart
 
 if ! $without_setup ; then
 
-  if ! sudo mysql -u root --skip-password -e 'use histonedb' || $easy_setup ; then
+  if ! mysql -u root --skip-password -e 'use histonedb' || $easy_setup ; then
 
-    if sudo mysql -u root --skip-password -e 'use histonedb' ; then
+    if mysql -u root --skip-password -e 'use histonedb' ; then
       echo "Dropping the existing database histonedb ..."
-      sudo mysql --skip-password --execute="DROP DATABASE histonedb;"
+      mysql --skip-password --execute="DROP DATABASE histonedb;"
     fi
 
     cd /var/www/histonedb
     echo 'Database creating ...'
-    sudo mysql -u root --skip-password < system_setup/db_setup_query.sql
+    mysql -u root --skip-password < system_setup/db_setup_query.sql
     echo "Database histonedb created at /var/lib/mysql/histonedb inside container."
 
     echo 'Start initialization ...'
@@ -38,7 +39,7 @@ if ! $without_setup ; then
 
   else
 
-    if sudo mysql -u root --skip-password -e 'use histonedb' ; then
+    if mysql -u root --skip-password -e 'use histonedb' ; then
       echo "Running the existing database histonedb localed at /var/lib/mysql/histonedb inside container."
     fi
 
@@ -50,9 +51,7 @@ else
 
 fi
 
-#/usr/bin/mysqld_safe
 apachectl -DFOREGROUND
 
-#service mysql restart
 #a2enconf wsgi
 #service apache2 restart

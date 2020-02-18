@@ -11,6 +11,7 @@ RUN apt-get install -y git libmysqlclient-dev mysql-client libpq-dev python-dev 
 RUN apt-get install -y apache2 apache2-dev mysql-server
 RUN sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN apt-get install -y libapache2-mod-wsgi
+#RUN service mysql restart
 
 # Python setup
 RUN apt-get install -y python python-pip
@@ -30,5 +31,5 @@ COPY wsgi.conf wsgi.conf
 RUN cp -f wsgi.conf /etc/apache2/mods-available && rm wsgi.conf
 
 # histonedb/docker/
-COPY entrypoint.sh entrypoint.sh
-ENTRYPOINT ["bash", "entrypoint.sh"]
+#COPY entrypoint.sh entrypoint.sh
+#ENTRYPOINT ["bash", "entrypoint.sh"]
