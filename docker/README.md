@@ -61,3 +61,6 @@ or
 ``` sudo docker create -it --name histonedb_docker -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
 
 ``` sudo docker create -it -p 8080:80 -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
+
+
+docker logs -f --until=2s
