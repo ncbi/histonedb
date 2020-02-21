@@ -9,7 +9,11 @@ WORKDIR /var/www
 RUN apt-get clean && apt-get update
 RUN apt-get install -y git libmysqlclient-dev mysql-client libpq-dev python-dev muscle clustalw emboss hmmer ncbi-blast+ libpng-dev libfreetype6 libfreetype6-dev pkg-config libblas-dev liblapack-dev gfortran
 RUN apt-get install -y apache2 apache2-dev mysql-server
-RUN sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN mkdir /var/run/mysqld
+RUN mkfifo /var/run/mysqld/mysqld.sock
+RUN chown -R mysql /var/run/mysqld
+RUN service mysql restart
+#RUN sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN apt-get install -y libapache2-mod-wsgi
 #RUN service mysql restart
 
@@ -30,6 +34,5 @@ RUN yes | pip install biopython==1.74 colour decorator dj-database-url Django==1
 COPY wsgi.conf wsgi.conf
 RUN cp -f wsgi.conf /etc/apache2/mods-available && rm wsgi.conf
 
-# histonedb/docker/
 #COPY entrypoint.sh entrypoint.sh
 #ENTRYPOINT ["bash", "entrypoint.sh"]

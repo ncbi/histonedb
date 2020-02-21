@@ -15,8 +15,10 @@ esac
 shift
 done
 
-/usr/bin/mysqld_safe
-#service mysql restart
+apt-get install -y mysql-server
+#sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
+#/usr/bin/mysqld_safe
+service mysql restart
 
 if ! $without_setup ; then
 
