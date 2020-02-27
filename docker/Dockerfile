@@ -32,7 +32,7 @@ RUN chown -R mysql:mysql /var/run/mysqld
 # Apache2 and wsgi configuration
 COPY 000-default.conf 000-default.conf
 RUN cp -f 000-default.conf /etc/apache2/sites-available && rm 000-default.conf
-
+RUN sed -i 's/Listen/#Listen/' /etc/apache2/ports.conf
 
 COPY entrypoint.sh entrypoint.sh
 ENTRYPOINT ["bash", "/var/www/entrypoint.sh"]
