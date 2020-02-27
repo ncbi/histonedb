@@ -25,7 +25,7 @@ RUN mkdir /var/run/mysqld
 #RUN mkfifo /var/run/mysqld/mysqld.sock
 RUN chown -R mysql:mysql /var/run/mysqld
 RUN chown -R mysql:mysql /var/lib/mysql
-#RUN chmod 755 /var/lib/mysql
+RUN chmod 777 /var/lib/mysql # we need to think if this is secure enough!
 
 
 # Apache2 and wsgi configuration
