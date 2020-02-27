@@ -25,10 +25,10 @@ All executables must be present in the bin dir of virual environment.
 
 If you want to test the server on your own machine, you must make sure have all of the dependencies listed above, or if you have Ubuntu 18.04 you can follow the instructions below:
 
-1) Change file ```system_setup/db_setup_query.sql``` by replacing ```db```, ```db_user``` and ```pwd```
+1) Change file ```system_setup/db_setup_query.sql``` by replacing ```db_name```, ```db_user``` and ```pwd```
 ```
-CREATE DATABASE IF NOT EXISTS db;
-CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'pwd';
+CREATE DATABASE IF NOT EXISTS db_name;
+CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'db_password';
 GRANT ALL PRIVILEGES ON db . * TO 'db_user'@'localhost';
 ALTER DATABASE db CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```

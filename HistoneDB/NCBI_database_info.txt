@@ -4,19 +4,19 @@
 # a hidden directory
 # db_type is  'postgresql_psycopg2', 'mysql', 'sqlite3'
 #mysql by default
-#db_type = DB_TYPE
-#name = DB_NAME
-#user = DB_USER
-#password = DB_PASSWORD
-#host = HOST_NAME
-#port = PORT
+db_type = mysql
+name = db_name
+user = db_user
+password = db_password
+host = localhost
+port = 3306
 #port = 5432 #if postgreSQL
-#SECRET_KEY = DJANGO_SECRET_KEY
-#GOOGLE_ANALYTICS_ID = GOOGLE_ANALYTICS_ID
+SECRET_KEY = DJANGO_SECRET_KEY
+GOOGLE_ANALYTICS_ID = GOOGLE_ANALYTICS_ID
 STATIC_URL = /static/
-#DEBUG = True
-file = /home/l_singh/histonedb/HistoneDB/NCBI_database_info.txt
+DEBUG = True
+#file = /home/l_singh/histonedb/HistoneDB/NCBI_database_info.txt
 #STATIC_URL = /home/l_singh/histonedb/static/
 #FORCE_SCRIPT_NAME = /home/l_singh/histonedb/index.fcgi/
-DEBUG = False
+#DEBUG = False
 

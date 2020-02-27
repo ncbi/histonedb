@@ -64,3 +64,7 @@ or
 
 
 docker logs -f --until=2s
+
+
+--- AK specific --
+``` docker run -it -p 8080:80 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb --mount type=bind,src=/Users/alexsha/junk/db,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup  ```

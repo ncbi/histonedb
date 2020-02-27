@@ -21,7 +21,7 @@ RUN apt-get install -y libapache2-mod-wsgi
 # Python setup
 RUN apt-get install -y python python-pip
 RUN yes | pip install virtualenv
-RUN virtualenv histdb_py27 && /bin/bash -c "source histdb_py27/bin/activate"
+#RUN virtualenv histdb_py27 && /bin/bash -c "source histdb_py27/bin/activate"
 RUN yes | pip install --upgrade setuptools
 RUN yes | pip install biopython==1.74 colour decorator dj-database-url Django==1.8.19 django-debug-toolbar==1.3.2 django-extensions django-filter==0.10.0 django-filters django-google-analytics-id gunicorn>=19.5.0 matplotlib==1.4.3 mock more-itertools MySQL-python networkx==1.10 nose numpy pandas pbr psycopg2==2.7.0 pyparsing python-dateutil pytz scikit-learn scipy seaborn==0.6.0 six sklearn sqlparse wsgiref
 
@@ -32,8 +32,11 @@ RUN yes | pip install biopython==1.74 colour decorator dj-database-url Django==1
 #WORKDIR /var/www
 
 # Apache2 and wsgi configuration
-COPY wsgi.conf wsgi.conf
-RUN cp -f wsgi.conf /etc/apache2/mods-available && rm wsgi.conf
+#COPY wsgi.conf wsgi.conf
+#RUN cp -f wsgi.conf /etc/apache2/mods-available && rm wsgi.conf
+COPY 000-default.conf 000-default.conf
+RUN cp -f 000-default.conf /etc/apache2/sites-available && rm 000-default.conf
 
-#COPY entrypoint.sh entrypoint.sh
-#ENTRYPOINT ["bash", "entrypoint.sh"]
+
+COPY entrypoint.sh entrypoint.sh
+ENTRYPOINT ["bash", "entrypoint.sh"]
