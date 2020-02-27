@@ -29,7 +29,7 @@ You will see the problem if the progress bar suddenly freezes or becomes very sl
 
 ``` sudo docker container run -it --name histonedb_docker -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup```
 
-``` sudo docker container run -it -p 8080:80 -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
+``` sudo docker container run -it -p 8080:10080 -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
 
 2. List docker containers
 
@@ -63,7 +63,7 @@ or
 
 ``` sudo docker create -it --name histonedb_docker -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
 
-``` sudo docker create -it -p 8080:80 -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
+``` sudo docker create -it -p 8080:10080 -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 -without_setup ```
 
 
 docker logs -f --until=2s
@@ -73,6 +73,6 @@ docker logs -f --until=2s
 ```docker image build -t intbio/histonedb:0.0.1 .```
 ```docker push intbio/histonedb:0.0.1```
 
-``` docker run -it -p 8080:80 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1 -db_reinit  ```
+``` docker run -it -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1 -db_reinit  ```
 
 ``` singularity run  --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db,/var/lib/mysql docker://intbio/histonedb:0.0.2 -db_reinit```
