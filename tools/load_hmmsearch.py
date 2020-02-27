@@ -15,7 +15,7 @@ from django.db.models import Max
 from django.db.utils import IntegrityError
 from django.db import close_old_connections
 from django.conf import settings
-
+from tqdm import tqdm
 #Custom librairies
 from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_accessions, update_taxonomy
 
@@ -50,7 +50,7 @@ def load_hmm_results(hmmerFile, id_file):
     unknown_model = Variant(hist_type=hist_unknown, id="Unknown")
     unknown_model.save()
 
-  for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
+  for variant_query in tqdm(SearchIO.parse(hmmerFile, "hmmer3-text")):
     log.info("Loading variant: {}".format(variant_query.id))
     variant_model = Variant.objects.get(id=variant_query.id)
     for hit in variant_query:

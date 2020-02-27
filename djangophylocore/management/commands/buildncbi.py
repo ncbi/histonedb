@@ -349,7 +349,7 @@ class Command(NoArgsCommand):
         l_rank = []
         list_line = []
         index = 0
-        for species in self.TBI.keys():
+        for species in tqdm(self.TBI.keys()):
             rank = self.TBI[species]['rank']
             if rank not in l_rank:
                 index += 1
@@ -363,7 +363,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         # Taxa.dmp
         list_line = []
-        for species in self.TBI.keys():
+        for species in tqdm(self.TBI.keys()):
             if self.TEST:
                 if species not in self.list_id:
                     continue
@@ -383,7 +383,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         id_rel = 0
         list_parents = []
-        for species in self.TBI.keys():
+        for species in tqdm(self.TBI.keys()):
             index = 0
             if self.TEST:
                 if species not in self.list_id:

@@ -11,6 +11,7 @@ from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_fr
 
 from Bio import SearchIO
 from Bio import SeqIO
+from tqdm import tqdm
 
 import logging
 
@@ -399,7 +400,7 @@ class Command(BaseCommand):
         fasta_dict=get_many_prot_seqrec_by_accession(accessions)
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        for accession,record in fasta_dict.iteritems():
+        for accession,record in tqdm(fasta_dict.iteritems()):
             # self.log.info('::DEBUG::buildvariants:: record:\n{}\n'.format(record))
             # headers = record.description.split(" >")
             # for header in headers:

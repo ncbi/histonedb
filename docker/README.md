@@ -20,6 +20,9 @@
 
 ## Run docker
 
+NOTE: for initial histone db initialization the ncbi taxonomy database creating requires at least 4 Gb of RAM available to docker container.
+You will see the problem if the progress bar suddenly freezes or becomes very slow.
+
 1. Run docker image
 
 ``` sudo docker container run -it --name histonedb_docker -v /home/l_singh/docker_app_test/histonedb:/var/www/histonedb --mount type=bind,src=/home/l_singh/docker_app_test/database,dst=/var/lib/mysql histdbimage:1.0.0 ```
