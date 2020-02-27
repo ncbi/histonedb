@@ -24,9 +24,9 @@ RUN yes | pip install biopython==1.74 tqdm colour decorator dj-database-url Djan
 RUN mkdir /var/run/mysqld
 #RUN mkfifo /var/run/mysqld/mysqld.sock
 RUN chown -R mysql:mysql /var/run/mysqld
-RUN chown -R mysql:mysql /var/lib/mysql
-RUN chmod 777 /var/lib/mysql # we need to think if this is secure enough!
-
+#RUN chown -R mysql:mysql /var/lib/mysql #Not needed for docker
+#RUN chmod 777 /var/lib/mysql # Not needed for docker
+RUN mkdir /var/www/mysql-data
 
 # Apache2 and wsgi configuration
 COPY 000-default.conf 000-default.conf

@@ -19,19 +19,19 @@ done
 
 if $db_reinit; then
 echo "Deleting database files"
-rm -rf /var/lib/mysql/*
+rm -rf /var/www/mysql-data/*
 fi
 
-if [ "$(ls -A /var/lib/mysql)" ]; then
-     echo "/var/lib/mysql is not Empty, no need to initialize mysql"
+if [ "$(ls -A /var/www/mysql-data)" ]; then
+     echo "/var/www/mysql-data is not Empty, no need to initialize mysql"
 else
-    echo "/var/lib/mysql is Empty, initializing mysql"
-    mysqld --initialize-insecure --user=mysql
+    echo "/var/www/mysql-data is Empty, initializing mysql"
+    mysqld --initialize-insecure --datadir=/var/www/mysql-data --user=mysql
 fi
 
 #/usr/bin/mysqld_safe
 echo "Running mysql in the background"
-mysqld_safe &
+mysqld_safe --datadir=/var/www/mysql-data &
 
 # if ! $without_setup ; then
 
@@ -47,7 +47,7 @@ echo 'Database creating ...'
 echo 'Allow 5 secs for database initialization ...'
 sleep 5;
 mysql -u root --skip-password < system_setup/db_setup_query.sql 
-echo "Database  created at /var/lib/mysql/histonedb inside container."
+echo "Database  created "
 
 echo 'Start HistoneDB initialization ...'
 #    sh reinit_histdb_local.sh > reinit.log 2>error.log
