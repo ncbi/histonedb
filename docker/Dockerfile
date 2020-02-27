@@ -17,6 +17,7 @@ RUN chgrp -R mysql /var/lib/mysql
 RUN chmod 755 /var/lib/mysql
 RUN sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN apt-get install -y libapache2-mod-wsgi
+RUN apt-get install -y pv
 
 # Python setup
 RUN apt-get install -y python python-pip
