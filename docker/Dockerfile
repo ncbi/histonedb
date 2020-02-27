@@ -40,4 +40,4 @@ RUN cp -f 000-default.conf /etc/apache2/sites-available && rm 000-default.conf
 
 
 COPY entrypoint.sh entrypoint.sh
-ENTRYPOINT ["bash", "entrypoint.sh"]
+ENTRYPOINT ["bash", "/var/www/entrypoint.sh"]
