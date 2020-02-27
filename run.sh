@@ -12,6 +12,7 @@ echo 'Database creating ...'
 sudo mysql -u root --skip-password < system_setup/db_setup_query.sql
 
 echo 'Start initialization ...'
+#sh reinit_histdb_local.sh > reinit.log 2>error.log
 sh reinit_histdb_local.sh
 echo 'Initialization complete. See loginfo in log/ directory.'
 echo 'For reinitialization run file reinit_histdb_local.sh'

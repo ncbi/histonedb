@@ -15,33 +15,36 @@ esac
 shift
 done
 
-apt-get install -y mysql-server
-#sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
+mysqld --initialize-insecure --user=mysql
 #/usr/bin/mysqld_safe
-service mysql restart
+mysqld_safe &
 
 if ! $without_setup ; then
 
-  if ! mysql -u root --skip-password -e 'use histonedb' || $easy_setup ; then
+  if ! mysql -u root --skip-password -e 'use histonedb' > /dev/null 2>&1 || $easy_setup ; then
 
-    if mysql -u root --skip-password -e 'use histonedb' ; then
+    if mysql -u root --skip-password -e 'use histonedb' > /dev/null 2>&1 ; then
       echo "Dropping the existing database histonedb ..."
       mysql --skip-password --execute="DROP DATABASE histonedb;"
     fi
 
     cd /var/www/histonedb
     echo 'Database creating ...'
-    mysql -u root --skip-password < system_setup/db_setup_query.sql
-    echo "Database histonedb created at /var/lib/mysql/histonedb inside container."
+    if mysql -u root --skip-password < system_setup/db_setup_query.sql ; then
+      echo "Database histonedb created at /var/lib/mysql/histonedb inside container."
+    else
+      exit
+    fi
 
     echo 'Start initialization ...'
+#    sh reinit_histdb_local.sh > reinit.log 2>error.log
     sh reinit_histdb_local.sh
     echo 'Initialization complete. See loginfo in log/ directory.'
     echo 'For reinitialization run file reinit_histdb_local.sh'
 
   else
 
-    if mysql -u root --skip-password -e 'use histonedb' ; then
+    if mysql -u root --skip-password -e 'use histonedb' > /dev/null 2>&1 ; then
       echo "Running the existing database histonedb localed at /var/lib/mysql/histonedb inside container."
     fi
 
@@ -53,7 +56,7 @@ else
 
 fi
 
-apachectl -DFOREGROUND
+#apachectl -DFOREGROUND
 
 #a2enconf wsgi
-#service apache2 restart
+service apache2 restart
