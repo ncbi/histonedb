@@ -22,11 +22,11 @@ RUN yes | pip install biopython==1.74 tqdm colour decorator dj-database-url Djan
 
 # DB tweaks
 RUN mkdir /var/run/mysqld
-RUN mkfifo /var/run/mysqld/mysqld.sock
-RUN chown -R mysql /var/run/mysqld
-RUN chown -R mysql /var/lib/mysql
-RUN chgrp -R mysql /var/lib/mysql
-RUN chmod 755 /var/lib/mysql
+#RUN mkfifo /var/run/mysqld/mysqld.sock
+RUN chown -R mysql:mysql /var/run/mysqld
+#RUN chown -R mysql /var/lib/mysql
+#RUN chgrp -R mysql /var/lib/mysql
+#RUN chmod 755 /var/lib/mysql
 
 
 # Apache2 and wsgi configuration
