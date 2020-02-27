@@ -33,7 +33,7 @@ class Command(NoArgsCommand):
             elif db_engine.endswith('mysql'):
                 # cmd = """mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
                   # settings.DATABASES["default"]["HOST"], settings.DATABASES["default"]["USER"], settings.DATABASES["default"]["PASSWORD"], db_name, map_dumps[name],  name )
-                cmd = """cat %s | pv | mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; LOAD DATA LOCAL INFILE '/dev/stdin' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
+                cmd = """cat %s | pv | mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; SET UNIQUE_CHECKS = 0;SET SESSION tx_isolation='READ-UNCOMMITTED'; SET sql_log_bin = 0; LOAD DATA LOCAL INFILE '/dev/stdin' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|'; SET UNIQUE_CHECKS = 1; SET FOREIGN_KEY_CHECKS = 1; SET SESSION tx_isolation='READ-REPEATABLE';" """ % (
                   map_dumps[name], settings.DATABASES["default"]["HOST"], settings.DATABASES["default"]["USER"], settings.DATABASES["default"]["PASSWORD"], db_name, name )
             
             elif db_engine.endswith('psycopg2'):
