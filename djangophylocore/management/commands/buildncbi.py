@@ -193,7 +193,7 @@ class Command(NoArgsCommand):
         homonym_toc = {}
         common_toc = {}
         synonym_toc = {}
-        for line in file( self.NAMES ).readlines():
+        for line in tqdm(file( self.NAMES ).readlines()):
             type_name = line.split("|")[3].strip()
             synonym = "synonym" in type_name
             common = "common name" in type_name
