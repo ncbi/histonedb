@@ -70,6 +70,9 @@ docker logs -f --until=2s
 
 
 --- AK specific --
+```docker image build -t intbio/histonedb:0.0.1 .```
+```docker push intbio/histonedb:0.0.1```
+
 ``` docker run -it -p 8080:80 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql histdbimage:1.0.0 -db_reinit  ```
 
 ``` singularity run  --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db,/var/lib/mysql docker://intbio/histonedb:0.0.2 -db_reinit```
