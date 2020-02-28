@@ -41,7 +41,7 @@ class Command(NoArgsCommand):
                   settings.DATABASES["default"]["HOST"],settings.DATABASES["default"]["USER"], db_name, name, name, map_dumps[name], name)
             if verbose:
                 print cmd
-            os.system( cmd )
+            # os.system( cmd )
 #        if not os.path.exists( 
 #          os.path.join( path_dumps, 'parentsrelation.dmp' ) ):
 #            if verbose:

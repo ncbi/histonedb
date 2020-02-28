@@ -10,13 +10,19 @@ localDir = os.path.dirname(__file__)
 absDir = os.path.join(os.getcwd(), localDir)
 DUMP_PATH = os.path.join( absDir,'..','..', 'dumps' ) 
 
+TBI={}
+TBN={}
+
+global TBI 
+global TBN
+
 class Command(NoArgsCommand):
     help = "Download and build the ncbi database"
     requires_system_checks = False
 
     TEST = False
-    TBI = {}
-    TBN = {}
+    # TBI = {}
+    # TBN = {}
     NAMES = "names.dmp"
     NODES = "nodes.dmp"
 
@@ -38,15 +44,15 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         global DUMP_PATH
         verbose = options.get("verbose", True)
-        if verbose:
-            print "loading taxonomy, please wait, it can take a while..."
-        if not os.path.exists( DUMP_PATH ):
-            os.system( 'mkdir %s' % DUMP_PATH )
-        else:
-            os.system( 'rm %s/*' % DUMP_PATH )
+        # if verbose:
+            # print "loading taxonomy, please wait, it can take a while..."
+        # if not os.path.exists( DUMP_PATH ):
+            # os.system( 'mkdir %s' % DUMP_PATH )
+        # else:
+            # os.system( 'rm %s/*' % DUMP_PATH )
         #VR 15 aout 2009 otherwise the file is always loaded from the web
-        os.system( 'rm taxdump.tar.gz' )
-        self.download_ncbi( verbose )
+        # os.system( 'rm taxdump.tar.gz' )
+        # self.download_ncbi( verbose )
         self.generate_structure( verbose )
         if self.TEST:
             self.__generate_test_fixtures()
@@ -129,7 +135,7 @@ class Command(NoArgsCommand):
             if homonym:
                 homonym = self.clean_homonym(name,homonym) #VR sept 09 clean name
             # bad way to handle homonym not declare by NCBI e.g. Influenza A virus (A/turkey/Beit_Herut/1265/03(H9N2))
-            if not homonym and self.TBN.has_key( name ):
+            if not homonym and TBN.has_key( name ):
                 name = name + " ncbiid "+id
             type_name = line.split("|")[3].strip()
             synonym = "synonym" in type_name
@@ -139,42 +145,42 @@ class Command(NoArgsCommand):
                 # Creating TAXONOMY_BY_ID
                 self.TBI[id] = {}
                 if homonym:
-                    self.TBI[id]["name"] = homonym
+                    TBI[id]["name"] = homonym
                 else:
-                    self.TBI[id]["name"] = name
-                self.TBI[id]["common"] = []
-                self.TBI[id]["homonym"] = []
-                self.TBI[id]["synonym"] = []
-                self.TBI[id]["parent"] = []
-                self.TBI[id]["parents"] = []
-                self.TBI[id]["type_name"] = 'scientific name'
+                    TBI[id]["name"] = name
+                TBI[id]["common"] = []
+                TBI[id]["homonym"] = []
+                TBI[id]["synonym"] = []
+                TBI[id]["parent"] = []
+                TBI[id]["parents"] = []
+                TBI[id]["type_name"] = 'scientific name'
                 # Creating TAXONOMY_BY_NAME
                 if homonym:
-                    self.TBN[homonym] = {}
-                    self.TBN[homonym]["id"] = id
-                    self.TBN[homonym]["homonym"] = name
+                    TBN[homonym] = {}
+                    TBN[homonym]["id"] = id
+                    TBN[homonym]["homonym"] = name
                 else:
-                    self.TBN[name] = {}
-                    self.TBN[name]["id"] = id
+                    TBN[name] = {}
+                    TBN[name]["id"] = id
         if verbose:
             print "Extracting parents..."
         for node in tqdm(file( self.NODES ).readlines()):
             id = node.split("|")[0].strip()
             parent = node.split("|")[1].strip()
             rank = node.split('|')[2].strip()
-            name = self.TBI[id]["name"]
-            name = self.TBI[id]['rank'] = rank
-            if not self.TBI.has_key( id ):
-                self.TBI[id] = {}
-            self.TBI[id]["parent"] = parent
-            if not self.TBN.has_key( name ):
-                self.TBN[name] = {}
-            self.TBN[name]["parent"] = parent
+            name = TBI[id]["name"]
+            name = TBI[id]['rank'] = rank
+            if not TBI.has_key( id ):
+                TBI[id] = {}
+            TBI[id]["parent"] = parent
+            if not TBN.has_key( name ):
+                TBN[name] = {}
+            TBN[name]["parent"] = parent
         if verbose:
             print "Filling parents..."
         for node in tqdm(file( self.NODES ).readlines()):
             id = node.split("|")[0].strip()
-            self.TBI[id]["parents"] = getParents( id, self.TBI )
+            TBI[id]["parents"] = getParents( id, TBI )
 
     def make_taxonomy_plus_old( self, verbose ):
         if verbose:
@@ -349,7 +355,7 @@ class Command(NoArgsCommand):
         l_rank = []
         list_line = []
         index = 0
-        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
+        for species in tqdm(sorted(self.TBI.keys())):
             rank = self.TBI[species]['rank']
             if rank not in l_rank:
                 index += 1
@@ -363,7 +369,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         # Taxa.dmp
         list_line = []
-        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
+        for species in tqdm(sorted(self.TBI.keys())):
             if self.TEST:
                 if species not in self.list_id:
                     continue
@@ -383,7 +389,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         id_rel = 0
         list_parents = []
-        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
+        for species in tqdm(sorted(self.TBI.keys())):
             index = 0
             if self.TEST:
                 if species not in self.list_id:
