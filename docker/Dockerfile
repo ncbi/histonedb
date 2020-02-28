@@ -25,7 +25,7 @@ RUN mkdir /var/run/mysqld
 #RUN mkfifo /var/run/mysqld/mysqld.sock
 RUN chown -R mysql:mysql /var/run/mysqld
 #RUN chown -R mysql:mysql /var/lib/mysql #Not needed for docker
-#RUN chmod 777 /var/lib/mysql # Not needed for docker
+#RUN chmod 755 /var/lib/mysql # Not needed for docker
 RUN mkdir /var/www/mysql-data
 
 # Apache2 and wsgi configuration
