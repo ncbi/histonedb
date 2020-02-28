@@ -55,7 +55,7 @@ def loop1(line):
         else:
             TBN[name] = {}
             TBN[name]["id"] = id
-
+    return(int(id))
 
 
 class Command(NoArgsCommand):
@@ -123,7 +123,7 @@ class Command(NoArgsCommand):
         index = 0
         # Parallel(n_jobs=2)(delayed(loop1)(line) for line in tqdm(file( self.NAMES ).readlines()))
         for line in tqdm(file( self.NAMES ).readlines()):
-            loop1(line)
+            self.index=loop1(line)
         if verbose:
             print "Extracting parents..."
         for node in tqdm(file( self.NODES ).readlines()):
