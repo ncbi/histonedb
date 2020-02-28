@@ -26,7 +26,7 @@ if [ "$(ls -A /var/www/mysql-data)" ]; then
      echo "/var/www/mysql-data is not Empty, no need to initialize mysql"
 else
     echo "/var/www/mysql-data is Empty, initializing mysql"
-    mysqld --initialize-insecure --datadir=/var/www/mysql-data --user=mysql
+    mysqld --initialize-insecure --datadir=/var/www/mysql-data/ --user=mysql
 fi
 
 #/usr/bin/mysqld_safe
