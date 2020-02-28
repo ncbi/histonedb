@@ -75,4 +75,8 @@ docker logs -f --until=2s
 
 ``` docker run -it -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/www/mysql-data intbio/histonedb:0.0.1 -db_reinit  ```
 
+```singularity build --sandbox cont docker://intbio/histonedb:0.1.2```
+
+```singularity run --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/www/mysql-data cont -db_reinit```
+
 ``` singularity run --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/www/mysql-data docker://intbio/histonedb:0.0.2 -db_reinit```
