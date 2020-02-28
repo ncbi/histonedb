@@ -40,7 +40,7 @@ class Command(NoArgsCommand):
                 cmd = """psql -h %s -U %s -d %s -c "ALTER TABLE djangophylocore_%s DISABLE TRIGGER ALL; COPY djangophylocore_%s FROM '%s' WITH DELIMITER AS '|'; ALTER TABLE djangophylocore_%s ENABLE TRIGGER ALL; " """ % (
                   settings.DATABASES["default"]["HOST"],settings.DATABASES["default"]["USER"], db_name, name, name, map_dumps[name], name)
             if verbose:
-                print cmd
+                print(cmd)
             os.system( cmd )
 #        if not os.path.exists( 
 #          os.path.join( path_dumps, 'parentsrelation.dmp' ) ):
