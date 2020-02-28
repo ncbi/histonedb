@@ -1,3 +1,4 @@
+#UNDER DEVELOPMENT
 from django.core.management.base import NoArgsCommand
 from optparse import make_option
 
@@ -5,16 +6,57 @@ import os
 import sys
 from django.conf import settings
 from tqdm import tqdm
+from joblib import Parallel, delayed
 
 localDir = os.path.dirname(__file__)
 absDir = os.path.join(os.getcwd(), localDir)
 DUMP_PATH = os.path.join( absDir,'..','..', 'dumps' ) 
 
-TBI={}
-TBN={}
 
 global TBI 
 global TBN
+
+TBI={}
+TBN={}
+
+def loop1(line):
+    id = line.split("|")[0].strip()
+    name = line.split("|")[1].strip().lower()
+    
+    name =clean_name(name) #VR sept 09 clean name
+    homonym = line.split("|")[2].strip().lower()
+    if homonym:
+        homonym = clean_homonym(name,homonym) #VR sept 09 clean name
+    # bad way to handle homonym not declare by NCBI e.g. Influenza A virus (A/turkey/Beit_Herut/1265/03(H9N2))
+    if not homonym and TBN.has_key( name ):
+        name = name + " ncbiid "+id
+    type_name = line.split("|")[3].strip()
+    synonym = "synonym" in type_name
+    common = "common name" in type_name
+    # self.index = int(id)
+    if type_name == "scientific name":
+        # Creating TAXONOMY_BY_ID
+        TBI[id] = {}
+        if homonym:
+            TBI[id]["name"] = homonym
+        else:
+            TBI[id]["name"] = name
+        TBI[id]["common"] = []
+        TBI[id]["homonym"] = []
+        TBI[id]["synonym"] = []
+        TBI[id]["parent"] = []
+        TBI[id]["parents"] = []
+        TBI[id]["type_name"] = 'scientific name'
+        # Creating TAXONOMY_BY_NAME
+        if homonym:
+            TBN[homonym] = {}
+            TBN[homonym]["id"] = id
+            TBN[homonym]["homonym"] = name
+        else:
+            TBN[name] = {}
+            TBN[name]["id"] = id
+
+
 
 class Command(NoArgsCommand):
     help = "Download and build the ncbi database"
@@ -55,39 +97,7 @@ class Command(NoArgsCommand):
 #        os.system( 'rm nodes.dmp names.dmp' )
 #        os.system( 'rm taxdump.tar.gz' )
     
-    def clean_homonym(self, name, homonym):
-        cleanName = self.clean_name(name);
-        cleanHomonyn = self.clean_name(homonym);
-        homonymBegin = homonym.find("<");
-        homonymEnd = homonym.find(">")
-        if( homonymBegin >0 and homonymEnd >0):
-            cleanHomonyn =cleanHomonyn[(homonymBegin+1):homonymEnd]
-        return cleanName+ " <"+cleanHomonyn+">"
-        
-    def clean_name(self,name):
-        cleanName ="";
-        allowed="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890+-*<>";
-        spaceOpen = False
-        for l in name :
-            if l in allowed :
-#                if l in "'":
-#                    if spaceOpen :
-#                        l="pr "
-#                    else :
-#                        l=" pr "
-#                    spaceOpen=True;
-                cleanName = cleanName + l;
-                spaceOpen = False
-            else :
-                if not spaceOpen :
-                    spaceOpen = True
-                    cleanName = cleanName+" "
-        cleanName = cleanName.strip()
-        #cleanName = cleanName.replace(" ", "_")
-        return cleanName
-        #cleanNameNwk = name.replace( ")", "_" ).replace( "(", "_" ).replace(",", " ").replace(":", " ").replace(";", " ")
-        #cleanName = cleanNameNwk.replace("'", " ").replace("`"," ").replace('"',' ').strip()
-   
+
     def download_ncbi( self, verbose ):
         if not os.path.exists( './taxdump.tar.gz' ):
             if verbose:
@@ -111,42 +121,9 @@ class Command(NoArgsCommand):
             print "Generating structure..."
         # Retrieving all scientific names
         index = 0
+        # Parallel(n_jobs=2)(delayed(loop1)(line) for line in tqdm(file( self.NAMES ).readlines()))
         for line in tqdm(file( self.NAMES ).readlines()):
-            id = line.split("|")[0].strip()
-            name = line.split("|")[1].strip().lower()
-            
-            name =self.clean_name(name) #VR sept 09 clean name
-            homonym = line.split("|")[2].strip().lower()
-            if homonym:
-                homonym = self.clean_homonym(name,homonym) #VR sept 09 clean name
-            # bad way to handle homonym not declare by NCBI e.g. Influenza A virus (A/turkey/Beit_Herut/1265/03(H9N2))
-            if not homonym and TBN.has_key( name ):
-                name = name + " ncbiid "+id
-            type_name = line.split("|")[3].strip()
-            synonym = "synonym" in type_name
-            common = "common name" in type_name
-            self.index = int(id)
-            if type_name == "scientific name":
-                # Creating TAXONOMY_BY_ID
-                TBI[id] = {}
-                if homonym:
-                    TBI[id]["name"] = homonym
-                else:
-                    TBI[id]["name"] = name
-                TBI[id]["common"] = []
-                TBI[id]["homonym"] = []
-                TBI[id]["synonym"] = []
-                TBI[id]["parent"] = []
-                TBI[id]["parents"] = []
-                TBI[id]["type_name"] = 'scientific name'
-                # Creating TAXONOMY_BY_NAME
-                if homonym:
-                    TBN[homonym] = {}
-                    TBN[homonym]["id"] = id
-                    TBN[homonym]["homonym"] = name
-                else:
-                    TBN[name] = {}
-                    TBN[name]["id"] = id
+            loop1(line)
         if verbose:
             print "Extracting parents..."
         for node in tqdm(file( self.NODES ).readlines()):
@@ -386,3 +363,38 @@ class Command(NoArgsCommand):
                 index += 1
         open( os.path.join( DUMP_PATH, 'parentsrelation.dmp' ), 'w' ).write( ''.join( list_parents ) )
 
+
+
+def clean_homonym(name, homonym):
+    cleanName = clean_name(name);
+    cleanHomonyn = clean_name(homonym);
+    homonymBegin = homonym.find("<");
+    homonymEnd = homonym.find(">")
+    if( homonymBegin >0 and homonymEnd >0):
+        cleanHomonyn =cleanHomonyn[(homonymBegin+1):homonymEnd]
+    return cleanName+ " <"+cleanHomonyn+">"
+        
+def clean_name(name):
+    cleanName ="";
+    allowed="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890+-*<>";
+    spaceOpen = False
+    for l in name :
+        if l in allowed :
+#            if l in "'":
+#                if spaceOpen :
+#                    l="pr "
+#                else :
+#                    l=" pr "
+#                spaceOpen=True;
+            cleanName = cleanName + l;
+            spaceOpen = False
+        else :
+            if not spaceOpen :
+                spaceOpen = True
+                cleanName = cleanName+" "
+    cleanName = cleanName.strip()
+    #cleanName = cleanName.replace(" ", "_")
+    return cleanName
+    #cleanNameNwk = name.replace( ")", "_" ).replace( "(", "_" ).replace(",", " ").replace(":", " ").replace(";", " ")
+    #cleanName = cleanNameNwk.replace("'", " ").replace("`"," ").replace('"',' ').strip()
+   

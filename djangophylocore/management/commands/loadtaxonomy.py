@@ -33,9 +33,9 @@ class Command(NoArgsCommand):
             elif db_engine.endswith('mysql'):
                 # cmd = """mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|';" """ % (
                   # settings.DATABASES["default"]["HOST"], settings.DATABASES["default"]["USER"], settings.DATABASES["default"]["PASSWORD"], db_name, map_dumps[name],  name )
-                cmd = """cat %s | pv | mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; SET UNIQUE_CHECKS = 0;SET SESSION tx_isolation='READ-UNCOMMITTED'; LOAD DATA LOCAL INFILE '/dev/stdin' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|'; SET UNIQUE_CHECKS = 1; SET FOREIGN_KEY_CHECKS = 1; SET SESSION tx_isolation='REPEATABLE-READ';" """ % (
+                cmd = """cat %s | pv | mysql --local-infile -h %s -u %s -p%s %s -e "SET FOREIGN_KEY_CHECKS=0; SET UNIQUE_CHECKS = 0;SET SESSION tx_isolation='READ-UNCOMMITTED'; LOAD DATA LOCAL INFILE '/dev/stdin' INTO TABLE djangophylocore_%s FIELDS TERMINATED BY '|'; SET UNIQUE_CHECKS = 1; SET SESSION tx_isolation='REPEATABLE-READ';" """ % (
                   map_dumps[name], settings.DATABASES["default"]["HOST"], settings.DATABASES["default"]["USER"], settings.DATABASES["default"]["PASSWORD"], db_name, name )
-            
+             #we do not currently turn SET FOREIGN_KEY_CHECKS = 1; looks there are some issues ....
             elif db_engine.endswith('psycopg2'):
                 cmd = """psql -h %s -U %s -d %s -c "ALTER TABLE djangophylocore_%s DISABLE TRIGGER ALL; COPY djangophylocore_%s FROM '%s' WITH DELIMITER AS '|'; ALTER TABLE djangophylocore_%s ENABLE TRIGGER ALL; " """ % (
                   settings.DATABASES["default"]["HOST"],settings.DATABASES["default"]["USER"], db_name, name, name, map_dumps[name], name)
