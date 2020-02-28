@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #echo "Errorlog /dev/stderr" >> /etc/apache2/apache2.conf
-
+mysqldatadir=/var/lib/mysql/
 easy_setup=false
 without_setup=false
 db_reinit=false
@@ -19,19 +19,19 @@ done
 
 if $db_reinit; then
 echo "Deleting database files"
-rm -rf /var/www/mysql-data/*
+rm -rf $mysqldatadir/*
 fi
 
-if [ "$(ls -A /var/www/mysql-data)" ]; then
-     echo "/var/www/mysql-data is not Empty, no need to initialize mysql"
+if [ "$(ls -A $mysqldatadir)" ]; then
+     echo "$mysqldatadir is not Empty, no need to initialize mysql"
 else
-    echo "/var/www/mysql-data is Empty, initializing mysql"
-    mysqld --initialize-insecure --datadir=/var/www/mysql-data/ --user=mysql
+    echo "$mysqldatadir is Empty, initializing mysql"
+    mysqld --initialize-insecure --datadir=$mysqldatadir --user=mysql
 fi
 
 #/usr/bin/mysqld_safe
 echo "Running mysql in the background"
-mysqld_safe --datadir=/var/www/mysql-data &
+mysqld_safe --datadir=$mysqldatadir &
 
 # if ! $without_setup ; then
 
