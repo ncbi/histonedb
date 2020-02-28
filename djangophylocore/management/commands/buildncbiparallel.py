@@ -341,7 +341,7 @@ class Command(NoArgsCommand):
               #self.clean_name(self.TBI[species]['name']),
               TBI[species]['name'],#VR sept09 .replace( ")", " " ).replace( "(", " " ).replace(",", " ").replace(":", " ").replace(";", " ").replace("'", " "),
               TBI[species]['type_name'],
-              RANK[TBI[species]['rank']],
+              self.RANK[TBI[species]['rank']],
               TBI[species]['parent']
             )
             list_line.append( line )
