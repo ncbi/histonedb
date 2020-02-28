@@ -2,30 +2,28 @@
 
 #echo "Errorlog /dev/stderr" >> /etc/apache2/apache2.conf
 mysqldatadir=/var/lib/mysql/
-easy_setup=false
-without_setup=false
-db_reinit=false
+histdb_reinit=false
+mysql_db_reinit=false
 
 while [ -n "$1" ]
 do
 case "$1" in
--easy_setup) easy_setup=true ;;
--without_setup) without_setup=true ;;
--db_reinit) db_reinit=true ;;
+-histdb_reinit) histdb_reinit=true ;;
+-mysql_db_reinit) mysql_db_reinit=true ;;
 *) echo "$1 is not an option" ;;
 esac
 shift
 done
 
-if $db_reinit; then
-echo "Deleting database files"
+if $mysql_db_reinit; then
+echo "Deleting database files and reinitialization"
 rm -rf $mysqldatadir/*
-fi
 
-if [ "$(ls -A $mysqldatadir)" ]; then
-     echo "$mysqldatadir is not Empty, no need to initialize mysql"
-else
-    echo "$mysqldatadir is Empty, initializing mysql"
+
+# if [ "$(ls -A $mysqldatadir)" ]; then
+     # echo "$mysqldatadir is not Empty, no need to initialize mysql"
+# else
+    # echo "$mysqldatadir is Empty, initializing mysql"
     mysqld --initialize-insecure --datadir=$mysqldatadir --user=mysql
 fi
 
@@ -41,7 +39,7 @@ mysqld_safe --datadir=$mysqldatadir --port=13306 &
   #     echo "Dropping the existing database histonedb ..."
   #     mysql --skip-password --execute="DROP DATABASE histonedb;"
   #   fi
-if ! $without_setup; then
+if $histdb_reinit; then
 cd /var/www/histonedb
 echo 'Database creating ...'
 echo 'Allow 5 secs for database initialization ...'
@@ -69,6 +67,7 @@ fi
 #   echo "Project started without initialization."
 
 # fi
+cd /var/www/histonedb
 echo 'Starting apache2'
 apachectl -D FOREGROUND
 
