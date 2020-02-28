@@ -28,9 +28,13 @@ RUN chown -R mysql:mysql /var/run/mysqld
 #RUN chmod 755 /var/lib/mysql # Not needed for docker
 #RUN mkdir /var/www/mysql-data
 RUN mkdir /var/www/histonedb
-RUN echo 'innodb_buffer_pool_size = 4G' >> /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN echo 'innodb_buffer_pool_size = 2G' >> /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN echo 'innodb_log_file_size = 512M' >> /etc/mysql/mysql.conf.d/mysqld.cnf
-
+RUN echo 'innodb_log_buffer_size=128M' >> /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN echo 'innodb_change_buffering=all' >> /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN echo 'innodb_change_buffer_max_size=25' >> /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN echo 'innodb_flush_log_at_trx_commit=1' >> /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN echo 'skip-innodb_doublewrite' >> /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # Apache2 and wsgi configuration
 COPY 000-default.conf 000-default.conf
