@@ -120,7 +120,7 @@ class Command(NoArgsCommand):
             print "Generating structure..."
         # Retrieving all scientific names
         index = 0
-        for line in tqdm(file( self.NAMES ).readlines()):
+        def loop1(line):
             id = line.split("|")[0].strip()
             name = line.split("|")[1].strip().lower()
             
@@ -156,9 +156,13 @@ class Command(NoArgsCommand):
                 else:
                     self.TBN[name] = {}
                     self.TBN[name]["id"] = id
+            
+        for line in tqdm(file( self.NAMES ).readlines()):
+            loop1(line)
+
         if verbose:
             print "Extracting parents..."
-        for node in tqdm(file( self.NODES ).readlines()):
+        def loop2(node):
             id = node.split("|")[0].strip()
             parent = node.split("|")[1].strip()
             rank = node.split('|')[2].strip()
@@ -170,11 +174,16 @@ class Command(NoArgsCommand):
             if not self.TBN.has_key( name ):
                 self.TBN[name] = {}
             self.TBN[name]["parent"] = parent
+        for node in tqdm(file( self.NODES ).readlines()):
+            loop2(node)
         if verbose:
             print "Filling parents..."
-        for node in tqdm(file( self.NODES ).readlines()):
+        def loop3(node):
             id = node.split("|")[0].strip()
             self.TBI[id]["parents"] = getParents( id, self.TBI )
+        for node in tqdm(file( self.NODES ).readlines()):
+            loop3(node)
+
 
     def make_taxonomy_plus_old( self, verbose ):
         if verbose:

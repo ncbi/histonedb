@@ -31,6 +31,14 @@ fi
 echo "Running mysql in the background"
 mysqld_safe --datadir=$mysqldatadir --port=13306 &
 
+if $mysql_db_reinit; then
+cd /var/www/histonedb
+echo 'Creating database ...'
+echo 'Allow 5 secs for database initialization ...'
+sleep 5;
+mysql -u root --skip-password < system_setup/db_setup_query.sql 
+echo "Database  created "
+fi
 # if ! $without_setup ; then
 
   # if ! mysql -u root --skip-password -e 'use histonedb' > /dev/null 2>&1 || $easy_setup ; then
@@ -41,11 +49,7 @@ mysqld_safe --datadir=$mysqldatadir --port=13306 &
   #   fi
 if $histdb_reinit; then
 cd /var/www/histonedb
-echo 'Database creating ...'
-echo 'Allow 5 secs for database initialization ...'
-sleep 5;
-mysql -u root --skip-password < system_setup/db_setup_query.sql 
-echo "Database  created "
+
 
 echo 'Start HistoneDB initialization ...'
 #    sh reinit_histdb_local.sh > reinit.log 2>error.log
