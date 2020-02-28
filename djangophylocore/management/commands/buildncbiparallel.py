@@ -26,19 +26,6 @@ class Command(NoArgsCommand):
     NAMES = "names.dmp"
     NODES = "nodes.dmp"
 
-    def __generate_test_fixtures( self ):
-       #
-        # Test TBI
-        #
-        self.list_id = set([])
-        TAXOTEST = open( 'taxonomy_test.csv' ).readlines()
-        for line in TAXOTEST:
-            taxa_id, taxa_name, parent_name, homonym_name, parents_list, synonym_list, common_list = line.split( '|' )
-            self.list_id.add( taxa_id )
-            for parent_id in self.TBI[taxa_id]['parents']:
-                self.list_id.add( parent_id )
-        #
-        #
         #
  
     def handle_noargs(self, **options):
@@ -54,8 +41,6 @@ class Command(NoArgsCommand):
         # os.system( 'rm taxdump.tar.gz' )
         # self.download_ncbi( verbose )
         self.generate_structure( verbose )
-        if self.TEST:
-            self.__generate_test_fixtures()
         if verbose:
             print "making rank.dmp"
         self.make_rank()
@@ -143,7 +128,7 @@ class Command(NoArgsCommand):
             self.index = int(id)
             if type_name == "scientific name":
                 # Creating TAXONOMY_BY_ID
-                self.TBI[id] = {}
+                TBI[id] = {}
                 if homonym:
                     TBI[id]["name"] = homonym
                 else:
@@ -213,7 +198,7 @@ class Command(NoArgsCommand):
             if synonym or common:
                 if homonym: # We do not want synonym wich have homonym
                     continue
-                base_name = self.TBI[id]["name"]
+                base_name = TBI[id]["name"]
                 if synonym:
                     if name not in synonym_toc:
                         index += 1
@@ -285,9 +270,9 @@ class Command(NoArgsCommand):
             if synonym :
                 if homonym: # We do not want synonym wich have homonym
                     continue
-                base_name = self.TBI[id]["name"]
+                base_name = TBI[id]["name"]
                 #we don't want synonyms similar to scientific names
-                if self.TBN.has_key(name):
+                if TBN.has_key(name):
                     continue
                 if synonym:
                     if name not in synonym_toc:
@@ -323,9 +308,9 @@ class Command(NoArgsCommand):
             if common:
                 if homonym: # We do not want synonym wich have homonym
                     continue
-                base_name = self.TBI[id]["name"]         
+                base_name = TBI[id]["name"]         
                 if common:
-                    if name not in common_toc and name not in homonym_toc.keys() and name not in synonym_toc and not self.TBN.has_key( name ):
+                    if name not in common_toc and name not in homonym_toc.keys() and name not in synonym_toc and not TBN.has_key( name ):
                         index += 1
                         list_common.append( "%s|%s|common|2|%s\n" % ( index, name,index) )
                         common_toc[name] = index
@@ -355,8 +340,8 @@ class Command(NoArgsCommand):
         l_rank = []
         list_line = []
         index = 0
-        for species in tqdm(sorted(self.TBI.keys())):
-            rank = self.TBI[species]['rank']
+        for species in tqdm(sorted(TBI.keys())):
+            rank = TBI[species]['rank']
             if rank not in l_rank:
                 index += 1
                 line = '%s|%s' % ( index, rank )
@@ -369,7 +354,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         # Taxa.dmp
         list_line = []
-        for species in tqdm(sorted(self.TBI.keys())):
+        for species in tqdm(sorted(TBI.keys())):
             if self.TEST:
                 if species not in self.list_id:
                     continue
@@ -377,10 +362,10 @@ class Command(NoArgsCommand):
               species,
               #self.TBI[species]['name'].replace( ")", " " ).replace( "(", " " ).replace(",", " ").replace(":", " ").replace(";", " ").replace("'", " "),
               #self.clean_name(self.TBI[species]['name']),
-              self.TBI[species]['name'],#VR sept09 .replace( ")", " " ).replace( "(", " " ).replace(",", " ").replace(":", " ").replace(";", " ").replace("'", " "),
-              self.TBI[species]['type_name'],
-              self.RANK[self.TBI[species]['rank']],
-              self.TBI[species]['parent']
+              TBI[species]['name'],#VR sept09 .replace( ")", " " ).replace( "(", " " ).replace(",", " ").replace(":", " ").replace(";", " ").replace("'", " "),
+              TBI[species]['type_name'],
+              RANK[TBI[species]['rank']],
+              TBI[species]['parent']
             )
             list_line.append( line )
         open( os.path.join( DUMP_PATH, 'taxonomy.dmp' ), 'w' ).write( ''.join( list_line ) )
@@ -389,12 +374,12 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         id_rel = 0
         list_parents = []
-        for species in tqdm(sorted(self.TBI.keys())):
+        for species in tqdm(sorted(TBI.keys())):
             index = 0
             if self.TEST:
                 if species not in self.list_id:
                     continue
-            for parent_id in self.TBI[species]["parents"]:
+            for parent_id in TBI[species]["parents"]:
                 id_rel += 1
                 line = '%s|%s|%s|%s\n' % ( id_rel,species, parent_id, index ) 
                 list_parents.append( line )
