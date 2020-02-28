@@ -281,7 +281,7 @@ class Command(NoArgsCommand):
                     continue
             name = line.split("|")[1].strip().lower()
             #name= name.replace( ")", " " ).replace( "(", " " ).replace(",", " ").replace(":", " ").replace(";", " ").replace("'", " ");
-            name = self.clean_name(name)
+            name = clean_name(name)
             if common:
                 if homonym: # We do not want synonym wich have homonym
                     continue
