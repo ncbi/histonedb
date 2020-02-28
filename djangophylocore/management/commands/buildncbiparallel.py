@@ -73,15 +73,15 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         global DUMP_PATH
         verbose = options.get("verbose", True)
-        # if verbose:
-            # print "loading taxonomy, please wait, it can take a while..."
-        # if not os.path.exists( DUMP_PATH ):
-            # os.system( 'mkdir %s' % DUMP_PATH )
-        # else:
-            # os.system( 'rm %s/*' % DUMP_PATH )
+        if verbose:
+            print "loading taxonomy, please wait, it can take a while..."
+        if not os.path.exists( DUMP_PATH ):
+            os.system( 'mkdir %s' % DUMP_PATH )
+        else:
+            os.system( 'rm %s/*' % DUMP_PATH )
         #VR 15 aout 2009 otherwise the file is always loaded from the web
-        # os.system( 'rm taxdump.tar.gz' )
-        # self.download_ncbi( verbose )
+        os.system( 'rm taxdump.tar.gz' )
+        self.download_ncbi( verbose )
         self.generate_structure( verbose )
         if verbose:
             print "making rank.dmp"
