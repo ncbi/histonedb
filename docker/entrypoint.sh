@@ -31,7 +31,7 @@ fi
 
 #/usr/bin/mysqld_safe
 echo "Running mysql in the background"
-mysqld_safe --datadir=$mysqldatadir &
+mysqld_safe --datadir=$mysqldatadir --port=13306 &
 
 # if ! $without_setup ; then
 
