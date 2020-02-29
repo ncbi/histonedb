@@ -207,7 +207,7 @@ class Command(BaseCommand):
 
         if sequences is None:
             sequences = self.db_file
-        self.log.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences]))
+        self.log.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "30", "--notextw", hmms_db, sequences]))
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "30", "--notextw", hmms_db, sequences])
 
     def extract_full_sequences(self, sequences=None):

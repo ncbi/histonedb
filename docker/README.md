@@ -81,4 +81,10 @@ docker logs -f --until=2s
 
 ```singularity run --writable --bind /tmp/hdb/histonedb:/var/www/histonedb,/tmp/hdb/db:/var/lib/mysql cont -mysql_db_reinit -histdb_reinit ```
 
+- Running as a service:
 
+```singularity instance start --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/lib/mysql cont histdb```
+
+```singularity shell instance://histdb```
+
+``` cd /var/www; bash entrypoint.sh```
