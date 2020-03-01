@@ -125,7 +125,7 @@ def load_hmm_results(hmmerFile, id_file):
               already_exists.append(accession)
               continue
           # print seq
-
+  log.info("Initiating taxonomy update")
   #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
   update_taxonomy(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
 
