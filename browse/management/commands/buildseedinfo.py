@@ -50,6 +50,7 @@ class Command(BaseCommand):
                     # print "   ", variant
                     # print "{}.gff".format(seed[:-6])
                     msa = MultipleSeqAlignment(list(SeqIO.parse(seed, "fasta")))
+                    self.log.info("Making features for variant: %s", variant)
                     print >> gff, get_features_in_aln(msa, variant, save_dir=os.path.dirname(seed))
 
             #Set reviewed to True

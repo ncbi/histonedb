@@ -12,7 +12,7 @@ echo "Reinitializing HistDB from scratch"
 python manage.py migrate
 
 
-python manage.py buildncbiparallel
+python manage.py buildncbi_fast
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
 #python manage.py buildvariants -f
