@@ -70,9 +70,11 @@ class Command(BaseCommand):
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
         self.db_file=options['db_file']
         if self.db_file == "nr":
-            self.get_nr()
+            if options["force"] or not os.path.isfile('nr'):
+                self.get_nr()
         if self.db_file == "swissprot":
-            self.get_swissprot()
+            if options["force"] or not os.path.isfile('swissprot'):
+                self.get_swissprot()
 
         if options["force"]:
             #Clean the DB, removing all sequence/variants/etc
