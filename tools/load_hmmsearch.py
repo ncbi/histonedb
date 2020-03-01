@@ -15,12 +15,15 @@ from django.db.models import Max
 from django.db.utils import IntegrityError
 from django.db import close_old_connections
 from django.conf import settings
+from django.db import transaction
+
 from tqdm import tqdm
 #Custom librairies
 from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_accessions, update_taxonomy
 
 log = logging.getLogger(__name__)
 
+@transaction.atomic
 def load_hmm_results(hmmerFile, id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
