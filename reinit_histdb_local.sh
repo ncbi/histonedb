@@ -15,9 +15,9 @@ python manage.py migrate
 python manage.py buildncbi_fast
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
-#python manage.py buildvariants -f
+python manage.py buildvariants -f
 # python manage.py buildvariants -f --db yeast.aa
-python manage.py buildvariants -f --db swissprot
+# python manage.py buildvariants -f --db swissprot
 python manage.py buildtrees -f
 python manage.py buildsunburst -f
 python manage.py buildblastdb -f
