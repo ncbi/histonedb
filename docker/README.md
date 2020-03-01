@@ -87,4 +87,4 @@ docker logs -f --until=2s
 
 ```singularity shell instance://histdb```
 
-``` cd /var/www; bash entrypoint.sh```
+``` cd /var/www; bash entrypoint.sh -mysql_db_reinit -histdb_reinit```
