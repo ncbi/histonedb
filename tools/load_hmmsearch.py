@@ -53,7 +53,7 @@ def load_hmm_results(hmmerFile, id_file):
   for variant_query in tqdm(SearchIO.parse(hmmerFile, "hmmer3-text")):
     log.info("Loading variant: {}".format(variant_query.id))
     variant_model = Variant.objects.get(id=variant_query.id)
-    for hit in variant_query:
+    for hit in tqdm(variant_query):
       #Save original header to extract full sequence
       print >> ids, hit.id
 
