@@ -73,18 +73,32 @@ docker logs -f --until=2s
 ```docker image build -t intbio/histonedb:0.0.1 .```
 ```docker push intbio/histonedb:0.0.1```
 
+- Run in interactive mode in docker
 ``` docker run -it -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1 -mysql_db_reinit -histdb_reinit  ```
 
+
+- Run as a service in docker
+``` docker run -d -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1 -mysql_db_reinit -histdb_reinit  ```
+
+
+- Run interactively in singularity 
+
 ```singularity build --sandbox cont docker://intbio/histonedb:0.0.1```
+
 
 ```singularity run --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/lib/mysql cont -mysql_db_reinit -histdb_reinit ```
 
 ```singularity run --writable --bind /tmp/hdb/histonedb:/var/www/histonedb,/tmp/hdb/db:/var/lib/mysql cont -mysql_db_reinit -histdb_reinit ```
 
-- Running as a service:
+- Running as a service in singularity on prot 10080:
+
+```singularity build --sandbox cont docker://intbio/histonedb:0.0.1```
 
 ```singularity instance start --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/lib/mysql cont histdb```
 
 ```singularity shell instance://histdb```
 
 ``` cd /var/www; bash entrypoint.sh -mysql_db_reinit -histdb_reinit```
+
+- Profiling
+```python -m cProfile -s cumtime manage.py buildvariants```
