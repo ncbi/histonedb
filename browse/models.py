@@ -155,7 +155,7 @@ class Score(models.Model):
     The score class, assigns a bunch of score entries to the sequence. For each variant a score.
     """
     # id                      = models.IntegerField(primary_key=True)
-    id = models.AutoField(primary_key=True, **options)
+    id = models.AutoField(primary_key=True)
     sequence                = models.ForeignKey(Sequence, related_name="all_model_scores")
     variant                 = models.ForeignKey(Variant, related_name="+")
     above_threshold         = models.BooleanField()
