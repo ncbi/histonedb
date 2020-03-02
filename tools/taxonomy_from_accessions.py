@@ -132,7 +132,7 @@ def update_taxonomy(accessions):
             seq.save()
         except:
             log.error("Unable to update TAXID {} for accession {}".format(taxid, accession))
-            log.error('Error massege: {}'.format(sys.exc_info()[0]))
+            log.error('Error message: {}'.format(sys.exc_info()[0]))
             pass
             # raise
 

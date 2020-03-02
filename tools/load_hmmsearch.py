@@ -23,7 +23,7 @@ from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_fr
 
 log = logging.getLogger(__name__)
 
-@transaction.atomic
+#@transaction.atomic # looks like we cannot do it here, since transactions are not atomic in this block
 def load_hmm_results(hmmerFile, id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
