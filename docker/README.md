@@ -96,6 +96,10 @@ docker logs -f --until=2s
 
 ```singularity instance start --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/lib/mysql cont histdb```
 
+Alternatively
+
+```singularity instance start --writable --bind /tmp/hdb/histonedb:/var/www/histonedb,/tmp/hdb/db:/var/lib/mysql cont histdb```
+
 ```singularity shell instance://histdb```
 
 ``` cd /var/www; bash entrypoint.sh -mysql_db_reinit -histdb_reinit```
