@@ -216,7 +216,7 @@ class Command(BaseCommand):
         for i in range(10):
             fhandles[i]=open("db_split/%d.fasta"%i, "w")
         with open(sequences, "rU") as handle:
-            siter=SeqIO.parse(handle, "fasta"):
+            siter=SeqIO.parse(handle, "fasta")
             read=True
             while read:
                 for i in range(10):
