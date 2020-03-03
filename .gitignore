@@ -4,6 +4,7 @@ static/browse/hmms/combined_variants.hmm.h3m
 static/browse/hmms/combined_variants.hmm.h3p
 HistoneDB/NCBI_database_info.py
 *.pyc
+db_split/*
 nr
 swissprot
 yeast.aa

@@ -211,11 +211,34 @@ class Command(BaseCommand):
             sequences = self.db_file
         self.log.info("Splitting nr file into 10 parts")
         #!!!!!!!!!!!!!!!
+        os.system('mkdir db_split')
+        fhandles={}
+        for i in range(10):
+            fhandles[i]=open("db_split/%d.fasta"%i, "w")
+        with open(sequences, "rU") as handle:
+            siter=SeqIO.parse(handle, "fasta"):
+            read=True
+            while read:
+                for i in range(10):
+                    try:
+                        SeqIO.write(next(siter), fhandles[i], "fasta")    
+                    except StopIteration:
+                        self.log.info("End of db_file reached, splitting complete")
+                        read=False
+                        break
+        for i in range(10):
+            fhandles[i].close()
+        
         self.log.info("Launching 10 processes")
         #!!!!!!!!!!!!!!
-        self.log.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences]))
-        subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences])
-
+        child_procs=[]
+        for i in range(10):
+            outp=out+"%d"%i
+            self.log.info(" ".join(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/%d.fasta"%i]))
+            p=subprocess.call(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/%d.fasta"%i])
+            child_procs.append(p)
+        for cp in child_procs:
+            cp.wait()
     def extract_full_sequences(self, sequences=None):
         """Create database to extract full length sequences"""
 
@@ -278,7 +301,8 @@ class Command(BaseCommand):
         self.log.info("Loading data into HistoneDB...")
         self.log.info("Processing 10 files ...")
         # print >> self.stdout, "Loading data into HistoneDB..."
-        load_hmm_results(self.db_search_results_file, self.ids_file)
+        for i in range(10):
+            load_hmm_results(self.db_search_results_file+"%d"%i, self.ids_file+"%d"%i)
 
     def load_curated(self):
         """
