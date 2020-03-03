@@ -249,8 +249,8 @@ class Command(BaseCommand):
         child_procs=[]
         for i in range(HMMER_PROCS):
             outp=out+"%d"%i
-            self.log.info(" ".join(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)]))
-            p=subprocess.Popen(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)])
+            self.log.info(" ".join(["hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)]))
+            p=subprocess.Popen(["hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)])
             child_procs.append(p)
         for cp in child_procs:
             cp.wait()
