@@ -101,10 +101,10 @@ class Command(BaseCommand):
 
         if options["force"] or not os.path.isfile(self.db_search_results_file):
             #Search inputted seuqence database using our variantt models
-            self.search_in_db()
+            self.search_in_db_parallel()
 
         #Load the sequences and classify them based on thresholds
-        self.load_from_db()
+        self.load_from_db_parallel()
         self.extract_full_sequences_from_ncbi()
 
         # self.extract_full_sequences()
@@ -204,12 +204,26 @@ class Command(BaseCommand):
 
     def search(self, hmms_db, out, sequences=None, E=10):
         """Use HMMs to search the nr database"""
+        self.log.info("Searching HMMs...")
+        # print >> self.stdout, "Searching HMMs..."
+
+        if sequences is None:
+            sequences = self.db_file
+        self.log.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences]))
+        subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences])
+
+
+    def search_in_db_parallel(self):
+        return self.search_parallel(hmms_db=self.combined_hmm_file, out=self.db_search_results_file, sequences=self.db_file)
+
+    def search_parallel(self, hmms_db, out, sequences=None, E=10):
+        """Use HMMs to search the nr database"""
         self.log.info("Searching HMMs in parallel...")
         # print >> self.stdout, "Searching HMMs..."
 
         if sequences is None:
             sequences = self.db_file
-        self.log.info("Splitting nr file into 10 parts")
+        self.log.info("Splitting database file into 10 parts")
         #!!!!!!!!!!!!!!!
         os.system('mkdir db_split')
         fhandles={}
@@ -239,6 +253,8 @@ class Command(BaseCommand):
             child_procs.append(p)
         for cp in child_procs:
             cp.wait()
+
+
     def extract_full_sequences(self, sequences=None):
         """Create database to extract full length sequences"""
 
@@ -296,13 +312,20 @@ class Command(BaseCommand):
                 except:
                     pass
 
-    def load_from_db(self,reset=True):
+    def load_from_db_parallel(self,reset=True):
         """Load data into the histone database"""
         self.log.info("Loading data into HistoneDB...")
         self.log.info("Processing 10 files ...")
         # print >> self.stdout, "Loading data into HistoneDB..."
         for i in range(10):
             load_hmm_results(self.db_search_results_file+"%d"%i, self.ids_file+"%d"%i)
+
+
+    def load_from_db(self,reset=True):
+        """Load data into the histone database"""
+        self.log.info("Loading data into HistoneDB...")
+
+        load_hmm_results(self.db_search_results_file, self.ids_file)
 
     def load_curated(self):
         """
