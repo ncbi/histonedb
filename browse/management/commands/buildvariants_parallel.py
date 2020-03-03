@@ -233,8 +233,8 @@ class Command(BaseCommand):
         #We need to heal broken fasta records
         for i in range(1,11):
             for k in range(1,10000):
-                out=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
-                if(out.split('\n')[-2][0]=='>'):
+                outsp=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
+                if(outsp.split('\n')[-2][0]=='>'):
                     print(k)
                     break
             if(k>1):
