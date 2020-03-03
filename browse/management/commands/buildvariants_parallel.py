@@ -238,7 +238,7 @@ class Command(BaseCommand):
                     print(k)
                     break
             if(k>1):
-                os.system('head -n %d db_split/split%02d db_split/split%02d>> '%(k-1,i,i-1))
+                os.system('head -n %d db_split/split%02d >>db_split/split%02d '%(k-1,i,i-1))
                 os.system('tail -n +%d db_split/split%02d> db_split/temp'%(k,i))
                 os.system('mv db_split/temp db_split/split%02d'%i)
         
