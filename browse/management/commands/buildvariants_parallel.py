@@ -15,6 +15,8 @@ from tqdm import tqdm
 
 import logging
 
+HMMER_PROCS=10
+
 #This command is the main one in creating the histone database system from seed alignments
 #and by using HMMs constructed based on these alignment to classify the bigger database.
 #see handle() for the workflow description.
@@ -223,15 +225,15 @@ class Command(BaseCommand):
 
         if sequences is None:
             sequences = self.db_file
-        self.log.info("Splitting database file into 10 parts")
+        self.log.info("Splitting database file into %d parts"%HMMER_PROCS)
         #!!!!!!!!!!!!!!!
         os.system('mkdir db_split')
         #This is tricky tricky to make it fast
         size=os.path.getsize(sequences)
-        split_size=int(size/10)+1
+        split_size=int(size/HMMER_PROCS)+1
         os.system('split --bytes=%d --numeric-suffixes=1 %s db_split/split'%(split_size,sequences))
         #We need to heal broken fasta records
-        for i in range(1,11):
+        for i in range(1,HMMER_PROCS+1):
             for k in range(1,10000):
                 outsp=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
                 if(outsp.split('\n')[-2][0]=='>'):
@@ -242,10 +244,10 @@ class Command(BaseCommand):
                 os.system('tail -n +%d db_split/split%02d> db_split/temp'%(k,i))
                 os.system('mv db_split/temp db_split/split%02d'%i)
         
-        self.log.info("Launching 10 processes")
+        self.log.info("Launching %d processes"%HMMER_PROCS)
         #!!!!!!!!!!!!!!
         child_procs=[]
-        for i in range(10):
+        for i in range(HMMER_PROCS):
             outp=out+"%d"%i
             self.log.info(" ".join(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)]))
             p=subprocess.Popen(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)])
@@ -314,9 +316,9 @@ class Command(BaseCommand):
     def load_from_db_parallel(self,reset=True):
         """Load data into the histone database"""
         self.log.info("Loading data into HistoneDB...")
-        self.log.info("Processing 10 files ...")
+        self.log.info("Processing %d files ..."%HMMER_PROCS)
         # print >> self.stdout, "Loading data into HistoneDB..."
-        for i in range(10):
+        for i in range(HMMER_PROCS):
             load_hmm_results(self.db_search_results_file+"%d"%i, self.ids_file+"%d"%i)
 
 
