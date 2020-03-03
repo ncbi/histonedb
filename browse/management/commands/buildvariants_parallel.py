@@ -15,7 +15,7 @@ from tqdm import tqdm
 
 import logging
 
-HMMER_PROCS=10
+HMMER_PROCS=20
 
 #This command is the main one in creating the histone database system from seed alignments
 #and by using HMMs constructed based on these alignment to classify the bigger database.
