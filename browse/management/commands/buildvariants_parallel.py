@@ -235,7 +235,7 @@ class Command(BaseCommand):
         for i in range(10):
             outp=out+"%d"%i
             self.log.info(" ".join(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/%d.fasta"%i]))
-            p=subprocess.call(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/%d.fasta"%i])
+            p=subprocess.Popen(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/%d.fasta"%i])
             child_procs.append(p)
         for cp in child_procs:
             cp.wait()
