@@ -226,30 +226,29 @@ class Command(BaseCommand):
         self.log.info("Splitting database file into 10 parts")
         #!!!!!!!!!!!!!!!
         os.system('mkdir db_split')
-        fhandles={}
-        for i in range(10):
-            fhandles[i]=open("db_split/%d.fasta"%i, "w")
-        with open(sequences, "rU") as handle:
-            siter=SeqIO.parse(handle, "fasta")
-            read=True
-            while read:
-                for i in range(10):
-                    try:
-                        SeqIO.write(next(siter), fhandles[i], "fasta")    
-                    except StopIteration:
-                        self.log.info("End of db_file reached, splitting complete")
-                        read=False
-                        break
-        for i in range(10):
-            fhandles[i].close()
+        #This is tricky tricky to make it fast
+        size=os.path.getsize(sequences)
+        split_size=int(size/10)+1
+        os.system('split --bytes=%d --numeric-suffixes=1 %s db_split/split'%(split_size,sequences))
+        #We need to heal broken fasta records
+        for i in range(1,11):
+            for k in range(1,10000):
+                out=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
+                if(out.split('\n')[-2][0]=='>'):
+                    print(k)
+                    break
+            if(k>1):
+                os.system('head -n %d db_split/split%02d db_split/split%02d>> '%(k-1,i,i-1))
+                os.system('tail -n +%d db_split/split%02d> db_split/temp'%(k,i))
+                os.system('mv db_split/temp db_split/split%02d'%i)
         
         self.log.info("Launching 10 processes")
         #!!!!!!!!!!!!!!
         child_procs=[]
         for i in range(10):
             outp=out+"%d"%i
-            self.log.info(" ".join(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/%d.fasta"%i]))
-            p=subprocess.Popen(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/%d.fasta"%i])
+            self.log.info(" ".join(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)]))
+            p=subprocess.Popen(["hmmsearch", "-o", outp, "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)])
             child_procs.append(p)
         for cp in child_procs:
             cp.wait()
