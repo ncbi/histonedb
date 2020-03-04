@@ -205,6 +205,8 @@ def get_many_prot_seqrec_by_accession(accession_list):
               log.error("10 Retry attemps failed !!!! Proceeding, but some seqs are likely lost!!!")
             continue
         if((len(fasta_seqrec)==(i+1)*1000) or (len(fasta_seqrec)==num)):
+          #Unfortunately as of March 2020 the eutil api is quite ustable with respect to PDBids with small letters
+          #E.g. 6HKT_U , 6HKT_U are different ids. But eutils may retun 6HKT_UU, or return nothing and it depends on the orther of running the commands!!!
             break
         else:
             log.info("Mismatch: {} {}".format(num, len(fasta_seqrec)))

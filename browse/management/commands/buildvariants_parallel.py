@@ -107,7 +107,8 @@ class Command(BaseCommand):
 
         #Load the sequences and classify them based on thresholds
         self.load_from_db_parallel()
-        self.extract_full_sequences_from_ncbi()
+        # self.extract_full_sequences_from_ncbi()
+        self.extract_full_sequences_parallel()
 
         # self.extract_full_sequences()
         self.canonical2H2AX()
@@ -273,16 +274,60 @@ class Command(BaseCommand):
         #3) Update sequences with full length NR sequences -- is there a faster way?
         self.log.info("Updating records with full length sequences...")
         for record in SeqIO.parse(self.full_length_seqs_file, "fasta"):
-            headers = record.description.split(" >")
+            headers = record.description.split('\x01')
             for header in headers:
-                gi = header.split("|")[1]
+                gi = header.split(" ")[0]
                 try:
                     seq = Sequence.objects.get(id=gi)
                     self.log.info("Updating sequence: {}".format(seq.description))
                     seq.sequence = str(record.seq)
                     seq.save()
                 except Sequence.DoesNotExist:
+                    self.log.error("Sequence {} does not exist in DB".format(gi))
                     pass
+
+    def extract_full_sequences_parallel(self, sequences=None):
+        """Create database to extract full length sequences"""
+
+        if sequences is None:
+            sequences = self.db_file
+
+        child_procs=[]
+        for i in range(HMMER_PROCS):
+            #1) Create and index of sequence file
+            self.log.info("Indexing sequence database "+"db_split/split%02d"%(i+1))
+            p=subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)])
+            child_procs.append(p)
+        for cp in child_procs:
+            cp.wait()
+
+
+        child_procs=[]
+        for i in range(HMMER_PROCS):
+
+            #2) Extract all ids
+            self.log.info("Extracting full length sequences...")
+            p=subprocess.Popen(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i])
+            child_procs.append(p)
+        for cp in child_procs:
+            cp.wait()
+
+
+        #3) Update sequences with full length NR sequences -- is there a faster way?
+        self.log.info("Updating records with full length sequences...")
+        for i in range(HMMER_PROCS):
+            for record in SeqIO.parse(self.full_length_seqs_file+"%d"%i, "fasta"):
+                headers = record.description.split('\x01')
+                for header in headers:
+                    gi = header.split(" ")[0]
+                    try:
+                        seq = Sequence.objects.get(id=gi)
+                        self.log.info("Updating sequence: {}".format(seq.description))
+                        seq.sequence = str(record.seq)
+                        seq.save()
+                    except Sequence.DoesNotExist:
+                        pass
+
 
     def get_scores_for_curated_via_hmm(self):
         """
