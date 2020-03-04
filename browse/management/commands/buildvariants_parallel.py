@@ -313,7 +313,7 @@ class Command(BaseCommand):
 
             #2) Extract all ids
             self.log.info("Extracting full length sequences...")
-            self.log.info(" ",join(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i]))ll db
+            self.log.info(" ",join(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i]))
             p=subprocess.Popen(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i])
             child_procs.append(p)
         for cp in child_procs:
