@@ -301,7 +301,7 @@ class Command(BaseCommand):
         for i in range(HMMER_PROCS):
             #1) Create and index of sequence file
             self.log.info("Indexing sequence database "+"db_split/split%02d"%(i+1))
-            self.log.info(" ",join(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)]))ll db
+            self.log.info(" ",join(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)]))
             p=subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)])
             child_procs.append(p)
         for cp in child_procs:
