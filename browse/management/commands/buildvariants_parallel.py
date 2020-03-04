@@ -319,6 +319,7 @@ class Command(BaseCommand):
         self.log.info("Processing %d files ..."%HMMER_PROCS)
         # print >> self.stdout, "Loading data into HistoneDB..."
         for i in range(HMMER_PROCS):
+            self.log.info("Processing file %s ..."%(self.db_search_results_file+"%d"%i))
             load_hmm_results(self.db_search_results_file+"%d"%i, self.ids_file+"%d"%i)
 
 

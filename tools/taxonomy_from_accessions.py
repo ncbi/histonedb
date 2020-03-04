@@ -27,8 +27,11 @@ def fetch_seq(accessions):
                 if (len(accessions) == len(data)):
                     break
             except:
-                log.error("Unexpected error: {}".format(sys.exc_info()[0]))
-                # continue
+                log.error("Unexpected error: {}, Retrying, attempt {}".format(sys.exc_info()[0],i))
+                if i == 9:
+                    log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s"%(",".join(accessions)))
+                else:
+                    continue
     for s in data:
         yield s
 
