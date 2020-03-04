@@ -17,6 +17,7 @@ from browse.search import HistoneSearch
 from browse.process_upload import process_upload, InvalidFASTA
 
 from colour import Color
+import pandas as pd
 
 #Django libraires
 from browse.models import *
@@ -286,6 +287,17 @@ def analyze(request):
         data["analyze_form"] = AnalyzeFileForm(initial={"sequence":">Arabidopsis|NP_181415.1|H2A.Z Arabidopsis_H2A.Z_15224957\nMAGKGGKGLLAAKTTAA\nAANKDSVKKKSISRSSRAGIQFPVGRIHRQLKQRVSAHGRVGATAAVYTASI\nLEYLTAEVLELAGNASKDLKVKRITPRHLQLAIRGDEELDTLIKGTIAGGGVI\nPHIHKSLVNKVTKD"})
     # print data.get('result',0)
     return render(request, 'analyze.html', data)
+
+def human(request):
+    # human_proteins = pd.read_csv('/home/l_singh/histonedb/histone_proteins.csv').fillna('')
+    # human_proteins = pd.read_csv(os.path.join(settings.BASE_DIR, "histone_proteins.csv")).fillna('')
+    # human_proteins = human_proteins[['Histone type', 'Previous HGNC Symbol', 'Histone variant', 'HGNC Symbol']]
+    data = {
+        "filter_form":AdvancedFilterForm(),
+        "original_query":{},
+        "current_query":{}
+    }
+    return render(request, 'human.html', data)
 
 
 def get_sequence_table_data(request):
