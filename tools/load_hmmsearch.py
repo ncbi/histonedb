@@ -188,11 +188,12 @@ def get_many_prot_seqrec_by_accession(accession_list):
       for j in range(10):
         try:
             strn = ",".join(map(str,accession_list)[i*1000:(i+1)*1000])
-            request=Entrez.epost(db="protein",id=strn)
-            result=Entrez.read(request)
-            webEnv=result["WebEnv"]
-            queryKey=result["QueryKey"]
-            handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',webenv=webEnv, query_key=queryKey)
+            # request=Entrez.epost(db="protein",id=strn)
+            # result=Entrez.read(request)
+            # webEnv=result["WebEnv"]
+            # queryKey=result["QueryKey"]
+            # handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',webenv=webEnv, query_key=queryKey)
+            handle=Entrez.efetch(db="protein",id=strn,rettype='gb',retmode='text')
             for r in SeqIO.parse(handle,'gb'):
                 # log.info('::DEBUG::load_hmmsearch:: r')
                 # log.info('{}\n'.format(r))

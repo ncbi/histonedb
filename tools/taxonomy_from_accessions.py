@@ -58,7 +58,7 @@ def fetch_taxids(accessions):
                 else:
                     continue
         except:
-            log.error("!!!!!!Unable to get TAXID for \n {} setting it to 1".format(s))
+            log.error("!!!!!!Unable to get TAXID for {} setting it to 1".format(s))
             yield 1  # unable to identify
 
 
