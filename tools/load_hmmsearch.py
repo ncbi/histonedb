@@ -200,7 +200,9 @@ def get_many_prot_seqrec_by_accession(accession_list):
                 # fasta_seqrec[r.id.split('|')[1]]=r
                 fasta_seqrec[r.id]=r
         except:
-            log.warning("Unexpected error: {}".format(sys.exc_info()[0]))
+            log.warning("Unexpected error: {}. Retrying.".format(sys.exc_info()[0]))
+            if(j==9):
+              log.error("10 Retry attemps failed !!!! Proceeding, but some seqs are likely lost!!!")
             continue
         if((len(fasta_seqrec)==(i+1)*1000) or (len(fasta_seqrec)==num)):
             break
