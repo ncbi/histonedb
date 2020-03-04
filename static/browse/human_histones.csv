@@ -1,0 +1,186 @@
+Histone type,Former HGNC Symbol,NCBI gene ID,Histone variant,HGNC Symbol,Accession,Link
+H1,HIST1H1A,3024,H1,H1-1,Q02539.3,/type/H1/variant/H1
+H1,HIST1H1C,3006,H1,H1-2,P16403.2,/type/H1/variant/H1
+H1,HIST1H1D,3007,H1.3,H1-3,P16402.2,/type/H1/variant/H1.3
+H1,HIST1H1E,3008,H1.4,H1-4,P10412.2,/type/H1/variant/H1.4
+H1,HIST1H1B,3009,H1.5,H1-5,P16401.3,/type/H1/variant/H1.5
+H1,H1F0,3005,H1.0,H1-0,P07305.3,/type/H1/variant/H1.0
+H1,HIST1H1T,3010,TS_H1.6 ,H1-6,P22492.4,/type/H1/variant/TS_H1.6 
+H1,H1FNT,341567,TS_H1.7 ,H1-7,Q75WM6.3,/type/H1/variant/TS_H1.7 
+H1,H1FOO,132243,OO_H1.8,H1-8,Q8IZA3.1,/type/H1/variant/OO_H1.8
+H1,H1FOO,132243,OO_H1.8,H1-8,Q8IZA3.1,/type/H1/variant/OO_H1.8
+H1,HILS1,373861,TS_H1.9,H1-9,P60008.1,/type/H1/variant/TS_H1.9
+H1,HILS1,373861,TS_H1.9 ,H1-9,P60008.1,/type/H1/variant/TS_H1.9 
+H1,H1FX,8971,H10,H1-10,Q92522.1,/type/H1/variant/H10
+H2A,HIST1H2AG,8969,canonical_H2A,H2AC11,P0C0S8.2,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AI,8329,canonical_H2A,H2AC13,P0C0S8.2,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AK,8330,canonical_H2A,H2AC15,P0C0S8.2,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AL,8332,canonical_H2A,H2AC16,P0C0S8.2,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AM,8336,canonical_H2A,H2AC17,P0C0S8.2,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AC,8334,canonical_H2A,H2AC6,Q93077.3,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AC,8334,canonical_H2A,H2AC6,Q93077.3,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AC,8334,canonical_H2A,H2AC6,Q93077.3,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AD,3013,canonical_H2A,H2AC7,P20671.2,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AE,3012,canonical_H2A,H2AC8,P04908.2,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AH,85235,canonical_H2A,H2AC12,Q96KK5.3,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2AJ,8331,canonical_H2A,H2AC14,Q99878.3,/type/H2A/variant/canonical_H2A
+H2A,HIST2H2AB,317772,canonical_H2A,H2AC21,Q8IUE6.3,/type/H2A/variant/canonical_H2A
+H2A,HIST2H2AC,8338,canonical_H2A,H2AC20,Q16777.4,/type/H2A/variant/canonical_H2A
+H2A,HIST3H2A,92815,canonical_H2A,H2AC22,Q7L7L0.3,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2APS4,8333,canonical_H2A,H2AC10P,Q92646,/type/H2A/variant/canonical_H2A
+H2A,HIST1H2APS4,8333,canonical_H2A,H2AC10P,,/type/H2A/variant/canonical_H2A
+H2A,H2AFJ,55766,H2A.J,H2AJ,Q9BTM1.1,/type/H2A/variant/H2A.J
+H2A,H2AFJ,55766,H2A.J,H2AJ,Q9BTM1.1,/type/H2A/variant/H2A.J
+H2A,H2AFJ,55766,H2A.J,H2AJ,,/type/H2A/variant/H2A.J
+H2A,H2AFX,3014,H2A.X,H2AX,P16104.2,/type/H2A/variant/H2A.X
+H2A,H2AFX,3014,H2A.X,H2AX,P16104.2,/type/H2A/variant/H2A.X
+H2A,H2AFZ,3015,H2A.Z,H2AZ1,P0C0S5.2,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,Q71UI9.3,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,Q71UI9.3,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,Q71UI9.3,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,Q71UI9.3,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,Q71UI9.3,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,,/type/H2A/variant/H2A.Z
+H2A,H2AFV,94239,H2A.Z,H2AZ2,,/type/H2A/variant/H2A.Z
+H2A,H2AFY,9555,macroH2A,MACROH2A1,O75367.4,/type/H2A/variant/macroH2A
+H2A,H2AFY,9555,macroH2A,MACROH2A1,O75367.4,/type/H2A/variant/macroH2A
+H2A,H2AFY,9555,macroH2A,MACROH2A1,,/type/H2A/variant/macroH2A
+H2A,H2AFY,9555,macroH2A,MACROH2A1,,/type/H2A/variant/macroH2A
+H2A,H2AFY,9555,macroH2A,MACROH2A1,O75367.4,/type/H2A/variant/macroH2A
+H2A,H2AFY,9555,macroH2A,MACROH2A1,O75367.4,/type/H2A/variant/macroH2A
+H2A,H2AFY2,55506,macroH2A,MACROH2A2,Q9P0M6.3,/type/H2A/variant/macroH2A
+H2A,H2AFY2,55506,macroH2A,MACROH2A2,Q5SQT3,/type/H2A/variant/macroH2A
+H2A,HIST1H2AA,221613,TS_H2A ,H2AC1,Q96QV6.3,/type/H2A/variant/TS_H2A 
+H2A,H2AFB1,474382,H2A.B,H2AB1,P0C5Y9.1,/type/H2A/variant/H2A.B
+H2A,H2AFB2,474381,H2A.B,H2AB2,P0C5Z0.1,/type/H2A/variant/H2A.B
+H2A,H2AFB3,83740,H2A.B,H2AB3,P0C5Z0.1,/type/H2A/variant/H2A.B
+H2A,HYPM,25763,H2A.P,H2AP,O75409.2,/type/H2A/variant/H2A.P
+H2B,HIST1H2BB,3018,canonical_H2B,H2BC3,P33778.2,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BC,8347,canonical_H2B,H2BC4,P62807.4,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BC,8347,canonical_H2B,H2BC4,P62807.4,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BE,8344,canonical_H2B,H2BC6,P62807.4,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BE,8344,canonical_H2B,H2BC6,P62807.4,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BF,8343,canonical_H2B,H2BC7,P62807.4,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BG,8339,canonical_H2B,H2BC8,P62807.4,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BI,8346,canonical_H2B,H2BC10,P62807.4,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BD,3017,canonical_H2B,H2BC5,P58876.2,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BD,3017,canonical_H2B,H2BC5,P58876.2,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BH,8345,canonical_H2B,H2BC9,Q93079.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BJ,8970,canonical_H2B,H2BC11,P06899.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BJ,8970,canonical_H2B,H2BC11,P06899.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BJ,8970,canonical_H2B,H2BC11,,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BK,85236,canonical_H2B,H2BC12,O60814.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BL,8340,canonical_H2B,H2BC13,Q99880.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BM,8342,canonical_H2B,H2BC14,Q99879.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BN,8341,canonical_H2B,H2BC15,Q99877.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BN,8341,canonical_H2B,H2BC15,Q99877.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BN,8341,canonical_H2B,H2BC15,Q99877.3,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BN,8341,canonical_H2B,H2BC15,,/type/H2B/variant/canonical_H2B
+H2B,HIST1H2BO,8348,canonical_H2B,H2BC17,P23527.3,/type/H2B/variant/canonical_H2B
+H2B,HIST2H2BE,8349,canonical_H2B,H2BC21,Q16778.3,/type/H2B/variant/canonical_H2B
+H2B,HIST2H2BF,440689,canonical_H2B,H2BC18,Q5QNW6.3,/type/H2B/variant/canonical_H2B
+H2B,HIST2H2BF,440689,canonical_H2B,H2BC18,Q5QNW6.3,/type/H2B/variant/canonical_H2B
+H2B,HIST3H2BB,128312,canonical_H2B,H2BC22,Q8N257.3,/type/H2B/variant/canonical_H2B
+H2B,H2BFS,54145,H2B.S ,H2BS,P57053.2,/type/H2B/variant/H2B.S 
+H2B,H2BFM,286436,H2B.M,H2BM,P0C1H6.2,/type/H2B/variant/H2B.M
+H2B,H2BFM,286436,H2B.M,H2BM,P0C1H6.2,/type/H2B/variant/H2B.M
+H2B,H2BFM,286436,H2B.M,H2BM,,/type/H2B/variant/H2B.M
+H2B,H2BFWT,158983,H2B.W,H2BW,Q7Z2G1.2,/type/H2B/variant/H2B.W
+H2B,H2BFWT,158983,H2B.W,H2BW,Q7Z2G1.2,/type/H2B/variant/H2B.W
+H2B,HIST1H2BA,255626,TS_H2B,H2BC1,Q96A08.3,/type/H2B/variant/TS_H2B
+H3,HIST1H3A,8350,canonical_H3 ,H3C2,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3B,8358,canonical_H3 ,H3C3,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3C,8352,canonical_H3 ,H3C4,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3D,8351,canonical_H3 ,H3C5,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3E,8353,canonical_H3 ,H3C6,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3E,8353,canonical_H3 ,H3C6,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3F,8968,canonical_H3 ,H3C7,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3G,8355,canonical_H3 ,H3C8,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3H,8357,canonical_H3 ,H3C10,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3I,8354,canonical_H3 ,H3C11,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST1H3J,8356,canonical_H3 ,H3C12,P68431.2,/type/H3/variant/canonical_H3 
+H3,HIST2H3A,333932,canonical_H3 ,H3C15,Q71DI3.3,/type/H3/variant/canonical_H3 
+H3,HIST2H3C,126961,canonical_H3 ,H3C14,Q71DI3.3,/type/H3/variant/canonical_H3 
+H3,HIST2H3D,653604,canonical_H3 ,H3C13,Q71DI3.3,/type/H3/variant/canonical_H3 
+H3,HIST2H3PS2,440686,canonical_H3 ,H3-2,Q5TEC6,/type/H3/variant/canonical_H3 
+H3,H3F3A,3020,H3.3,H3-3A,P84243.2,/type/H3/variant/H3.3
+H3,H3F3A,3020,H3.3,H3-3A,P84243.2,/type/H3/variant/H3.3
+H3,H3F3A,3020,H3.3,H3-3A,P84243.2,/type/H3/variant/H3.3
+H3,H3F3A,3020,H3.3,H3-3A,,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,P84243.2,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,P84243.2,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,P84243.2,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,P84243.2,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,,/type/H3/variant/H3.3
+H3,H3F3B,3021,H3.3,H3-3B,,/type/H3/variant/H3.3
+H3,,391769,H3.Y,H2AQP,,/type/H3/variant/H3.Y
+H3,,340096,H3.Y,H2AQP,,/type/H3/variant/H3.Y
+H3,H3F3C,440093,H3.5,H3-5,Q6NXT2.3,/type/H3/variant/H3.5
+H3,CENPA,1058,cenH3_CENPA,CENPA,P49450.1,/type/H3/variant/cenH3_CENPA
+H3,CENPA,1058,cenH3,CENPA,P49450.1,/type/H3/variant/cenH3
+H3,CENPA,1058,cenH3,CENPA,,/type/H3/variant/cenH3
+H3,HIST3H3,8290,TS_H3.4,H3C16,Q16695.3,/type/H3/variant/TS_H3.4
+H4,HIST1H4A,8359,canonical_H4,H4C1,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4B,8366,canonical_H4,H4C2,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4C,8364,canonical_H4,H4C3,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4D,8360,canonical_H4,H4C4,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4E,8367,canonical_H4,H4C5,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4F,8361,canonical_H4,H4C6,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4H,8365,canonical_H4,H4C8,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4H,8365,canonical_H4,H4C8,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4H,8365,canonical_H4,H4C8,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4H,8365,canonical_H4,H4C8,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4I,8294,canonical_H4,H4C9,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4J,8363,canonical_H4,H4C11,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4K,8362,canonical_H4,H4C12,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST1H4L,8368,canonical_H4,H4C13,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST2H4A,8370,canonical_H4,H4C14,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST2H4A,8370,canonical_H4,H4C14,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST2H4A,8370,canonical_H4,H4C14,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST2H4A,8370,canonical_H4,H4C14,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST2H4B,554313,canonical_H4,H4C15,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST2H4B,554313,canonical_H4,H4C15,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST2H4B,554313,canonical_H4,H4C15,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST4H4,121504,canonical_H4,H4-16,P62805.2,/type/H4/variant/canonical_H4
+H4,HIST4H4,121504,canonical_H4,H4-16,P62805.2,/type/H4/variant/canonical_H4
+H2A,HIST1H2AB,8335,H2.1,H2AC4,P04908.2,/type/H2A/variant/H2.1
+H4,HIST1H4G,8369,H4,H4C7,Q99525.1,/type/H4/variant/H4
+H2A,HIST2H2AA3,8337,H2.2,H2AC18,Q6FI13.3,/type/H2A/variant/H2.2
+H2A,HIST2H2AA4,723790,H2A.2,H2AC19,Q6FI13.3,/type/H2A/variant/H2A.2
+H2A,H2AFVP1,654500,,H2AZP7,,/type/H2A/variant/
+H2A,H2AFVP1,654500,,H2AZP7,,/type/H2A/variant/
+H2A,H2AFZP1,54049,,H2AZP1,,/type/H2A/variant/
+H2A,H2AFZP2,346990,,H2AZP2,,/type/H2A/variant/
+H2A,H2AFZP3,728023,,H2AZP3,,/type/H2A/variant/
+H2A,H2AFZP4,100462795,,H2AZP4,,/type/H2A/variant/
+H2A,H2AFZP5,100288330,,H2AZP5,,/type/H2A/variant/
+H2A,H2AFZP6,100462800,,H2AZP6,,/type/H2A/variant/
+H3,H3F3AP1,654505,,H3P38,,/type/H3/variant/
+H3,H3F3AP2,664611,,H3P37,,/type/H3/variant/
+H3,H3F3AP2,664611,,H3P37,,/type/H3/variant/
+H1,HIST1H1PS1,387325,,H1-12P,,/type/H1/variant/
+H1,HIST1H1PS2,10338,,H3C1P,,/type/H1/variant/
+H2A,HIST1H2APS1,387319,,H2AC2P,,/type/H2A/variant/
+H2A,HIST1H2APS2,85303,,H2AC3P,,/type/H2A/variant/
+H2A,HIST1H2APS3,387323,,H2AC9P,,/type/H2A/variant/
+H2A,HIST1H2APS5,10341,,H2AC5P,,/type/H2A/variant/
+H2B,HIST1H2BPS1,100288742,,H2BC2P,,/type/H2B/variant/
+H2B,HIST1H2BPS2,10340,,H2BC16P,,/type/H2B/variant/
+H3,HIST1H3PS1,100289545,,H3C9P,,/type/H3/variant/
+H4,HIST1H4PS1,10337,,H4C10P,,/type/H4/variant/
+H2B,HIST2H2BA,337875,,H2BP1,,/type/H2B/variant/
+H2B,HIST2H2BA,337875,,H2BP1,,/type/H2B/variant/
+H2B,HIST2H2BB,338391,,H2BCP3,,/type/H2B/variant/
+H2B,HIST2H2BB,338391,,H2BCP3,,/type/H2B/variant/
+H2B,HIST2H2BC,337873,,H2BC20P,,/type/H2B/variant/
+H2B,HIST2H2BC,337873,,H2BC20P,,/type/H2B/variant/
+H2B,HIST2H2BD,337874,,H2BC19P,,/type/H2B/variant/
+H2B,HIST2H2BD,337874,,H2BC19P,,/type/H2B/variant/
+H2B,HIST3H2BA,337872,,H2BCP4 ,,/type/H2B/variant/
+H2A,HIST1H2APS6,42647,,H2ACP1,,/type/H2A/variant/
+H2B,HIST1H2BPS3,42633,,H2BCP1,,/type/H2B/variant/
+H2B,H2BFXP,25757,,H2BMP1,,/type/H2B/variant/
+H3,HIST2H3DP1,43797,,H3P4,,/type/H3/variant/
