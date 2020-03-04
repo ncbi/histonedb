@@ -101,7 +101,7 @@ class Command(BaseCommand):
             self.load_curated()
             self.get_scores_for_curated_via_hmm()
 
-        if options["force"] or not os.path.isfile(self.db_search_results_file):
+        if options["force"] or not os.path.isfile(self.db_search_results_file+"0"):
             #Search inputted seuqence database using our variantt models
             self.search_in_db_parallel()
 
