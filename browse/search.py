@@ -382,6 +382,8 @@ class HistoneSearch(object):
         """
         # print "SEarching!!!"
 
+        search_text = search_text.strip()
+
         #For speed
         if(len(search_text)<2):
             return
