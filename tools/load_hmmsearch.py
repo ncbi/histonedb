@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 def load_hmm_results(hmmerFile, id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
-
+  
   Parameters:
   ___________
   hmmerFile : string

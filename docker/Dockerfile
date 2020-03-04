@@ -7,7 +7,7 @@ WORKDIR /var/www
 
 # System setup
 RUN apt-get clean && apt-get update
-RUN apt-get install -y git wget libmysqlclient-dev mysql-client libpq-dev python-dev muscle clustalw emboss ncbi-blast+ libpng-dev libfreetype6 libfreetype6-dev pkg-config libblas-dev liblapack-dev gfortran
+RUN apt-get install -y git wget curl libmysqlclient-dev mysql-client libpq-dev python-dev muscle clustalw emboss ncbi-blast+ libpng-dev libfreetype6 libfreetype6-dev pkg-config libblas-dev liblapack-dev gfortran
 #RUN apt-get install hmmer
 RUN wget http://eddylab.org/software/hmmer/hmmer.tar.gz && tar zxf hmmer.tar.gz && cd hmmer-3.3 && ./configure && make && make install && cd easel; make install
 RUN apt-get install -y apache2 apache2-dev mysql-server

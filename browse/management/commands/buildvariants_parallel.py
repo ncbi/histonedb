@@ -113,6 +113,11 @@ class Command(BaseCommand):
         # self.extract_full_sequences()
         self.canonical2H2AX()
 
+        seq_num = Sequence.objects.count()
+        seqauto_num = Sequence.objects.filter(reviewed=False).count()
+
+        self.log.info(' The database has %d sequences now !!!'%seq_num)
+        self.log.info(' %d sequences came from automatic search !!!'%seqauto_num)
         self.log.info('=======================================================')
         self.log.info('===       buildvariants SUCCESSFULLY finished       ===')
         self.log.info('=======================================================')
@@ -315,18 +320,23 @@ class Command(BaseCommand):
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
         self.log.info("Updating records with full length sequences...")
+        counter=0
         for i in range(HMMER_PROCS):
+            self.log.info("Updating sequences from file {}".format(self.full_length_seqs_file+"%d"%i))
+
             for record in SeqIO.parse(self.full_length_seqs_file+"%d"%i, "fasta"):
                 headers = record.description.split('\x01')
                 for header in headers:
                     gi = header.split(" ")[0]
                     try:
                         seq = Sequence.objects.get(id=gi)
-                        self.log.info("Updating sequence: {}".format(seq.description))
+                        # self.log.info("Updating sequence: {}".format(seq.description))
                         seq.sequence = str(record.seq)
                         seq.save()
+                        conter=conter+1
                     except Sequence.DoesNotExist:
                         pass
+        self.log.info("Updated %d sequences"%counter)
 
 
     def get_scores_for_curated_via_hmm(self):
