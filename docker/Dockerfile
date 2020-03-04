@@ -7,7 +7,9 @@ WORKDIR /var/www
 
 # System setup
 RUN apt-get clean && apt-get update
-RUN apt-get install -y git libmysqlclient-dev mysql-client libpq-dev python-dev muscle clustalw emboss hmmer ncbi-blast+ libpng-dev libfreetype6 libfreetype6-dev pkg-config libblas-dev liblapack-dev gfortran
+RUN apt-get install -y git wget libmysqlclient-dev mysql-client libpq-dev python-dev muscle clustalw emboss ncbi-blast+ libpng-dev libfreetype6 libfreetype6-dev pkg-config libblas-dev liblapack-dev gfortran
+#RUN apt-get install hmmer
+RUN wget http://eddylab.org/software/hmmer/hmmer.tar.gz && tar zxf hmmer.tar.gz && cd hmmer-3.3 && ./configure && make && make install && cd easel; make install
 RUN apt-get install -y apache2 apache2-dev mysql-server
 RUN sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN apt-get install -y libapache2-mod-wsgi
