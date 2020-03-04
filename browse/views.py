@@ -221,6 +221,9 @@ def browse_variant(request, histone_type, variant, accession=None):
 
     return render(request, 'browse_variant.html', data)
 
+def browse_variant_clipped(request, variant, accession=None):
+    return browse_variant(request, get_type_by_variant(variant), variant, accession)
+
 def search(request):
     data = {"filter_form": AdvancedFilterForm()}
 
@@ -653,4 +656,14 @@ def get_sunburst_json(request, parameters=None):
         sunburst = result.get_sunburst()
         return JsonResponse(sunburst, safe=False)
     else:
-        raise Http404("No taxonomy distribution sunburst for query") 
+        raise Http404("No taxonomy distribution sunburst for query")
+
+def get_type_by_variant(variant):
+    bool_dict = {
+        'H1' in variant: 'H1',
+        'H2A' in variant: 'H2A',
+        'H2B' in variant: 'H2B',
+        'H3' in variant: 'H3',
+        'H4' in variant: 'H4',
+    }
+    return bool_dict[True]

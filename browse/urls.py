@@ -8,6 +8,7 @@ urlpatterns = [
 
     url(r'^type/([a-zA-Z0-9]+)/$', views.browse_variants),
     url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/$', views.browse_variant),
+    url(r'^variant/([a-zA-Z0-9\._]+)/$', views.browse_variant_clipped),
     # url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/(\d+)$', views.browse_variant_with_highlighted_sequence),
     url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/([a-zA-Z0-9\._]+)/$', views.browse_variant_with_highlighted_sequence),
 

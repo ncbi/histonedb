@@ -39,13 +39,13 @@
 
 <script type="text/javascript">
 
-    function format_link(variant_link){
-        if (variant_link)
-            {#return "<a href='https://www.rcsb.org/structure/" + id + "'>" + id + "</a>";#}
-            return "<a href='" + variant_link + "'>Browse variant</a>";
-            {#return "<a href='{% url 'browse.views.browse_variant' 'H1' 'H1' %}'>" + histone_variant + "</a>";#}
+    function format_variant(variant){
+        var exclude_variants = ['', 'H1', 'H1.3', 'H1.4', 'H1.5', 'H10', 'H2.1', 'H2.2', 'H2A.2', 'H2A.J', 'H2B.M',
+            'H2B.S ', 'H4', 'TS_H1.6 ', 'TS_H1.7 ', 'TS_H1.9 ', 'TS_H2A ', 'TS_H2B', 'canonical_H3 ', 'cenH3_CENPA'];
+        if (!exclude_variants.includes(variant))
+            return "<a href='/variant/" + variant + "'>" + variant + "</a>";
         else
-            return "";
+            return variant;
     };
 
     function format_type(histone_type){
@@ -61,7 +61,7 @@
         allow_download: true,
         csv_options: {separator: ',', delimiter: '"'},
         datatables_options: {"paging": false} ,
-        custom_formatting: [[0, format_type], [6, format_link]]
+        custom_formatting: [[0, format_type], [3, format_variant]]
     });
 </script>
 {% endblock %}
