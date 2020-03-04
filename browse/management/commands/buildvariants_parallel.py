@@ -333,7 +333,7 @@ class Command(BaseCommand):
                         # self.log.info("Updating sequence: {}".format(seq.description))
                         seq.sequence = str(record.seq)
                         seq.save()
-                        conter=conter+1
+                        counter=counter+1
                     except Sequence.DoesNotExist:
                         pass
         self.log.info("Updated %d sequences"%counter)
