@@ -301,6 +301,7 @@ class Command(BaseCommand):
         for i in range(HMMER_PROCS):
             #1) Create and index of sequence file
             self.log.info("Indexing sequence database "+"db_split/split%02d"%(i+1))
+            self.log.info(" ",join(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)]))ll db
             p=subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)])
             child_procs.append(p)
         for cp in child_procs:
@@ -312,6 +313,7 @@ class Command(BaseCommand):
 
             #2) Extract all ids
             self.log.info("Extracting full length sequences...")
+            self.log.info(" ",join(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i]))ll db
             p=subprocess.Popen(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i])
             child_procs.append(p)
         for cp in child_procs:
@@ -333,7 +335,7 @@ class Command(BaseCommand):
                         # self.log.info("Updating sequence: {}".format(seq.description))
                         seq.sequence = str(record.seq)
                         seq.save()
-                        counter=counter+1
+                        counter=coucat nter+1
                     except Sequence.DoesNotExist:
                         pass
         self.log.info("Updated %d sequences"%counter)
