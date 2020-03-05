@@ -16,6 +16,9 @@ shift
 done
 
 if $mysql_db_reinit; then
+killall mysqld
+killall mysqld_safe
+
 echo "Deleting database files and reinitialization"
 rm -rf $mysqldatadir/*
 
@@ -24,12 +27,15 @@ rm -rf $mysqldatadir/*
      # echo "$mysqldatadir is not Empty, no need to initialize mysql"
 # else
     # echo "$mysqldatadir is Empty, initializing mysql"
-    mysqld --initialize-insecure --datadir=$mysqldatadir --user=mysql
-fi
+mysqld --initialize-insecure --datadir=$mysqldatadir --user=mysql
+
 
 #/usr/bin/mysqld_safe
-echo "Running mysql in the background"
+echo "Rerunning mysql in the background"
 mysqld_safe --datadir=$mysqldatadir --port=13306 &
+fi
+
+
 
 if $mysql_db_reinit; then
 cd /var/www/histonedb
