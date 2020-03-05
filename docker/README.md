@@ -80,6 +80,7 @@ docker logs -f --until=2s
 ```docker exec -it histdb bash```
 ```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
+```docker stop histdb```
 
 #### Run in singularity 
 
