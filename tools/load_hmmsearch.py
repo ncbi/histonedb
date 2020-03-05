@@ -52,13 +52,13 @@ def load_hmm_results(hmmerFile, id_file):
       hist_unknown.save()
     unknown_model = Variant(hist_type=hist_unknown, id="Unknown")
     unknown_model.save()
-
+      hit_ids=set()
   for variant_query in tqdm(SearchIO.parse(hmmerFile, "hmmer3-text")):
     log.info("Loading variant: {}".format(variant_query.id))
     variant_model = Variant.objects.get(id=variant_query.id)
     for hit in tqdm(variant_query):
       #Save original header to extract full sequence
-      print >> ids, hit.id
+      hit_ids.add(hit.id)
 
       #Below we are fetching a list of headers if there are multiple headers for identical sequences
       #Technically HUMMER might put the second and on gis in description column.
@@ -128,6 +128,10 @@ def load_hmm_results(hmmerFile, id_file):
               already_exists.append(accession)
               continue
           # print seq
+  #Save original header to extract full sequence
+  for idit in hit_ids:
+    print >> ids, idit
+
   log.info("Initiating taxonomy update")
   #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
   update_taxonomy(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
