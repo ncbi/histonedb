@@ -136,7 +136,15 @@ class Command(BaseCommand):
             old_score = s.all_model_scores.get(used_for_classification=True)
             old_score.used_for_classification = False
             old_score.save()
-            new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+            # new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+            obj = Score.objects.filter(variant__id="H2A.X",sequence=s)
+            if(len(obj)>1):
+                self.log.warning('More than one score object for one variant found - stange!!!')
+                self.log.warning(obj)
+            if(len(obj)==0):
+                new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+            else:
+                new_score=obj.first()
             new_score.used_for_classification = True
             new_score.regex = True
             s.variant_id="H2A.X"
