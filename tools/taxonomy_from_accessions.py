@@ -16,16 +16,24 @@ def fetch_seq(accessions):
     data = []
     if len(accessions) == 0:
         data = []
-    #Bug in eutils - accessions for some pdbs with small chain letters are converted to double capital
-    # E.g. 6A5L_FF should be really 6A5L_f
+    #Bug in eutils 
+    # E.g. 6A5L_FF cannot be retrieved, 6A5L_f cannot
+    #This is likely a bad fix!!! but nothing else  can be done at the moment
     #Here is an addhock fix.
     acc=accessions
     accessions=[]
-    p=re.compile("(\w{4})_(\w{2})")
+    p1=re.compile("(\w{4})_([a-zA-Z]{2})")
+    p2=re.compile("(\w{4})_([a-z]{1})")
+
     for ac in acc:
-        m=p.match(ac)
-        if m:
-            newac=m.group(1)+'_'+m.group(2)[0].lower()
+        m1=p1.match(ac)
+        m2=p2.match(ac)
+
+        if m1:
+            newac=m1.group(1)+'_'+m1.group(2)[0].upper()
+            accessions.append(newac)
+        elif m2:
+            newac=m2.group(1)+'_'+m2.group(2)[0].upper()
             accessions.append(newac)
         else:
             accessions.append(ac)
