@@ -16,9 +16,10 @@ shift
 done
 
 if $mysql_db_reinit; then
-killall mysqld
-killall mysqld_safe
+killall -9 mysqld_safe
+killall -9 mysqld
 
+sleep 5;
 echo "Deleting database files and reinitialization"
 rm -rf $mysqldatadir/*
 
