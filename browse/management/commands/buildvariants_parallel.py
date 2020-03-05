@@ -330,7 +330,7 @@ class Command(BaseCommand):
         #3) Update sequences with full length NR sequences -- is there a faster way?
         self.log.info("Updating records with full length sequences...")
         counter=0
-        conter_dne=0
+        counter_dne=0
         for i in range(HMMER_PROCS):
             self.log.info("Updating sequences from file {}".format(self.full_length_seqs_file+"%d"%i))
 
@@ -345,7 +345,7 @@ class Command(BaseCommand):
                         seq.save()
                         counter=counter+1
                     except Sequence.DoesNotExist:
-                        counter_dne=conter_dne+1
+                        counter_dne=counter_dne+1
                         #These seqs likely did not exceed the threshold.
                         # self.log.error("Strangely sequence %s does not exist in database - unable to update"%gi)
                         pass
