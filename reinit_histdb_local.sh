@@ -15,10 +15,18 @@ python manage.py migrate
 python manage.py buildncbi_fast
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
-python manage.py buildvariants_parallel -f
-# python manage.py buildvariants_parallel -f https://www.dropbox.com/s/ed6v0jokp5vchlt/nr_5march2020.gz?dl=0 # this is a link to nr as of 5 march 2020
-# python manage.py buildvariants -f --db yeast.aa
-# python manage.py buildvariants -f --db swissprot
+
+#Let's get a version of nr, which is known to work and use it
+# wget https://www.dropbox.com/s/ed6v0jokp5vchlt/nr_5march2020.gz
+# gunzip nr_5march2020.gz
+# python manage.py buildvariants_parallel -f --db nr_5march2020
+
+# python manage.py buildvariants -f #This will download new nr if not present in dir
+
+python manage.py buildvariants -f --db swissprot # this should work reasonably fast
+
+# python manage.py buildvariants -f --db yeast.aa This is for fast testing =
+
 python manage.py buildtrees -f
 python manage.py buildsunburst -f
 python manage.py buildblastdb -f
