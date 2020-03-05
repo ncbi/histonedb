@@ -77,7 +77,14 @@ class Command(BaseCommand):
         if self.db_file == "swissprot":
             if options["force"] or not os.path.isfile('swissprot'):
                 self.get_swissprot()
+        if ('http://' in self.db_file) or ('https://' in self.db_file) or ('ftp://' in self.db_file):
+            self.log.info('Provided db file is a link %s - Expecting a gzipped file. Attempting to download ...'%self.db_file)
+            with open("db.gz", "w") as db:
+                subprocess.call(["curl", "-#", self.db_file], stdout=db)
+            subprocess.call(["gunzip", "db.gz"])
+            self.db_file='db'
 
+            
         if options["force"]:
             #Clean the DB, removing all sequence/variants/etc
             Sequence.objects.all().delete()

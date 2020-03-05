@@ -7,6 +7,8 @@ HistoneDB/NCBI_database_info.py
 db_split/*
 *.ssi
 nr
+db
+db.gz
 swissprot
 yeast.aa
 nr_small
