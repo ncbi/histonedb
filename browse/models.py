@@ -67,7 +67,8 @@ class TemplateSequence(models.Model):
 
 
 class Sequence(models.Model):
-    id       = models.CharField(max_length=255, primary_key=True,db_index=True) #GI, superseeded by ACCESSION
+    id       = models.CharField(max_length=255, primary_key=True) #GI, superseeded by ACCESSION
+    # id       = models.CharField(max_length=255, primary_key=True,db_index=True) #GI, superseeded by ACCESSION
     variant  = models.ForeignKey(Variant, related_name="sequences")
     gene     = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
     splice   = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)]) 
