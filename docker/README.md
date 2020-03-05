@@ -85,7 +85,10 @@ docker logs -f --until=2s
 
 ```singularity build --sandbox cont docker://intbio/histonedb:0.0.1```
 
+- This will run apache on prot 10080
 ```singularity instance start --writable --bind /mnt/ramdisk/hdb/histonedb:/var/www/histonedb,/mnt/ramdisk/hdb/db:/var/lib/mysql cont histdb```
+
+- Regenerate db
 
 ```singularity shell instance://histdb```
 
@@ -93,6 +96,7 @@ docker logs -f --until=2s
 ```cd /var/www```
 ```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
+```singularity instance stop histdb```
 
 ### For development
 - Profiling
