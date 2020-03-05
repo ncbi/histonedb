@@ -323,6 +323,7 @@ class Command(BaseCommand):
         #3) Update sequences with full length NR sequences -- is there a faster way?
         self.log.info("Updating records with full length sequences...")
         counter=0
+        conter_dne=0
         for i in range(HMMER_PROCS):
             self.log.info("Updating sequences from file {}".format(self.full_length_seqs_file+"%d"%i))
 
@@ -337,8 +338,12 @@ class Command(BaseCommand):
                         seq.save()
                         counter=counter+1
                     except Sequence.DoesNotExist:
+                        counter_dne=conter_dne+1
+                        self.log.error("Strangely sequence %s does not exist in database - unable to update"%gi)
                         pass
         self.log.info("Updated %d sequences"%counter)
+        self.log.info("%d sequences where attempded to update, but were not found in the database"%counter_dne)
+
 
 
     def get_scores_for_curated_via_hmm(self):

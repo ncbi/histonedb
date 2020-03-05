@@ -87,7 +87,7 @@ def load_hmm_results(hmmerFile, id_file):
             if len(best_scores)>0:
             ##Sequence have passed the threshold for one of previous models.
               best_score = best_scores.first()
-              if (hsp.bitscore > best_score.score) and hsp.bitscore>=variant_model.hmmthreshold:
+              if (hsp.bitscore > best_score.score) and (hsp.bitscore>=variant_model.hmmthreshold):
                 #best scoring
                 seq.variant = variant_model
                 seq.sequence = str(hsp.hit.seq)
