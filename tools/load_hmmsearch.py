@@ -52,7 +52,8 @@ def load_hmm_results(hmmerFile, id_file):
       hist_unknown.save()
     unknown_model = Variant(hist_type=hist_unknown, id="Unknown")
     unknown_model.save()
-    hit_ids=set()
+  
+  hit_ids=set()
   for variant_query in tqdm(SearchIO.parse(hmmerFile, "hmmer3-text")):
     log.info("Loading variant: {}".format(variant_query.id))
     variant_model = Variant.objects.get(id=variant_query.id)
