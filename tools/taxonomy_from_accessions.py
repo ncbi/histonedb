@@ -68,6 +68,7 @@ already_exists = []
 
 
 def taxonomy_from_header(header_init, accession=None, species_re=None):
+    log.info("taxonomy_from_header triggered ...")
     header = header_init.replace("_", " ")
     if species_re is None:
         species_re = re.compile(r'\[(.*?)\]')
