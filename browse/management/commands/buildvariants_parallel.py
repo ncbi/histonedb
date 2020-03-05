@@ -84,7 +84,7 @@ class Command(BaseCommand):
             subprocess.call(["gunzip", "db.gz"])
             self.db_file='db'
 
-            
+
         if options["force"]:
             #Clean the DB, removing all sequence/variants/etc
             Sequence.objects.all().delete()
@@ -346,7 +346,8 @@ class Command(BaseCommand):
                         counter=counter+1
                     except Sequence.DoesNotExist:
                         counter_dne=conter_dne+1
-                        self.log.error("Strangely sequence %s does not exist in database - unable to update"%gi)
+                        #These seqs likely did not exceed the threshold.
+                        # self.log.error("Strangely sequence %s does not exist in database - unable to update"%gi)
                         pass
         self.log.info("Updated %d sequences"%counter)
         self.log.info("%d sequences where attempded to update, but were not found in the database"%counter_dne)
