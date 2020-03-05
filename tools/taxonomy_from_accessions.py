@@ -13,6 +13,7 @@ import logging
 log = logging.getLogger(__name__)
 
 def fetch_seq(accessions):
+    data = []
     if len(accessions) == 0:
         data = []
     else:
@@ -29,7 +30,7 @@ def fetch_seq(accessions):
             except:
                 log.error("Unexpected error: {}, Retrying, attempt {}".format(sys.exc_info()[0],i))
                 if i == 9:
-                    log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s"%(",".join(accessions)))
+                    log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s. Will return empty list!"%(",".join(accessions)))
                 else:
                     continue
     for s in data:
