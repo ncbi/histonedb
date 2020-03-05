@@ -131,14 +131,19 @@ def load_hmm_results(hmmerFile, id_file):
   #Save original header to extract full sequence
   for idit in hit_ids:
     print >> ids, idit
+  log.info("From file %s we got %d sequences"%(hmmerFile,len(hit_ids)))
 
-  log.info("Initiating taxonomy update")
-  #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
-  update_taxonomy(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
+  log.info("Deleting %d seqs where HMMsearch found a hit but did not pass threshold"%(unknown_model.sequences.all().count()))
 
   #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
   unknown_model.sequences.all().delete()
   unknown_model.delete()
+
+  log.info("Initiating taxonomy update for %d seqs where it is not identified"%(Sequence.objects.filter(taxonomy__name="unidentified").count()))
+
+  #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
+  update_taxonomy(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
+
 
   ids.close()
 
