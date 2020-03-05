@@ -77,7 +77,7 @@ docker logs -f --until=2s
 - Run as a service in docker, this will run apache and attempt to start mysqld
 ```docker run --name histdb -d -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1  ```
 - Get into container and start db regeneration
-```docker exec -it hisdb bash```
+```docker exec -it histdb bash```
 ```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
 
