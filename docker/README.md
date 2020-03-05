@@ -78,6 +78,8 @@ docker logs -f --until=2s
 ```docker run --name histdb -d -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1  ```
 - Get into container and start db regeneration
 ```docker exec -it histdb bash```
+- Next in reinit_histdb_local.sh adjust the database you would want to build HistoneDB from (swissprot, nr, etc.)
+
 ```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
 ```docker stop histdb```
@@ -95,6 +97,8 @@ docker logs -f --until=2s
 
 ```apachectl start```
 ```cd /var/www```
+- Next in reinit_histdb_local.sh adjust the database you would want to build HistoneDB from (swissprot, nr, etc.)
+
 ```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
 ```singularity instance stop histdb```
