@@ -111,23 +111,25 @@ def load_hmm_results(hmmerFile, id_file):
                 add_score(seq, variant_model, hsp, best=False)
           else:
             ##A new sequence is found.
-            taxonomy = taxonomy_from_header(header, accession)
-            sequence = Seq(str(hsp.hit.seq))
+            
             best = hsp.bitscore >= variant_model.hmmthreshold
-            try:
-              # print 'HEADER {}'.format(header)
-              seq = add_sequence(
-                accession,
-                variant_model if best else unknown_model, 
-                taxonomy, 
-                header, 
-                sequence)
-              add_score(seq, variant_model, hsp, best=best)
-            except IntegrityError as e:
-              log.error("Error adding sequence {}".format(seq))
-              global already_exists
-              already_exists.append(accession)
-              continue
+            if best:
+              taxonomy = taxonomy_from_header(header, accession)
+              sequence = Seq(str(hsp.hit.seq))
+              try:
+                # print 'HEADER {}'.format(header)
+                seq = add_sequence(
+                  accession,
+                  variant_model if best else unknown_model, 
+                  taxonomy, 
+                  header, 
+                  sequence)
+                add_score(seq, variant_model, hsp, best=best)
+              except IntegrityError as e:
+                log.error("Error adding sequence {}".format(seq))
+                global already_exists
+                already_exists.append(accession)
+                continue
           # print seq
   #Save original header to extract full sequence
   for idit in hit_ids:
