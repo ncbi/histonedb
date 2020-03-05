@@ -79,8 +79,7 @@ class Command(BaseCommand):
                 self.get_swissprot()
         if ('http://' in self.db_file) or ('https://' in self.db_file) or ('ftp://' in self.db_file):
             self.log.info('Provided db file is a link %s - Expecting a gzipped file. Attempting to download ...'%self.db_file)
-            with open("db.gz", "w") as db:
-                subprocess.call(["curl", "-#", self.db_file], stdout=db)
+            subprocess.call(["wget", self.db_file,'-O','db.gz'])
             subprocess.call(["gunzip", "db.gz"])
             self.db_file='db'
 
