@@ -69,40 +69,31 @@ or
 docker logs -f --until=2s
 
 
---- AK specific --
+### This is how we need to do it now
 ```docker image build -t intbio/histonedb:0.0.1 .```
 ```docker push intbio/histonedb:0.0.1```
 
-- Run in interactive mode in docker
-``` docker run -it -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1 -mysql_db_reinit -histdb_reinit  ```
+#### Running via docker
+- Run as a service in docker, this will run apache
+```docker run --name histdb -d -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1  ```
+- Get into container and start db regeneration
+```docker exec -it hisdb bash```
+```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
 
-- Run as a service in docker
-``` docker run -d -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1 -mysql_db_reinit -histdb_reinit  ```
-
-
-- Run interactively in singularity 
-
-```singularity build --sandbox cont docker://intbio/histonedb:0.0.1```
-
-
-```singularity run --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/lib/mysql cont -mysql_db_reinit -histdb_reinit ```
-
-```singularity run --writable --bind /tmp/hdb/histonedb:/var/www/histonedb,/tmp/hdb/db:/var/lib/mysql cont -mysql_db_reinit -histdb_reinit ```
-
-- Running as a service in singularity on prot 10080:
+#### Run in singularity 
 
 ```singularity build --sandbox cont docker://intbio/histonedb:0.0.1```
 
-```singularity instance start --writable --bind /home/alexsha/junk/hdb/histonedb:/var/www/histonedb,/home/alexsha/junk/hdb/db:/var/lib/mysql cont histdb```
-
-Alternatively
-
-```singularity instance start --writable --bind /tmp/hdb/histonedb:/var/www/histonedb,/tmp/hdb/db:/var/lib/mysql cont histdb```
+```singularity instance start --writable --bind /mnt/ramdisk/hdb/histonedb:/var/www/histonedb,/mnt/ramdisk/hdb/db:/var/lib/mysql cont histdb```
 
 ```singularity shell instance://histdb```
 
-``` cd /var/www; bash entrypoint.sh -mysql_db_reinit -histdb_reinit```
+```apachectl start```
+```cd /var/www```
+```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
+
+### For development
 - Profiling
 ```python -m cProfile -s cumtime manage.py buildvariants```

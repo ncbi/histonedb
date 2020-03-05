@@ -16,7 +16,7 @@ python manage.py buildncbi_fast
 python manage.py loadtaxonomy
 python manage.py buildtaxonomytoc
 python manage.py buildvariants_parallel -f
-# python manage.py buildvariants_parallel -f https://www.dropbox.com/s/ed6v0jokp5vchlt/nr_5march2020.gz?dl=0
+# python manage.py buildvariants_parallel -f https://www.dropbox.com/s/ed6v0jokp5vchlt/nr_5march2020.gz?dl=0 # this is a link to nr as of 5 march 2020
 # python manage.py buildvariants -f --db yeast.aa
 # python manage.py buildvariants -f --db swissprot
 python manage.py buildtrees -f
