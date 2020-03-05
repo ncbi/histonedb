@@ -74,7 +74,7 @@ docker logs -f --until=2s
 ```docker push intbio/histonedb:0.0.1```
 
 #### Running via docker
-- Run as a service in docker, this will run apache
+- Run as a service in docker, this will run apache and attempt to start mysqld
 ```docker run --name histdb -d -p 8080:10080 -v /Users/alexsha/work_HD/histonedb:/var/www/histonedb -v /Users/alexsha/junk/db:/var/lib/mysql intbio/histonedb:0.0.1  ```
 - Get into container and start db regeneration
 ```docker exec -it hisdb bash```
@@ -85,7 +85,7 @@ docker logs -f --until=2s
 
 ```singularity build --sandbox cont docker://intbio/histonedb:0.0.1```
 
-- This will run apache on prot 10080
+- This will run apache on prot 10080 and attempt to start mysqld
 ```singularity instance start --writable --bind /mnt/ramdisk/hdb/histonedb:/var/www/histonedb,/mnt/ramdisk/hdb/db:/var/lib/mysql cont histdb```
 
 - Regenerate db
