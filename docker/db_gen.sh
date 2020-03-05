@@ -18,7 +18,8 @@ done
 if $mysql_db_reinit; then
 killall -9 mysqld_safe
 killall -9 mysqld
-
+pkill -9 mysqld_safe
+pkill -9 mysqld
 sleep 5;
 echo "Deleting database files and reinitialization"
 rm -rf $mysqldatadir/*
