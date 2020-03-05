@@ -100,7 +100,7 @@ def taxonomy_from_header(header_init, accession=None, species_re=None):
             if genus.type_name != "scientific name":
                 genus = genus.get_scientific_names()[0]
         except:
-            log.info(header)
+            log.info('Unable to decifer taxonomy for: %s'%header)
             return Taxonomy.objects.get(name="unidentified")
 
         # Maybe the var is wrong
