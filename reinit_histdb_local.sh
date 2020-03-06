@@ -2,9 +2,9 @@
 #This script runs all the commands to initialize hisoneDB from scratch.
 echo "Reinitializing HistDB from scratch"
 
-#python manage.py flush << EOF
-#yes
-#EOF
+python manage.py flush << EOF
+yes
+EOF
 
 #python manage.py migrate
 #python manage.py sqlclear browse | python manage.py dbshell
