@@ -14,6 +14,7 @@ from Bio import SeqIO
 from tqdm import tqdm
 
 import logging
+from datetime import date
 
 HMMER_PROCS=20
 
@@ -68,7 +69,7 @@ class Command(BaseCommand):
         self.log.info('=======================================================')
         self.log.info('===               buildvariants START               ===')
         self.log.info('=======================================================')
-
+        self.start_time=datetime.now()
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
         self.db_file=options['db_file']
         if self.db_file == "nr":
@@ -118,6 +119,8 @@ class Command(BaseCommand):
 
         # self.extract_full_sequences()
         self.canonical2H2AX()
+
+        self.get_stats()
 
         seq_num = Sequence.objects.count()
         seqauto_num = Sequence.objects.filter(reviewed=False).count()
@@ -555,4 +558,41 @@ class Command(BaseCommand):
             except Sequence.DoesNotExist:
                 self.log.error('Sequence with accession {} does not exist in DB.'.format(accession))
                 pass
+    def get_stats(self):
+        self.log.info('Outputting statistics file ...')
+
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        with open('log/db_stat_'+dt_string,'w') as f:
+            f.write("Variant database regeneration stitics")
+            f.write("DB regen start time: ", self.start_time)
+            f.write("DB regen end time: ", now)
+            f.write("Time taken for regeneration of variants: %f hours"%(now-self.start_time).total_seconds()/3600)
+            f.write("Parallel threads used %d"%HMMER_PROCS)
+            f.write("DB file used: ",self.db_file)
+            f.write("Parallel threads used %d"%HMMER_PROCS)
+            f.write(subprocess.check_output(['ls','-l',self.db_file]))
+            f.write('---Database statistics----')
+            f.write('Total seqs = ',Sequence.objects.all().count())
+            f.write('Reviewed seqs = ',Sequence.objects.filter(reviewed=True).count())
+            f.write('Automatic seqs = ',Sequence.objects.filter(reviewed=False).count())
+
+            f.write('\n---Histone type statistics----')
+            f.write('Type        | Total  |Reviewed|  Auto  ')
+            for h in Histone.object.all():
+                tot=Sequence.objects.filter(variant__hist_type=h).count()
+                rev=Sequence.objects.filter(variant__hist_type=h,reviewed=True).count()
+                auto=Sequence.objects.filter(variant__hist_type=h,reviewed=False).count()
+
+                f.write('%12s|%8d|%8d|%8d'%(h.id,tot,rev,auto))
+
+            f.write('\n---Histone variant statistics----')
+            f.write('Variant     | Total  |Reviewed|  Auto  ')
+            for v in Variant.object.all():
+                tot=Sequence.objects.filter(variant=v).count()
+                rev=Sequence.objects.filter(variant=v,reviewed=True).count()
+                auto=Sequence.objects.filter(variant=v,reviewed=False).count()
+
+                f.write('%12s|%8d|%8d|%8d'%(v.id,tot,rev,auto))
+
 
