@@ -568,10 +568,9 @@ class Command(BaseCommand):
             f.write("Variant database regeneration stitics\n")
             f.write("DB regen start time: %s \n"%self.start_time)
             f.write("DB regen end time: %s\n"%now)
-            f.write("Time taken for regeneration of variants: %f hours\n"%(int((now-self.start_time).total_seconds())/3600))
+            f.write("Time taken for regeneration of variants: %f hours\n"%(float((now-self.start_time).total_seconds())/3600.))
             f.write("Parallel threads used %d\n"%HMMER_PROCS)
             f.write("DB file used: %s\n"%self.db_file)
-            f.write("Parallel threads used %d\n"%HMMER_PROCS)
             f.write(subprocess.check_output(['ls','-l',self.db_file])+"\n")
             f.write('---Database statistics----\n')
             f.write('Total seqs = %d\n'%Sequence.objects.all().count())
@@ -585,7 +584,7 @@ class Command(BaseCommand):
                 rev=Sequence.objects.filter(variant__hist_type=h,reviewed=True).count()
                 auto=Sequence.objects.filter(variant__hist_type=h,reviewed=False).count()
 
-                f.write('%12s|%8d|%8d|%8d'%(h.id,tot,rev,auto))
+                f.write('%12s|%8d|%8d|%8d\n'%(h.id,tot,rev,auto))
 
             f.write('\n---Histone variant statistics----\n')
             f.write('Variant     | Total  |Reviewed|  Auto  \n')
@@ -594,6 +593,6 @@ class Command(BaseCommand):
                 rev=Sequence.objects.filter(variant=v,reviewed=True).count()
                 auto=Sequence.objects.filter(variant=v,reviewed=False).count()
 
-                f.write('%12s|%8d|%8d|%8d'%(v.id,tot,rev,auto))
+                f.write('%12s|%8d|%8d|%8d\n'%(v.id,tot,rev,auto))
 
 
