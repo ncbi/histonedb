@@ -558,27 +558,28 @@ class Command(BaseCommand):
             except Sequence.DoesNotExist:
                 self.log.error('Sequence with accession {} does not exist in DB.'.format(accession))
                 pass
+
     def get_stats(self):
         self.log.info('Outputting statistics file ...')
 
         now = datetime.now()
         dt_string = now.strftime("%Y%m%d-%H%M%S")
         with open('log/db_stat_'+dt_string,'w') as f:
-            f.write("Variant database regeneration stitics")
-            f.write("DB regen start time: ", self.start_time)
-            f.write("DB regen end time: ", now)
-            f.write("Time taken for regeneration of variants: %f hours"%(now-self.start_time).total_seconds()/3600)
-            f.write("Parallel threads used %d"%HMMER_PROCS)
-            f.write("DB file used: ",self.db_file)
-            f.write("Parallel threads used %d"%HMMER_PROCS)
-            f.write(subprocess.check_output(['ls','-l',self.db_file]))
-            f.write('---Database statistics----')
-            f.write('Total seqs = ',Sequence.objects.all().count())
-            f.write('Reviewed seqs = ',Sequence.objects.filter(reviewed=True).count())
-            f.write('Automatic seqs = ',Sequence.objects.filter(reviewed=False).count())
+            f.write("Variant database regeneration stitics\n")
+            f.write("DB regen start time: %s \n"%self.start_time)
+            f.write("DB regen end time: %s\n"%now)
+            f.write("Time taken for regeneration of variants: %f hours\n"%(now-self.start_time).total_seconds()/3600)
+            f.write("Parallel threads used %d\n"%HMMER_PROCS)
+            f.write("DB file used: %s\n"%self.db_file)
+            f.write("Parallel threads used %d\n"%HMMER_PROCS)
+            f.write(subprocess.check_output(['ls','-l',self.db_file])+"\n")
+            f.write('---Database statistics----\n')
+            f.write('Total seqs = %d\n'%Sequence.objects.all().count())
+            f.write('Reviewed seqs = %d\n'%Sequence.objects.filter(reviewed=True).count())
+            f.write('Automatic seqs = %d\n'%Sequence.objects.filter(reviewed=False).count())
 
-            f.write('\n---Histone type statistics----')
-            f.write('Type        | Total  |Reviewed|  Auto  ')
+            f.write('\n---Histone type statistics----\n')
+            f.write('Type        | Total  |Reviewed|  Auto  \n')
             for h in Histone.object.all():
                 tot=Sequence.objects.filter(variant__hist_type=h).count()
                 rev=Sequence.objects.filter(variant__hist_type=h,reviewed=True).count()
@@ -586,8 +587,8 @@ class Command(BaseCommand):
 
                 f.write('%12s|%8d|%8d|%8d'%(h.id,tot,rev,auto))
 
-            f.write('\n---Histone variant statistics----')
-            f.write('Variant     | Total  |Reviewed|  Auto  ')
+            f.write('\n---Histone variant statistics----\n')
+            f.write('Variant     | Total  |Reviewed|  Auto  \n')
             for v in Variant.object.all():
                 tot=Sequence.objects.filter(variant=v).count()
                 rev=Sequence.objects.filter(variant=v,reviewed=True).count()
