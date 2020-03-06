@@ -21,11 +21,11 @@ python manage.py buildtaxonomytoc
 # gunzip nr_5march2020.gz
 # python manage.py buildvariants_parallel -f --db nr_5march2020
 
-# python manage.py buildvariants -f #This will download new nr if not present in dir
+# python manage.py buildvariants_parallel -f #This will download new nr if not present in dir
 
-python manage.py buildvariants -f --db swissprot # this should work reasonably fast
+python manage.py buildvariants_parallel -f --db swissprot # this should work reasonably fast
 
-# python manage.py buildvariants -f --db yeast.aa This is for fast testing =
+# python manage.py buildvariants_parallel -f --db yeast.aa This is for fast testing =
 
 python manage.py buildtrees -f
 python manage.py buildsunburst -f
