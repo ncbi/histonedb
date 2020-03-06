@@ -568,7 +568,7 @@ class Command(BaseCommand):
             f.write("Variant database regeneration stitics\n")
             f.write("DB regen start time: %s \n"%self.start_time)
             f.write("DB regen end time: %s\n"%now)
-            f.write("Time taken for regeneration of variants: %f hours\n"%int((now-self.start_time).total_seconds())/3600)
+            f.write("Time taken for regeneration of variants: %f hours\n"%(int((now-self.start_time).total_seconds())/3600))
             f.write("Parallel threads used %d\n"%HMMER_PROCS)
             f.write("DB file used: %s\n"%self.db_file)
             f.write("Parallel threads used %d\n"%HMMER_PROCS)
