@@ -41,7 +41,7 @@
 
     function format_variant(variant){
         var exclude_variants = ['', 'H1', 'H1.3', 'H1.4', 'H1.5', 'H10', 'H2.1', 'H2.2', 'H2A.2', 'H2A.J', 'H2B.M',
-            'H2B.S ', 'H4', 'TS_H1.6 ', 'TS_H1.7 ', 'TS_H1.9 ', 'TS_H2A ', 'TS_H2B', 'canonical_H3 ', 'cenH3_CENPA'];
+            'H2B.S ', 'H4', 'TS_H2A ', 'TS_H2B', 'cenH3_CENPA'];
         if (!exclude_variants.includes(variant))
             return "<a href='/variant/" + variant + "'>" + variant + "</a>";
         else
