@@ -580,7 +580,7 @@ class Command(BaseCommand):
 
             f.write('\n---Histone type statistics----\n')
             f.write('Type        | Total  |Reviewed|  Auto  \n')
-            for h in Histone.object.all():
+            for h in Histone.objects.all():
                 tot=Sequence.objects.filter(variant__hist_type=h).count()
                 rev=Sequence.objects.filter(variant__hist_type=h,reviewed=True).count()
                 auto=Sequence.objects.filter(variant__hist_type=h,reviewed=False).count()
@@ -589,7 +589,7 @@ class Command(BaseCommand):
 
             f.write('\n---Histone variant statistics----\n')
             f.write('Variant     | Total  |Reviewed|  Auto  \n')
-            for v in Variant.object.all():
+            for v in Variant.objects.all():
                 tot=Sequence.objects.filter(variant=v).count()
                 rev=Sequence.objects.filter(variant=v,reviewed=True).count()
                 auto=Sequence.objects.filter(variant=v,reviewed=False).count()
