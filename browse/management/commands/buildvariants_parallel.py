@@ -562,7 +562,7 @@ class Command(BaseCommand):
         self.log.info('Outputting statistics file ...')
 
         now = datetime.now()
-        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        dt_string = now.strftime("%Y%m%d-%H%M%S")
         with open('log/db_stat_'+dt_string,'w') as f:
             f.write("Variant database regeneration stitics")
             f.write("DB regen start time: ", self.start_time)
