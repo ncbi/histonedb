@@ -14,7 +14,7 @@ from Bio import SeqIO
 from tqdm import tqdm
 
 import logging
-from datetime import date
+from datetime import date, datetime
 
 HMMER_PROCS=20
 
