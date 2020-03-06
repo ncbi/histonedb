@@ -25,8 +25,6 @@ python manage.py buildtaxonomytoc
 
 python manage.py buildvariants_parallel -f --db swissprot # this should work reasonably fast
 
-# python manage.py buildvariants_parallel -f --db yeast.aa This is for fast testing =
-
 python manage.py buildtrees -f
 python manage.py buildsunburst -f
 python manage.py buildblastdb -f
