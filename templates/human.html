@@ -23,7 +23,7 @@
 {% block content %}
 <div class="container">
   <div class="page-header">
-	  <h1>List of human histones</h1>
+	  <h1>List of human histone proteins</h1>
   </div>
 
     <div class="container-fluid">
@@ -38,32 +38,4 @@
 </div>
 
 <script type="text/javascript" src="https://intbio.org/hist_gene_prot/disp_func.js"></script>
-{#<script type="text/javascript">#}
-{##}
-{#    function format_variant(variant){#}
-{#        var exclude_variants = ['', 'H1', 'H1.3', 'H1.4', 'H1.5', 'H10', 'H2.1', 'H2.2', 'H2A.2', 'H2A.J', 'H2B.M',#}
-{#            'H2B.S ', 'H4', 'TS_H2A ', 'TS_H2B', 'cenH3_CENPA'];#}
-{#        if (!exclude_variants.includes(variant))#}
-{#            return "<a href='/variant/" + variant + "'>" + variant + "</a>";#}
-{#        else#}
-{#            return variant;#}
-{#    };#}
-{##}
-{#    function format_type(histone_type){#}
-{#        if (histone_type)#}
-{#            return "<a href='/type/" + histone_type + "'>" + histone_type + "</a>";#}
-{#        else#}
-{#            return "";#}
-{#    };#}
-{##}
-{#    CsvToHtmlTable.init({#}
-        {#csv_path: "{% static 'browse/human_histones.csv' %}",#}
-{#        csv_path: "https://intbio.org/hist_gene_prot/human_histones.csv",#}
-{#        element: 'table-container',#}
-{#        allow_download: true,#}
-{#        csv_options: {separator: ',', delimiter: '"'},#}
-{#        datatables_options: {"paging": false} ,#}
-{#        custom_formatting: [[0, format_type], [3, format_variant]]#}
-{#    });#}
-{#</script>#}
 {% endblock %}
