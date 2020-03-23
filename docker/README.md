@@ -19,7 +19,7 @@
 
 - This will run apache on prot 10080 and attempt to start mysqld
 ```singularity instance start --writable --bind /mnt/ramdisk/hdb/histonedb:/var/www/histonedb,/mnt/ramdisk/hdb/db:/var/lib/mysql cont histdb```
-```singularity instance start --writable --bind /home/_scratch/hdb/histonedb:/var/www/histonedb,/home/_scratch/hdb/db:/var/lib/mysql cont histdb```
+```singularity instance start --writable --bind /home/l_singh/_scratch/hdb/histonedb:/var/www/histonedb,/home/l_singh/_scratch/hdb/db:/var/lib/mysql cont histdb```
 
 - Regenerate db
 
