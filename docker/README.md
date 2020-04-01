@@ -33,6 +33,18 @@
 
 ```singularity instance stop histdb```
 
+
+IMPORTANT NOTE:
+Looks like singularity is not completele isolated from the host machine kernel security modules, e.g. apparmor.
+So it means on the host
+/etc/apparmor.d/usr.sbin.mysqld should have
+```
+
+# Allow data files dir access
+  /var/lib/mysql-files/ r,
+  /var/lib/mysql-files/** rwk,
+```
+
 ### For development
 - Profiling
 ```python -m cProfile -s cumtime manage.py buildvariants```
