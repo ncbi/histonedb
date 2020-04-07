@@ -13,22 +13,47 @@ import logging
 log = logging.getLogger(__name__)
 
 def fetch_seq(accessions):
+    data = []
     if len(accessions) == 0:
         data = []
+    #Bug in eutils 
+    # E.g. 6A5L_FF cannot be retrieved, 6A5L_f cannot
+    #This is likely a bad fix!!! but nothing else  can be done at the moment
+    #Here is an addhock fix.
+    acc=accessions
+    accessions=[]
+    p1=re.compile("(\w{4})_([a-zA-Z]{2})")
+    p2=re.compile("(\w{4})_([a-z]{1})")
+
+    for ac in acc:
+        m1=p1.match(ac)
+        m2=p2.match(ac)
+
+        if m1:
+            newac=m1.group(1)+'_'+m1.group(2)[0].upper()
+            accessions.append(newac)
+        elif m2:
+            newac=m2.group(1)+'_'+m2.group(2)[0].upper()
+            accessions.append(newac)
+        else:
+            accessions.append(ac)
     else:
         for i in range(10):
             try:
-                post_results = Entrez.read(Entrez.epost("protein", id=",".join(accessions)))
-                # post_results = Entrez.read(Entrez.epost("protein", id=",".join(['HSURH2'])))
-                webenv = post_results["WebEnv"]
-                query_key = post_results["QueryKey"]
-                handle = Entrez.efetch(db="protein", rettype="gb", retmode="text", webenv=webenv, query_key=query_key)
+                # post_results = Entrez.read(Entrez.epost("protein", id=",".join(accessions)))
+                # webenv = post_results["WebEnv"]
+                # query_key = post_results["QueryKey"]
+                # handle = Entrez.efetch(db="protein", rettype="gb", retmode="text", webenv=webenv, query_key=query_key)
+                handle= Entrez.efetch(db="protein", id=",".join(accessions), rettype="gb", retmode="text")
                 data = list(SeqIO.parse(handle, "gb"))
                 if (len(accessions) == len(data)):
                     break
             except:
-                log.error("Unexpected error: {}".format(sys.exc_info()[0]))
-                # continue
+                log.error("Unexpected error: {}, Retrying, attempt {}".format(sys.exc_info()[0],i))
+                if i == 9:
+                    log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s. Will return empty list!"%(",".join(accessions)))
+                else:
+                    continue
     for s in data:
         yield s
 
@@ -65,6 +90,7 @@ already_exists = []
 
 
 def taxonomy_from_header(header_init, accession=None, species_re=None):
+    # log.info("taxonomy_from_header triggered ...")
     header = header_init.replace("_", " ")
     if species_re is None:
         species_re = re.compile(r'\[(.*?)\]')
@@ -96,7 +122,7 @@ def taxonomy_from_header(header_init, accession=None, species_re=None):
             if genus.type_name != "scientific name":
                 genus = genus.get_scientific_names()[0]
         except:
-            log.info(header)
+            log.info('Unable to decifer taxonomy for: %s'%header)
             return Taxonomy.objects.get(name="unidentified")
 
         # Maybe the var is wrong
@@ -132,7 +158,7 @@ def update_taxonomy(accessions):
             seq.save()
         except:
             log.error("Unable to update TAXID {} for accession {}".format(taxid, accession))
-            log.error('Error massege: {}'.format(sys.exc_info()[0]))
+            log.error('Error message: {}'.format(sys.exc_info()[0]))
             pass
             # raise
 

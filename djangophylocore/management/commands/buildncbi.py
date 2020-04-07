@@ -4,6 +4,7 @@ from optparse import make_option
 import os
 import sys
 from django.conf import settings
+from tqdm import tqdm
 
 localDir = os.path.dirname(__file__)
 absDir = os.path.join(os.getcwd(), localDir)
@@ -119,7 +120,7 @@ class Command(NoArgsCommand):
             print "Generating structure..."
         # Retrieving all scientific names
         index = 0
-        for line in file( self.NAMES ).readlines():
+        for line in tqdm(file( self.NAMES ).readlines()):
             id = line.split("|")[0].strip()
             name = line.split("|")[1].strip().lower()
             
@@ -157,7 +158,7 @@ class Command(NoArgsCommand):
                     self.TBN[name]["id"] = id
         if verbose:
             print "Extracting parents..."
-        for node in file( self.NODES ).readlines():
+        for node in tqdm(file( self.NODES ).readlines()):
             id = node.split("|")[0].strip()
             parent = node.split("|")[1].strip()
             rank = node.split('|')[2].strip()
@@ -171,7 +172,7 @@ class Command(NoArgsCommand):
             self.TBN[name]["parent"] = parent
         if verbose:
             print "Filling parents..."
-        for node in file( self.NODES ).readlines():
+        for node in tqdm(file( self.NODES ).readlines()):
             id = node.split("|")[0].strip()
             self.TBI[id]["parents"] = getParents( id, self.TBI )
 
@@ -192,7 +193,7 @@ class Command(NoArgsCommand):
         homonym_toc = {}
         common_toc = {}
         synonym_toc = {}
-        for line in file( self.NAMES ).readlines():
+        for line in tqdm(file( self.NAMES ).readlines()):
             type_name = line.split("|")[3].strip()
             synonym = "synonym" in type_name
             common = "common name" in type_name
@@ -348,7 +349,7 @@ class Command(NoArgsCommand):
         l_rank = []
         list_line = []
         index = 0
-        for species in self.TBI.keys():
+        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
             rank = self.TBI[species]['rank']
             if rank not in l_rank:
                 index += 1
@@ -362,7 +363,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         # Taxa.dmp
         list_line = []
-        for species in self.TBI.keys():
+        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
             if self.TEST:
                 if species not in self.list_id:
                     continue
@@ -382,7 +383,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         id_rel = 0
         list_parents = []
-        for species in self.TBI.keys():
+        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
             index = 0
             if self.TEST:
                 if species not in self.list_id:

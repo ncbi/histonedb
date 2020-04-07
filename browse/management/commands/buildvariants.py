@@ -11,6 +11,7 @@ from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_fr
 
 from Bio import SearchIO
 from Bio import SeqIO
+from tqdm import tqdm
 
 import logging
 
@@ -69,9 +70,11 @@ class Command(BaseCommand):
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
         self.db_file=options['db_file']
         if self.db_file == "nr":
-            self.get_nr()
+            if options["force"] or not os.path.isfile('nr'):
+                self.get_nr()
         if self.db_file == "swissprot":
-            self.get_swissprot()
+            if options["force"] or not os.path.isfile('swissprot'):
+                self.get_swissprot()
 
         if options["force"]:
             #Clean the DB, removing all sequence/variants/etc
@@ -206,8 +209,8 @@ class Command(BaseCommand):
 
         if sequences is None:
             sequences = self.db_file
-        self.log.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences]))
-        subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--cpu", "4", "--notextw", hmms_db, sequences])
+        self.log.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences]))
+        subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences])
 
     def extract_full_sequences(self, sequences=None):
         """Create database to extract full length sequences"""
@@ -399,7 +402,7 @@ class Command(BaseCommand):
         fasta_dict=get_many_prot_seqrec_by_accession(accessions)
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        for accession,record in fasta_dict.iteritems():
+        for accession,record in tqdm(fasta_dict.iteritems()):
             # self.log.info('::DEBUG::buildvariants:: record:\n{}\n'.format(record))
             # headers = record.description.split(" >")
             # for header in headers:

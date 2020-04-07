@@ -73,7 +73,7 @@ def get_variant_features(sequence, variants=None, save_dir="", save_not_found=Fa
     #Save query fasta to a file to EMBOSS needle can read it
     n2=str(uuid.uuid4())
     test_record = sequence.to_biopython()
-    query_file = os.path.join(save_dir, "query_{}.fasta".format(n2))
+    query_file = os.path.join(save_dir, "query_{}.fa".format(n2))
     SeqIO.write(test_record, query_file, 'fasta')
 
     #A list of updated Features for the query

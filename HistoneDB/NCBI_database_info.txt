@@ -5,18 +5,17 @@
 # db_type is  'postgresql_psycopg2', 'mysql', 'sqlite3'
 #mysql by default
 db_type = mysql
-name = histonedb
-user = histonedb_user
-password = 468725
-host = 127.0.0.1
-#host = 192.168.1.167
-port = 3306
+name = db_name
+user = db_user
+password = db_password
+host = localhost
+port = 13306
 #port = 5432 #if postgreSQL
-SECRET_KEY = zl^jcq_hr4b#11#e-6fv$7o_@ujp^g1u*(plgbu@th-p8ua594
-GOOGLE_ANALYTICS_ID = UA-89261805-2
+SECRET_KEY = DJANGO_SECRET_KEY
+GOOGLE_ANALYTICS_ID = GOOGLE_ANALYTICS_ID
 STATIC_URL = /static/
-#DEBUG = True
-file = /home/l_singh/histonedb/HistoneDB/NCBI_database_info.txt
+DEBUG = True
+#file = /home/l_singh/histonedb/HistoneDB/NCBI_database_info.txt
 #STATIC_URL = /home/l_singh/histonedb/static/
 #FORCE_SCRIPT_NAME = /home/l_singh/histonedb/index.fcgi/
 DEBUG = False
