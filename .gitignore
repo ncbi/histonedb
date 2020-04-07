@@ -38,3 +38,8 @@ HistoneDB/NCBI_database_info.txt
 HistoneDB/NCBI_database_info_temp.txt
 *.log
 seqs_dev.txt
+log/*
+.ipynb_checkpoints/
+db_19.csv
+db_20.csv
+docker/db_seq_to_csv.py
