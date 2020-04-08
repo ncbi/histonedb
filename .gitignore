@@ -4,7 +4,11 @@ static/browse/hmms/combined_variants.hmm.h3m
 static/browse/hmms/combined_variants.hmm.h3p
 HistoneDB/NCBI_database_info.py
 *.pyc
+db_split/*
+*.ssi
 nr
+db
+db.gz
 swissprot
 yeast.aa
 nr_small
@@ -34,3 +38,8 @@ HistoneDB/NCBI_database_info.txt
 HistoneDB/NCBI_database_info_temp.txt
 *.log
 seqs_dev.txt
+log/*
+.ipynb_checkpoints/
+db_19.csv
+db_20.csv
+docker/db_seq_to_csv.py

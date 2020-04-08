@@ -12,8 +12,3 @@ And run the script
 sudo mysql -u root --skip-password < system_setup/db_setup_query.sql
 ```
 
-Configure timeout for mysql session
-```
-sudo sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
-sudo sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
-```
