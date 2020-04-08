@@ -3,6 +3,8 @@ A database for all histone proteins in NR organized by their known non-allelic p
 
 The database can be accessed at https://histonedb.bioeng.ru
 
+To test HistoneDB you can use [instructions how to run via virtual machine ](docker/README.md) or follow the following instructions.
+
 ## Requirements ##
 
 - Python 2.7
