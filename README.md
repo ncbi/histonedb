@@ -35,7 +35,7 @@ GRANT ALL PRIVILEGES ON db . * TO 'db_user'@'localhost';
 ALTER DATABASE db CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
-2) Store the login information in the file  ```HistoneDB/NCBI_databse_info.txt```, which is formatted in the following way (key = value):
+2) Store the login information in the file  ```HistoneDB/databse_info.txt```, which is formatted in the following way (key = value):
 ```
 name = DB_NAME
 user = DB_USER
