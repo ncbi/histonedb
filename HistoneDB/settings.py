@@ -30,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Set the MySQL dtabase information
 NCBI_database_info = {}
-def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "NCBI_database_info.txt")):
+def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "database_info.txt")):
     with open(path) as NCBI_database_info_file:
         for line in NCBI_database_info_file:
             if line.startswith("#"): continue
