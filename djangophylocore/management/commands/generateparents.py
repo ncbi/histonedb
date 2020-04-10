@@ -38,14 +38,14 @@ class Command(NoArgsCommand):
         path_dumps = os.path.join( absDir,'..','..', 'dumps' ) 
         dmp_file_path = os.path.join( path_dumps, "parentsrelation.dmp" )
         if not os.path.exists( dmp_file_path ):
-            print "Generating parents..."
+            print("Generating parents...")
             open( dmp_file_path , "w" ).write( '' )
             file = open( os.path.join( path_dumps, "parentsrelation.dmp" ), 'a' )
             self.rel_id = 0
             for child in root.direct_children.all():
                 self.generate_parents( child, parents, file )
             file.close()
-        print "Loading parents into the database..."
+        print("Loading parents into the database...")
         db_name = settings.DATABASE_NAME
         db_engine = settings.DATABASE_ENGINE
         if db_engine == 'sqlite3':
@@ -54,6 +54,6 @@ class Command(NoArgsCommand):
         elif db_engine == 'mysql':
             cmd = """mysql -u %s -p%s %s -e "LOAD DATA LOCAL INFILE '%s' INTO TABLE djangophylocore_parentsrelation FIELDS TERMINATED BY '|';" """ % (
               settings.DATABASE_USER, settings.DATABASE_PASSWORD, db_name, dmp_file_path )
-        print cmd
+        print(cmd)
         os.system( cmd )
 

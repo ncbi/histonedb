@@ -3,7 +3,7 @@ from django.db.models import Q
 
 def make_table_1():
     table = """\\documentclass[a4paper,landscape]{article}
-    \usepackage[landscape]{geometry}
+    \\usepackage[landscape]{geometry}
 % better looking tables with `\\toprule`,`\\midrule`,`\\bottomrule`:
 \\usepackage{booktabs}
 \\begin{document}

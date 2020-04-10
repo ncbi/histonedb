@@ -112,7 +112,7 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC",
     axes[1].set_ylim([0.0, 1.05])
     #axes[1].set_title("ROC")
  
-    for i, (measure, values) in enumerate(values.iteritems()):
+    for i, (measure, values) in enumerate(values.items()):
         label = "SPC: (>={})".format(best_threshold) if measure=="SPC" else measure
         axes[2].plot(list(thresholds), values, label=label, linewidth=2, color=colors[i])
     axes[2].axvline(best_threshold)
@@ -142,7 +142,7 @@ def calcualte_threshold(positives, negatives, measure="SPC", measure_threshold=0
     values = {name:[] for name in ["TPR", "FPR", "SPC", "MCC", "PPV", "FDR", "ACC"]}
     saveThreshold = None
     saveValue = 1.0
-    thresholds = list(sorted(thresholds or map(lambda i: i/10., xrange(1,10000))))
+    thresholds = list(sorted(thresholds or [i/10. for i in range(1,10000)]))
 
     for threshold in thresholds:
         TN = sum([1 for score in negatives if score < threshold])

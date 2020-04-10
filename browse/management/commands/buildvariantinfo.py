@@ -40,8 +40,8 @@ class Command(BaseCommand):
         with open(variant_info_path) as variant_info_file:  
             variant_info = json.load(variant_info_file)
 
-        for hist_type_name, variants in variant_info.iteritems():
-            for variant_name, info in variants.iteritems():
+        for hist_type_name, variants in variant_info.items():
+            for variant_name, info in variants.items():
                 self.log.info(variant_name)
                 variant = Variant.objects.get(id=variant_name)
                 variant.description = info["description"]
@@ -78,7 +78,7 @@ class Command(BaseCommand):
             type_info = json.load(type_info_file)
 
 
-        for type_name, info in type_info.iteritems():
+        for type_name, info in type_info.items():
             hist_type = Histone.objects.get(id=type_name)
             hist_type.description = info["description"]
             hist_type.save()
@@ -88,16 +88,16 @@ class Command(BaseCommand):
             feature_info = json.load(feature_info_file)
         
         Feature.objects.all().delete()
-        for type_name, variants in feature_info.iteritems():
+        for type_name, variants in feature_info.items():
             self.log.info("Making features for {}".format(type_name))
             hist_type = Histone.objects.get(id=type_name)
-            for variant, info in variants.iteritems():
+            for variant, info in variants.items():
                 self.log.info("Making features for {}".format(variant_name))
                 if variant_name.startswith("General"):
                     variant = "General{}".format(hist_type)
 
                 sequence = str(info["sequence"])
-                position_lines = [str(position) for key, position in info.iteritems() if key.startswith("feature") and not key.endswith("info")]
+                position_lines = [str(position) for key, position in info.items() if key.startswith("feature") and not key.endswith("info")]
                 assert False not in [len(position)==len(sequence) for position in position_lines], "Sequence and feaures must have the same number of characters!\n{}\n{}".format(sequence, "\n".join(position_lines))
 
                 try:

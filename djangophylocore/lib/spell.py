@@ -40,4 +40,4 @@ class Suggestion( object ):
 if __name__ == '__main__':
     import sys
     sugg = Suggestion( 'ncbi' )
-    print sugg.correct( sys.argv[1] )
+    print(sugg.correct( sys.argv[1] ))

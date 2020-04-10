@@ -22,7 +22,7 @@ def rchar(value, character):
 
 @register.filter('add_parameters')
 def add_parameters(value, parameters):
-    return "{}?{}".format(value, "&".join(["{}={}".format(k,v) for k,v in parameters.iteritems()]))
+    return "{}?{}".format(value, "&".join(["{}={}".format(k,v) for k,v in parameters.items()]))
 
 @register.filter('listify')
 def listify(value):
@@ -92,7 +92,7 @@ def get_search_type(field, default_values={}):
         else:
             default_name=""
 
-    return get_pull_down(search_type.keys(), field.id_for_label+"_search_type", default_name=default_name)
+    return get_pull_down(list(search_type.keys()), field.id_for_label+"_search_type", default_name=default_name)
 
 def get_pull_down(names, id, reset="menu", default_name=""):
     """This will turn a list into a pulldown menu from Bootstrap, Assoociated javascript is also
@@ -134,7 +134,7 @@ def get_pull_down(names, id, reset="menu", default_name=""):
 def jsonify(object):
     #XSS protection added by Alexey 9/17/2015
     try:
-        for key,value in object.iteritems():
+        for key,value in object.items():
             if(re.search(r'[\\<>"/;%]',key) or re.search(r'[\\<>"/;%]',value)):
                 return " "
     except:

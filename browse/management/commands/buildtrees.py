@@ -3,7 +3,7 @@ from browse.models import *
 
 import os
 from itertools import cycle
-import StringIO
+import io
 import subprocess
 import logging
 
@@ -265,7 +265,7 @@ class Command(BaseCommand):
                         c.append(chart)
 
             with open(os.path.join(self.trees_path, "{}.xml".format(hist_type)), "w") as outfile:
-                treestr = StringIO.StringIO()
+                treestr = io.StringIO()
                 tree.write(treestr)
                 treestr = treestr.getvalue().replace("phy:", "")
                 header, treestr = treestr.split("\n", 1)

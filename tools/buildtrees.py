@@ -1,6 +1,6 @@
 import os
 from itertools import cycle
-import StringIO
+import io
 
 from browse.models import *
 
@@ -46,7 +46,7 @@ class BuildTrees(object):
     def make_trees(self):
         for i, (root, _, files) in enumerate(os.walk(self.seed_directory)):
             core_histone = os.path.basename(root)
-            print "Creating tree for", core_histone
+            print("Creating tree for", core_histone)
             if i==0:
                 #Skip parent directory, only allow variant hmms to be built/searched
                 continue
@@ -69,15 +69,15 @@ class BuildTrees(object):
     
     def add_features(self):
         for core_histone in ["H2A", "H2B", "H3", "H1", "H4"]:
-            print core_histone
+            print(core_histone)
             tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(core_histone))
-            print tree_path
+            print(tree_path)
             tree = ET.parse(tree_path)
-            print tree
+            print(tree)
             parent_map = {c: p for p in tree.getiterator() for c in p}
 
             for phylogeny in tree.iter("{http://www.phyloxml.org}phylogeny"):
-                print phylogeny
+                print(phylogeny)
                 render = ET.Element("render")
                 
                 parameters = ET.Element("parameters")
@@ -95,7 +95,7 @@ class BuildTrees(object):
 
                 styles = ET.Element("styles")
                 for variant in Variant.objects.filter(core_type=core_histone):
-                    color = colors.next()
+                    color = next(colors)
                     background = ET.Element("{}".format(variant.replace(".","")), attrib={"fill":color, "stroke":color})
                     
                     if not variant.id.startswith(core_type.id):
@@ -116,11 +116,11 @@ class BuildTrees(object):
                 for clade in phylogeny.iter("{http://www.phyloxml.org}clade"):
                     name = clade.find("{http://www.phyloxml.org}name")
                     try:
-                        print name.text
+                        print(name.text)
                     except:
                         pass
                     if name is not None:
-                        print name.text
+                        print(name.text)
                     
                         try:
                             genus, gi, variant = name.text.split("|")
@@ -147,7 +147,7 @@ class BuildTrees(object):
                         clade.append(annotation)
 
             with open(os.path.join(self.trees_path, "{}.xml".format(core_histone)), "w") as outfile:
-                treestr = StringIO.StringIO()
+                treestr = io.StringIO()
                 tree.write(treestr)
                 treestr = treestr.getvalue().replace("phy:", "")
                 header, treestr = treestr.split("\n", 1)

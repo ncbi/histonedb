@@ -21,7 +21,7 @@ class Command(BaseCommand):
         autocommit, anybody know how to do this the right way?
         """
         if options.get('interactive'):
-            confirm = raw_input("""
+            confirm = input("""
 You have requested a database clean up.
 This will IRREVERSIBLY DESTROY
 ALL TreeCollection in the database "%s".
@@ -31,7 +31,7 @@ Type 'yes' to continue, or 'no' to cancel: """ % (settings.DATABASE_NAME,))
         else:
             confirm = 'yes'
         if confirm != 'yes':
-            print "Clean up cancelled."
+            print("Clean up cancelled.")
             return
         if TreeCollection.objects.all().count():
             cursor = connection.cursor()
@@ -40,13 +40,13 @@ Type 'yes' to continue, or 'no' to cancel: """ % (settings.DATABASE_NAME,))
                 try:
                     cursor.execute( 
                       'DROP TABLE djangophylocore_reltreecoltaxa%s;' % i )
-                except Exception, e:
+                except Exception as e:
                     pass
             TreeCollection.objects.all().delete()
             cursor.execute( "ALTER TABLE djangophylocore_treecollection AUTO_INCREMENT = 1;" )
             BadTaxa.objects.all().delete()
-            print "Clean up successful."
+            print("Clean up successful.")
         else:
-            print "Nothing to clean."
+            print("Nothing to clean.")
         os.system( "python manage.py loadtreebase -v" )
-        print "TreeBase loaded"
+        print("TreeBase loaded")

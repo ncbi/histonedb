@@ -5,7 +5,7 @@ import os
 from django.conf import settings
 from djangophylocore.models import *
 try:
-    import cPickle as pickle
+    import pickle as pickle
 except:
     import pickle
 

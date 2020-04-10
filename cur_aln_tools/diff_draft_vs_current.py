@@ -28,7 +28,7 @@ from Bio import AlignIO
 from Bio.Align.Applications import MuscleCommandline
 import subprocess
 
-import StringIO
+import io
 from Bio.Align.AlignInfo import SummaryInfo
 from Bio.Emboss.Applications import NeedleCommandline
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     for root,f in get_draft_seeds():
         # print hist_var,hist_type,f
         seedpath=os.path.join("../static/browse/",root,f).replace("draft_","")
-        print os.path.join(root,f)," vs ",seedpath
+        print(os.path.join(root,f)," vs ",seedpath)
         if not os.path.exists(seedpath):
-            print "seed "+f+" does not exist"
+            print("seed "+f+" does not exist")
         os.system("diff "+os.path.join(root,f)+" "+seedpath)

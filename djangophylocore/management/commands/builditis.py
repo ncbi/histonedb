@@ -4,7 +4,7 @@ from optparse import make_option
 import os
 import sys, csv
 from django.conf import settings
-import httplib, re
+import http.client, re
 
 localDir = os.path.dirname(__file__)
 absDir = os.path.join(os.getcwd(), localDir)
@@ -22,16 +22,16 @@ class Command(NoArgsCommand):
     def download_itis( self, verbose ):
         if not os.path.exists( './itisdump.tar.gz' ):
             if verbose:
-                print "Downloading ITIS database on the web"
+                print("Downloading ITIS database on the web")
 	    url_thumb = ''
-	    conn = httplib.HTTPConnection("www.itis.gov")
+	    conn = http.client.HTTPConnection("www.itis.gov")
 	    conn.request("GET", "/downloads/")
 	    f = conn.getresponse().read()
 	    file_name = re.findall('href="[^"]*itisMS[^"]*gz',f)[0][8:]
             os.system( "curl -# http://www.itis.gov/downloads/%s > itisdump.tar.gz" % file_name)
             #os.system( "wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz" )
         if verbose:
-            print "Extracting database... please wait"
+            print("Extracting database... please wait")
         os.system( "tar xf itisdump.tar.gz" )
         os.system( "mv itisMS.* itisdump" )
  
@@ -39,7 +39,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         verbose = options.get("verbose", False)
         if verbose:
-            print "loading taxonomy, please wait, it can take a while..."
+            print("loading taxonomy, please wait, it can take a while...")
         if not os.path.exists( DUMP_PATH ):
             os.system( 'mkdir %s' % DUMP_PATH )
         else:
@@ -74,7 +74,7 @@ class Command(NoArgsCommand):
             taxa_homo[tax_name].append(tax_id)
         
         
-        for tax_name, tax_id in taxa_homo.items():
+        for tax_name, tax_id in list(taxa_homo.items()):
             if len( tax_id ) > 1:
                 for id in tax_id:
                     if not tax_name in homonyms:
@@ -84,14 +84,14 @@ class Command(NoArgsCommand):
                       d_kingdom[correct_taxa[id]['kingdom']], rank[correct_taxa[id]['rank']] )) )
         #if some ambiguity still exist, we add itis id to the name
         taxa_homo_freq={}
-        for homonym_name, scientific_names_list in homonyms.iteritems():
+        for homonym_name, scientific_names_list in homonyms.items():
             for n in scientific_names_list :
                 if not n[1] in taxa_homo_freq : 
                     taxa_homo_freq[n[1]]=0
                 taxa_homo_freq[n[1]]= taxa_homo_freq[n[1]]+1;
                 
         homonyms_tmp ={}
-        for homonym_name, scientific_names_list in homonyms.iteritems():
+        for homonym_name, scientific_names_list in homonyms.items():
             homonyms_tmp[homonym_name]=[]
             for n in scientific_names_list :
                 if taxa_homo_freq[n[1]] > 1 : 
@@ -104,11 +104,11 @@ class Command(NoArgsCommand):
         # avery taxon should now have an unambiguouds name
         # XXXXXXX in generate dumps the name should be find using homonyms table
         homonym_ok = {}
-        for homonym_name, scientific_names_list in homonyms.iteritems():
+        for homonym_name, scientific_names_list in homonyms.items():
             unambiguous_names =[n[1] for n in scientific_names_list]
             names = set(unambiguous_names)
             if len( names ) != len( unambiguous_names ): # ambiguous names even when adding kingdom to the name
-                print "===========> ambiguous name should no longer exist"
+                print("===========> ambiguous name should no longer exist")
                 for taxa in scientific_names_list:
                     del correct_taxa[taxa[0]] # taxa[0] = id    
             else:
@@ -121,7 +121,7 @@ class Command(NoArgsCommand):
         #202420
         taxa_homo={}
         self.compute_reachable_taxa(correct_taxa, taxa_sons, str(root_id), reachable_taxa, taxa_homo)
-        print ">>>", len(reachable_taxa)
+        print(">>>", len(reachable_taxa))
         ancestor_file = open( os.path.join( DUMP_PATH, 'parentsrelation.dmp' ), 'a')
         self.compute_write_ancestor( taxa_sons,str(root_id),[],ancestor_file)
         ancestor_file.close()
@@ -135,10 +135,10 @@ class Command(NoArgsCommand):
         synonyms = {}
         taxa_names = self.getTaxaName(taxonomic_units_path)
         reachable_values={}
-        for tax_id, tax_info in reachable_taxa.iteritems():
+        for tax_id, tax_info in reachable_taxa.items():
             reachable_values[tax_info["name"]] = tax_id
         
-        for syn_id, ref_id in syn_tax.iteritems():
+        for syn_id, ref_id in syn_tax.items():
             
             syn_name = taxa_names[syn_id]
             #print "testReach:"+ref_id in reachable_taxa +"testSynNameSc"+(syn_name not in reachable_values)
@@ -180,12 +180,12 @@ class Command(NoArgsCommand):
     def generating_dumps( self, max_id, taxonomy, rank, common_name, homonyms,
       synonyms, ancestors, d_kingdom, correct_taxa, taxa_sons ):
         # rank
-        open( os.path.join( DUMP_PATH, 'rank.dmp' ), 'w' ).write( '\n'.join( ['|'.join( i ) for i in rank.items()] )+'\n')
+        open( os.path.join( DUMP_PATH, 'rank.dmp' ), 'w' ).write( '\n'.join( ['|'.join( i ) for i in list(rank.items())] )+'\n')
         # scientifics
         result = []
         TAXONOMY_TOC = set([])
         homonym_id = {}
-        for homonym_name, scientific_names_list in homonyms.iteritems():
+        for homonym_name, scientific_names_list in homonyms.items():
             for n in scientific_names_list:
                 homonym_id[n[0]]=n[1];
             
@@ -279,7 +279,7 @@ class Command(NoArgsCommand):
         ## recuperation des taxa valid
         ## Compute root_id
         root_id = max( [int(i.split('|')[0]) for i in fichier] ) + 1
-        print root_id
+        print(root_id)
         for ligne in fichier:
             ligne = ligne.lower().split('|')
             tax_id = ligne[0]
@@ -297,7 +297,7 @@ class Command(NoArgsCommand):
                 tax_parent_id = syn_tax.get(tax_parent_id, tax_parent_id)
                 # verification que pas de syno pour les taxa valid
                 if tax_id in syn_tax:
-                    print "valid with syno " + tax_id
+                    print("valid with syno " + tax_id)
                 if tax_parent_id:
                     correct_tax[tax_id] = {"name": tax_name, "parent_id": tax_parent_id,
                       "rank": rank, 'kingdom': kingdom, 'credibility_rating': credibility_rating }

@@ -5,7 +5,7 @@ from Bio import Entrez, SeqIO
 Entrez.email = "l.singh@intbio.org"
 from djangophylocore.models import Taxonomy
 from browse.models import Sequence
-from itertools import ifilter
+
 
 import sys
 
@@ -25,7 +25,7 @@ def seq_from_gi(gis):
                 if (len(gis) == len(data)):
                     break
             except:
-                print "Unexpected error:", sys.exc_info()[0]
+                print("Unexpected error:", sys.exc_info()[0])
             # continue
     for s in data:
         yield s
@@ -35,7 +35,7 @@ def taxonomy_from_gis(gis):
     """
     """
     for s in seq_from_gi(gis):
-        print s.annotations["organism"]
+        print(s.annotations["organism"])
         yield s.annotations["organism"]
 
 
@@ -48,12 +48,12 @@ def taxids_from_gis(gis):
                 text = re.search('(\S+):(\S+)', a).group(1)
                 id = re.search('(\S+):(\S+)', a).group(2)
                 if (text == "taxon"):
-                    print "Fetched taxid from NCBI ", id
+                    print("Fetched taxid from NCBI ", id)
                     yield id
                 else:
                     continue
         except:
-            print "!!!!!!Unable to get TAXID for \n", s, " setting it to 1"
+            print("!!!!!!Unable to get TAXID for \n", s, " setting it to 1")
             yield 1  # unable to identify
 
 
@@ -70,10 +70,10 @@ def taxonomy_from_header(header_init, gi=None, species_re=None):
     if match:
         organism = match[-1]
     elif gi:
-        print "No taxonomy match for {}: {}, get it from NCBI".format(gi, header)
-        for i in xrange(10):
+        print("No taxonomy match for {}: {}, get it from NCBI".format(gi, header))
+        for i in range(10):
             try:
-                organism = taxonomy_from_gis([gi]).next()
+                organism = next(taxonomy_from_gis([gi]))
                 break
             except StopIteration:
                 pass
@@ -94,7 +94,7 @@ def taxonomy_from_header(header_init, gi=None, species_re=None):
             if genus.type_name != "scientific name":
                 genus = genus.get_scientific_names()[0]
         except:
-            print header
+            print(header)
             return Taxonomy.objects.get(name="unidentified")
 
         # Maybe the var is wrong
@@ -131,5 +131,5 @@ def update_taxonomy_for_gis(gis):
 
 def get_tax_for_gi_taxdump(gis):
     with open("gi_taxid_prot.dmp") as gi2taxid:
-        for line in ifilter(lambda l: l.split()[0] in gis, gi2taxid):
+        for line in filter(lambda l: l.split()[0] in gis, gi2taxid):
             yield list(reversed(line.strip().split()))  # Line is (gi, taxid)

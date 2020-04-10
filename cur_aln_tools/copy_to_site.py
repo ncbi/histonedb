@@ -28,7 +28,7 @@ from Bio import AlignIO
 from Bio.Align.Applications import MuscleCommandline
 import subprocess
 
-import StringIO
+import io
 from Bio.Align.AlignInfo import SummaryInfo
 from Bio.Emboss.Applications import NeedleCommandline
 
@@ -51,17 +51,17 @@ if __name__ == '__main__':
     for root,f in get_seeds():
         # print hist_var,hist_type,f
         seedpath=os.path.join("../static/browse/",root,f).replace("draft_","")
-        print "Copying ",os.path.join(root,f)," to ",seedpath
+        print("Copying ",os.path.join(root,f)," to ",seedpath)
 
         if not os.path.exists(seedpath):
-            print "seed "+f+" does not exist"
+            print("seed "+f+" does not exist")
         os.system("cp "+os.path.join(root,f)+" "+seedpath)
 
     for root,f in get_seeds('manual_seeds'):
         # print hist_var,hist_type,f
         seedpath=os.path.join("../static/browse/",root,f).replace("manual_","")
-        print "Copying ",os.path.join(root,f)," to ",seedpath
+        print("Copying ",os.path.join(root,f)," to ",seedpath)
 
         if not os.path.exists(seedpath):
-            print "seed "+f+" does not exist"
+            print("seed "+f+" does not exist")
         os.system("cp "+os.path.join(root,f)+" "+seedpath)

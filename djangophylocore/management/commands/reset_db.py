@@ -30,7 +30,7 @@ class Command(BaseCommand):
         """
 
         if options.get('interactive'):
-            confirm = raw_input("""
+            confirm = input("""
 You have requested a database reset.
 This will IRREVERSIBLY DESTROY
 ALL data in the database "%s".
@@ -41,7 +41,7 @@ Type 'yes' to continue, or 'no' to cancel: """ % (settings.DATABASE_NAME,))
             confirm = 'yes'
 
         if confirm != 'yes':
-            print "Reset cancelled."
+            print("Reset cancelled.")
             return
 
         engine = settings.DATABASE_ENGINE
@@ -85,7 +85,7 @@ Type 'yes' to continue, or 'no' to cancel: """ % (settings.DATABASE_NAME,))
     
             if settings.DATABASE_NAME == '':
                 from django.core.exceptions import ImproperlyConfigured
-                raise ImproperlyConfigured, "You need to specify DATABASE_NAME in your Django settings file."
+                raise ImproperlyConfigured("You need to specify DATABASE_NAME in your Django settings file.")
             if settings.DATABASE_USER:
                 conn_string = "user=%s" % (settings.DATABASE_USER)
             if settings.DATABASE_PASSWORD:
@@ -102,7 +102,7 @@ Type 'yes' to continue, or 'no' to cancel: """ % (settings.DATABASE_NAME,))
     
             try:
                 cursor.execute(drop_query)
-            except Database.ProgrammingError, e:
+            except Database.ProgrammingError as e:
                 logging.info("Error: "+str(e))
     
             # Encoding should be SQL_ASCII (7-bit postgres default) or prefered UTF8 (8-bit)
@@ -116,6 +116,6 @@ CREATE DATABASE %s
             cursor.execute(create_query)
     
         else:
-            raise CommandError, "Unknown database engine %s", engine
+            raise CommandError("Unknown database engine %s").with_traceback(engine)
     
-        print "Reset successful."
+        print("Reset successful.")

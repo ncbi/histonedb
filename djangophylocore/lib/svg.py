@@ -192,10 +192,10 @@ def get_matrix():
     scene = Scene('test', (nb_taxa+1)*10, (nb_trees+1)*10 )
     pix = 10
     j = 0
-    for taxa,tmp in matrix.iteritems():
+    for taxa,tmp in matrix.items():
         j += pix
         i = 0
-        for tree,val in tmp.iteritems():
+        for tree,val in tmp.items():
             if val == 1:
                 scene.add(Rectangle((i,j),pix,pix,(255,255,255)))
             else:

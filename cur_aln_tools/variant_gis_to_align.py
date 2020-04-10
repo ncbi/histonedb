@@ -27,7 +27,7 @@ from Bio import AlignIO
 from Bio.Align.Applications import MuscleCommandline
 import subprocess
 
-import StringIO
+import io
 from Bio.Align.AlignInfo import SummaryInfo
 from Bio.Emboss.Applications import NeedleCommandline
 
@@ -69,7 +69,7 @@ def get_prot_seqrec_by_gis(gi_list):
         if(len(fasta_seqrec)==num):
             break
         else:
-            print "Mismatch:", num," ", len(fasta_seqrec)
+            print("Mismatch:", num," ", len(fasta_seqrec))
     print("FASTA Records downloaded:")
     print(len(fasta_seqrec))
     return(fasta_seqrec)
@@ -101,10 +101,10 @@ def muscle_aln(seqreclist):
 
     muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
     process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    sequences = "\n".join([s.format("fasta") for key,s in seqreclist.iteritems()])
-    print sequences
+    sequences = "\n".join([s.format("fasta") for key,s in seqreclist.items()])
+    print(sequences)
     aln, error = process.communicate(sequences)
-    seqFile = StringIO.StringIO()
+    seqFile = io.StringIO()
     seqFile.write(aln)
     seqFile.seek(0)
     sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
@@ -135,7 +135,7 @@ def refactor_title_allmsa(msa):
     """
     msa_r=MultipleSeqAlignment([])
     for i in msa:
-        print i.description
+        print(i.description)
         # genus=re.search(r"\[(\S+)\s+.+\S+\]",i.description).group(1)
         text=re.search(r"(\S+)\|(\d+)\|(\S+)",i.id)
         i.id=text.group(3)+"|"+text.group(1)+"|"+text.group(2)
@@ -160,16 +160,16 @@ if __name__ == '__main__':
     if not os.path.exists("draft_seeds"):
         os.makedirs("draft_seeds")
     for hist_var,hist_type,f in get_gis():
-        print "##########Starting",hist_var,hist_type,f
+        print("##########Starting",hist_var,hist_type,f)
         if not os.path.exists(os.path.join("draft_seeds",hist_type)):
             os.makedirs(os.path.join("draft_seeds",hist_type))
         gis=read_gis(os.path.join("gis",hist_type,f))
         seqrecs=get_prot_seqrec_by_gis(gis)
         msa=muscle_aln(seqrecs)
-        print msa
+        print(msa)
         msa_r=refactor_title(msa,hist_var)
         msa_r.sort()
-        print msa_r
+        print(msa_r)
         AlignIO.write(msa_r,os.path.join("draft_seeds",hist_type,hist_var+".fasta"),'fasta')
     #combines MSA
     for hist_type in ['H2A','H2B','H3','H4','H1']:

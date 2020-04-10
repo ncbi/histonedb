@@ -1,6 +1,6 @@
 import sys
 import os
-import StringIO
+import io
 import shlex
 
 import uuid
@@ -28,7 +28,7 @@ def process_upload(sequences, format, request):
         raise InvalidFASTA("Invalid format: {}. Must be either 'file' or 'text'.".format(format))
 
     if format == "text":
-        seq_file = StringIO.StringIO()
+        seq_file = io.StringIO()
         seq_file.write(sequences)
         seq_file.seek(0)
         sequences = seq_file
@@ -36,7 +36,7 @@ def process_upload(sequences, format, request):
     sequences = SeqIO.parse(sequences, "fasta", IUPAC.ExtendedIUPACProtein())
 
     try:
-        sequence = sequences.next()
+        sequence = next(sequences)
     except StopIteration:
         raise InvalidFASTA("No sequences parsed.")
 
@@ -74,7 +74,7 @@ def upload_blastp(sequences):
         db=os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fa"), 
         evalue=0.01, outfmt=5)
     out, err = blastp_cline(stdin="\n".join([s.format("fasta") for s in sequences]))
-    blastFile = StringIO.StringIO()
+    blastFile = io.StringIO()
     blastFile.write(out)
     blastFile.seek(0)
     
@@ -142,7 +142,7 @@ def upload_hmmer(sequences, evalue=10):
     indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
     seqs_index = {seq.id:i for i, seq in enumerate(sequences)}
     ids = [s.id for s in sequences]
-    rows = [{} for _ in xrange(len(variants))]
+    rows = [{} for _ in range(len(variants))]
     classifications = {s.id:"Unknown" for s in sequences}
     secondary_classifications = {s.id:"Unknown" for s in sequences}
     for i, (variant, threshold) in enumerate(variants):
@@ -155,7 +155,7 @@ def upload_hmmer(sequences, evalue=10):
 
     process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     output, error = process.communicate()
-    hmmerFile = StringIO.StringIO()
+    hmmerFile = io.StringIO()
     hmmerFile.write(output)
     hmmerFile.seek(0)
     for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):

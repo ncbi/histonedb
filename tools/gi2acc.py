@@ -40,11 +40,11 @@ def update_seq_rec_from_file(seed_aln_file):
             queryKey = result["QueryKey"]
             handle = Entrez.efetch(db="protein", rettype='gb', retmode='text', webenv=webEnv, query_key=queryKey)
             for r in SeqIO.parse(handle, 'gb'):
-                print r.id
+                print(r.id)
                 s.id = s.id.replace(str(gi), str(r.id), 1)
                 s.description = s.description.split(' ')[1]
                 print('new s.id: {}'.format(s.id))
-            print '-------------------------------------------'
+            print('-------------------------------------------')
         yield s
 
 def gi2acc_for_seeds():
@@ -77,13 +77,13 @@ def update_seq_rec_from_file_top(seed_aln_file):
             queryKey = result["QueryKey"]
             handle = Entrez.efetch(db="protein", rettype='gb', retmode='text', webenv=webEnv, query_key=queryKey)
             for r in SeqIO.parse(handle, 'gb'):
-                print r.id
+                print(r.id)
                 s.id = s.id.replace(str(gi), str(r.id), 1)
                 s.description = ' '.join(s.description.split(' ')[1:])
                 s.description = s.description.replace(str(gi), str(r.id), 1)
                 print('new s.id: {}'.format(s.id))
                 print('new s.description: {}'.format(s.description))
-            print '-------------------------------------------'
+            print('-------------------------------------------')
         yield s
 
 def get_seeds_top():

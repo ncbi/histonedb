@@ -32,12 +32,12 @@ class Command(NoArgsCommand):
             if not app_models:
                 continue
             model_labels = ", ".join([model.__name__ for model in app_models])
-            print self.style.SQL_COLTYPE("From '%s' autoload: %s" % (app_mod.__name__.split('.')[-2], model_labels))
+            print(self.style.SQL_COLTYPE("From '%s' autoload: %s" % (app_mod.__name__.split('.')[-2], model_labels)))
             for model in app_models:
                 try:
                     imported_objects[model.__name__] = getattr(__import__(app_mod.__name__, {}, {}, model.__name__), model.__name__)
-                except AttributeError, e:
-                    print self.style.ERROR_OUTPUT("Failed to import '%s' from '%s' reason: %s" % (model.__name__, app_mod.__name__.split('.')[-2], str(e)))
+                except AttributeError as e:
+                    print(self.style.ERROR_OUTPUT("Failed to import '%s' from '%s' reason: %s" % (model.__name__, app_mod.__name__.split('.')[-2], str(e))))
                     continue
         try:
             if use_plain:
@@ -68,7 +68,7 @@ class Command(NoArgsCommand):
                 pythonrc = os.environ.get("PYTHONSTARTUP") 
                 if pythonrc and os.path.isfile(pythonrc): 
                     try: 
-                        execfile(pythonrc) 
+                        exec(compile(open(pythonrc, "rb").read(), pythonrc, 'exec')) 
                     except NameError: 
                         pass
                 # This will import .pythonrc.py as a side-effect

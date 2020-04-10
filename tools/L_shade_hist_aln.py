@@ -24,7 +24,7 @@ from Bio.Align import MultipleSeqAlignment
 from Bio import AlignIO
 
 #Custom libraries
-from hist_ss import get_features_in_aln
+from .hist_ss import get_features_in_aln
 
 DEVNULL = open(os.devnull, 'wb')
 
@@ -32,48 +32,48 @@ def write_texshade(file_handle,aln_fname,res_per_line,features=None,shading_mode
     """
     """
     for shading in map(str, shading_modes):
-        print >> file_handle, "    \\begin{{texshade}}{{{}}}".format(aln_fname)
+        print("    \\begin{{texshade}}{{{}}}".format(aln_fname), file=file_handle)
         #print >> file_handle, "        \\residuesperline*{{{}}}".format(res_per_line)
-        print >> file_handle, "        \\seqtype{P}"
-        print >> file_handle, "        \\defconsensus{{}}{*}{upper}"
+        print("        \\seqtype{P}", file=file_handle)
+        print("        \\defconsensus{{}}{*}{upper}", file=file_handle)
 
         if shading in ["similar","0"]:
-            print >> file_handle, "        \\shadingmode{similar}"
-            print >> file_handle, "        \\threshold[80]{50}"
+            print("        \\shadingmode{similar}", file=file_handle)
+            print("        \\threshold[80]{50}", file=file_handle)
             if logo:
-                print >> file_handle, "        \\showsequencelogo{top} \\showlogoscale{leftright}"
-                print >> file_handle, "        \\namesequencelogo{logo}"
+                print("        \\showsequencelogo{top} \\showlogoscale{leftright}", file=file_handle)
+                print("        \\namesequencelogo{logo}", file=file_handle)
         elif shading in ["hydropathy_functional", "1"]:
-            print >> file_handle, "        \\shadingmode[hydropathy]{functional}"
-            print >> file_handle, "        \\shadeallresidues"
-            print >> file_handle, "        \\threshold[80]{50}"
+            print("        \\shadingmode[hydropathy]{functional}", file=file_handle)
+            print("        \\shadeallresidues", file=file_handle)
+            print("        \\threshold[80]{50}", file=file_handle)
             if logo:
-                print >> file_handle, "        \\showsequencelogo[hydropathy]{top} \\showlogoscale{leftright}"
+                print("        \\showsequencelogo[hydropathy]{top} \\showlogoscale{leftright}", file=file_handle)
         elif shading in ["chemical_functional", "2"]:
-            print >> file_handle, "        \\shadingmode[chemical]{functional}"
-            print >> file_handle, "        \\shadeallresidues"
+            print("        \\shadingmode[chemical]{functional}", file=file_handle)
+            print("        \\shadeallresidues", file=file_handle)
             if logo:
-                print >> file_handle, "        \\showsequencelogo[chemical]{top} \\showlogoscale{leftright}"
+                print("        \\showsequencelogo[chemical]{top} \\showlogoscale{leftright}", file=file_handle)
         elif shading in ["structure_functional", "3"]:
-            print >> file_handle, "        \\shadingmode[structure]{functional}"
-            print >> file_handle, "        \\shadeallresidues"
+            print("        \\shadingmode[structure]{functional}", file=file_handle)
+            print("        \\shadeallresidues", file=file_handle)
         elif shading in ["charge_functional", "4"]:
-            print >> file_handle, "        \\shadingmode[charge]{functional}"
-            print >> file_handle, "        \\shadeallresidues"
+            print("        \\shadingmode[charge]{functional}", file=file_handle)
+            print("        \\shadeallresidues", file=file_handle)
         elif shading in ["diverse", "5"]:
-            print >> file_handle, "        \\shadingmode{diverse}"
+            print("        \\shadingmode{diverse}", file=file_handle)
 
         if hideseqs:
-            print >> file_handle, "        \\hideseqs"
+            print("        \\hideseqs", file=file_handle)
 
-        print >> file_handle, "        \\showconsensus[black]{bottom}"
+        print("        \\showconsensus[black]{bottom}", file=file_handle)
 
         if features:
-            print >> file_handle, "        {}".format(features)
+            print("        {}".format(features), file=file_handle)
 
-        print >> file_handle, "        \showlegend"
+        print("        \showlegend", file=file_handle)
 
-        print >> file_handle, "    \end{texshade}"
+        print("    \end{texshade}", file=file_handle)
 
 def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hideseqs=False, splitN=20, secondary_structure=True, save_dir=""):
     """
@@ -94,11 +94,11 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
 
     filename = tex.name[:-4]
     
-    for i in xrange(num):
+    for i in range(num):
         t_aln=align[(i*splitN):((i+1)*splitN)]
         with open(os.path.join(save_dir, "{}_{}.fasta".format(filename, i)), "w") as aln_file:
             AlignIO.write(t_aln, aln_file, "fasta")
-            print "wrote", aln_file.name
+            print("wrote", aln_file.name)
     
     res_per_line=len(align[0])
     
@@ -120,9 +120,9 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
             if(re.search('mgarg',i)):
                 features += "\\frameblock{consensus}{%d..%d}{Red[1.5pt]}"%(f.start+1,f.end+1)
 
-    print >> tex, "    \\Huge{{{}}}".format(title.replace("_", "\_"))
+    print("    \\Huge{{{}}}".format(title.replace("_", "\_")), file=tex)
 
-    for i in xrange(num):
+    for i in range(num):
         write_texshade(
             tex, 
             os.path.join(save_dir, "{}_{}.fasta".format(filename, i)),
@@ -132,7 +132,7 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
             logo=logo,
             hideseqs=hideseqs,
             )
-        print >> tex, "    \\newpage"
+        print("    \\newpage", file=tex)
 
 
 def write_alignments(alignments, outfile=None, shading_modes=["similar"], logo=True, hideseqs=False, splitN=20, secondary_structure=True, save_dir=""):
@@ -142,11 +142,11 @@ def write_alignments(alignments, outfile=None, shading_modes=["similar"], logo=T
         n2=str(uuid.uuid4())
         outfile = "alignment_{}".format(n2)
     with open(os.path.join(save_dir, "{}.tex".format(outfile)), "w") as tex:
-        print >> tex, "\\documentclass[11pt,landscape]{article}"
-        print >> tex, "\\usepackage{hyperref}"
-        print >> tex, "\\usepackage[paperwidth={}in, paperheight=18in]{{geometry}}".format(22/200.*200+2.5)
-        print >> tex, "\\usepackage{texshade}\n"
-        print >> tex, "\\begin{document}"
+        print("\\documentclass[11pt,landscape]{article}", file=tex)
+        print("\\usepackage{hyperref}", file=tex)
+        print("\\usepackage[paperwidth={}in, paperheight=18in]{{geometry}}".format(22/200.*200+2.5), file=tex)
+        print("\\usepackage{texshade}\n", file=tex)
+        print("\\begin{document}", file=tex)
         for aln in alignments:
             if isinstance(aln, str):
                 name = os.path.basename(aln)
@@ -168,7 +168,7 @@ def write_alignments(alignments, outfile=None, shading_modes=["similar"], logo=T
                 secondary_structure=secondary_structure,
                 save_dir=save_dir
                 )
-        print >> tex, "\\end{document}"
+        print("\\end{document}", file=tex)
 
     #Turn latex into pdf
     pdflatex = os.path.join(os.path.dirname(sys.executable), "pdflatex")

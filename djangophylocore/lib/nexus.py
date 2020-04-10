@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-import phylogelib
+from . import phylogelib
 
 def remove_nexus_comments( nex ):
     """ remove all nexus comments lines """
@@ -18,7 +18,7 @@ class Nexus( object ):
     def __init__( self, nexus_string ):
         # Nexus collection
         if not nexus_string.lower().strip()[:6] == "#nexus" or "end;" not in nexus_string.lower():
-            raise ValueError, "Wrong nexus string"
+            raise ValueError("Wrong nexus string")
         self.__nexus_ori = nexus_string
 #        self.bad_trees_names = self.get_bad_trees_names()
 #        if bad_trees_names:

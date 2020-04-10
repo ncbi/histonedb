@@ -15,19 +15,16 @@ from django.db.models import Max
 from django.db.utils import IntegrityError
 from django.db import close_old_connections
 from django.conf import settings
-from django.db import transaction
 
-from tqdm import tqdm
 #Custom librairies
 from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, taxonomy_from_accessions, update_taxonomy
 
 log = logging.getLogger(__name__)
 
-#@transaction.atomic # looks like we cannot do it here, since transactions are not atomic in this block
 def load_hmm_results(hmmerFile, id_file):
   """Save domain hits from a hmmer hmmsearch file into the Panchenko Histone
   Variant DB format.
-  
+
   Parameters:
   ___________
   hmmerFile : string
@@ -52,14 +49,13 @@ def load_hmm_results(hmmerFile, id_file):
       hist_unknown.save()
     unknown_model = Variant(hist_type=hist_unknown, id="Unknown")
     unknown_model.save()
-  
-  hit_ids=set()
-  for variant_query in tqdm(SearchIO.parse(hmmerFile, "hmmer3-text")):
+
+  for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
     log.info("Loading variant: {}".format(variant_query.id))
     variant_model = Variant.objects.get(id=variant_query.id)
-    for hit in tqdm(variant_query):
+    for hit in variant_query:
       #Save original header to extract full sequence
-      hit_ids.add(hit.id)
+      print(hit.id, file=ids)
 
       #Below we are fetching a list of headers if there are multiple headers for identical sequences
       #Technically HUMMER might put the second and on gis in description column.
@@ -87,7 +83,7 @@ def load_hmm_results(hmmerFile, id_file):
             if len(best_scores)>0:
             ##Sequence have passed the threshold for one of previous models.
               best_score = best_scores.first()
-              if (hsp.bitscore > best_score.score) and (hsp.bitscore>=variant_model.hmmthreshold):
+              if (hsp.bitscore > best_score.score) and hsp.bitscore>=variant_model.hmmthreshold:
                 #best scoring
                 seq.variant = variant_model
                 seq.sequence = str(hsp.hit.seq)
@@ -111,42 +107,31 @@ def load_hmm_results(hmmerFile, id_file):
                 add_score(seq, variant_model, hsp, best=False)
           else:
             ##A new sequence is found.
-            
+            taxonomy = taxonomy_from_header(header, accession)
+            sequence = Seq(str(hsp.hit.seq))
             best = hsp.bitscore >= variant_model.hmmthreshold
-            if best:
-              taxonomy = taxonomy_from_header(header, accession)
-              sequence = Seq(str(hsp.hit.seq))
-              try:
-                # print 'HEADER {}'.format(header)
-                seq = add_sequence(
-                  accession,
-                  variant_model if best else unknown_model, 
-                  taxonomy, 
-                  header, 
-                  sequence)
-                add_score(seq, variant_model, hsp, best=best)
-              except IntegrityError as e:
-                log.error("Error adding sequence {}".format(seq))
-                global already_exists
-                already_exists.append(accession)
-                continue
+            try:
+              # print 'HEADER {}'.format(header)
+              seq = add_sequence(
+                accession,
+                variant_model if best else unknown_model, 
+                taxonomy, 
+                header, 
+                sequence)
+              add_score(seq, variant_model, hsp, best=best)
+            except IntegrityError as e:
+              log.error("Error adding sequence {}".format(seq))
+              global already_exists
+              already_exists.append(accession)
+              continue
           # print seq
-  #Save original header to extract full sequence
-  for idit in hit_ids:
-    print >> ids, idit
-  log.info("From file %s we got %d sequences"%(hmmerFile,len(hit_ids)))
-
-  log.info("Deleting %d seqs where HMMsearch found a hit but did not pass threshold"%(unknown_model.sequences.all().count()))
-
-  #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
-  unknown_model.sequences.all().delete()
-  unknown_model.delete()
-
-  log.info("Initiating taxonomy update for %d seqs where it is not identified"%(Sequence.objects.filter(taxonomy__name="unidentified").count()))
 
   #Now let's lookup taxid for those we could not pare from header using NCBI eutils.
   update_taxonomy(Sequence.objects.filter(taxonomy__name="unidentified").values_list("id", flat=True))
 
+  #Delete 'unknown' records that were found by HMMsearch but did not pass threshold
+  unknown_model.sequences.all().delete()
+  unknown_model.delete()
 
   ids.close()
 
@@ -167,9 +152,9 @@ def add_sequence(accession, variant_model, taxonomy, header, sequence):
 
 def add_score(seq, variant_model, hsp, best=False):
   """Add score for a given sequence"""
-  # score_num = Score.objects.count()+1
+  score_num = Score.objects.count()+1
   score = Score(
-    # id                      = score_num,
+    id                      = score_num,
     sequence                = seq,
     variant                 = variant_model,
     score                   = hsp.bitscore,
@@ -200,25 +185,20 @@ def get_many_prot_seqrec_by_accession(accession_list):
       for j in range(10):
         try:
             strn = ",".join(map(str,accession_list)[i*1000:(i+1)*1000])
-            # request=Entrez.epost(db="protein",id=strn)
-            # result=Entrez.read(request)
-            # webEnv=result["WebEnv"]
-            # queryKey=result["QueryKey"]
-            # handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',webenv=webEnv, query_key=queryKey)
-            handle=Entrez.efetch(db="protein",id=strn,rettype='gb',retmode='text')
+            request=Entrez.epost(db="protein",id=strn)
+            result=Entrez.read(request)
+            webEnv=result["WebEnv"]
+            queryKey=result["QueryKey"]
+            handle=Entrez.efetch(db="protein",rettype='gb',retmode='text',webenv=webEnv, query_key=queryKey)
             for r in SeqIO.parse(handle,'gb'):
                 # log.info('::DEBUG::load_hmmsearch:: r')
                 # log.info('{}\n'.format(r))
                 # fasta_seqrec[r.id.split('|')[1]]=r
                 fasta_seqrec[r.id]=r
         except:
-            log.warning("Unexpected error: {}. Retrying.".format(sys.exc_info()[0]))
-            if(j==9):
-              log.error("10 Retry attemps failed !!!! Proceeding, but some seqs are likely lost!!!")
+            log.warning("Unexpected error: {}".format(sys.exc_info()[0]))
             continue
         if((len(fasta_seqrec)==(i+1)*1000) or (len(fasta_seqrec)==num)):
-          #Unfortunately as of March 2020 the eutil api is quite ustable with respect to PDBids with small letters
-          #E.g. 6HKT_U , 6HKT_U are different ids. But eutils may retun 6HKT_UU, or return nothing and it depends on the orther of running the commands!!!
             break
         else:
             log.info("Mismatch: {} {}".format(num, len(fasta_seqrec)))
