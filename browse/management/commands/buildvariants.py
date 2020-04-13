@@ -402,7 +402,7 @@ class Command(BaseCommand):
         fasta_dict=get_many_prot_seqrec_by_accession(accessions)
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        for accession,record in tqdm(iter(fasta_dict.items())):
+        for accession,record in tqdm(fasta_dict.items()):
             # self.log.info('::DEBUG::buildvariants:: record:\n{}\n'.format(record))
             # headers = record.description.split(" >")
             # for header in headers:
