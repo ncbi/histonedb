@@ -6,8 +6,8 @@ from django.conf import settings
 from django.db import transaction
 from django.db import connection
 
-from lib.phylogelib import NewickParser
-from lib.nexus import Nexus, remove_nexus_comments
+from .lib.phylogelib import NewickParser
+from .lib.nexus import Nexus, remove_nexus_comments
 from pyparsing import ParseException
 import datetime, re, sys, os, codecs
 from itertools import islice, chain, imap
