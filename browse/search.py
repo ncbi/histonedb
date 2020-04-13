@@ -23,7 +23,7 @@ def tax_sub_search(value):
 
     Parameters:
     -----------
-    value : str
+    value: str
         Name or ID fo taxononmy
 
     Return:
@@ -70,7 +70,7 @@ def variant_sub_search(value):
 
     Parameters:
     -----------
-    value : str
+    value: str
         The name of the variant to search, new or old name allowed
 
     Return:
@@ -206,9 +206,9 @@ class HistoneSearch(object):
 
         Parameters:
         -----------
-        request : dict
+        request: dict
             A dictionary of parameters that 
-        navbar : bool
+        navbar: bool
             True if the search originated from the navbar. If the user searched for 
             a histone type or variant, the page will be redirected to the browse page.
         """
@@ -487,13 +487,13 @@ class format_query(dict):
 
         Parameters:
         -----------
-        field : str
+        field: str
             Name of field to filter
-        search_type : str
+        search_type: str
             Feild lookup type, e.g. exact, in, lt
-        value : str
+        value: str
             Value to filter field by
-        conv_type : Function or object
+        conv_type: Function or object
             Function to convert value into the correct format. e.g. int or string, or custon such as tax_sub_search
         """
         #if allow and search_type not in allow:

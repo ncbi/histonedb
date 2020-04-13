@@ -181,8 +181,8 @@ class FeatureManager(models.Manager):
 
         Parameters:
         -----------
-        sequence : Sequence
-        ss_dict : dict
+        sequence: Sequence
+        ss_dict: dict
             Created from tools.hist_ss
         """
         objs = [Feature(

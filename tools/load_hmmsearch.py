@@ -27,9 +27,9 @@ def load_hmm_results(hmmerFile, id_file):
 
   Parameters:
   ___________
-  hmmerFile : string
+  hmmerFile: string
     Path to HMMer hmmsearch output file.
-  id_file : str
+  id_file: str
     Path to id file, to extract full lenght GIs
   """
   # print('ARGS {}; {}'.format(hmmerFile, id_file))

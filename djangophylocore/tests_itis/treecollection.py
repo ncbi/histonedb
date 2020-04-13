@@ -34,7 +34,7 @@ Creation of a simple collection
 Creation of collection from nexus (translated) format
 -----------------------------------------------------
 
-# if there is problem with encoding, try using icon :
+# if there is problem with encoding, try using icon:
 # iconv -f iso-8859-15 -t utf-8 nexus_example > nexus_example_utf-8
 # or the following lines
 #>>> import codecs

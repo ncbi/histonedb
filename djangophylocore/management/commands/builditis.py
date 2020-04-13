@@ -85,16 +85,16 @@ class Command(NoArgsCommand):
         #if some ambiguity still exist, we add itis id to the name
         taxa_homo_freq={}
         for homonym_name, scientific_names_list in homonyms.items():
-            for n in scientific_names_list :
-                if not n[1] in taxa_homo_freq : 
+            for n in scientific_names_list:
+                if not n[1] in taxa_homo_freq:
                     taxa_homo_freq[n[1]]=0
                 taxa_homo_freq[n[1]]= taxa_homo_freq[n[1]]+1;
                 
         homonyms_tmp ={}
         for homonym_name, scientific_names_list in homonyms.items():
             homonyms_tmp[homonym_name]=[]
-            for n in scientific_names_list :
-                if taxa_homo_freq[n[1]] > 1 : 
+            for n in scientific_names_list:
+                if taxa_homo_freq[n[1]] > 1:
                     homonyms_tmp[homonym_name].append((n[0], "%s itis %s>" %(n[1],n[0])))
                 else:
                     homonyms_tmp[homonym_name].append((n[0], "%s>" %(n[1])))
@@ -162,12 +162,12 @@ class Command(NoArgsCommand):
         cleanName ="";
         allowed="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890+-*<>";
         spaceOpen = False
-        for l in name :
-            if l in allowed :
+        for l in name:
+            if l in allowed:
                 cleanName = cleanName + l;
                 spaceOpen = False
-            else :
-                if not spaceOpen :
+            else:
+                if not spaceOpen:
                     spaceOpen = True
                     cleanName = cleanName+" "
         cleanName = cleanName.strip()

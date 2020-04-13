@@ -20,7 +20,7 @@ class Command(NoArgsCommand):
         verbose = options.get("verbose", False)
         #taxonomy = options.get("taxonomy", 'ncbi')
         taxonomy = settings.TAXONOMY_ENGINE
-        assert taxonomy in ['ncbi', 'itis'], "taxonomy supported : itis or ncbi"
+        assert taxonomy in ['ncbi', 'itis'], "taxonomy supported: itis or ncbi"
         verbose_string = ''
         if verbose:
             verbose_string = '-v'

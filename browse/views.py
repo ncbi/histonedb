@@ -114,11 +114,11 @@ def browse_variant(request, histone_type, variant, accession=None):
 
     Parameters
     ----------
-    request : Django request
-    histone_type : {"H2A", "H2B", "H3", "H4", "H1"}
-    variant : str
+    request: Django request
+    histone_type: {"H2A", "H2B", "H3", "H4", "H1"}
+    variant: str
         Name of variant
-    accession : str or int
+    accession: str or int
         ACCESSION to select to show it curated sequence browser. Optional. If specified, should open curated sequences page and activate this variant.
     """
     # variant = variant.replace("_", "") if "canonical" in variant else variant

@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #################################################
-# Licence :
+# Licence:
 # Released under CeCILL license
 # This program is Copyleft. You can disrtribued in
-# order that you follow the CeCILL licence :
+# order that you follow the CeCILL licence:
 # http://www.cecill.info/
 #
 # Author:
-# Nicolas Clairon : clairon [_at_] gmail.com
+# Nicolas Clairon: clairon [_at_] gmail.com
 #################################################
 """ Pylogenic trees manipulating fonctions """
 
@@ -300,7 +300,7 @@ def getEdges(tree):
   return listEdges
 
 def getTree(tree):
-  """ Convert a newick string to a list :
+  """ Convert a newick string to a list:
      [ [nodelist] [edgeslist] ] """
   if len(getChildren(tree)) == 0:
     return [tree,[]]
@@ -427,10 +427,10 @@ def nwk2list(nwk):
     return eval(nwk)
 
 def generateTree(nbTaxas, maxChildren = 2, name = 1):
-  """ Generate randomly a pylogenic tree :
-      nbTaxas : number of taxa wanted
-      maxChildren : number for incertitude
-      name : index of the name in the alphabet """
+  """ Generate randomly a pylogenic tree:
+      nbTaxas: number of taxa wanted
+      maxChildren: number for incertitude
+      name: index of the name in the alphabet """
   from random import random
   import string
   assert(nbTaxas > 0)

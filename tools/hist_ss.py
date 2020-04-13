@@ -57,13 +57,13 @@ def get_variant_features(sequence, variants=None, save_dir="", save_not_found=Fa
 
     Parameters:
     -----------
-    sequence : Sequence django model
+    sequence: Sequence django model
         The seuqence to add get features for with identified variant
-    variants : List of Variant models
+    variants: List of Variant models
         Anntate others variants. Optional.
-    save_dir : str
+    save_dir: str
         Path to save temp files.
-    save_not_found : bool
+    save_not_found: bool
         Add Features even if they weren't found. Indices will be (-1, -1)
 
     Return:
@@ -111,13 +111,13 @@ def transfer_features_from_template_to_query(template_features, query_file, save
 
     Parameters:
     -----------
-    template_features : QuerySet of Feature django models
+    template_features: QuerySet of Feature django models
         The features that relate to the template. 
-    query_file : str
+    query_file: str
         Path to FASTA file containing query sequence 
-    save_dir : str
+    save_dir: str
         Path to save temp files.
-    save_not_found : bool
+    save_not_found: bool
         Add Features even if they weren't found. Indices will be (-1, -1)
 
     Yeilds:
@@ -225,14 +225,14 @@ def get_core_lendiff(query_features, template_features):
 
     Parameters:
     -----------
-    query_features : Iterable of Feature objects (QuerySet or list)
+    query_features: Iterable of Feature objects (QuerySet or list)
         Features with positions relative to query sequence
-    template_features : Iterable of Feature objects (QuerySet or list)
+    template_features: Iterable of Feature objects (QuerySet or list)
         Features with positions relative to template sequence
 
     Return:
     -------
-    ratio : float
+    ratio: float
         Ratio of core lengths
     """
     #check 640798122

@@ -28,13 +28,13 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
 
     Parameters:
     -----------
-    seqS : str
+    seqS: str
         FASTA filename
-    blast_results : File-like object
+    blast_results: File-like object
         Results from BLAST in csv format
-    outfile : File-like object
+    outfile: File-like object
         Where to save the correct sequences
-    title : str
+    title: str
         Overall title for multiple sequences. Optional.
     """
     ids = []

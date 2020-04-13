@@ -47,7 +47,7 @@ def get_model_scores(model_output):
 
     Parameters:
     -----------
-    model_output : str or File-like object
+    model_output: str or File-like object
         Path to hmmersearch output file
 
     Return:

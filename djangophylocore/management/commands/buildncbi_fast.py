@@ -244,7 +244,7 @@ class Command(NoArgsCommand):
             name = line.split("|")[1].strip().lower()
             #name = name.replace(")", " ").replace("(", " ").replace(",", " ").replace(":", " ").replace(";", " ").replace("'", " ")
             name =clean_name(name)
-            if synonym :
+            if synonym:
                 if homonym: # We do not want synonym wich have homonym
                     continue
                 base_name = TBI[id]["name"]
@@ -378,18 +378,18 @@ def clean_name(name):
     cleanName ="";
     allowed="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890+-*<>";
     spaceOpen = False
-    for l in name :
-        if l in allowed :
+    for l in name:
+        if l in allowed:
 #            if l in "'":
-#                if spaceOpen :
+#                if spaceOpen:
 #                    l="pr "
-#                else :
+#                else:
 #                    l=" pr "
 #                spaceOpen=True;
             cleanName = cleanName + l;
             spaceOpen = False
-        else :
-            if not spaceOpen :
+        else:
+            if not spaceOpen:
                 spaceOpen = True
                 cleanName = cleanName+" "
     cleanName = cleanName.strip()

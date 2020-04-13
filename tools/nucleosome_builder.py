@@ -54,9 +54,9 @@ def create_nucleosome(outfile, save_chain=None, **chains):
 
     Parameters:
     -----------
-    outfile : File-like object
+    outfile: File-like object
         Where to write the output.
-    save_chain : str
+    save_chain: str
         Save only the strucutre from chain with name save_chain.
     chains: key, value pairs
         key is chain name, value is sequence to model
@@ -120,8 +120,8 @@ if save_chain:
     rc('changechains A,B I,J #2')
 
     rc('combine #0,2 newchainids false close false')
-    rc('delete :MN')
-    rc('delete :HOH')
+    rc('delete:MN')
+    rc('delete:HOH')
 
     rc('resrenumber 127 #3:.A')
     rc('resrenumber 127 #3:.E')

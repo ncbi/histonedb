@@ -54,7 +54,7 @@ def add_to_graph(parameters):
     
     return edges
 
-class TaxonomyReference(object :
+class TaxonomyReference(object:
     """
     This object provides some useful methods in order to deal with taxonomy
     """
@@ -147,7 +147,7 @@ class TaxonomyReference(object :
         """
         return the django object from taxon name.
 
-        Name is checked in this order :
+        Name is checked in this order:
           * scientific name
           * synonym
           * homonym
@@ -944,7 +944,7 @@ class Tree(models.Model, TaxonomyReference):
     def eval_query(self, query, usertaxa_list=[]):
         """
         test if a query match the tree. The query format is a python
-        boolean expression with taxa name beetween braces :
+        boolean expression with taxa name beetween braces:
 
         tree.eval_query("{muridae} > 2 and {primates}")
 
@@ -983,7 +983,7 @@ class TreeCollection(models.Model, TaxonomyReference):
     """
     This object represent a collection of phylogenetic trees.
 
-    Two formats are supported : phylip and nexus. The format is automatiquely
+    Two formats are supported: phylip and nexus. The format is automatiquely
     detected.
 
     This object herites from TaxonomyReference
@@ -1299,7 +1299,7 @@ class TreeCollection(models.Model, TaxonomyReference):
                 if len(related_scientific_names) == 1:
                     striped_pattern = related_scientific_names[0].name
                 else:
-                    raise ValueError(striped_pattern+" is ambiguous : %s" % [str(i.name) for i in related_scientific_names])
+                    raise ValueError(striped_pattern+" is ambiguous: %s" % [str(i.name) for i in related_scientific_names])
             if 'usertaxa' == striped_pattern and treebase:
                 cur = cursor.execute("select tree_id, count(taxon_id) from djangophylocore_reltreecoltaxa1 where taxon_id IN (select taxon_id from djangophylocore_reltreecoltaxa%s) GROUP BY tree_id;" % (self.id))
             else:
@@ -1324,7 +1324,7 @@ class TreeCollection(models.Model, TaxonomyReference):
         
         #VR il faut faire sur tout les arbres et non sur ceux present dans le rsultat (a cause des 0)
         # if a tree with none of the taxa can be a solution we have to tests alltrees not only those in d_trees
-        # ex : {rodent}<4  ex2: {rodent}<4 and ({primate}>3 or {primate} <4)
+        # ex: {rodent}<4  ex2: {rodent}<4 and ({primate}>3 or {primate} <4)
         res0 = res;
         needAllTrees = False;
         for pattern in l_patterns:
@@ -1373,7 +1373,7 @@ class TreeCollection(models.Model, TaxonomyReference):
         query the collection in order to extract a targeted trees list.
 
         The query format is a python boolean expression with taxa name
-        beetween braces :
+        beetween braces:
 
         >>> col.query("{muridae} > 2 and {primates}")
         [<Tree: 1>, <Tree: 4>]
@@ -1397,7 +1397,7 @@ class TreeCollection(models.Model, TaxonomyReference):
         query the treebase collection in order to extract a targeted trees list.
 
         The query format is a python boolean expression with taxa name
-        beetween braces :
+        beetween braces:
 
         >>> col.query("{muridae} > 2 and {primates}")
         [<Tree: 1>, <Tree: 4>]
@@ -1613,7 +1613,7 @@ class TreeCollection(models.Model, TaxonomyReference):
         else:
             source = ""
         for tree in trees_list:
-            if self.format == 'nexus' :
+            if self.format == 'nexus':
                 source += "TREE %s = %s;\n" % (tree[0], tree[1])
             else:
                 source += "%s;\n" % tree[1]
