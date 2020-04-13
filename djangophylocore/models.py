@@ -10,7 +10,8 @@ from .lib.phylogelib import NewickParser
 from .lib.nexus import Nexus, remove_nexus_comments
 from pyparsing import ParseException
 import datetime, re, sys, os, codecs
-from itertools import islice, chain, imap
+from itertools import islice, chainsssss
+# from itertools import islice, chain, imap
 from math import ceil
 
 import multiprocessing
@@ -292,7 +293,7 @@ class TaxonomyReference(object):
         connection.close()
 
         import networkx as NX
-        from itertools import imap
+        # from itertools import imap
         from multiprocessing import Pool
 
         tree = NX.DiGraph() 
