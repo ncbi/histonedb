@@ -1689,7 +1689,7 @@ class TreeCollection(models.Model, TaxonomyReference):
         }
         """
         global TAXONOMY_TOC
-    if not hasattr(self, "taxon_occurence"):
+        if not hasattr(self, "taxon_occurence"):
             taxon_occurence = {}
             # initialisation of user taxon
             cursor = connection.cursor()
