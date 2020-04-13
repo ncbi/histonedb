@@ -119,40 +119,40 @@ class HMM(object):
 
 """
 target:
-	echo ${MAKE} $$(TARGET)\_dir
-	${MAKE} $$(TARGET)\_dir
+    echo ${MAKE} $$(TARGET)\_dir
+    ${MAKE} $$(TARGET)\_dir
 
 %_dir:
-	echo "include ${CURDIR}/Makefile" > $*/Makefile	
-	basename $* | xargs -0 -I name mkdir name
-	cd $*;	${MAKE} $*_all
+    echo "include ${CURDIR}/Makefile" > $*/Makefile
+    basename $* | xargs -0 -I name mkdir name
+    cd $*; ${MAKE} $*_all
 
-%_hmmer_hmmer:	%_hmmer.hmm
-	$(HMMSCORE) $(HMMOPTS) -o $@.out $^ $(APIDB)
+%_hmmer_hmmer: %_hmmer.hmm
+    $(HMMSCORE) $(HMMOPTS) -o $@.out $^ $(APIDB)
 
-%_hmmer_sam_nocal:	%_hmmer.hmm
-	# Convert to HMMER 2.0 first
-	$(HMMCONV) -2 $^ > $@.hmm
-	$(SAMCONV) $@.hmm
-	rm $@.hmm
-	# Rename converted model
-	mv $@.con.asc.mod $@.mod
+%_hmmer_sam_nocal: %_hmmer.hmm
+    # Convert to HMMER 2.0 first
+    $(HMMCONV) -2 $^ > $@.hmm
+    $(SAMCONV) $@.hmm
+    rm $@.hmm
+    # Rename converted model
+    mv $@.con.asc.mod $@.mod
+    
+    $(SAMSCORE) $@ -i $@.mod -db $(APIDB) $(SAMOPTS)
 
-	$(SAMSCORE) $@ -i $@.mod -db $(APIDB) $(SAMOPTS)
-
-%_hmmer_sam:	%_hmmer.hmm
-	# Convert to HMMER 2.0 first
-	$(HMMCONV) -2 $^ > $@.hmm
-	$(SAMCONV) $@.hmm
-	rm $@.hmm
-	# Rename converted model
-	mv $@.con.asc.mod $@.mod
-	${MAKE} $@.mlib
-
-	$(SAMSCORE) $@ -i $@.mlib -db $(APIDB) $(SAMOPTS)
+%_hmmer_sam: %_hmmer.hmm
+    # Convert to HMMER 2.0 first
+    $(HMMCONV) -2 $^ > $@.hmm
+    $(SAMCONV) $@.hmm
+    rm $@.hmm
+    # Rename converted model
+    mv $@.con.asc.mod $@.mod
+    ${MAKE} $@.mlib
+    
+    $(SAMSCORE) $@ -i $@.mlib -db $(APIDB) $(SAMOPTS)
 
 
 # Calibrated SAM model
-%.mlib:	%.mod
-	$(SAMSCORE) $* -modelfile $^ -calibrate 1
+%.mlib: %.mod
+    $(SAMSCORE) $* -modelfile $^ -calibrate 1
 """

@@ -33,7 +33,7 @@ def add_to_graph(parameters):
         taxa_list, allow_ranks = parameters
     except:
         return set()
-	
+
     edges = set() 
     for taxon in taxa_list:
         taxon = Taxonomy.objects.get(pk=taxon)
@@ -1689,7 +1689,7 @@ class TreeCollection(models.Model, TaxonomyReference):
         }
         """
         global TAXONOMY_TOC
-	if not hasattr(self, "taxon_occurence"):
+    if not hasattr(self, "taxon_occurence"):
             taxon_occurence = {}
             # initialisation of user taxon
             cursor = connection.cursor()

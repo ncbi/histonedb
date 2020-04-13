@@ -149,7 +149,7 @@ def simple_blast_assignment(seqs, blast_results, outfile, title=""):
         sequence.description = sequence.description.replace(" ", "_")
 
         SeqIO.write(sequence, outfile, "fasta")
-	ids.append(best_gi)
+    ids.append(best_gi)
 
     with open("{}.ids.txt".format(outfile.name), "w") as id_file:
         print("\n".join(ids), file=id_file)

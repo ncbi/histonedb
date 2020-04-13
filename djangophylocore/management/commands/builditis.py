@@ -23,11 +23,11 @@ class Command(NoArgsCommand):
         if not os.path.exists('./itisdump.tar.gz'):
             if verbose:
                 print("Downloading ITIS database on the web")
-	    url_thumb = ''
-	    conn = http.client.HTTPConnection("www.itis.gov")
-	    conn.request("GET", "/downloads/")
-	    f = conn.getresponse().read()
-	    file_name = re.findall('href="[^"]*itisMS[^"]*gz',f)[0][8:]
+        url_thumb = ''
+        conn = http.client.HTTPConnection("www.itis.gov")
+        conn.request("GET", "/downloads/")
+        f = conn.getresponse().read()
+        file_name = re.findall('href="[^"]*itisMS[^"]*gz',f)[0][8:]
             os.system("curl -# http://www.itis.gov/downloads/%s > itisdump.tar.gz" % file_name)
             #os.system("wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz")
         if verbose:
@@ -50,21 +50,10 @@ class Command(NoArgsCommand):
         taxonomic_units_path  = os.path.join(path, 'taxonomic_units')
         taxon_unit_types_path  = os.path.join(path, 'taxon_unit_types')
         vernaculars_path  = os.path.join(path, 'vernaculars')
-        kingdoms_path  = os.path.join(path, 'kingdoms')
-        # building
-        # kingdoms
-        d_kingdom = self.getKingdom(kingdoms_path)
-        # synonyms
-        syn_tax = self.getSynonym(synonym_file_path)
-        # getting rank
-        rank = self.getRank(taxon_unit_types_path)
-        #return correct_tax, tax_name, tax_id
-        #correct_tax = tax_name = tax_id = getCorrectTaxa("/Users/vranwez/Desktop/ITIS/itis_fic_utils/taxonomic_units")
-        taxa_sons={}
-	# collect informations on correct taxa
+    # collect informations on correct taxa
         correct_taxa, max_id = self.getCorrectTaxa(taxonomic_units_path, taxa_sons, syn_tax)
         root_id = max_id
-	## recuperation des homonyms
+    ## recuperation des homonyms
         taxa_homo={}
         homonyms = {}
         for tax_id in correct_taxa:
@@ -114,7 +103,7 @@ class Command(NoArgsCommand):
             else:
                 homonym_ok[homonym_name] = scientific_names_list
         homonyms = homonym_ok
-#		for taxa in scientific_name_list:
+#       for taxa in scientific_name_list:
 #                    correct_taxa[taxa[0]]["name"] = taxa[1]  # taxa[1] = new name    
         ## recuperation des taxa valid ayant un pere valid 
         reachable_taxa={}
@@ -252,7 +241,7 @@ class Command(NoArgsCommand):
                         result_rel.append("%s|%s|%s|%s\n" % (index, max_id, common['id'], common['langage']))
                         already_done.add((max_id, common['id']))
             else:
-		pass
+        pass
                 #print "%s is already in toc" % name
         open(os.path.join(DUMP_PATH, 'taxonomy.dmp'), 'a').write(''.join(result_taxonomy))
         open(os.path.join(DUMP_PATH, 'relcommontaxa.dmp'), 'w').write(''.join(result_rel))

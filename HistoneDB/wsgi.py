@@ -27,5 +27,5 @@ GUNICORN = True if (os.getenv('GUNICORN', "0") == "1") else False
 
 application = get_wsgi_application()
 if(GUNICORN):
-	from whitenoise.django import DjangoWhiteNoise
-	application = DjangoWhiteNoise(application)
+    from whitenoise.django import DjangoWhiteNoise
+    application = DjangoWhiteNoise(application)
