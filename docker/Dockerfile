@@ -11,15 +11,16 @@ RUN apt-get install -y git wget curl libmysqlclient-dev mysql-client libpq-dev p
 #RUN apt-get install hmmer
 RUN apt-get install -y apache2 apache2-dev mysql-server
 RUN sed -i '$a wait_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf && sed -i '$a interactive_timeout = 31536000' /etc/mysql/mysql.conf.d/mysqld.cnf
-RUN apt-get install -y libapache2-mod-wsgi
+RUN apt-get install -y libapache2-mod-wsgi-py3
 RUN apt-get install -y pv
 
 # Python setup
-RUN apt-get install -y python python-pip
-RUN yes | pip install virtualenv
+RUN apt-get install -y python3 python3-pip
+RUN yes | pip3 install virtualenv
 #RUN virtualenv histdb_py27 && /bin/bash -c "source histdb_py27/bin/activate" # this is not really used
-RUN yes | pip install --upgrade setuptools
-RUN yes | pip install biopython==1.74 numba joblib tqdm colour decorator dj-database-url Django==1.8.19 django-debug-toolbar==1.3.2 django-extensions django-filter==0.10.0 django-filters django-google-analytics-id gunicorn>=19.5.0 matplotlib==1.4.3 mock more-itertools MySQL-python networkx==1.10 nose numpy pandas pbr psycopg2==2.7.0 pyparsing python-dateutil pytz scikit-learn scipy seaborn==0.6.0 six sklearn sqlparse wsgiref
+RUN yes | pip3 install --upgrade setuptools
+RUN yes | pip3 install biopython==1.74 numba joblib tqdm colour decorator dj-database-url Django==1.8.19 django-debug-toolbar==1.3.2 django-extensions django-filter==0.10.0 django-filters django-google-analytics-id gunicorn>=19.5.0 matplotlib==1.4.3 mock more-itertools PyMySQL mysqlclient networkx==1.10 nose numpy pandas pbr psycopg2==2.7.0 pyparsing python-dateutil pytz scikit-learn scipy seaborn==0.6.0 six sklearn sqlparse
+# Note: MySql-python changed to (PyMySQL + mysqlclient) and removed wsgiref (as it is already inculuded in python 3) for python3
 
 
 #Compiling HMMER - v. 3.1b2 is critical. 3.3 while analyzing nr db will truncate the fasta record headers to one sequence id.
