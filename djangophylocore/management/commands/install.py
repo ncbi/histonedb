@@ -11,7 +11,7 @@ class Command(NoArgsCommand):
             help='Verbose behavior'),
         #make_option('--taxonomy', '-t', dest='taxonomy', default = 'ncbi',
         #    help='Taxonomy to use: itis or ncbi (default ncbi)'),
-    )
+   )
     help = "Install base information into the database"
     
     requires_model_validation = True
@@ -26,21 +26,21 @@ class Command(NoArgsCommand):
             verbose_string = '-v'
         if verbose:
             print("building %s dumps" % taxonomy)
-        os.system( 'python manage.py build%s %s' % (taxonomy, verbose_string) )
+        os.system('python manage.py build%s %s' % (taxonomy, verbose_string))
         if verbose:
             print("creating database")
-        os.system( 'python manage.py reset_db --noinput' )
-        os.system( 'python manage.py syncdb' )
+        os.system('python manage.py reset_db --noinput')
+        os.system('python manage.py syncdb')
         if verbose:
             print("loading taxonomy")
-        os.system( 'python manage.py loadtaxonomy %s' % verbose_string )
+        os.system('python manage.py loadtaxonomy %s' % verbose_string)
         if verbose:
             print("building taxonomy toc")
-        os.system( 'python manage.py buildtaxonomytoc' )
+        os.system('python manage.py buildtaxonomytoc')
         if verbose:
             print("building suggestion file")
-        os.system( 'python manage.py buildspellfile' )
+        os.system('python manage.py buildspellfile')
         if verbose:
             print("loading treebase informations")
-        os.system( 'python manage.py loadtreebase %s' % verbose_string )
+        os.system('python manage.py loadtreebase %s' % verbose_string)
 

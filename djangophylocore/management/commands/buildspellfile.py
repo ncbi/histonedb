@@ -9,7 +9,7 @@ class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
 #        make_option('--verbose', '-v', action='store_true', dest='verbose', 
 #            help='Verbose operation'),
-    )
+   )
     help = "Build spell file for suggestions"
     
     requires_system_checks = True
@@ -19,9 +19,9 @@ class Command(NoArgsCommand):
         taxas = Taxonomy.objects.all().iterator
         result = []
         for taxa in taxas():
-            result.append( taxa.name.encode( "iso-8859-15" ) )
+            result.append(taxa.name.encode("iso-8859-15"))
         localDir = os.path.dirname(__file__)
         absDir = os.path.join(os.getcwd(), localDir)
-        path = os.path.join( absDir, "..", "..", "lib" )
-        open( os.path.join( path, "spell_file_ncbi.txt"), "w").write( "\n".join( result ) )
+        path = os.path.join(absDir, "..", "..", "lib")
+        open(os.path.join(path, "spell_file_ncbi.txt"), "w").write("\n".join(result))
 

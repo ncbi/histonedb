@@ -43,14 +43,14 @@ class Scene:
             self.svgname = filename
         else:
             self.svgname = self.name + ".svg"
-        fullFileName = os.path.join( path, self.svgname )
+        fullFileName = os.path.join(path, self.svgname)
         self.ensure_dir(fullFileName)
         file = open (fullFileName,'w')
         file.writelines(self.strarray())
         file.close()
         if convert:
-            os.system( "%s %s %s" % ( convert, os.path.join( path, self.svgname),os.path.join( path, "%s.%s" % (self.name, format )  ) ))
-            os.system( "rm %s" % os.path.join( path, self.svgname ) )
+            os.system("%s %s %s" % (convert, os.path.join(path, self.svgname),os.path.join(path, "%s.%s" % (self.name, format) )))
+            os.system("rm %s" % os.path.join(path, self.svgname))
 
     def display(self,prog=display_prog):
         os.system("%s %s" % (prog,self.svgname))
@@ -121,7 +121,7 @@ matrix = [
 def test():
     nb_tree = 3
     nb_taxa = 200
-    scene = Scene('test', (nb_tree+1)*10, (nb_taxa+1)*10 )
+    scene = Scene('test', (nb_tree+1)*10, (nb_taxa+1)*10)
     pix = 10 
     j = 0
     for line in matrix:
@@ -189,7 +189,7 @@ def get_matrix():
     global matrix
     nb_trees = 4
     nb_taxa = 47
-    scene = Scene('test', (nb_taxa+1)*10, (nb_trees+1)*10 )
+    scene = Scene('test', (nb_taxa+1)*10, (nb_trees+1)*10)
     pix = 10
     j = 0
     for taxa,tmp in matrix.items():

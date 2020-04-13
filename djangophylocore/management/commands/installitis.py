@@ -9,7 +9,7 @@ class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
         make_option('--verbose', '-v', action='store_true', dest='verbose', 
             help='Verbose operation'),
-    )
+   )
     help = "Load all taxonomy data into database"
     
     requires_model_validation = True
@@ -21,15 +21,15 @@ class Command(NoArgsCommand):
             verbose_string = '-v'
         if verbose:
             print("building itis dumps")
-        os.system( 'python manage.py builditis %s' % verbose_string )
+        os.system('python manage.py builditis %s' % verbose_string)
         if verbose:
             print("creating database")
-        os.system( 'python manage.py reset_db --noinput' )
-        os.system( 'python manage.py syncdb' )
+        os.system('python manage.py reset_db --noinput')
+        os.system('python manage.py syncdb')
         if verbose:
             print("loading taxonomy")
-        os.system( 'python manage.py loadtaxonomy %s' % verbose_string )
+        os.system('python manage.py loadtaxonomy %s' % verbose_string)
         if verbose:
             print("building taxonomy toc")
-        os.system( 'python manage.py buildtaxonomytoc' )
+        os.system('python manage.py buildtaxonomytoc')
 

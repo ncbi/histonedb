@@ -152,12 +152,12 @@ def browse_variant(request, histone_type, variant, accession=None):
     scores = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
-        ).annotate(
+       ).annotate(
             score=Max("all_model_scores__score")
-        ).aggregate(
+       ).aggregate(
             max=Max("score"), 
             min=Min("score")
-        )
+       )
 
 #Distinct will not work here, because we order by "start", which is also included - see https://docs.djangoproject.com/en/dev/ref/models/querysets/#distinct
     features_gen = Feature.objects.filter(template__variant="General{}".format(histone_type)).values_list("name", "description", "color").distinct()
@@ -169,9 +169,9 @@ def browse_variant(request, histone_type, variant, accession=None):
     sequences = Sequence.objects.filter(
             variant__id=variant,
             all_model_scores__used_for_classification=True
-        ).annotate(
+       ).annotate(
             score=Max("all_model_scores__score")
-        ).order_by("score")
+       ).order_by("score")
 
     human_sequence = sequences.filter(taxonomy__name="homo sapiens", reviewed=True).first()
     # if not human_sequence:
@@ -191,7 +191,7 @@ def browse_variant(request, histone_type, variant, accession=None):
             re.search("\d\d\d\d",record["SO"]).group(0),
             record["PMID"],
             record["PMID"],
-            ) for record in records]
+           ) for record in records]
     except:
         publications=["PMID: "+str(x) for x in variant.publication_set.values_list("id", flat=True)]
 
@@ -538,7 +538,7 @@ def get_aln_and_features(request, ids=None):
             result_pdf = write_alignments(
                 [aln], 
                 save_dir = save_dir
-            )
+           )
 
             with open(result_pdf) as pdf:
                 response.write(pdf.read())

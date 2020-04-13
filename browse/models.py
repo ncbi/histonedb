@@ -145,7 +145,7 @@ class Sequence(models.Model):
             seq, 
             id=self.description,
             description=score_desc,
-            )
+           )
 
     def format(self, format="fasta", ungap=False):
         return self.to_biopython(ungap=ungap).format(format)

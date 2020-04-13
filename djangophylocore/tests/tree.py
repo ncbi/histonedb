@@ -7,12 +7,12 @@ def test_tree():
 >>> TEST_LAUNCHED = True
 >>> from djangophylocore.models import *
 
->>> TAXONOMY_TOC = get_taxonomy_toc( True )
+>>> TAXONOMY_TOC = get_taxonomy_toc(True)
 
 # In this tree, there is only scientific names
 
->>> nwk_tree = " ( echinops <plant>, (rattus, ( mus,(mus musculus))))"
->>> tree = Tree.objects.create( source = nwk_tree, name = "1")
+>>> nwk_tree = " (echinops <plant>, (rattus, (mus,(mus musculus))))"
+>>> tree = Tree.objects.create(source = nwk_tree, name = "1")
 
 >>> tree.is_valid
 True
@@ -29,8 +29,8 @@ True
 
 # In this tree, there's bad taxa, common names, synonyms and homonyms
 
->>> nwk_tree = "( echinops, (rattus, ( mus, azerty, black rat ), nannomys ))"
->>> tree = Tree.objects.create( source = nwk_tree, name = "2")
+>>> nwk_tree = "(echinops, (rattus, (mus, azerty, black rat), nannomys))"
+>>> tree = Tree.objects.create(source = nwk_tree, name = "2")
 
 >>> tree.is_valid
 True
@@ -59,8 +59,8 @@ True
 
 # we can know the number of occurence of each bad taxa
 
->>> nwk_tree = "(rattus, ( azerty, black rat ), badname)"
->>> tree = Tree.objects.create( source = nwk_tree, name = "3")
+>>> nwk_tree = "(rattus, (azerty, black rat), badname)"
+>>> tree = Tree.objects.create(source = nwk_tree, name = "3")
 
 >>> tree.bad_taxa.all()
 [<BadTaxa: azerty (0)>, <BadTaxa: badname (0)>]
@@ -80,7 +80,7 @@ If a bad newick string is passed, the creation of the tree won't crash.
 This is useful to get statistics of the tree anyway.
 
 >>> bad_nwk = "(mus,(,("
->>> bad_tree = Tree.objects.create( name = 'badtree', source = bad_nwk )
+>>> bad_tree = Tree.objects.create(name = 'badtree', source = bad_nwk)
 >>> bad_tree.taxa.all()
 [<Taxonomy: mus (scientific name)>]
 
@@ -92,24 +92,24 @@ False
 Working with delimiter
 ~~~~~~~~~~~~~~~~~~~~~~~
 
->>> nwk_tree = "(rattus_rattus, (mus, mus_musculus ))"
->>> tree2 = Tree.objects.create( source = nwk_tree, name = "4", delimiter = '_')
+>>> nwk_tree = "(rattus_rattus, (mus, mus_musculus))"
+>>> tree2 = Tree.objects.create(source = nwk_tree, name = "4", delimiter = '_')
 >>> tree2.taxa.all()
 [<Taxonomy: mus (scientific name)>, <Taxonomy: mus musculus (scientific name)>, <Taxonomy: rattus rattus (scientific name)>]
 
 # delimiter can't contain  '(', ')' or ','
 
->>> nwk_tree = "(murinae, (mus, mus(,)musculus ))"
+>>> nwk_tree = "(murinae, (mus, mus(,)musculus))"
 >>> try:
-...     tree2 = Tree.objects.create( source = nwk_tree, name = "5", delimiter = '(,)')
+...     tree2 = Tree.objects.create(source = nwk_tree, name = "5", delimiter = '(,)')
 ... except ValueError, e:
 ...     e
 ValueError('"(,)" is a bad delimiter',)
 
 Making queries
 ~~~~~~~~~~~~~~
->>> nwk_tree = " ( echinops <plant>, (rattus, ( mus,(mus musculus))))"
->>> tree = Tree.objects.create( source = nwk_tree, name = "filtered")
+>>> nwk_tree = " (echinops <plant>, (rattus, (mus,(mus musculus))))"
+>>> tree = Tree.objects.create(source = nwk_tree, name = "filtered")
 >>> tree.get_nb_taxa_from_parent('murinae')
 3L
 >>> tree.get_nb_taxa_from_parent('cardueae')

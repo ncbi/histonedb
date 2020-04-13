@@ -13,17 +13,17 @@
 
 from pyparsing import *
 
-class NewickParser( object ):
+class NewickParser(object):
     """
     Class wrapping a parser for building Trees from newick format strings
     """
-    def __init__( self ):
+    def __init__(self):
         self.parser = self.create_parser()
         self.tree = []
         self.taxa_list = []
         self.source = ""
 
-    def create_parser( self ):
+    def create_parser(self):
         """
         Create a 'pyparsing' parser for newick format trees roughly based on the
         grammer here:
@@ -35,151 +35,151 @@ class NewickParser( object ):
               to be an edge.
         """
         # Basic tokens
-        real = Combine( Word( "+-" + nums, nums ) + 
-                        Optional( "." + Optional( Word( nums ) ) ) +
-                        Optional( CaselessLiteral( "E" ) + Word( "+-" + nums, nums ) ) )
-        lpar = Suppress( "(" ) 
-        rpar = Suppress( ")" )
-        colon = Suppress( ":" )
-        semi = Suppress( ";" )
-        quot = Suppress( "'" )
+        real = Combine(Word("+-" + nums, nums) +
+                        Optional("." + Optional(Word(nums))) +
+                        Optional(CaselessLiteral("E") + Word("+-" + nums, nums)))
+        lpar = Suppress("(")
+        rpar = Suppress(")")
+        colon = Suppress(":")
+        semi = Suppress(";")
+        quot = Suppress("'")
         # Labels are either unquoted or single quoted, if unquoted underscores will be replaced with spaces
-        quoted_label = QuotedString( "'", None, "''" ).setParseAction( lambda s, l, t: t[0] )
-        #simple_label = Word( ' 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+-./<=>?@[\\]^_`{|}~' )#.setParseAction( lambda s, l, t: t[0].replace( "_", " " ) )
+        quoted_label = QuotedString("'", None, "''").setParseAction(lambda s, l, t: t[0])
+        #simple_label = Word(' 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+-./<=>?@[\\]^_`{|}~')#.setParseAction(lambda s, l, t: t[0].replace("_", " "))
         #VR
-        simple_label = Word( ' 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+-./<=>?@[\\]^_`{|}~' )
+        simple_label = Word(' 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+-./<=>?@[\\]^_`{|}~')
         label = quoted_label | simple_label
         # Branch length is a real number (note though exponents are not in the spec!)
-        branch_length = real.setParseAction( lambda s, l, t: float( t[0] ) )
+        branch_length = real.setParseAction(lambda s, l, t: float(t[0]))
         # Need to forward declare this due to circularity
         node_list = Forward()
         # A leaf node must have a label
-        leaf = ( label + Optional( colon + branch_length, "" ) ) \
-            .setParseAction( lambda s, l, t: t[0])
-            #.setParseAction( lambda s, l, t: ( t[1] or None,  t[0]  ) )
-            #.setParseAction( lambda s, l, t: Edge( t[1] or None, Tree( t[0] ) ) )
+        leaf = (label + Optional(colon + branch_length, "")) \
+            .setParseAction(lambda s, l, t: t[0])
+            #.setParseAction(lambda s, l, t: (t[1] or None,  t[0] ))
+            #.setParseAction(lambda s, l, t: Edge(t[1] or None, Tree(t[0])))
         # But a subtree doesn't but must have edges
-        subtree = ( node_list + Optional( label, "" ) + Optional( colon + branch_length, "" ) )\
-            .setParseAction( lambda s, l, t: [t[0]] )
-            #.setParseAction( lambda s, l, t: ( t[2] or None, ( t[1] or None, t[0] ) ) )
-            #.setParseAction( lambda s, l, t: Edge( t[2] or None, Tree( t[1] or None, t[0] ) ) )
+        subtree = (node_list + Optional(label, "") + Optional(colon + branch_length, ""))\
+            .setParseAction(lambda s, l, t: [t[0]])
+            #.setParseAction(lambda s, l, t: (t[2] or None, (t[1] or None, t[0])))
+            #.setParseAction(lambda s, l, t: Edge(t[2] or None, Tree(t[1] or None, t[0])))
         # A tree is then a nested set of leaves and subtrees
         node = leaf | subtree
-        node_list << ( lpar + delimitedList( node ) + rpar ) \
-            .setParseAction( lambda s, l, t: [ t.asList() ] )
+        node_list << (lpar + delimitedList(node) + rpar) \
+            .setParseAction(lambda s, l, t: [ t.asList() ])
         # The root cannot have a branch length
-        tree = ( node_list + Optional( label, "" ) + Optional( semi ) )\
-            .setParseAction( lambda s, l, t: ( t[1] or None, t[0] ) )
-            #.setParseAction( lambda s, l, t: Tree( t[1] or None, t[0] ) )
+        tree = (node_list + Optional(label, "") + Optional(semi))\
+            .setParseAction(lambda s, l, t: (t[1] or None, t[0]))
+            #.setParseAction(lambda s, l, t: Tree(t[1] or None, t[0]))
         # Return the outermost element
         return tree
 
-    def parse_string( self, s ):
+    def parse_string(self, s):
         self.source = s
-        self.tree = self.parser.parseString( str(s) )[0][1]
+        self.tree = self.parser.parseString(str(s))[0][1]
         self.taxa_list = []
         return self.tree
 
-    def __remove_taxa( self, tree, node, remove_list ):
+    def __remove_taxa(self, tree, node, remove_list):
         if node in remove_list:
-            tree.remove( node )
+            tree.remove(node)
         else:
             if type(node) is list:
                 for i in node[:]:
-                    self.__remove_taxa( node, i, remove_list )
+                    self.__remove_taxa(node, i, remove_list)
 
-    def __remove_singleton( self, node ):
+    def __remove_singleton(self, node):
         #print ">>>node", node
-        if type( node ) is list:
+        if type(node) is list:
             for son in node:
                 #print "son", son, "node", node
-                if type( son ) is list and len( son ) == 1:
+                if type(son) is list and len(son) == 1:
                     #print "before remove1", node, "<<<<<->>>>>", son
-                    node[node.index( son )] = son[0]
+                    node[node.index(son)] = son[0]
                     #print "after remove1", node, "<<<<->>>>", son
-                    self.__remove_singleton( node )
-                elif type( son ) is list and len( son ) == 0:
+                    self.__remove_singleton(node)
+                elif type(son) is list and len(son) == 0:
                     #print "before remove0", node, "<<<<<->>>>>", son
-                    node.remove( [] )
-                    self.__remove_singleton( node )
+                    node.remove([])
+                    self.__remove_singleton(node)
                     #print "after remove0", node, "<<<<->>>>", son
-                self.__remove_singleton( son )
+                self.__remove_singleton(son)
 
-    def remove_singleton( self, node ):
+    def remove_singleton(self, node):
         """ remove singleton of the subtree rooted by node """
-        if type( node ) is list:
+        if type(node) is list:
             for son in node:
-                if type( son ) is list and len( son ) <= 1:
-                    self.__remove_one_singleton( node )
+                if type(son) is list and len(son) <= 1:
+                    self.__remove_one_singleton(node)
             for son in node:
-                if type( son ) is list:
-                    self.remove_singleton( son )
-            self.__remove_one_singleton( node )
+                if type(son) is list:
+                    self.remove_singleton(son)
+            self.__remove_one_singleton(node)
 
-    def __remove_one_singleton( self, node ):
+    def __remove_one_singleton(self, node):
         """ remove singleton of the son of node """
-        if type( node ) is list:
+        if type(node) is list:
             for son in node:
-                if type( son ) is list and len( son ) == 1:
-                    node[node.index( son )] = son[0]
-                    self.__remove_one_singleton( node )
+                if type(son) is list and len(son) == 1:
+                    node[node.index(son)] = son[0]
+                    self.__remove_one_singleton(node)
                 else:
-                    if type( son ) is list and len(son) == 0:
-                        node.remove( [] )
-                        self.remove_singleton( node )
+                    if type(son) is list and len(son) == 0:
+                        node.remove([])
+                        self.remove_singleton(node)
 
-    def filter( self, remove_taxa_list ):
+    def filter(self, remove_taxa_list):
         tree = self.tree
-        self.__remove_taxa( tree, tree, remove_taxa_list )
-        self.remove_singleton( tree )
+        self.__remove_taxa(tree, tree, remove_taxa_list)
+        self.remove_singleton(tree)
         return tree
 
-    def __correct_tree( self, tree, node, correct_dict ):
+    def __correct_tree(self, tree, node, correct_dict):
         if type(node) is not list:
             if node in correct_dict:
-                tree[tree.index( node )] = correct_dict[node]
-            elif " ".join( node.split()[:2]) in correct_dict:
+                tree[tree.index(node)] = correct_dict[node]
+            elif " ".join(node.split()[:2]) in correct_dict:
                 old_node = node
-                base_node = correct_dict[" ".join( node.split()[:2] )]
-                node = base_node+" "+" ".join( node.split()[2:] )
-                tree[tree.index( old_node )] = node
+                base_node = correct_dict[" ".join(node.split()[:2])]
+                node = base_node+" "+" ".join(node.split()[2:])
+                tree[tree.index(old_node)] = node
             elif node.split()[0] in correct_dict:
                 old_node = node
                 base_node = correct_dict[node.split()[0]]
-                node = base_node+" "+" ".join( node.split()[1:] )
-                tree[tree.index( old_node )] = node
+                node = base_node+" "+" ".join(node.split()[1:])
+                tree[tree.index(old_node)] = node
         else:
             if type(node) is list:
                 for i in node:
-                    self.__correct_tree( node, i, correct_dict )
+                    self.__correct_tree(node, i, correct_dict)
 
-    def correct_tree( self, correct_dict ):
+    def correct_tree(self, correct_dict):
         """
         correct taxa name with the corresponding name in correct_dict
         {'ratus':'rattus', 'echinops':'echinops <plant>'}
         """
         tree = self.tree
-        self.__correct_tree( tree, tree, correct_dict )
+        self.__correct_tree(tree, tree, correct_dict)
         return tree
 
      
-    def get_taxa( self, tree = None ):
+    def get_taxa(self, tree = None):
         if not tree:
             tree = self.tree
-        self.taxa_list = str( tree ).replace( "[u'", "['").replace(", u'", ", '" )
-        self.taxa_list = self.taxa_list.replace( "['", "[" ).replace( "']", "]" )
-        self.taxa_list = self.taxa_list.replace( "',", "," ).replace( ", '", ", " )
-        self.taxa_list = self.taxa_list.replace( '[', '' ).replace( ']', '' )
+        self.taxa_list = str(tree).replace("[u'", "['").replace(", u'", ", '")
+        self.taxa_list = self.taxa_list.replace("['", "[").replace("']", "]")
+        self.taxa_list = self.taxa_list.replace("',", ",").replace(", '", ", ")
+        self.taxa_list = self.taxa_list.replace('[', '').replace(']', '')
         if self.taxa_list:
             return self.taxa_list.split(', ')
         else:
             return []
 
-    def get_struct( self ):
+    def get_struct(self):
         """
         split the collection or tree into a list
 
-        >>> getStruct( '((a,b),c);(((aee,bcd),(c,d)),e);' )
+        >>> getStruct('((a,b),c);(((aee,bcd),(c,d)),e);')
         ['((', 'a', ',', 'b', '),', 'c', ');(((', 'aee', ',', 'bcd', '),(', 'c', ',', 'd', ')),', 'e', ');']
         """
         struct = []
@@ -192,53 +192,53 @@ class NewickParser( object ):
                 if taxa:
                     delimiter = True
                     taxa = False
-                    struct.append( ''.join( taxa_name ) )
+                    struct.append(''.join(taxa_name))
                     taxa_name = []
-                delim.append( c )
+                delim.append(c)
             else:
                 if not taxa:
                     delimiter = False
                     taxa = True
-                    struct.append( ''.join( delim ) )
+                    struct.append(''.join(delim))
                     delim = []
-                taxa_name.append( c )
-        struct.append( ''.join( delim ) )
+                taxa_name.append(c)
+        struct.append(''.join(delim))
         return struct
 
 
-def tidyNwk( nwk ):
+def tidyNwk(nwk):
     """ Strip all space and backline from newick string """
-    nwk = nwk.replace( "\n", " " )
+    nwk = nwk.replace("\n", " ")
     while "  " in nwk:
-        nwk = nwk.replace( "  ", " " )
-    while '( ' in nwk:
-        nwk = nwk.replace( '( ', '(' )
-    while ' )' in nwk:
-        nwk = nwk.replace( ' )', ')' )
-    nwk = nwk.replace( ", (", ",(" )
-    nwk = nwk.replace( " ,", "," )
-    nwk = nwk.replace( ", ", "," )
-    nwk = nwk.replace( ") ,", ")," )
-    nwk = nwk.replace( ") )", "))" )
-    nwk = nwk.replace( "( (", "((" )
+        nwk = nwk.replace("  ", " ")
+    while '(' in nwk:
+        nwk = nwk.replace('(', '(')
+    while ')' in nwk:
+        nwk = nwk.replace(')', ')')
+    nwk = nwk.replace(", (", ",(")
+    nwk = nwk.replace(" ,", ",")
+    nwk = nwk.replace(", ", ",")
+    nwk = nwk.replace(") ,", "),")
+    nwk = nwk.replace("))", "))")
+    nwk = nwk.replace("((", "((")
     return nwk.strip()
 
-def checkNwk( nwk ):
+def checkNwk(nwk):
     """
     Check if nwk is in the correct newick format
     """
     try:
-        nwk2list( nwk )
+        nwk2list(nwk)
         return True
     except:
         return False
         
-def removeNexusComments( nex ):
+def removeNexusComments(nex):
     """ remove all nexus comments """
     nwk_without_comment = ""
     for i in nex.split("["):
         if len(i.split("]")) > 1:
-            nwk_without_comment += "".join( i.split("]")[1] )
+            nwk_without_comment += "".join(i.split("]")[1])
         else:
             nwk_without_comment += i 
     return nwk_without_comment
@@ -274,10 +274,10 @@ def getChildren(tree):
     chaine += i
   return newarb
 
-def getBrothers( tree, node ):
+def getBrothers(tree, node):
   """ return all node brothers in tree """
-  tree = removeBootStraps( tree )
-  return getChildren( getParent( tree, node ) )
+  tree = removeBootStraps(tree)
+  return getChildren(getParent(tree, node))
  
 def getNodes(tree):
   """ Return the nodes list of tree """
@@ -338,14 +338,14 @@ def removeBootStraps(tree):
 #    l.extend(getTaxa(child))
 #  return l
 
-def getTaxa( tree ):
+def getTaxa(tree):
     return [i.strip() for i in removeBootStraps(tree.strip()).replace("(","").replace(")","").split(",")]
 
-def getStruct( tree ):
+def getStruct(tree):
     """
     split the collection or tree into a list
 
-    >>> getStruct( '((a,b),c);(((aee,bcd),(c,d)),e);' )
+    >>> getStruct('((a,b),c);(((aee,bcd),(c,d)),e);')
     ['((', 'a', ',', 'b', '),', 'c', ');(((', 'aee', ',', 'bcd', '),(', 'c', ',', 'd', ')),', 'e', ');']
     """
     struct = []
@@ -358,17 +358,17 @@ def getStruct( tree ):
             if taxa:
                 delimiter = True
                 taxa = False
-                struct.append( ''.join( taxa_name ) )
+                struct.append(''.join(taxa_name))
                 taxa_name = []
-            delim.append( c )
+            delim.append(c)
         else:
             if not taxa:
                 delimiter = False
                 taxa = True
-                struct.append( ''.join( delim ) )
+                struct.append(''.join(delim))
                 delim = []
-            taxa_name.append( c )
-    struct.append( ''.join( delim ) )
+            taxa_name.append(c)
+    struct.append(''.join(delim))
     return struct
 
 def getDepth(tree):
@@ -410,21 +410,21 @@ def countTriplets(tree):
     result += (nbTaxas * (nbTaxas-1) * (len(getTaxa(getParent(tree,child))) - nbTaxas)) / 2
   return result
 
-def nwk2list( nwk ):
+def nwk2list(nwk):
     """
     Take a newick string and return a python list
 
     @nwk: string
     @return: python list
     """
-    nwk = removeBootStraps( nwk )
-    nwk = nwk.replace( "(", "[" ).replace( ")", "]" )
-    nwk = nwk.replace( ",", "','" ).replace( "]',", "]," ).replace(",'[",",[")
-    nwk = nwk.replace("[","['").replace( "['[", "[[" )
-    nwk = nwk.replace( "]", "']" ).replace( "]']", "]]")
-    nwk = nwk.replace("['[", "[[" )
-    nwk = nwk.replace("]']", "]]" )
-    return eval( nwk )
+    nwk = removeBootStraps(nwk)
+    nwk = nwk.replace("(", "[").replace(")", "]")
+    nwk = nwk.replace(",", "','").replace("]',", "],").replace(",'[",",[")
+    nwk = nwk.replace("[","['").replace("['[", "[[")
+    nwk = nwk.replace("]", "']").replace("]']", "]]")
+    nwk = nwk.replace("['[", "[[")
+    nwk = nwk.replace("]']", "]]")
+    return eval(nwk)
 
 def generateTree(nbTaxas, maxChildren = 2, name = 1):
   """ Generate randomly a pylogenic tree :
@@ -474,27 +474,27 @@ if __name__ == "__main__":
     ####################################################################################################
     parser = NewickParser()
 #    tree = [['mus', 'rattus'], [['homo', 'pan'], 'echinops']]
-#    print parser.parse_string( '(((echinops <mammal> sp./ 2344)),petunia_x_hybrida);' )
+#    print parser.parse_string('(((echinops <mammal> sp./ 2344)),petunia_x_hybrida);')
 #    print parser.get_taxa()
-#    print parser.parse_string( """((batomys granti ear1822,batomys granti 458948),(archboldomys luzonensis,(chrotomys gonzalesi,(rhynchomys isarogensis,(((apomys datae 167243,apomys datae 167358),(apomys gracilostris m646,apomys gracilostris m648)),(((apomys sp. d 154816,apomys sp. d 154854),(((apomys hylocoetes 147871,apomys hylocoetes 147914,apomys hylocoetes 148149,apomys insignis 147915,apomys insignis 147924),(apomys insignis 147911,apomys insignis 148160)),(apomys sp. f 458762,apomys sp. f ear1491))),(((apomys microdon 167241,apomys microdon 167242),(apomys microdon 458907,apomys microdon 458919)),((apomys musculus 458925,apomys musculus 458913),(((apomys sp. a/c 135715,apomys sp. a/c 137024,apomys sp.  a/c 458747),apomys sp. a/c 458751),(apomys sp. b 145698,apomys sp. b 145699))))))))))""" )
+#    print parser.parse_string("""((batomys granti ear1822,batomys granti 458948),(archboldomys luzonensis,(chrotomys gonzalesi,(rhynchomys isarogensis,(((apomys datae 167243,apomys datae 167358),(apomys gracilostris m646,apomys gracilostris m648)),(((apomys sp. d 154816,apomys sp. d 154854),(((apomys hylocoetes 147871,apomys hylocoetes 147914,apomys hylocoetes 148149,apomys insignis 147915,apomys insignis 147924),(apomys insignis 147911,apomys insignis 148160)),(apomys sp. f 458762,apomys sp. f ear1491))),(((apomys microdon 167241,apomys microdon 167242),(apomys microdon 458907,apomys microdon 458919)),((apomys musculus 458925,apomys musculus 458913),(((apomys sp. a/c 135715,apomys sp. a/c 137024,apomys sp.  a/c 458747),apomys sp. a/c 458751),(apomys sp. b 145698,apomys sp. b 145699))))))))))""")
 #    print parser.get_taxa()
-#    print parser.parse_string( '(echinops_<mammal>,petunia_x_hybrida);' )
+#    print parser.parse_string('(echinops_<mammal>,petunia_x_hybrida);')
 #    print parser.get_taxa()
-#    print parser.parse_string( u"(pan,petunia hybrida)" )
+#    print parser.parse_string(u"(pan,petunia hybrida)")
 #    print parser.get_taxa()
-#    print parser.parse_string( "(('mis france', 'rattus'), ((('homo', 'pan')), 'echinops'));" )
-#    print parser.correct_tree( {"mis": "mus", "echinops":"echinops <plant>" } )
+#    print parser.parse_string("(('mis france', 'rattus'), ((('homo', 'pan')), 'echinops'));")
+#    print parser.correct_tree({"mis": "mus", "echinops":"echinops <plant>" })
 #    print parser.get_taxa()
-#    print parser.parse_string( "(glis,(mus,rattus rattus));")
-#    print parser.filter( ['mus', 'glis', 'rattus rattus'] )
+#    print parser.parse_string("(glis,(mus,rattus rattus));")
+#    print parser.filter(['mus', 'glis', 'rattus rattus'])
 #    print parser.get_taxa()
-#    print parser.parse_string( "(mus:0.987,rattus:0.93784);")
+#    print parser.parse_string("(mus:0.987,rattus:0.93784);")
 #    print parser.get_taxa()
-    #print parser.parse_string( '((((((((bla, ble))), ((bla, bli), blo),(blu, bla))))))' )
-    #print "ooo", parser.filter( ['bla', 'ble'] )
-    print(parser.parse_string( '((bla),((bli),blo),blu)' ))
-    print("ooo", parser.filter( ['bla', 'ble'] ))
-    print(parser.parse_string( '((((((((abrocomidae,chinchillidae),((agoutidae,dasyproctidae),(caviidae,hydrochaeridae)),capromyidae,dinomyidae,((echimyidae,myocastoridae),octodontidae)),erethizontidae),((bathyergidae,thryonomyidae),hystricidae)),((dipodidae,muridae),pedetidae)),(anomaluridae,(((aplodontidae,sciuridae),myoxidae),castoridae),(geomyidae,heteromyidae))),(((((((((((antilocapridae,(bovidae,(cervidae,giraffidae))),tragulidae),(((balaenidae,(balaenopteridae,eschrichtiidae)),(((((delphinidae,phocoenidae),monodontidae),platanistidae),ziphiidae),physeteridae)),hippopotamidae)),(suidae,tayassuidae)),camelidae),(equidae,(rhinocerotidae,tapiridae))),(carnivora,manidae)),((((craseonycteridae,emballonuridae),((megadermatidae,(nycteridae,rhinolophidae)),rhinopomatidae)),((((furipteridae,natalidae),thyropteridae),myzopodidae),(molossidae,vespertilionidae),(((mormoopidae,phyllostomidae),noctilionidae),mystacinidae))),pteropodidae)),((((bradypodidae,megalonychidae),dasypodidae),myrmecophagidae),((chrysochloridae,tenrecidae),((((dugongidae,trichechidae),procaviidae),elephantidae),(macroscelididae,orycteropodidae))))),(cynocephalidae,(primates,tupaiidae))),(leporidae,ochotonidae))),(erinaceidae,(solenodontidae,(soricidae,talpidae))))'))
+    #print parser.parse_string('((((((((bla, ble))), ((bla, bli), blo),(blu, bla))))))')
+    #print "ooo", parser.filter(['bla', 'ble'])
+    print(parser.parse_string('((bla),((bli),blo),blu)'))
+    print("ooo", parser.filter(['bla', 'ble']))
+    print(parser.parse_string('((((((((abrocomidae,chinchillidae),((agoutidae,dasyproctidae),(caviidae,hydrochaeridae)),capromyidae,dinomyidae,((echimyidae,myocastoridae),octodontidae)),erethizontidae),((bathyergidae,thryonomyidae),hystricidae)),((dipodidae,muridae),pedetidae)),(anomaluridae,(((aplodontidae,sciuridae),myoxidae),castoridae),(geomyidae,heteromyidae))),(((((((((((antilocapridae,(bovidae,(cervidae,giraffidae))),tragulidae),(((balaenidae,(balaenopteridae,eschrichtiidae)),(((((delphinidae,phocoenidae),monodontidae),platanistidae),ziphiidae),physeteridae)),hippopotamidae)),(suidae,tayassuidae)),camelidae),(equidae,(rhinocerotidae,tapiridae))),(carnivora,manidae)),((((craseonycteridae,emballonuridae),((megadermatidae,(nycteridae,rhinolophidae)),rhinopomatidae)),((((furipteridae,natalidae),thyropteridae),myzopodidae),(molossidae,vespertilionidae),(((mormoopidae,phyllostomidae),noctilionidae),mystacinidae))),pteropodidae)),((((bradypodidae,megalonychidae),dasypodidae),myrmecophagidae),((chrysochloridae,tenrecidae),((((dugongidae,trichechidae),procaviidae),elephantidae),(macroscelididae,orycteropodidae))))),(cynocephalidae,(primates,tupaiidae))),(leporidae,ochotonidae))),(erinaceidae,(solenodontidae,(soricidae,talpidae))))'))
     t = parser.filter (['abrocomidae',
 'agoutidae',
 'ailanthus desf.',
@@ -609,6 +609,6 @@ if __name__ == "__main__":
 'ursidae',
 'vespertilionidae',
 'viverridae',
-'ziphiidae'] )
+'ziphiidae'])
 
     print(t)

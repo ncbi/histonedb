@@ -18,7 +18,7 @@ class Command(BaseCommand):
         make_option('--no-utf8', action='store_true',
                     dest='no_utf8_support', default=False,
                     help='Tells Django to not create a UTF-8 charset database'),
-    )
+   )
     help = "Resets the database for this project."
 
     def handle(self, *args, **options):
@@ -71,8 +71,8 @@ Type 'yes' to continue, or 'no' to cancel: """ % (settings.DATABASE_NAME,))
                 utf8_support = ''
             else:
                 utf8_support = 'CHARACTER SET utf8'
-            create_query = 'CREATE DATABASE %s %s' % ( 
-              settings.DATABASE_NAME, utf8_support )
+            create_query = 'CREATE DATABASE %s %s' % (
+              settings.DATABASE_NAME, utf8_support)
             logging.info('Executing... "' + drop_query + '"')
             connection.query(drop_query)
             logging.info('Executing... "' + create_query + '"')

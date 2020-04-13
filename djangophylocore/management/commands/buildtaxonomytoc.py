@@ -13,7 +13,7 @@ class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
 #        make_option('--verbose', '-v', action='store_true', dest='verbose', 
 #            help='Verbose operation'),
-    )
+   )
     help = "Build taxonomy toc"
     
     requires_system_checks = True
@@ -25,10 +25,10 @@ class Command(NoArgsCommand):
             d[taxa.name] = taxa.id
         localDir = os.path.dirname(__file__)
         absDir = os.path.join(os.getcwd(), localDir)
-        path = os.path.join( absDir,'..','..' ) 
+        path = os.path.join(absDir,'..','..')
         try:
-            os.remove( os.path.join( path, 'taxonomy_toc_ncbi') )
+            os.remove(os.path.join(path, 'taxonomy_toc_ncbi'))
         except:
             pass
-        pickle.dump( d, open( os.path.join( path, 'taxonomy_toc_ncbi' ), 'w' ) )
+        pickle.dump(d, open(os.path.join(path, 'taxonomy_toc_ncbi'), 'w'))
 

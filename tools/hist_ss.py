@@ -198,7 +198,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
                     start       = -1,
                     end         = -1,
                     color       = feature.color,
-                )
+               )
         else:
             yield Feature(
                 id          = "{}_{}".format(os.path.splitext(query_file)[0], feature.id),
@@ -207,7 +207,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
                 start       = start_in_test_seq,
                 end         = end_in_test_seq,
                 color       = feature.color,
-            )
+           )
 
     #Cleanup
     os.remove(needle_results)

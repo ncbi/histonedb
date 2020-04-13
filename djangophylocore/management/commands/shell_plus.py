@@ -8,7 +8,7 @@ class Command(NoArgsCommand):
             help='Tells Django to use plain Python, not IPython.'),
         make_option('--no-pythonrc', action='store_true', dest='no_pythonrc',
             help='Tells Django to use plain Python, not IPython.'),
-    )
+   )
     help = "Like the 'shell' command but autoloads the models of all installed Django apps."
 
     requires_model_validation = True

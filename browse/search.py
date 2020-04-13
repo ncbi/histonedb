@@ -228,11 +228,11 @@ class HistoneSearch(object):
         #The initial query set that is refined later by create_queryset
         self.query_set = Sequence.objects.filter(
                 all_model_scores__used_for_classification=True #Used to make sure we are only annotation the score used for classification
-            ).annotate(
+           ).annotate(
                 num_scores=Count("all_model_scores"),
                 score=Max("all_model_scores__score"),
                 evalue=Min("all_model_scores__evalue")
-             )
+            )
 
         if "search" in self.parameters:
             self.simple_search(self.parameters["search"])

@@ -8,8 +8,8 @@ def test_tree():
 
 # In this tree, there is only scientific names
 
->>> nwk_tree = " ( echinops <plantae>, (rattus, ( mus,(mus musculus))))"
->>> tree = Tree.objects.create( tree_string = nwk_tree, name = "bla")
+>>> nwk_tree = " (echinops <plantae>, (rattus, (mus,(mus musculus))))"
+>>> tree = Tree.objects.create(tree_string = nwk_tree, name = "bla")
 
 >>> tree.is_valid
 True
@@ -26,8 +26,8 @@ True
 
 # In this tree, there's bad taxas, common names, synonyms and homonyms
 
->>> nwk_tree = "( echinops, (rattus, ( mus, azerty, rat noir ), antilocapra anteflexa ))"
->>> tree = Tree.objects.create( tree_string = nwk_tree, name = "bla")
+>>> nwk_tree = "(echinops, (rattus, (mus, azerty, rat noir), antilocapra anteflexa))"
+>>> tree = Tree.objects.create(tree_string = nwk_tree, name = "bla")
 
 >>> tree.is_valid
 True
@@ -58,8 +58,8 @@ True
 
 # we can know the number of occurence of each bad taxa
 
->>> nwk_tree = "(rattus, ( azerty, rat ), badname)"
->>> tree = Tree.objects.create( tree_string = nwk_tree, name = "bla")
+>>> nwk_tree = "(rattus, (azerty, rat), badname)"
+>>> tree = Tree.objects.create(tree_string = nwk_tree, name = "bla")
 
 >>> tree.bad_taxas.all()
 [<BadTaxa: azerty (2)>, <BadTaxa: badname (1)>, <BadTaxa: rat (1)>]
@@ -79,7 +79,7 @@ If a bad newick string is passed, the creation of the tree won't crash.
 This is useful to get statistics of the tree anyway.
 
 >>> bad_nwk = "(mus,(,("
->>> bad_tree = Tree.objects.create( name = 'badtree', tree_string = bad_nwk )
+>>> bad_tree = Tree.objects.create(name = 'badtree', tree_string = bad_nwk)
 >>> bad_tree.taxonomy_objects.all()
 [<Taxonomy: mus (scientific name)>]
 
@@ -91,24 +91,24 @@ False
 Working with delimiter
 ~~~~~~~~~~~~~~~~~~~~~~~
 
->>> nwk_tree = "(rattus_rattus, (mus, mus_musculus ))"
->>> tree2 = Tree.objects.create( tree_string = nwk_tree, name = "blu", delimiter = '_')
+>>> nwk_tree = "(rattus_rattus, (mus, mus_musculus))"
+>>> tree2 = Tree.objects.create(tree_string = nwk_tree, name = "blu", delimiter = '_')
 >>> tree2.taxonomy_objects.all()
 [<Taxonomy: mus (scientific name)>, <Taxonomy: mus musculus (scientific name)>, <Taxonomy: rattus rattus (scientific name)>]
 
 # delimiter can't contain  '(', ')' or ','
 
->>> nwk_tree = "(murinae, (mus, mus(,)musculus ))"
+>>> nwk_tree = "(murinae, (mus, mus(,)musculus))"
 >>> try:
-...     tree2 = Tree.objects.create( tree_string = nwk_tree, name = "blo", delimiter = '(,)')
+...     tree2 = Tree.objects.create(tree_string = nwk_tree, name = "blo", delimiter = '(,)')
 ... except ValueError, e:
 ...     e
 ValueError('"(,)" is a bad delimiter',)
 
 Making queries
 ~~~~~~~~~~~~~~
->>> nwk_tree = " ( echinops <plantae>, (rattus, ( mus,(mus musculus))))"
->>> tree = Tree.objects.create( tree_string = nwk_tree, name = "filtered")
+>>> nwk_tree = " (echinops <plantae>, (rattus, (mus,(mus musculus))))"
+>>> tree = Tree.objects.create(tree_string = nwk_tree, name = "filtered")
 >>> tree.get_nb_taxa_from_parent('muridae')
 3L
 >>> tree.get_nb_taxa_from_parent('plantae')
@@ -129,11 +129,11 @@ NameError: murinae
 True
 >>> tree.eval_query('{plantae}==1 and not {muridae}<2')
 True
->>> tree.eval_query( '{plantae}==1 and {usertaxa} > 1', usertaxa_list=['rattus', 'mus'] )
+>>> tree.eval_query('{plantae}==1 and {usertaxa} > 1', usertaxa_list=['rattus', 'mus'])
 True
->>> tree.eval_query( '{usertaxa} > 1', usertaxa_list=['mus'] )
+>>> tree.eval_query('{usertaxa} > 1', usertaxa_list=['mus'])
 False
->>> tree.eval_query( '{usertaxa} > 1', usertaxa_list=[] )
+>>> tree.eval_query('{usertaxa} > 1', usertaxa_list=[])
 False
 
 ###########################
@@ -141,15 +141,15 @@ False
 ###########################
 
 >>> try:
-...     tree._Tree__get_django_objects_from_nwk( '(rattus,bla)')
+...     tree._Tree__get_django_objects_from_nwk('(rattus,bla)')
 ... except ValueError, e:
 ...     e
 ValueError(u'bla not found in the database',)
 
->>> taxa_list = tree._Tree__get_django_objects_from_nwk( '(rattus,(mus,(echinops,badname)))')
+>>> taxa_list = tree._Tree__get_django_objects_from_nwk('(rattus,(mus,(echinops,badname)))')
 >>> taxa_list
 [<Taxa: rattus>, <Taxa: mus>, <HomonymName: echinops>, <BadTaxa: badname (1)>]
->>> tree._Tree__get_scientific_taxa( taxa_list )
+>>> tree._Tree__get_scientific_taxa(taxa_list)
 [<Taxa: rattus>, <Taxa: mus>]
 
 

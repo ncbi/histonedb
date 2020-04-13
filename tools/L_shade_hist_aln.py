@@ -131,7 +131,7 @@ def write_alignment(tex, align, title, shading_modes=["similar"], logo=False, hi
             shading_modes=shading_modes, 
             logo=logo,
             hideseqs=hideseqs,
-            )
+           )
         print("    \\newpage", file=tex)
 
 
@@ -167,7 +167,7 @@ def write_alignments(alignments, outfile=None, shading_modes=["similar"], logo=T
                 splitN=splitN,
                 secondary_structure=secondary_structure,
                 save_dir=save_dir
-                )
+               )
         print("\\end{document}", file=tex)
 
     #Turn latex into pdf
@@ -239,7 +239,7 @@ if __name__ == '__main__':
         hideseqs=args.hideseqs, 
         splitN=args.splitN,
         secondary_structure=not args.no_secondary_structure
-        )
+       )
 
 
     

@@ -146,7 +146,7 @@ def add_sequence(accession, variant_model, taxonomy, header, sequence):
     header   = header[:250],
     sequence = str(sequence).replace("-", "").upper(),
     reviewed = False,
-    )
+   )
   seq.save()
   return seq
 
@@ -166,7 +166,7 @@ def add_score(seq, variant_model, hsp, best=False):
     seqEnd                  = hsp.hit_end,
     used_for_classification = best,
     regex                   = False,
-    )
+   )
   score.save()
 
 

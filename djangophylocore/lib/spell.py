@@ -5,16 +5,16 @@ import os, re, collections
 localDir = os.path.dirname(__file__)
 absDir = os.path.join(os.getcwd(), localDir)
 
-class Suggestion( object ):
-    def __init__( self, taxonomy ):
+class Suggestion(object):
+    def __init__(self, taxonomy):
         file_name = "spell_file_%s.txt" % taxonomy
         #NWORDS = train(words(file('spell_file.txt').read()))
-        self.NWORDS = self.train(file(os.path.join( absDir, file_name)).read().split('\n'))
+        self.NWORDS = self.train(file(os.path.join(absDir, file_name)).read().split('\n'))
         self.alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-    def words( self, text): return re.findall('[a-z]+', text.lower()) 
+    def words(self, text): return re.findall('[a-z]+', text.lower()) 
 
-    def train( self, features):
+    def train(self, features):
         model = collections.defaultdict(lambda: 1)
         for f in features:
             model[f] += 1
@@ -39,5 +39,5 @@ class Suggestion( object ):
 
 if __name__ == '__main__':
     import sys
-    sugg = Suggestion( 'ncbi' )
-    print(sugg.correct( sys.argv[1] ))
+    sugg = Suggestion('ncbi')
+    print(sugg.correct(sys.argv[1]))

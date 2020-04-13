@@ -59,7 +59,7 @@ class Command(BaseCommand):
                         gene            = alternate_name.get("gene"),
                         splice          = alternate_name.get("splice"),
                         taxonomy        = Taxonomy.objects.get(name=tax_name)
-                    )
+                   )
                     try:
                         alt_variant.save()
                     except:
@@ -111,7 +111,7 @@ class Command(BaseCommand):
                         SeqRecord(Seq(sequence), id=str(template)),
                         template.path(),
                         "fasta"
-                )
+               )
                 used_features = {}
                 for positions in position_lines:
                     for feature_name, group in groupby(enumerate(positions), key=lambda x:x[1]):
@@ -126,7 +126,7 @@ class Command(BaseCommand):
                                 name        = name,
                                 description = info["feature_info"][feature_name]["description"],
                                 color       = info["feature_info"][feature_name]["color"],
-                            )
+                           )
                             feature.save()
                             try:
                                 used_features[name] += 1

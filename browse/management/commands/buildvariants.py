@@ -311,7 +311,7 @@ class Command(BaseCommand):
                     header   = "CURATED SEQUENCE: {}".format(s.description),
                     sequence = s.seq,
                     reviewed = True,
-                )
+               )
                 seq.save()
 
         # Now let's lookup taxid for those having ACCESSIONs via NCBI.
