@@ -123,7 +123,7 @@ True
 Traceback (most recent call last):
  File "<console>", line 1, in <module>
     ...
-    raise NameError, striped_pattern
+    raise NameError(striped_pattern)
 NameError: murinae
 >>> tree.eval_query('{plantae}==1 and {muridae}>2')
 True

@@ -159,11 +159,11 @@ class TaxonomyReference( object ):
         if not self.is_valid_name( taxon_name ):
             if BadTaxa.objects.filter( name = taxon_name ).count():
                 return BadTaxa.objects.get( name = taxon_name )
-            raise ValueError, '%s not found in the database' % taxon_name
+            raise ValueError('%s not found in the database' % taxon_name)
         else:
             return Taxonomy.objects.filter( name = taxon_name )[0]
         # We never should be here
-        raise RuntimeError, 'Something very wrong appened'
+        raise RuntimeError('Something very wrong appened')
 
     def strip_taxon_name( self, taxon_name, delimiter='_' ):
         """
@@ -634,13 +634,13 @@ class Tree( models.Model, TaxonomyReference ):
         global get_taxonomy_toc, BADTAXA_TOC
         TAXONOMY_TOC = get_taxonomy_toc()
         if [i for i in ('(',')',',') if i in self.delimiter]:
-            raise ValueError, '"%s" is a bad delimiter' % self.delimiter
+            raise ValueError('"%s" is a bad delimiter' % self.delimiter)
         tree = self.source.lower()#.replace( self.delimiter, ' ' )
         self.newick_parser = NewickParser()
         try:
             self.newick_parser.parse_string( tree ) # XXX Verifier plantage
             self.is_valid = True
-        except ParseException, err:
+        except ParseException as err:
             self.column_error = err.column
         self.save( dont_generate = True )
         taxa_list = self.newick_parser.get_taxa()
@@ -666,9 +666,9 @@ class Tree( models.Model, TaxonomyReference ):
                     if not taxo:
                         t, created = BadTaxa.objects.get_or_create( name = user_taxon_name )
                         if user_taxon_name not in self.bad_taxon_ids:
-                            print "creating %s in bad taxa" % user_taxon_name
+                            print("creating %s in bad taxa" % user_taxon_name)
                             self.bad_taxon_ids.add( t.id )
-                        print "adding %s in bad taxa" % t.id
+                        print("adding %s in bad taxa" % t.id)
                         self.bad_taxa.add( t )
                     else:
                         taxon = Taxonomy.objects.get( id = taxo )
@@ -692,8 +692,8 @@ class Tree( models.Model, TaxonomyReference ):
         (,(mus, rattus)
          ^
         """
-        print self.source
-        print " "*(err.column-1) + "^"
+        print(self.source)
+        print(" "*(err.column-1) + "^")
 
     def get_taxa( self ):
         if not self._from_collection:
@@ -963,7 +963,7 @@ class Tree( models.Model, TaxonomyReference ):
         for pattern in re.findall("{([^}]+)}", query):
             striped_pattern = pattern.strip().lower()
             if not self.is_valid_name( striped_pattern ):
-                raise NameError, striped_pattern
+                raise NameError(striped_pattern)
             else:
                 nb_occurence = self.get_nb_taxa_from_parent( striped_pattern )
             res = res.replace("{"+pattern+"}", str(nb_occurence) )
@@ -971,8 +971,8 @@ class Tree( models.Model, TaxonomyReference ):
             try:
                 return eval( res )
             except:
-                raise SyntaxError, "bad query 3 %s" % query
-        raise SyntaxError, "bad query 4 %s" % query
+                raise SyntaxError("bad query 3 %s" % query)
+        raise SyntaxError("bad query 4 %s" % query)
 
 
 ##################################################
@@ -1085,7 +1085,7 @@ class TreeCollection( models.Model, TaxonomyReference ):
             cmd = """mysql -u %s -p%s %s -e "LOAD DATA LOCAL INFILE '/tmp/rel_%s.dmp' INTO TABLE djangophylocore_reltreecoltaxa%s FIELDS TERMINATED BY '|';" """ % ( settings.DATABASE_USER, settings.DATABASE_PASSWORD, db_name, name, name )
             os.system( cmd )
         else:
-            raise RuntimeError, "%s engine not supported" % settings.DATABASE_ENGINE
+            raise RuntimeError("%s engine not supported" % settings.DATABASE_ENGINE)
         if settings.DATABASE_ENGINE == 'mysql':
             cursor = connection.cursor()
             cursor.execute( """CREATE INDEX djangophylocore_reltreecoltaxa%s_taxon_id ON djangophylocore_reltreecoltaxa%s (taxon_id);""" % (self.id, self.id ))
@@ -1287,11 +1287,11 @@ class TreeCollection( models.Model, TaxonomyReference ):
         cursor = connection.cursor()
         l_patterns = re.findall("{([^}]+)}", query)
         if not l_patterns:
-            raise ValueError, "malformed request"
+            raise ValueError("malformed request")
         for pattern in l_patterns:
             striped_pattern = pattern.strip().lower()
             if not striped_pattern == 'usertaxa' and not self.is_valid_name( striped_pattern ):
-                raise NameError, striped_pattern+" not found in taxonomy"
+                raise NameError(striped_pattern+" not found in taxonomy")
         for pattern in l_patterns:
             striped_pattern = pattern.strip().lower()
             if not self.is_scientific_name( striped_pattern ) and striped_pattern != "usertaxa":
@@ -1299,7 +1299,7 @@ class TreeCollection( models.Model, TaxonomyReference ):
                 if len(related_scientific_names) == 1:
                     striped_pattern = related_scientific_names[0].name
                 else:
-                    raise ValueError, striped_pattern+" is ambiguous : %s" % [str(i.name) for i in related_scientific_names]
+                    raise ValueError(striped_pattern+" is ambiguous : %s" % [str(i.name) for i in related_scientific_names])
             if 'usertaxa' == striped_pattern and treebase:
                 cur = cursor.execute( "select tree_id, count(taxon_id) from djangophylocore_reltreecoltaxa1 where taxon_id IN (select taxon_id from djangophylocore_reltreecoltaxa%s ) GROUP BY tree_id;" % (self.id ) )
             else:
@@ -1334,7 +1334,7 @@ class TreeCollection( models.Model, TaxonomyReference ):
                     if eval( res0 ):
                        needAllTrees = True; 
                 except:
-                    raise SyntaxError, "bad query 0 %s" % query
+                    raise SyntaxError("bad query 0 %s" % query)
         
         if needAllTrees: 
             baseId=self.id;
@@ -1364,7 +1364,7 @@ class TreeCollection( models.Model, TaxonomyReference ):
                     if eval( result ):
                        l_trees_id.add( tree_id ) 
                 except:
-                    raise SyntaxError, "bad query 2 %s %s" %( query, result)
+                    raise SyntaxError("bad query 2 %s %s" %( query, result))
       
         return Tree.objects.filter( id__in = l_trees_id )
 
@@ -1455,7 +1455,7 @@ class TreeCollection( models.Model, TaxonomyReference ):
                 stat[nbtaxa] = 0
             stat[nbtaxa] += 1
         if not stat.keys():
-            raise ValueError, "your collection must have trees"
+            raise ValueError("your collection must have trees")
         nbmax = max( stat.keys() )
         ratio = int( nbmax*10.0/100) or 1 # 1 to prevent crash in xrange
         result_stat = {}
@@ -1495,7 +1495,7 @@ class TreeCollection( models.Model, TaxonomyReference ):
                     stat[taxon] += 1    
                     already_done.add( taxon )
         if not stat.values():
-            raise ValueError, "your collection must have trees"
+            raise ValueError("your collection must have trees")
         nbmax = max( stat.values() )
         ratio = int( nbmax*10.0/100) or 1
         result_stat = {}
