@@ -54,7 +54,7 @@ def add_to_graph(parameters):
     
     return edges
 
-class TaxonomyReference(object:
+class TaxonomyReference(object):
     """
     This object provides some useful methods in order to deal with taxonomy
     """
