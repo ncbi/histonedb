@@ -6,7 +6,7 @@ from tools.test_model import test_model
 import subprocess
 import os, sys
 import re
-import StringIO
+import io
 from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, fetch_taxids, update_taxonomy
 
 from Bio import SearchIO
@@ -211,7 +211,7 @@ class Command(BaseCommand):
                     # print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
                     # print(hmm.read().rstrip())
                     # print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
-                    print >> combined_hmm, hmm.read().rstrip()
+                    print(hmm.read().rstrip(), file=combined_hmm)
 
     def build_hmm(self, name, db, seqs):
         self.log.info(' '.join(["hmmbuild", "-n", name, db, seqs]))
@@ -538,7 +538,7 @@ class Command(BaseCommand):
         fasta_dict=get_many_prot_seqrec_by_accession(accessions)
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        for accession,record in tqdm(fasta_dict.iteritems()):
+        for accession,record in tqdm(iter(fasta_dict.items())):
             # self.log.info('::DEBUG::buildvariants:: record:\n{}\n'.format(record))
             # headers = record.description.split(" >")
             # for header in headers:

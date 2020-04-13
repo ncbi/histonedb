@@ -39,7 +39,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         verbose = options.get("verbose", True)
         if verbose:
-            print "loading taxonomy, please wait, it can take a while..."
+            print("loading taxonomy, please wait, it can take a while...")
         if not os.path.exists( DUMP_PATH ):
             os.system( 'mkdir %s' % DUMP_PATH )
         else:
@@ -51,14 +51,14 @@ class Command(NoArgsCommand):
         if self.TEST:
             self.__generate_test_fixtures()
         if verbose:
-            print "making rank.dmp"
+            print("making rank.dmp")
         self.make_rank()
         if verbose:
-            print "making taxonomy.dmp"
+            print("making taxonomy.dmp")
         self.make_taxa()
         self.make_taxonomy_plus( verbose )
         if verbose:
-            print "making parents"
+            print("making parents")
         self.make_parents()
 #VRaou09 debug
 #        os.system( 'rm nodes.dmp names.dmp' )
@@ -100,11 +100,11 @@ class Command(NoArgsCommand):
     def download_ncbi( self, verbose ):
         if not os.path.exists( './taxdump.tar.gz' ):
             if verbose:
-                print "Downloading NCBI database on the web"
+                print("Downloading NCBI database on the web")
             os.system( "curl -# ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz > taxdump.tar.gz ")
             #os.system( "wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz" )
         if verbose:
-            print "Extracting database... please wait"
+            print("Extracting database... please wait")
         os.system( "tar xf taxdump.tar.gz names.dmp nodes.dmp" )
  
     def generate_structure( self, verbose ):
@@ -117,7 +117,7 @@ class Command(NoArgsCommand):
                 id = id_parent
             return lp
         if verbose:
-            print "Generating structure..."
+            print("Generating structure...")
         # Retrieving all scientific names
         index = 0
         for line in tqdm(file( self.NAMES ).readlines()):
@@ -129,7 +129,7 @@ class Command(NoArgsCommand):
             if homonym:
                 homonym = self.clean_homonym(name,homonym) #VR sept 09 clean name
             # bad way to handle homonym not declare by NCBI e.g. Influenza A virus (A/turkey/Beit_Herut/1265/03(H9N2))
-            if not homonym and self.TBN.has_key( name ):
+            if not homonym and name in self.TBN:
                 name = name + " ncbiid "+id
             type_name = line.split("|")[3].strip()
             synonym = "synonym" in type_name
@@ -157,28 +157,28 @@ class Command(NoArgsCommand):
                     self.TBN[name] = {}
                     self.TBN[name]["id"] = id
         if verbose:
-            print "Extracting parents..."
+            print("Extracting parents...")
         for node in tqdm(file( self.NODES ).readlines()):
             id = node.split("|")[0].strip()
             parent = node.split("|")[1].strip()
             rank = node.split('|')[2].strip()
             name = self.TBI[id]["name"]
             name = self.TBI[id]['rank'] = rank
-            if not self.TBI.has_key( id ):
+            if id not in self.TBI:
                 self.TBI[id] = {}
             self.TBI[id]["parent"] = parent
-            if not self.TBN.has_key( name ):
+            if name not in self.TBN:
                 self.TBN[name] = {}
             self.TBN[name]["parent"] = parent
         if verbose:
-            print "Filling parents..."
+            print("Filling parents...")
         for node in tqdm(file( self.NODES ).readlines()):
             id = node.split("|")[0].strip()
             self.TBI[id]["parents"] = getParents( id, self.TBI )
 
     def make_taxonomy_plus_old( self, verbose ):
         if verbose:
-            print "Adding synonyms, homonyms and common names..."
+            print("Adding synonyms, homonyms and common names...")
         # Adding synonyms, homonyms and common names
         index = self.index
         list_synonym = []
@@ -248,7 +248,7 @@ class Command(NoArgsCommand):
 
     def make_taxonomy_plus( self, verbose ):
         if verbose:
-            print "Adding synonyms, homonyms and common names..."
+            print("Adding synonyms, homonyms and common names...")
         # Adding synonyms, homonyms and common names
         index = self.index
         list_synonym = []
@@ -281,7 +281,7 @@ class Command(NoArgsCommand):
                     continue
                 base_name = self.TBI[id]["name"]
                 #we don't want synonyms similar to scientific names
-                if self.TBN.has_key(name):
+                if name in self.TBN:
                     continue
                 if synonym:
                     if name not in synonym_toc:
@@ -319,7 +319,7 @@ class Command(NoArgsCommand):
                     continue
                 base_name = self.TBI[id]["name"]         
                 if common:
-                    if name not in common_toc and name not in homonym_toc.keys() and name not in synonym_toc and not self.TBN.has_key( name ):
+                    if name not in common_toc and name not in list(homonym_toc.keys()) and name not in synonym_toc and name not in self.TBN:
                         index += 1
                         list_common.append( "%s|%s|common|2|%s\n" % ( index, name,index) )
                         common_toc[name] = index
@@ -349,7 +349,7 @@ class Command(NoArgsCommand):
         l_rank = []
         list_line = []
         index = 0
-        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
+        for species in tqdm(sorted(list(self.TBI.keys()),key = lambda x: int(x))):
             rank = self.TBI[species]['rank']
             if rank not in l_rank:
                 index += 1
@@ -363,7 +363,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         # Taxa.dmp
         list_line = []
-        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
+        for species in tqdm(sorted(list(self.TBI.keys()),key = lambda x: int(x))):
             if self.TEST:
                 if species not in self.list_id:
                     continue
@@ -383,7 +383,7 @@ class Command(NoArgsCommand):
         global DUMP_PATH
         id_rel = 0
         list_parents = []
-        for species in tqdm(sorted(self.TBI.keys(),key = lambda x: int(x))):
+        for species in tqdm(sorted(list(self.TBI.keys()),key = lambda x: int(x))):
             index = 0
             if self.TEST:
                 if species not in self.list_id:

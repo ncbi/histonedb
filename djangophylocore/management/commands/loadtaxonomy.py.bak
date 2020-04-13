@@ -15,7 +15,7 @@ class Command(NoArgsCommand):
         absDir = os.path.join(os.getcwd(), localDir)
         verbose = options.get("verbose", True)
         if verbose:
-            print("loading taxonomy, please wait, it can take a while...")
+            print "loading taxonomy, please wait, it can take a while..."
         path_dumps = os.path.join( absDir,'..','..', 'dumps' ) 
         db_name = settings.DATABASES["default"]["NAME"]
         db_engine = settings.DATABASES["default"]["ENGINE"]

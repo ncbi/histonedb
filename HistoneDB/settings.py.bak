@@ -36,7 +36,7 @@ def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "database_info.txt"))
             if line.startswith("#"): continue
 
             try:
-                name, value = [s.strip() for s in line.strip().split("=")]
+                name, value = map(lambda s:s.strip(), line.strip().split("="))
             except:
                 continue
 

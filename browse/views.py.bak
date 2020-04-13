@@ -134,7 +134,7 @@ def browse_variant(request, histone_type, variant, accession=None):
         histone_type=Variant.objects.get(id=variant).hist_type
 
     go_to_curated = accession is not None
-    print(accession, "!!!!!!!")
+    print accession, "!!!!!!!"
     go_to_accession = accession if accession is not None else 0
     highlight_human=False
 #Here we want always by default highlight human
@@ -147,7 +147,7 @@ def browse_variant(request, histone_type, variant, accession=None):
 
     green = Color("#66c2a5")
     red = Color("#fc8d62")
-    color_range = list(map(str, red.range_to(green, 12)))
+    color_range = map(str, red.range_to(green, 12))
     
     scores = Sequence.objects.filter(
             variant__id=variant,
@@ -178,7 +178,7 @@ def browse_variant(request, histone_type, variant, accession=None):
     #     human_sequence = sequences.filter(taxonomy__name="homo sapiens").first()
     if not human_sequence:
         human_sequence = sequences.filter(reviewed=True).first()
-    print(human_sequence)
+    print human_sequence
 
     try:
         publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
@@ -193,7 +193,7 @@ def browse_variant(request, histone_type, variant, accession=None):
             record["PMID"],
             ) for record in records]
     except:
-        publications=["PMID: "+str(x) for x in variant.publication_set.values_list("id", flat=True)]
+        publications=map(lambda x: "PMID: "+str(x),variant.publication_set.values_list("id", flat=True))
 
     data = {
         "hist_type": variant.hist_type.id,
@@ -231,7 +231,7 @@ def search(request):
         query = request.POST.copy()
     else:
         query = request.GET.copy()
-    result = HistoneSearch(query, navbar="search" in list(query.keys()))
+    result = HistoneSearch(query, navbar="search" in query.keys())
 
     data["original_query"] = query
 
@@ -245,7 +245,7 @@ def search(request):
 
     green = Color("#66c2a5")
     red = Color("#fc8d62")
-    data["colors"] = list(map(str, red.range_to(green, 12)))
+    data["colors"] = map(str, red.range_to(green, 12))
 
     data["score_min"], data["score_max"] = result.get_score_range()
 
@@ -335,7 +335,7 @@ def get_all_scores(request, ids=None):
     
     variants = list(Variant.objects.all().order_by("id").values_list("id", "hmmthreshold"))
     indices = {variant: i for i, (variant, threshold) in enumerate(variants)}
-    rows = [{} for _ in range(len(variants))]
+    rows = [{} for _ in xrange(len(variants))]
     for i, (variant, threshold) in enumerate(variants):
         rows[i]["variant"] = "{} (T:{})".format(variant, round(threshold,1))
         for id in ids:
@@ -398,7 +398,7 @@ def get_aln_and_features(request, ids=None):
     from tools.hist_ss import get_variant_features
     from tools.L_shade_hist_aln import write_alignments
     import subprocess
-    import io
+    import StringIO
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
     from Bio.SeqRecord import SeqRecord
@@ -489,7 +489,7 @@ def get_aln_and_features(request, ids=None):
         process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         sequences = "\n".join([s.format() for s in sequences])
         aln, error = process.communicate(sequences)
-        seqFile = io.StringIO()
+        seqFile = StringIO.StringIO()
         seqFile.write(aln)
         seqFile.seek(0)
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
@@ -530,7 +530,7 @@ def get_aln_and_features(request, ids=None):
 
         if format == "fasta":
             for s in sequences:
-                print(">{}\n{}".format(s["name"], s["seq"]), file=response)
+                print >> response, ">{}\n{}".format(s["name"], s["seq"])
         elif format == "gff":
             response.write(features) #.full_gff() if features else "")
         elif format == "pdf":

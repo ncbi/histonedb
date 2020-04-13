@@ -6,7 +6,7 @@ from tools.test_model import test_model
 import subprocess
 import os, sys
 import re
-import io
+import StringIO
 from tools.taxonomy_from_accessions import taxonomy_from_header, easytaxonomy_from_header, fetch_taxids, update_taxonomy
 
 from Bio import SearchIO
@@ -14,6 +14,9 @@ from Bio import SeqIO
 from tqdm import tqdm
 
 import logging
+from datetime import date, datetime
+
+HMMER_PROCS=20
 
 #This command is the main one in creating the histone database system from seed alignments
 #and by using HMMs constructed based on these alignment to classify the bigger database.
@@ -66,7 +69,7 @@ class Command(BaseCommand):
         self.log.info('=======================================================')
         self.log.info('===               buildvariants START               ===')
         self.log.info('=======================================================')
-
+        self.start_time=datetime.now()
         ##If no nr file is present in the main dir, will download nr from the NCBI ftp.
         self.db_file=options['db_file']
         if self.db_file == "nr":
@@ -75,6 +78,12 @@ class Command(BaseCommand):
         if self.db_file == "swissprot":
             if options["force"] or not os.path.isfile('swissprot'):
                 self.get_swissprot()
+        if ('http://' in self.db_file) or ('https://' in self.db_file) or ('ftp://' in self.db_file):
+            self.log.info('Provided db file is a link %s - Expecting a gzipped file. Attempting to download ...'%self.db_file)
+            subprocess.call(["wget", self.db_file,'-O','db.gz'])
+            subprocess.call(["gunzip", "db.gz"])
+            self.db_file='db'
+
 
         if options["force"]:
             #Clean the DB, removing all sequence/variants/etc
@@ -99,17 +108,25 @@ class Command(BaseCommand):
             self.load_curated()
             self.get_scores_for_curated_via_hmm()
 
-        if options["force"] or not os.path.isfile(self.db_search_results_file):
+        if options["force"] or not os.path.isfile(self.db_search_results_file+"0"):
             #Search inputted seuqence database using our variantt models
-            self.search_in_db()
+            self.search_in_db_parallel()
 
         #Load the sequences and classify them based on thresholds
-        self.load_from_db()
-        self.extract_full_sequences_from_ncbi()
+        self.load_from_db_parallel()
+        # self.extract_full_sequences_from_ncbi()
+        self.extract_full_sequences_parallel()
 
         # self.extract_full_sequences()
         self.canonical2H2AX()
 
+        self.get_stats()
+
+        seq_num = Sequence.objects.count()
+        seqauto_num = Sequence.objects.filter(reviewed=False).count()
+
+        self.log.info(' The database has %d sequences now !!!'%seq_num)
+        self.log.info(' %d sequences came from automatic search !!!'%seqauto_num)
         self.log.info('=======================================================')
         self.log.info('===       buildvariants SUCCESSFULLY finished       ===')
         self.log.info('=======================================================')
@@ -118,11 +135,21 @@ class Command(BaseCommand):
         """Fix an issue where the canonical variant takes over sequence from H2A.X. 
         The H2A.X motif SQ[ED][YFL]$ is not strong enough, but is the correct variant.
         """
+        self.log.info('Starting canonical2H2AX transformation ...')
+
         for s in Sequence.objects.filter(variant="canonical_H2A",reviewed=False, sequence__regex="SQ[ED][YFLIA]$"):
             old_score = s.all_model_scores.get(used_for_classification=True)
             old_score.used_for_classification = False
             old_score.save()
-            new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+            # new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+            obj = Score.objects.filter(variant__id="H2A.X",sequence=s)
+            if(len(obj)>1):
+                self.log.warning('More than one score object for one variant found - stange!!!')
+                self.log.warning(obj)
+            if(len(obj)==0):
+                new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+            else:
+                new_score=obj.first()
             new_score.used_for_classification = True
             new_score.regex = True
             s.variant_id="H2A.X"
@@ -184,7 +211,7 @@ class Command(BaseCommand):
                     # print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
                     # print(hmm.read().rstrip())
                     # print('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT')
-                    print(hmm.read().rstrip(), file=combined_hmm)
+                    print >> combined_hmm, hmm.read().rstrip()
 
     def build_hmm(self, name, db, seqs):
         self.log.info(' '.join(["hmmbuild", "-n", name, db, seqs]))
@@ -212,6 +239,48 @@ class Command(BaseCommand):
         self.log.info(" ".join(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences]))
         subprocess.call(["hmmsearch", "-o", out, "-E", str(E), "--notextw", hmms_db, sequences])
 
+
+    def search_in_db_parallel(self):
+        return self.search_parallel(hmms_db=self.combined_hmm_file, out=self.db_search_results_file, sequences=self.db_file)
+
+    def search_parallel(self, hmms_db, out, sequences=None, E=10):
+        """Use HMMs to search the nr database"""
+        self.log.info("Searching HMMs in parallel...")
+        # print >> self.stdout, "Searching HMMs..."
+
+        if sequences is None:
+            sequences = self.db_file
+        self.log.info("Splitting database file into %d parts"%HMMER_PROCS)
+        #!!!!!!!!!!!!!!!
+        os.system('mkdir db_split')
+        #This is tricky tricky to make it fast
+        size=os.path.getsize(sequences)
+        split_size=int(size/HMMER_PROCS)+1
+        os.system('split --bytes=%d --numeric-suffixes=1 %s db_split/split'%(split_size,sequences))
+        #We need to heal broken fasta records
+        for i in range(1,HMMER_PROCS+1):
+            for k in range(1,10000):
+                outsp=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
+                if(outsp.split('\n')[-2][0]=='>'):
+                    print(k)
+                    break
+            if(k>1):
+                os.system('head -n %d db_split/split%02d >>db_split/split%02d '%(k-1,i,i-1))
+                os.system('tail -n +%d db_split/split%02d> db_split/temp'%(k,i))
+                os.system('mv db_split/temp db_split/split%02d'%i)
+        
+        self.log.info("Launching %d processes"%HMMER_PROCS)
+        #!!!!!!!!!!!!!!
+        child_procs=[]
+        for i in range(HMMER_PROCS):
+            outp=out+"%d"%i
+            self.log.info(" ".join(["nice","hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)]))
+            p=subprocess.Popen(["nice","hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)])
+            child_procs.append(p)
+        for cp in child_procs:
+            cp.wait()
+
+
     def extract_full_sequences(self, sequences=None):
         """Create database to extract full length sequences"""
 
@@ -229,16 +298,73 @@ class Command(BaseCommand):
         #3) Update sequences with full length NR sequences -- is there a faster way?
         self.log.info("Updating records with full length sequences...")
         for record in SeqIO.parse(self.full_length_seqs_file, "fasta"):
-            headers = record.description.split(" >")
+            headers = record.description.split('\x01')
             for header in headers:
-                gi = header.split("|")[1]
+                gi = header.split(" ")[0]
                 try:
                     seq = Sequence.objects.get(id=gi)
                     self.log.info("Updating sequence: {}".format(seq.description))
                     seq.sequence = str(record.seq)
                     seq.save()
                 except Sequence.DoesNotExist:
+                    self.log.error("Sequence {} does not exist in DB".format(gi))
                     pass
+
+    def extract_full_sequences_parallel(self, sequences=None):
+        """Create database to extract full length sequences"""
+
+        if sequences is None:
+            sequences = self.db_file
+
+        child_procs=[]
+        for i in range(HMMER_PROCS):
+            #1) Create and index of sequence file
+            self.log.info("Indexing sequence database "+"db_split/split%02d"%(i+1))
+            self.log.info(" ".join(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)]))
+            p=subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)])
+            child_procs.append(p)
+        for cp in child_procs:
+            cp.wait()
+
+
+        child_procs=[]
+        for i in range(HMMER_PROCS):
+
+            #2) Extract all ids
+            self.log.info("Extracting full length sequences...")
+            self.log.info(" ".join(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i]))
+            p=subprocess.Popen(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i])
+            child_procs.append(p)
+        for cp in child_procs:
+            cp.wait()
+
+
+        #3) Update sequences with full length NR sequences -- is there a faster way?
+        self.log.info("Updating records with full length sequences...")
+        counter=0
+        counter_dne=0
+        for i in range(HMMER_PROCS):
+            self.log.info("Updating sequences from file {}".format(self.full_length_seqs_file+"%d"%i))
+
+            for record in SeqIO.parse(self.full_length_seqs_file+"%d"%i, "fasta"):
+                headers = record.description.split('\x01')
+                for header in headers:
+                    gi = header.split(" ")[0]
+                    try:
+                        seq = Sequence.objects.get(id=gi)
+                        # self.log.info("Updating sequence: {}".format(seq.description))
+                        seq.sequence = str(record.seq)
+                        seq.save()
+                        counter=counter+1
+                    except Sequence.DoesNotExist:
+                        counter_dne=counter_dne+1
+                        #These seqs likely did not exceed the threshold.
+                        # self.log.error("Strangely sequence %s does not exist in database - unable to update"%gi)
+                        pass
+        self.log.info("Updated %d sequences"%counter)
+        self.log.info("%d sequences where attempded to update, but were not found in the database"%counter_dne)
+
+
 
     def get_scores_for_curated_via_hmm(self):
         """
@@ -269,10 +395,20 @@ class Command(BaseCommand):
                 except:
                     pass
 
+    def load_from_db_parallel(self,reset=True):
+        """Load data into the histone database"""
+        self.log.info("Loading data into HistoneDB...")
+        self.log.info("Processing %d files ..."%HMMER_PROCS)
+        # print >> self.stdout, "Loading data into HistoneDB..."
+        for i in range(HMMER_PROCS):
+            self.log.info("Processing file %s ..."%(self.db_search_results_file+"%d"%i))
+            load_hmm_results(self.db_search_results_file+"%d"%i, self.ids_file+"%d"%i)
+
+
     def load_from_db(self,reset=True):
         """Load data into the histone database"""
         self.log.info("Loading data into HistoneDB...")
-        # print >> self.stdout, "Loading data into HistoneDB..."
+
         load_hmm_results(self.db_search_results_file, self.ids_file)
 
     def load_curated(self):
@@ -402,7 +538,7 @@ class Command(BaseCommand):
         fasta_dict=get_many_prot_seqrec_by_accession(accessions)
 
         #3) Update sequences with full length NR sequences -- is there a faster way?
-        for accession,record in tqdm(iter(fasta_dict.items())):
+        for accession,record in tqdm(fasta_dict.iteritems()):
             # self.log.info('::DEBUG::buildvariants:: record:\n{}\n'.format(record))
             # headers = record.description.split(" >")
             # for header in headers:
@@ -422,4 +558,41 @@ class Command(BaseCommand):
             except Sequence.DoesNotExist:
                 self.log.error('Sequence with accession {} does not exist in DB.'.format(accession))
                 pass
+
+    def get_stats(self):
+        self.log.info('Outputting statistics file ...')
+
+        now = datetime.now()
+        dt_string = now.strftime("%Y%m%d-%H%M%S")
+        with open('log/db_stat_'+dt_string,'w') as f:
+            f.write("Variant database regeneration stitics\n")
+            f.write("DB regen start time: %s \n"%self.start_time)
+            f.write("DB regen end time: %s\n"%now)
+            f.write("Time taken for regeneration of variants: %f hours\n"%(float((now-self.start_time).total_seconds())/3600.))
+            f.write("Parallel threads used %d\n"%HMMER_PROCS)
+            f.write("DB file used: %s\n"%self.db_file)
+            f.write(subprocess.check_output(['ls','-l',self.db_file])+"\n")
+            f.write('---Database statistics----\n')
+            f.write('Total seqs = %d\n'%Sequence.objects.all().count())
+            f.write('Reviewed seqs = %d\n'%Sequence.objects.filter(reviewed=True).count())
+            f.write('Automatic seqs = %d\n'%Sequence.objects.filter(reviewed=False).count())
+
+            f.write('\n---Histone type statistics----\n')
+            f.write('Type        | Total  |Reviewed|  Auto  \n')
+            for h in Histone.objects.all():
+                tot=Sequence.objects.filter(variant__hist_type=h).count()
+                rev=Sequence.objects.filter(variant__hist_type=h,reviewed=True).count()
+                auto=Sequence.objects.filter(variant__hist_type=h,reviewed=False).count()
+
+                f.write('%12s|%8d|%8d|%8d\n'%(h.id,tot,rev,auto))
+
+            f.write('\n---Histone variant statistics----\n')
+            f.write('Variant     | Total  |Reviewed|  Auto  \n')
+            for v in Variant.objects.all():
+                tot=Sequence.objects.filter(variant=v).count()
+                rev=Sequence.objects.filter(variant=v,reviewed=True).count()
+                auto=Sequence.objects.filter(variant=v,reviewed=False).count()
+
+                f.write('%12s|%8d|%8d|%8d\n'%(v.id,tot,rev,auto))
+
 

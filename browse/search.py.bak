@@ -253,19 +253,19 @@ class HistoneSearch(object):
         """Sanitize sort options
         """
         sort_parameters = {"limit": 10, "offset":0, "sort":"evalue", "order":"asc"}
-        sort_query = {p:self.parameters.get(p, v) for p, v in sort_parameters.items()}
+        sort_query = {p:self.parameters.get(p, v) for p, v in sort_parameters.iteritems()}
         self.sort = sort_query
 
     def update_bool_options(self):
         """Updated parameters to include boolean options expanding on their defintion in bool_fields"""
-        for bool_field, updated_options in bool_fields.items():
+        for bool_field, updated_options in bool_fields.iteritems():
             if self.parameters.get(bool_field, False) in ["true", "on"]:
                 self.parameters.update(updated_options)
 
     def create_queryset(self):
         """Sanitize parameters and add them into the query set"""
         
-        for form, (field, search_type, convert) in allowable_fields.items():
+        for form, (field, search_type, convert) in allowable_fields.iteritems():
             value = self.parameters.get(form)
             
             if not value: 

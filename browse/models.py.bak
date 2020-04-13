@@ -63,7 +63,7 @@ class TemplateSequence(models.Model):
         return os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "{}.fasta".format(str(self)))
 
     def get_sequence(self):
-        return next(SeqIO.parse(self.path(), "fasta"))
+        return SeqIO.parse(self.path(), "fasta").next()
 
 
 class Sequence(models.Model):
@@ -220,7 +220,7 @@ extension\tffff66
                 colorName = "color{}".format(len(colors))
                 colors[feature.color[1:]] = colorName
             gff_features += feature.gff(str(sequence_label), colorName)
-        gff_colors = "\n".join(["{}\t{}".format(name, color) for color, name in colors.items()])
+        gff_colors = "\n".join(["{}\t{}".format(name, color) for color, name in colors.iteritems()])
 
         return "{}\n{}".format(gff_colors, gff_features)
 
