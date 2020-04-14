@@ -122,7 +122,7 @@ class Command(NoArgsCommand):
         # Retrieving all scientific names
         index = 0
         # Parallel(n_jobs=2)(delayed(loop1)(line) for line in tqdm(file(self.NAMES).readlines()))
-        for line in tqdm(file(self.NAMES).readlines()):
+        for line in tqdm(open(self.NAMES).readlines()):
             self.index=loop1(line)
         if verbose:
             print("Extracting parents...")
