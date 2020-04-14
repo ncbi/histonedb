@@ -15,14 +15,16 @@ RUN apt-get install -y libapache2-mod-wsgi-py3
 RUN apt-get install -y pv
 
 # Python setup
-RUN yes | apt-get install software-properties-common
-RUN yes | add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get install -y python3.8 # python3-pip not actully need
-RUN yes | python -m pip install virtualenv
+#RUN yes | apt-get install software-properties-common # for python >=3.7
+#RUN yes | add-apt-repository ppa:deadsnakes/ppa # for python >=3.7
+RUN apt-get install -y python3 python3-pip
+RUN cd /usr/bin && ln -sf python3 python
+#RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py # for python >=3.7
+#RUN python get-pip.py # for python >=3.7
+RUN yes | pip3 install virtualenv
 #RUN virtualenv histdb_py36 && /bin/bash -c "source histdb_py36/bin/activate"
-RUN cd /usr/bin && ln -sf python3.8 python
-RUN yes | python -m pip install --upgrade setuptools
-RUN yes | python -m pip install biopython==1.74 numba joblib tqdm colour decorator dj-database-url Django==1.8.19 django-debug-toolbar==1.3.2 django-extensions django-filter==0.10.0 django-filters django-google-analytics-id gunicorn>=19.5.0 matplotlib==1.4.3 mock more-itertools PyMySQL mysqlclient networkx==1.10 nose numpy pandas pbr psycopg2==2.7.0 pyparsing python-dateutil pytz scikit-learn scipy seaborn==0.6.0 six sklearn sqlparse
+RUN yes | pip3 install --upgrade setuptools
+RUN yes | pip3 install biopython==1.74 numba joblib tqdm colour decorator dj-database-url Django==1.8.19 django-debug-toolbar==1.3.2 django-extensions django-filter==0.10.0 django-filters django-google-analytics-id gunicorn>=19.5.0 matplotlib==1.4.3 mock more-itertools PyMySQL mysqlclient networkx==1.10 nose numpy pandas pbr psycopg2==2.7.0 pyparsing python-dateutil pytz scikit-learn scipy seaborn==0.6.0 six sklearn sqlparse
 # Note: MySql-python changed to (PyMySQL + mysqlclient) and removed wsgiref (as it is already inculuded in python 3) for python3
 
 
