@@ -8,8 +8,8 @@ absDir = os.path.join(os.getcwd(), localDir)
 class Suggestion(object):
     def __init__(self, taxonomy):
         file_name = "spell_file_%s.txt" % taxonomy
-        #NWORDS = train(words(file('spell_file.txt').read()))
-        self.NWORDS = self.train(file(os.path.join(absDir, file_name)).read().split('\n'))
+        #NWORDS = train(words(open('spell_file.txt').read()))
+        self.NWORDS = self.train(openos.path.join(absDir, file_name)).read().split('\n'))
         self.alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
     def words(self, text): return re.findall('[a-z]+', text.lower()) 

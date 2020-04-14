@@ -120,7 +120,7 @@ class Command(NoArgsCommand):
             print("Generating structure...")
         # Retrieving all scientific names
         index = 0
-        for line in tqdm(file(self.NAMES).readlines()):
+        for line in tqdm(open(self.NAMES).readlines()):
             id = line.split("|")[0].strip()
             name = line.split("|")[1].strip().lower()
             
@@ -158,7 +158,7 @@ class Command(NoArgsCommand):
                     self.TBN[name]["id"] = id
         if verbose:
             print("Extracting parents...")
-        for node in tqdm(file(self.NODES).readlines()):
+        for node in tqdm(open(self.NODES).readlines()):
             id = node.split("|")[0].strip()
             parent = node.split("|")[1].strip()
             rank = node.split('|')[2].strip()
@@ -172,7 +172,7 @@ class Command(NoArgsCommand):
             self.TBN[name]["parent"] = parent
         if verbose:
             print("Filling parents...")
-        for node in tqdm(file(self.NODES).readlines()):
+        for node in tqdm(open(self.NODES).readlines()):
             id = node.split("|")[0].strip()
             self.TBI[id]["parents"] = getParents(id, self.TBI)
 
@@ -193,7 +193,7 @@ class Command(NoArgsCommand):
         homonym_toc = {}
         common_toc = {}
         synonym_toc = {}
-        for line in tqdm(file(self.NAMES).readlines()):
+        for line in tqdm(open(self.NAMES).readlines()):
             type_name = line.split("|")[3].strip()
             synonym = "synonym" in type_name
             common = "common name" in type_name
@@ -264,7 +264,7 @@ class Command(NoArgsCommand):
         common_toc = {}
         synonym_toc = {}
         
-        for line in file(self.NAMES).readlines():
+        for line in open(self.NAMES).readlines():
             type_name = line.split("|")[3].strip()
             synonym = "synonym" in type_name
             common = "common name" in type_name
@@ -302,7 +302,7 @@ class Command(NoArgsCommand):
                   "%s|%s|%s\n" % (index_relhomonym, homonym_toc[name], id))
         
         #commons        
-        for line in file(self.NAMES).readlines():
+        for line in open(self.NAMES).readlines():
             type_name = line.split("|")[3].strip()
             synonym = "synonym" in type_name
             common = "common name" in type_name
