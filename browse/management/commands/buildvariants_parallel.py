@@ -261,7 +261,7 @@ class Command(BaseCommand):
         for i in range(1,HMMER_PROCS+1):
             for k in range(1,10000):
                 outsp=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
-                if(outsp.split('\n')[-2][0]=='>'):
+                if(outsp.split(b'\n')[-2][0]=='>'):
                     print(k)
                     break
             if(k>1):
@@ -276,7 +276,7 @@ class Command(BaseCommand):
             outp=out+"%d"%i
             self.log.info(" ".join(["nice","hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)]))
             p=subprocess.Popen(["nice","hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)])
-            child_procs.append(p)
+            child_procs.append(p.decode("utf-8"))
         for cp in child_procs:
             cp.wait()
 
@@ -322,7 +322,7 @@ class Command(BaseCommand):
             self.log.info("Indexing sequence database "+"db_split/split%02d"%(i+1))
             self.log.info(" ".join(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)]))
             p=subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)])
-            child_procs.append(p)
+            child_procs.append(p.decode("utf-8"))
         for cp in child_procs:
             cp.wait()
 
@@ -334,7 +334,7 @@ class Command(BaseCommand):
             self.log.info("Extracting full length sequences...")
             self.log.info(" ".join(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i]))
             p=subprocess.Popen(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i])
-            child_procs.append(p)
+            child_procs.append(p.decode("utf-8"))
         for cp in child_procs:
             cp.wait()
 
@@ -571,7 +571,7 @@ class Command(BaseCommand):
             f.write("Time taken for regeneration of variants: %f hours\n"%(float((now-self.start_time).total_seconds())/3600.))
             f.write("Parallel threads used %d\n"%HMMER_PROCS)
             f.write("DB file used: %s\n"%self.db_file)
-            f.write(subprocess.check_output(['ls','-l',self.db_file])+"\n")
+            f.write(subprocess.check_output(['ls','-l',self.db_file]).decode("utf-8")+"\n")
             f.write('---Database statistics----\n')
             f.write('Total seqs = %d\n'%Sequence.objects.all().count())
             f.write('Reviewed seqs = %d\n'%Sequence.objects.filter(reviewed=True).count())
