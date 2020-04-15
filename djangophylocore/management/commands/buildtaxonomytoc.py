@@ -30,5 +30,5 @@ class Command(NoArgsCommand):
             os.remove(os.path.join(path, 'taxonomy_toc_ncbi'))
         except:
             pass
-        pickle.dump(d, open(os.path.join(path, 'taxonomy_toc_ncbi'), 'w'))
+        pickle.dump(d, open(os.path.join(path, 'taxonomy_toc_ncbi'), 'wb'))
 
