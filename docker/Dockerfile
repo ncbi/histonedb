@@ -24,7 +24,7 @@ RUN cd /usr/bin && ln -sf python3 python
 RUN yes | pip3 install virtualenv
 #RUN virtualenv histdb_py36 && /bin/bash -c "source histdb_py36/bin/activate"
 RUN yes | pip3 install --upgrade setuptools
-RUN yes | pip3 install biopython==1.74 numba joblib tqdm colour decorator dj-database-url Django==1.8.19 django-debug-toolbar==1.3.2 django-extensions django-filter==0.10.0 django-filters django-google-analytics-id gunicorn>=19.5.0 matplotlib==1.4.3 mock more-itertools PyMySQL mysqlclient networkx==1.10 nose numpy pandas pbr psycopg2==2.7.0 pyparsing python-dateutil pytz scikit-learn scipy seaborn==0.6.0 six sklearn sqlparse
+RUN yes | pip3 install biopython==1.74 numba==0.47.0 joblib==0.14.1 tqdm==4.43.0 colour==0.1.5 decorator==4.4.2 dj-database-url==0.5.0 Django==1.8.19 django-debug-toolbar==1.3.2 django-extensions==2.2.8 django-filter==0.10.0 django-filters==0.2.1 django-google-analytics-id==1.0.1 gunicorn>=19.5.0 matplotlib==1.4.3 mock==3.0.5 more-itertools==5.0.0 mysqlclient networkx==1.10 nose==1.3.7 numpy==1.16.6 pandas==0.24.2 pbr==5.4.4 psycopg2==2.7.0 PyMySQL pyparsing==2.4.6 python-dateutil==2.8.1 pytz==2019.3 scikit-learn==0.20.4 scipy==1.2.3 seaborn==0.6.0 six==1.11.0 sklearn==0.0 sqlparse==0.3.1
 # Note: MySql-python changed to (PyMySQL + mysqlclient) and removed wsgiref (as it is already inculuded in python 3) for python3
 
 
