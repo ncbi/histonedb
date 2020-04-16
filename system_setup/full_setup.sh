@@ -11,7 +11,7 @@ virtualenv histdb_py27
 source histdb_py27/bin/activate
 echo 'Virtualenv created and set to histdb_py27.'
 #yes Y | sh system_setup/py_requirements_setup.txt
-pip install --yes --no-cache-dir -r system_setup/requirements_full.txt
+pip install --yes --no-cache-dir -r system_setup/py_requirements.txt
 echo 'Python setup complete.'
 
 sudo systemctl restart mysql
