@@ -276,7 +276,7 @@ class Command(BaseCommand):
             outp=out+"%d"%i
             self.log.info(" ".join(["nice","hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)]))
             p=subprocess.Popen(["nice","hmmsearch", "-o", outp,'--cpu','2', "-E", str(E), "--notextw", hmms_db, "db_split/split%02d"%(i+1)])
-            child_procs.append(p.decode("utf-8"))
+            child_procs.append(p)
         for cp in child_procs:
             cp.wait()
 
@@ -322,7 +322,7 @@ class Command(BaseCommand):
             self.log.info("Indexing sequence database "+"db_split/split%02d"%(i+1))
             self.log.info(" ".join(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)]))
             p=subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d"%(i+1)])
-            child_procs.append(p.decode("utf-8"))
+            child_procs.append(p)
         for cp in child_procs:
             cp.wait()
 
@@ -334,7 +334,7 @@ class Command(BaseCommand):
             self.log.info("Extracting full length sequences...")
             self.log.info(" ".join(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i]))
             p=subprocess.Popen(["esl-sfetch", "-o", self.full_length_seqs_file+"%d"%i, "-f", "db_split/split%02d"%(i+1), self.ids_file+"%d"%i])
-            child_procs.append(p.decode("utf-8"))
+            child_procs.append(p)
         for cp in child_procs:
             cp.wait()
 
