@@ -261,7 +261,7 @@ class Command(BaseCommand):
         for i in range(1,HMMER_PROCS+1):
             for k in range(1,10000):
                 outsp=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
-                if(outsp.split(b'\n')[-2][0]==b'>'):
+                if(outsp.split(b'\n')[-2].decode("utf-8")[0]=='>'):
                     print(k)
                     break
             if(k>1):
