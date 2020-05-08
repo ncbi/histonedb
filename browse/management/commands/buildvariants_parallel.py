@@ -163,13 +163,13 @@ class Command(BaseCommand):
         for i in ['H3','H4','H2A','H2B']:
             obj,created = Histone.objects.get_or_create(id=i,taxonomic_span="Eukaryotes",\
                       description="Core histone")
-        if created:
-            self.log.info("Histone {} type was created in database.".format(obj))
+            if created:
+                self.log.info("Histone {} type was created in database.".format(obj.id))
 
         obj,created = Histone.objects.get_or_create(id="H1",taxonomic_span="Eukaryotes",\
                       description="Linker histone")
         if created:
-            self.log.info("Histone {} type was created in database.".format(obj))
+            self.log.info("Histone {} type was created in database.".format(obj.id))
 
     def get_nr(self):
         """Download nr if not present"""
@@ -261,7 +261,7 @@ class Command(BaseCommand):
         for i in range(1,HMMER_PROCS+1):
             for k in range(1,10000):
                 outsp=subprocess.check_output(['head','-n','%d'%k,'db_split/split%02d'%i])
-                if(outsp.split(b'\n')[-2][0]=='>'):
+                if(outsp.split(b'\n')[-2][0]==b'>'):
                     print(k)
                     break
             if(k>1):
@@ -525,8 +525,8 @@ class Command(BaseCommand):
             #We can set hist_type directly by ID, which is hist_type_pos in this case - because it is the primary key in Histone class.
             variant_model, create = Variant.objects.get_or_create(id=variant_name,hist_type_id=hist_type_pos) #,hist_type_id=hist_type_pos)
             if create:
-                self.log.info("Created {} variant model in database".format(variant_model))
-            self.log.info("Updating thresholds for {}".format(variant_model))
+                self.log.info("Created {} variant model in database".format(variant_model.id))
+            self.log.info("Updating thresholds for {}".format(variant_model.id))
             variant_model.hmmthreshold = parameters["threshold"]
             variant_model.aucroc = parameters["roc_auc"]
             variant_model.save()
