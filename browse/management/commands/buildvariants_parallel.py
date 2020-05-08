@@ -128,7 +128,7 @@ class Command(BaseCommand):
         self.log.info(' The database has %d sequences now !!!'%seq_num)
         self.log.info(' %d sequences came from automatic search !!!'%seqauto_num)
         self.log.info('=======================================================')
-        self.log.info('===       buildvariants SUCCESSFULLY finished       ===')
+        self.log.info('===       buildvariants_parallel SUCCESSFULLY finished       ===')
         self.log.info('=======================================================')
 
     def canonical2H2AX(self):
