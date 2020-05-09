@@ -298,13 +298,21 @@ class TaxonomyReference(object):
 
         tree = NX.DiGraph() 
 
-        p = Pool(processes=multiprocessing.cpu_count())
-        node_divisor = len(p._pool)*4
-        node_chunks = list(chunks(taxa_list, int(float(len(taxa_list))/node_divisor)+1))
-        num_chunks = len(node_chunks)
-        
-        for edges in p.imap_unordered(add_to_graph, zip(node_chunks, [allow_ranks]*num_chunks),  num_chunks):
-            tree.add_edges_from(edges)
+        # p = Pool(processes=multiprocessing.cpu_count())
+        # node_divisor = len(p._pool)*4
+        # node_chunks = list(chunks(taxa_list, int(float(len(taxa_list))/node_divisor)+1))
+        # num_chunks = len(node_chunks)
+        #
+        # for edges in p.imap_unordered(add_to_graph, zip(node_chunks, [allow_ranks]*num_chunks),  num_chunks):
+        #     tree.add_edges_from(edges)
+
+        with Pool(processes=multiprocessing.cpu_count()) as p:
+            node_divisor = len(p._pool) * 4
+            node_chunks = list(chunks(taxa_list, int(float(len(taxa_list)) / node_divisor) + 1))
+            num_chunks = len(node_chunks)
+
+            for edges in p.imap_unordered(add_to_graph, zip(node_chunks, [allow_ranks] * num_chunks), num_chunks):
+                tree.add_edges_from(edges)
             
         return tree
 
