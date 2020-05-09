@@ -149,7 +149,7 @@ class BuildTrees(object):
             with open(os.path.join(self.trees_path, "{}.xml".format(core_histone)), "w") as outfile:
                 treestr = io.BytesIO()
                 tree.write(treestr)
-                treestr = treestr.getvalue().replace("phy:", "")
+                treestr = treestr.getvalue().decode("utf-8")ss.replace("phy:", "")
                 header, treestr = treestr.split("\n", 1)
                 treestr = '<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">\n'+treestr
                 outfile.write(treestr)
