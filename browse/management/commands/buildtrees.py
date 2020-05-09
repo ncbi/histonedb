@@ -265,7 +265,7 @@ class Command(BaseCommand):
                         c.append(chart)
 
             with open(os.path.join(self.trees_path, "{}.xml".format(hist_type)), "w") as outfile:
-                treestr = io.StringIO()
+                treestr = io.BytesIO()
                 tree.write(treestr)
                 treestr = treestr.getvalue().replace("phy:", "")
                 header, treestr = treestr.split("\n", 1)

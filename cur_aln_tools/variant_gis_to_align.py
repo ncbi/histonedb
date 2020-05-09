@@ -104,7 +104,7 @@ def muscle_aln(seqreclist):
     sequences = "\n".join([s.format("fasta") for key,s in seqreclist.items()])
     print(sequences)
     aln, error = process.communicate(sequences)
-    seqFile = io.StringIO()
+    seqFile = io.BytesIO()
     seqFile.write(aln)
     seqFile.seek(0)
     sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?

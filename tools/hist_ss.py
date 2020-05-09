@@ -17,7 +17,7 @@ import subprocess
 import sys
 import uuid
 import pickle as pickle
-from io import StringIO
+from io import BytesIO
 import logging
 
 #Required libraires

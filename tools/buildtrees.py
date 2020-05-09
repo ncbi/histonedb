@@ -147,7 +147,7 @@ class BuildTrees(object):
                         clade.append(annotation)
 
             with open(os.path.join(self.trees_path, "{}.xml".format(core_histone)), "w") as outfile:
-                treestr = io.StringIO()
+                treestr = io.BytesIO()
                 tree.write(treestr)
                 treestr = treestr.getvalue().replace("phy:", "")
                 header, treestr = treestr.split("\n", 1)

@@ -489,7 +489,7 @@ def get_aln_and_features(request, ids=None):
         process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         sequences = "\n".join([s.format() for s in sequences])
         aln, error = process.communicate(sequences)
-        seqFile = io.StringIO()
+        seqFile = io.BytesIO()
         seqFile.write(aln)
         seqFile.seek(0)
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?

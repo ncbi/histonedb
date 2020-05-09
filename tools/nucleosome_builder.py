@@ -35,7 +35,8 @@ from Bio.Align import MultipleSeqAlignment
 from Bio import SeqIO
 from Bio import AlignIO
 from Bio.Align.Applications import MuscleCommandline
-from StringIO import StringIO
+# from StringIO import StringIO
+from io import BytesIO
 from Bio.PDB.PDBParser import PDBParser
 from Bio.PDB.Polypeptide import PPBuilder
 import L_fasta2pir
