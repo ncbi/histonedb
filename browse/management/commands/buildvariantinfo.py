@@ -37,7 +37,7 @@ class Command(BaseCommand):
         Publication.objects.all().delete()
         variant_info_path = os.path.join(self.info_directory, "variants.json")
 
-        with open(variant_info_path) as variant_info_file:  
+        with open(variant_info_path, encoding='utf-8') as variant_info_file:
             variant_info = json.load(variant_info_file)
 
         for hist_type_name, variants in variant_info.items():
