@@ -74,7 +74,7 @@ class Command(BaseCommand):
 
         type_info_path = os.path.join(self.info_directory, "types.json")
 
-        with open(type_info_path) as type_info_file:  
+        with open(type_info_path, encoding='utf-8') as type_info_file:
             type_info = json.load(type_info_file)
 
 
@@ -84,7 +84,7 @@ class Command(BaseCommand):
             hist_type.save()
 
         feature_info_path = os.path.join(self.info_directory, "features.json")
-        with open(feature_info_path) as feature_info_file:  
+        with open(feature_info_path, encoding='utf-8') as feature_info_file:
             feature_info = json.load(feature_info_file)
         
         Feature.objects.all().delete()
