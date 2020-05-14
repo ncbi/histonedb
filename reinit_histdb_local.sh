@@ -31,5 +31,4 @@ python manage.py buildblastdb -f
 python manage.py buildvariantinfo -f
 python manage.py buildseedinfo -f
 python manage.py shell < tools/export_data.py # exporting data
-# проверить время, последняя строка в buildvariants 2019-12-11 14:26:35 tools.load_hmmsearch INFO     Loading variant: H2A.W
-# в 18:03, или 15:03 по UTC время изменила
+

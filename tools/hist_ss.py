@@ -130,7 +130,6 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     n2=str(uuid.uuid4())
     template = template_features.first().template
     template_file = template.path()
-    log.info('template_file {}'.format(template_file))
     needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
     cmd = os.path.join(os.path.dirname(sys.executable), "needle")
 
@@ -151,7 +150,6 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     query = align[1]
     
     corresponding_hist = list(range(len(template.get_sequence())))
-    log.info('len of corresponding_hist: {}'.format(len(corresponding_hist)))
     k=0
     for i, core_histone_postion in enumerate(core_histone):
         if core_histone_postion == "-":
@@ -172,7 +170,6 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     for feature in template_features:
         start = feature.start
         stop = feature.end
-        log.info('start = {}, stop = {}'.format(start, stop))
         start_in_aln = corresponding_hist[start]
         end_in_aln = corresponding_hist[stop]
         start_in_test_seq = -1
@@ -220,7 +217,6 @@ def get_features_in_aln(alignment, variant, save_dir="", save_gff=True):
     a=SummaryInfo(alignment)
     cons=a.dumb_consensus(threshold=0.1, ambiguous='X')
     seq = Sequence(id="Consensus", variant_id=variant, taxonomy_id=1, sequence=str(cons))
-    log.info('Getting features of variant {} with consensus {}'.format(variant, str(cons)))
     updated_features = get_variant_features(seq, save_dir=save_dir, save_gff=save_gff)
     return updated_features
 
