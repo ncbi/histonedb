@@ -133,7 +133,7 @@ def load_hmm_results(hmmerFile, id_file):
           # print seq
   #Save original header to extract full sequence
   for idit in hit_ids:
-    print(idit, file=ids)
+    print >> ids, idit
   log.info("From file %s we got %d sequences"%(hmmerFile,len(hit_ids)))
 
   log.info("Deleting %d seqs where HMMsearch found a hit but did not pass threshold"%(unknown_model.sequences.all().count()))
