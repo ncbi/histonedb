@@ -328,7 +328,7 @@ class Rank(models.Model):
     class Meta:
         ordering = ['name']
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.name
 
 
@@ -362,7 +362,7 @@ class Taxonomy(models.Model):
         ordering = ['name']
         unique_together = ['name', 'type_name']
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.name, self.type_name)
 
     def get_homonyms(self):
@@ -491,7 +491,7 @@ class ParentsRelation(models.Model):
         unique_together = ('taxon', 'parent')
         ordering = ['index']
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s > %s (%s)" % (self.parent, self.taxon, self.index)
 
 ##################################################
@@ -506,7 +506,7 @@ class RelCommonTaxa(models.Model):
         ordering = ['taxon','common']
         unique_together = ('common', 'taxon')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> (%s)" % (self.common, self.taxon)
 
 ##################################################
@@ -520,7 +520,7 @@ class RelSynonymTaxa(models.Model):
         ordering = ['taxon','synonym']
         unique_together = ('synonym', 'taxon')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> (%s)" % (self.synonym, self.taxon)
 
 ##################################################
@@ -534,7 +534,7 @@ class RelHomonymTaxa(models.Model):
         ordering = ['taxon','homonym']
         unique_together = ('homonym', 'taxon')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> (%s)" % (self.homonym, self.taxon)
 
 ##################################################
@@ -547,7 +547,7 @@ class BadTaxa(models.Model):
     class Meta:
         ordering = ['name']
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.name, self.nb_occurence)
 
 ##################################################
@@ -562,7 +562,7 @@ class TaxonomyTreeOccurence(models.Model):
     class Meta:
         unique_together = ('taxon', 'tree', 'user_taxon_name')
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s (%s) %s' % (self.taxon, self.nb_occurence, self.tree)
 
 class Tree(models.Model, TaxonomyReference):
@@ -618,7 +618,7 @@ class Tree(models.Model, TaxonomyReference):
     bad_taxa = models.ManyToManyField(BadTaxa, related_name = 'trees' )
     taxon_ids = []
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
 
     @transaction.atomic
@@ -1035,7 +1035,7 @@ class TreeCollection(models.Model, TaxonomyReference):
     created = models.DateTimeField()
     updated = models.DateTimeField()
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.name, self.format)
 
     @transaction.atomic
@@ -1860,7 +1860,7 @@ class AbstractTreeColTaxa(models.Model):
                 
     class Meta:
         abstract = True
-    def __unicode__(self):
+    def __str__(self):
         return u"%s|%s|%s" % (self.collection.id, self.tree.id, self.user_taxon_name)
 
 #############################################

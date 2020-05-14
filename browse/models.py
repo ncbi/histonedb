@@ -15,7 +15,7 @@ class Histone(models.Model):
     taxonomic_span = models.CharField(max_length=100)
     description    = models.CharField(max_length=1000)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.id
 
     def get_absolute_url(self):
@@ -34,7 +34,7 @@ class Variant(models.Model):
     hmmthreshold  = models.FloatField(null=True) # parameter used in hmmersearch during sequence annotation
     aucroc        = models.IntegerField(null=True) # another parameter - these paramters are calculated during testing phase of manage.py buildvariants
 
-    def __unicode__(self):
+    def __str__(self):
         return self.id
 
     def get_absolute_url(self):
@@ -49,14 +49,14 @@ class OldStyleVariant(models.Model):
     splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
     taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} (now called {})".format(self.name, self.updated_variant.id)
 
 class TemplateSequence(models.Model):
     variant  = models.CharField(max_length=255) #Not a foreign key; Maybe it is "General". It is just used to specify path
     taxonomy = models.ForeignKey(Taxonomy)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{}_{}".format(self.variant, self.taxonomy.name)
 
     def path(self):
@@ -86,7 +86,7 @@ class Sequence(models.Model):
         else:
             return False
 
-    def __unicode__(self):
+    def __str__(self):
         return self.format() #"{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name, self.taxonomy.name)
 
     @property
@@ -169,7 +169,7 @@ class Score(models.Model):
     used_for_classification = models.BooleanField()
     regex                   = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return "<{} variant={}; score={}; above_threshold={}; used_for_classification={} >".format(self.sequence.id, self.variant.id, self.score, self.above_threshold, self.used_for_classification)
 
     def description(self):
@@ -243,7 +243,7 @@ class Feature(models.Model):
     class Meta:
         ordering = ["start"]
 
-    def __unicode__(self):
+    def __str__(self):
         """Returns Jalview GFF format"""
         return self.gff(str(self.template))
 
