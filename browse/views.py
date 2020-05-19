@@ -488,9 +488,9 @@ def get_aln_and_features(request, ids=None):
         muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
         process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         sequences = "\n".join([s.format() for s in sequences])
-        aln, error = process.communicate(sequences)
-        seqFile = io.BytesIO()
-        seqFile.write(aln)
+        aln, error = process.communicate(sequences.encode('utf-8'))
+        seqFile = io.StringIO()
+        seqFile.write(aln.decode('utf-8'))
         seqFile.seek(0)
         sequences = list(SeqIO.parse(seqFile, "fasta")) #Not in same order, but does it matter?
         msa = MultipleSeqAlignment(sequences)
