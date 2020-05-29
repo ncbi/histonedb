@@ -1,20 +1,21 @@
-#This file contains the user name and password for the HistoneDB 2.0
-#and specific computer settings. Chnages values here or, if you need
-#the information to kept sectret use the "file = path", to load from
-# a hidden directory
-# db_type is  'postgresql_psycopg2', 'mysql', 'sqlite3'
-#mysql by default
-db_type = mysql
-name = db_name
-user = db_user
-password = db_password
-host = db_host
-port = db_port
-#port = 5432 #if postgreSQL
-SECRET_KEY = DJANGO_SECRET_KEY
-STATIC_URL = /static/
-#DEBUG = True
-file = /var/www/histonedb/HistoneDB/database_info_dev.txt
+#This file contains the user name and password for the HistoneDB 2.0 
+#and specific computer settings. Chnages values here or, if you need 
+#the information to kept sectret use the "file = path", to load from 
+# a hidden directory 
+# db_type is 'postgresql_psycopg2', 'mysql', 'sqlite3' 
+#mysql by default 
+db_type = mysql 
+name = db_name 
+user = db_user 
+password = db_password 
+host = localhost 
+port = 13306 
+#port = 5432 #if postgreSQL 
+SECRET_KEY = DJANGO_SECRET_KEY 
+GOOGLE_ANALYTICS_ID = GOOGLE_ANALYTICS_ID 
+STATIC_URL = /static/ 
+DEBUG = True 
+#file = /home/l_singh/histonedb/HistoneDB/NCBI_database_info.txt 
 #STATIC_URL = /home/l_singh/histonedb/static/
-#FORCE_SCRIPT_NAME = /home/l_singh/histonedb/index.fcgi/
-DEBUG = False
+#FORCE_SCRIPT_NAME = /home/l_singh/histonedb/index.fcgi/ 
+#DEBUG = False
