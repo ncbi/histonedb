@@ -6,6 +6,9 @@ Create project directory and directories where to mount project code and databas
 mkdir project_dir
 cd project_dir
 git clone https://github.com/intbio/histonedb.git
+cd histonedb
+git checkout histonedb_py36
+cd ../
 mkdir db
 ```
 
