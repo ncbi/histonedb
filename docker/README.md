@@ -77,3 +77,7 @@ So it means on the host
 ### For development
 - Profiling
 ```python -m cProfile -s cumtime manage.py buildvariants```
+
+- Imaging
+```docker image build -t intbio/histonedb:0.0.1 .```
+```docker push intbio/histonedb:0.0.1```
