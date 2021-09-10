@@ -8,52 +8,52 @@
 asgiref==3.3.4
     # via django
 biopython==1.78
-    # via -r requirements/full.in
+    # via -r full.in
 colour==0.1.5
-    # via -r requirements/full.in
+    # via -r full.in
 cycler==0.10.0
     # via matplotlib
 decorator==4.4.2
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   networkx
 dj-database-url==0.5.0
-    # via -r requirements/full.in
-django-debug-toolbar==3.2.1
-    # via -r requirements/full.in
-django-extensions==3.1.3
-    # via -r requirements/full.in
-django-filter==2.4.0
-    # via -r requirements/full.in
+    # via -r full.in
 django==3.2.4
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   django-debug-toolbar
     #   django-extensions
     #   django-filter
+django-debug-toolbar==3.2.1
+    # via -r full.in
+django-extensions==3.1.3
+    # via -r full.in
+django-filter==2.4.0
+    # via -r full.in
 gunicorn==20.1.0
-    # via -r requirements/full.in
+    # via -r full.in
 joblib==1.0.1
     # via scikit-learn
 kiwisolver==1.3.1
     # via matplotlib
 matplotlib==3.4.1
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   seaborn
 mock==4.0.3
-    # via -r requirements/full.in
+    # via -r full.in
 more-itertools==8.7.0
-    # via -r requirements/full.in
+    # via -r full.in
 mysqlclient==2.0.3
-    # via -r requirements/full.in
+    # via -r full.in
 networkx==2.5.1
-    # via -r requirements/full.in
+    # via -r full.in
 nose==1.3.7
-    # via -r requirements/full.in
+    # via -r full.in
 numpy==1.20.2
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   biopython
     #   matplotlib
     #   pandas
@@ -62,54 +62,54 @@ numpy==1.20.2
     #   seaborn
 pandas==1.2.4
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   seaborn
 pbr==5.6.0
-    # via -r requirements/full.in
+    # via -r full.in
 pillow==8.2.0
     # via matplotlib
 psycopg2==2.8.6
-    # via -r requirements/full.in
+    # via -r full.in
 pyparsing==2.4.7
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   matplotlib
 python-dateutil==2.8.1
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   matplotlib
     #   pandas
 pytz==2021.1
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   django
     #   pandas
 scikit-learn==0.24.2
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   sklearn
 scipy==1.6.3
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   scikit-learn
     #   seaborn
 seaborn==0.11.1
-    # via -r requirements/full.in
+    # via -r full.in
 six==1.16.0
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   python-dateutil
 sklearn==0.0
-    # via -r requirements/full.in
-sqlparse==0.4.1
+    # via -r full.in
+sqlparse==0.4.2
     # via
-    #   -r requirements/full.in
+    #   -r full.in
     #   django
     #   django-debug-toolbar
 threadpoolctl==2.1.0
     # via scikit-learn
 whitenoise==5.2.0
-    # via -r requirements/full.in
+    # via -r full.in
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
