@@ -10,6 +10,7 @@ cd histonedb
 git checkout histonedb_py36
 cd ../
 mkdir db
+cd ..
 docker stop histdb; docker rm histdb # optional if container exists and is running
 ```
 
