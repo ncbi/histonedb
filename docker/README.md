@@ -18,7 +18,7 @@ Then you can run HistoneDB via two ways.
 
 - Run as a service in docker, this will run apache and attempt to start mysqld
 
-```docker run --name histdb -d -p 8080:10080 -v project_dir/histonedb:/var/www/histonedb -v project_dir/db:/var/lib/mysql intbio/histonedb:0.2.0  ```
+```docker run --name histdb -d -p 8080:10080 -v `pwd`/project_dir/histonedb:/var/www/histonedb -v `pwd`/project_dir/db:/var/lib/mysql intbio/histonedb:0.2.0```
 
 - Check the website is available at http://localhost:8080
 
