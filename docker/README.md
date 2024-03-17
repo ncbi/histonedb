@@ -21,7 +21,7 @@ Then you can run HistoneDB via two ways.
 
 ```docker stop histdb; docker rm histdb # optional if container exists and is running```
 
-```docker run --name histdb -d -p 8080:10080 -v `pwd`/project_dir/histonedb:/var/www/histonedb -v `pwd`/project_dir/db:/var/lib/mysql intbio/histonedb:0.2.0```
+```docker run --name histdb -d -p 8080:10085 -v `pwd`/project_dir/histonedb:/var/www/histonedb -v `pwd`/project_dir/db:/var/lib/mysql intbio/histonedb:0.2.0```
 
 - Check the website is available at http://localhost:8080
 
@@ -43,7 +43,7 @@ Then you can run HistoneDB via two ways.
 
 ```singularity build --sandbox cont docker://intbio/histonedb:0.2.0```
 
-- Run apache on prot 10080 and attempt to start mysqld
+- Run apache on prot 10085 and attempt to start mysqld
 
 ```singularity instance start --writable --bind project_dir/histonedb:/var/www/histonedb,project_dir/db:/var/lib/mysql cont histdb```
 
