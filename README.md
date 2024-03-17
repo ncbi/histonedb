@@ -1,3 +1,7 @@
+This branch is a prot of original HistoneDB to Python 3.6.
+For a working setup of how it can be run -- see the docker container instructions in [docker](docker) folder.
+
+
 # HistoneDB
 A database for all histone proteins in NR organized by their known non-allelic protein isoforms, called variants. This resource can be used to understand how changes in histone variants affect structure, complex formation, and nucleosome function. For more information, please read our [paper](manuscript/paper.md) (citation below).
 
