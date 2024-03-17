@@ -30,7 +30,8 @@ Then you can run HistoneDB via two ways.
 ```docker exec -it histdb bash```
 
 - Next in reinit_histdb_local.sh adjust the database you would want to build HistoneDB from (swissprot, nr, etc.)
-
+```sed -i   's/sleep 5/sleep 10/g' db_gen.sh ``` # turned out 5 secs are not always enough for DB initialization
+  
 ```bash db_gen.sh -mysql_db_reinit -histdb_reinit```
 
 - To stop the container run
