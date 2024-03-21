@@ -28,10 +28,7 @@ def process_upload(sequences, format, request):
         raise InvalidFASTA("Invalid format: {}. Must be either 'file' or 'text'.".format(format))
 
     if format == "text":
-        seq_file = io.BytesIO()
-        seq_file.write(sequences)
-        seq_file.seek(0)
-        sequences = seq_file
+        sequences = io.StringIO(sequences)
 
     sequences = SeqIO.parse(sequences, "fasta", IUPAC.ExtendedIUPACProtein())
 
@@ -74,12 +71,9 @@ def upload_blastp(sequences):
         db=os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fa"), 
         evalue=0.01, outfmt=5)
     out, err = blastp_cline(stdin="\n".join([s.format("fasta") for s in sequences]))
-    blastFile = io.BytesIO()
-    blastFile.write(out)
-    blastFile.seek(0)
     
     results = []
-    for i, blast_record in enumerate(NCBIXML.parse(blastFile)):
+    for i, blast_record in enumerate(NCBIXML.parse(io.StringIO(out))):
         result = []
         for alignment in blast_record.alignments:
             try:
@@ -155,10 +149,7 @@ def upload_hmmer(sequences, evalue=10):
 
     process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     output, error = process.communicate()
-    hmmerFile = io.BytesIO()
-    hmmerFile.write(output)
-    hmmerFile.seek(0)
-    for variant_query in SearchIO.parse(hmmerFile, "hmmer3-text"):
+    for variant_query in SearchIO.parse(io.StringIO(output.decode('utf-8')), "hmmer3-text"):
         variant = variant_query.id
         # print variant
         try:
