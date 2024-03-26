@@ -87,29 +87,29 @@ def upload_blastp(sequences):
             except IndexError:
                 continue
             for hsp in alignment.hsps:
-                sequence = Sequence.objects.filter(
-                        (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=True)) | \
-                        (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=False)) \
-                    ).annotate(
-                        num_scores=Count("all_model_scores"), 
-                        score=Max("all_model_scores__score"),
-                        evalue=Min("all_model_scores__evalue")
-                    ).get(id=gi)
-                search_evalue = hsp.expect
-                #We will now append only if the sequences is a cureated one(!)
-                # Indeed now it is not needed since the blastdb has only reviewed seqs. but lets keep it for now.
-                if(sequence.reviewed==True):
-                    result.append({
-                        "id":str(sequence.id),
-                        "variant":str(sequence.variant_id),
-                        "gene":str(sequence.gene) if sequence.gene else "-",
-                        "splice":str(sequence.splice) if sequence.splice else "-",
-                        "taxonomy":str(sequence.taxonomy.name.capitalize()),
-                        "score":str(sequence.score),
-                        "evalue":str(sequence.evalue),
-                        "header":str(sequence.header),
-                        "search_e":str(search_evalue),
-                    })
+                try:
+                    sequence = Sequence.objects.filter(
+                            (~Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=True)) | \
+                            (Q(variant__id="Unknown") & Q(all_model_scores__used_for_classification=False)) \
+                        ).annotate(num_scores=Count("all_model_scores"),score=Max("all_model_scores__score"),
+                                   evalue=Min("all_model_scores__evalue")).get(id=gi)
+                    search_evalue = hsp.expect
+                    #We will now append only if the sequences is a cureated one(!)
+                    # Indeed now it is not needed since the blastdb has only reviewed seqs. but lets keep it for now.
+                    if(sequence.reviewed==True):
+                        result.append({
+                            "id":str(sequence.id),
+                            "variant":str(sequence.variant_id),
+                            "gene":str(sequence.gene) if sequence.gene else "-",
+                            "splice":str(sequence.splice) if sequence.splice else "-",
+                            "taxonomy":str(sequence.taxonomy.name.capitalize()),
+                            "score":str(sequence.score),
+                            "evalue":str(sequence.evalue),
+                            "header":str(sequence.header),
+                            "search_e":str(search_evalue),
+                        })
+                except:
+                    continue
         if not result:
             raise InvalidFASTA("No blast hits for {}.".format(blast_record.query))
         results.append(result)

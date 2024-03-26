@@ -15,6 +15,6 @@
 #STATIC_URL = /static/
 #DEBUG = True
 file = /web/public/data/projects/HistoneDB2.0/NCBI_database_info.txt
-STATIC_URL = /projects/HistoneDB2.0/HistoneDB/static/
-FORCE_SCRIPT_NAME = /projects/HistoneDB2.0/index.fcgi/
+STATIC_URL = /research/HistoneDB2.0/HistoneDB/static/
+FORCE_SCRIPT_NAME = /research/HistoneDB2.0/index.fcgi/
 DEBUG = False
