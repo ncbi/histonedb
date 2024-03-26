@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static i18n %}
 {% load browse_filters %}
 
 {% block includes %}
@@ -30,7 +30,7 @@
     {% if error %}
     <div class="alert alert-danger" role="alert">{{ error }}</div>
     {% endif %}
-    <form role="search" action="{% url 'browse.views.analyze' %}" id="analyze_form" enctype="multipart/form-data" method="POST">
+    <form role="search" action="{% url 'browse:analyze' %}" id="analyze_form" enctype="multipart/form-data" method="POST">
       {% csrf_token %}
       {% for field in analyze_form %}
         <div class="form-group">
@@ -77,7 +77,7 @@
     {% include "scores.html" with hmmer_results=result.3 ids=result.0|listify page_name="analyze_scores"%}
     <script type="text/javascript">
       $(function() {
-        createMSA("quick_msa-analyze_sequences", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id={{ result.5 }}", "", 975, 75, false);
+        createMSA("quick_msa-analyze_sequences", "{% url 'browse:get_aln_and_features' %}?upload=true&id={{ result.5 }}", "", 975, 75, false);
         $('#sequence_table_analyze_sequences tr[data-index="0"]').addClass('success');
       });
     </script>

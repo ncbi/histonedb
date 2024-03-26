@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static i18n %}
 {% load browse_filters %}
 
 {% block set_filter_by_page %}
@@ -67,8 +67,8 @@ $('#id_variant_search_type_drop_down_button').hide()
       <div class="row">
         <div class="col-xs-12">
           <h1>
-            <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
-            <a href="{% url 'browse.views.browse_variants' hist_type %}">{{hist_type}}</a> /
+            <a href="{% url 'browse:browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
+            <a href="{% url 'browse:browse_variants' hist_type %}">{{hist_type}}</a> /
             {% if "canonical" in variant %}
             {{ variant|undspace }}<span id="taxonomy_title"></span>
             {%  else %}
@@ -127,7 +127,7 @@ $('#id_variant_search_type_drop_down_button').hide()
                         <div id="quick-msa-variant-summary"></div>
                     <script>
                       $(function() {
-                        createMSA("quick-msa-variant-summary", "{% url 'browse.views.get_aln_and_features' %}?id={{ human_sequence }}", "", 975, 75, false);
+                        createMSA("quick-msa-variant-summary", "{% url 'browse:get_aln_and_features' %}?id={{ human_sequence }}", "", 975, 75, false);
                       });
                     </script>
                     {% if features_var %}

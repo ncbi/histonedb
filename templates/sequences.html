@@ -54,7 +54,7 @@
   You can tick mark the sequences and use toolbar to view MSA, export or add to basket. Use search to find particular entries.</div>
 
   <div style="height: 110px;">
-  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see <a id="info_page_link" href="{% url 'browse.views.browse_variant' 'ALL' result.6 %}" target="_blank">info page of the corresponding variant</a>.</div>
+  <div class="container" style="text-align:center">Keys: red - identical residues, blue - different residues (if more than one sequence). For feature legend see <a id="info_page_link" href="{% url 'browse:browse_variants_variant' 'ALL' result.6 %}" target="_blank">info page of the corresponding variant</a>.</div>
 
 
   <div id="quick_msa-{{page_name}}">Sequence preview and annotation... LOADING<br><br><br><br><br><br></div>
@@ -230,10 +230,10 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
 
         window.variantEvents = {
           'click #variant_actions_browse_core': function (e, value, row, index) {
-              document.location.href = "{% url 'browse.views.search' %}?search="+row.type;
+              document.location.href = "{% url 'browse:search' %}?search="+row.type;
           },
           'click #variant_actions_browse_variant': function (e, value, row, index) {
-              document.location.href = "{% url 'browse.views.search' %}?search="+row.variant;
+              document.location.href = "{% url 'browse:search' %}?search="+row.variant;
           }
         }
 
@@ -271,7 +271,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
               {% endif %}
           },
           'click #taxonomy_actions_browse_all': function (e, value, row, index) {
-              document.location.href = "{% url 'browse.views.search' %}?id_taxonomy="+row.taxid;
+              document.location.href = "{% url 'browse:search' %}?id_taxonomy="+row.taxid;
           },
           'click #taxonomy_actions_browse_ncbi': function (e, value, row, index) {
               document.location.href = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id="+row.taxid+"&lvl=3&lin=f&keep=1&srchmode=5&unlock";
@@ -283,7 +283,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
               document.location.href = "http://www.ncbi.nlm.nih.gov/protein/?term="+row.id;
           },
           'click #gi_actions_view_fasta': function (e, value, row, index) {
-              document.location.href = "{% url 'browse.views.get_all_sequences' %}?id="+row.id;
+              document.location.href = "{% url 'browse:get_all_sequences' %}?id="+row.id;
           },
           'click #gi_actions_basket': function (e, value, row, index) {
               addToBasket{{ page_name }}([row.id]);
@@ -305,7 +305,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           data: {% autoescape off %}{{ blast_results|jsonify }}{% endautoescape %},
           sidePagination:"client",
           {% else %}
-          url: "{% url 'browse.views.get_sequence_table_data' %}",
+          url: "{% url 'browse:get_sequence_table_data' %}",
           sidePagination:"server",
           queryParams: function(params){
             if (typeof extra_seq_params_{{ page_name }} == "undefined") {
@@ -352,29 +352,29 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           onLoadSuccess: function(data){
 
             {% if go_to_curated or highlight_human %}
-              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id={{ go_to_accession }}", "", 975, 75, false);
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse:get_aln_and_features' %}?id={{ go_to_accession }}", "", 975, 75, false);
               var rownum=data.rows.map(function(x){return x.id}).indexOf("{{go_to_accession}}")
               $('#sequence_table_{{ page_name }}').bootstrapTable('scrollTo', rownum*35);
               $('#sequence_table_{{ page_name }} tr[data-index="'+rownum.toString()+'"]').addClass('success');
 
             {% elif analyze %}
-              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id="+data.rows[0].id, "", 975, 75, false);
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse:get_aln_and_features' %}?upload=true&id="+data.rows[0].id, "", 975, 75, false);
               $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
 
             {% else %}
                 if(data.rows.length>0){
-              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse:get_aln_and_features' %}?id="+data.rows[0].id, "", 975, 75, false);
               $('#sequence_table_{{ page_name }} tr[data-index="0"]').addClass('success');
                 }
             {% endif %}
           },
           onClickCell:function(event, value, row, index){
             {% if analyze %}
-              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?upload=true&id="+row.id, "", 975, 75, false);
-              $("#info_page_link").attr("href","{% url 'browse.views.browse_variant' 'ALL' 'VVV'%}".replace("VVV",row.variant));
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse:get_aln_and_features' %}?upload=true&id="+row.id, "", 975, 75, false);
+              $("#info_page_link").attr("href","{% url 'browse:browse_variants_variant' 'ALL' 'VVV'%}".replace("VVV",row.variant));
 
             {% else %}
-              createMSA("quick_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
+              createMSA("quick_msa-{{page_name}}", "{% url 'browse:get_aln_and_features' %}?id="+row.id, "", 975, 75, false);
             {% endif %}
           },
           {% endif %}
@@ -391,7 +391,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
           for (var i = 0; i < ids.length; i++) {
             params += "id="+ids[i]+"&"
           }
-          createMSA("full_msa-{{page_name}}", "{% url 'browse.views.get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse.views.get_aln_and_features' %}?download=true", 975, 0, true); //msa_div_modal_{{ page_name }}
+          createMSA("full_msa-{{page_name}}", "{% url 'browse:get_aln_and_features' %}"+params.substring(0, params.length-1), "{% url 'browse:get_aln_and_features' %}?download=true", 975, 0, true); //msa_div_modal_{{ page_name }}
           $('#keys_{{ page_name }}').show();
           //$('#msa_modal_{{ page_name }}').modal('show');
           $('html, body').animate({
@@ -410,7 +410,7 @@ var $table_{{ page_name }} = $('#sequence_table_{{ page_name }}'),
             params += "id="+ids[i]+"&"
           }
           params += "format=fasta&download=true";
-          document.location.href = "{% url 'browse.views.get_all_sequences' %}"+params;
+          document.location.href = "{% url 'browse:get_all_sequences' %}"+params;
         });
 
         $entrez_{{ page_name }}.click(function () {

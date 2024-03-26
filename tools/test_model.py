@@ -94,8 +94,8 @@ def test_model(model_name, save_dir, postive_file, negative_file, measure="SPC",
     trans = f.transFigure.inverted()
     colors = sns.color_palette("Set2", 7)
 
-    sns.kdeplot(np.array(postive_scores), shade=True, color=sns.xkcd_rgb["denim blue"], label="Scores for postive examples", ax=axes[0])
-    sns.kdeplot(np.array(negative_scores), shade=True, color=sns.xkcd_rgb["pale red"], label="Scores for negative examples",  ax=axes[0])
+    sns.kdeplot(np.array(postive_scores), fill=True, color=sns.xkcd_rgb["denim blue"], label="Scores for postive examples", ax=axes[0])
+    sns.kdeplot(np.array(negative_scores), fill=True, color=sns.xkcd_rgb["pale red"], label="Scores for negative examples",  ax=axes[0])
     axes[0].set_xlabel("Bit score")
     axes[0].set_ylabel("Density")
     axes[0].legend(loc="upper left")

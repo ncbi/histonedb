@@ -7,7 +7,7 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 """
 
-import os, sys
+import os
 
 # sys.path.append('/home/l_singh/.local/lib/python2.7/site-packages')
 # output = ''

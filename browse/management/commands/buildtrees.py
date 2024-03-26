@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from browse.models import *
 
 import os
@@ -9,8 +9,6 @@ import logging
 
 from Bio import SeqIO
 from Bio import Phylo
-from Bio.Phylo import PhyloXML
-from Bio.Phylo import PhyloXMLIO
 
 import xml.etree.ElementTree as ET
 ET.register_namespace("", "http://www.phyloxml.org/1.10/phyloxml.xsd")
@@ -104,12 +102,12 @@ class Command(BaseCommand):
                 for seed in files: 
                     if not seed.endswith(".fasta"): continue
                     for s in SeqIO.parse(os.path.join(self.seed_directory, hist_type, seed), "fasta"):
-                        s.seq = s.seq.ungap("-")
+                        s.seq = s.seq.replace("-","")
                         SeqIO.write(s, combined_seed, "fasta")
 
             #Create trees and convert them to phyloxml
             tree = os.path.join(self.trees_path, "{}_aligned.ph".format(hist_type))
-            subprocess.call(["muscle", "-in", combined_seed_file, '-out', combined_seed_aligned])
+            subprocess.call(["muscle", "-align", combined_seed_file, '-output', combined_seed_aligned])
             self.log.info(" ".join(["clustalw", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree']))
             subprocess.call(["clustalw", "-infile={}".format(combined_seed_aligned), "-outfile={}".format(final_tree_name), '-tree'])
             Phylo.convert(tree, 'newick', final_tree_name, 'phyloxml')
@@ -119,7 +117,7 @@ class Command(BaseCommand):
             self.log.info(hist_type)
             tree_path = os.path.join(self.trees_path, "{}_no_features.xml".format(hist_type))
             tree = ET.parse(tree_path)
-            parent_map = {c: p for p in tree.getiterator() for c in p}
+            parent_map = {c: p for p in tree.iter() for c in p}
 
             for phylogeny in tree.iter("{http://www.phyloxml.org}phylogeny"):
                 render = ET.Element("render")
@@ -175,7 +173,7 @@ class Command(BaseCommand):
                 #count how many clades we have in a row
                 #and if more than 3, set retrospectively the group name
                 inrow_counter=0
-                old_var='';
+                old_var=''
                 clade_hist=[]
                 for clade in phylogeny.iter("{http://www.phyloxml.org}clade"):
                     name = clade.find("{http://www.phyloxml.org}name")

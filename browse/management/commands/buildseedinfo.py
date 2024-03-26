@@ -1,13 +1,11 @@
 import os
 import logging
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
-from tools.L_shade_hist_aln import write_alignments
 from tools.hist_ss import get_features_in_aln
 from Bio import SeqIO
 from Bio.Align import MultipleSeqAlignment
 from browse.models import Sequence
-from Bio.Align.AlignInfo import SummaryInfo
 
 
 class Command(BaseCommand):

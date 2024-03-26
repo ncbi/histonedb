@@ -1,3 +1,4 @@
+import os
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 from django.db import models
@@ -7,54 +8,57 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio import SeqIO
 
-from collections import defaultdict
-import os
 
 class Histone(models.Model):
-    id             = models.CharField(max_length=25, primary_key=True)
+    id = models.CharField(max_length=25, primary_key=True)
     taxonomic_span = models.CharField(max_length=100)
-    description    = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.id
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
+        from django.urls import reverse
         return reverse('browse.views.browse_variants', args=[str(self.id)])
+
 
 class Variant(models.Model):
     """Most variants map to 
     H2A.X -> multiple species, same varaint
     H2A.10 -> one species, different varaint that are species speficific
     """
-    id            = models.CharField(max_length=25, primary_key=True)
-    hist_type     = models.ForeignKey(Histone, related_name="variants")
-    taxonomic_span = models.CharField(max_length=100) #models.ForeignKey(Taxonomy)?
-    description   = models.CharField(max_length=1000)
-    hmmthreshold  = models.FloatField(null=True) # parameter used in hmmersearch during sequence annotation
-    aucroc        = models.IntegerField(null=True) # another parameter - these paramters are calculated during testing phase of manage.py buildvariants
+    id = models.CharField(max_length=25, primary_key=True)
+    hist_type = models.ForeignKey(Histone, related_name="variants", on_delete=models.DO_NOTHING)
+    taxonomic_span = models.CharField(max_length=100)  # models.ForeignKey(Taxonomy)?
+    description = models.CharField(max_length=1000)
+    hmmthreshold = models.FloatField(null=True)  # parameter used in hmmersearch during sequence annotation
+    aucroc = models.IntegerField(
+        null=True)  # another parameter - these paramters are calculated during testing phase of manage.py buildvariants
 
     def __str__(self):
         return self.id
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
+        from django.urls import reverse
         return reverse('browse.views.browse_variant', args=[str(self.hist_type.id), str(self.id)])
 
-#This is to handle other names for the same variants.like cenH3, CENPA, etc.
+
+# This is to handle other names for the same variants.like cenH3, CENPA, etc.
 class OldStyleVariant(models.Model):
-    updated_variant = models.ForeignKey(Variant, related_name="old_names")
-    name            = models.CharField(max_length=255, primary_key=True)
-    gene            = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
-    splice          = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
-    taxonomy        = models.ForeignKey(Taxonomy, related_name="+")
+    updated_variant = models.ForeignKey(Variant, related_name="old_names", on_delete=models.DO_NOTHING)
+    name = models.CharField(max_length=255, primary_key=True)
+    gene = models.IntegerField(null=True, validators=[MaxValueValidator(15), MinValueValidator(1)])
+    splice = models.IntegerField(null=True, validators=[MaxValueValidator(15), MinValueValidator(1)])
+    taxonomy = models.ForeignKey(Taxonomy, related_name="+", on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return "{} (now called {})".format(self.name, self.updated_variant.id)
 
+
 class TemplateSequence(models.Model):
-    variant  = models.CharField(max_length=255) #Not a foreign key; Maybe it is "General". It is just used to specify path
-    taxonomy = models.ForeignKey(Taxonomy)
+    variant = models.CharField(
+        max_length=255)  # Not a foreign key; Maybe it is "General". It is just used to specify path
+    taxonomy = models.ForeignKey(Taxonomy, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return "{}_{}".format(self.variant, self.taxonomy.name)
@@ -67,18 +71,20 @@ class TemplateSequence(models.Model):
 
 
 class Sequence(models.Model):
-    id       = models.CharField(max_length=255, primary_key=True) #GI, superseeded by ACCESSION
+    id = models.CharField(max_length=255, primary_key=True)  # GI, superseeded by ACCESSION
     # id       = models.CharField(max_length=255, primary_key=True,db_index=True) #GI, superseeded by ACCESSION
-    variant  = models.ForeignKey(Variant, related_name="sequences")
-    gene     = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)])
-    splice   = models.IntegerField(null=True, validators=[MaxValueValidator(15),MinValueValidator(1)]) 
-    taxonomy = models.ForeignKey(Taxonomy)
-    header   = models.CharField(max_length=255)
+    variant = models.ForeignKey(Variant, related_name="sequences", on_delete=models.CASCADE)
+    gene = models.IntegerField(null=True, validators=[MaxValueValidator(15), MinValueValidator(1)])
+    splice = models.IntegerField(null=True, validators=[MaxValueValidator(15), MinValueValidator(1)])
+    taxonomy = models.ForeignKey(Taxonomy, on_delete=models.DO_NOTHING)
+    header = models.CharField(max_length=255)
     sequence = models.TextField()
-    reviewed = models.BooleanField() 
+    reviewed = models.BooleanField()
 
     # class Meta:
     #     ordering=['taxonomy__name']
+    def __hash__(self):
+        return super().__hash__()
 
     def __eq__(self, other):
         if isinstance(other, Sequence):
@@ -87,7 +93,7 @@ class Sequence(models.Model):
             return False
 
     def __str__(self):
-        return self.format() #"{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name, self.taxonomy.name)
+        return self.format()  # "{} [Varaint={}; Organism={}]".format(self.id, self.full_variant_name, self.taxonomy.name)
 
     @property
     def gi(self):
@@ -125,13 +131,13 @@ class Sequence(models.Model):
     @staticmethod
     def long_to_short_description(desc):
         try:
-            gi,tax,var=desc.replace("canonical","ca").split('|')
-            return "{0}..{1}|{2:<.10}..|{3}".format(gi[0:2],gi[-2:],tax,var)
+            gi, tax, var = desc.replace("canonical", "ca").split('|')
+            return "{0}..{1}|{2:<.10}..|{3}".format(gi[0:2], gi[-2:], tax, var)
         except:
             return desc
 
     def to_dict(self, id=False, ref=False):
-        return {"name":self.description if not id else self.id, "seq":self.sequence, "ref":ref}
+        return {"name": self.description if not id else self.id, "seq": self.sequence, "ref": ref}
 
     def to_biopython(self, ungap=False):
         seq = Seq(self.sequence)
@@ -140,16 +146,16 @@ class Sequence(models.Model):
         except:
             score_desc = ""
         if ungap:
-            seq = seq.ungap("-")
+            seq = seq.replace("-", "")
         return SeqRecord(
-            seq, 
+            seq,
             id=self.description,
             description=score_desc,
-           )
+        )
 
     def format(self, format="fasta", ungap=False):
         return self.to_biopython(ungap=ungap).format(format)
-    
+
 
 class Score(models.Model):
     """
@@ -157,23 +163,28 @@ class Score(models.Model):
     """
     # id                      = models.IntegerField(primary_key=True)
     # id = models.AutoField(primary_key=True)
-    sequence                = models.ForeignKey(Sequence, related_name="all_model_scores")
-    variant                 = models.ForeignKey(Variant, related_name="+")
-    above_threshold         = models.BooleanField()
-    score                   = models.FloatField()
-    evalue                  = models.FloatField()
-    hmmStart                = models.IntegerField()
-    hmmEnd                  = models.IntegerField()
-    seqStart                = models.IntegerField()
-    seqEnd                  = models.IntegerField()
+    sequence = models.ForeignKey(Sequence, related_name="all_model_scores", on_delete=models.CASCADE)
+    variant = models.ForeignKey(Variant, related_name="+", on_delete=models.CASCADE)
+    above_threshold = models.BooleanField()
+    score = models.FloatField()
+    evalue = models.FloatField()
+    hmmStart = models.IntegerField()
+    hmmEnd = models.IntegerField()
+    seqStart = models.IntegerField()
+    seqEnd = models.IntegerField()
     used_for_classification = models.BooleanField()
-    regex                   = models.BooleanField()
+    regex = models.BooleanField()
 
     def __str__(self):
-        return "<{} variant={}; score={}; above_threshold={}; used_for_classification={} >".format(self.sequence.id, self.variant.id, self.score, self.above_threshold, self.used_for_classification)
+        return "<{} variant={}; score={}; above_threshold={}; used_for_classification={} >".format(self.sequence.id,
+                                                                                                   self.variant.id,
+                                                                                                   self.score,
+                                                                                                   self.above_threshold,
+                                                                                                   self.used_for_classification)
 
     def description(self):
         return "[Score: {}; Evalue:{}]"
+
 
 class FeatureManager(models.Manager):
     def from_dict(self, template, features, save=False):
@@ -192,7 +203,7 @@ class FeatureManager(models.Manager):
             name=name,
             description="",
             color="") for name, (start, end) in features]
-        
+
         if save:
             [o.save() for o in objs]
 
@@ -208,11 +219,11 @@ strand\t00ff00
 loop\tcccccc
 extension\tffff66
 """
-        #assert isinstance(sequence_label, str) or , "Sequence label must be a string, not {}".format(str(type(sequence_label)))
+        # assert isinstance(sequence_label, str) or , "Sequence label must be a string, not {}".format(str(type(sequence_label)))
         colors = {}
         gff_features = ""
         if features is None:
-            features =  self.all()
+            features = self.all()
         for feature in features:
             try:
                 colorName = colors[feature.color[1:]]
@@ -226,19 +237,20 @@ extension\tffff66
 
     def to_dict(self, features=None):
         if features is None:
-            features =  self.all()
-        
-        return {feature.name:(feature.start, feature.end) for feature in features}
+            features = self.all()
+
+        return {feature.name: (feature.start, feature.end) for feature in features}
+
 
 class Feature(models.Model):
-    id          = models.CharField(max_length=255, primary_key=True)
-    template    = models.ForeignKey(TemplateSequence, null=True)
-    start       = models.IntegerField()
-    end         = models.IntegerField()
-    name        = models.CharField(max_length=600)
+    id = models.CharField(max_length=255, primary_key=True)
+    template = models.ForeignKey(TemplateSequence, null=True, on_delete=models.DO_NOTHING)
+    start = models.IntegerField()
+    end = models.IntegerField()
+    name = models.CharField(max_length=600)
     description = models.CharField(max_length=600)
-    color       = models.CharField(max_length=25)
-    objects     = FeatureManager()
+    color = models.CharField(max_length=25)
+    objects = FeatureManager()
 
     class Meta:
         ordering = ["start"]
@@ -258,8 +270,8 @@ class Feature(models.Model):
         tmp += "\n"
         return tmp
 
-class Publication(models.Model):
-     id       = models.IntegerField(primary_key=True) #PubmedID
-     variants = models.ManyToManyField(Variant)
-     cited    = models.BooleanField()
 
+class Publication(models.Model):
+    id = models.IntegerField(primary_key=True)  # PubmedID
+    variants = models.ManyToManyField(Variant)
+    cited = models.BooleanField()

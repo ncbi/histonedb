@@ -1,29 +1,31 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
+app_name = "browse"
+
 urlpatterns = [
-    url(r'^projects/HistoneDB2\.0/$', views.browse_types),
-    url(r'^$', views.browse_types),
-    url(r'^browse/$', views.browse_types),
+    path('browse/', views.browse_types, name="browse_types"),
 
-    url(r'^type/([a-zA-Z0-9]+)/$', views.browse_variants),
-    url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/$', views.browse_variant),
-    url(r'^variant/([a-zA-Z0-9\._]+)/$', views.browse_variant_clipped),
-    # url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/(\d+)$', views.browse_variant_with_highlighted_sequence),
-    url(r'^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/([a-zA-Z0-9\._]+)/$', views.browse_variant_with_highlighted_sequence),
+    path('type/<str:histone_type>/', views.browse_variants, name="browse_variants"),
+    path('type/<str:histone_type>/variant/<str:variant>/', views.browse_variant, name="browse_variants_variant"),
+    path('variant/<str:variant>/', views.browse_variant_clipped, name="browse_variant_clipped"),
+    # url('^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/(\d+)', views.browse_variant_with_highlighted_sequence),
+    path('type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/([a-zA-Z0-9\._]+)/',
+         views.browse_variant_with_highlighted_sequence),
 
-    url(r'^search/$', views.search),
-    url(r'^analyze/$', views.analyze),
-    url(r'^help/$', views.help),
-    url(r'^basket/$', views.basket),
-    url(r'^human/$', views.human),
+    path('search/', views.search, name="search"),
+    path('analyze/', views.analyze, name="analyze"),
+    path('help/', views.help, name="help"),
+    path('basket/', views.basket, name="basket"),
+    path('human/', views.human, name="human"),
 
-    #Parameters are stored as session variables a GET response
-    url(r'^data/sequences/json$', views.get_sequence_table_data),
-    url(r'^data/scores/json$', views.get_all_scores),
-    url(r'^data/msa/json$', views.get_all_sequences),
-    url(r'^data/features/gff$', views.get_sequence_features),
-    url(r'^data/sequences\+features/json$', views.get_aln_and_features),
-    url(r'^data/seed/([a-zA-Z0-9\._]+)$', views.get_seed_aln_and_features),
-    url(r'^data/sunburst$', views.get_sunburst_json),
+    # Parameters are stored as session variables a GET response
+    path('data/sequences/json', views.get_sequence_table_data, name="get_sequence_table_data"),
+    path('data/scores/json', views.get_all_scores, name="get_all_scores"),
+    path('data/msa/json', views.get_all_sequences, name="get_all_sequences"),
+    path('data/features/gff', views.get_sequence_features, name="get_sequence_features"),
+    path('data/sequences\+features/json', views.get_aln_and_features, name="get_aln_and_features"),
+    path('data/seed/<str:seed>', views.get_seed_aln_and_features, name="get_seed_aln_and_features"),
+    path('data/sunburst', views.get_sunburst_json, name="get_sunburst_json"),
+    path('', views.browse_types, name="index"),
 ]

@@ -24,12 +24,14 @@ import dj_database_url
 # import mod_wsgi
 
 GUNICORN = True if (os.getenv('GUNICORN', "0") == "1") else False
-if(GUNICORN):
+if (GUNICORN):
     print("GUNICORN setup enabled")
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Set the MySQL dtabase information
 NCBI_database_info = {}
+
+
 def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "database_info.txt")):
     with open(path) as NCBI_database_info_file:
         for line in NCBI_database_info_file:
@@ -44,7 +46,10 @@ def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "database_info.txt"))
                 load_settings(value)
             else:
                 NCBI_database_info[name] = value
+
+
 load_settings()
+print(NCBI_database_info)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -55,19 +60,18 @@ SESSION_COOKIE_HTTPONLY = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("NCBI_database_info_DEBUG", "True") == "True"
-#DEBUG = True
+# DEBUG = True
 if not DEBUG:
-    #X_FRAME_OPTIONS = "DENY"
-    #CSRF_COOKIE_HTTPONLY = True
-    #CSRF_COOKIE_SECURE = True
+    # X_FRAME_OPTIONS = "DENY"
+    # CSRF_COOKIE_HTTPONLY = True
+    # CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    #SECURE_SSL_REDIRECT = True
+    # SECURE_SSL_REDIRECT = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    #SECURE_HSTS_SECONDS = 0
+    # SECURE_HSTS_SECONDS = 0
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -82,18 +86,20 @@ INSTALLED_APPS = (
     'djangophylocore',
     'django_extensions',
     # 'mod_wsgi.server',
-    'analytics'
+    # 'analytics'
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+MIDDLEWARE = (
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.common.BrokenLinkEmailsMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 )
 
 ROOT_URLCONF = 'HistoneDB.urls'
@@ -101,9 +107,12 @@ ROOT_URLCONF = 'HistoneDB.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates"),],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, "templates"), ],
         'OPTIONS': {
+            "loaders": [
+                "django.template.loaders.filesystem.Loader",
+                "django.template.loaders.app_directories.Loader",
+            ],
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -114,7 +123,7 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates"),]
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates"), ]
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
@@ -124,31 +133,33 @@ WSGI_APPLICATION = 'HistoneDB.wsgi.application'
 
 # Database
 try:
-    db_type=NCBI_database_info["db_type"]
+    db_type = NCBI_database_info["db_type"]
 except:
-    db_type='mysql'
+    db_type = 'mysql'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.'+db_type, # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.' + db_type,
+        # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': NCBI_database_info["name"],
         'USER': NCBI_database_info["user"],
         'PASSWORD': NCBI_database_info["password"],
         'HOST': NCBI_database_info["host"],
-        'PORT':NCBI_database_info["port"],
+        'PORT': NCBI_database_info["port"],
         'CONN_MAX_AGE': 3600,
         'SSL_DISABLED': True
     }
 }
 
-DATABASE_ENGINE="mysql" #this is for djangophylocore
+DATABASE_ENGINE = "mysql"  # this is for djangophylocore
 
 # Parse database configuration from $DATABASE_URL if available
-if(dj_database_url.config()):
-    DATABASES['default'] =  dj_database_url.config() # this is for cloud setup
+# if (dj_database_url.config()):
+#     DATABASES['default'] = dj_database_url.config()  # this is for cloud setup
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
+ADMIN_URL = "admin/"
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -161,7 +172,6 @@ USE_TZ = True
 
 GOOGLE_ANALYTICS_ID = NCBI_database_info["GOOGLE_ANALYTICS_ID"]
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -169,18 +179,18 @@ STATIC_URL = NCBI_database_info["STATIC_URL"]
 
 STATIC_ROOT_AUX = os.path.join(BASE_DIR, "static")
 
-if(not GUNICORN):
+MEDIA_ROOT = str( "/tmp/")
+
+if (not GUNICORN):
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "static"),
-     ]
+    ]
 
 if "FORCE_SCRIPT_NAME" in NCBI_database_info:
     FORCE_SCRIPT_NAME = NCBI_database_info["FORCE_SCRIPT_NAME"]
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-if(GUNICORN):
+if (GUNICORN):
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-

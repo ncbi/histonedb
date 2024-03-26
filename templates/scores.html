@@ -61,7 +61,7 @@ function make_scores_table_{{ page_name }}(table_div, ids, width) {
       {% if hmmer_results %}
       data: {% autoescape off %}{{ hmmer_results|jsonify }}{% endautoescape %},
       {% else %}
-      url: "{% url 'browse.views.get_all_scores' %}"+params.substring(0, params.length-1),
+      url: "{% url 'browse:get_all_scores' %}"+params.substring(0, params.length-1),
       {% endif %}
       columns: columns,
   });

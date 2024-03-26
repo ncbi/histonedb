@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static i18n %}
 {% load browse_filters %}
 
 {% block includes %}
@@ -19,7 +19,7 @@
         localStorage.setItem('lastTab', $(this).attr('href'));
         console.log($(e.target).attr("href"));
         if($(e.target).attr('href') == "#taxonomy"){
-          drawSunburst("{% url 'browse.views.get_sunburst_json' %}?"+$.param(extra_seq_params_search));
+          drawSunburst("{% url 'browse:get_sunburst_json' %}?"+$.param(extra_seq_params_search));
           console.log("Called");
         }
     });
@@ -43,7 +43,7 @@
     <div class="page-header">
         <h1>Search for histone sequences</h1>
     </div>
-  	<form action="{% url 'browse.views.search' %}" method="post">{% csrf_token %}
+  	<form action="{% url 'browse:search' %}" method="post">{% csrf_token %}
       	<div class="modal-body">
         {{ search_form.as_p }}
       	</div>

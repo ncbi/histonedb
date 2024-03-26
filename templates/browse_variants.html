@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static i18n %}
 {% load browse_filters %}
 
 {% block set_filter_by_page %}
@@ -97,7 +97,7 @@ $("#id_hist_type_drop_down_button").hide();
       <div class="row">
         <div class="col-xs-12">
           <h1>
-            <a href="{% url 'browse.views.browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
+            <a href="{% url 'browse:browse_types' %}"><span class="glyphicon glyphicon-home" /> </a> /
             Histone type: {{ histone_type }}
           </h1>
         </div>
@@ -145,7 +145,7 @@ $("#id_hist_type_drop_down_button").hide();
                     <div class="list-group" style="height:100%;">
                       {% for variant, num_curated, num_all, alternate_names, tax_span, color in variants %}
                         <a class="list-group-item"
-                           href="{% url 'browse.views.browse_variant' histone_type variant %}">
+                           href="{% url 'browse:browse_variants_variant' histone_type variant %}">
                           <span class="badge variant-count-badge" style="background-color:{{ color }};" title="# of sequences in curated set: {{ num_curated }}
 # of sequences in total set: {{ num_all }}">{{ num_curated }} / {{ num_all }}</span>
                           <b>{{ variant|undspace }}</b> <br />

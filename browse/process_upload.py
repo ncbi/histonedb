@@ -1,24 +1,22 @@
 import sys
 import os
 import io
-import shlex
 
 import uuid
 from Bio import SeqIO, SearchIO
-from Bio.Alphabet import IUPAC
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIXML
-from Bio import Alphabet
-from Bio.Alphabet import IUPAC
 
-from browse.models import Histone, Variant, Sequence
-from djangophylocore.models import Taxonomy
+from browse.models import Variant, Sequence
 from django.conf import settings
 
 import subprocess
 
 from django.db.models import Q
 from django.db.models import Max, Min, Count
+from django.core.files.base import ContentFile
+from django.core.files.uploadhandler import InMemoryUploadedFile
+from django.core.files.storage import default_storage
 
 class InvalidFASTA(Exception):
     pass
@@ -27,18 +25,23 @@ def process_upload(sequences, format, request):
     if format not in ["file", "text"]:
         raise InvalidFASTA("Invalid format: {}. Must be either 'file' or 'text'.".format(format))
 
-    if format == "text":
-        sequences = io.StringIO(sequences)
+    if format == "file":
+        if isinstance(sequences, InMemoryUploadedFile):
+            path = os.path.join(settings.MEDIA_ROOT, f"{uuid.uuid4()}.fa")
+            default_storage.save(path, ContentFile(sequences.read()))
+        else:
+            path = sequences.temporary_file_path()
+        with open(path) as fin:
+            sequences = fin.read()
+        os.remove(path)
+    sequences = io.StringIO(sequences)
 
-    sequences = SeqIO.parse(sequences, "fasta", IUPAC.ExtendedIUPACProtein())
+    sequences = SeqIO.parse(sequences, "fasta")
 
     try:
         sequence = next(sequences)
     except StopIteration:
         raise InvalidFASTA("No sequences parsed.")
-
-    if not Alphabet._verify_alphabet(sequence.seq):
-        raise InvalidFASTA("Sequence {} is not a protein.".format(sequence.id))
 
     result = [str(sequence.id)]
 

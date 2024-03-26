@@ -8,16 +8,9 @@ by algining it to reference sequences.
 
 """
 #Standard Library
-import argparse
-import csv
-import collections
 import os
-import re
-import subprocess
 import sys
 import uuid
-import pickle as pickle
-from io import BytesIO
 import logging
 
 #Required libraires
@@ -26,26 +19,14 @@ import logging
 #import networkx as nx
 
 #Django
-from django.conf import settings
 from browse.models import Feature, Sequence
 
 #BioPython
 from Bio import AlignIO
 from Bio import Entrez
-from Bio import ExPASy
 from Bio import SeqIO
-from Bio import SwissProt
-from Bio.Align import MultipleSeqAlignment
 from Bio.Align.AlignInfo import SummaryInfo
-from Bio.Align.Applications import MuscleCommandline
-from Bio.Alphabet import IUPAC
-from Bio.Blast import NCBIXML
-from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Emboss.Applications import NeedleCommandline
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
-from Bio.PDB.PDBParser import PDBParser
-from Bio.PDB.Polypeptide import PPBuilder
 
 Entrez.email = "l.singh@intbio.org"
 

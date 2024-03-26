@@ -1,79 +1,92 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static i18n %}
 
 {% block includes %}
-<script type="text/javascript">
-  $(function() { 
-    $('#browse_navbar_button').addClass('active');
-  });
-</script>
+    <script type="text/javascript">
+        $(function () {
+            $('#browse_navbar_button').addClass('active');
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron">
-  <div class="container">
-    <h1 align="center">HistoneDB 2.0 – with variants</h1>
-    <p>This histone database can be used to explore the diversity of histone proteins and their sequence variants in many organisms. The resource was established to better  understand how sequence variation may affect functional and structural features of nucleosomes. To get started, select a histone type to explore its variants.</p>
-  </div>
-</div>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 align="center">HistoneDB 2.0 – with variants</h1>
+            <p>This histone database can be used to explore the diversity of histone proteins and their sequence
+                variants in many organisms. The resource was established to better understand how sequence variation may
+                affect functional and structural features of nucleosomes. To get started, select a histone type to
+                explore its variants.</p>
+        </div>
+    </div>
 
-<div class="container-fluid img-responsive">
-  <div class="row">
-    <div class="col-xs-4">
-      <a href="{% url 'browse.views.browse_variants' 'H3' %}">
+    <div class="container-fluid img-responsive">
         <div class="row">
-          <div class="col-xs-1 col-md-offset-9"><h2>H3</h2></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <img class="img-responsive pull-right" src="{% static 'browse/img/H3_front.png' %}" width="35%" />
-          </div>
-        </div>
-      </a>
-      <a href="{% url 'browse.views.browse_variants' 'H2A' %}">
-        <div class="row">
-          <div class="col-xs-1 col-md-offset-9"><h2>H2A</h2></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12"><img class="img-responsive pull-right" src="{% static 'browse/img/H2A_front.png' %}" width="35%" /></div>
-        </div>
-      </a>
-    </div>
-    <div class="col-xs-4">
-      <div class="vcenter center-block" style="position: relative; left: 0; top: 0;">
-        <img class="img-responsive center-block" src="{% static 'browse/img/nucleosome.png' %}" style="position: relative; top: 0; left: 0;"/>
-        <a href="{% url 'browse.views.browse_variants' 'H1' %}">
-        	<div style="position: absolute; top: -40px; left: 50%;"><h3>H1</h3></div>
-	        <div style="position: absolute; top: 0px; left: 40%;"><img class="img-responsive" src="{% static 'browse/img/H1.png' %}" width="50%"></div>
-	    </a>
-        
-        The Nucleosome Core Particle (PDB: <a href="http://www.ncbi.nlm.nih.gov/Structure/mmdb/mmdbsrv.cgi?uid=1AOI">1AOI</a>) is comprised of H2A, H2B, H3, and H4 core histones types, wrapping ~147 bp of DNA. H2A-H2B form a dimer and H3-H4 form a tetramer.
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="row">
-        <a href="{% url 'browse.views.browse_variants' 'H4' %}">
-          <div class="row">
-            <div class="col-xs-1 col-md-offset-2"><h2>H4</h2></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <img class="img-responsive pull-left" src="{% static 'browse/img/H4_front.png' %}" width="35%" />
+            <div class="col-xs-4">
+                <a href="{% url 'browse:browse_variants' 'H3' %}">
+                    <div class="row">
+                        <div class="col-xs-1 col-md-offset-9"><h2>H3</h2></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <img class="img-responsive pull-right" src="{% static 'browse/img/H3_front.png' %}"
+                                 width="35%"/>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'browse:browse_variants' 'H2A' %}">
+                    <div class="row">
+                        <div class="col-xs-1 col-md-offset-9"><h2>H2A</h2></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><img class="img-responsive pull-right"
+                                                    src="{% static 'browse/img/H2A_front.png' %}" width="35%"/></div>
+                    </div>
+                </a>
             </div>
-          </div>
-        </a>
-        <a href="{% url 'browse.views.browse_variants' 'H2B' %}">
-          <div class="row">
-            <div class="col-xs-1 col-md-offset-2"><h2>H2B</h2></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <img class="img-responsive pull-left" src="{% static 'browse/img/H2B_front.png' %}" width="35%" />
+            <div class="col-xs-4">
+                <div class="vcenter center-block" style="position: relative; left: 0; top: 0;">
+                    <img class="img-responsive center-block" src="{% static 'browse/img/nucleosome.png' %}"
+                         style="position: relative; top: 0; left: 0;"/>
+                    <a href="{% url 'browse:browse_variants' 'H1' %}">
+                        <div style="position: absolute; top: -40px; left: 50%;"><h3>H1</h3></div>
+                        <div style="position: absolute; top: 0px; left: 40%;"><img class="img-responsive"
+                                                                                   src="{% static 'browse/img/H1.png' %}"
+                                                                                   width="50%"></div>
+                    </a>
+
+                    The Nucleosome Core Particle (PDB: <a
+                        href="http://www.ncbi.nlm.nih.gov/Structure/mmdb/mmdbsrv.cgi?uid=1AOI">1AOI</a>) is comprised of
+                    H2A, H2B, H3, and H4 core histones types, wrapping ~147 bp of DNA. H2A-H2B form a dimer and H3-H4
+                    form a tetramer.
+                </div>
             </div>
-          </div>
-        </a>
-      </div>
+            <div class="col-xs-4">
+                <div class="row">
+                    <a href="{% url 'browse:browse_variants' 'H4' %}">
+                        <div class="row">
+                            <div class="col-xs-1 col-md-offset-2"><h2>H4</h2></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <img class="img-responsive pull-left" src="{% static 'browse/img/H4_front.png' %}"
+                                     width="35%"/>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{% url 'browse:browse_variants' 'H2B' %}">
+                        <div class="row">
+                            <div class="col-xs-1 col-md-offset-2"><h2>H2B</h2></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <img class="img-responsive pull-left" src="{% static 'browse/img/H2B_front.png' %}"
+                                     width="35%"/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {% endblock %}

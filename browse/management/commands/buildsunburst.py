@@ -1,14 +1,12 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from browse.models import *
-from djangophylocore.models import Rank
 import os
-from itertools import chain
-import pprint as pp
 import json
 from colour import Color
-from django.db.models import Max, Min, Count, Avg
+from django.db.models import Avg
 from math import floor
 import logging
+
 
 class Command(BaseCommand):
     help = 'Build the sunburst json files for each core histone and its variants'
@@ -22,17 +20,17 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "-f", 
-            "--force", 
-            default=False, 
-            action="store_true", 
+            "-f",
+            "--force",
+            default=False,
+            action="store_true",
             help="Force the recreation of sunburst. This will overwrite any existing sunburst json files.")
         parser.add_argument(
             "--all_taxonomy",
             default=False,
             action="store_true",
             help="Build a sunburst of the enitre NCBI Taxonomy databse.")
-        
+
     def handle(self, *args, **options):
         self.log.info('=======================================================')
         self.log.info('===               buildsunburst START               ===')
@@ -63,10 +61,13 @@ class Command(BaseCommand):
     def build_sunburst(self, **filter):
         """Build the sunburst
         """
-        sequences = Sequence.objects.filter(**filter).filter(all_model_scores__used_for_classification=True).annotate(score=Avg("all_model_scores__score"))
+        sequences = Sequence.objects.filter(**filter).filter(all_model_scores__used_for_classification=True).annotate(
+            score=Avg("all_model_scores__score"))
         return json.dumps(build_sunburst(sequences))
 
+
 def build_sunburst(sequences):
+
     from djangophylocore.models import TaxonomyReference
     import networkx as nx
     from networkx.readwrite import json_graph
@@ -79,23 +80,29 @@ def build_sunburst(sequences):
     red = Color("#fc8d62")
     color_range = list(red.range_to(green, 100))
 
-    def get_color_for_taxa(taxon): 
-        avg_score = taxon.children.filter(sequence__all_model_scores__used_for_classification=True).aggregate(score=Avg("sequence__all_model_scores__score"))["score"]
+    def get_color_for_taxa(taxon):
+        avg_score = taxon.children.filter(sequence__all_model_scores__used_for_classification=True).aggregate(
+            score=Avg("sequence__all_model_scores__score"))["score"]
         avg_score = avg_score if avg_score else scores_min
-        scaled = int(floor((float(avg_score-scores_min)/float(scores_max-scores_min))*100))
+        scaled = int(floor((float(avg_score - scores_min) / float(scores_max - scores_min)) * 100))
         color_index = scaled if scaled <= 99 else 99
         color_index = color_index if color_index >= 0 else 0
         return str(color_range[color_index])
 
     taxa = list(sequences.values_list("taxonomy__parent__parent__parent", flat=True).distinct())
+
     allow_ranks = ["kingdom", "phylum", "order"]
     tree = TaxonomyReference().get_filtered_reference_graph(taxa, allow_ranks=allow_ranks)
+
     color_dict = {}
     # for n, d in tree.out_degree_iter():
     #     if d == 0:
     #         tax_obj = Taxonomy.objects.get(name=n)
     #         color_dict[n] = get_color_for_taxa(tax_obj)
-    color_dict = {n:get_color_for_taxa(Taxonomy.objects.get(name=n)) for n,d in tree.out_degree_iter() if d==0}
-    nx.set_node_attributes(tree, "colour", color_dict)
-    
-    return json_graph.tree_data(tree, "root", attrs={'children': 'children', 'id': 'name'})
+    color_dict = {n: get_color_for_taxa(Taxonomy.objects.get(name=n)) for n, d in tree.out_degree() if d == 0}
+
+    # print(tree.nodes(data=True).keys()[0])
+
+    nx.set_node_attributes(tree, color_dict,"colour")
+
+    return json_graph.tree_data(tree, "root")

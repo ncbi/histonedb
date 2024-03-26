@@ -1,6 +1,5 @@
-{% load staticfiles %}
+{% load static i18n %}
 {% load browse_filters %}
-{% load analytics_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +22,6 @@
     <script src="{% static 'browse/js/bootstrap-table.min.js' %}"></script>
     <script src="{% static 'browse/js/bootstrap-table-cookie.js' %}"></script>
 
-    {% google_analytics 'GOOGLE_ANALYTICS_ID' %}
     {% block includes %} {% endblock %}
 
     <script>
@@ -87,17 +85,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'browse.views.browse_types' %}">HistoneDB 2.0</a>
+          <a class="navbar-brand" href="{% url 'browse:index' %}">HistoneDB 2.0</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li id="browse_navbar_button"><a href="{% url 'browse.views.browse_types' %}">Browse</a></li>
+            <li id="browse_navbar_button"><a href="{% url 'browse:index' %}">Browse</a></li>
             {#<li id="search_navbar_button"><a href="#" id="show_advanced_search">Advanced Search</a></li>#}
-            <li id="analyze_navbar_button"><a href="{% url 'browse.views.analyze' %}">Analyze Your Sequence</a></li>
-            <li id="basket_navbar_button"><a href="{% url 'browse.views.basket' %}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge badge-basket"></span></a></li>
-            <li id="human_navbar_button"><a href="{% url 'browse.views.human' %}">Human Histones</a></li>
-            <li id="help_navbar_button"><a href="{% url 'browse.views.help' %}">Help</a></li>
-            <form role="search" class="navbar-form navbar-right" action="{% url 'browse.views.search' %}" method="POST">{% csrf_token %}
+            <li id="analyze_navbar_button"><a href="{% url 'browse:analyze' %}">Analyze Your Sequence</a></li>
+            <li id="basket_navbar_button"><a href="{% url 'browse:basket' %}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge badge-basket"></span></a></li>
+            <li id="human_navbar_button"><a href="{% url 'browse:human' %}">Human Histones</a></li>
+            <li id="help_navbar_button"><a href="{% url 'browse:help' %}">Help</a></li>
+            <form role="search" class="navbar-form navbar-right" action="{% url 'browse:search' %}" method="POST">{% csrf_token %}
               <input type="hidden" name="reset" id="reset_previous_searches" value="true" />
               <div class="input-group">
                 <input type="text" name="search" class="form-control" aria-label="..." placeholder="Search (H2A.Z.2.s1)">
@@ -141,7 +139,7 @@
             {% for error, count in filter_errors.items %}
               <div class="alert alert-danger" role="alert">Error: {{error}} (Number of error: {{ count }}</div>
             {% endfor %}
-            <form role="search" action="{% url 'browse.views.search' %}" id="advanced_search_form" method="POST">
+            <form role="search" action="{% url 'browse:search' %}" id="advanced_search_form" method="POST">
               {% csrf_token %}
 
               <div role="tabpanel">
