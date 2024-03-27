@@ -13,50 +13,28 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
-
-# import sys
-# output = ''
-# output += 'sys.version = %s\n' % repr(sys.version)
-# output += 'sys.prefix = %s\n' % repr(sys.prefix)
-# output += 'sys.path = %s' % repr(sys.path)
-# print '------------------------------'
-# print output
-# import mod_wsgi
+from settings_overrider import override
 
 GUNICORN = True if (os.getenv('GUNICORN', "0") == "1") else False
 if (GUNICORN):
     print("GUNICORN setup enabled")
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Set the MySQL dtabase information
-NCBI_database_info = {}
-
-
-def load_settings(path=os.path.join(BASE_DIR, "HistoneDB", "database_info.txt")):
-    with open(path) as NCBI_database_info_file:
-        for line in NCBI_database_info_file:
-            if line.startswith("#"): continue
-
-            try:
-                name, value = [s.strip() for s in line.strip().split("=")]
-            except:
-                continue
-
-            if name == "file" and value != path:
-                load_settings(value)
-            else:
-                NCBI_database_info[name] = value
-
-
-load_settings()
-print(NCBI_database_info)
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = NCBI_database_info["SECRET_KEY"]
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "=xqnj28v!%p6-7)_0cxyycb(jt#id$8voeb5dn81us=oprk2o8")
 SESSION_COOKIE_HTTPONLY = True
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+COMPRESS_OFFLINE = True
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.cssmin.rCSSMinFilter',
+    'compressor.filters.css_default.CssRelativeFilter'
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("NCBI_database_info_DEBUG", "True") == "True"
@@ -82,6 +60,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
     'browse',
     'djangophylocore',
     'django_extensions',
@@ -103,6 +82,7 @@ MIDDLEWARE = (
 )
 
 ROOT_URLCONF = 'HistoneDB.urls'
+WSGI_APPLICATION = 'HistoneDB.wsgi.application'
 
 TEMPLATES = [
     {
@@ -123,35 +103,24 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates"), ]
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-)
-
-WSGI_APPLICATION = 'HistoneDB.wsgi.application'
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, "templates"), ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages'
+            ]
+        }
+    }
+]
 
 # Database
-try:
-    db_type = NCBI_database_info["db_type"]
-except:
-    db_type = 'mysql'
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.' + db_type,
-        # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': NCBI_database_info["name"],
-        'USER': NCBI_database_info["user"],
-        'PASSWORD': NCBI_database_info["password"],
-        'HOST': NCBI_database_info["host"],
-        'PORT': NCBI_database_info["port"],
-        'CONN_MAX_AGE': 3600,
-        'SSL_DISABLED': True
-    }
-}
-
-DATABASE_ENGINE = "mysql"  # this is for djangophylocore
+DATABASES = {}
 
 # Parse database configuration from $DATABASE_URL if available
 # if (dj_database_url.config()):
@@ -161,23 +130,25 @@ DATABASE_ENGINE = "mysql"  # this is for djangophylocore
 
 ADMIN_URL = "admin/"
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+CSRF_COOKIE_NAME = 'histonedb-csrftoken'
+TIME_ZONE = 'America/New_York'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
-GOOGLE_ANALYTICS_ID = NCBI_database_info["GOOGLE_ANALYTICS_ID"]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = NCBI_database_info["STATIC_URL"]
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join('var', 'data', 'static')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder'
+)
 
-STATIC_ROOT_AUX = os.path.join(BASE_DIR, "static")
+NCBI_APP = 'HISTONEDB'
+APPLOG_APPNAME = 'histonedb'
 
 MEDIA_ROOT = str( "/tmp/")
 
@@ -186,11 +157,19 @@ if (not GUNICORN):
         os.path.join(BASE_DIR, "static"),
     ]
 
-if "FORCE_SCRIPT_NAME" in NCBI_database_info:
-    FORCE_SCRIPT_NAME = NCBI_database_info["FORCE_SCRIPT_NAME"]
-
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 if (GUNICORN):
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+yaml_var = 'DJANGO_SETTINGS_YAML'
+yaml_path = os.getenv(yaml_var, os.path.join('etc', 'settings.yaml'))
+
+# You can use prefixed env variables, e.g. DJANGO_DEBUG env variable becomes DEBUG setting
+var_prefix = 'DJANGO_'
+
+if os.path.exists(yaml_path):
+    override(globals(), yaml=yaml_path)
+
+override(globals(), env=var_prefix)

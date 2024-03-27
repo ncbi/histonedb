@@ -8,6 +8,9 @@ colour
 decorator
 django-debug-toolbar
 django-extensions
+django-compressor
+settings-overrider
+mssql-django
 django-filter
 mock
 more-itertools
