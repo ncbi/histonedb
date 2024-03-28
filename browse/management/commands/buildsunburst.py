@@ -1,11 +1,14 @@
 from django.core.management.base import BaseCommand
 from browse.models import *
+from djangophylocore import  models as core_models
 import os
 import json
 from colour import Color
 from django.db.models import Avg
 from math import floor
 import logging
+from django.conf import settings
+import sys
 
 
 class Command(BaseCommand):
@@ -35,7 +38,8 @@ class Command(BaseCommand):
         self.log.info('=======================================================')
         self.log.info('===               buildsunburst START               ===')
         self.log.info('=======================================================')
-        path = os.path.join("static", "browse", "sunbursts")
+
+        path = os.path.join(settings.STATIC_ROOT, "browse", "sunbursts")
         if options["all_taxonomy"]:
             sb = self.build_sunburst(all_taxonomy=True)
             with open(os.path.join(path, "all_taxa.json"), "w") as all_taxa:
@@ -49,6 +53,7 @@ class Command(BaseCommand):
                 os.makedirs(vpath)
 
             for variant in Variant.objects.filter(hist_type=hist_type):
+                print(variant.id)
                 self.log.info("Saving {}".format(variant.id))
                 sb = self.build_sunburst(variant=variant)
                 with open(os.path.join(vpath, "{}.json".format(variant.id)), "w") as variant_burst:

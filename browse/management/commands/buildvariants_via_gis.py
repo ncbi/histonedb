@@ -20,16 +20,16 @@ from Bio import SeqIO
 
 class Command(BaseCommand):
     help = 'Build HistoneDB by first loading the seed sequences and then parsing the database file'
-    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds_gis")
-    hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
+    seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds_gis")
+    hmm_directory = os.path.join(settings.STATIC_ROOT, "browse", "hmms")
     combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
     pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
     db_search_results_file = os.path.join(hmm_directory, "db_search_results.out")
     curated_all_fasta=os.path.join(hmm_directory, "curated_all.fasta")
     curated_search_results_file = os.path.join(hmm_directory, "curated_all_search_results.out")
     model_evaluation = os.path.join(hmm_directory, "model_evaluation")
-    ids_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.ids")
-    full_length_seqs_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fasta")
+    ids_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.ids")
+    full_length_seqs_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fasta")
 
     def add_arguments(self, parser):
         parser.add_argument(

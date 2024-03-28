@@ -607,7 +607,7 @@ def get_seed_aln_and_features(request, seed):
     from Bio.Align import MultipleSeqAlignment
     from Bio.Align.AlignInfo import SummaryInfo
 
-    seed_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
+    seed_file = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
     try:
         histone = Histone.objects.get(id=seed)
         seed_file = os.path.join(seed_file, "{}".format(histone.id))

@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from browse.models import *
+from django.conf import settings
 
 import os
 from itertools import cycle
@@ -40,8 +41,8 @@ colors = [
 
 class Command(BaseCommand):
     help = 'Building data for variant trees using ClustalW2'
-    seed_directory = os.path.join("static", "browse", "seeds")
-    trees_path = os.path.join("static", "browse", "trees")
+    seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    trees_path = os.path.join(settings.STATIC_ROOT, "browse", "trees")
 
     # Logging info
     logging.basicConfig(filename='log/buildtrees.log',

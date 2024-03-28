@@ -13,7 +13,7 @@ from Bio.SeqRecord import SeqRecord
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
-    info_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "info")
+    info_directory = os.path.join(settings.STATIC_ROOT, "browse", "info")
 
     # Logging info
     logging.basicConfig(filename='log/buildvariantinfo.log',

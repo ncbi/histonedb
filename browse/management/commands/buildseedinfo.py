@@ -10,7 +10,7 @@ from browse.models import Sequence
 
 class Command(BaseCommand):
     help = 'Reset sequence features'
-    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
+    seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
 
     # Logging info
     logging.basicConfig(filename='log/buildseedinfo.log',

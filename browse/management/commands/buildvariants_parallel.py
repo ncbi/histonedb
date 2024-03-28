@@ -1,10 +1,12 @@
+import os
+import re
+import subprocess
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from browse.models import Histone, Variant, Sequence, Score
 from tools.load_hmmsearch import load_hmm_results, add_score, get_many_prot_seqrec_by_accession
 from tools.test_model import test_model
-import subprocess
-import os
+
 from tools.taxonomy_from_accessions import easytaxonomy_from_header, update_taxonomy
 
 from Bio import SearchIO
@@ -12,7 +14,7 @@ from Bio import SeqIO
 from tqdm import tqdm
 
 import logging
-from datetime import date, datetime
+from datetime import datetime
 
 HMMER_PROCS = 20
 
@@ -25,16 +27,16 @@ HMMER_PROCS = 20
 
 class Command(BaseCommand):
     help = 'Build HistoneDB by first loading the seed sequences and then parsing the database file'
-    seed_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "seeds")
-    hmm_directory = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms")
+    seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
+    hmm_directory = os.path.join(settings.STATIC_ROOT, "browse", "hmms")
     combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.hmm")
     pressed_combined_hmm_file = os.path.join(hmm_directory, "combined_hmm.h3f")
     db_search_results_file = os.path.join(hmm_directory, "db_search_results.out")
     curated_all_fasta = os.path.join(hmm_directory, "curated_all.fasta")
     curated_search_results_file = os.path.join(hmm_directory, "curated_all_search_results.out")
     model_evaluation = os.path.join(hmm_directory, "model_evaluation")
-    ids_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.ids")
-    full_length_seqs_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fasta")
+    ids_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.ids")
+    full_length_seqs_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fasta")
 
     # Logging info
     logging.basicConfig(filename='log/buildvariants.log',
@@ -139,34 +141,38 @@ class Command(BaseCommand):
         """
         self.log.info('Starting canonical2H2AX transformation ...')
 
-        for s in Sequence.objects.filter(variant="canonical_H2A", reviewed=False, sequence__regex="SQ[ED][YFLIA]$"):
-            old_score = s.all_model_scores.get(used_for_classification=True)
-            old_score.used_for_classification = False
-            old_score.save()
-            # new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
-            obj = Score.objects.filter(variant_id="H2A.X", sequence=s)
-            if (len(obj) > 1):
-                self.log.warning('More than one score object for one variant found - stange!!!')
-                self.log.warning(obj)
-            if (len(obj) == 0):
-                new_score, created = Score.objects.get_or_create(variant_id="H2A.X",
-                                                                 sequence=s,
-                                                                 above_threshold=1,
-                                                                 score=0,
-                                                                 evalue=0,
-                                                                 hmmStart=0,
-                                                                 hmmEnd=0,
-                                                                 seqStart=0,
-                                                                 seqEnd=0,
-                                                                 used_for_classification=True,
-                                                                 regex=False)
-            else:
-                new_score = obj.first()
-            new_score.used_for_classification = True
-            new_score.regex = True
-            s.variant_id = "H2A.X"
-            new_score.save()
-            s.save()
+        p = re.compile(r".*SQ[ED][YFLIA]$")
+
+        # for s in Sequence.objects.filter(variant="canonical_H2A", reviewed=False, sequence__regex="SQ[ED][YFLIA]$"):
+        for s in Sequence.objects.filter(variant="canonical_H2A", reviewed=False):
+            if p.match(s.sequence):
+                old_score = s.all_model_scores.get(used_for_classification=True)
+                old_score.used_for_classification = False
+                old_score.save()
+                # new_score, created = Score.objects.get_or_create(variant__id="H2A.X",sequence=s)
+                obj = Score.objects.filter(variant_id="H2A.X", sequence=s)
+                if (len(obj) > 1):
+                    self.log.warning('More than one score object for one variant found - stange!!!')
+                    self.log.warning(obj)
+                if (len(obj) == 0):
+                    new_score, created = Score.objects.get_or_create(variant_id="H2A.X",
+                                                                     sequence=s,
+                                                                     above_threshold=1,
+                                                                     score=0,
+                                                                     evalue=0,
+                                                                     hmmStart=0,
+                                                                     hmmEnd=0,
+                                                                     seqStart=0,
+                                                                     seqEnd=0,
+                                                                     used_for_classification=True,
+                                                                     regex=False)
+                else:
+                    new_score = obj.first()
+                new_score.used_for_classification = True
+                new_score.regex = True
+                s.variant_id = "H2A.X"
+                new_score.save()
+                s.save()
 
     def create_histone_types(self):
         """Create basic histone types

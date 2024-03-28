@@ -33,16 +33,25 @@ def add_to_graph(parameters):
     except:
         return set()
 
-    edges = set() 
+    edges = set()
+    root = Taxonomy.objects.get(pk=1)
     for taxon in taxa_list:
+        parents = []
         taxon = Taxonomy.objects.get(pk=taxon)
-        parents = taxon.parents
+        parents_relations = [p.parent_id for p in ParentsRelation.objects.filter(taxon=taxon).order_by("index")]
 
         if allow_ranks:
-            root = parents.last()
-            parents = parents.filter(rank__name__in=allow_ranks)
+            for pk in parents_relations:
+                t = Taxonomy.objects.get(pk=pk)
+                if t.rank.name in allow_ranks:
+                    parents.append(t)
             if "no rank" not in allow_ranks:
                 parents = chain(parents, [root])
+        else:
+            for pk in parents_relations:
+                t = Taxonomy.objects.get(pk=pk)
+                parents.append(t)
+
 
         prev_taxon = None
 
@@ -311,8 +320,9 @@ class TaxonomyReference(object):
             num_chunks = len(node_chunks)
 
             for edges in p.imap_unordered(add_to_graph, zip(node_chunks, [allow_ranks] * num_chunks), num_chunks):
-                tree.add_edges_from(edges)
-
+                if edges:
+                    tree.add_edges_from(edges)
+        print(tree)
         return tree
 
 

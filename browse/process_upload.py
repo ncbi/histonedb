@@ -71,7 +71,7 @@ def upload_blastp(sequences):
     output= os.path.join("/", "tmp", "{}.xml".format(uuid.uuid4()))
     blastp_cline = NcbiblastpCommandline(
         cmd=blastp,
-        db=os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fa"), 
+        db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa"),
         evalue=0.01, outfmt=5)
     out, err = blastp_cline(stdin="\n".join([s.format("fasta") for s in sequences]))
     
@@ -130,7 +130,7 @@ def upload_hmmer(sequences, evalue=10):
         for s in sequences:
             SeqIO.write(s, seqs, "fasta")
 
-    db = os.path.join(settings.STATIC_ROOT_AUX, "browse", "hmms", "combined_hmm.hmm")
+    db = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_hmm.hmm")
     hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
 
     results = {}

@@ -64,7 +64,7 @@ class TemplateSequence(models.Model):
         return "{}_{}".format(self.variant, self.taxonomy.name)
 
     def path(self):
-        return os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "{}.fasta".format(str(self)))
+        return os.path.join(settings.STATIC_ROOT, "browse", "blast", "{}.fasta".format(str(self)))
 
     def get_sequence(self):
         return next(SeqIO.parse(self.path(), "fasta"))

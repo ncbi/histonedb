@@ -24,7 +24,7 @@ class Command(BaseCommand):
         """Create new BLAST databse with seuqences in the HistoneDB."""
         force = options["force"]
     
-        seqs_file = os.path.join(settings.STATIC_ROOT_AUX, "browse", "blast", "HistoneDB_sequences.fa")
+        seqs_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa")
         if not os.path.isfile(seqs_file) or force:
             with open(seqs_file, "w") as seqs:
                 for s in Sequence.objects.filter(reviewed=True): #here we restrict the blast DB to reviewed seqs
