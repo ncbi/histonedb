@@ -19,7 +19,7 @@ class Histone(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('browse:browse_variants_variant', args=[str(self.id)])
+        return reverse('browse:browse_variants', args=[str(self.id)])
 
 
 class Variant(models.Model):
