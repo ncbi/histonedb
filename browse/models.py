@@ -19,7 +19,7 @@ class Histone(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('browse.views.browse_variants', args=[str(self.id)])
+        return reverse('browse:browse_variants_variant', args=[str(self.id)])
 
 
 class Variant(models.Model):
@@ -40,7 +40,7 @@ class Variant(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('browse.views.browse_variant', args=[str(self.hist_type.id), str(self.id)])
+        return reverse('browse:browse_variants_variant', args=[str(self.hist_type.id), str(self.id)])
 
 
 # This is to handle other names for the same variants.like cenH3, CENPA, etc.
