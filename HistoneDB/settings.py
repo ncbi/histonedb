@@ -148,7 +148,7 @@ if (GUNICORN):
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 yaml_var = 'DJANGO_SETTINGS_YAML'
-yaml_path = os.getenv(yaml_var, os.path.join('etc', 'settings.yaml'))
+yaml_path = os.getenv(yaml_var, os.path.join(BASE_DIR, 'etc', 'settings.yaml'))
 
 # You can use prefixed env variables, e.g. DJANGO_DEBUG env variable becomes DEBUG setting
 var_prefix = 'DJANGO_'
