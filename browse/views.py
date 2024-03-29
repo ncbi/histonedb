@@ -132,7 +132,7 @@ def browse_variant(request, histone_type, variant, accession=None):
         histone_type = Variant.objects.get(id=variant).hist_type
 
     go_to_curated = accession is not None
-    print(accession, "!!!!!!!")
+
     go_to_accession = accession if accession is not None else 0
     highlight_human = False
     # Here we want always by default highlight human
@@ -180,7 +180,6 @@ def browse_variant(request, histone_type, variant, accession=None):
     #     human_sequence = sequences.filter(taxonomy__name="homo sapiens").first()
     if not human_sequence:
         human_sequence = sequences.filter(reviewed=True).first()
-    print(human_sequence)
 
     try:
         publication_ids = ",".join(map(str, variant.publication_set.values_list("id", flat=True)))
@@ -527,7 +526,7 @@ def get_aln_and_features(request, ids=None):
 
         os.remove(query_file)
         os.remove(output_file)
-        print(cons)
+
         features = get_variant_features(cons, variants=variants, save_dir=save_dir)
 
         # A hack to avoid two canonical seqs
