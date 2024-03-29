@@ -29,6 +29,7 @@ from Bio.Align.AlignInfo import SummaryInfo
 from Bio.Emboss.Applications import NeedleCommandline
 
 Entrez.email = "l.singh@intbio.org"
+TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
 
 # Logging info
 log = logging.getLogger(__name__)
@@ -112,7 +113,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     template = template_features.first().template
     template_file = template.path()
     needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
-    cmd = os.path.join(os.path.dirname(sys.executable), "needle")
+    cmd = os.path.join(TOOLS_BIN_PATH, "needle")
 
     if not os.path.isfile(cmd):
         cmd = "needle"

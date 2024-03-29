@@ -1,3 +1,4 @@
+import os
 import json
 import uuid
 from more_itertools import unique_everseen
@@ -28,6 +29,8 @@ from Bio import Entrez
 Entrez.email = "HistoneDB_user@ncbi.nlm.nih.gov"
 
 from django.db.models import Min, Max, Count
+
+TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
 
 # Set2 Brewer, used in variant colors
 colors7 = [
@@ -515,7 +518,7 @@ def get_aln_and_features(request, ids=None):
         with open(query_file, "w") as fout:
             fout.write(sequences)
 
-        muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
+        muscle = os.path.join(TOOLS_BIN_PATH, "muscle")
         subprocess.run([muscle, "-align", query_file, "-output", output_file])
         with open(output_file) as fin:
             sequences = list(SeqIO.parse(fin, "fasta"))  # Not in same order, but does it matter?

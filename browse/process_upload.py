@@ -18,6 +18,8 @@ from django.core.files.base import ContentFile
 from django.core.files.uploadhandler import InMemoryUploadedFile
 from django.core.files.storage import default_storage
 
+TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
+
 class InvalidFASTA(Exception):
     pass
 
@@ -67,8 +69,8 @@ def upload_blastp(sequences):
     if not isinstance(sequences, list):
         sequences = [sequences]
 
-    blastp = os.path.join(os.path.dirname(sys.executable), "blastp")
-    output= os.path.join("/", "tmp", "{}.xml".format(uuid.uuid4()))
+    blastp = os.path.join(TOOLS_BIN_PATH, "blastp")
+    output = os.path.join("/", "tmp", "{}.xml".format(uuid.uuid4()))
     blastp_cline = NcbiblastpCommandline(
         cmd=blastp,
         db=os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fa"),
@@ -131,7 +133,7 @@ def upload_hmmer(sequences, evalue=10):
             SeqIO.write(s, seqs, "fasta")
 
     db = os.path.join(settings.STATIC_ROOT, "browse", "hmms", "combined_hmm.hmm")
-    hmmsearch = os.path.join(os.path.dirname(sys.executable), "hmmsearch")
+    hmmsearch = os.path.join(TOOLS_BIN_PATH, "hmmsearch")
 
     results = {}
 

@@ -26,6 +26,7 @@ from Bio import AlignIO
 #Custom libraries
 from .hist_ss import get_features_in_aln
 
+TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
 DEVNULL = open(os.devnull, 'wb')
 
 def write_texshade(file_handle,aln_fname,res_per_line,features=None,shading_modes=['similar'],logo=True,hideseqs=False):
@@ -171,7 +172,7 @@ def write_alignments(alignments, outfile=None, shading_modes=["similar"], logo=T
         print("\\end{document}", file=tex)
 
     #Turn latex into pdf
-    pdflatex = os.path.join(os.path.dirname(sys.executable), "pdflatex")
+    pdflatex = os.path.join(TOOLS_BIN_PATH, "pdflatex")
     # print pdflatex
     # print os.path.join(save_dir, "{}.tex".format(outfile))
     #assert 0, " ".join([pdflatex, "--file-line-error", "--synctex=1", "-output-directory={}".format(save_dir), "--save-size=10000", os.path.join(save_dir, "{}.tex".format(outfile))])

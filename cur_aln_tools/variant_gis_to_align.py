@@ -34,6 +34,7 @@ from Bio.Emboss.Applications import NeedleCommandline
 
 Entrez.email = "shaytanak@gmail.com"
 
+TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
 
 def read_gis(file):
     """
@@ -99,7 +100,7 @@ def get_genus_by_gi(gi):
 def muscle_aln(seqreclist):
     """Align with muscle"""
 
-    muscle = os.path.join(os.path.dirname(sys.executable), "muscle")
+    muscle = os.path.join(TOOLS_BIN_PATH, "muscle")
     process = subprocess.Popen([muscle], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     sequences = "\n".join([s.format("fasta") for key,s in seqreclist.items()])
     print(sequences)
