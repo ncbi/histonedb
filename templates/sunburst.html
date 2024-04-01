@@ -115,7 +115,7 @@ function drawSunburst(url){
         })
         .attr("dy", ".2em")
         .attr("transform", function(d) {
-          var multiline = (d.name || "").split(" ").length > 1,
+          var multiline = (d.id || "").split(" ").length > 1,
               angle = x(d.x + d.dx / 2) * 180 / Math.PI - 90,
               rotate = angle + (multiline ? -.5 : 0);
           return "rotate(" + rotate + ")translate(" + (y(d.y) + padding) + ")rotate(" + (angle > 90 ? -180 : 0) + ")";
@@ -125,12 +125,12 @@ function drawSunburst(url){
         .attr("x", 0)
         .text(function(d) {
             console.log( d);
-            return d.depth ? d.name.split(" ")[0] : "";
+            return d.depth ? d.id.split(" ")[0] : "";
         });
     textEnter.append("tspan")
         .attr("x", 0)
         .attr("dy", "1em")
-        .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
+        .text(function(d) { return d.depth ? d.id.split(" ")[1] || "" : ""; });
 
     function click(d) {
       path.transition()
