@@ -130,7 +130,10 @@ function drawSunburst(url){
     textEnter.append("tspan")
         .attr("x", 0)
         .attr("dy", "1em")
-        .text(function(d) { return d.depth ? d.id.split(" ")[1] || "" : ""; });
+        .text(function(d) {
+            console.log( d);
+            return d.depth ? d.id.split(" ")[1] || "" : "";
+        });
 
     function click(d) {
       path.transition()
