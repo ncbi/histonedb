@@ -440,6 +440,7 @@ def get_aln_and_features(request, ids=None):
 
     if request.GET.get("upload", False) == "true":
         uploaded_sequence = request.session.get("uploaded_sequences", [])
+        print(uploaded_sequence)
         if len(uploaded_sequence) > 0:
             try:
                 variant = Variant.objects.get(id=uploaded_sequence[0]["variant"])
