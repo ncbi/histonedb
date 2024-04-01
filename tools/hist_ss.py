@@ -180,7 +180,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
         if start_in_test_seq == -1 or end_in_test_seq == -1 or start_in_test_seq > end_in_test_seq:
             if save_not_found:
                 yield Feature(
-                    id          = "{}_{}".format(os.path.splitext(query_file)[0], feature.id),
+                    id          = "{}_{}".format(os.path.splitext(query_file.name)[0], feature.id),
                     name        = feature.name,
                     description = feature.description,
                     start       = -1,
@@ -189,7 +189,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
                )
         else:
             yield Feature(
-                id          = "{}_{}".format(os.path.splitext(query_file)[0], feature.id),
+                id          = "{}_{}".format(os.path.splitext(query_file.name)[0], feature.id),
                 name        = feature.name,
                 description = feature.description,
                 start       = start_in_test_seq,
