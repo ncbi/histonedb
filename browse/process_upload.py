@@ -1,6 +1,7 @@
 import sys
 import os
 import io
+import tempfile
 
 import uuid
 from Bio import SeqIO, SearchIO
@@ -123,12 +124,9 @@ def upload_hmmer(sequences, evalue=10):
     if not isinstance(sequences, list):
         sequences = [sequences]
 
-    save_dir = os.path.join(os.path.sep, "tmp", "HistoneDB")
-    if not os.path.exists(save_dir):
-        os.makedirs(save_dir)
-
-    temp_seq_path = os.path.join(save_dir, "{}.fasta".format(uuid.uuid4()))
-    with open(temp_seq_path, "w") as seqs:
+    # temp_seq_path = os.path.join(save_dir, "{}.fasta".format(uuid.uuid4()))
+    temp_seq_path = tempfile.NamedTemporaryFile()
+    with open(temp_seq_path.name, "w") as seqs:
         for s in sequences:
             SeqIO.write(s, seqs, "fasta")
 
@@ -196,5 +194,6 @@ def upload_hmmer(sequences, evalue=10):
     classifications = [(id, classifications[id], secondary_classifications[id]) for id in ids]
 
     #Cleanup
-    os.remove(temp_seq_path)
+    # os.remove(temp_seq_path)
+    temp_seq_path.close()
     return classifications, ids, rows
