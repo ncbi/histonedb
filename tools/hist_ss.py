@@ -12,6 +12,7 @@ import os
 import sys
 import uuid
 import logging
+import tempfile
 
 #Required libraires
 #import pylab
@@ -53,10 +54,11 @@ def get_variant_features(sequence, variants=None, save_dir="", save_not_found=Fa
     A string containing the gff file of all features
     """
     #Save query fasta to a file to EMBOSS needle can read it
-    n2=str(uuid.uuid4())
+    # n2=str(uuid.uuid4())
     test_record = sequence.to_biopython()
-    query_file = os.path.join(save_dir, "query_{}.fa".format(n2))
-    SeqIO.write(test_record, query_file, 'fasta')
+    # query_file = os.path.join(save_dir, "query_{}.fa".format(n2))
+    query_file = tempfile.NamedTemporaryFile()
+    SeqIO.write(test_record, query_file.name, 'fasta')
 
     #A list of updated Features for the query
     variant_features = set()
@@ -82,7 +84,8 @@ def get_variant_features(sequence, variants=None, save_dir="", save_not_found=Fa
             for updated_feature in transfer_features_from_template_to_query(features, query_file, save_dir=save_dir, save_not_found=save_not_found):
                 variant_features.add(updated_feature)
    
-    os.remove(query_file)
+    # os.remove(query_file)
+    query_file.close()
     if save_gff:
         return Feature.objects.gff(sequence.id, variant_features)
     return variant_features
