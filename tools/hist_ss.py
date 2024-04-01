@@ -126,7 +126,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     needle_cline = NeedleCommandline(
         cmd=cmd,
         asequence=template_file, 
-        bsequence=query_file, 
+        bsequence=query_file.name,
         gapopen=10,
         gapextend=1, 
         outfile=needle_results.name)
