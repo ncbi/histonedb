@@ -20,6 +20,7 @@ import tempfile
 #import networkx as nx
 
 #Django
+from django.conf import settings
 from browse.models import Feature, Sequence
 
 #BioPython
@@ -30,7 +31,7 @@ from Bio.Align.AlignInfo import SummaryInfo
 from Bio.Emboss.Applications import NeedleCommandline
 
 Entrez.email = "l.singh@intbio.org"
-TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
+TOOLS_BIN_PATH = os.path.dirname(sys.executable) if not hasattr(settings, 'TOOLS_BIN_PATH') else settings.TOOLS_BIN_PATH
 
 # Logging info
 log = logging.getLogger(__name__)

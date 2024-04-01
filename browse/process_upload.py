@@ -18,7 +18,7 @@ from django.core.files.base import ContentFile
 from django.core.files.uploadhandler import InMemoryUploadedFile
 from django.core.files.storage import default_storage
 
-TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
+TOOLS_BIN_PATH = os.path.dirname(sys.executable) if not hasattr(settings, 'TOOLS_BIN_PATH') else settings.TOOLS_BIN_PATH
 
 class InvalidFASTA(Exception):
     pass

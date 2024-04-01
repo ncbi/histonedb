@@ -15,6 +15,8 @@ import argparse
 import glob
 import uuid
 
+from django.conf import settings
+
 #Required libraires
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
@@ -26,7 +28,7 @@ from Bio import AlignIO
 #Custom libraries
 from .hist_ss import get_features_in_aln
 
-TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
+TOOLS_BIN_PATH = os.path.dirname(sys.executable) if not hasattr(settings, 'TOOLS_BIN_PATH') else settings.TOOLS_BIN_PATH
 DEVNULL = open(os.devnull, 'wb')
 
 def write_texshade(file_handle,aln_fname,res_per_line,features=None,shading_modes=['similar'],logo=True,hideseqs=False):

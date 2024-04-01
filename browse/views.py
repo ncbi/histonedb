@@ -4,6 +4,7 @@ import uuid
 import tempfile
 from more_itertools import unique_everseen
 
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.http import JsonResponse
@@ -31,7 +32,7 @@ Entrez.email = "HistoneDB_user@ncbi.nlm.nih.gov"
 
 from django.db.models import Min, Max, Count
 
-TOOLS_BIN_PATH = os.environ.get("TOOLS_BIN_PATH", os.path.dirname(sys.executable))
+TOOLS_BIN_PATH = os.path.dirname(sys.executable) if not hasattr(settings, 'TOOLS_BIN_PATH') else settings.TOOLS_BIN_PATH
 
 # Set2 Brewer, used in variant colors
 colors7 = [
@@ -522,7 +523,6 @@ def get_aln_and_features(request, ids=None):
             fout.write(sequences)
 
         muscle = os.path.join(TOOLS_BIN_PATH, "muscle")
-        muscle = "/web/public/data/projects/HistoneDB2.0/env_py311/bin/muscle"
         subprocess.run([muscle, "-align", query_file.name, "-output", output_file.name])
         with open(output_file.name) as fin:
             sequences = list(SeqIO.parse(fin, "fasta"))  # Not in same order, but does it matter?
