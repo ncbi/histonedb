@@ -150,7 +150,7 @@ def upload_hmmer(sequences, evalue=10):
         rows[i]["data"]["above_threshold"] = {id:False for id in ids}
         rows[i]["data"]["this_classified"] = {id:False for id in ids}
 
-    process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    process = subprocess.Popen([hmmsearch, "-E", str(evalue), "--notextw", db, temp_seq_path.name], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     output, error = process.communicate()
     for variant_query in SearchIO.parse(io.StringIO(output.decode('utf-8')), "hmmer3-text"):
         variant = variant_query.id
