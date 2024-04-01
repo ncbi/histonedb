@@ -112,10 +112,11 @@ def transfer_features_from_template_to_query(template_features, query_file, save
     if len(template_features) == 0:
         return
 
-    n2=str(uuid.uuid4())
+    # n2=str(uuid.uuid4())
     template = template_features.first().template
     template_file = template.path()
-    needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
+    # needle_results = os.path.join(save_dir, "needle_{}.txt".format(n2))
+    needle_results = tempfile.NamedTemporaryFile()
     cmd = os.path.join(TOOLS_BIN_PATH, "needle")
 
     if not os.path.isfile(cmd):
@@ -126,10 +127,10 @@ def transfer_features_from_template_to_query(template_features, query_file, save
         bsequence=query_file, 
         gapopen=10,
         gapextend=1, 
-        outfile=needle_results)
+        outfile=needle_results.name)
     stdout, stderr = needle_cline()
 
-    align = AlignIO.read(needle_results, "emboss")
+    align = AlignIO.read(needle_results.name, "emboss")
     # print align.format("fasta")
     core_histone = align[0]
     query = align[1]
@@ -195,7 +196,8 @@ def transfer_features_from_template_to_query(template_features, query_file, save
            )
 
     #Cleanup
-    os.remove(needle_results)
+    # os.remove(needle_results)
+    needle_results.close()
 
 def get_features_in_aln(alignment, variant, save_dir="", save_gff=True):
     #Let's extract consensus
