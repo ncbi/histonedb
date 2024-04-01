@@ -454,7 +454,7 @@ def get_aln_and_features(request, ids=None):
                 id=uploaded_sequence[0]["id"],
                 variant=variant,
                 sequence=uploaded_sequence[0]["sequence"],
-                taxonomy=Taxonomy.objects.get(name=uploaded_sequence[0]["taxonomy"]))
+                taxonomy=Taxonomy.objects.get(name=uploaded_sequence[0]["taxonomy"].lower()))
             upload = True
             download = False
 
