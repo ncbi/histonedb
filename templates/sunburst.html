@@ -95,8 +95,8 @@ function drawSunburst(url){
     {#console.log(json);#}
     //div.selectAll("#loading").remove();
     var nodes = partition.nodes(json);
-    console.log("Nodes");
-    console.log(nodes)
+    {#console.log("Nodes");#}
+    {#console.log(nodes)#}
     var path = vis.selectAll("path").data(nodes);
     path.enter().append("path")
         .attr("id", function(d, i) { return "path-" + i; })
@@ -125,14 +125,14 @@ function drawSunburst(url){
     textEnter.append("tspan")
         .attr("x", 0)
         .text(function(d) {
-            console.log( d);
+            {#console.log( d);#}
             return d.depth ? d.id.split(" ")[0] : "";
         });
     textEnter.append("tspan")
         .attr("x", 0)
         .attr("dy", "1em")
         .text(function(d) {
-            console.log( d);
+            {#console.log( d);#}
             return d.depth ? d.id.split(" ")[1] || "" : "";
         });
 
