@@ -522,7 +522,7 @@ def get_aln_and_features(request, ids=None):
             fout.write(sequences)
 
         muscle = os.path.join(TOOLS_BIN_PATH, "muscle")
-        print(muscle)
+        muscle = "/web/public/data/projects/HistoneDB2.0/env_py311/bin/muscle"
         subprocess.run([muscle, "-align", query_file.name, "-output", output_file.name])
         with open(output_file.name) as fin:
             sequences = list(SeqIO.parse(fin, "fasta"))  # Not in same order, but does it matter?
