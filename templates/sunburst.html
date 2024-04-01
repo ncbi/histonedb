@@ -124,7 +124,7 @@ function drawSunburst(url){
     textEnter.append("tspan")
         .attr("x", 0)
         .text(function(d) {
-            console.log( d.depth ? d.name : "");
+            console.log( d);
             return d.depth ? d.name.split(" ")[0] : "";
         });
     textEnter.append("tspan")
