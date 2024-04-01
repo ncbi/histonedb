@@ -15,11 +15,14 @@ class Command(BaseCommand):
     help = 'Build the sunburst json files for each core histone and its variants'
 
     # Logging info
-    logging.basicConfig(filename='log/buildsunburst.log',
-                        format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
-                        level=logging.INFO,
-                        datefmt='%Y-%m-%d %H:%M:%S')
-    log = logging.getLogger(__name__)
+    try:
+        logging.basicConfig(filename='log/buildsunburst.log',
+                            format='%(asctime)s %(name)s %(levelname)-8s %(message)s',
+                            level=logging.INFO,
+                            datefmt='%Y-%m-%d %H:%M:%S')
+        log = logging.getLogger(__name__)
+    except:
+        pass
 
     def add_arguments(self, parser):
         parser.add_argument(
