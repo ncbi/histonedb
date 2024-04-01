@@ -36,6 +36,8 @@
 {#  To add sequences, use the browse or search pages and click 'Add to Basket' when you have selected your desired sequences." To remove sequences, select the sequences you want to remove and click 'Remove from Basket.' Alternatively, you can <a href="#" id="remove_all">Remove all sequences</a>.#}
 {#  {% include "sequences.html" with page_name="basket" formatNoMatches="No sequences in basket." %}#}
 </div>
-
-<script type="text/javascript" src="https://intbio.org/hist_gene_prot/disp_func.js"></script>
+<script>
+const base_url = "{{ request.scheme }}://{{ request.get_host }}";
+</script>
+<script type="text/javascript" src="{% static 'browse/js/disp_func.js' %}"></script>
 {% endblock %}
