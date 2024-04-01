@@ -146,7 +146,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
             corresponding_hist[i-k]=i
 
 
-    corresponding_test = list(range(len(next(SeqIO.parse(query_file, "fasta")))))
+    corresponding_test = list(range(len(next(SeqIO.parse(query_file.name, "fasta")))))
     k=0
     for i, query_position in enumerate(query):
         if query_position == "-":
