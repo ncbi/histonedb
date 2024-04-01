@@ -39,6 +39,8 @@
 <script>
 const variant_url = "{% url 'browse:browse_variant_clipped' %}";
 const type_url = "{% url 'browse:browse_variants' %}";
+console.log("variant_url: " + variant_url);
+console.log("type_url: " + type_url);
 </script>
 <script type="text/javascript" src="{% static 'browse/js/disp_func.js' %}"></script>
 {% endblock %}
