@@ -91,10 +91,11 @@ function drawSunburst(url){
   console.log("drawing...");
   console.log(url);
   d3.json(url, function(error, json) {
-    console.log(error);
-    console.log(json);
+    {#console.log(error);#}
+    {#console.log(json);#}
     //div.selectAll("#loading").remove();
     var nodes = partition.nodes(json);
+    console.log("Nodes");
     console.log(nodes)
     var path = vis.selectAll("path").data(nodes);
     path.enter().append("path")
