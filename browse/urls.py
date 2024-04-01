@@ -6,8 +6,10 @@ app_name = "browse"
 urlpatterns = [
     path('browse/', views.browse_types, name="browse_types"),
 
+    path('type/', views.browse_variants, name="browse_variants"),
     path('type/<str:histone_type>/', views.browse_variants, name="browse_variants"),
     path('type/<str:histone_type>/variant/<str:variant>/', views.browse_variant, name="browse_variants_variant"),
+    path('variant/', views.browse_variant_clipped, name="browse_variant_clipped"),
     path('variant/<str:variant>/', views.browse_variant_clipped, name="browse_variant_clipped"),
     # url('^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/(\d+)', views.browse_variant_with_highlighted_sequence),
     path('type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/([a-zA-Z0-9\._]+)/',
