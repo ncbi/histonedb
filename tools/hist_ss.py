@@ -122,7 +122,7 @@ def transfer_features_from_template_to_query(template_features, query_file, save
 
     if not os.path.isfile(cmd):
         cmd = "needle"
-    cmd = "/web/public/data/projects/HistoneDB2.0/env_py311/bin/needle"
+
     needle_cline = NeedleCommandline(
         cmd=cmd,
         asequence=template_file, 
