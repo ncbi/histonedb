@@ -1,6 +1,7 @@
 import os
 import json
 import uuid
+import tempfile
 from more_itertools import unique_everseen
 
 from django.shortcuts import render
@@ -511,24 +512,28 @@ def get_aln_and_features(request, ids=None):
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
 
-        n2 = str(uuid.uuid4())
-        query_file = os.path.join(save_dir, "query_{}.fa".format(n2))
-        output_file = os.path.join(save_dir, "query_{}_aln.fa".format(n2))
+        # n2 = str(uuid.uuid4())
+        # query_file = os.path.join(save_dir, "query_{}.fa".format(n2))
+        query_file = tempfile.NamedTemporaryFile()
+        # output_file = os.path.join(save_dir, "query_{}_aln.fa".format(n2))
+        output_file = tempfile.NamedTemporaryFile()
         sequences = "\n".join([s.format() for s in sequences])
-        with open(query_file, "w") as fout:
+        with open(query_file.name, "w") as fout:
             fout.write(sequences)
 
         muscle = os.path.join(TOOLS_BIN_PATH, "muscle")
-        subprocess.run([muscle, "-align", query_file, "-output", output_file])
-        with open(output_file) as fin:
+        subprocess.run([muscle, "-align", query_file.name, "-output", output_file.name])
+        with open(output_file.name) as fin:
             sequences = list(SeqIO.parse(fin, "fasta"))  # Not in same order, but does it matter?
         msa = MultipleSeqAlignment(sequences)
         a = SummaryInfo(msa)
         cons = Sequence(id=sequence_label, variant_id=variants[0].id, taxonomy_id=1,
                         sequence=str(a.dumb_consensus(threshold=0.1, ambiguous='X')))
 
-        os.remove(query_file)
-        os.remove(output_file)
+        # os.remove(query_file)
+        # os.remove(output_file)
+        query_file.close()
+        output_file.close()
 
         features = get_variant_features(cons, variants=variants, save_dir=save_dir)
 
