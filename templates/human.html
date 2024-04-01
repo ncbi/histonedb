@@ -37,7 +37,8 @@
 {#  {% include "sequences.html" with page_name="basket" formatNoMatches="No sequences in basket." %}#}
 </div>
 <script>
-const base_url = "{{ request.scheme }}://{{ request.get_host }}";
+const variant_url = "{% url 'browse:browse_variant_clipped' %}";
+const type_url = "{% url 'browse:browse_variants' %}";
 </script>
 <script type="text/javascript" src="{% static 'browse/js/disp_func.js' %}"></script>
 {% endblock %}

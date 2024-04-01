@@ -28,14 +28,14 @@ function format_variant(variant) {
     if (exclude_variants.includes(variant_full) || variant_full.search("^[a-zA-Z0-9\._]+$") < 0)
         return variant;
     else if (variant_full in variants_dict)
-        return "<a href='" + base_url+ "/variant/" + variants_dict[variant_full] + "'>" + variant + "</a>";
+        return "<a href='" + variant_url + variants_dict[variant_full] + "'>" + variant + "</a>";
     else
-        return "<a href='" + base_url+ "/variant/" + variant_full + "'>" + variant + "</a>";
+        return "<a href='" + variant_url + variant_full + "'>" + variant + "</a>";
 };
 
 function format_type(histone_type) {
     if (histone_type)
-        return "<a href='" + base_url+ "/type/" + histone_type + "'>" + histone_type + "</a>";
+        return "<a href='" + type_url + histone_type + "'>" + histone_type + "</a>";
     else
         return histone_type;
 };
