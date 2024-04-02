@@ -51,10 +51,11 @@ def fetch_seq(accessions):
             data = list(SeqIO.parse(handle, "gb"))
             if (len(accessions) == len(data)):
                 break
-        except:
+        except Exception as e:
             log.error("Unexpected error: {}, Retrying, attempt {}".format(sys.exc_info()[0],i))
             if i == 9:
                 log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s. Will return empty list!"%(",".join(accessions)))
+                raise e
             else:
                 continue
     for s in data:
