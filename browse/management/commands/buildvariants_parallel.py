@@ -93,24 +93,24 @@ class Command(BaseCommand):
             Histone.objects.all().delete()
 
         #Populate our Histone types table add descriptions
-        # if options["force"]:
-        #     self.create_histone_types()
-        #
-        # if options["force"] or not os.path.isfile(self.combined_hmm_file):
-        #     #Create HMMs from seeds and compress them to one HMM file tp faster search with hmmpress.
-        #     self.build_hmms_from_seeds()
-        #     self.press_hmms()
-        #
-        #     #Determine HMMER thresholds params used to decide if sequence is a variant ot not. If sequence is above
-        #     self.estimate_thresholds()
-        #
-        #     #Load our curated sets taken from seed alignments into the database an run classification algorithm
-        #     self.load_curated()
-        #     self.get_scores_for_curated_via_hmm()
-        #
-        # if options["force"] or not os.path.isfile(self.db_search_results_file+"0"):
-        #     #Search inputted seuqence database using our variantt models
-        #     self.search_in_db_parallel()
+        if options["force"]:
+            self.create_histone_types()
+
+        if options["force"] or not os.path.isfile(self.combined_hmm_file):
+            #Create HMMs from seeds and compress them to one HMM file tp faster search with hmmpress.
+            self.build_hmms_from_seeds()
+            self.press_hmms()
+
+            #Determine HMMER thresholds params used to decide if sequence is a variant ot not. If sequence is above
+            self.estimate_thresholds()
+
+            #Load our curated sets taken from seed alignments into the database an run classification algorithm
+            self.load_curated()
+            self.get_scores_for_curated_via_hmm()
+
+        if options["force"] or not os.path.isfile(self.db_search_results_file+"0"):
+            #Search inputted seuqence database using our variantt models
+            self.search_in_db_parallel()
 
         #Load the sequences and classify them based on thresholds
         print("load_from_db_parallel")
