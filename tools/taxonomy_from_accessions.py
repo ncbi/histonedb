@@ -14,6 +14,7 @@ log = logging.getLogger(__name__)
 
 def fetch_seq(accessions):
     data = []
+    aaa = []
     if len(accessions) == 0:
         data = []
     #Bug in eutils 
@@ -26,6 +27,7 @@ def fetch_seq(accessions):
     p2=re.compile("(\w{4})_([a-z]{1})")
 
     for ac in acc:
+        aaa.append(ac)
         m1=p1.match(ac)
         m2=p2.match(ac)
 
@@ -36,7 +38,7 @@ def fetch_seq(accessions):
             newac=m2.group(1)+'_'+m2.group(2)[0].upper()
             accessions.append(newac)
         else:
-            if ac.startswith("gi|"): # by Roberto becuase still accessions in format: gi|81894566|sp|Q7TPQ3.1|SHPRH_MOUSE
+            if ac.strip().startswith("gi|"): # by Roberto becuase still accessions in format: gi|81894566|sp|Q7TPQ3.1|SHPRH_MOUSE
                 ac = ac.split("|")[1]
             accessions.append(ac)
     # else:
@@ -54,6 +56,7 @@ def fetch_seq(accessions):
         except Exception as e:
             log.error("Unexpected error: {}, Retrying, attempt {}".format(sys.exc_info()[0],i))
             if i == 9:
+                print(aaa)
                 log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s. Will return empty list!"%(",".join(accessions)))
                 raise e
             else:
