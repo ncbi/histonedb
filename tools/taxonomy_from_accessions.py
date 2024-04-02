@@ -36,24 +36,27 @@ def fetch_seq(accessions):
             newac=m2.group(1)+'_'+m2.group(2)[0].upper()
             accessions.append(newac)
         else:
+            if ac.startswith("gi|"): # by Roberto becuase still accessions in format: gi|81894566|sp|Q7TPQ3.1|SHPRH_MOUSE
+                ac = ac.split("|")[1]
             accessions.append(ac)
-    else:
-        for i in range(10):
-            try:
-                # post_results = Entrez.read(Entrez.epost("protein", id=",".join(accessions)))
-                # webenv = post_results["WebEnv"]
-                # query_key = post_results["QueryKey"]
-                # handle = Entrez.efetch(db="protein", rettype="gb", retmode="text", webenv=webenv, query_key=query_key)
-                handle= Entrez.efetch(db="protein", id=",".join(accessions), rettype="gb", retmode="text")
-                data = list(SeqIO.parse(handle, "gb"))
-                if (len(accessions) == len(data)):
-                    break
-            except:
-                log.error("Unexpected error: {}, Retrying, attempt {}".format(sys.exc_info()[0],i))
-                if i == 9:
-                    log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s. Will return empty list!"%(",".join(accessions)))
-                else:
-                    continue
+    # else:
+    for i in range(10):
+        try:
+            # post_results = Entrez.read(Entrez.epost("protein", id=",".join(accessions)))
+            # webenv = post_results["WebEnv"]
+            # query_key = post_results["QueryKey"]
+            # handle = Entrez.efetch(db="protein", rettype="gb", retmode="text", webenv=webenv, query_key=query_key)
+
+            handle= Entrez.efetch(db="protein", id=",".join(accessions), rettype="gb", retmode="text")
+            data = list(SeqIO.parse(handle, "gb"))
+            if (len(accessions) == len(data)):
+                break
+        except:
+            log.error("Unexpected error: {}, Retrying, attempt {}".format(sys.exc_info()[0],i))
+            if i == 9:
+                log.error("FATAL ERROR could not get seqs from NCBI after 10 attempts for %s. Will return empty list!"%(",".join(accessions)))
+            else:
+                continue
     for s in data:
         yield s
 
