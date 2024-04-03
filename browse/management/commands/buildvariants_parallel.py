@@ -72,9 +72,9 @@ class Command(BaseCommand):
         self.start_time = datetime.now()
         #If no nr file is present in the main dir, will download nr from the NCBI ftp.
         self.db_file=options['db_file']
-        # if self.db_file == "nr":
-        #     if options["force"] or not os.path.isfile('nr'):
-        #         self.get_nr()
+        if self.db_file == "nr":
+            if options["force"] or not os.path.isfile('nr'):
+                self.get_nr()
         if self.db_file == "swissprot":
             if options["force"] or not os.path.isfile('swissprot'):
                 self.get_swissprot()
