@@ -29,7 +29,7 @@ HMMER_PROCS = 60
 # INPUT NEEDED: static/browse/seeds
 # db_file (nr) in the main directory - the database of raw sequences.
 
-def run_hmmsearch(i, hmms_db: str, out: str, threads=4, E=10):
+def run_hmmsearch(i, hmms_db: str, out: str, threads=8, E=10):
     outp = f"{out}{str(i).rjust(2, '0')}"
     print(f"Processing partition {i}")
     p = subprocess.Popen(
@@ -294,11 +294,10 @@ class Command(BaseCommand):
         return self.search_parallel(hmms_db=self.combined_hmm_file, out=self.db_search_results_file,
                                     sequences=self.db_file)
 
-    def file_iterator(self, file_in: str, max_size=1073741824):  # 1073741824 ~ 1GB file size
+    def file_iterator(self, file_in: str, max_size=2147483648):  # 1073741824 ~ 1GB file size
         i = 1
         rec_size = 0
         file_out = f"db_split/split{str(i).rjust(2, '0')}"
-        print(file_out)
         fout = open(file_out, "w")
         with gzip.open(file_in, "rt") as fin:
             for r in SeqIO.parse(fin, format="fasta"):
@@ -306,13 +305,10 @@ class Command(BaseCommand):
                 fout.write(r.format("fasta"))
                 if rec_size >= max_size:
                     rec_size = 0
-                    if i == 4:
-                        break
                     fout.close()
                     yield i
                     i += 1
                     file_out = f"db_split/split{str(i).rjust(2, '0')}"
-                    print(file_out)
                     fout = open(file_out, "w")
         fout.close()
         yield i
@@ -339,6 +335,7 @@ class Command(BaseCommand):
                 self.log.info(f"Partition {r} completed")
                 if r > self.max_split_files:
                     self.max_split_files = r
+        self.log.info(f"{self.max_split_files} split files created")
         print(f"{self.max_split_files} split files created")
 
     def extract_full_sequences(self, sequences=None):
@@ -408,7 +405,6 @@ class Command(BaseCommand):
                         counter = counter + 1
                     except Sequence.DoesNotExist:
                         counter_dne = counter_dne + 1
-                        print(header)
                         # These seqs likely did not exceed the threshold.
                         # self.log.error("Strangely sequence %s does not exist in database - unable to update"%gi)
                         pass
