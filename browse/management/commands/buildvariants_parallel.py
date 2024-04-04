@@ -1,6 +1,10 @@
 import os
 import re
+import sys
+import gzip
+import functools
 import subprocess
+import multiprocessing as mp
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from browse.models import Histone, Variant, Sequence, Score
@@ -16,7 +20,7 @@ from tqdm import tqdm
 import logging
 from datetime import datetime
 
-HMMER_PROCS = 20
+HMMER_PROCS = 60
 
 
 # This command is the main one in creating the histone database system from seed alignments
@@ -37,6 +41,7 @@ class Command(BaseCommand):
     model_evaluation = os.path.join(hmm_directory, "model_evaluation")
     ids_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.ids")
     full_length_seqs_file = os.path.join(settings.STATIC_ROOT, "browse", "blast", "HistoneDB_sequences.fasta")
+    max_split_files = 0
 
     # Logging info
     logging.basicConfig(filename='log/buildvariants.log',
@@ -70,8 +75,8 @@ class Command(BaseCommand):
         self.log.info('===               buildvariants START               ===')
         self.log.info('=======================================================')
         self.start_time = datetime.now()
-        #If no nr file is present in the main dir, will download nr from the NCBI ftp.
-        self.db_file=options['db_file']
+        # If no nr file is present in the main dir, will download nr from the NCBI ftp.
+        self.db_file = options['db_file']
         if self.db_file == "nr":
             if options["force"] or not os.path.isfile('nr'):
                 self.get_nr()
@@ -79,48 +84,51 @@ class Command(BaseCommand):
             if options["force"] or not os.path.isfile('swissprot'):
                 self.get_swissprot()
         if ('http://' in self.db_file) or ('https://' in self.db_file) or ('ftp://' in self.db_file):
-            self.log.info('Provided db file is a link %s - Expecting a gzipped file. Attempting to download ...'%self.db_file)
-            subprocess.call(["wget", self.db_file,'-O','db.gz'])
-            subprocess.call(["gunzip", "db.gz"])
-            self.db_file='db'
-
+            self.log.info(
+                'Provided db file is a link %s - Expecting a gzipped file. Attempting to download ...' % self.db_file)
+            subprocess.call(["wget", self.db_file, '-O', 'db.gz'])
+            self.db_file = 'db.gz'
+        if not self.db_file.endswith(".gz"):
+            print(f"Provide compressed database")
+            self.log.info(f"Provide compressed database")
+            sys.exit(1)
 
         if options["force"]:
-            #Clean the DB, removing all sequence/variants/etc
+            # Clean the DB, removing all sequence/variants/etc
             Sequence.objects.all().delete()
             Score.objects.all().delete()
             Variant.objects.all().delete()
             Histone.objects.all().delete()
 
-        #Populate our Histone types table add descriptions
+        # Populate our Histone types table add descriptions
         if options["force"]:
             self.create_histone_types()
 
         if options["force"] or not os.path.isfile(self.combined_hmm_file):
-            #Create HMMs from seeds and compress them to one HMM file tp faster search with hmmpress.
+            # Create HMMs from seeds and compress them to one HMM file tp faster search with hmmpress.
             self.build_hmms_from_seeds()
             self.press_hmms()
 
-            #Determine HMMER thresholds params used to decide if sequence is a variant ot not. If sequence is above
+            # Determine HMMER thresholds params used to decide if sequence is a variant ot not. If sequence is above
             self.estimate_thresholds()
 
-            #Load our curated sets taken from seed alignments into the database an run classification algorithm
+            # Load our curated sets taken from seed alignments into the database an run classification algorithm
             self.load_curated()
             self.get_scores_for_curated_via_hmm()
 
-        if options["force"] or not os.path.isfile(self.db_search_results_file+"0"):
-            #Search inputted seuqence database using our variantt models
+        if options["force"] or not os.path.isfile(self.db_search_results_file + "0"):
+            # Search inputted seuqence database using our variantt models
             self.search_in_db_parallel()
 
-        #Load the sequences and classify them based on thresholds
+        # Load the sequences and classify them based on thresholds
         print("load_from_db_parallel")
         self.load_from_db_parallel()
         # self.extract_full_sequences_from_ncbi()
         print("extract_full_sequences_parallel")
         self.extract_full_sequences_parallel()
+        # print("extract_full_sequences")
+        # self.extract_full_sequences()
 
-        print("extract_full_sequences")
-        self.extract_full_sequences()
         print("canonical2H2AX")
         self.canonical2H2AX()
         print("get_stats")
@@ -196,7 +204,6 @@ class Command(BaseCommand):
             # print >> self.stdout, "Downloading nr..."
             with open("nr.gz", "w") as nrgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz"], stdout=nrgz)
-            subprocess.call(["gunzip", "nr.gz"])
 
     def get_swissprot(self):
         """Download nr if not present"""
@@ -206,7 +213,6 @@ class Command(BaseCommand):
             with open("swissprot.gz", "w") as swissprotgz:
                 subprocess.call(["curl", "-#", "ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/swissprot.gz"],
                                 stdout=swissprotgz)
-            subprocess.call(["gunzip", "swissprot.gz"])
 
     def build_hmms_from_seeds(self):
         """Build HMMs from seed histone sequences,
@@ -261,6 +267,41 @@ class Command(BaseCommand):
         return self.search_parallel(hmms_db=self.combined_hmm_file, out=self.db_search_results_file,
                                     sequences=self.db_file)
 
+    def file_iterator(self, file_in: str, max_size=1073741824):  # 1073741824 => 1GB file size
+        i = 1
+        rec_size = 0
+        file_out = f"db_split/split{str(i).rjust(2, '0')}"
+        print(file_out)
+        fout = open(file_out, "w")
+        with gzip.open(file_in, "rt") as fin:
+            for r in SeqIO.parse(fin, format="fasta"):
+                rec_size += sys.getsizeof(r.format("fasta"))
+                fout.write(r.format("fasta"))
+                if rec_size >= max_size:
+                    rec_size = 0
+                    fout.close()
+                    yield i
+                    if i == 10:
+                        break
+                    i += 1
+                    file_out = f"db_split/split{str(i).rjust(2, '0')}"
+                    print(file_out)
+                    fout = open(file_out, "w")
+        fout.close()
+        yield i
+
+    def run_hmmsearch(self, i, hmms_db: str, out: str, threads=4, E=10):
+        outp = f"{out}{str(i).rjust(2, '0')}"
+        print(f"run_hmmsearch {i}")
+        self.log.info(f"Processing partition {i}")
+        p = subprocess.Popen(
+            ["nice", "/net/intdev/cbb03/landsman/roberto/histonedb/tools/bin/hmmsearch", "-o", outp,
+             '--cpu', str(threads),
+             "-E", str(E),
+             "--notextw", hmms_db, f"db_split/split{str(i).rjust(2, '0')}"])
+        p.wait()
+        return i
+
     def search_parallel(self, hmms_db, out, sequences=None, E=10):
         """Use HMMs to search the nr database"""
         self.log.info("Searching HMMs in parallel...")
@@ -270,36 +311,21 @@ class Command(BaseCommand):
             sequences = self.db_file
         self.log.info("Splitting database file into %d parts" % HMMER_PROCS)
         # !!!!!!!!!!!!!!!
+        if os.path.exists("db_split"):
+            os.system("rm -rf db_split")
         os.system('mkdir db_split')
         # This is tricky tricky to make it fast
-        size = os.path.getsize(sequences)
-        split_size = int(size / HMMER_PROCS) + 1
-        # Use gsplit installed with brew install coreutils if working on macos
-        os.system('split --bytes=%d --numeric-suffixes=1 %s db_split/split' % (split_size, sequences))
-        # We need to heal broken fasta records
-        for i in range(1, HMMER_PROCS + 1):
-            for k in range(1, 10000):
-                outsp = subprocess.check_output(['head', '-n', '%d' % k, 'db_split/split%02d' % i])
-                if (outsp.split(b'\n')[-2].decode("utf-8")[0] == '>'):
-                    print(k)
-                    break
-            if (k > 1):
-                os.system('head -n %d db_split/split%02d >>db_split/split%02d ' % (k - 1, i, i - 1))
-                os.system('tail -n +%d db_split/split%02d> db_split/temp' % (k, i))
-                os.system('mv db_split/temp db_split/split%02d' % i)
-
         self.log.info("Launching %d processes" % HMMER_PROCS)
-        # !!!!!!!!!!!!!!
-        child_procs = []
-        for i in range(HMMER_PROCS):
-            outp = out + "%d" % i
-            self.log.info(" ".join(["nice", "hmmsearch", "-o", outp, '--cpu', '2', "-E", str(E), "--notextw", hmms_db,
-                                    "db_split/split%02d" % (i + 1)]))
-            p = subprocess.Popen(["nice", "hmmsearch", "-o", outp, '--cpu', '2', "-E", str(E), "--notextw", hmms_db,
-                                  "db_split/split%02d" % (i + 1)])
-            child_procs.append(p)
-        for cp in child_procs:
-            cp.wait()
+        self.max_split_files = 0
+        with mp.Pool(HMMER_PROCS) as p:
+            partial_work = functools.partial(self.run_hmmsearch, hmms_db=hmms_db, out=out)
+            results = p.imap(partial_work, self.file_iterator(sequences))
+            for r in results:
+                self.log.info(f"Partition {r} completed")
+                print(f"Partition {r} completed")
+                if r > self.max_split_files:
+                    self.max_split_files = r
+        print(f"{self.max_split_files} split files created")
 
     def extract_full_sequences(self, sequences=None):
         """Create database to extract full length sequences"""
@@ -330,41 +356,41 @@ class Command(BaseCommand):
                     self.log.error("Sequence {} does not exist in DB".format(gi))
                     pass
 
+    def index_full_sequences_worker(self, i):
+        p = subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d" % i])
+        p.wait()
+        return i
+
+    def extract_full_sequences_worker(self, i):
+        p = subprocess.Popen(
+            ["esl-sfetch", "-o", self.full_length_seqs_file + "%d" % i, "-f", "db_split/split%02d" % i,
+             self.ids_file + "%d" % i])
+        p.wait()
+        return i
+
     def extract_full_sequences_parallel(self, sequences=None):
         """Create database to extract full length sequences"""
 
         if sequences is None:
             sequences = self.db_file
 
-        child_procs = []
-        for i in range(HMMER_PROCS):
-            # 1) Create and index of sequence file
-            self.log.info("Indexing sequence database " + "db_split/split%02d" % (i + 1))
-            self.log.info(" ".join(["esl-sfetch", "--index", "db_split/split%02d" % (i + 1)]))
-            p = subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d" % (i + 1)])
-            child_procs.append(p)
-        for cp in child_procs:
-            cp.wait()
+        with mp.Pool(HMMER_PROCS) as p:
+            results = p.imap(self.index_full_sequences_worker, [i for i in range(1, self.max_split_files + 1)])
+            for r in results:
+                self.log.info(f"Index full sequences {r} completed")
+                print(f"Index full sequences {r} completed")
 
-        child_procs = []
-        for i in range(HMMER_PROCS):
-            # 2) Extract all ids
-            self.log.info("Extracting full length sequences...")
-            self.log.info(" ".join(
-                ["esl-sfetch", "-o", self.full_length_seqs_file + "%d" % i, "-f", "db_split/split%02d" % (i + 1),
-                 self.ids_file + "%d" % i]))
-            p = subprocess.Popen(
-                ["esl-sfetch", "-o", self.full_length_seqs_file + "%d" % i, "-f", "db_split/split%02d" % (i + 1),
-                 self.ids_file + "%d" % i])
-            child_procs.append(p)
-        for cp in child_procs:
-            cp.wait()
+        with mp.Pool(HMMER_PROCS) as p:
+            results = p.imap(self.extract_full_sequences_worker, [i for i in range(1, self.max_split_files + 1)])
+            for r in results:
+                self.log.info(f"Extract full sequences {r} completed")
+                print(f"Extract full sequences {r} completed")
 
         # 3) Update sequences with full length NR sequences -- is there a faster way?
         self.log.info("Updating records with full length sequences...")
         counter = 0
         counter_dne = 0
-        for i in range(HMMER_PROCS):
+        for i in range(1, self.max_split_files + 1):
             self.log.info("Updating sequences from file {}".format(self.full_length_seqs_file + "%d" % i))
 
             for record in SeqIO.parse(self.full_length_seqs_file + "%d" % i, "fasta"):
@@ -379,11 +405,14 @@ class Command(BaseCommand):
                         counter = counter + 1
                     except Sequence.DoesNotExist:
                         counter_dne = counter_dne + 1
+                        print(header)
                         # These seqs likely did not exceed the threshold.
                         # self.log.error("Strangely sequence %s does not exist in database - unable to update"%gi)
                         pass
+        print("Updated %d sequences" % counter)
+        print("%d sequences where attempted to update, but were not found in the database" % counter_dne)
         self.log.info("Updated %d sequences" % counter)
-        self.log.info("%d sequences where attempded to update, but were not found in the database" % counter_dne)
+        self.log.info("%d sequences where attempted to update, but were not found in the database" % counter_dne)
 
     def get_scores_for_curated_via_hmm(self):
         """
@@ -418,10 +447,11 @@ class Command(BaseCommand):
     def load_from_db_parallel(self, reset=True):
         """Load data into the histone database"""
         self.log.info("Loading data into HistoneDB...")
-        self.log.info("Processing %d files ..." % HMMER_PROCS)
+        self.log.info(f"Loading {self.max_split_files} split files")
+
         # print >> self.stdout, "Loading data into HistoneDB..."
-        for i in range(HMMER_PROCS):
-            self.log.info("Processing file %s ..." % (self.db_search_results_file + "%d" % i))
+        for i in range(1, self.max_split_files + 1):
+            self.log.info(f"Processing file {self.db_search_results_file}{i} ...")
             load_hmm_results(self.db_search_results_file + "%d" % i, self.ids_file + "%d" % i)
 
     def load_from_db(self, reset=True):
@@ -536,9 +566,9 @@ class Command(BaseCommand):
 
             # Here we are doing ROC curve analysis and returning parameters
             specificity = 0.8 if (
-                        "canonical" in variant_name) else 0.9  # Hack to make canoical have a lower threshold and ther variants higher threshold
+                    "canonical" in variant_name) else 0.9  # Hack to make canoical have a lower threshold and ther variants higher threshold
             specificity = 0.05 if (
-                        "generic" in variant_name) else specificity  # Hack to make canoical have a lower threshold and ther variants higher threshold
+                    "generic" in variant_name) else specificity  # Hack to make canoical have a lower threshold and ther variants higher threshold
 
             parameters = test_model(variant_name, output_dir, positive_examples_out, negative_examples_out,
                                     measure_threshold=specificity)
@@ -592,7 +622,7 @@ class Command(BaseCommand):
             f.write("DB regen start time: %s \n" % self.start_time)
             f.write("DB regen end time: %s\n" % now)
             f.write("Time taken for regeneration of variants: %f hours\n" % (
-                        float((now - self.start_time).total_seconds()) / 3600.))
+                    float((now - self.start_time).total_seconds()) / 3600.))
             f.write("Parallel threads used %d\n" % HMMER_PROCS)
             f.write("DB file used: %s\n" % self.db_file)
             f.write(subprocess.check_output(['ls', '-l', self.db_file]).decode("utf-8") + "\n")
