@@ -306,6 +306,8 @@ class Command(BaseCommand):
                 fout.write(r.format("fasta"))
                 if rec_size >= max_size:
                     rec_size = 0
+                    if i == 4:
+                        break
                     fout.close()
                     yield i
                     i += 1
@@ -392,7 +394,7 @@ class Command(BaseCommand):
         counter = 0
         counter_dne = 0
         for i in tqdm(range(1, self.max_split_files + 1)):
-            self.log.info(f"Updating sequences from file {self.full_length_seqs_file}{str(i).rjust(2, '0')}")
+            self.log.info(f"Updating sequences from file {self.db_search_results_file}{str(i).rjust(2, '0')}")
 
             for record in SeqIO.parse(f"{self.full_length_seqs_file}{str(i).rjust(2, '0')}", "fasta"):
                 headers = record.description.split('\x01')
@@ -452,8 +454,8 @@ class Command(BaseCommand):
 
         # print >> self.stdout, "Loading data into HistoneDB..."
         for i in tqdm(range(1, self.max_split_files + 1)):
-            self.log.info(f"Processing file {self.full_length_seqs_file}{str(i).rjust(2, '0')} ...")
-            load_hmm_results(f"{self.full_length_seqs_file}{str(i).rjust(2, '0')}",
+            self.log.info(f"Processing file {self.db_search_results_file}{str(i).rjust(2, '0')} ...")
+            load_hmm_results(f"{self.db_search_results_file}{str(i).rjust(2, '0')}",
                              f"{self.ids_file}{str(i).rjust(2, '0')}")
 
     def load_from_db(self, reset=True):
