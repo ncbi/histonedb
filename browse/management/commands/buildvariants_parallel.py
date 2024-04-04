@@ -29,6 +29,32 @@ HMMER_PROCS = 60
 # INPUT NEEDED: static/browse/seeds
 # db_file (nr) in the main directory - the database of raw sequences.
 
+def run_hmmsearch(i, hmms_db: str, out: str, threads=4, E=10):
+    outp = f"{out}{str(i).rjust(2, '0')}"
+    print(f"Processing partition {i}")
+    p = subprocess.Popen(
+        ["nice", "hmmsearch", "-o", outp,
+         '--cpu', str(threads),
+         "-E", str(E),
+         "--notextw", hmms_db, f"db_split/split{str(i).rjust(2, '0')}"])
+    p.wait()
+    return i
+
+
+def index_full_sequences_worker(i):
+    p = subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d" % i])
+    p.wait()
+    return i
+
+
+def extract_full_sequences_worker(i, full_length_seqs_file, ids_file):
+    p = subprocess.Popen(
+        ["esl-sfetch", "-o", full_length_seqs_file + "%d" % i, "-f", "db_split/split%02d" % i,
+         ids_file + "%d" % i])
+    p.wait()
+    return i
+
+
 class Command(BaseCommand):
     help = 'Build HistoneDB by first loading the seed sequences and then parsing the database file'
     seed_directory = os.path.join(settings.STATIC_ROOT, "browse", "seeds")
@@ -288,18 +314,6 @@ class Command(BaseCommand):
         fout.close()
         yield i
 
-    def run_hmmsearch(self, i, hmms_db: str, out: str, threads=4, E=10):
-        outp = f"{out}{str(i).rjust(2, '0')}"
-        print(f"run_hmmsearch {i}")
-        self.log.info(f"Processing partition {i}")
-        p = subprocess.Popen(
-            ["nice", "hmmsearch", "-o", outp,
-             '--cpu', str(threads),
-             "-E", str(E),
-             "--notextw", hmms_db, f"db_split/split{str(i).rjust(2, '0')}"])
-        p.wait()
-        return i
-
     def search_parallel(self, hmms_db, out, sequences=None, E=10):
         """Use HMMs to search the nr database"""
         self.log.info("Searching HMMs in parallel...")
@@ -316,7 +330,7 @@ class Command(BaseCommand):
         self.log.info("Launching %d processes" % HMMER_PROCS)
         self.max_split_files = 0
         with mp.Pool(HMMER_PROCS) as p:
-            partial_work = functools.partial(self.run_hmmsearch, hmms_db=hmms_db, out=out)
+            partial_work = functools.partial(run_hmmsearch, hmms_db=hmms_db, out=out)
             results = p.imap(partial_work, self.file_iterator(sequences))
             for r in results:
                 self.log.info(f"Partition {r} completed")
@@ -354,18 +368,6 @@ class Command(BaseCommand):
                     self.log.error("Sequence {} does not exist in DB".format(gi))
                     pass
 
-    def index_full_sequences_worker(self, i):
-        p = subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d" % i])
-        p.wait()
-        return i
-
-    def extract_full_sequences_worker(self, i):
-        p = subprocess.Popen(
-            ["esl-sfetch", "-o", self.full_length_seqs_file + "%d" % i, "-f", "db_split/split%02d" % i,
-             self.ids_file + "%d" % i])
-        p.wait()
-        return i
-
     def extract_full_sequences_parallel(self, sequences=None):
         """Create database to extract full length sequences"""
 
@@ -373,13 +375,16 @@ class Command(BaseCommand):
             sequences = self.db_file
 
         with mp.Pool(HMMER_PROCS) as p:
-            results = p.imap(self.index_full_sequences_worker, [i for i in range(1, self.max_split_files + 1)])
+            results = p.imap(index_full_sequences_worker, [i for i in range(1, self.max_split_files + 1)])
             for r in results:
                 self.log.info(f"Index full sequences {r} completed")
                 print(f"Index full sequences {r} completed")
 
         with mp.Pool(HMMER_PROCS) as p:
-            results = p.imap(self.extract_full_sequences_worker, [i for i in range(1, self.max_split_files + 1)])
+            partial_work = functools.partial(extract_full_sequences_worker,
+                                             full_length_seqs_file=self.full_length_seqs_file,
+                                             ids_file=self.ids_file)
+            results = p.imap(partial_work, [i for i in range(1, self.max_split_files + 1)])
             for r in results:
                 self.log.info(f"Extract full sequences {r} completed")
                 print(f"Extract full sequences {r} completed")
