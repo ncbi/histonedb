@@ -267,7 +267,7 @@ class Command(BaseCommand):
         return self.search_parallel(hmms_db=self.combined_hmm_file, out=self.db_search_results_file,
                                     sequences=self.db_file)
 
-    def file_iterator(self, file_in: str, max_size=1073741824):  # 1073741824 => 1GB file size
+    def file_iterator(self, file_in: str, max_size=1073741824):  # 1073741824 ~ 1GB file size
         i = 1
         rec_size = 0
         file_out = f"db_split/split{str(i).rjust(2, '0')}"
@@ -281,8 +281,6 @@ class Command(BaseCommand):
                     rec_size = 0
                     fout.close()
                     yield i
-                    if i == 10:
-                        break
                     i += 1
                     file_out = f"db_split/split{str(i).rjust(2, '0')}"
                     print(file_out)
