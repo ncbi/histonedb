@@ -50,7 +50,7 @@ def index_full_sequences_worker(i):
 def extract_full_sequences_worker(i, full_length_seqs_file, ids_file):
     p = subprocess.Popen(
         ["esl-sfetch", "-o", full_length_seqs_file + "%d" % i, "-f", "db_split/split%02d" % i,
-         ids_file + "%d" % i])
+         f"{ids_file}{str(i).rjust(2, '0')}"])
     p.wait()
     return i
 
@@ -394,9 +394,9 @@ class Command(BaseCommand):
         counter = 0
         counter_dne = 0
         for i in range(1, self.max_split_files + 1):
-            self.log.info("Updating sequences from file {}".format(self.full_length_seqs_file + "%d" % i))
+            self.log.info(f"Updating sequences from file {self.full_length_seqs_file}{str(i).rjust(2, '0')}")
 
-            for record in SeqIO.parse(self.full_length_seqs_file + "%d" % i, "fasta"):
+            for record in SeqIO.parse(f"{self.full_length_seqs_file}{str(i).rjust(2, '0')}", "fasta"):
                 headers = record.description.split('\x01')
                 for header in headers:
                     gi = header.split(" ")[0]
@@ -454,8 +454,8 @@ class Command(BaseCommand):
 
         # print >> self.stdout, "Loading data into HistoneDB..."
         for i in range(1, self.max_split_files + 1):
-            self.log.info(f"Processing file {self.db_search_results_file}{i} ...")
-            load_hmm_results(self.db_search_results_file + "%d" % i, self.ids_file + "%d" % i)
+            self.log.info(f"Processing file {self.full_length_seqs_file}{str(i).rjust(2, '0')} ...")
+            load_hmm_results(f"{self.full_length_seqs_file}{str(i).rjust(2, '0')}", f"{self.ids_file}{str(i).rjust(2, '0')}")
 
     def load_from_db(self, reset=True):
         """Load data into the histone database"""
