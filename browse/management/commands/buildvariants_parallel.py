@@ -42,14 +42,15 @@ def run_hmmsearch(i, hmms_db: str, out: str, threads=4, E=10):
 
 
 def index_full_sequences_worker(i):
-    p = subprocess.Popen(["esl-sfetch", "--index", "db_split/split%02d" % i])
+    p = subprocess.Popen(["esl-sfetch", "--index", f"db_split/split{str(i).rjust(2, '0')}"])
     p.wait()
     return i
 
 
 def extract_full_sequences_worker(i, full_length_seqs_file, ids_file):
     p = subprocess.Popen(
-        ["esl-sfetch", "-o", full_length_seqs_file + "%d" % i, "-f", "db_split/split%02d" % i,
+        ["esl-sfetch", "-o", f"{full_length_seqs_file}{str(i).rjust(2, '0')}",
+         "-f", f"db_split/split{str(i).rjust(2, '0')}",
          f"{ids_file}{str(i).rjust(2, '0')}"])
     p.wait()
     return i
@@ -332,9 +333,8 @@ class Command(BaseCommand):
         with mp.Pool(HMMER_PROCS) as p:
             partial_work = functools.partial(run_hmmsearch, hmms_db=hmms_db, out=out)
             results = p.imap(partial_work, self.file_iterator(sequences))
-            for r in results:
+            for r in tqdm(results):
                 self.log.info(f"Partition {r} completed")
-                print(f"Partition {r} completed")
                 if r > self.max_split_files:
                     self.max_split_files = r
         print(f"{self.max_split_files} split files created")
@@ -376,24 +376,22 @@ class Command(BaseCommand):
 
         with mp.Pool(HMMER_PROCS) as p:
             results = p.imap(index_full_sequences_worker, [i for i in range(1, self.max_split_files + 1)])
-            for r in results:
+            for r in tqdm(results):
                 self.log.info(f"Index full sequences {r} completed")
-                print(f"Index full sequences {r} completed")
 
         with mp.Pool(HMMER_PROCS) as p:
             partial_work = functools.partial(extract_full_sequences_worker,
                                              full_length_seqs_file=self.full_length_seqs_file,
                                              ids_file=self.ids_file)
             results = p.imap(partial_work, [i for i in range(1, self.max_split_files + 1)])
-            for r in results:
+            for r in tqdm(results):
                 self.log.info(f"Extract full sequences {r} completed")
-                print(f"Extract full sequences {r} completed")
 
         # 3) Update sequences with full length NR sequences -- is there a faster way?
         self.log.info("Updating records with full length sequences...")
         counter = 0
         counter_dne = 0
-        for i in range(1, self.max_split_files + 1):
+        for i in tqdm(range(1, self.max_split_files + 1)):
             self.log.info(f"Updating sequences from file {self.full_length_seqs_file}{str(i).rjust(2, '0')}")
 
             for record in SeqIO.parse(f"{self.full_length_seqs_file}{str(i).rjust(2, '0')}", "fasta"):
@@ -453,9 +451,10 @@ class Command(BaseCommand):
         self.log.info(f"Loading {self.max_split_files} split files")
 
         # print >> self.stdout, "Loading data into HistoneDB..."
-        for i in range(1, self.max_split_files + 1):
+        for i in tqdm(range(1, self.max_split_files + 1)):
             self.log.info(f"Processing file {self.full_length_seqs_file}{str(i).rjust(2, '0')} ...")
-            load_hmm_results(f"{self.full_length_seqs_file}{str(i).rjust(2, '0')}", f"{self.ids_file}{str(i).rjust(2, '0')}")
+            load_hmm_results(f"{self.full_length_seqs_file}{str(i).rjust(2, '0')}",
+                             f"{self.ids_file}{str(i).rjust(2, '0')}")
 
     def load_from_db(self, reset=True):
         """Load data into the histone database"""
