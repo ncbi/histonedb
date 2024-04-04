@@ -295,7 +295,7 @@ class Command(BaseCommand):
         print(f"run_hmmsearch {i}")
         self.log.info(f"Processing partition {i}")
         p = subprocess.Popen(
-            ["nice", "/net/intdev/cbb03/landsman/roberto/histonedb/tools/bin/hmmsearch", "-o", outp,
+            ["nice", "hmmsearch", "-o", outp,
              '--cpu', str(threads),
              "-E", str(E),
              "--notextw", hmms_db, f"db_split/split{str(i).rjust(2, '0')}"])
