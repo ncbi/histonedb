@@ -12,8 +12,8 @@ urlpatterns = [
     path('variant/', views.browse_variant_clipped, name="browse_variant_clipped"),
     path('variant/<str:variant>/', views.browse_variant_clipped, name="browse_variant_clipped"),
     # url('^type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/(\d+)', views.browse_variant_with_highlighted_sequence),
-    path('type/([a-zA-Z0-9]+)/variant/([a-zA-Z0-9\._]+)/([a-zA-Z0-9\._]+)/',
-         views.browse_variant_with_highlighted_sequence),
+    path('type/<str:histone_type>/variant/<str:variant>/<str:accession>/',
+         views.browse_variant_with_highlighted_sequence, name="browse_variant_with_highlighted_sequence"),
 
     path('search/', views.search, name="search"),
     path('analyze/', views.analyze, name="analyze"),
